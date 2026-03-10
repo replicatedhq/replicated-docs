@@ -1,8 +1,8 @@
-# How to Set Up Backup Storage
+# How to set up backup storage
 
 This topic describes the process of setting up backup storage for the Replicated snapshots feature.
 
-## Configuring Backup Storage for Embedded Clusters
+## Configuring backup storage for embedded clusters
 
 You must configure a backup storage destination before you can create backups. This procedure describes how to configure backup storage for snapshots for _embedded clusters_ created by Replicated kURL.
 
@@ -24,7 +24,7 @@ To configure snapshots for embedded clusters:
 
 1. Optionally increase the default memory for the node-agent (restic) Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
-## Configuring Backup Storage for Existing Clusters
+## Configuring backup storage for existing clusters
 
 You must configure a backup storage destination before you can create backups.
 
@@ -40,11 +40,11 @@ Follow this process to install Velero and configure the snapshots feature:
 
 1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the node-agent (restic) Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
-## Next Step
+## Next step
 
 After you configure a storage destination, you can create a backup. See [Create and Schedule Backups](snapshots-creating).
 
-## Additional Resources
+## Additional resources
 
 * [Restore Full Backups](snapshots-restoring-full)
 * [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

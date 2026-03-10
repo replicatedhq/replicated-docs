@@ -20,11 +20,11 @@ import NodeCpuCr from "../partials/preflights/_node-cpu-cr.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Example Preflight Specs
+# Example preflight specs
 
 This section includes common examples of preflight check specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
-## Check HTTP or HTTPS Requests from the Cluster
+## Check HTTP or HTTPS requests from the cluster
 
 The examples below use the `http` collector and the `textAnalyze` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
@@ -42,7 +42,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
   </TabItem>
 </Tabs>
 
-## Check Kubernetes Version
+## Check Kubernetes version
 
 The examples below use the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
 
@@ -60,7 +60,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
   </TabItem>
 </Tabs>
 
-## Check Kubernetes Distribution
+## Check Kubernetes distribution
 
 The examples below use the `distribution` analyzer to check the Kubernetes distribution of the cluster. The `distribution` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
 
@@ -78,7 +78,7 @@ For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cl
   </TabItem>
 </Tabs>
 
-## Check MySQL Version Using Template Functions
+## Check MySQL version using template functions
 
 The examples below use the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
 
@@ -100,7 +100,7 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
   </TabItem>
 </Tabs>
 
-## Check Node Memory
+## Check node memory
 
 The examples below use the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
@@ -118,7 +118,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
 </Tabs>
 
-## Check Node Storage Class Availability
+## Check node storage class availability
 
 The examples below use the `storageClass` analyzer to check that a required storage class is available in the nodes in the cluster. The `storageClass` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
@@ -136,7 +136,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
 </Tabs>
 
-## Check Node Ephemeral Storage
+## Check node ephemeral storage
 
 The examples below use the `nodeResources` analyzer to check the ephemeral storage available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
@@ -154,7 +154,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
 </Tabs>
 
-## Check Requirements Are Met By At Least One Node
+## Check requirements are met by at least one node
 
 The examples below use the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 
@@ -172,7 +172,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
 </Tabs>
 
-## Check Total CPU Cores Across Nodes
+## Check total cpu cores across nodes
 
 The examples below use the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
 

@@ -1,8 +1,8 @@
-# Manage Customer License Fields
+# Manage customer license fields
 
 This topic describes how to manage customer license fields in the Replicated Vendor Portal, including how to add custom fields and set initial values for the built-in fields.
 
-## About License Fields
+## About license fields
 
 License fields allow you to control customer entitlements and configure application behavior. The Replicated Vendor Portal includes built-in fields (such as license expiration and install options) and supports custom fields for application-specific requirements.
 
@@ -12,11 +12,11 @@ For information about how to access license field values in your application, se
 - For Helm installations: [Get License Fields in Helm Installations](licenses-reference-helm)
 - For verification: [Verify Signature and Get License Fields with the SDK API](licenses-verify-fields-sdk-api)
 
-## Manage Built-In License Fields
+## Manage built-in license fields
 
 This section describes how to manage the built-in license fields that are included in the licenses for all customer records by default. For a complete list of the built-in license fields, see [Built-In License Fields](/vendor/licenses-using-builtin-fields). 
 
-### Set Initial Values for Built-In License Fields {#initial-values}
+### Set initial values for built-in license fields {#initial-values}
 
 You can set initial values for any of the built-in license fields, except the `name`, `email`, and `custom_id` fields.
 
@@ -52,7 +52,7 @@ To set initial values for built-in license fields:
 
 1. Click **Update** to save your changes.
 
-### Lock Built-In License Fields
+### Lock built-in license fields
 
 When a license field is locked, a lock icon is displayed on both the **Create a new customer** and **Manage customer** pages. To edit a locked field, click the lock icon to temporarily unlock it. Locking a license field makes it more difficult to accidentally change the field's value.
 
@@ -64,7 +64,7 @@ To lock a built-in license field:
 
 1. Click **Update** to save your changes.
 
-## Manage Custom License Fields
+## Manage custom license fields
 
 You can create custom license fields to add business- and application-specific data to customer licenses.
 
@@ -76,7 +76,7 @@ Custom license fields can also be created and managed through the Vendor API v3,
 
 The maximum size for a license field value is 64KB.
 
-### Create Custom License Fields
+### Create custom license fields
 
 To create a custom license field:
 
@@ -99,7 +99,7 @@ To create a custom license field:
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
    | Hidden | If checked, the field is not visible to your customer in the Replicated Admin Console or in their Enterprise Portal. The field is still visible to you in the Vendor Portal. **Note**: The Hidden field is displayed only for vendors with access to the Replicated installers (KOTS, kURL, Embedded Cluster). |
 
-### Update Custom License Fields
+### Update custom license fields
 
 To update a custom license field:
 
@@ -110,7 +110,7 @@ To update a custom license field:
    Enabling **Is this field is required?** updates the license field to be required on all new and existing customers. If you enable **Is this field is required?**, you must either set a default value for the field or manually update each existing customer to provide a value for the field.
    :::
 
-### Delete Custom License Fields
+### Delete custom license fields
 
 Deleted license fields and their values do not appear in the customer's license in any location, including your view in the Vendor Portal, the downloaded YAML version of the license, and the Admin Console **License** screen.
 
@@ -137,7 +137,7 @@ To delete a custom license field:
 
 1. Follow the instructions in the dialog and click **Delete**.
 
-### Custom License Field Types
+### Custom license field types
 
 Each custom license field has a _type_ that is used to validate its value. The type also determines the widget that you use to set the license field's value on the **Manager customer** page.
 
@@ -154,7 +154,7 @@ Each custom license field has a _type_ that is used to validate its value. The t
 String, Text, Password, and Enum types are all represented as strings in the license.
 :::
 
-### How Custom Fields Appear in Licenses
+### How custom fields appear in licenses
 
 Custom license fields appear in the customer's license YAML under `spec.entitlements`. Your application can read these values to enforce limits or configure behavior.
 
@@ -185,7 +185,7 @@ spec:
       valueType: Boolean
 ```
 
-## Set Customer-Specific Values for Custom License Fields
+## Set customer-specific values for custom license fields
 
 To set a customer-specific value for a custom license field:
 

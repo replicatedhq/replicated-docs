@@ -1,4 +1,4 @@
-# Check Entitlements in Preflights with KOTS Template Functions
+# Check entitlements in preflights with KOTS template functions
 
 This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
@@ -8,7 +8,7 @@ KOTS includes default logic to control access to features in the Replicated Admi
 
 For more information, see [Manage Customer License Fields](licenses-adding-custom-fields). For the list of built-in fields in customer licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
-## Add Preflights to Check Entitlements Before Installation or Upgrade {#install}
+## Add preflights to check entitlements before installation or upgrade {#install}
 
 To enforce entitlements when your customer installs or updates your application,
 you can use the Replicated LicenseFieldValue template function in your application to read the value of license fields. The LicenseFieldValue template function accepts the built-in license fields and any custom fields that you configure. For more information, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.

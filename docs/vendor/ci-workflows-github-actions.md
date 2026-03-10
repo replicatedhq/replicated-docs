@@ -1,4 +1,4 @@
-# Use Replicated GitHub Actions in CI/CD
+# Use Replicated GitHub actions in CI/CD
 
 This topic describes how to integrate Replicated's custom GitHub actions into continuous integration and continuous delivery (CI/CD) workflows that use the GitHub Actions platform.
 
@@ -14,7 +14,7 @@ If you use GitHub Actions as your CI/CD platform, you can include these custom a
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
-## GitHub Actions Workflow Examples
+## GitHub actions workflow examples
 
 The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example workflows that use the Replicated GitHub actions. You can use these workflows as a template for your own GitHub Actions CI/CD workflows:
 
@@ -23,7 +23,7 @@ The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated
 * For a customizable development workflow for applications installed with KOTS, see [development-kots.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-kots.yaml).
 * For a release workflow, see [release.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml).
 
-## Integrate GitHub Actions
+## Integrate GitHub actions
 
 The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also describes when to use the action in a workflow and indicates the related Replicated CLI command where applicable.
 

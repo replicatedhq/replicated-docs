@@ -19,11 +19,11 @@ import RedisMysqlCr from "../partials/support-bundles/_redis-mysql-cr.mdx"
 import RunPodsSecret from "../partials/support-bundles/_run-pods-secret.mdx"
 import RunPodsCr from "../partials/support-bundles/_run-pods-cr.mdx"
 
-# Example Support Bundle Specs
+# Example support bundle specs
 
 This topic includes common examples of support bundle specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
-## Check API Deployment Status
+## Check API deployment status
 
 The examples below use the `deploymentStatus` analyzer to check the version of Kubernetes running in the cluster. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
 
@@ -38,7 +38,7 @@ For more information, see [Deployment Status](https://troubleshoot.sh/docs/analy
   </TabItem>
 </Tabs> 
 
-## Check HTTP Requests
+## Check HTTP requests
 
 If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
@@ -55,7 +55,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
   </TabItem>
 </Tabs>
 
-## Check Kubernetes Version
+## Check Kubernetes version
 
 The examples below use the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector.
 
@@ -70,7 +70,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
   </TabItem>
 </Tabs> 
 
-## Check Node Resources
+## Check node resources
 
 The examples below use the `nodeResources` analyzer to check that the minimum requirements are met for memory, CPU cores, number of nodes, and ephemeral storage. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
 
@@ -85,7 +85,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
   </TabItem>
 </Tabs> 
 
-## Check Node Status
+## Check node status
 
 The following examples use the `nodeResources` analyzers to check the status of the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
 
@@ -100,7 +100,7 @@ For more information, see [Node Resources](https://troubleshoot.sh/docs/analyze/
   </TabItem>
 </Tabs> 
 
-## Collect Logs Using Multiple Selectors
+## Collect logs using multiple selectors
 
 The examples below use the `logs` collector to collect logs from various Pods where application workloads are running. They also use the `textAnalyze` collector to analyze the logs for a known error.
 
@@ -117,7 +117,7 @@ You can use the `selector` attribute of the `logs` collector to find Pods that h
   </TabItem>
 </Tabs> 
 
-## Collect Logs Using `limits`
+## Collect logs using `limits`
 
 The examples below use the `logs` collector to collect Pod logs from the Pod where the application is running. These specifications use the `limits` field to set a `maxAge` and `maxLines` to limit the output provided. 
 
@@ -132,7 +132,7 @@ For more information, see [Pod Logs](https://troubleshoot.sh/docs/collect/logs/)
   </TabItem>
 </Tabs> 
 
-## Collect Redis and MySQL Server Information
+## Collect Redis and MySQL server information
 
 The following examples use the `redis` and `mysql` collectors to collect information about Redis and MySQL servers running in the cluster.
 
@@ -147,7 +147,7 @@ For more information, see [Redis](https://troubleshoot.sh/docs/collect/redis/) a
   </TabItem>
 </Tabs>
 
-## Run and Analyze a Pod
+## Run and analyze a pod
 
 The examples below use the `textAnalyze` analyzer to check that a command successfully executes in a Pod running in the cluster. The Pod specification is defined in the `runPod` collector.
 

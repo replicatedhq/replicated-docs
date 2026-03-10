@@ -1,4 +1,4 @@
-# Support Lifecycle Policy
+# Support lifecycle policy
 
 Replicated will provide support for products per our terms and services until that product is noted as End of Life (EOL).
 
@@ -80,7 +80,7 @@ Replicated will provide support for products per our terms and services until th
 
 &#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
 
-## Supported Replicated Installer Versions
+## Supported Replicated Installer versions
 
 The following table lists the versions of Replicated KOTS and Replicated kURL that are supported on each Kubernetes version.
 

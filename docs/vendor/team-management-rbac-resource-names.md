@@ -1,128 +1,128 @@
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
-# RBAC Resource Names
+# RBAC resource names
 
 This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
 
-## Integration Catalog
+## Integration catalog
 
-### integration/catalog/list
+### Integration/catalog/list
 
 Grants the holder permission to view the catalog events and triggers available for integrations.
 
-## kots
+## KOTS
 
-### kots/app/create
+### KOTS/app/create
 
 When allowed, the holder will be allowed to create new applications.
 
-### kots/app/[:appId]/read
+### KOTS/app/[:appid]/read
 Grants the holder permission to view the application. If the holder does not have permissions to view an application, it will not appear in lists.
 
-### kots/app/[:appId]/delete
+### KOTS/app/[:appid]/delete
 
 Grants the holder permission to delete an application.
 
-### kots/app/[:appId]/update
+### KOTS/app/[:appid]/update
 
 Grants the holder permission to modify application settings, such as renaming the application, toggling trial signup, configuring security center settings, and managing support bundle upload visibility.
 
-### kots/externalregistry/list
+### KOTS/externalregistry/list
 Grants the holder the ability to list external docker registry for application(s).
 
-### kots/externalregistry/create
+### KOTS/externalregistry/create
 
 Grants the holder the ability to link a new external docker registry to application(s).
 
-### kots/externalregistry/[:registryName]/delete
+### KOTS/externalregistry/[:registryname]/delete
 
 Grants the holder the ability to delete the specified linked external docker registry in application(s).
 
-### kots/externalregistry/update
+### KOTS/externalregistry/update
 
 Grants the holder the ability to update external registry settings.
 
-### kots/externalregistry/test
+### KOTS/externalregistry/test
 
 Grants the holder the ability to test an external registry connection.
 
-### kots/externalregistry/logs/read
+### KOTS/externalregistry/logs/read
 
 Grants the holder the ability to view external registry sync logs.
 
-### kots/app/[:appId]/channel/create
+### KOTS/app/[:appid]/channel/create
 
 Grants the holder the ability to create a new channel in the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/archive
+### KOTS/app/[:appid]/channel/[:channelid]/archive
 
 Grants the holder permission to archive the specified channel(s) of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/delete
+### KOTS/app/[:appid]/channel/[:channelid]/delete
 
 Grants the holder permission to delete the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/promote
+### KOTS/app/[:appid]/channel/[:channelid]/promote
 
 Grants the holder the ability to promote a new release to the specified channel(s) of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/update
+### KOTS/app/[:appid]/channel/[:channelid]/update
 
 Grants the holder permission to update the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/read
+### KOTS/app/[:appid]/channel/[:channelid]/read
 
 Grants the holder the permission to view information about the specified channel of the specified application(s).
 
-### kots/app/[:appId]/enterprisechannel/[:channelId]/read
+### KOTS/app/[:appid]/enterprisechannel/[:channelid]/read
 
 Grants the holder the permission to view information about the specified enterprise channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/releases/read
+### KOTS/app/[:appid]/channel/[:channelid]/releases/read
 
 Grants the holder permission to list releases promoted to the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/releases/update
+### KOTS/app/[:appid]/channel/[:channelid]/releases/update
 
 Grants the holder permission to update a release on the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/releases/airgap
+### KOTS/app/[:appid]/channel/[:channelid]/releases/airgap
 
 Grants the holder permission to trigger airgap builds for the specified channel.
 
-### kots/app/[:appId]/channel/[:channelId]/releases/airgap/download-url
+### KOTS/app/[:appid]/channel/[:channelid]/releases/airgap/download-URL
 
 Grants the holder permission to get an airgap bundle download URL for any release on the specified channel.
 
-### kots/app/[:appId]/channel/[:channelId]/installers/read
+### KOTS/app/[:appid]/channel/[:channelid]/installers/read
 
 Grants the holder permission to list installers promoted to the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/embeddedcluster/release
+### KOTS/app/[:appid]/channel/[:channelid]/embeddedcluster/release
 
 Grants the holder permission to manage embedded cluster releases on the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/release/[:sequence]/demote
+### KOTS/app/[:appid]/channel/[:channelid]/release/[:sequence]/demote
 
 Grants the holder permission to demote a release from the specified channel of the specified application(s).
 
-### kots/app/[:appId]/channel/[:channelId]/release/[:sequence]/undemote
+### KOTS/app/[:appid]/channel/[:channelid]/release/[:sequence]/undemote
 
 Grants the holder permission to un-demote a previously demoted release on the specified channel of the specified application(s).
 
-### kots/app/[:appId]/installer/create
+### KOTS/app/[:appid]/Installer/create
 
 Grants the holder permission to create kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
-### kots/app/[:appId]/installer/update
+### KOTS/app/[:appid]/Installer/update
 
 Grants the holder permission to update kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
-### kots/app/[:appId]/installer/read
+### KOTS/app/[:appid]/Installer/read
 
 Grants the holder permission to view kURL installers. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
-### kots/app/[:appId]/installer/promote
+### KOTS/app/[:appid]/Installer/promote
 
 Grants the holder permission to promote kURL installers to a channel. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
@@ -130,477 +130,477 @@ Grants the holder permission to promote kURL installers to a channel. For more i
 The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Users must be assigned both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to have permissions to view, create, and promote installers.
 :::
 
-### kots/app/[:appId]/license/create
+### KOTS/app/[:appid]/license/create
 
 Grants the holder permission to create a new license in the specified application(s).
 
-### kots/app/[:appId]/license/[:customerId]/read
+### KOTS/app/[:appid]/license/[:customerid]/read
 
 Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal, and the holder will not be able to subscribe to this license's instance notifications.
 
-### kots/app/[:appId]/license/[:customerId]/update
+### KOTS/app/[:appid]/license/[:customerid]/update
 
 Grants the holder permission to edit the license specified by ID for the specified application(s).
 
-### kots/app/[:appId]/license/[:customerId]/delete
+### KOTS/app/[:appid]/license/[:customerid]/delete
 
 Grants the holder permission to delete the customer specified by ID for the specified application(s).
 
-### kots/app/[:appId]/license/[:customerId]/unarchive
+### KOTS/app/[:appid]/license/[:customerid]/unarchive
 
 Grants the holder permission to unarchive (restore) the customer specified by ID for the specified application(s).
 
-### kots/app/[:appId]/license/[:customerId]/slack-notifications/read
+### KOTS/app/[:appid]/license/[:customerid]/slack-notifications/read
 
 Grants the holder permission to view the team's Slack notification subscriptions for instances associated with the specified license.
 
-### kots/app/[:appId]/license/[:customerId]/slack-notifications/update
+### KOTS/app/[:appid]/license/[:customerid]/slack-notifications/update
 
 Grants the holder permission to edit the team's Slack notification subscriptions for instances associated with the specified license.
 
-### kots/app/[:appId]/builtin-licensefields/update
+### KOTS/app/[:appid]/builtin-licensefields/update
 
 Grants the holder permission to edit the builtin license field override values for the specified application(s).
 
-### kots/app/[:appId]/builtin-licensefields/delete
+### KOTS/app/[:appid]/builtin-licensefields/delete
 
 Grants the holder permission to delete the builtin license field override values for the specified application(s).
 
-### kots/license/[:customerId]/airgap/password
+### KOTS/license/[:customerid]/airgap/password
 
 Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
 
-### kots/license/[:customerId]/archive
+### KOTS/license/[:customerid]/archive
 
 Grants the holder permission to archive the specified license (by ID).
 
-### kots/license/[:customerId]/delete
+### KOTS/license/[:customerid]/delete
 
 Grants the holder permission to delete the specified customer (by ID).
 
-### kots/license/[:customerId]/unarchive
+### KOTS/license/[:customerid]/unarchive
 
 Grants the holder permissions to unarchive the specified license (by ID).
 
-### kots/app/[:appId]/licensefields/create
+### KOTS/app/[:appid]/licensefields/create
 
 Grants the holder permission to create new license fields in the specified application(s).
 
-### kots/app/[:appId]/licensefields/read
+### KOTS/app/[:appid]/licensefields/read
 
 Grants the holder permission to view the license fields in the specified application(s).
 
-### kots/app/[:appId]/licensefields/update
+### KOTS/app/[:appid]/licensefields/update
 
 Grants the holder permission to edit the license fields for the specified application(s).
 
-### kots/app/[:appId]/licensefields/delete
+### KOTS/app/[:appid]/licensefields/delete
 
 Grants the holder permission to delete the license fields for the specified application(s).
 
-### kots/app/[:appId]/release/create
+### KOTS/app/[:appid]/release/create
 
 Grants the holder permission to create a new release in the specified application(s).
 
-### kots/app/[:appId]/release/[:sequence]/update
+### KOTS/app/[:appid]/release/[:sequence]/update
 
 Grants the holder permission to update the files saved in release sequence `[:sequence]` in the specified application(s). Once a release is promoted to a channel, it's not editable by anyone.
 
-### kots/app/[:appId]/release/[:sequence]/read
+### KOTS/app/[:appid]/release/[:sequence]/read
 
 Grants the holder permission to read the files at release sequence `[:sequence]` in the specified application(s).
 
-### kots/app/[:appId]/release/[:sequence]/archive
+### KOTS/app/[:appid]/release/[:sequence]/archive
 
 Grants the holder permission to archive the release at sequence `[:sequence]` in the specified application(s).
 
-### kots/app/[:appId]/releases/test
+### KOTS/app/[:appid]/releases/test
 
 Grants the holder permission to run release compatibility tests for the specified application(s).
 
-### kots/app/[:appId]/customhostname/list
+### KOTS/app/[:appid]/customhostname/list
 
 Grants the holder permission to view custom hostnames for the team.
 
-### kots/app/[:appId]/customhostname/create
+### KOTS/app/[:appid]/customhostname/create
 
 Grants the holder permission to create custom hostnames for the team.
 
-### kots/app/[:appId]/customhostname/delete
+### KOTS/app/[:appid]/customhostname/delete
 
 Grants the holder permission to delete custom hostnames for the team.
 
-### kots/app/[:appId]/customhostname/default/set
+### KOTS/app/[:appid]/customhostname/default/set
 
 Grants the holder permission to set default custom hostnames.
 
-### kots/app/[:appId]/customhostname/default/unset
+### KOTS/app/[:appid]/customhostname/default/unset
 
 Grants the holder permission to unset the default custom hostnames.
 
-### kots/app/[:appId]/defaulthostname/list
+### KOTS/app/[:appid]/defaulthostname/list
 
 Grants the holder permission to list default hostnames for the specified application(s).
 
-### kots/app/[:appId]/supportbundle/read
+### KOTS/app/[:appid]/SupportBundle/read
 
 Grants the holder permission to view and download support bundles.
 
-### kots/app/[:appId]/enterprise-portal/access/read
+### KOTS/app/[:appid]/enterprise-portal/access/read
 
 Grants the holder permission to view Enterprise Portal access settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/access/update
+### KOTS/app/[:appid]/enterprise-portal/access/update
 
 Grants the holder permission to update Enterprise Portal access settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/branding/read
+### KOTS/app/[:appid]/enterprise-portal/branding/read
 
 Grants the holder permission to view Enterprise Portal branding settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/branding/update
+### KOTS/app/[:appid]/enterprise-portal/branding/update
 
 Grants the holder permission to update Enterprise Portal branding settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-users/read
+### KOTS/app/[:appid]/enterprise-portal/customer-users/read
 
 Grants the holder permission to view Enterprise Portal customer users for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-user/create
+### KOTS/app/[:appid]/enterprise-portal/customer-user/create
 
 Grants the holder permission to create Enterprise Portal customer users for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-user/login
+### KOTS/app/[:appid]/enterprise-portal/customer-user/login
 
 Grants the holder permission to login to the Enterprise Portal for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-user/[:customerId]/delete
+### KOTS/app/[:appid]/enterprise-portal/customer-user/[:customerid]/delete
 
 Grants the holder permission to delete Enterprise Portal customer users for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-allowed-domains/read
+### KOTS/app/[:appid]/enterprise-portal/customer-allowed-domains/read
 
 Grants the holder permission to view Enterprise Portal customer allowed domains for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-allowed-domains/create
+### KOTS/app/[:appid]/enterprise-portal/customer-allowed-domains/create
 
 Grants the holder permission to create and manage Enterprise Portal customer allowed domains for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/customer-allowed-domains/delete
+### KOTS/app/[:appid]/enterprise-portal/customer-allowed-domains/delete
 
 Grants the holder permission to delete Enterprise Portal customer allowed domains for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/documentation/read
+### KOTS/app/[:appid]/enterprise-portal/documentation/read
 
 Grants the holder permission to view Enterprise Portal documentation settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/documentation/update
+### KOTS/app/[:appid]/enterprise-portal/documentation/update
 
 Grants the holder permission to update Enterprise Portal documentation settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-domain/read
+### KOTS/app/[:appid]/enterprise-portal/email-domain/read
 
 Grants the holder permission to view Enterprise Portal email domain settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-domain/update
+### KOTS/app/[:appid]/enterprise-portal/email-domain/update
 
 Grants the holder permission to update Enterprise Portal email domain settings for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-domain/delete
+### KOTS/app/[:appid]/enterprise-portal/email-domain/delete
 
 Grants the holder permission to delete Enterprise Portal email domains for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-domain/verify
+### KOTS/app/[:appid]/enterprise-portal/email-domain/verify
 
 Grants the holder permission to verify Enterprise Portal email domains for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-templates/read
+### KOTS/app/[:appid]/enterprise-portal/email-templates/read
 
 Grants the holder permission to view Enterprise Portal email templates for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-templates/update
+### KOTS/app/[:appid]/enterprise-portal/email-templates/update
 
 Grants the holder permission to update Enterprise Portal email templates for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/email-templates/delete
+### KOTS/app/[:appid]/enterprise-portal/email-templates/delete
 
 Grants the holder permission to delete Enterprise Portal email templates for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/failed-login-attempts/read
+### KOTS/app/[:appid]/enterprise-portal/failed-login-attempts/read
 
 Grants the holder permission to view Enterprise Portal failed login attempts for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/install-attempts/read
+### KOTS/app/[:appid]/enterprise-portal/install-attempts/read
 
 Grants the holder permission to view Enterprise Portal install attempts for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/install-options/read
+### KOTS/app/[:appid]/enterprise-portal/install-options/read
 
 Grants the holder permission to view Enterprise Portal install options for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/install-options/create
+### KOTS/app/[:appid]/enterprise-portal/install-options/create
 
 Grants the holder permission to create Enterprise Portal install options for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/install-options/[:installOptionId]/update
+### KOTS/app/[:appid]/enterprise-portal/install-options/[:installoptionid]/update
 
 Grants the holder permission to update Enterprise Portal install options for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/install-options/[:installOptionId]/delete
+### KOTS/app/[:appid]/enterprise-portal/install-options/[:installoptionid]/delete
 
 Grants the holder permission to soft-delete Enterprise Portal install options for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/instances/read
+### KOTS/app/[:appid]/enterprise-portal/instances/read
 
 Grants the holder permission to view Enterprise Portal instances for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/service-accounts/read
+### KOTS/app/[:appid]/enterprise-portal/service-accounts/read
 
 Grants the holder permission to view Enterprise Portal service accounts for the specified application.
 
-### kots/app/[:appId]/enterprise-portal/service-accounts/[:serviceAccountId]/delete
+### KOTS/app/[:appid]/enterprise-portal/service-accounts/[:serviceaccountid]/delete
 
 Grants the holder permission to soft-delete Enterprise Portal service accounts for the specified application.
 
 ## Registry
 
-### registry/namespace/:namespace/pull
+### Registry/namespace/:namespace/pull
 
 Grants the holder permission to pull images from Replicated registry.
 
-### registry/namespace/:namespace/push
+### Registry/namespace/:namespace/push
 
 Grants the holder permission to push images into Replicated registry.
 
-## Compatibility Matrix
+## Compatibility matrix
 
-### kots/cluster/create
+### KOTS/cluster/create
 
 Grants the holder permission to create new clusters.
 
-### kots/cluster/list
+### KOTS/cluster/list
 
 Grants the holder permission to list running and terminated clusters.
 
-### kots/cluster/[:clusterId]
+### KOTS/cluster/[:clusterid]
 
 Grants the holder permission to get cluster details.
 
-### kots/cluster/[:clusterId]/upgrade
+### KOTS/cluster/[:clusterid]/upgrade
 
 Grants the holder permission to upgrade a cluster.
 
-### kots/cluster/tag/update
+### KOTS/cluster/tag/update
 
 Grants the holder permission to update cluster tags.
 
-### kots/cluster/ttl/update
+### KOTS/cluster/ttl/update
 
 Grants the holder permission to update cluster ttl.
 
-### kots/cluster/[:clusterId]/nodegroup
+### KOTS/cluster/[:clusterid]/nodegroup
 
 Grants the holder permission to update nodegroup details.
 
-### kots/cluster[:clusterId]/kubeconfig
+### KOTS/cluster[:clusterid]/kubeconfig
 
 Grants the holder permision to get the kubeconfig for a cluster.
 
-### kots/cluster/[:clusterId]/delete
+### KOTS/cluster/[:clusterid]/delete
 
 Grants the holder permission to delete a cluster.
 
-### kots/cluster/[:clusterId]/addon/list
+### KOTS/cluster/[:clusterid]/addon/list
 
 Grants the holder permission to list addons for a cluster.
 
-### kots/cluster/[:clusterId]/addon/[:addonId]/read
+### KOTS/cluster/[:clusterid]/addon/[:addonid]/read
 
 Grants the holder permission to read the addon for a cluster.
 
-### kots/cluster/[:clusterId]/addon/[:addonId]/delete
+### KOTS/cluster/[:clusterid]/addon/[:addonid]/delete
 
 Grants the holder permission to delete the addon for a cluster.
 
-### kots/cluster/[:clusterId]/addon/create/objectStore
+### KOTS/cluster/[:clusterid]/addon/create/objectstore
 
 Grants the holder permission to create an object store for a cluster.
 
-### kots/cluster/[:clusterId]/port/expose
+### KOTS/cluster/[:clusterid]/port/expose
 
 Grants the holder permission to expose a port for a cluster.
 
-### kots/cluster/[:clusterId]/port/delete
+### KOTS/cluster/[:clusterid]/port/delete
 
 Grants the holder permission to delete a port for a cluster.
 
-### kots/cluster/[:clusterId]/port/list
+### KOTS/cluster/[:clusterid]/port/list
 
 Grants the holder permission to list exposed ports for a cluster.
 
-### kots/cluster/list-quotas
+### KOTS/cluster/list-quotas
 
 Grants the holder permission to list the quotas.
 
-### kots/cluster/credits/buy
+### KOTS/cluster/credits/buy
 
 Grants the holder permission to buy compatibility matrix credits.
 
-### kots/cluster/increase-quota
+### KOTS/cluster/increase-quota
 
 Grants the holder permission to request an increase in the quota.
 
-### kots/network/create
+### KOTS/network/create
 
 Grants the holder permission to create new networks.
 
-### kots/network/list
+### KOTS/network/list
 
 Grants the holder permission to list networks.
 
-### kots/network/[:networkid]
+### KOTS/network/[:networkid]
 
 Grants the holder permission to get network details.
 
-### kots/network/[:networkid]/delete
+### KOTS/network/[:networkid]/delete
 
 Grants the holder permission to delete a network.
 
-### kots/network/[:networkId]/update
+### KOTS/network/[:networkid]/update
 
 Grants the holder permission to update the network, including setting airgap policy and network reporting.
 
-### kots/vm/create
+### KOTS/VM/create
 
 Grants the holder permission to create new VMs.
 
-### kots/vm/list
+### KOTS/VM/list
 
 Grants the holder permission to list running and terminated VMs.
 
-### kots/vm/[:vmid]
+### KOTS/VM/[:vmid]
 
 Grants the holder permission to get VM details.
 
-### kots/vm/[:vmid]/delete
+### KOTS/VM/[:vmid]/delete
 
 Grants the holder permission to delete a VM.
 
-### kots/vm/tag/update
+### KOTS/VM/tag/update
 
 Grants the holder permission to update vm tags.
 
-### kots/vm/ttl/update
+### KOTS/VM/ttl/update
 
 Grants the holder permission to update vm ttl.
 
-### kots/vm/[:vmId]/port/expose
+### KOTS/VM/[:vmid]/port/expose
 
 Grants the holder permission to expose a port for a vm.
 
-### kots/vm/[:vmId]/port/list
+### KOTS/VM/[:vmid]/port/list
 
 Grants the holder permission to list exposed ports for a vm.
 
-### kots/vm/[:vmId]/addon/[:addonId]/delete
+### KOTS/VM/[:vmid]/addon/[:addonid]/delete
 
 Grants the holder permission to delete the addon for a vm.
 
 ## Team
 
-### team/read
+### Team/read
 
 Grants the holder permission to view team details and settings.
 
-### team/auditlog/read
+### Team/auditlog/read
 
 Grants the holder permission to view the audit log for the team.
 
-### team/authentication/update
+### Team/authentication/update
 
 Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
 
-### team/authentication/read
+### Team/authentication/read
 
 Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
 
-### team/integration/list
+### Team/integration/list
 
 Grants the holder permission to view team's integrations.
 
-### team/integration/create
+### Team/integration/create
 
 Grants the holder permission to create an integration.
 
-### team/integration/[:integrationId]/delete
+### Team/integration/[:integrationid]/delete
 
 Grants the holder permission to delete specified integration(s).
 
-### team/integration/[:integrationId]/update
+### Team/integration/[:integrationid]/update
 
 Grants the holder permission to update specified integration(s).
 
-### team/members/list
+### Team/members/list
 
 Grants the holder permission to list team members and invitations.
 
-### team/member/invite
+### Team/member/invite
 
 Grants the holder permission to invite additional people to the team.
 
-### team/members/create
+### Team/members/create
 
 Grants the holder permission to create team members.
 
-### team/members/delete
+### Team/members/delete
 
 Grants the holder permission to delete other team members.
 
-### team/notifications/slack-webhook/read
+### Team/notifications/slack-webhook/read
 
 Grants the holder permission to view the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
 
-### team/notifications/slack-webhook/update
+### Team/notifications/slack-webhook/update
 
 Grants the holder permission to edit the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
 
-### team/notifications/\*\*
+### Team/notifications/\*\*
 
 Grants the holder full access to all notification features, including managing other users' event notification subscriptions. For more information, see [About Event Notifications (Beta)](event-notifications).
 
-### team/policy/read
+### Team/policy/read
 
 Grants the holder permission to view RBAC policies for the team.
 
-### team/policy/update
+### Team/policy/update
 
 Grants the holder permission to update RBAC policies for the team.
 
-### team/policy/delete
+### Team/policy/delete
 
 Grants the holder permission to delete RBAC policies for the team.
 
-### team/policy/create
+### Team/policy/create
 
 Grants the holder permission to create RBAC policies for the team.
 
-### team/security/update
+### Team/security/update
 
 Grants the holder permission to manage team password requirements including two-factor authentication and password complexity requirements.
 
-### team/serviceaccount/list
+### Team/serviceaccount/list
 
 Grants the holder permission to list service accounts.
 
-### team/serviceaccount/create
+### Team/serviceaccount/create
 
 Grants the holder permission to create new service accounts.
 
-### team/serviceaccount/[:name]/delete
+### Team/serviceaccount/[:name]/delete
 
 Grants the holder permission to delete the service account identified by the name specified.
 
-### team/support-issues/read
+### Team/support-issues/read
 
 Grants the holder Read permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
@@ -624,7 +624,7 @@ For more information about the Read role in GitHub, see [Permissions for each ro
 
 <CollabRbacResourcesImportant/>
 
-### team/support-issues/write
+### Team/support-issues/write
 
 Grants the holder Write permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
@@ -632,7 +632,7 @@ For more information about the Write role in GitHub, see [Permissions for each r
 
 <CollabRbacResourcesImportant/>
 
-### team/support-issues/triage
+### Team/support-issues/triage
 
 Grants the holder Triage permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
@@ -640,7 +640,7 @@ For more information about the Triage role in GitHub, see [Permissions for each 
 
 <CollabRbacResourcesImportant/>
 
-### team/support-issues/admin
+### Team/support-issues/admin
 
 Grants the holder Admin permissions in the Replicated collab repository in GitHub for the Vendor Portal team. Applies after the user adds their GitHub username to the Vendor Portal [Account Settings](https://vendor.replicated.com/account-settings) page.
 
@@ -648,54 +648,54 @@ For more information about the Admin role in GitHub, see [Permissions for each r
 
 <CollabRbacResourcesImportant/>
 
-### team/activity-stream/read
+### Team/activity-stream/read
 
 Grants the holder permission to view the team activity stream.
 
 ## Notifications
 
-### team/notifications/subscriptions/read
+### Team/notifications/subscriptions/read
 
 Grants the holder permission to view notification subscriptions.
 
-### team/notifications/subscriptions/create
+### Team/notifications/subscriptions/create
 
 Grants the holder permission to create a notification subscription.
 
-### team/notifications/subscriptions/update
+### Team/notifications/subscriptions/update
 
 Grants the holder permission to update a notification subscription created by the current user.
 
-### team/notifications/user/[:userId]/subscriptions/update
+### Team/notifications/user/[:userid]/subscriptions/update
 
 Grants the holder permission to update a notification subscription created by another user.
 
-### team/notifications/subscriptions/delete
+### Team/notifications/subscriptions/delete
 
 Grants the holder permission to delete a notification subscription created by the current user.
 
-### team/notifications/user/[:userId]/subscriptions/delete
+### Team/notifications/user/[:userid]/subscriptions/delete
 
 Grants the holder permission to delete a notification subscription created by another user.
 
-### team/notifications/types/list
+### Team/notifications/types/list
 
 Grants the holder permission to list available notification event types.
 
-### team/notifications/events/read
+### Team/notifications/events/read
 
 Grants the holder permission to view notification event delivery history.
 
 ## User
 
-### user/token/list
+### User/token/list
 
 Grants the holder permission to list user tokens.
 
-### user/token/create
+### User/token/create
 
 Grants the holder permission to create new user tokens.
 
-### user/token/delete
+### User/token/delete
 
 Grants the holder permission to delete user tokens.

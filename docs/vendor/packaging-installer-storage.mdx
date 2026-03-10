@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# About Selecting Storage Add-ons
+# About selecting storage add-ons
 
 <KurlAvailability/>
 
@@ -20,17 +20,17 @@ The following lists the kURL add-ons for data storage:
   The Longhorn add-on is deprecated and not supported in production clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
   :::
 
-## About Persistent Storage for KOTS
+## About persistent storage for KOTS
 
 This section describes the default storage requirements for KOTS. Each of the [Supported Storage Configurations](#supported-storage-configurations) described below satisfy these storage requirements for KOTS.
 
-### rqlite StatefulSet
+### Rqlite statefulset
 
 KOTS deploys a rqlite StatefulSet to store the version history, application metadata and other small amounts of data needed to manage the application(s). No configuration is required to deploy rqlite.
 
 Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
 
-### Object Storage or Local PV
+### Object storage or local pv
 
 By default, KOTS requires an S3-compatible object store to store the following:
 * Support bundles
@@ -41,22 +41,22 @@ Both the Rook add-on and the MinIO add-on satisfy this object store requirement.
 
 Alternatively, you can configure KOTS to be deployed without object storage. This installs KOTS as a StatefulSet using a persistent volume (PV) for storage. When there is no object storage available, KOTS stores support bundles, application archives, and snapshots that have an NFS or host path storage destination in the local PV. In this case, the OpenEBS add-on can be included to provide the local PV storage. For more information, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
 
-### Distributed Storage in KOTS v1.88 and Earlier
+### Distributed storage in KOTS v1.88 and earlier
 
 KOTS v1.88 and earlier requires distributed storage. To support multi-node clusters, kURL installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. For more information, see [Rook Ceph](#rook-ceph) below.
 
-## Factors to Consider When Choosing a Storage Configuration
+## Factors to consider when choosing a storage configuration
 
 The object store and/or PV provisioner add-ons that you choose to include in your kURL installer depend on the following factors:
 * **KOTS storage requirements**: The storage requirements for the version of the KOTS add-on that you include in the spec. For example, KOTS v1.88 and earlier requires distributed storage.
 * **Other add-on storage requirements**: The storage requirements for the other add-ons that you include in the spec. For example, the Velero add-on requires object storage to deploy the default internal storage for snapshots during installation.
 * **Application storage requirements**: The storage requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
-## Supported Storage Configurations
+## Supported storage configurations
 
 This section describes the supported storage configurations for embedded clusters provisioned by kURL.
 
-### OpenEBS Without Object Storage (Single Node) {#single-node}
+### Openebs without object storage (single node) {#single-node}
 
 If your application can be deployed to a single node cluster and does not require object storage, then you can choose to exclude object storage and instead use the OpenEBS add-on only to provide local storage on the single node in the cluster.
 
@@ -95,7 +95,7 @@ spec:
 
 For more information about properties for the OpenEBS add-on, see [OpenEBS](https://kurl.sh/docs/add-ons/openebs) in the kURL documentation.
 
-### OpenEBS with MinIO (Single or Multi-Node) {#openebs-minio}
+### Openebs with minio (single or multi-node) {#openebs-minio}
 
 Using the OpenEBS add-on with the MinIO add-on provides a highly available data storage solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If your application requires distributed storage, see [Rook Ceph](#rook-ceph) below.
 
@@ -128,7 +128,7 @@ spec:
 
 For more information about properties for the OpenEBS and MinIO add-ons, see [OpenEBS](https://kurl.sh/docs/add-ons/openebs) and [MinIO](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
 
-### Rook Ceph (Multi-Node) {#rook-ceph}
+### Rook ceph (multi-node) {#rook-ceph}
 
 If your application requires multiple nodes and distributed storage, Replicated recommends that you use the Rook add-on for storage. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
 

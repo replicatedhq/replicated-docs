@@ -1,10 +1,10 @@
-# Manage Enterprise Portal Customer Access
+# Manage Enterprise Portal customer access
 
 This topic describes how to manage customer access to the Enterprise Portal from the Replicated Vendor Portal. It includes information about enabling the Enterprise Portal, managing user invitations, enabling SAML authentication for Enterprise Portal logins, and more.
 
 For information about how your end customers can manage, invite, and remove team members in their Enterprise Portal, see [Log In To and Use the Enterprise Portal](enterprise-portal-use).
 
-## Manage Access to the Enterprise Portal {#manage-ep-access}
+## Manage access to the Enterprise Portal {#manage-ep-access}
 
 You can enable the Enterprise Portal globally for all customers, or on a per-customer basis. When the Enterprise Portal is disabled for a customer, they have access to the Replicated Download Portal instead.
 
@@ -12,7 +12,7 @@ You can enable the Enterprise Portal globally for all customers, or on a per-cus
 The Enterprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal.
 :::
 
-### Enable the Enterprise Portal Globally {#enable-global}
+### Enable the Enterprise Portal globally {#enable-global}
 
 To enable the Enterprise Portal globally for all customers:
 
@@ -21,7 +21,7 @@ To enable the Enterprise Portal globally for all customers:
    ![enterprise portal access toggle](/images/enterprise-portal-access-toggle.png)
    [View a larger version of this image](/images/enterprise-portal-access-toggle.png)
 
-### Enable the Enterprise Portal Per Customer
+### Enable the Enterprise Portal per customer
 
 To enable the Enterprise Portal on a per-customer basis:
 
@@ -34,7 +34,7 @@ To enable the Enterprise Portal on a per-customer basis:
    When the global **Enable Enterprise Portal for all customers** setting is on, the per-customer toggle is disabled. To manage Enterprise Portal access on a per-customer basis, disable the global setting. See [Enable the Enterprise Portal Globally](#enable-global).
    :::
 
-## Configure Allowed Domains for User Invitations
+## Configure allowed domains for user invitations
 
 You can restrict user invitations for a customer's Enterprise Portal to specific email domains. When you add allowed domains for a customer, only users with allowed email domains can be invited to the Enterprise Portal.
 
@@ -50,7 +50,7 @@ To configure allowed domains for a customer's Enterprise Portal invitations:
 
 1. In the text box, enter a domain to add to the allowlist. Click **Add domain**. Add more domains as needed.
 
-## View Email History and Delivery Status {#email-history}
+## View email history and delivery status {#email-history}
 
 To view Enterprise Portal email history and delivery status, do one of the following:
 
@@ -58,7 +58,7 @@ To view Enterprise Portal email history and delivery status, do one of the follo
 
 * To view email history for all customers: In the Vendor Portal, go to **Enterprise Portal > Customer Access > Email History**.
 
-## Invite Users
+## Invite users
 
 This section describes how to invite users to the Enterprise Portal from the Vendor Portal. Your customers can also invite users to the Enterprise Portal from the Enterprise Portal **Team settings** page. For more information about using the **Team settings** page, see [Manage Team Settings](/vendor/enterprise-portal-use#manage-team-settings) in _Log In To and Use the Enterprise Portal_.
 
@@ -83,7 +83,7 @@ To invite users to the Enterprise Portal:
 
 1. Click **Send invite**.
 
-## Delete Users
+## Delete users
 
 To delete users from the Enterprise Portal:
 
@@ -95,7 +95,7 @@ To delete users from the Enterprise Portal:
 
    [View a larger version of this image](/images/enterprise-portal-delete-user.png)
 
-## Enable SAML Authentication (Alpha) {#enable-saml}
+## Enable SAML authentication (Alpha) {#enable-saml}
 
 :::note
 SAML Authentication to the Enterprise Portal is Alpha and subject to change. To access this feature, a feature flag must be enabled for your team. For more information, reach out to your Replicated account representative.

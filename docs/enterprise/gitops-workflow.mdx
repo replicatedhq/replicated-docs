@@ -1,11 +1,11 @@
 import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
 import GitOpsNotRecommended from "../partials/gitops/_gitops-not-recommended.mdx"
 
-# KOTS Auto-GitOps Workflow
+# KOTS Auto-Gitops workflow
 
 <GitOpsNotRecommended/>
 
-## Overview of the Auto-GitOps Workflow
+## Overview of the Auto-Gitops workflow
 
 The Replicated KOTS Admin Console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable the KOTS Auto-GitOps workflow instead. When using the Auto-GitOps workflow, changes from the Admin Console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
 
@@ -34,7 +34,7 @@ You can change your GitOps settings or disable Auto-GitOps at any time from the 
 - A Git repository that you have read/write access to.
 - If the repository does not have files or folders committed yet, you must make at least one commit with any content so that the connection attempt succeeds with the SSH key when you perform the following task.
 
-## Enable Auto-GitOps
+## Enable Auto-Gitops
 
 To enable pushing updates to the Auto-GitOps workflow:
 

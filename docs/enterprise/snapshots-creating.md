@@ -1,4 +1,4 @@
-# Create and Schedule Backups
+# Create and schedule backups
 
 This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restore from Backups](snapshots-restoring-full).
 
@@ -14,7 +14,7 @@ This topic describes how to use the Replicated snapshots feature to create backu
 
    If any Backup custom resource files are missing, contact your vendor.
 
-## Create a Full Backup (Recommended) {#full}
+## Create a full backup (recommended) {#full}
 
 Full backups, or _instance snapshots_, back up the Admin Console and all application data, including application volumes and manifest files. If you manage multiple applications with the Admin Console, data from all applications that support backups is included in a full backup.
 
@@ -27,7 +27,7 @@ You can create a full backup with the following methods:
 * [Create a Backup with the CLI](#cli-backup)
 * [Create a Backup in the Admin Console](#admin-console-backup)
 
-### Create a Backup with the CLI {#cli-backup}
+### Create a backup with the CLI {#cli-backup}
 
 To create a full backup with the Replicated KOTS CLI, run the following command:
 
@@ -38,7 +38,7 @@ To create a full backup with the Replicated KOTS CLI, run the following command:
    
 For more information, see [backup](/reference/kots-cli-backup-index) in _KOTS CLI_.
 
-### Create a Backup in the Admin Console {#admin-console-backup}
+### Create a backup in the Admin Console {#admin-console-backup}
 
 To create a full backup in the Admin Console:
 
@@ -51,7 +51,7 @@ To create a full backup in the Admin Console:
    
    ![Full snapshot page with one completed snapshot](/images/snapshot-instance-list.png)
 
-## Create a Partial Backup {#partial}
+## Create a partial backup {#partial}
 
 Partial backups, or _application snapshots_, back up application volumes and application manifests only. Partial backups do not back up Admin Console data.
 
@@ -71,7 +71,7 @@ To create a partial backup in the Admin Console:
 
    ![Partial snapshot page with one completed snapshot](/images/snapshot-application-list.png)
 
-## Schedule Automatic Backups
+## Schedule automatic backups
 
 You can use the Admin Console to schedule full or partial backups. This is useful for automatically creating regular backups of Admin Console and application data.
 
@@ -95,6 +95,6 @@ To schedule automatic backups in the Admin Console:
 1. (Optional) For **Retention Policy**, edit the amount of time that backup data is saved. By default, backup data is saved for 30 days.
 
    The retention policy applies to all backups, including both automatically- and manually-created backups. Changing the retention policy affects only backups created after the time of the change.
-## Additional Resources
+## Additional resources
 
 [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

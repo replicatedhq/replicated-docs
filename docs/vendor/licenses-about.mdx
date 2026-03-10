@@ -1,6 +1,6 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
-# About Customers and Licensing
+# About customers and licensing
 
 This topic provides an overview of customers and licenses in the Replicated Platform.
 
@@ -15,7 +15,7 @@ You can use the Replicated Platform licensing features to:
 * Query customer license details at deployment and runtime
 * Track and report on usage on a per-customer basis
 
-## Replicated License and Update Server
+## Replicated license and update server
 
 The following diagram provides an overview of licensing with the Replicated Platform:
 
@@ -31,7 +31,7 @@ The license server is identified with a CNAME record where it can be accessed fr
 
 Vendors can also integrate internal Customer Relationship Management (CRM) tools such as Salesforce with the Replicated Platform so that any changes to a customer's entitlements are automatically reflected in the Vendor Portal. This ensures that updates to license agreements are reflected in the customer environment in real time.
 
-## About the Vendor Portal Customers Page
+## About the Vendor Portal customers page
 
 You can create and manage customers in the Replicated Vendor Portal. Each customer record includes several fields that uniquely identify the customer and the application, specify the customer's assigned release channel, and define the customer's entitlements.
 
@@ -54,11 +54,11 @@ From the **Customers** page, you can do the following:
   * **Support bundles:** Upload and analyze support bundles collected in the customer's environment. See [Inspect Support Bundles](/vendor/support-inspecting-support-bundles).
   * **Enterprise Portal access:** Manage the customer's access to the Enterprise Portal, invite users, see the status of emails sent to customers through the Enterprise Portal, and more. For information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-about).
 
-## About Customer Records and License Fields
+## About customer records and license fields
 
 This section describes the ways that you can manage both customer records and customer license fields with the Replicated Platform.
 
-### Customer Channel Assignment {#channel-assignment}
+### Customer channel assignment {#channel-assignment}
 
 You assign each customer to one of your release channels to determine which application releases they can install. For example, customers assigned to the Stable channel have access to only the releases promoted to the Stable channel. For more information about working with release channels, see [About Channels](/vendor/releases-about#about-channels).
 
@@ -66,7 +66,7 @@ You assign each customer to one of your release channels to determine which appl
 
 For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the Admin Console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade. For more information about required releases, see [Required Releasees](releases-about#required-releases) in _About Channels and Releases_.
 
-### Customer Types
+### Customer types
 
 Each customer is assigned one of the following types:
 
@@ -81,7 +81,7 @@ additional information can be provided.
 
 Except Community licenses, the license type is used solely for reporting purposes and a customer's access to your application is not affected by the type that you assign. You can change the type of a license at any time in the Vendor Portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes.  
 
-### Built-In and Custom License Fields
+### Built-in and custom license fields
 
 Each customer record in the Vendor Portal has built-in fields and also supports custom fields:
 
@@ -94,7 +94,7 @@ Each customer record in the Vendor Portal has built-in fields and also supports 
   - Include credentials in the license like `api_key`, `auth_token`, or `encryption_key` using the "Password" license field type to mask values in the UI
   - Add metadata such as `contract_type`, `renewal_date`, or `account_manager` for reporting and workflows
 
-### Default Values for License Fields
+### Default values for license fields
 
 You can configure default values for both built-in and custom license fields from the Vendor Portal **License Fields** page. Setting default values is especially useful when:
 - Most of your customers share the same license configuration (for example, all customers are assigned a specific channel)
@@ -105,11 +105,11 @@ When you set defaults for built-in license fields (such as the assigned channel,
 
 When you set default values for your custom license fields, the default values are applied unless the field was explicitly set through Vendor Portal UI or the Vendor API. For information about how to set defaults for your custom license fields, see [Create Custom License Fields](/vendor/licenses-adding-custom-fields#create-custom-license-fields) or [Update Custom License Fields](/vendor/licenses-adding-custom-fields#update-custom-license-fields).
 
-## How End Customers Sync Licenses
+## How end customers sync licenses
 
 When you make changes to customer licenses, there are different ways to sync the customer's license with the most recent changes depending on the installation method.
 
-### Online Installations with Replicated Installers
+### Online installations with Replicated installers
 
 Customers that install in online environments with a Replicated installer (Embedded Cluster, KOTS, kURL) can use the Admin Console to get the latest license details from the Vendor Portal. Then, they deploy a new version that includes the license changes. Deploying a new version with the license changes ensures that any license fields that you have templated in your release using [Replicated template functions](/reference/template-functions-about) are rendered with the latest license details.
 
@@ -121,19 +121,19 @@ For online instances, Replicated installers pull license details from the Vendor
 
 For more information, see [Update Licenses in the Admin Console](/enterprise/updating-licenses).
 
-### Air Gap Installations with Replicated Installers
+### Air gap installations with Replicated installers
 
 To update licenses in air gap installations, customers need to upload the updated license file to the Admin Console. After you update the license fields in the Vendor Portal, you can notify customers by either sending them a new license file or instructing them to log into the Enterprise Portal to downlaod the new license.
 
-### Helm Installations
+### Helm installations
 
 For installations with the Helm CLI, license details can be retrieved from the Vendor Portal  during runtime using the in-cluster SDK API license endpoints. For more information, see [Replicated SDK API license Endpoints](#replicated-sdk-api-license-endpoints) on this page.
 
-## About Querying License Entitlements
+## About querying license entitlements
 
 You can query license fields from your application before installation and during runtime. This allows you to enforce entitlements and to track and report on usage to share insights with internal teams or end customers.
 
-### Replicated SDK API `license` Endpoints
+### Replicated SDK API `license` endpoints
 
 The [Replicated SDK](replicated-sdk-overview) includes an in-cluster API that can be used to retrieve up-to-date customer license information from the Vendor Portal during runtime through the [`license`](/reference/replicated-sdk-apis#license) endpoints. This means that you can add logic to your application to get the latest license information without the customer needing to perform a license update. The SDK API also polls the Vendor Portal for updated data every four hours.
 
@@ -141,7 +141,7 @@ For installations with a Replicated installer that include the SDK, end customer
 
 For information about how to use the SDK API to query license entitlements at runtime, see [Query Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk).
 
-### Default License Expiration Handling {#expiration}
+### Default license expiration handling {#expiration}
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the Vendor Portal, the `expires_at` field is encoded in ISO 8601 format (`2026-01-23T00:00:00Z`) and is set to midnight UTC at the beginning of the calendar day (`00:00:00`) on the date selected.
 

@@ -1,4 +1,4 @@
-# Configure Custom Metrics (Beta)
+# Configure custom metrics (Beta)
 
 This topic describes how to configure an application to send custom metrics to the Replicated Vendor Portal.
 
@@ -12,7 +12,7 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
-## How the SDK Sends Custom Metrics to the Vendor Portal
+## How the SDK sends custom metrics to the Vendor Portal
 
 The Vendor Portal receives custom metrics from the Replicated SDK, which is installed in the cluster alongside the application.
 
@@ -38,7 +38,7 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 * The SDK API accepts only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
-## Define Custom Metrics in JSON Payload
+## Define custom metrics in JSON payload
 
 You can define the custom metrics for your application as a set of key value pairs in a JSON metric payload. The payload must be valid JSON with proper content type headers.
 
@@ -55,7 +55,7 @@ You can define the custom metrics for your application as a set of key value pai
 }
 ```
 
-### Supported Data Types
+### Supported data types
 
 Custom metric names (keys) must be strings.
 
@@ -67,7 +67,7 @@ Custom metric values support these JSON types:
 
 The JSON payload must contain only scalar values. Nested objects or arrays are not supported.
 
-### Best Practices for Naming Custom Metrics
+### Best practices for naming custom metrics
 
 Metrics are displayed in the Vendor Portal with the same name that is used in the JSON payload. The Vendor Portal automatically converts camel case or snake case to title case: for example, `activeUsers` or `active_users` is displayed as Active Users.
 
@@ -76,13 +76,13 @@ To make it easier for team members to understand the instance reporting data for
 * Use camel case or snake case. Don't use hyphenated names like `active-users`.
 * Use camel or snake case consistently across all of your custom metrics. 
 
-## Send Custom Metrics
+## Send custom metrics
 
 You can configure your application to `PATCH` or `POST` a JSON metric payload to the SDK in-cluster API. For information about when to use `PATCH` or `POST`, see [PATCH vs POST](#patch-vs-post) on this page.
 
 The SDK API custom metrics endpoint is available at `http://replicated:3000/api/v1/app/custom-metrics`.
 
-### NodeJS Example
+### Nodejs example
 
 The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
 
@@ -129,7 +129,7 @@ async function startMetricsLoop(db) {
 startMetricsLoop(getDatabase());
 ```
 
-### PATCH vs POST
+### Patch vs post
 
 Both the `PATCH` and `POST` methods record metrics with a timestamp, but they differ in how they handle your current metric state:
 * **`PATCH`:** Updates only the fields included in the JSON payload. Any other existing fields are unchanged. Use `PATCH` unless you need to explicitly remove metrics from the instance summary.
@@ -173,7 +173,7 @@ However, if you use `POST` for the second call instead of `PATCH`, then the inst
 
 In this case, the previously-sent `numProjects` value is removed from the instance summary (though it remains accessible in the instance events history).
 
-### How Often to Send Custom Metrics
+### How often to send custom metrics
 
 Replicated recommends that you add logic to your application to send metrics at regular intervals, such as daily or weekly.
 
@@ -181,7 +181,7 @@ Avoid sending metrics too frequently as it creates unnecessary noise. Custom met
 
 For an example of application logic that sends custom metrics on a weekly interval, see [NodeJS Example](#nodejs-example) on this page.
 
-## Remove a Custom Metric
+## Remove a custom metric
 
 To remove an existing custom metric, use `DELETE` with the custom metric name. For example:
 
@@ -189,7 +189,7 @@ To remove an existing custom metric, use `DELETE` with the custom metric name. F
 DELETE http://replicated:3000/api/v1/app/custom-metrics/num_projects
 ```
 
-## View Custom Metrics
+## View custom metrics
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the Vendor Portal.
 
@@ -206,11 +206,11 @@ As shown in the image above, the **Custom Metrics** section of the **Instance De
 
 Custom metrics are also included in the **Instance activity** stream of the **Instance Details** page. For more information, see [Instance Activity](/vendor/instance-insights-details#instance-activity) in _Instance Details_.
 
-## Export Custom Metrics
+## Export custom metrics
 
 You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programmatically access historical timeseries data containing instance level events, including any custom metrics that you have defined. For more information about the endpoint, see [Export Customer and Instance Data](/vendor/instance-data-export).
 
-## Troubleshoot Custom Metrics
+## Troubleshoot custom metrics
 
 ### Custom metrics not showing up in the Vendor Portal
 

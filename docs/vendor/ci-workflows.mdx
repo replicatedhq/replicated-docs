@@ -1,6 +1,6 @@
 import Build from "../partials/ci-cd/_build-source-code.mdx"
 
-# Recommended CI/CD Workflows
+# Recommended CI/CD workflows
 
 This topic provides Replicated's recommended development and release workflows for your continuous integration and continuous delivery (CI/CD) pipelines.
 
@@ -14,7 +14,7 @@ For each step, the corresponding Replicated CLI command is provided. Additionall
 How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
 :::
 
-## About Creating RBAC Policies for CI/CD
+## About creating RBAC policies for CI/CD
 
 Replicated recommends using custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy using the [`kots/app/[]/channel/[]/promote`](/vendor/team-management-rbac-resource-names#kotsappchannelpromote) resource that blocks the ability to promote releases to your production channel. This allows for using CI/CD for the purpose of testing, without accidentally releasing to customers.
 
@@ -22,7 +22,7 @@ For more information about creating custom RBAC policies in the Vendor Portal, i
 
 For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
 
-## Development Workflow
+## Development workflow
 
 In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. Additionally, for applications managed in the Replicated vendor portal, a release is created and promoted to a channel in the Replicated Vendor Portal where it can be shared with internal teams.
 
@@ -80,7 +80,7 @@ Add a job with the following steps to prepare clusters with CMX, deploy the appl
 
 1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `cluster prepare` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) Replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
-## CMX-Only Development Workflow
+## CMX-only development workflow
 
 In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. 
 
@@ -147,7 +147,7 @@ Add a job with the following steps to provision clusters with CMX, deploy your a
 
 1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) Replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
-## Replicated Platform Release Workflow
+## Replicated Platform release workflow
 
 In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then the application is made available to customers. In this example release workflow, a release is created and promoted to a channel in the Replicated vendor platform so that it can be installed by internal teams or by customers.
 

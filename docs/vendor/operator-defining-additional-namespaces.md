@@ -1,4 +1,4 @@
-# Define Additional Namespaces
+# Define additional namespaces
 
 Operators often need to be able to manage resources in multiple namespaces in the cluster.
 When deploying an application to an existing cluster, Replicated KOTS creates a Kubernetes Role and RoleBinding that are limited to only accessing the namespace that the application is being installed into.

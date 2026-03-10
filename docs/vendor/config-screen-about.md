@@ -1,8 +1,8 @@
-# About the Configuration Screen
+# About the configuration screen
 
 This topic describes the configuration screen on the Config tab in the Replicated Admin Console.
 
-## About Collecting Configuration Values
+## About collecting configuration values
 
 When you distribute your application with Replicated KOTS, you can include a configuration screen in the Admin Console. This configuration screen is used to collect required or optional values from your users that are used to run your application. You can use regular expressions to validate user input for some fields, such as passwords and email addresses. For more information about how to add custom fields to the configuration screen, see [Create and Edit Configuration Fields](admin-console-customize-config-screen).
 
@@ -12,13 +12,13 @@ For example, you can use the configuration screen to provide database configurat
 
 Or, you can also use the configuration screen to provide a database option that runs in the cluster as part of your application. For an example of this use case, see [Example: Adding Database Configuration Options](tutorial-adding-db-config).
 
-## Viewing the Configuration Screen
+## Viewing the configuration screen
 
 If you include a configuration screen with your application, users of your application can access the configuration screen from the Admin Console:
 * During application installation.
 * At any time after application installation on the Admin Console Config tab.
 
-### Application Installation
+### Application installation
 
 The Admin Console displays the configuration screen when the user installs the application, after they upload their license file.
 
@@ -28,7 +28,7 @@ The following shows an example of how the configuration screen displays during i
 
 [View a larger version of this image](/images/config-screen-sentry-enterprise-app-install.png)
 
-### Admin Console Config Tab
+### Admin Console Config tab
 
 Users can access the configuration screen any time after they install the application by going to the Config tab in the Admin Console.
 

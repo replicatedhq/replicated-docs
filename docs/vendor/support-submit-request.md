@@ -1,4 +1,4 @@
-# Submit a Support Request
+# Submit a support request
 
 This topic describes how to open a support request with the Replicated team, including information about the fields in the support request form. It also describes how to attach new support bundles to an existing support issue.
 
@@ -18,7 +18,7 @@ The following prerequisites must be met to submit support requests:
 
 * Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](team-management-github-username#add).
 
-## (Recommended) Open a Support Request from a Support Bundle
+## (Recommended) Open a support request from a support bundle
 
 If you open a support request when viewing a bundle on the Vendor Portal **Support Bundle Analysis** page, the support request form is pre-populated with information from the support bundle and the associated customer license. The support bundle is also automatically attached to the request.
 
@@ -40,7 +40,7 @@ To submit a support request from the **Support Bundle Analysis** page:
 
 1. Click **Submit support request**.
 
-## Open a Support Request from the Support Page {#support-page}
+## Open a support request from the support page {#support-page}
 
 Replicated support SLAs are a combination of the customer license type, your Replicated plan, which product is impacted, and other considerations. Your answers to the questions in the support request form generate a severity calculation that is posted on the GitHub issue as a label, and potentially result in a page for high severity incidents.
 
@@ -176,7 +176,7 @@ To submit a support request from the Vendor Portal **Support** page:
 
 1. Click **Submit support request**. You receive a link to your support issue where you can interact with the support team.
 
-## Provide Support Bundles to Replicated After Opening a Support Request {#add-bundle-after}
+## Provide support bundles to Replicated after opening a support request {#add-bundle-after}
 
 You can attach new support bundles to existing support issues when conditions change or new problems arise. This helps the Replicated support team troubleshoot the issue more quickly.
 

@@ -1,4 +1,4 @@
-# About the Replicated Proxy Registry
+# About the Replicated proxy registry
 
 This topic describes how the Replicated proxy registry can be used to grant proxy access to your application's private images or allow pull through access of public images.
 
@@ -14,7 +14,7 @@ The following diagram demonstrates how the proxy registry pulls images from your
 
 [View a larger version of this image](/images/private-registry-diagram-large.png)
 
-## About Enabling the Proxy Registry
+## About enabling the proxy registry
 
 The proxy registry requires read-only credentials to your private registry to access your application images. See [Add and Manage External Registries](/vendor/packaging-private-images).
 
@@ -22,7 +22,7 @@ After connecting your registry, the steps the enable the proxy registry vary dep
 * [Use the Proxy Registry with Replicated Installers](/vendor/private-images-kots)
 * [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry)
 
-## About Allowing Pull-Through Access of Public Images
+## About allowing pull-through access of public images
 
 Using the Replicated proxy registry to grant pull-through access to public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
 

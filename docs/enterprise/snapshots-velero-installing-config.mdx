@@ -2,7 +2,7 @@ import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 
-# Configure Namespace Access and Memory Limit
+# Configure namespace access and memory limit
 
 This topic describes how to configure namespace access and the memory limit for Velero.
 
@@ -12,7 +12,7 @@ The Replicated KOTS Admin Console requires access to the namespace where Velero 
 
 Additionally, if the application uses a large amount of memory, you can configure the default memory limit to help ensure that Velero runs successfully with snapshots.
 
-## Configure Namespace Access
+## Configure namespace access
 
 This section applies only to _existing cluster_ installations (online and air gap) where the Admin Console is running with minimal role-based-access-control (RBAC) privileges.
 
@@ -27,7 +27,7 @@ Replace:
 
 For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation. For more information about RBAC privileges for the Admin Console, see [Kubernetes RBAC](/vendor/packaging-rbac).
 
-## Configure Memory Limit
+## Configure memory limit
 
 This section applies to all online and air gap installations.
 
@@ -35,6 +35,6 @@ Velero sets default limits for the velero Pod and the node-agent (restic) Pod du
 
 <NodeAgentMemLimit/>
 
-## Additional Resources
+## Additional resources
 
 * [Troubleshooting Snapshots](snapshots-troubleshooting-backup-restore)

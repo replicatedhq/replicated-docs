@@ -4,7 +4,7 @@ import AggregateStatusIntro from "../partials/status-informers/_aggregate-status
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
-# Enable and Understand Application Status
+# Enable and understand application status
 
 This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal. It also describes the meaning of the different application statuses.
 
@@ -18,7 +18,7 @@ To compute and display these insights, the Vendor Portal interprets and aggregat
 
 For more information about how instance data is sent to the Vendor Portal, see [About Instance and Event Data](instance-insights-event-data).
 
-## Enable Application Status Insights
+## Enable application status insights
 
 To display insights on application status, the Vendor Portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
 
@@ -26,7 +26,7 @@ For information about how to enable status informers, see the sections below:
 * [Helm CLI Installations](#helm-cli-installations)
 * [Replicated Installers](#replicated-installers)
 
-### Helm CLI Installations
+### Helm CLI installations
 
 For Helm CLI installations, you can include the Replicated SDK as a dependency in your primary Helm chart to get status data. When the application is deployed using `helm install` or `helm upgrade`, the SDK automatically detects and reports the status of resources in the Helm release for the given chart. You can also override the list of resources that get reported on using the SDK's [`statusInformers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L287) value.
 
@@ -57,7 +57,7 @@ To get instance status data for installations with the Helm CLI:
      When `statusInformers` is set, the SDK reports the status of only the resources included in the `statusInformers` field.
      :::
 
-### Replicated Installers
+### Replicated installers
 
 To get instance insights from installations with a Replicated installer (Embedded Cluster, existing cluster KOTS, kURL), configure one or more status informers in the KOTS Application custom resource. For more information, see [Adding Resource Status Informers](admin-console-display-app-status).
 
@@ -65,7 +65,7 @@ To get instance insights from installations with a Replicated installer (Embedde
 When Helm-based applications that include the Replicated SDK and are deployed by a Replicated installer, the SDK inherits the status informers configured in the KOTS Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
 :::
 
-## View Resource Status Insights {#resource-status}
+## View resource status insights {#resource-status}
 
 For applications that include the Replicated SDK, the Vendor Portal also displays granular resource status insights in addition to the aggregate application status. For example, you can hover over the **App status** field on the **Instance details** page to view the statuses of the individual resources deployed by the application, as shown below:
 
@@ -77,11 +77,11 @@ Viewing these resource status details is helpful for understanding which resourc
 
 Granular resource status details are automatically available when the Replicated SDK is installed alongside the application. For information about how to distribute and install the SDK with your application, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
 
-## Understanding Application Status
+## Understanding application status
 
 This section provides information about how Replicated interprets and aggregates the status of Kubernetes resources for your application to report an application status.
 
-### About Resource Statuses {#resource-statuses}
+### About resource statuses {#resource-statuses}
 
 Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 
@@ -89,7 +89,7 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 <StatusesTable/>
 
-### Aggregate Application Status
+### Aggregate application status
 
 <AggregateStatusIntro/>
 

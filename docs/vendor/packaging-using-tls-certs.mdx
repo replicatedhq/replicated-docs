@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Use TLS Certificates
+# Use TLS certificates
 
 <KurlAvailability/>
 
@@ -14,7 +14,7 @@ Custom TLS options are supported:
 
 For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), the custom TLS certificate can be used to do validation without relying on the trust chain.
 
-### Get the TLS Secret
+### Get the TLS secret
 
 kURL sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the installation process. For more information about installing with kURL, see [Online Installation with kURL](/enterprise/installing-kurl).
 
@@ -41,7 +41,7 @@ data:
   tls.key: <base64_encoded>
 ```
 
-### Use TLS in a Deployment Resource
+### Use TLS in a deployment resource
 
 This procedure shows how to reference the `kotsadm-tls` secret using an example nginx Deployment resource (`kind: Deployment`).
 
@@ -96,7 +96,7 @@ To use the `kotsadm-tls` secret in a Deployment resource:
    MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyiGNuHw2LY3Rv
    ```
 
-### Use TLS in an Ingress Resource
+### Use TLS in an ingress resource
 
 You can add the `kotsadm-tls` secret to the Ingress resource to terminate TLS at the contour layer. The following example shows how to configure `secretName: kotsadm-tls` under the TLS `hosts` field in an Ingress resource (`kind: Ingress`):
 

@@ -5,23 +5,23 @@ import BuildAirGapBundle from "../partials/install/_airgap-bundle-build.mdx"
 import DownloadAirGapBundle from "../partials/install/_airgap-bundle-download.mdx"
 import ViewAirGapBundle from "../partials/install/_airgap-bundle-view-contents.mdx"
 
-# Perform Updates in Existing Clusters
+# Perform updates in existing clusters
 
 This topic describes how to perform updates in existing cluster installations with Replicated KOTS. It includes information about how to update applications and the version of KOTS running in the cluster.
 
 It also includes information about how the Admin Console determines version precendence. See [How the Admin Console Determines Version Precendence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence).
 
-## Update an Application
+## Update an application
 
 You can perform an application update using the KOTS Admin Console or the KOTS CLI. You can also set up automatic updates. See [Configure Automatic Updates](/enterprise/updating-apps).
 
 ### Using the Admin Console
 
-#### Online Environments
+#### Online environments
 
 <AdminConsole/>
 
-#### Air Gap Environments
+#### Air gap environments
 
 <AdminConsoleAirGap/>
 
@@ -29,7 +29,7 @@ You can perform an application update using the KOTS Admin Console or the KOTS C
 
 You can use the KOTS CLI [upstream upgrade](/reference/kots-cli-upstream-upgrade) command to update an application in existing cluster installations.
 
-#### Online Environments
+#### Online environments
 
 To update an application in online environments:
 
@@ -44,7 +44,7 @@ Where:
 Add the `--deploy` flag to automatically deploy this version.
 :::
 
-#### Air Gap Environments
+#### Air gap environments
 
 To update an application in air gap environments:
 
@@ -86,7 +86,7 @@ This section describes how to update the version of Replicated KOTS running in y
 Downgrading KOTS to a version earlier than what is currently deployed is not supported.
 :::
 
-### Online Environments
+### Online environments
 
 To update KOTS in an online existing cluster:
 
@@ -114,7 +114,7 @@ To update KOTS in an online existing cluster:
    ```
    Replace `NAMESPACE` with the namespace in your cluster where KOTS is installed.
 
-### Air Gap Environments
+### Air gap environments
 
 To update KOTS in an existing air gap cluster:
 
@@ -145,7 +145,7 @@ To update KOTS in an existing air gap cluster:
 
     For help information, run `kubectl kots admin-console upgrade -h`. 
 
-## How the Admin Console Determines Version Precedence
+## How the Admin Console determines version precedence
 
 The Admin Console uses version precedence to determine which versions are available for upgrade. Version precedence also determines the order in which versions are displayed on the **Version history** page, as shown in the example below:
 

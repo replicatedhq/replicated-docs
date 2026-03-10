@@ -1,8 +1,8 @@
-# CMX Usage History
+# CMX usage history
 This topic describes using the Replicated Vendor Portal to understand
 Replicated Compatibility Matrix (CMX) usage across your team.
 
-## View Historical Usage
+## View historical usage
 The **Compatibility Matrix > History** page provides
 historical information about both clusters and VMs, as shown below:
 
@@ -46,7 +46,7 @@ The table includes cluster and VM entries with the following columns:
   between the `running` and `terminated` states.
 - **Tag:** Any tags that were applied to the resource.
 
-## Filter and Sort Usage History
+## Filter and sort usage history
 
 Each of the fields on the **History** page can be filtered and sorted. To sort by a specific field, click on the column header.
 
@@ -55,7 +55,7 @@ To filter by a specific field, click on the filter icon in the column header, th
 ![Compatibility Matrix History Page, filter input](/images/compatibility-matrix-column-filter-input.png)
 [View a larger version of this image](/images/compatibility-matrix-column-filter-input.png)
 
-## Get Usage History with the Vendor API v3
+## Get usage history with the vendor API v3
 
 For more information about using the Vendor API v3 to get CMX
 usage history information, see the following API endpoints within the
@@ -68,7 +68,7 @@ Vendor API v3 documentation:
 
 For examples of using these endpoints, see the sections below.
 
-### Credit Balance and Summarized Usage
+### Credit balance and summarized usage
 You can use the `/v3/cmx/stats` endpoint to get summarized usage information in addition to your CMX
 credit balance.
 
@@ -98,7 +98,7 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-### Currently Active Clusters
+### Currently active clusters
 To get a list of active clusters:
 
 ```shell
@@ -125,7 +125,7 @@ curl --request GET \
 }
 ```
 
-### Currently Active Virtual Machines
+### Currently active virtual machines
 To get a list of active VMs:
 
 ```shell
@@ -135,7 +135,7 @@ curl --request GET \
      --header 'accept: application/json'
 ```
 
-### Historical Usage
+### Historical usage
 To fetch historical usage information:
 
 ```shell
@@ -164,7 +164,7 @@ allows you to get a list of either clusters or VMs:
           --header 'accept: application/json'
      ```
 
-### Filtering Endpoint Results
+### Filtering endpoint results
 Each of these endpoints supports pagination and filtering. You can use the
 following query parameters to filter the results.
 

@@ -1,6 +1,6 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
-# About Integrating with CI/CD
+# About integrating with CI/CD
 
 This topic provides an introduction to integrating Replicated CLI commands in your continuous integration and continuous delivery (CI/CD) pipelines, including Replicated's best practices and recommendations.
 
@@ -10,7 +10,7 @@ Using CI/CD workflows to automatically compile code and run tests improves the s
 
 You can also include continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and then to promote releases when they are ready to be shared with customers.
 
-## Best Practices and Recommendations
+## Best practices and recommendations
 
 The following are Replicated's best practices and recommendations for CI/CD:
 

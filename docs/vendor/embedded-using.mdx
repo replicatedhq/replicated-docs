@@ -6,7 +6,7 @@ import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 
 This topic provides information about how to configure your application releases to support installations with Replicated Embedded Cluster. For an introduction to Embedded Cluster, see [Embedded Cluster Overview](embedded-overview).
 
-## Add the Embedded Cluster Config Resource
+## Add the Embedded Cluster Config resource
 
 An [Embedded Cluster Config](/reference/embedded-config) must be present in the release to support installation with Embedded Cluster. The Embedded Cluster Config sets the version of Embedded Cluster to install, and lets you define additional characteristics about the cluster.
 
@@ -53,7 +53,7 @@ To add the Embedded Cluster Config:
      
      Replicated recommends that you work in small iterations and test your changes frequently in your development environment.
 
-## (Optional) Serve Installation Assets Using the Vendor API
+## (Optional) Serve installation assets using the vendor API
 
 To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle. End customers can download all these installation assets using a curl command by following the installation steps available in the [Replicated Enterprise Portal](/vendor/enterprise-portal-about).
 
@@ -71,7 +71,7 @@ To serve Embedded Cluster installation assets with the Vendor API:
 
      * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
 
-## Distribute the NVIDIA GPU Operator with Embedded Cluster {#nvidia-gpu-operator}
+## Distribute the NVIDIA gpu operator with Embedded Cluster {#nvidia-gpu-operator}
 
 :::note
 Distributing the NVIDIA GPU Operator with Embedded Cluster is not an officially supported feature from Replicated. However, it is a common use case.
@@ -79,7 +79,7 @@ Distributing the NVIDIA GPU Operator with Embedded Cluster is not an officially 
 
 The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation.
 
-### Include the NVIDIA GPU Operator and Configure Containerd Options
+### Include the NVIDIA gpu operator and configure containerd options
 
 You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](/reference/embedded-config#extensions) in _Embedded Cluster Config_.
 
@@ -108,7 +108,7 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
                value: /run/k0s/containerd.sock
 ```
 
-### Containerd Known Issue 
+### containerd known issue
 
 When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
 

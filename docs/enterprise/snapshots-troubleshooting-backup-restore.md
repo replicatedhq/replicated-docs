@@ -1,14 +1,14 @@
 import NodeAgentMemLimit from "../partials/snapshots/_node-agent-mem-limit.mdx"
 
-# Troubleshoot Snapshots
+# Troubleshoot snapshots
 
 When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
 
-## Velero is Crashing
+## Velero is crashing
 
 If Velero is crashing and not starting, some common causes are:
 
-### Invalid Cloud Credentials
+### Invalid cloud credentials
 
 #### Symptom
 
@@ -33,7 +33,7 @@ If the cloud access credentials are invalid or do not have access to the locatio
 Replicated recommends that you validate the access key / secret or service account json.
 
 
-### Invalid Top-level Directories
+### Invalid top-level directories
 
 #### Symptom
 
@@ -58,11 +58,11 @@ When configuring Velero to use a bucket, the bucket cannot contain other data, o
 
 Configure Velero to use a bucket that does not contain other data.
 
-## Node Agent is Crashing
+## Node agent is crashing
 
 If the node-agent Pod is crashing and not starting, some common causes are:
 
-### Metrics Server is Failing to Start
+### Metrics server is failing to start
 
 #### Symptom
 
@@ -81,9 +81,9 @@ This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port is 
 
 Replicated recommends that you either upgrade to Velero 1.12.2 or later, or downgrade to a version earlier than 1.12.0.
 
-## Snapshot Creation is Failing
+## Snapshot creation is failing
 
-### Timeout Error when Creating a Snapshot
+### Timeout error when creating a snapshot
 
 #### Symptom
 
@@ -122,7 +122,7 @@ Replace `TIMEOUT_LIMIT` with a length of time for the node-agent (restic) Pod op
 The timeout value reverts back to the default value if you rerun the `velero install` command.
 :::
 
-### Memory Limit Reached on the node-agent Pod
+### Memory limit reached on the node-agent pod
 
 #### Symptom
 
@@ -164,9 +164,9 @@ To resolve this issue, do one of the following:
 * Freeze the file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. For more information, see [Hook Example with fsfreeze](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze) in the Velero documentation.
 
 
-## Snapshot Restore is Failing
+## Snapshot restore is failing
 
-### Service NodePort is Already Allocated
+### Service nodeport is already allocated
 
 #### Symptom
 
@@ -186,7 +186,7 @@ This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade t
 
 For more infromation about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
 
-### Partial Snapshot Restore is Stuck in Progress
+### Partial snapshot restore is stuck in progress
 
 #### Symptom
 
@@ -210,7 +210,7 @@ We have seen this issue with Velero version 1.5.4 and opened up this issue with 
 
 Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
-### Partial Snapshot Restore Finishes with Warnings
+### Partial snapshot restore finishes with warnings
 
 #### Symptom
 

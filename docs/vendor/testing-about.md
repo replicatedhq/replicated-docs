@@ -15,7 +15,7 @@ Example use cases for CMX include:
 
 You can use CMX with the Replicated CLI, the Replicated Vendor Portal, or the Vendor API.
 
-## Billing and Credits
+## Billing and credits
 
 Clusters and VMs created with CMX are billed by the minute, plus a startup charge. Per-minute billing begins when a `running` status is reached and ends when the cluster or VM is deleted.
 

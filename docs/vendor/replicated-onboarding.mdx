@@ -22,11 +22,11 @@ import WriteYourDocs from "../partials/getting-started/_write-your-docs.mdx"
 
 This topic describes how to onboard applications to the Replicated Platform to support installations with Replicated Embedded Cluster and the Helm CLI. If you will support only Helm CLI installations for your application, see [Onboard to the Replicated Platform (Helm CLI Installs Only)](replicated-onboarding-helm-only).
 
-## Before You Begin
+## Before you begin
 
 This section includes guidance and prerequisites to review before you begin onboarding your application.  
 
-### Best Practices and Recommendations
+### Best practices and recommendations
 
 The following are some best practices and recommendations for successfully onboarding with Replicated:
 
@@ -36,7 +36,7 @@ The following are some best practices and recommendations for successfully onboa
 
 * These onboarding tasks show you how to test the installation of each release on a VM with the Replicated Embedded Cluster installer _and_ in a cluster with the Replicated KOTS installer. If you do not intend to offer existing cluster installations with KOTS, then can choose to test with Embedded Cluster only.
 
-### Getting Help from the Community {#community}
+### Getting help from the community {#community}
 
 <CommunityHelp/>
 
@@ -62,11 +62,11 @@ The following are some best practices and recommendations for successfully onboa
 
 Complete the tasks in this section to onboard your application to the Replicated Platform. When you are done, you can continue to [Next Steps](#next-steps) to integrate other Replicated features with your application.
 
-### Task 1: Create An Application
+### Task 1: Create an application
 
 <CreateApp/>
 
-### Task 2: Modify Image References in Helm Values to Point to the Proxy Registry {#task-2}
+### Task 2: Modify image references in Helm values to point to the proxy registry {#task-2}
 
 Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you to grant proxy access to application images without exposing registry credentials to your customers.
 
@@ -82,7 +82,7 @@ To modify image references to point to the proxy registry:
 
    As part of [Task 4: Create the Initial Release with HelmChart and Embedded Cluster Config](#first-release), you will inject a Replicated-generated pull secret into your Helm values that grants authentication to pull your private images through the proxy registry.
 
-### Task 3: Add the Replicated SDK and Package your Chart
+### Task 3: Add the Replicated SDK and package your chart
 
 Next, add the Replicated SDK as a dependency of your Helm chart and package the chart as a `.tgz` archive.
 
@@ -106,7 +106,7 @@ To package your Helm chart with the Replicated SDK:
 
 1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command. Do not declare the SDK in more than one chart.
 
-### Task 4: Create the Initial Release with HelmChart and Embedded Cluster Config {#first-release}
+### Task 4: Create the initial release with HelmChart and Embedded Cluster Config {#first-release}
 
 After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with the Embedded Cluster installer:
 * The Helm chart `.tgz` archive
@@ -232,7 +232,7 @@ To configure the KOTS Application custom resource:
 
 1. <TestYourChanges/>
 
-### Task 6: Set Up the Admin Console Config Screen and Map to Helm Values
+### Task 6: Set up the Admin Console Config screen and map to Helm values
 
 The KOTS Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
 
@@ -300,7 +300,7 @@ To set up the Admin Console Config screen for your application:
 
 1. Continue to create and test new releases with new config fields until you are ready to move on to the next task.
 
-### Task 7: Define Preflight Checks
+### Task 7: Define preflight checks
 
 <PreflightSupportBundleIntro/>
 
@@ -324,7 +324,7 @@ To define preflight checks for your application:
 
 1. Continue to create and test new releases with additional preflight checks until you are ready to move on to the next task.
 
-### Task 8: Add a Support Bundle Spec
+### Task 8: Add a support bundle spec
 
 To add the default support bundle spec to your application:
 
@@ -344,21 +344,21 @@ To add the default support bundle spec to your application:
 
 8. (Optional) Customize the support bundle spec by adding additional collectors and analyzers.
 
-### Task 9: Set Up the Enterprise Portal
+### Task 9: Set up the Enterprise Portal
 
 <EnterprisePortal/>
 
-### Task 10: Alias Replicated Endpoints With Your Own Domains {#custom-domains}
+### Task 10: Alias Replicated endpoints with your own domains {#custom-domains}
 
 <CustomDomains/>
 
 3. If you added a custom domain for the proxy registry or app service, update the Embedded Cluster Config so that Embedded Cluster installations use your custom domains. See [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
 
-## Next Steps
+## Next steps
 
 After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
 
-### Add Support for Helm Installations
+### Add support for Helm installations
 
 Existing releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
 
@@ -380,7 +380,7 @@ To support and test Helm installations:
 
 1. In the cluster, istall the release with Helm to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
 
-### Add Support for Air Gap Installations
+### Add support for air gap installations
 
 Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Embedded Cluster and KOTS, users install by providing an air gap bundle that contains the required images for the Replicated installer and your application. For Helm installations, users install by following automatically-generated instructions provided in the Enterprise Portal to pull all images and push them to their local image registry.
 
@@ -457,13 +457,13 @@ To add support for air gap installations:
 
 1. (Optional) Download the `.airgap` bundle for the release and the air gap bundle for the KOTS Admin Console. Then, install with KOTS in an air gap existing cluster to test. See [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
-### Add Roles for Multi-Node Clusters in Embedded Cluster Installations
+### Add roles for multi-node clusters in Embedded Cluster installations
 
 The Embedded Cluster Config supports roles for multi-node clusters. One or more roles can be selected and assigned to a node when it is joined to the cluster. Node roles can be used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes.
 
 For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
 
-### Add and Map License Entitlements
+### Add and map license entitlements
 
 You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
 * Limit the number of active users permitted
@@ -472,11 +472,11 @@ You can add custom license entitlements for your application in the Vendor Porta
 
 For more information about how to create and assign custom entitlements in the Vendor Portal, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields) and [Creating and Managing Customers](/vendor/releases-creating-customer).
 
-#### Map Entitlements to Helm Values
+#### Map entitlements to Helm values
 
 You can map license entitlements to your Helm values using Replicated template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Use KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
 
-#### Query Entitlements Before Installation and at Runtime
+#### Query entitlements before installation and at runtime
 
 You can add logic to your application to query license entitlements both before deployment and at runtime. For example, you might want to add preflight checks that verify a user's entitlements before installing. Or, you can expose additional product functionality dynamically at runtime based on a customer's entitlements.
 
@@ -484,7 +484,7 @@ For more information, see:
 * [Querying Entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
 * [Checking Entitlements in Preflights with KOTS Template Functions](/vendor/licenses-referencing-fields)
 
-### Add Application Links to the Admin Console Dashboard
+### Add application links to the Admin Console dashboard
 
 You can add the Kubernetes SIG Application custom resource to your release to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
 
@@ -492,7 +492,7 @@ You can also configure the Kubernetes SIG Application resource add links to othe
 
 For more information, see [Add Application Links to the Dashboard](/vendor/admin-console-adding-buttons-links).
 
-### Update the Preflight and Support Bundles Specs
+### Update the preflight and support bundles specs
 
 After adding basic specs for preflights and support bundles, you can continue to add more collectors and analyzers as needed.
 
@@ -510,7 +510,7 @@ The documentation for the open-source Troubleshoot project includes the full lis
 
 You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight Spec Examples](preflight-examples) and [Support Bundle Spec Examples](support-bundle-examples).
 
-### Configure Backup and Restore
+### Configure backup and restore
 
 Enable backup and restore with Velero for your application so that users can back up and restore their KOTS Admin Console and application data. 
 
@@ -518,7 +518,7 @@ There are different steps to configure backup and restore for Embedded Cluster a
 * To configure the disaster recovery feature for Embedded Cluster, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery)
 * To configure the snapshots feature for existing cluster KOTS installations, see [Configure Snapshots](snapshots-configuring-backups).
 
-### Add Custom Metrics
+### Add custom metrics
 
 In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
 
@@ -528,10 +528,10 @@ For more information, see [Configure Custom Metrics](/vendor/custom-metrics).
 
 <IntegrateCiCd/>
 
-### Customize Release Channels
+### Customize release channels
 
 <CustomizeReleaseChannels/>
 
-### Write Your Documentation
+### Write your documentation
 
 <WriteYourDocs/>

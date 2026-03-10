@@ -1,4 +1,4 @@
-# Cron Expressions
+# Cron expressions
 
 This topic describes the supported cron expressions that you can use to schedule automatic application update checks and automatic backups in the Replicated Admin Console. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
@@ -47,7 +47,7 @@ The following table lists the required cron fields and supported values:
     </tr>
   </table>
 
-## Special Characters
+## Special characters
 
 Replicated uses an external cron Go library. For more information about it's usage, see [cron](https://pkg.go.dev/github.com/robfig/cron/v3). 
 
@@ -76,7 +76,7 @@ The following table describes the supported special characters:
     </tr>
 </table>
 
-## Predefined Schedules
+## Predefined schedules
 
 You can use one of the following predefined schedule values instead of a cron expression:
 

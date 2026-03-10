@@ -1,11 +1,11 @@
 import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.mdx"
 
-# Manage Team Members
+# Manage team members
 
 This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Manage Collab Repository Access](team-management-github-username).
 
-## Viewing Team Members
+## Viewing team members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 <img src="/images/teams-view.png" alt="View team members list in the Vendor Portal" width="700"/>
@@ -18,7 +18,7 @@ All users, including read-only, can see the name of the RBAC role assigned to ea
 
 You can enable System for Cross-domain Identity Management (SCIM) for automated provisioning and deprovisioning. SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
 
-## Invite Members
+## Invite members
 By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
 
 :::note
@@ -45,7 +45,7 @@ To invite a new team member:
 
    People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
-## Managing Invitations
+## Managing invitations
 
 Invitations expire after 7 days. If a prospective member has not accepted their invitation in this time frame, you can re-invite them without having to reenter their details. You can also remove the prospective member from the list.
 
@@ -57,7 +57,7 @@ To re-invite or remove a prospective member, do one of the following on the **Te
 
 * Click **Remove** from the row with the user's email address, and then click **Delete Invitation** in the confirmation dialog.
 
-## Edit Policy Permissions
+## Edit policy permissions
 
 You can edit the RBAC policy that is assigned to a member at any time.
 
@@ -75,7 +75,7 @@ To edit policy permissions for individual team members:
 
    <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the Vendor Portal" width="400"/>
 
-## Enable Users to Auto-join Your Team
+## Enable users to auto-join your team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the Vendor Portal.
 
 To add, edit, or delete custom RBAC policies, see [Configure RBAC Policies](team-management-rbac-configuring).
@@ -94,7 +94,7 @@ To enable users to auto-join your team:
    <CollabRbacImportant/>
 
 
-## Remove Members and End Sessions
+## Remove members and end sessions
 As a Vendor Portal team admin, you can remove team members, except for the account you are currently logged in with.
 
 If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
@@ -113,7 +113,7 @@ To remove a member:
 
    For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated Vendor Portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the Vendor Portal unless the username and password are allowed.
 
-## Update Email Addresses
+## Update email addresses
 
 :::important
 Changing team member email addresses has security implications. Replicated advises that you avoid changing team member email addresses if possible.

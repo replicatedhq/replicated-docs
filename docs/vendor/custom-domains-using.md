@@ -1,4 +1,4 @@
-# Use Custom Domains
+# Use custom domains
 
 This topic describes how to use the Replicated Vendor Portal to add and manage custom domains to alias Replicated endpoints, including the Replicated registry, the Replicated proxy registry, the Replicated app service, the Replicated Enterprise Portal, and the Replicated Download Portal.
 
@@ -6,7 +6,7 @@ For information about adding and managing custom domains with the Vendor API v3,
 
 For more information about custom domains, see [About Custom Domains](custom-domains).
 
-## Add a Custom Domain in the Vendor Portal {#add-domain}
+## Add a custom domain in the Vendor Portal {#add-domain}
 
 To add and verify a custom domain:
 
@@ -65,11 +65,11 @@ To add and verify a custom domain:
 
 1. (Optional) After a domain is marked as **Configured**, you can remove any TXT records that you created in your DNS account.
 
-## Use Custom Domains
+## Use custom domains
 
 After you add one or more custom domains in the Vendor Portal, you can configure your application to use the domains. 
 
-### Configure Embedded Cluster to Use Custom Domains {#ec}
+### Configure Embedded Cluster to use custom domains {#ec}
 
 You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service. For more information about Embedded Cluster, see [Embedded Cluster Overview](/vendor/embedded-overview).
 
@@ -93,7 +93,7 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
 
 1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
 
-### Set a Default Domain
+### Set a default domain
 
 Setting a default domain is useful for ensuring that the same domain is used across channels for all your customers.
 
@@ -113,7 +113,7 @@ To set a custom domain as the default:
 
 1. In the confirmation dialog that opens, click **Yes, set as default**.
 
-### Assign a Domain to a Channel {#channel-domain}
+### Assign a domain to a channel {#channel-domain}
 
 You can assign a domain to an individual channel by editing the channel settings. When you specify a domain in the channel settings, new releases promoted to the channel use the selected domain even if there is a different domain set as the default on the **Custom Domains** page.
 
@@ -135,7 +135,7 @@ To assign a custom domain to a channel:
 
     [View a larger version of this image](/images/channel-settings.png)
 
-## Reuse a Custom Domain for Another Application
+## Reuse a custom domain for another application
 
 If you have configured a custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
 
@@ -160,7 +160,7 @@ To reuse a custom domain for another application:
     - Click **Not now**. You can come back later to set the domain as the default. The Vendor Portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
 
 
-## Remove a Custom Domain
+## Remove a custom domain
 
 You can remove a custom domain at any time, but you should plan the transition so that you do not break any existing installations or documentation.
 

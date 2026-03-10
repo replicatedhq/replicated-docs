@@ -1,8 +1,8 @@
-# Collect and View Network Reports
+# Collect and view network reports
 
 This topic describes how to enable and view network reports for environments created with Replicated Compatibility Matrix (CMX).
 
-## About Network Reports
+## About network reports
 
 CMX network reporting helps you understand your application's network activity. To provide flexibility in testing, you can enable network reporting to capture all network activity, whether the network policy is set to `open` or `airgap`.
 
@@ -10,7 +10,7 @@ Even when the network policy is set to `airgap` and network egress is blocked, a
 
 For more information about working with CMX networks, see [Create Air-Gapped Environments (Beta)](testing-how-to#air-gap) and [Create Environments on the Same Network](testing-how-to#shared-networks) in _Create and Manage Environments_
 
-## Types of Network Reports
+## Types of network reports
 
 The following tables describes the CMX network report types:
 
@@ -31,7 +31,7 @@ The following shows an example of a report summary:
 
    [View a larger version of this image](/images/cmx-network-report-summary.png)
 
-## Enable Network Reporting
+## Enable network reporting
 
 Networking reporting is not enabled by default. To collect reports, you can enable reporting in the Vendor Portal or with the CLI.
 
@@ -73,7 +73,7 @@ To collect and view a network report from the CLI:
 1. (Optional) Change the network policy to `airgap` to block all network egress.
 
 
-## View Network Reports
+## View network reports
 
 After you [Enable Network Reporting](#enable-network-reporting) for a network, you can view network reports.
 
@@ -124,7 +124,7 @@ To view network reports from the CLI:
     :::
 
 
-## Related Topics
+## Related topics
 
 * [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
 * [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).

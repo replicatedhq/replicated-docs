@@ -4,7 +4,7 @@ import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
-# Configure an NFS Storage Destination
+# Configure an NFS storage destination
 
 This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
 
@@ -29,7 +29,7 @@ Complete the following items before you perform this task:
 * Review the limitations and considerations. See [Limitations and Considerations](/vendor/snapshots-overview#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Install the Velero CLI](snapshots-velero-cli-installing).
 
-## Install Velero and Configure NFS Storage in Online Environments
+## Install Velero and configure NFS storage in online environments
 
 To install Velero and configure NFS storage in an online environment:
 
@@ -50,7 +50,7 @@ To install Velero and configure NFS storage in an online environment:
 
   For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-## Install Velero and Configure NFS Storage in Air Gapped Environments
+## Install Velero and configure NFS storage in air gapped environments
 
 To install Velero and configure NFS storage in air gapped environments:
 
@@ -85,7 +85,7 @@ To install Velero and configure NFS storage in air gapped environments:
 
    For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-## Configure NFS Storage in the Admin Console
+## Configure NFS storage in the Admin Console
 
 Alternatively, when the Admin Console and application are already installed, you can start in the Admin Console to install Velero and configure an NFS storage destination.
 
@@ -113,12 +113,12 @@ To install Velero and configure NFS storage for existing clusters:
 
 1. Return to the Admin Console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 
-## Next Steps
+## Next steps
 
 * (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * (Optional) Increase the default memory limits. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Create and Schedule Backups](snapshots-creating).
 
-## Additional Resources
+## Additional resources
 
 * [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)

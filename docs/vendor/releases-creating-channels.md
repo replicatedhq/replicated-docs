@@ -1,4 +1,4 @@
-# Create and Edit Channels
+# Create and edit channels
 
 This topic describes how to create and edit channels using the Replicated Vendor Portal. For more information about channels, see [About Channels and Releases](releases-about).
 
@@ -6,7 +6,7 @@ For information about creating channels with the Replicated CLI, see [channel cr
 
 For information about creating and managing channels with the Vendor API v3, see the [channels](https://replicated-vendor-api.readme.io/reference/createchannel) section in the Vendor API v3 documentation.
 
-## Create a Channel
+## Create a channel
 
 To create a channel:
 
@@ -24,7 +24,7 @@ To create a channel:
 
 1. Click **Create Channel**.
 
-## Edit Channel Settings
+## Edit channel settings
 
 To edit the settings of an existing channel:
 
@@ -39,7 +39,7 @@ To edit the settings of an existing channel:
 
    For more information about channel settings, see [Channel Settings](releases-about#channel-settings) in _About Channels and Releases_.
 
-## Enable Semantic Versioning
+## Enable semantic versioning
 
 You can enable and disable semantic versioning (SemVer) for releases on each channel. When you enable SemVer on a channel, the Vendor Portal checks all releases promoted to that channel to verify that the version label is valid SemVer.
 
@@ -61,7 +61,7 @@ To enable semantic versioning on a channel:
     
     The next time that you promote a release to the channel, assign the release a semantic version number.
 
-## Archive a Channel
+## Archive a channel
 
 You can archive an existing channel to prevent any new releases from being promoted to the channel.
 

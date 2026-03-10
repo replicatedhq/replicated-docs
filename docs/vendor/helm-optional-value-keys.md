@@ -6,7 +6,7 @@ import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Set Helm Values with Replicated HelmChart
+# Set Helm values with Replicated HelmChart
 
 This topic describes how to use the Replicated HelmChart custom resource to set and delete values in `values.yaml` files for Helm charts. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
@@ -20,7 +20,7 @@ Common use cases for the `values` and `optionalValues` keys include:
 * Setting certain Helm values only when a given condition is met
 * Excluding a default value key from the Helm chart `values.yaml` file when the user installs with a Replicated installer
 
-## Set Static Values
+## Set static values
 
 You can use static values to set Helm values for Replicated installations, without affecting values for any installations that use the Helm CLI.
 
@@ -55,7 +55,7 @@ spec:
 
 During installation or upgrade with a Replicated installer, the installer sets `replicatedOnlyValue.enabled` in the Helm chart `values.yaml` file to `true`. For installations with the Helm CLI, `replicatedOnlyValue.enabled` remains `false`.
 
-## Set Values with Replicated Template Functions
+## Set values with Replicated template functions
 
 You can use Replicated template functions to render values like customer-specific license field values,
 user-provided configuration values, or information about the customer environment. For more information about working with template functions, see [About Replicated Template Functions](/reference/template-functions-about).
@@ -71,7 +71,7 @@ The following examples show how to use Replicated template functions in the `val
   </TabItem>
 </Tabs> 
 
-## Conditionally Set Values
+## Conditionally set values
 
 <OptionalValues/>
 
@@ -105,7 +105,7 @@ spec:
 
 During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
-### About Recursive Merge for optionalValues {#recursive-merge}
+### About recursive merge for optionalvalues {#recursive-merge}
 
 <OptionalValuesRecursiveMerge/>
 
@@ -178,7 +178,7 @@ favorite_drink_hot: tea
 
 In this case, all keys from `values` and `optionalValues` are merged. Because both include `favorite.drink.cold`, KOTS uses `lemonade` from `optionalValues`.
 
-## Delete a Default Key
+## Delete a default key
 
 If the Helm chart `values.yaml` contains a static value that must be deleted when deploying with KOTS, you can set the value to `"null"` (including the quotation marks) in the `values` key of the HelmChart custom resource.
 

@@ -1,4 +1,4 @@
-# About Creating Modular Support Bundle Specs
+# About creating modular support bundle specs
 
 This topic describes how to use a modular approach to creating support bundle specs.
 
@@ -8,7 +8,7 @@ Support bundle specifications can be designed using a modular approach. This ref
 
 This modular approach helps teams develop specs that are easier to maintain and helps teams to avoid merge conflicts that are more likely to occur when making to changes to a large spec. When generating support bundles for an application that includes multiple modular specs, the specs are merged so that only one support bundle archive is generated.
 
-## Example: Support Bundle Specifications by Component {#component}
+## Example: Support bundle specifications by component {#component}
 
 Using a modular approach for an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers in using a separate support bundle specification for each component.
 

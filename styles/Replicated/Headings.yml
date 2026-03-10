@@ -1,6 +1,6 @@
 # This file is used to lint headings.
 extends: capitalization
-message: "'%s' should use sentence-style capitalization."
+message: "'%s' should use sentence case."
 link: "https://developers.google.com/style/capitalization#capitalization-in-titles-and-headings"
 level: warning
 scope: heading
@@ -8,23 +8,131 @@ match: $sentence
 indicators:
   - ":"
 exceptions:
+  - 2FA
+  - Admin Console
+  - AKS
+  - Alertmanager
+  - AlmaLinux
+  - API
+  - Anchore
   - Azure
+  - APIs
+  - Artifactory
+  - Auto-Gitops
+  - AWS
+  - bcrypt
+  - CD
+  - CI
   - CLI
-  - Cosmos
+  - clsx
+  - CMX
+  - Config
+  - ConfigValues
+  - containerd
+  - CRD
+  - CRDs
+  - Dex
+  - DNS
   - Docker
-  - Emmet
+  - Docker Hub
+  - Docusaurus
+  - Download Portal
+  - ECR
+  - EKS
+  - Embedded Cluster
+  - Enterprise Portal
+  - GCP
+  - Gitea
+  - GitHub
+  - GitLab
+  - GKE
+  - Grafana
+  - Grype
   - gRPC
+  - Harbor
+  - Helm
+  - HelmChart
+  - Hetzner
+  - HTTP
+  - HTTPS
+  - HubSpot
   - I
+  - Installer
+  - IP
+  - IPv4
+  - IPv6
+  - JSON
+  - journalctl
+  - K0s
+  - k3s
+  - kind
+  - KOTS
+  - kubectl
   - Kubernetes
+  - Kustomize
+  - kURL
+  - LAM
+  - LDAP
+  - LintConfig
   - Linux
+  - Longhorn
   - macOS
   - Marketplace
+  - MDX
   - MongoDB
-  - REPL
+  - MySQL
+  - Netlify
+  - NGINX
+  - NFS
+  - Node.js
+  - npm
+  - NVIDIA
+  - OIDC
+  - OKE
+  - OKD
+  - OpenShift
+  - PostgreSQL
+  - Prometheus
+  - RBAC
+  - Redis
+  - Redactor
+  - RE2
+  - REST
+  - Replicated
+  - Replicated CLI
+  - Replicated Platform
+  - RKE2
+  - SAML
+  - SBOM
+  - SCIM
+  - SDK
+  - Secret
+  - Security Center
+  - SlackerNews
+  - Slack
+  - SLSA
+  - SMTP
+  - Software Bills of Materials
+  - SSH
+  - SSO
   - Studio
+  - SupportBundle
+  - Syft
+  - systemd
+  - TLS
   - TypeScript
+  - Ubuntu
+  - URI
+  - URL
   - URLs
+  - Vendor API
+  - Vendor Platform
+  - Vendor Portal
+  - Velero
   - Visual
+  - VM
+  - VMs
   - VS
   - Windows
-  - JSON
+  - YAML
+  - Yarn

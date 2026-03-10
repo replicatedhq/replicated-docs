@@ -1,4 +1,4 @@
-# CMX Cluster Add-ons (Alpha)
+# CMX cluster add-ons (Alpha)
 
 This topic describes the supported cluster add-ons for Replicated Compatibility Matrix (CMX).
 
@@ -11,11 +11,11 @@ This allows you to more easily provision dependencies required by your applicati
 
 The Replicated CLI can be used to [create](/reference/replicated-cli-cluster-addon-create), [manage](/reference/replicated-cli-cluster-addon-ls) and [remove](/reference/replicated-cli-cluster-addon-rm) cluster add-ons.
 
-## Supported Add-ons
+## Supported add-ons
 
 This section lists the supported cluster add-ons for clusters created with CMX.
 
-### object-store (Alpha)
+### Object-store (Alpha)
 
 The Replicated cluster object store add-on can be used to create S3 compatible object store buckets for clusters (currently only AWS S3 is supported for EKS clusters).
 

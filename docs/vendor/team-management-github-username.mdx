@@ -3,7 +3,7 @@ import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-r
 import CollabExistingUser from "../partials/collab-repo/_collab-existing-user.mdx"
 
 
-# Manage Collab Repository Access
+# Manage collab repository access
 
 This topic describes how to add users to the Replicated collab GitHub repository automatically through the Replicated Vendor Portal. It also includes information about managing user roles in this repository using Vendor Portal role-based access control (RBAC) policies.
 
@@ -31,7 +31,7 @@ GitHub Enterprise Managed Users cannot be used to grant access to a team's repli
 
 This is because managed user accounts like Enterprise Managed Users cannot be invited to organizations or repositories outside of the enterprise. For more information, see [Abilities and restrictions of managed user accounts](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/abilities-and-restrictions-of-managed-user-accounts#visibility-and-invitations) in the GitHub documentation.
 
-## Add Users to the Collab Repository {#add}
+## Add users to the collab repository {#add}
 
 This procedure describes how to use the Vendor Portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the Vendor Portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub.
 
@@ -63,7 +63,7 @@ To add new and existing users to the collab repository through the Vendor Portal
 
    Users receive an email when they are added to the collab repository.
 
-## About GitHub Roles
+## About GitHub roles
 
 When team members add a GitHub username to their Vendor Portal account, the Vendor Portal determines how to assign the user a default GitHub role in the collab repository based on the following criteria:
 * If the GitHub username already exists in the collab repository
@@ -71,11 +71,11 @@ When team members add a GitHub username to their Vendor Portal account, the Vend
 
 You can also update any custom RBAC policies in the Vendor Portal to change the default GitHub roles for those policies. 
 
-### Default Roles for Existing Users {#existing-username}
+### Default roles for existing users {#existing-username}
 
 <CollabExistingUser/>
 
-### Default Role Mapping {#role-mapping}
+### Default role mapping {#role-mapping}
 
 When team members add a GitHub username to their Vendor Portal account, the Vendor Portal assigns them to a GitHub role in the collab repository that corresponds to their Vendor Portal policy. For example, users with the default Read Only policy in the Vendor Portal are assigned the Read GitHub role in the collab repository.
 
@@ -127,7 +127,7 @@ The table below describes how each default and custom Vendor Portal policy corre
   </tr>
 </table>
 
-### Change the Default Role {#custom}
+### Change the default role {#custom}
 
 You can update any custom RBAC policies that you create in the Vendor Portal to change the default GitHub roles for those policies. For example, by default, any team members assigned a custom policy with `**/admin` under `allowed:` are assigned the Admin role in the collab repository in GitHub. You can update the custom policy to specify a more restrictive GitHub role.
 

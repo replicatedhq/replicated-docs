@@ -8,21 +8,21 @@ import TabItem from '@theme/TabItem';
 
 This topic provides information about troubleshooting Replicated Embedded Cluster installations. For more information about Embedded Cluster, including built-in extensions and architecture, see [Embedded Cluster Overview](/vendor/embedded-overview).
 
-## Troubleshoot with Support Bundles
+## Troubleshoot with support bundles
 
 This section includes information about how to collect support bundles for Embedded Cluster installations. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-### About the Default Embedded Cluster Support Bundle Spec
+### About the default Embedded Cluster support bundle spec
 
 <SupportBundleIntro/>
 
 <EmbeddedClusterSupportBundle/>
 
-## View Logs
+## View logs
 
 You can view logs for both Embedded Cluster and the k0s systemd service to help troubleshoot Embedded Cluster deployments.
 
-### View Installation Logs for Embedded Cluster
+### View installation logs for Embedded Cluster
 
 To view installation logs for Embedded Cluster:
 
@@ -30,7 +30,7 @@ To view installation logs for Embedded Cluster:
 
 1. Navigate to `/var/log/embedded-cluster` and open the `.log` file to view logs.
 
-### View k0s Logs
+### View K0s logs
 
 You can use the journalctl command line tool to access logs for systemd services, including k0s. For more information about k0s, see the [k0s documentation](https://docs.k0sproject.io/stable/).
 
@@ -49,23 +49,23 @@ To use journalctl to view k0s logs:
     journalctl -u k0sworker
     ```
 
-## Access the Cluster
+## Access the cluster
 
 When troubleshooting, it can be useful to list the cluster and view logs using the kubectl command line tool. For additional suggestions related to troubleshooting applications, see [Troubleshooting Applications](https://kubernetes.io/docs/tasks/debug/debug-application/) in the Kubernetes documentation.
 
 <ShellCommand/>
 
-## Troubleshoot Errors
+## Troubleshoot errors
 
 This section provides troubleshooting advice for common errors.
 
-### Installation failure when NVIDIA GPU Operator is included as Helm extension {#nvidia}
+### Installation failure when NVIDIA gpu operator is included as Helm extension {#nvidia}
 
 #### Symptom
 
 A release that includes that includes the NVIDIA GPU Operator as a Helm extension fails to install.
 
-#### Cause 
+#### Cause
 
 If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
 
@@ -90,7 +90,7 @@ To troubleshoot:
 
 1. Re-install with Embedded Cluster.
 
-### Calico networking issues 
+### Calico networking issues
 
 #### Symptom
 
@@ -113,7 +113,7 @@ Symptoms of Calico networking issues can include:
     server APIs: config.k8ssandra.io/v1beta1: Get \"https://***HIDDEN***:443/apis/config.k8ssandra.io/v1beta1\": dial tcp ***HIDDEN***:443: i/o timeout"}
     ```
 
-#### Cause 
+#### Cause
 
 Reasons can include:
 

@@ -1,8 +1,8 @@
-# Use Image Tags and Digests
+# Use image tags and digests
 
 This topic describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, and how to enable support for image digests in air gap bundles.
 
-## Support for Image Tags and Digests
+## Support for image tags and digests
 
 The following table describes the use cases in which image tags and digests are supported:
 
@@ -31,7 +31,7 @@ The following table describes the use cases in which image tags and digests are 
 You can use image tags and image digests together in any case where both are supported.
 :::
 
-## Using Image Digests in Air Gap Installations {#digests-air-gap}
+## Using image digests in air gap installations {#digests-air-gap}
 
 For applications installed with KOTS v1.82.0 or later, you can enable a format for air gap bundles that supports the use of image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 

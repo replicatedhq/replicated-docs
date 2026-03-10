@@ -1,4 +1,4 @@
-# Create and Manage Environments with CMX
+# Create and manage environments with CMX
 
 This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage clusters and VMs.
 
@@ -14,7 +14,7 @@ This topic includes information about creating and managing environments with CM
 
 * Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated Vendor Portal.
 
-## Create Environments
+## Create environments
 
 For information about how to create environments with the CLI, see [replicated cluster create](/reference/replicated-cli-cluster-create) and [replicated vm create](/reference/replicated-cli-vm-create).
 
@@ -56,7 +56,7 @@ To create an environment with CMX from the Vendor Portal:
 
    The environment is displayed in the list on the Compatibility Matrix **Overview** page with a status of Assigned. When the environment is ready, the status is changed to Running.
 
-## Create Air-Gapped Environments (Beta) {#air-gap}
+## Create air-gapped environments (Beta) {#air-gap}
 
 :::note
 Using the `airgap` network policy to simulate an air-gapped environment is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters). Clusters that use cloud-based distributions do not support the `airgap` network policy.
@@ -75,7 +75,7 @@ Network policies are configured at the network level and apply to all VMs and en
 
 You can also use CMX to generate reports that track and summarize network activity on CMX networks. For more information, see [Collect and View Network Reports](/vendor/testing-network-policy).
 
-### VM-Based Cluster
+### VM-based cluster
 
 To create an air-gapped cluster:
 
@@ -164,7 +164,7 @@ To create an air-gapped VM:
 
 1. (Optional) Enable network reporting to track network activity. See [Collect and View Network Reports](/vendor/testing-network-policy).
 
-## Access Environments
+## Access environments
 
 After a CMX cluster or VM is running, you can access the environment using the `replicated cluster shell` or `ssh` command that is available in the Compatibility Matrix UI.
    
@@ -188,15 +188,15 @@ After a CMX cluster or VM is running, you can access the environment using the `
 
   1. Respond to the prompts to add the fingerprint for `replicatedvm.com` and enter the passphrase for your SSH key.
 
-## Create Environments on the Same Network {#shared-networks}
+## Create environments on the same network {#shared-networks}
 
 You can create VMs and clusters with CMX that use the same network.
 
-### Connect a VM with a Cluster on the Same Network
+### Connect a VM with a cluster on the same network
 
 You can make a CMX cluster available on the same network as a CMX VM.
 
-#### Supported Cluster Distributions
+#### Supported cluster distributions
 
 Openshift, K3s, RKE2, EC, kURL, kind
 
@@ -240,7 +240,7 @@ To connect a VM with a cluster on the same network:
     760a30b1   suspicious_poitras   ubuntu         24.04     assigned   accbd6a7   2025-08-04 13:24 PDT   -        $0.60
     ```
 
-### Create VMs on the Same Network
+### Create VMs on the same network
 
 Use the `--count` flag to create multiple VMs with the same name, all running on the same Network ID.
 
@@ -248,7 +248,7 @@ Use the `--count` flag to create multiple VMs with the same name, all running on
 replicated vm create --distribution ubuntu --count 3
 ```
 
-### Join VMs to an Existing Network
+### Join VMs to an existing network
 
 To join one or more new VMs to the network of an existing VM:
 
@@ -273,7 +273,7 @@ To join one or more new VMs to the network of an existing VM:
     ``` 
     Where `NETWORK_ID` is the network ID that you copied in the previous step.
 
-## Create a Cluster and Install a Release with `cluster prepare` {#prepare-clusters}
+## Create a cluster and install a release with `cluster prepare` {#prepare-clusters}
 
 The [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
@@ -332,7 +332,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 
-## Edit Environments
+## Edit environments
 
 You can make changes to an environment after creating it. For example, you could extent to TTL or add DNS records to expose ports on a VM.
 
@@ -347,7 +347,7 @@ To edit environments:
 
 1. Make changes to the environment as needed.   
 
-## Delete Environments
+## Delete environments
 
 For information about deleting environments using the Replicated CLI, see [replicated cluster rm](/reference/replicated-cli-cluster-rm) and [replicated vm rm](/reference/replicated-cli-vm-rm)
 

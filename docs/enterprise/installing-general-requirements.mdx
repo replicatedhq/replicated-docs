@@ -3,7 +3,7 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 import FirewallOpeningsIntro from "../partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsKots from "../partials/install/_firewall-openings-kots.mdx"
 
-# KOTS Installation Requirements
+# KOTS installation requirements
 
 This topic describes the requirements for installing in a Kubernetes cluster with Replicated KOTS.
 
@@ -11,7 +11,7 @@ This topic describes the requirements for installing in a Kubernetes cluster wit
 This topic does not include any requirements specific to the application. Ensure that you meet any additional requirements for the application before installing.
 :::
 
-## Supported Browsers
+## Supported browsers
 
 The following table lists the browser requirements for the Replicated KOTS Admin Console with the latest version of KOTS.
 
@@ -24,7 +24,7 @@ The following table lists the browser requirements for the Replicated KOTS Admin
 | Safari (Mac OS only) | 13+         |
 | Internet Explorer    | Unsupported |
 
-## Kubernetes Version Compatibility
+## Kubernetes version compatibility
 
 Each release of KOTS maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
@@ -34,7 +34,7 @@ Replicated recommends using a version of KOTS that is compatible with a supporte
 
 <KubernetesCompatibility/>
 
-## Minimum System Requirements
+## Minimum system requirements
 
 To install KOTS in an existing cluster, your environment must meet the following minimum requirements:
 
@@ -74,7 +74,7 @@ To install KOTS in an existing cluster, your environment must meet the following
 
   If the output of the `which socat` command is `socat not found`, then you must install the package that provides the socat command. The name of this package can vary depending on the node's operating system.
 
-## RBAC Requirements
+## RBAC requirements
 
 The user that runs the installation command must have at least the minimum role-based access control (RBAC) permissions that are required by KOTS. If the user does not have the required RBAC permissions, then an error message displays: `Current user has insufficient privileges to install Admin Console`.
 
@@ -82,7 +82,7 @@ The required RBAC permissions vary depending on if the user attempts to install 
 * [Cluster-scoped RBAC Requirements (Default)](#cluster-scoped)
 * [Namespace-scoped RBAC Requirements](#namespace-scoped)
 
-### Cluster-scoped RBAC Requirements (Default) {#cluster-scoped}
+### Cluster-scoped RBAC requirements (default) {#cluster-scoped}
 
 By default, KOTS requires cluster-scoped access. With cluster-scoped access, a Kubernetes ClusterRole and ClusterRoleBinding are created that grant KOTS access to all resources across all namespaces in the cluster.
 
@@ -90,7 +90,7 @@ To install KOTS with cluster-scoped access, the user must meet the following RBA
 * The user must be able to create workloads, ClusterRoles, and ClusterRoleBindings.
 * The user must have cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
-### Namespace-scoped RBAC Requirements {#namespace-scoped}
+### Namespace-scoped RBAC requirements {#namespace-scoped}
 
 KOTS can be installed with namespace-scoped access rather than the default cluster-scoped access. With namespace-scoped access, a Kubernetes Role and RoleBinding are automatically created that grant KOTS permissions only in the namespace where it is installed.
 
@@ -104,7 +104,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 
 See the sections below for more information.
 
-#### Wildcard Permissions (Default)
+#### Wildcard permissions (default)
 
 By default, when namespace-scoped access is enabled, KOTS attempts to automatically create the following Role to acquire wildcard (`* * *`) permissions in the target namespace:
 
@@ -121,7 +121,7 @@ By default, when namespace-scoped access is enabled, KOTS attempts to automatica
 
    To support this default behavior, the user must also have `* * *` permissions in the target namespace.
 
-#### Minimum KOTS RBAC Permissions
+#### Minimum KOTS RBAC permissions
 
 In some cases, it is not possible to grant the user `* * *` permissions in the target namespace. For example, an organization might have security policies that prevent this level of permissions.
 
@@ -257,7 +257,7 @@ In some cases, it is not possible to grant the user `* * *` permissions in the t
 After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent KOTS from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters with KOTS_.
 :::
 
-## Compatible Image Registries {#registries}
+## Compatible image registries {#registries}
 
 A private image registry is required for air gap installations with KOTS in existing clusters. You provide the credentials for a compatible private registry during installation. You can also optionally configure a local private image registry for use with installations in online (internet-connected) environments.
 
@@ -267,14 +267,14 @@ KOTS has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 
-## Network Requirements for Online Installations
+## Network requirements for online installations
 
-### Firewall Openings {#firewall}
+### Firewall openings {#firewall}
 
 <FirewallOpeningsIntro/>
 
 <FirewallOpeningsKots/>
 
-### IPv4 or IPv4/IPv6 Dual-Stack Only
+### IPv4 or IPv4/IPv6 dual-stack only
 
 KOTS does not support online installations in single-stack IPv6-only environments. Environments that use IPv4 or dual-stack IPv4/IPv6 networking are supported.

@@ -1,4 +1,4 @@
-# Avoid Docker Hub Rate Limits
+# Avoid Docker Hub rate limits
 
 This topic describes how to avoid rate limiting for anonymous and free authenticated use of Docker Hub by providing a Docker Hub username and password to the `kots docker ensure-secret` command.
 
@@ -12,7 +12,7 @@ For more information on rate limits, see [Understanding Docker Hub rate limiting
 
 If the application that you are installing or upgrading has public Docker Hub images that are rate limited, then an error occurs when the rate limit is reached.
 
-## Provide Docker Hub Credentials
+## Provide Docker Hub credentials
 
 To avoid errors caused by reaching the Docker Hub rate limit, a Docker Hub username and password can be passed to the `kots docker ensure-secret` command. The Docker Hub username and password are used only to increase rate limits and do not need access to any private repositories on Docker Hub.
 

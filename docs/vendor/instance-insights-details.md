@@ -1,7 +1,7 @@
-# Instance Details
+# Instance details
 
 This topic describes using the Replicated Vendor Portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
-## About the Instance Details Page {#about-page}
+## About the instance details page {#about-page}
 
 The Vendor Portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use the insights on the **Instance details** page to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden. 
 
@@ -35,7 +35,7 @@ As shown in the image above, the **Instance details** page includes the followin
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
 
-### Current State
+### Current state
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
@@ -69,7 +69,7 @@ The **Current State** section displays the following event data about the status
 
 * **Last check-in**: The timestamp when the instance most recently sent data to the Vendor Portal.
 
-### Instance Insights {#insights}
+### Instance insights {#insights}
 
 The **Insights** section includes the following metrics computed by the Vendor Portal:
 
@@ -103,7 +103,7 @@ The following table lists the application statuses that are associated with an U
 The Vendor Portal includes time spent in a Degraded status in the total uptime for an instance because an app may still be capable of serving traffic when some subset of desired replicas are available. Further, it is possible that a Degraded state is expected during upgrade.
 :::
 
-#### Time to Install
+#### Time to install
 
 The Vendor Portal computes both _License time to install_ and _Instance time to install_ metrics to represent how quickly the customer was able to deploy the application to a Ready state in their environment.
 
@@ -129,7 +129,7 @@ The following describes the _License time to install_ and _Instance time to inst
   Instance time to install does _not_ include any deployment attempts that a customer might have made that did not generate an event. For example, time spent by the customer discarding the server used in a failed attempt before attempting to deploy the instance again on a new server.
   :::
 
-### Instance Information
+### Instance information
 
 The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed as well as vendor-defined metadata about the instance:
 
@@ -148,7 +148,7 @@ In addition to the details listed above, the **Instance Information** section al
 * Number of cluster nodes in a Ready state
 * ID of the kURL installer specification
 
-### Instance Uptime
+### Instance uptime
 
 The **Instance Uptime** graph shows the percentage of a given time period that the instance was in an Up, Degraded, or Down state. 
 
@@ -183,7 +183,7 @@ You can hover over the bars in the **Instance Uptime** graph to view more detail
 
 You can hover over the event markers in the **Instance Uptime** graph to view more detail about the events that occurred during that given interval on the graph. If more than two events occurred in that period, the event marker displays the number of events that occurred during that period. If you click the event marker or the event in the tooltip, the **Instance Activity** section highlights the event or the first event in the group.
 
-### Instance Activity
+### Instance activity
 
 The **Instance Activity** section displays recent events for the instance. The data stream is updated each time an instance _check-in_ occurs. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 

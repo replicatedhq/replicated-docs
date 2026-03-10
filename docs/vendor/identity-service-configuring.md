@@ -2,16 +2,16 @@
 This topic is deleted from the product documentation because this Beta feature is deprecated.
 :::
 
-# Enable and Configure Identity Service (Beta)
+# Enable and configure identity service (Beta)
 
 This topic describes how to enable the identity service (Beta) feature, and how to regulate access to application resources using role based access control (RBAC).
 
-## About Identity Service
+## About identity service
 
 When you enable the identity service for an application, the Replicated app manager deploys [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application. Dex implements an array of protocols for querying other user-management systems, known as connectors. For more information about connectors, see [Connectors](https://dexidp.io/docs/connectors/) in the Dex documentation.
 
 
-## Limitations and Requirements
+## Limitations and requirements
 
 Identity service has the following limitations and requirements:
 
@@ -19,7 +19,7 @@ Identity service has the following limitations and requirements:
 * Is available only for embedded cluster installations with the kURL installer.
 * Is available only through the Replicated Admin Console.
 
-## Enable and Configure Identity Service
+## Enable and configure identity service
 
 Use the Identity custom resource to enable and configure the identity service for your application. For an example application that demonstrates how to configure the identity service, see the [`kots-idp-example-app`](https://github.com/replicatedhq/kots-idp-example-app) on GitHub.
 
@@ -136,7 +136,7 @@ spec:
             secretName: idp-app-ca
 ```
 
-## Configuring Access with RBAC
+## Configuring access with RBAC
 
 You can also regulate access to your application resources using role based access control (RBAC).
 

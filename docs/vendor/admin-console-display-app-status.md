@@ -3,11 +3,11 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 
-# Add Resource Status Informers
+# Add resource status informers
 
 This topic describes how to add status informers for your application. Status informers apply only to applications installed with Replicated KOTS. For information about how to collect application status data for applications installed with Helm, see [Enabling and Understanding Application Status](insights-app-status).
 
-## About Status Informers
+## About status informers
 
 _Status informers_ are a feature of KOTS that report on the status of supported Kubernetes resources deployed as part of your application. You enable status informers by listing the target resources under the `statusInformers` property in the Replicated Application custom resource. KOTS watches all of the resources that you add to the `statusInformers` property for changes in state.
 
@@ -26,7 +26,7 @@ When you one or more status informers to your application, KOTS automatically do
    <img src="/images/instance-details.png" alt="Instance details full page" width="700px"/>
 
    [View a larger version of this image](/images/instance-details.png)
-## Add Status Informers
+## Add status informers
 
 To create status informers for your application, add one or more supported resource types to the `statusInformers` property in the Application custom resource. See [`statusInformers`](/reference/custom-resource-application#statusinformers) in _Application_.
 
@@ -69,11 +69,11 @@ In the example above, the `deployment/my-worker` status informer is excluded unl
 
 For more information about using template functions in application manifest files, see [About Replicated Template Functions](/reference/template-functions-about).
 
-## Understanding Application Status
+## Understanding application status
 
 This section provides information about how Replicated interprets and aggregates the status of Kubernetes resources for your application to report an application status.
 
-### Resource Statuses
+### Resource statuses
 
 Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 
@@ -81,7 +81,7 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 <StatusesTable/>
 
-### Aggregate Application Status
+### Aggregate application status
 
 <AggregateStatusIntro/>
 

@@ -1,4 +1,4 @@
-# Check Entitlements in Helm Charts Before Deployment
+# Check entitlements in Helm charts before deployment
 
 This topic describes how to check license entitlements before a Helm chart is installed or upgraded. The information in this topic applies to Helm charts installed with Replicated KOTS or Helm.
 
@@ -31,7 +31,7 @@ Add the Replicated SDK to your application:
 * For Helm-based applications, see [Install the SDK as a Subchart](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_
 * For applications that use standard Kubernetes manifests, see [Install the SDK Alongside a Kubernetes Manifest-Based Application](/vendor/replicated-sdk-installing#manifest-app) in _Installing the Replicated SDK_
 
-## Check Entitlements Before Installation or Upgrade
+## Check entitlements before installation or upgrade
 
 To check entitlements before installation:
 

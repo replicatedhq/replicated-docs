@@ -11,7 +11,7 @@ For the complete list of Replicated SDK Helm values, see the [`values.yaml`](htt
 The following is an example of Replicated SDK `replicated` values for an application named NGINX that was installed in a cluster with Helm. These values are injected in the `values.yaml` file for the parent Helm chart of the NGINX application.
 
 ```yaml
-# NGINX parent Helm chart values.yaml file
+# nginx parent Helm chart values.yaml file
 
 replicated:
   affinity: null
@@ -48,14 +48,14 @@ replicated:
   versionLabel: 0.0.2
 ```
 
-### Replicated SDK `replicated.license` Value
+### Replicated SDK `replicated.license` value
 
 The Replicated SDK includes a `replicated.license` value that contains a YAML representation of the customer license. For more information about the built-in fields included in all Replicated licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
 The following shows an example of the `replicated.license` value for a customer named Nitflex:
 
 ```yaml
-# NGINX parent Helm chart values.yaml file 
+# nginx parent Helm chart values.yaml file
 
 replicated:
   # YAML representation of the customer's license

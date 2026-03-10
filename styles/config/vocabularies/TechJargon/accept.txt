@@ -18,6 +18,7 @@ Favicon
 favicon
 GiB
 GPU
+HA
 Helm
 hostname
 HTML

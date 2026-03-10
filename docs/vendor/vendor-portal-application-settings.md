@@ -1,4 +1,4 @@
-# Application Settings Page
+# Application settings page
 
 Each application has its own settings, which include the application name and application slug.
 

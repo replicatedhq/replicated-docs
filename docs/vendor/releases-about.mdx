@@ -1,7 +1,7 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
 
-# About Channels and Releases
+# About channels and releases
 
 This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated Vendor Portal.
 
@@ -15,11 +15,11 @@ Using channels and releases helps you distribute versions of your application to
 
 You can manage channels and releases with the Vendor Portal, the Replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
 
-## About Channels
+## About channels
 
 This section provides additional information about channels, including details about the default channels in the Vendor Portal and channel settings.
 
-### Unstable, Beta, and Stable Channels
+### Unstable, beta, and stable channels
 
 Replicated includes the following channels by default:
 
@@ -29,7 +29,7 @@ Replicated includes the following channels by default:
 
 You can archive or edit any of the default channels, and create new channels. For more information, see [Create and Edit Channels](releases-creating-channels).
 
-### Channel Settings
+### Channel settings
 
 Each channel has settings. You can customize the settings for a channel to control some of the behavior of releases promoted to the channel.
 
@@ -56,11 +56,11 @@ The following describes each of the channel settings:
       The new air gap bundle format is supported for applications installed with KOTS v1.82.0 or later. 
       :::  
    
-## About Releases
+## About releases
 
 This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
 
-### Release Files
+### Release files
 
 A release contains your application files as well as the manifests required to install the application with the Replicated installers ([Replicated Embedded Cluster](/vendor/embedded-overview) and [Replicated KOTS](../intro-kots)). 
 
@@ -92,7 +92,7 @@ The following describes how each installation method handles a demoted release:
    * If the customer checked for updates and fetched a release _before_ it was demoted, then the release will remain listed in the Admin Console the next time an update check occurs. This is because a release cannot be withdrawn from the customer’s environment after it has been downloaded.
    * If the customer checks for udpates _after_ a release was demoted, then the demoted release is not fetched and is not listed in the Admin Console.
 
-### Archived Releases
+### Archived releases
 
 You can archive releases to remove them from view on the Vendor Portal **Releases** page. Archiving a release that has been promoted does _not_ remove the release from the channel's **Release History** page or prevent customers from being able to fetch the release.
 
@@ -100,7 +100,7 @@ Archiving a release is most useful when you want to reduce the number of release
 
 For information about how to demote a release, see [Archive a Release](/vendor/releases-creating-releases#archive-a-release) in _Managing Releases with the Vendor Portal_. 
 
-### Release Properties
+### Release properties
 
 Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the Vendor Portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
 
@@ -122,7 +122,7 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
 
-### Required Releases
+### Required releases
 
 You can enable the **Prevent this release from being skipped during upgrades** release property to mark a release as required. The following describes the end customer experience for required releases in the Admin Console and Enterprise Portal:
 
@@ -157,7 +157,7 @@ Required releases have the following limitations:
 * If you change the channel an existing customer is assigned to, the Admin Console always fetches the latest release on the new channel, regardless of any required releases on the channel. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 * For installations using KOTS 1.125.2 or earlier (Embedded Cluster 2.9.0 or earlier), if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later (Embedded Cluster 2.10.0 or later). For more information, see [Remove Release Requirement](/vendor/releases-creating-releases#remove-req) in _Manage Releases with the Vendor Portal_.
 
-## About Using Semantic Versioning {#semantic-versioning}
+## About using semantic versioning {#semantic-versioning}
 
 Semantic Versioning (SemVer) is a commonly-used and recommended versioning strategy that provides implicit information about the backwards compatibility of each version, using the format MAJOR.MINOR.PATCH:
 
@@ -171,11 +171,11 @@ You can enable and disable SemVer for releases on each channel in the channel se
 
 When SemVer is enabled, the Admin Console uses the version labels that you assign to releases to determine release precedence. This is important because precedence controls which versions are available to customers for upgrade. It also determines how versions are ordered on the Admin Console **Version history** page. For more information, see [How the Admin Console Determines Version Precedence](/enterprise/updating-app-manager#how-the-admin-console-determines-version-precedence) in _Performing Updates in Existing Clusters_.
 
-## Release and Instance Sequencing
+## Release and instance sequencing
 
 The Vendor Portal uses release sequence numbers to organize and order releases. The Admin Console uses instance sequence numbers to organize and order an instance's internal version history.
 
-### Vendor Portal Release Sequence
+### Vendor Portal release sequence
 
 In the Vendor Portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases).
 
@@ -185,7 +185,7 @@ The following graphic shows release sequence numbers in the Vendor Portal:
 
 [View a larger version of this image](/images/release-sequences.png)
 
-### Channel Sequence
+### Channel sequence
 
 When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increments by one and tracks the order in which releases were promoted to a channel.
 
@@ -197,7 +197,7 @@ You can view the channel sequence on the **Release History** page in the Vendor 
 
 The channel sequence is also used in certain URLs. For example, a release with a *release sequence* of `170` can have a *channel sequence* of `125`. The air gap download URL for that release can contain `125` in the URL, even though the release sequence is `170`.
 
-### Admin Console Instance Sequence
+### Admin Console instance sequence
 
 When a new version is available for upgrade (including when KOTS checks for upstream updates, when the user syncs their license, or when the user makes a config change) the KOTS Admin Console assigns a unique instance sequence number to that version. The instance sequence number starts at 0 and increments for each identifier that is returned when a new version is available.
 
@@ -213,11 +213,11 @@ The following shows instance sequence numbers on the Admin Console dashboard:
 
 [View a larger version of this image](/images/instance-sequences.png)
 
-## Vendor Portal Pages
+## Vendor Portal pages
 
 This section provides information about the channels and releases pages in the Vendor Portal.
 
-### Channels Page
+### Channels page
 
 The **Channels** page in the Vendor Portal includes information about each channel. From the **Channels** page, you can edit and archive your channels. You can also edit the properties of the releases promoted to each channel, and view and edit the customers assigned to each channel.
 
@@ -253,7 +253,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel.
 
-### Draft Release Page
+### Draft release page
 
 For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the Vendor Portal to open the **Draft** page.
 

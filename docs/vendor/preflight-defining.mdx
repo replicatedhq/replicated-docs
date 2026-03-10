@@ -1,10 +1,10 @@
-# Define Preflight Checks
+# Define preflight checks
 
 This topic describes how to define preflight checks in Helm and Kubernetes manifest-based applications. For more information about preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
 The information in this topic applies to applications that are installed with Helm or with Replicated KOTS.
 
-## Step 1: Create the Manifest File
+## Step 1: Create the manifest file
 
 You can define preflight checks in a Kubernetes Secret or in a Preflight custom resource. The type of manifest file that you use depends on your application type (Helm or Kubernetes manifest-based) and the installation methods that your application supports (Helm, KOTS v1.101.0 or later, or KOTS v1.100.3 or earlier).
 
@@ -16,7 +16,7 @@ You can define preflight checks in a Kubernetes Secret or in a Preflight custom 
 
 * **Kubernetes Manifest-Based Applications**: For Kubernetes manifest-based applications, define the preflight checks in a Preflight custom resource. See [Preflight Custom Resource](#preflight-cr).
 
-### Kubernetes Secret {#secret}
+### Kubernetes secret {#secret}
 
 For Helm applications installed with Helm or KOTS v1.101.0 or later, define preflight checks in a Kubernetes Secret in your Helm chart `templates`. This allows you to define the preflights spec only one time to support running preflight checks in both Helm and KOTS installations.
 
@@ -45,7 +45,7 @@ As shown above, the Secret must include the following:
 * The label `troubleshoot.sh/kind: preflight`
 * A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
-### Preflight Custom Resource {#preflight-cr}
+### Preflight custom resource {#preflight-cr}
 
 Define preflight checks in a Preflight custom resource for the following installation types:
 * Kubernetes manifest-based applications installed with any version of KOTS
@@ -70,7 +70,7 @@ spec:
 
 For more information about the Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
-## Step 2: Define Collectors and Analyzers
+## Step 2: Define collectors and analyzers
 
 This section describes how to define collectors and analyzers for preflight checks based on your application needs. You add the collectors and analyzers that you want to use in the `spec.collectors` and `spec.analyzers` keys in the manifest file that you created.
 
@@ -103,7 +103,7 @@ The Troubleshoot open source project includes several analyzers that you can inc
 
 To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
-### Block Installation with Required (Strict) Preflights {#strict}
+### Block installation with required (strict) preflights {#strict}
 
 For applications installed with KOTS or Embedded Cluster, you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release.
 

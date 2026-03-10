@@ -1,4 +1,4 @@
-# Inspect Support Bundles
+# Inspect support bundles
 
 You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files. Use this information to get insights and help troubleshoot your customer issues.
 

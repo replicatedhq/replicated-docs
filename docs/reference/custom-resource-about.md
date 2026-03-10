@@ -1,10 +1,10 @@
-# About Custom Resources
+# About custom resources
 
 You can include custom resources in your releases to control the experience for installations with a Replicated installer, add support air gap installations, and configure functionality like preflight checks, support bundles, and disaster recovery.
 
 Custom resources are consumed by Replicated installers, the Replicated Admin Console, or by other kubectl plugins. Custom resources are packaged as part of the application, but are _not_ deployed to the cluster.
 
-## Custom Resources
+## Custom resources
 
 The following custom resources can be used in releases distributed with Replicated:
 

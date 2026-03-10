@@ -1,4 +1,4 @@
-# Preflight and Support Bundle
+# Preflight and SupportBundle
 
 You can define preflight checks and support bundle specifications for Replicated KOTS and Helm installations. 
 
@@ -12,7 +12,7 @@ Collectors and analyzers are configured in Preflight and Support Bundle custom r
 Built-in redactors run by default for preflight checks and support bundles to protect sensitive information.
 :::
 
-## Defining Custom Resources
+## Defining custom resources
 
 To define preflight checks or customize the default support bundle settings, add the corresponding custom resource YAML to your release. Then add custom collector and analyzer specifications to the custom resource. For more information about these troubleshoot features and how to configure them, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
@@ -32,9 +32,9 @@ spec:
   analyzers: []
 ```
 
-### Support Bundle
+### SupportBundle
 
-The Support Bundle custom resource uses `kind: SupportBundle`:
+The SupportBundle custom resource uses `kind: SupportBundle`:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -46,13 +46,13 @@ spec:
   analyzers: []
 ```
 
-## Global Fields
+## Global fields
 
 Global fields, also known as shared properties, are fields that are supported on all collectors or all analyzers. The following sections list the global fields for [collectors](#collector-global-fields) and [analyzers](#analyzer-global-fields) respectively.
 
 Additionally, each collector and analyzer has its own fields. For more information about collector- and analyzer-specific fields, see the [Troubleshoot documentation](https://troubleshoot.sh/docs/).
 
-### Collector Global Fields
+### Collector global fields
 
 The following fields are supported on all optional collectors for preflights and support bundles. For a list of collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
 
@@ -71,7 +71,7 @@ The following fields are supported on all optional collectors for preflights and
   </tr>
 </table>
 
-### KOTS Collector Example
+### KOTS collector example
 
 This is an example of collector definition for a KOTS support bundle:
 
@@ -95,7 +95,7 @@ spec:
            type: kubernetes.io/dockerconfigjson
 ```
 
-### Analyzer Global Fields
+### Analyzer global fields
 
 The following fields are supported on all optional analyzers for preflights and support bundles. For a list of analyzers, see [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
@@ -118,7 +118,7 @@ The following fields are supported on all optional analyzers for preflights and 
   </tr>
 </table>
 
-### KOTS Analyzer Example
+### KOTS analyzer example
 
 This is an example of an KOTS analyzer definition with a strict preflight check and `exclude` set for installations that do not use Replicated kURL. In this case, the strict preflight is enforced on an embedded cluster but not on an existing cluster or air gap cluster.
 

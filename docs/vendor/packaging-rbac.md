@@ -68,7 +68,7 @@ subjects:
 
 Namespace-scoped RBAC is supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application custom resource manifest file, then Roles and RoleBindings are created to grant KOTS access to resources in all specified namespaces.
 
-### Enable Namespace-scoped RBAC {#enable}
+### Enable namespace-scoped RBAC {#enable}
 
 To enable namespace-scoped RBAC permissions for KOTS, specify one of the following options in the Application custom resource manifest file:
 
@@ -78,7 +78,7 @@ To enable namespace-scoped RBAC permissions for KOTS, specify one of the followi
 
 For more information about these options, see [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireminimalrbacprivileges) and [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportminimalrbacprivileges) in _Application_.
 
-### About Installing with Minimal RBAC
+### About installing with minimal RBAC
 
 In some cases, it is not possible to grant the user `* * *` permissions in the target namespace. For example, an organization might have security policies that prevent this level of permissions.
 

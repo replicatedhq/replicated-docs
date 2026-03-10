@@ -1,10 +1,10 @@
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
-# Configure RBAC Policies
+# Configure RBAC policies
 
 This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated Vendor Portal.
 
-## About RBAC Policies
+## About RBAC policies
 
 By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable. For more information, see [Default RBAC Policies](#default-rbac) below.
 
@@ -12,11 +12,11 @@ You can configure custom RBAC policies if you are on the Enterprise pricing plan
 
 You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
 
-## Default RBAC Policies {#default-rbac}
+## Default RBAC policies {#default-rbac}
 
 This section describes the default RBAC policies that are included for Vendor Portal teams, depending on the team's Replicated pricing plan.
 
-### Admin 
+### Admin
 
 The Admin policy grants read/write permissions to all resources on the team. 
 
@@ -38,7 +38,7 @@ This policy is automatically created for all plans.
 }
 ```
 
-### Read Only
+### Read only
 
 The Read Only policy grants read permission to all resources on the team except for API tokens.
 
@@ -63,7 +63,7 @@ This policy is automatically created for all plans.
 }
 ```
 
-### Support Engineer
+### Support engineer
 
 The Support Engineer policy grants read access to releases, channels, and application data, and read-write access to customer and license details. It also grants permission to open and triage Replicated support issues, manage Enterprise Portal customer users, and manage the user's own notification subscriptions.
 
@@ -135,7 +135,7 @@ This policy is automatically created for teams with the Enterprise plan only.
 }
 ```
 
-## Configure a Custom RBAC Policy
+## Configure a custom RBAC policy
 
 To configure a custom RBAC policy:
 
@@ -172,7 +172,7 @@ To configure a custom RBAC policy:
 
     See [Manage Team Members](team-management).
 
-## Policy Definition
+## Policy definition
 
 A policy is defined in a single JSON document:
 
@@ -199,7 +199,7 @@ Resource names are hierarchical, and support wildcards and globs. For a complete
 
 When a policy document has conflicting rules, the behavior is predictable. For more information about conflicting rules, see [Rule Order](#rule-order).
 
-### Example: View Specific Application and Channel
+### Example: View specific application and channel
 
   The following policy definition example limits any user with this role to viewing a specific application and a specific channel for that application:
 
@@ -225,16 +225,16 @@ When a policy document has conflicting rules, the behavior is predictable. For m
 
   - To get the channel ID, click **Channels** in the Vendor Portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
 
-## Rule Order
+## Rule order
 
 When a resource name is specified in both the `allow` and the `deny` chains of a policy, defined rules determine which rule is applied.
 
 If `denied` is left empty, it is implied as a `**/*` rule, unless `**/*` rule is specified in the `allowed` resources. If a rule exactly conflicts with another rule, the `denied` rule takes precedence.
 
-### Defining Precedence Using Rule Specificity
+### Defining precedence using rule specificity
 The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of asterisks (`**` and `*`) in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
 
-### Example: No Access To Stable Channel
+### Example: No access to stable channel
 
 In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the Vendor Portal **Channels** page and click the **Settings** icon for the target channel.
 
@@ -254,7 +254,7 @@ In the following example, a policy grants access to promote releases to any chan
 }
 ```
 
-### Example: View Customers Only
+### Example: View customers only
 
 In the following example, a policy grants access to viewing all customers, but not to creating releases, promoting releases, or creating new customers.
 

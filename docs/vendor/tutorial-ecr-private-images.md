@@ -1,4 +1,4 @@
-# Tutorial: Using ECR for Private Images
+# Tutorial: Using ECR for private images
 
 ## Objective
 
@@ -30,11 +30,11 @@ The guide is divided into the following steps:
 
  4. [Install the New Version](#4-install-the-new-version)
 
-## 1. Set Up the Testing Environment {#set-up}
+## 1. Set up the testing environment {#set-up}
 
 We are going to use the default NGINX deployment to create our application and then update it to pull the same container from a private repository in ECR and note the differences.
 
-### Create Sample Application and deploy the first release
+### Create sample application and deploy the first release
 
 In this section, we cover at a high level the steps to create a new application and install it on a VM.
 
@@ -57,7 +57,7 @@ If we run `kubectl describe pod <pod-name>` on the NGINX pod, we can confirm tha
 
 Now that we have the basic application installed, we are now going to pull the same image, but from an ECR repository.
 
-### Pull Public Image and Push to ECR
+### Pull public image and push to ECR
 
 To keep the changes to a minimum and only focus on using a private registry, we are going to pull the public NGINX container (as specified in the `deployment.yaml` file) to our local environment, and then push it to a repository in ECR.
 To use `docker login` with ECR, we will need to configure AWS CLI with the AWS Access Key ID and AWS Secret Key for this user.
@@ -148,7 +148,7 @@ We are now ready to update Replicated to use the private registry.
 
 * * *
 
-## 2. Configure Private Registries in Replicated
+## 2. Configure private registries in Replicated
 
 To configure a Private Registry in Replicated, we need to provide the same information we needed to login to ECR in the previous step:
 
@@ -162,7 +162,7 @@ The difference is that we'll use a different user than the one we used previousl
 
 The endpoint should be the same as the one we provided in the previous step.
 
-### Setting up the Service Account User
+### Setting up the service account user
 
 Replicated only needs access to pull images from the private registry. Let's create a new user in AWS:
 
@@ -227,7 +227,7 @@ If you wish to limit Replicated to only certain images, this policy should be us
 
 We will need the AWS Access Key ID and AWS Secret Key in the next section as these will map to the *Username* and *Password* fields. You can obtain these as you create the user or after the user has been created.
 
-### Enter Registry Information in Replicated
+### Enter registry information in Replicated
 
 First, we must link Replicated with the registry. To do this, click on **Add External Registry** from the *Images* tab.
 
@@ -249,7 +249,7 @@ Enter the AWS Secret Key for the user created in the [Setting Up the Service Acc
 
 * * *
 
-## 3. Update Definition Files
+## 3. Update definition files
 
 Last step is to update our definition manifest to pull the image from the ECR repository.
 To do this, we'll update the `deployment.yaml` file by adding the ECR registry URL to the `image` value.
@@ -268,7 +268,7 @@ Save your changes and create the new release and promote it to the *Unstable* ch
 
 * * *
 
-## 4. Install the New Version
+## 4. Install the new version
 
 To deploy the new version of the application, go back to the admin console and select the *Version History* tab.
 Click on **Check for Updates** and then **Deploy** when the new version is listed.
@@ -291,7 +291,7 @@ The install of the new version should have created a new pod. If we run `kubectl
 
 * * *
 
-## Related Topics
+## Related topics
 
 - [Connecting to an External Registry](packaging-private-images/)
 

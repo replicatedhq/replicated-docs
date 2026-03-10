@@ -1,6 +1,6 @@
 import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
 
-# Generate Host Bundles for kURL
+# Generate host bundles for kURL
 
 This topic describes how to configure a host support bundle spec for Replicated kURL installations. For information about generating host support bundles for Replicated Embedded Cluster installations, see [Generate Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
@@ -18,7 +18,7 @@ You can create a YAML spec to allow users to generate host support bundles for k
 
 Replicated also provides a default support bundle spec to collect host-level information for installations with the Embedded Cluster installer. For more information, see [Generate Host Bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
-## Create a Host Support Bundle Spec
+## Create a host support bundle spec
 
 To allow users to generate host support bundles for kURL installations, create a host support bundle spec in a YAML manifest that is separate from your application release and then share the file with customers to run on their hosts. This spec is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with Replicated KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
 
@@ -70,6 +70,6 @@ To configure a host support bundle spec for kURL:
 Do not store support bundles on public shares, as they may still contain information that could be used to infer private data about the installation, even if some values are redacted.
 :::
 
-## Generate a Host Bundle for kURL
+## Generate a host bundle for kURL
 
 <GenerateBundleHost/>

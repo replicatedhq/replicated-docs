@@ -1,7 +1,7 @@
 import NotificationsAbout from "../partials/instance-insights/_notifications-about.mdx"
 
 
-# Configure Instance Notifications (Classic)
+# Configure instance notifications (classic)
 
 :::caution
 Event Notifications (Beta) replaces Instance Notifications (Classic), offering more event types, better filtering, and improved delivery options. While Instance Notifications (Classic) is still supported, Replicated recommends using Event Notifications (Beta). For more information about how to configure event notifications, see [About Event Notifications (Beta)](event-notifications).
@@ -25,7 +25,7 @@ For Slack notifications, you must configure a Slack webhook in the Vendor Portal
 
 For email notification, no prior configuration is required. The email address listed in your Vendor Portal account settings is used.
 
-## Configure Notifications
+## Configure notifications
 
 Follow this procedure to configure Slack or email notifications for application instances. You can enable notifications for application status changes, system events such as Kubernetes upgrades, or changes in the values of any custom metrics configured for the application.
 
@@ -50,7 +50,7 @@ To configure notifications:
 1. Repeat these steps to configure notifications for other application instances.
 
 
-## Test Notifications
+## Test notifications
 
 After you enable notifications for a running development instance, test that your notifications are working as expected.
 
@@ -62,7 +62,7 @@ Then, look for notifications in the assigned Slack channel. You also receive an 
 There is a 30-second buffer between event detection and notifications being sent. This buffer provides better roll-ups and reduces noise.
 :::
 
-## See Also
+## See also
 
 - [Event Notifications (Beta)](event-notifications) - New notification system with more event types and better filtering
 - [Create Event Notification Subscriptions (Beta)](event-notifications-create) - Get started with Event Notifications

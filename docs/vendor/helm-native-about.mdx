@@ -9,7 +9,7 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 import Helm from "../partials/helm/_helm-definition.mdx"
 
-# About Distributing Helm Charts with KOTS
+# About distributing Helm charts with KOTS
 
 This topic provides an overview of how Replicated KOTS deploys Helm charts, including an introduction to the KOTS HelmChart custom resource, limitations of deploying Helm charts with KOTS, and more.
 
@@ -36,11 +36,11 @@ Additionally, for applications packaged as Helm charts, you can support Helm CLI
 
 [View a larger version of this image](/images/helm-kots-install-options.png)
 
-## How KOTS Deploys Helm Charts
+## How KOTS deploys Helm charts
 
 This section describes how KOTS uses the HelmChart custom resource to deploy Helm charts.
 
-### About the HelmChart Custom Resource
+### About the HelmChart custom resource
 
 <KotsHelmCrDescription/>
 
@@ -48,7 +48,7 @@ The HelmChart custom resource with `apiVersion: kots.io/v1beta2` (HelmChart v2) 
 
 KOTS versions earlier than v1.99.0 can install Helm charts with `apiVersion: kots.io/v1beta1` of the HelmChart custom resource. The `kots.io/v1beta1` HelmChart custom resource is deprecated. For more information, see [Deprecated HelmChart kots.io/v1beta1 Installation Methods](#deprecated-helmchart-kotsiov1beta1-installation-methods) below.
 
-### About the HelmChart v2 Installation Method {#v2-install}
+### About the HelmChart v2 installation method {#v2-install}
 
 When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly.
 
@@ -77,7 +77,7 @@ The following limitations apply when deploying Helm charts with the `kots.io/v1b
    <GitOpsNotRecommended/>
 
    For more information, see [KOTS Auto-GitOps Workflow](/enterprise/gitops-workflow).
-## Support for Helm Hooks {#hooks}
+## Support for Helm hooks {#hooks}
 
 KOTS supports the following hooks for Helm charts:
 * `pre-install`: Executes after resources are rendered but before any resources are installed.
@@ -95,19 +95,19 @@ The following limitations apply to using hooks with Helm charts deployed by KOTS
 
 For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
 
-## Air Gap Installations
+## Air gap installations
 
 KOTS supports installation of Helm charts into air gap environments with configuration of the HelmChart custom resource [`builder`](/reference/custom-resource-helmchart-v2#builder)  key. The `builder` key specifies the Helm values to use when building the air gap bundle for the application.
 
 For more information about how to configure the `builder` key to support air gap installations, see [Package Air Gap Bundles for Helm Charts](/vendor/helm-packaging-airgap-bundles).
 
-## Resource Deployment Order
+## Resource deployment order
 
 When installing an application that includes one or more Helm charts, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying any Helm charts. For example, if your release contains a Helm chart, a CRD, and a ConfigMap, then the CRD and ConfigMap resources are deployed before the Helm chart.
 
 For information about how to set the deployment order for Helm charts with KOTS, see [Orchestrate Resource Deployment](/vendor/orchestrating-resource-deployment).
 
-## Deprecated HelmChart kots.io/v1beta1 Installation Methods
+## Deprecated HelmChart KOTS.io/v1beta1 installation methods
 
 This section describes the deprecated Helm chart installation methods that use the HelmChart custom resource `apiVersion: kots.io/v1beta1`.
 
@@ -115,7 +115,7 @@ This section describes the deprecated Helm chart installation methods that use t
 <Deprecated/>
 :::
 
-### useHelmInstall: true {#v1beta1}
+### Usehelminstall: True {#v1beta1}
 
 :::note
 This method was previously referred to as _Native Helm_.
@@ -206,7 +206,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
 
    Finally, KOTS runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
-### useHelmInstall: false {#v1beta1-false}
+### Usehelminstall: False {#v1beta1-false}
 
 :::note
 This method was previously referred to as _Replicated Helm_.
@@ -219,7 +219,7 @@ The resulting deployment is comprised of standard Kubernetes manifests. Therefor
 ### Limitations {#replicated-helm-limitations}
 
 This section lists the limitations for version `kots.io/v1beta1` of the HelmChart custom resource.
-#### kots.io/v1beta1 (useHelmInstall: true) Limitations
+#### KOTS.io/v1beta1 (usehelminstall: True) Limitations
 
 The following limitations apply when using version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true`:
 
@@ -241,7 +241,7 @@ The following limitations apply when using version `kots.io/v1beta1` of the Helm
 
   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
 
-####  kots.io/v1beta1 (useHelmInstall: false) Limitations {#v1beta1-false-limitations}
+#### KOTS.io/v1beta1 (usehelminstall: False) Limitations {#v1beta1-false-limitations}
 
 The following limitations apply when using version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: false`:
 

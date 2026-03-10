@@ -1,17 +1,17 @@
 import HaArchitecture from "../partials/embedded-cluster/_multi-node-ha-arch.mdx"
 import ShellCommand from "../partials/embedded-cluster/_shell-command.mdx"
 
-# Access and Manage Embedded Clusters
+# Access and manage embedded clusters
 
 This topic describes managing nodes in clusters created with Replicated Embedded Cluster, including how to add nodes and enable high-availability for multi-node clusters.
 
-## Access the Cluster
+## Access the cluster
 
 With Embedded Cluster, end users rarely need to use the CLI. Typical workflows, like updating the application and the cluster, can be done through the Admin Console. However, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
 
 <ShellCommand/>
 
-## Configure Multi-Node Clusters
+## Configure multi-node clusters
 
 This section describes how to join nodes to a cluster with Embedded Cluster.
 
@@ -33,7 +33,7 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 To deploy multi-node clusters with Embedded Cluster, the **Multi-node Cluster (Embedded Cluster only)** license field must be enabled for the customer. For more information about managing customer licenses, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
-### Add Nodes to a Cluster {#add-nodes}
+### Add nodes to a cluster {#add-nodes}
 
 This section describes how to add nodes to a cluster with Embedded Cluster.
 
@@ -73,7 +73,7 @@ To add a node to a cluster with Embedded Cluster:
 
 1. Repeat these steps for each node you want to add.
 
-### Automate Controller Node Joins {#automate-node-joins}
+### Automate controller node joins {#automate-node-joins}
 
 With Embedded Cluster, you can use the command line to get the commands for joining controller nodes, rather than having to log into the Admin Console UI to get the commands. This is especially useful when testing multi-node Embedded Cluster installations where you need to automate the process of joining controller nodes to a cluster.
 
@@ -100,13 +100,13 @@ To automate controller node joins with Embedded Cluster:
 
 1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
-## Configure High Availability for Multi-Node Clusters {#ha}
+## Configure high availability for multi-node clusters {#ha}
 
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
 Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA with the `enable-ha` command after adding three or more controller nodes.
 
-### HA Architecture
+### HA architecture
 
 <HaArchitecture/>
 
@@ -122,7 +122,7 @@ Enabling high availability has the following requirements:
 
 * High availability is supported only for clusters where at least three nodes with the controller role are present.
 
-### Best Practices for High Availability
+### Best practices for high availability
 
 Consider the following best practices and recommendations for creating HA clusters:
 
@@ -132,7 +132,7 @@ Consider the following best practices and recommendations for creating HA cluste
 
 * You can have any number of _worker_ nodes in HA clusters. Worker nodes do not run the Kubernetes control plane, but can run workloads such as application or Replicated KOTS workloads.
 
-### Create a Multi-Node Cluster with High Availability {#create-ha}
+### Create a multi-node cluster with high availability {#create-ha}
 
 You can enable high availability for a multi-node cluster when joining the third controller node. Alternatively, you can enable HA for an existing cluster with three or more controller nodes. For more information, see [Enable High Availability For an Existing Cluster](#enable-ha-existing) below.
 
@@ -159,7 +159,7 @@ To create a multi-node HA cluster:
 
 1. Wait for the migration to HA to complete.
 
-### Enable High Availability For an Existing Cluster {#enable-ha-existing}
+### Enable high availability for an existing cluster {#enable-ha-existing}
 
 To enable high availability for an existing Embedded Cluster installation with three or more controller nodes, run the following command:
 
@@ -169,11 +169,11 @@ sudo ./APP_SLUG enable-ha
 
 Where `APP_SLUG` is the unique slug for the application.
 
-## Reset Nodes and Remove Clusters
+## Reset nodes and remove clusters
 
 This section describes how to reset individual nodes and how to delete an entire multi-node cluster using the Embedded Cluster [reset](/reference/embedded-cluster-reset) command.
 
-### About the `reset` Command
+### About the `reset` command
 
 Resetting a node with Embedded Cluster removes the cluster and your application from that node. This is useful for iteration, development, and when mistakes are made because you can reuse the machine instead of having to procure a new one.
 
@@ -188,7 +188,7 @@ The `reset` command performs the following steps:
 
 For more information about the command, see [reset](/reference/embedded-cluster-reset).
 
-### Limitations and Best Practices
+### Limitations and best practices
 
 Before you reset a node or remove a cluster, consider the following limitations and best practices:
 
@@ -200,7 +200,7 @@ Before you reset a node or remove a cluster, consider the following limitations 
 
 * When removing a multi-node cluster, run `reset` on each of the worker nodes first. Then, run `reset` on controller nodes. Controller nodes also remove themselves from etcd membership.
 
-### Reset a Node
+### Reset a node
 
 To reset a node:
 
@@ -213,7 +213,7 @@ To reset a node:
     ```
     Where `APP_SLUG` is the unique slug for the application.
 
-### Remove a Multi-Node Cluster
+### Remove a multi-node cluster
 
 To remove a multi-node cluster:
 

@@ -1,8 +1,8 @@
-# Considerations Before Installing
+# Considerations before installing
 
 Before you install an application with KOTS in an existing cluster, consider the following installation options.
 
-## Online (Internet-Connected) or Air Gap Installations
+## Online (internet-connected) or air gap installations
 
 Most Kubernetes clusters are able to make outbound internet requests. Inbound access is never recommended or required.
 As such, most cluster operators are able to perform an online installation.
@@ -13,26 +13,26 @@ To install an application in an air-gapped environment, the cluster must have ac
 
 For information about installing with KOTS in air-gapped environments, see [Air Gap Installation in Existing Clusters with KOTS](installing-existing-cluster-airgapped).
 
-## Hardened Environments
+## Hardened environments
 
 By default, KOTS Pods and containers are not deployed with a specific security context. For installations into a hardened environment, you can use the `--strict-security-context` flag with the installation command so that KOTS runs with a strict security context for Pods and containers.
 
 For more information about the security context enabled by the `--strict-security-context` flag, see [kots install](/reference/kots-cli-install).
 
-## Configuring Local Image Registries
+## Configuring local image registries
 
 During install, KOTS can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules. A private image registry is required for air gapped environments, and is optional for online environments.
 
 For information about image registry requirements, see [Compatible Image Registries](installing-general-requirements#registries).
 
-## Automated (Headless) Installation
+## Automated (headless) installation
 
 You can automate application installation in online and air-gapped environments using the KOTS CLI. In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated Admin Console.
 
 For more information, see [Install with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
 
-## KOTS Installations Without Object Storage
+## KOTS installations without object storage
 
 The KOTS Admin Console requires persistent storage for state. KOTS deploys MinIO for object storage by default.
 

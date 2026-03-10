@@ -4,7 +4,7 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Embedded Cluster Release Notes
+# Embedded Cluster release notes
 
 This topic contains release notes for the [Replicated Embedded Cluster](/vendor/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
@@ -38,7 +38,7 @@ Released on February 27, 2026
 ### Improvements {#improvements-2-13-5}
 * Updates the host support bundle to detect additional security products and increase the process list width to improve troubleshooting visibility.
 
-### Bug Fixes {#bug-fixes-2-13-5}
+### Bug fixes {#bug-fixes-2-13-5}
 * Updates Go to 1.25.7 to address multiple CVEs, including a critical severity vulnerability ([CVE-2025-68121](https://nvd.nist.gov/vuln/detail/CVE-2025-68121)) in `crypto/tls` and several high severity vulnerabilities in `net/url`, `crypto/x509`, `cmd/go`, and `cgo`.
 * Fixes an issue where pulling container images that use zstd compression without annotations could fail.
 
@@ -65,7 +65,7 @@ Released on February 13, 2026
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-2-13-4}
+### Bug fixes {#bug-fixes-2-13-4}
 * Fixes an issue where `REPLICATED_APP_ENDPOINT` was introduced as a mandatory environment variable in Embedded Cluster 2.2.0. This caused upgrades from earlier versions of Embedded Cluster to fail because they did not have this variable.
 
 ## 2.13.3
@@ -91,10 +91,10 @@ Released on January 14, 2026
   </tr>
 </table>
 
-### New Features {#new-features-2-13-3}
+### New features {#new-features-2-13-3}
 * Adds the ability to override CPU and memory requests and limits for kotsadm and rqlite through [unsupportedOverrides](/reference/embedded-config#unsupportedoverrides) in the Embedded Cluster config.
 
-### Bug Fixes {#bug-fixes-2-13-3}
+### Bug fixes {#bug-fixes-2-13-3}
 * Fixes an issue introduced in 2.13.1 and 2.13.2 where application upgrades could fail due to Helm v4’s default server-side apply by pinning to Helm v3 for compatibility.
 
 ## 2.13.2
@@ -124,7 +124,7 @@ Released on December 17, 2025
 * Disable outbound traffic attempts from k0s to `updates.k0sproject.io`.
 * Add a new `<installer> admin-console update-tls` CLI subcommand to update Admin Console TLS certificate and key.
 
-### Bug Fixes {#bug-fixes-2-13-2}
+### Bug fixes {#bug-fixes-2-13-2}
 * Removes limits from the Embedded Cluster operator pod which were leading to upgrade failures.
 
 ## 2.13.0
@@ -150,10 +150,10 @@ Released on December 9, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-13-0}
+### New features {#new-features-2-13-0}
 * Adds the ability to configure custom Velero plugins through the Embedded Cluster config specification.
 
-### Bug Fixes {#bug-fixes-2-13-0}
+### Bug fixes {#bug-fixes-2-13-0}
 * Fixes an issue where YAML files with a leading document separator fail to parse.
 * Fixes an issue where preflight checks fail when only IPv6 nameservers are configured in resolv.conf.
 * Fixes an issue where switching channels and syncing the license while installing an application update will skip upgrading the infrastructure, causing k0s and extensions to remain outdated.
@@ -181,7 +181,7 @@ Released on October 30, 2025
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-2-12-0}
+### Bug fixes {#bug-fixes-2-12-0}
 * Fixes instability in the highly available registry used for HA air gap installations, which was caused by flakiness in SeaweedFS Raft.
 * Fixes an issue where multi-document YAML files were not parsed correctly, which led to resources not being recognized in the release.
 
@@ -211,7 +211,7 @@ Released on October 1, 2025
 ### Improvements {#improvements-2-11-3}
 * Upgrade Jobs and Pods are now deleted on successful upgrade.
 
-### Bug Fixes {#bug-fixes-2-11-3}
+### Bug fixes {#bug-fixes-2-11-3}
 * Fixes issues with hostname inconsistencies that could cause upgrades to fail or prevent nodes from booting up after restart.
 * Fixes an issue that can cause upgrades to fail with the error `serviceaccounts "openebs-pre-upgrade-hook" already exists` when upgrading OpenEBS.
 * Fixes an issue that can cause multi-controller clusters to fail to upgrade to Kubernetes 1.31, requiring a restart of the k0scontroller service.
@@ -242,7 +242,7 @@ Released on September 12, 2025
 ### Improvements {#improvements-2-11-2}
 * Adds a 10 second timeout to the `registryImages` collector to fix an issue that caused support bundles and preflight checks to take a very long time.
 
-### Bug Fixes {#bug-fixes-2-11-2}
+### Bug fixes {#bug-fixes-2-11-2}
 * Fixes an issue where license field signatures were not injected into a Helm chart's global values at `global.replicated.licenseFields` in air gap installations.
 
 ## 2.11.1
@@ -268,7 +268,7 @@ Released on September 8, 2025
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-2-11-1}
+### Bug fixes {#bug-fixes-2-11-1}
 * Fixes an issue that caused upgrades for air gap high availability installs to fail when upgrading from Embedded Cluster versions prior to 2.7.3. The upgrade process now properly scales SeaweedFS to run in high availability mode within existing HA clusters.
 
 ## 2.11.0
@@ -321,10 +321,10 @@ Released on August 19, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-10-0}
+### New features {#new-features-2-10-0}
 * Adds support for Kubernetes 1.33 and drops support for Kubernetes 1.30. Vendors using 1.30 need to upgrade to 1.31. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
 
-### Bug Fixes {#bug-fixes-2-10-0}
+### Bug fixes {#bug-fixes-2-10-0}
 * Fixes an issue where installations failed to parse release data if HelmChart custom resources contained template functions in non-string fields before being rendered.
 
 ## 2.9.0
@@ -350,11 +350,11 @@ Released on August 18, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-9-0}
+### New features {#new-features-2-9-0}
 * Adds support for Kubernetes 1.32 and drops support for Kubernetes 1.29. Vendors using 1.29 need to upgrade to 1.30. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
 * Users are now prevented from trying to upgrade by more than one minor version of Kubernetes at a time. If the Kubernetes version specified in an available update is more than one minor version ahead of the currently deployed Kubernetes version, the deploy button is disabled for that version, and a tooltip informs the user that they must upgrade to an intermediate version first.
 
-### Bug Fixes {#bug-fixes-2-9-0}
+### Bug fixes {#bug-fixes-2-9-0}
 * Fixes an issue where the `--network-interface` flag wasn't respected when joining a node.
 
 ## 2.8.1
@@ -462,7 +462,7 @@ Released on July 22, 2025
 ### Improvements {#improvements-2-7-3}
 * Addresses CVE-2024-45337, CVE-2025-22869, CVE-2025-22871, and CVE-2025-22874.
 
-### Bug Fixes {#bug-fixes-2-7-3}
+### Bug fixes {#bug-fixes-2-7-3}
 * Fixes seaweedfs-master to run with 3 replicas for true high availability, resolving registry backend failures during node outages in HA deployments.
 
 ## 2.7.2
@@ -543,7 +543,7 @@ Released on June 5, 2025
 </table>
 
 
-### New Features {#new-features-2-6-0}
+### New features {#new-features-2-6-0}
 * Adds support for Kubernetes 1.31.
 
 ### Improvements {#improvements-2-6-0}
@@ -572,7 +572,7 @@ Released on May 6, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-4-0}
+### New features {#new-features-2-4-0}
 * Multi-node and high availability clusters are generally available (GA).
    :::note
    Configuring node roles with the `roles` key is still beta.
@@ -595,7 +595,7 @@ Released on May 6, 2025
 
   For more information, see [Embedded Cluster Install Options](/reference/embedded-cluster-install).
 
-### Bug Fixes {#bug-fixes-2-4-0}
+### Bug fixes {#bug-fixes-2-4-0}
 * Fixes an issue that prevented a successful upgrade when a Helm extension was manually deleted or corrupted before the upgrade was attempted.
 * Fixes an issue that prevented joining nodes after upgrading to a version that added [`workerProfiles`](/reference/embedded-config#configure-the-kubelet) in its `unsupportedOverrides` configuration.
 * Fixes an issue where the `reset` command appeared to fail when parts of the installation were already cleaned up or were never successfully installed.
@@ -624,7 +624,7 @@ Released on April 8, 2025
 ### Improvements {#improvements-2-3-1}
 * When enabling high availability, Embedded Cluster will now wait until rqlite data for KOTS is fully synced to three nodes.
 
-### Bug Fixes {#bug-fixes-2-3-1}
+### Bug fixes {#bug-fixes-2-3-1}
 * Fixes an issue where installation would fail if a worker profile was not specified in unsupported overrides.
 * Fixes an issue that could cause upgrades to fail for clusters with more than seven nodes, because the upgrade job is rescheduled to different nodes too many times.
 
@@ -653,7 +653,7 @@ Released on April 3, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-3-0}
+### New features {#new-features-2-3-0}
 * Adds support for high availability installations when adding a third controller node. If HA isn't yet enabled, users will be prompted to enable HA when adding the third or more controller node.
 * Adds an "enable-ha" command for enabling high availability in clusters with three or more controller nodes. Although you are prompted to enable HA when adding nodes, this command can be used if you decline that prompt and later want to enable HA, or if your session is interrupted while HA is being enabled.
 * For new installations, the control plane is now set up as highly available within the cluster, enabling the removal of controller nodes from multi-node clusters without affecting pod scheduling.
@@ -668,7 +668,7 @@ Released on April 3, 2025
 * Debug logs of the installation will now include the Embedded Cluster and k0s versions.
 * Adds support for installing on hosts where the hostname includes uppercase letters.
 
-### Bug Fixes {#bug-fixes-2-3-0}
+### Bug fixes {#bug-fixes-2-3-0}
 * Fixes an issue where the UI continues to display the old Admin Console after an upgrade, which results in the previous version of the application showing as the currently deployed version.
 
 ## 2.2.0
@@ -692,7 +692,7 @@ Released on March 25, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-2-0}
+### New features {#new-features-2-2-0}
 * Adds support for using custom domains to alias the replicated.app and proxy.replicated.com endpoints in Embedded Cluster installations. To use custom domains, first add your custom domains in the Vendor Portal, then set `spec.domains.proxyRegistryDomain` and `spec.domains.replicatedAppDomain` in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to Use Custom Domains](/vendor/custom-domains-using#ec).
 * Removes all calls to endpoints other than replicated.app and proxy.replicated.com (or the configured custom domains for these endpoints). This simplifies the process for enterprises to deploy Embedded Cluster by minimizing the number of endpoints to whitelist.
 
@@ -755,7 +755,7 @@ Released on February 19, 2025
 * The preflight check that ensures the system clock is synchronized no longer requires NTP to be active. This accommodates systems where the clock is managed by alternative protocols (e.g., PTP).
 * If firewalld is enabled, it is now automatically configured at install time to allow required network traffic in the cluster.
 
-### Bug Fixes {#bug-fixes-2-1-1}
+### Bug fixes {#bug-fixes-2-1-1}
 * Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
 
 ## 2.1.1
@@ -779,7 +779,7 @@ Released on February 18, 2025
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-2-1-1}
+### Bug fixes {#bug-fixes-2-1-1}
 * Installing now waits for the Local Artifact Mirror systemd service to be healthy before proceeding, and any errors are reported. Previously, the install appeared successful even if LAM failed to start.
 * Fixes host preflight failures for kernel modules in environments where kernel modules are built in.
 
@@ -812,7 +812,7 @@ Released on February 14, 2025
 * Adds a preflight check to ensure a node's IP address is not within the Pod and Service CIDR ranges that will be used by Kubernetes. If a conflict exists, a different CIDR block can be specified with `--cidr` or a different network interface can be specified with `--network-interface`.
 * Adds a preflight check to ensure that SELinux is not running in enforcing mode.
 
-### Bug Fixes {#bug-fixes-2-1-0}
+### Bug fixes {#bug-fixes-2-1-0}
 * Fixes an issue when installing on Amazon Linux 2 and other older Linux distributions that causes the installation to timeout waiting for storage to be ready.
 
 ## 2.0.0
@@ -836,7 +836,7 @@ Released on February 7, 2025
   </tr>
 </table>
 
-### New Features {#new-features-2-0-0}
+### New features {#new-features-2-0-0}
 * The 2.0 release of Embedded Cluster introduces architecture changes that improve the reliability of the upgrade process, particularly the upgrade of Helm extensions like the Admin Console, OpenEBS, and vendor-supplied Helm extensions. As part of these improvements, upgrades from Embedded Cluster versions earlier than 1.8 are not supported. Online instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to an Embedded Cluster version from 1.8.0 to 1.22.0 before upgrading to 2.0.0. Air gap instances running Embedded Cluster versions earlier than 1.8.0 must upgrade to version 1.8.0 before upgrading to later versions, including 2.0.0. If you have customers running these earlier versions, Replicated recommends using a [required release](https://docs.replicated.com/vendor/releases-about#properties) to ensure your customers upgrade to a supported version first.
 
 ### Improvements {#improvements-2-0-0}
@@ -864,7 +864,7 @@ Released on January 24, 2025
   </tr>
 </table>
 
-### New Features {#new-features-1-22-0}
+### New features {#new-features-1-22-0}
 * Updates the disaster recovery alpha feature so that rather than having to apply specific labels to all the resources you want backed up, you now have full control over how your application is backed up and restored. Specifically, you now provide a Velero Backup resource and a Restore resource in your application release. These resources are used to back up and restore your application, separate from the Embedded Cluster infrastructure. For more information, see [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 
 ## 1.21.0
@@ -888,7 +888,7 @@ Released on January 22, 2025
   </tr>
 </table>
 
-### New Features {#new-features-1-21-0}
+### New features {#new-features-1-21-0}
 * The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
 * The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
 
@@ -905,7 +905,7 @@ Released on January 22, 2025
 * Usage and error messages have been improved for understandability. 
 * `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
 
-### Bug Fixes {#bug-fixes-1-21-0}
+### Bug fixes {#bug-fixes-1-21-0}
 * Support bundles now check that `modprobe`, `mount`, and `umount` exist in PATH rather than at hardcoded locations.
 * Fixes an issue where `reset` commands run on partially-installed clusters could fail with errors like `no matches for kind "Installation"`.
 
@@ -930,7 +930,7 @@ Released on November 14, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-19-0}
+### New features {#new-features-1-19-0}
 * Adds preflight checks to ensure that the following kernel parameters are set: `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`.
 * The following kernel parameters will be written to `/etc/sysctl.d/99-embedded-cluster.conf` and configured automatically during installation: `net.ipv4.ip_forward = 1`, `net.ipv4.conf.default.arp_filter = 0`, `net.ipv4.conf.default.arp_ignore = 0`, `net.ipv4.conf.all.arp_filter = 0`, and `net.ipv4.conf.all.arp_ignore = 0`. An error will not occur if Embedded Cluster fails to set these kernel parameters at install time. Instead, the aforementioned preflight checks will instruct the user to set these parameters.
 
@@ -958,14 +958,14 @@ Released on November 8, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-18-0}
+### New features {#new-features-1-18-0}
 * Adds support for passing ConfigValues using the `--config-values` flag for the `install` command. This also enables automated installations of both Embedded Cluster and the application.
 
 ### Improvements {#improvements-1-18-0}
 * When the Admin Console URL is printed at the end of the `install` command, it will now use the public IP address instead of the private IP address for AWS EC2 instances that use IMDSv2.
 * During setup of the Admin Console when a self-signed certificate is used, the instructions are updated to better inform users how to ignore the warning on different browsers.
 
-### Bug Fixes {#bug-fixes-1-18-0}
+### Bug fixes {#bug-fixes-1-18-0}
 * Fixes an issue where registry logs weren't included in support bundles.
 * Fixes an issue when installing on Azure that caused the Admin Console URL shown at the end of the `install` command to use the private IP address rather than the public IP address.
 * Fixes an issue that prevented you from updating an application if the new version contained a required config item without a `default` or `value` set.
@@ -993,7 +993,7 @@ Released on November 4, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-17-0}
+### New features {#new-features-1-17-0}
 * Adds support for partial rollbacks. Partial rollbacks are supported only when rolling back to a version where there is no change to the Embedded Cluster Config compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same [Embedded Cluster Config](/reference/embedded-config). For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 * Introduces a new landing page and guided installation workflow for the Admin Console.
 
@@ -1003,7 +1003,7 @@ Released on November 4, 2024
 * Support bundles now include information on connectivity between Pods and nodes to help resolve networking issues more quickly.
 * The preflight check for connectivity to replicated.app and proxy.replicated.com now use any private CAs provided with `--private-ca`, in case a man-in-the-middle proxy is in use.
 
-### Bug Fixes {#bug-fixes-1-17-0}
+### Bug fixes {#bug-fixes-1-17-0}
 * Fixes a panic that occurred when prompted to proceed after preflight warnings.
 * Fixes an issue where `troubleshoot.sh/v1beta2` was erroneously printed to the screen during installation.
 
@@ -1028,7 +1028,7 @@ Released on October 23, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-16-0}
+### New features {#new-features-1-16-0}
 * Adds support for Kubernetes 1.30 and removes support for 1.28.
 * Adds a `--data-dir` flag to the `install` and `restore` commands so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`. If the `--data-dir` flag was provided at install time, then the same data directory must be provided when restoring. For more information, see [install](/reference/embedded-cluster-install) and [Disaster Recovery for Embedded Cluster](/vendor/embedded-disaster-recovery).
 * Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
@@ -1050,7 +1050,7 @@ Released on October 23, 2024
 * Requires that the Admin Console password is at least six characters.
 * Improves the flexibility of configuring the Cluster Resources collector in support bundle specs by limiting KOTS's default collection to its own namespace.
 
-### Bug Fixes {#bug-fixes-1-16-0}
+### Bug fixes {#bug-fixes-1-16-0}
 * Fixes an issue that could occur when resetting a worker node that used a custom data directory.
 * Fixes an issue where k0s images were not updated within the cluster when k0s was upgraded.
 * Fixes an issue where upgrading a cluster with a worker node that used a version of Embedded Cluster earlier than 1.15 would fail.
@@ -1087,7 +1087,7 @@ Released on October 10, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-15-0}
+### New features {#new-features-1-15-0}
 * Adds the `--data-dir` flag to the `install` command so the data directory can be specified. By default, the data directory is `/var/lib/embedded-cluster`.
 
 ### Improvements {#improvements-1-15-0}
@@ -1097,7 +1097,7 @@ Released on October 10, 2024
 * For new installations, the `k0s` and `openebs-local` directories are now subdirectories of `/var/lib/embedded-cluster`. We will only document and preflight for `/var/lib/embedded-cluster` now.
 * The Admin Console password must be at least six characters.
 
-### Bug Fixes {#bug-fixes-1-15-0}
+### Bug fixes {#bug-fixes-1-15-0}
 * Fixes an issue that prevented you from installing Embedded Cluster using a multi-channel license and a channel other than the license's default.
 * Fixes an issue that could cause the registry to fail to upgrade in air gap installations.
 * Fixes an issue where node joins failed because of a version mismatch, even though the versions were the same.
@@ -1149,7 +1149,7 @@ Released on September 26, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-14-1}
+### New features {#new-features-1-14-1}
 
 * Adds host preflight checks to ensure that the required ports are open and available. For more information, see [Port Requirements](/vendor/embedded-overview#port-requirements).
 
@@ -1158,7 +1158,7 @@ Released on September 26, 2024
 * Adds the `--network-interface` flag for the `join` command so a network interface can optionally be selected when joining nodes. If this flag is not provided, the first valid, non-local network interface is used.
 * The `reset` command now automatically reboots the machine, and the optional `--reboot` flag is no longer available. A reboot is required to reset iptables.
 
-### Bug Fixes {#bug-fixes-1-14-1}
+### Bug fixes {#bug-fixes-1-14-1}
 
 * Fixes an issue where nodes could fail to join with the error "unable to get network interface for address."
 
@@ -1183,7 +1183,7 @@ Released on September 24, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-14-0}
+### New features {#new-features-1-14-0}
 
 * Introduces the `--admin-console-port` and `--local-artifact-mirror-port` flags to the `install` command so the ports for the Admin Console (default 30000) and the local artifact mirror (default 50000) can be chosen.
 * Introduces the `--local-artifact-mirror-port` flag to the `restore` command so the port used for the local artifact mirror can be selected during the restore. If no port is provided, the port in use when the backup was taken will be used.
@@ -1218,7 +1218,7 @@ Released on September 20, 2024
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-1-13-1}
+### Bug fixes {#bug-fixes-1-13-1}
 
 * Fixes an issue where you could not upgrade to a version that had special characters like `+` in the version label.
 
@@ -1243,11 +1243,11 @@ Released on September 17, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-13-0}
+### New features {#new-features-1-13-0}
 
 * Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user with the `--private-ca` flag for the `install` command.
 
-### Bug Fixes {#bug-fixes-1-13-0}
+### Bug fixes {#bug-fixes-1-13-0}
 
 * Fixes an issue where user-provided proxy configuration was removed during upgrades.
 * Fixes an issue where the disk performance preflight failed on certain architectures where fio was unable to run.
@@ -1273,11 +1273,11 @@ Released on September 13, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-12-1}
+### New features {#new-features-1-12-1}
 
 * Adds the ability to provide additional trusted certificate authority certificates with the `install` command's `--private-ca` flag. This is useful when Embedded Cluster is installed behind an enterprise proxy that intercepts traffic and issues its own certificates.
 
-### Bug Fixes {#bug-fixes-1-12-1}
+### Bug fixes {#bug-fixes-1-12-1}
 
 * Removes unnecessary values that were previously added to the no proxy list automatically.
 * KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` service to simplify HTTP proxy configuration.
@@ -1311,7 +1311,7 @@ Released on September 11, 2024
 * Hides a banner on the **View Files** page that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
 * KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
 
-### Bug Fixes {#bug-fixes-1-12-0}
+### Bug fixes {#bug-fixes-1-12-0}
 
 * Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the kots install command were not propagated to the Replicated SDK.
 
@@ -1367,7 +1367,7 @@ Released on August 23, 2024
 * Adds host preflight checks for connecting to replicated.app and proxy.replicated.com. If you use a custom domain for replicated.app, the custom domain will be used in the preflight check.
 * Adds a host preflight check to ensure that neither `nameserver localhost` nor `nameserver 127.0.0.1` is present in `resolv.conf`.
 
-### Bug Fixes {#bug-fixes-1-11-0}
+### Bug fixes {#bug-fixes-1-11-0}
 
 * Fixes several issues that caused node resets to fail. Single-node clusters are no longer drained before being reset. Resets will no longer fail with the error `unable to get installation` if the installation failed early on. And node resets will now work if bind mounts are used for `/var/lib/embedded-cluster`, `/var/lib/k0s`, and `/var/openebs`.
 * Fixes an issue where preflight checks for `modprobe`, `mount`, and `unmount` in `PATH` did not use absolute paths.
@@ -1394,7 +1394,7 @@ Released on August 13, 2024
   </tr>
 </table>
 
-### New Features {#new-features-1-10-0}
+### New features {#new-features-1-10-0}
 
 * Adds support for the `dropdown` config item type, which creates a dropdown on the config screen. See [`dropdown`](/reference/custom-resource-config#dropdown) in Config.
 * Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional. See [`radio`](/reference/custom-resource-config#radio) in _Config_.

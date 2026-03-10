@@ -1,10 +1,10 @@
-# Add and Customize Support Bundles
+# Add and customize support bundles
 
 This topic describes how to add a default support bundle spec to a release for your application. It also describes how to customize the default support bundle spec based on your application's needs. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
 The information in this topic applies to Helm applications and Kubernetes manifest-based application installed with Helm or with Replicated KOTS.
 
-## Step 1: Add the Default Spec to a Manifest File
+## Step 1: Add the default spec to a manifest file
 
 You can add the support bundle spec to a Kubernetes Secret or a SupportBundle custom resource. The type of manifest file that you use depends on your application type (Helm or manifest-based) and installation method (Helm or KOTS).
 
@@ -18,7 +18,7 @@ Use the following guidance to determine which type of manifest file to use for c
 
 * **Kubernetes Manifest-Based Applications**: For Kubernetes manifest-based applications, create the support bundle spec in a Preflight custom resource. See [SupportBundle Custom Resource](#sb-cr).
 
-### Kubernetes Secret {#secret}
+### Kubernetes secret {#secret}
 
 You can define support bundle specs in a Kubernetes Secret for the following installation types:
 * Installations with Helm
@@ -61,7 +61,7 @@ If your application is deployed as multiple Helm charts, Replicated recommends t
 
 After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [Step 2: Customize the spec](/vendor/support-bundle-customizing#customize-the-spec) below.
 
-### SupportBundle Custom Resource {#sb-cr}
+### SupportBundle custom resource {#sb-cr}
 
 You can define support bundle specs in a SupportBundle custom resource for the following installation types:
 * Kubernetes manifest-based applications installed with KOTS
@@ -88,13 +88,13 @@ You do not need manually include the `clusterInfo` or `clusterResources` collect
 
 After you create this empty support bundle spec, you can test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating). You can customize the support bundle spec by adding collectors and analyzers or editing the default collectors. For more information, see [Step 2: Customize the spec](/vendor/support-bundle-customizing#customize-the-spec) below.
 
-## Step 2: Customize the Spec {#customize-the-spec}
+## Step 2: Customize the spec {#customize-the-spec}
 
 You can customize the support bundles for your application by:
 * Adding collectors and analyzers
 * Editing or excluding the default `clusterInfo` and `clusterResources` collectors
 
-### Add Collectors
+### Add collectors
 
 Collectors gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define.
 
@@ -109,7 +109,7 @@ The following are some recommended collectors:
 - [copy](https://troubleshoot.sh/docs/collect/copy/) and [copyFromHost](https://troubleshoot.sh/docs/collect/copy-from-host/)
 - [http](https://troubleshoot.sh/docs/collect/http/)
 
-### Add Analyzers
+### Add analyzers
 
 Analyzers use the data from the collectors to generate output for the support bundle. Good analyzers clearly identify failure modes and provide troubleshooting guidance for the user. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log and provides a description of the error to the user.
 
@@ -124,7 +124,7 @@ The following are some recommended analyzers:
 - [statefulsetStatus](https://troubleshoot.sh/docs/analyze/statefulset-status/)
 - [postgresql](https://troubleshoot.sh/docs/analyze/postgresql/), [mysql](https://troubleshoot.sh/docs/analyze/mysql/), and [redis](https://troubleshoot.sh/docs/analyze/redis/)
 
-### Customize the Default `clusterResources` Collector
+### Customize the default `clusterResources` collector
 
 You can edit the default `clusterResources` using the following properties:
 
@@ -167,7 +167,7 @@ spec:
 ```
 For more information, see [Namespace](/reference/template-functions-static-context#namespace) in _Static Context_. 
 
-### Exclude the Default Collectors
+### Exclude the default collectors
 
 Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can optionally exclude them. 
 

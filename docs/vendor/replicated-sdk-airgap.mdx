@@ -1,4 +1,4 @@
-# Install the SDK in Air Gap Environments
+# Install the SDK in air gap environments
 
 This topic explains how to install the Replicated SDK in air gap environments by enabling air gap mode.
 
@@ -8,7 +8,7 @@ The Replicated SDK has an _air gap mode_ that allows it to run in environments w
 
 Air gap mode is enabled when `isAirgap: true` is set in the values for the SDK Helm chart. For more information, see [Install the SDK in Air Gap Mode](#install) below. Allowing air gap mode to be controlled with the `isAirgap` value means that vendors and enterprise customers do not need to rely on air gap environments being automatically detected, which is unreliable and error-prone. The `isAirgap` value also allows the SDK to be installed in air gap mode even if the instance can access the internet.
 
-## Differences in Air Gap Mode
+## Differences in air gap mode
 
 Air gap mode differs from non-air gap installations of the SDK in the following ways:
 * The SDK stores instance telemetry and custom metrics in a Kubernetes Secret in the customer environment, rather than attempting to send telemetry and custom metrics back to the Replicated Vendor Portal. The telemetry and custom metrics stored in the Secret are collected whenever a support bundle is generated in the environment, and are reported when the support bundle is uploaded to the Vendor Portal. For more information about telemetry for air gap instances, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
@@ -17,7 +17,7 @@ Air gap mode differs from non-air gap installations of the SDK in the following 
 
 In air gap mode, the SDK can still make requests to SDK API endpoints that do not require outbound internet access, such as the [`license`](/reference/replicated-sdk-apis#license) endpoints and the [`/app/info`](/reference/replicated-sdk-apis#get-appinfo) endpoint. However, these endpoints will return whatever values were injected into the SDK when the chart was most recently pulled. These values might not match the latest information available in the Vendor Portal because the SDK cannot receive updates when running in air gap environments.
 
-## Install the SDK in Air Gap Mode {#install}
+## Install the SDK in air gap mode {#install}
 
 This section describes how to install the Replicated SDK in air gap mode with the Helm CLI and with Replicated KOTS.
 

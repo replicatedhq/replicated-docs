@@ -1,10 +1,10 @@
-# Map User-Supplied Values
+# Map user-supplied values
 
 This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
 This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Create and Edit Configuration Fields](admin-console-customize-config-screen).
 
-## Overview of Mapping Values
+## Overview of mapping values
 
 You use the values that your users provide in the Admin Console configuration screen to render YAML in the manifest files for your application.
 
@@ -16,7 +16,7 @@ You can also conditionally deploy custom resources depending on the user input f
 
 For more information about including optional resources conditionally based on user-supplied values, see [Conditionally Including or Excluding Resources](packaging-include-resources).
 
-## About Mapping Values with Template Functions
+## About mapping values with template functions
 
 To map user-supplied values, you use Replicated template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
 
@@ -24,14 +24,14 @@ For more information about template functions, including use cases and examples,
 
 For more information about the syntax of the template functions for mapping configuration values, see [Config Context](/reference/template-functions-config-context) in the _Template Functions_ section.
 
-## Map User-Supplied Values
+## Map user-supplied values
 
 Follow one of these procedures to map user inputs from the configuration screen, depending on if you use a Helm chart for your application:
 
 * **Without Helm**: See [Map Values to Manifest Files](#map-values-to-manifest-files).
 * **With Helm**: See [Map Values to a Helm Chart](#map-values-to-a-helm-chart).
 
-### Map Values to Manifest Files
+### Map values to manifest files
 
 To map user-supplied values from the configuration screen to manifest files in your application:
 
@@ -91,7 +91,7 @@ To map user-supplied values from the configuration screen to manifest files in y
 
 1. Save and promote the release to a development environment to test your changes.
 
-### Map Values to a Helm Chart
+### Map values to a Helm chart
 
 The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated KOTS, your users provide these values through the configuration screen in the Admin Console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 

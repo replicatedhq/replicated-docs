@@ -1,8 +1,8 @@
-# Update Licenses in the Admin Console
+# Update licenses in the Admin Console
 
 This topic describes how to update a license from the KOTS Admin Console.
 
-## Update Online Licenses
+## Update online licenses
 
 To update licenses in online environments:
 
@@ -38,7 +38,7 @@ To update licenses in online environments:
 
     [View a larger version of this image](/images/kots-license-change-currently-deployed.png)
 
-## Update Air Gap Licenses
+## Update air gap licenses
 
 To update licenses in air gap environments:
 
@@ -76,7 +76,7 @@ To update licenses in air gap environments:
 
     [View a larger version of this image](/images/kots-license-change-currently-deployed.png)
 
-## Upgrade from a Community License
+## Upgrade from a community license
 
 If you have a community license, you can change your license by uploading a new one. This allows you to upgrade from a community version of the software without having to reinstall the Admin Console and the application.
 

@@ -1,6 +1,6 @@
 import KurlAvailability from "../partials/kurl/_kurl-availability.mdx"
 
-# Work with the kURL Image Registry
+# Work with the kURL image registry
 
 <KurlAvailability/>
 
@@ -19,7 +19,7 @@ For more information about the kURL Registry add-on, see [Registry Add-On](https
 Users can also configure their own private registry for kURL installations instead of using the kURL registry. For more information, see [Configure Local Image Registries](/enterprise/image-registry-settings).
 :::
 
-## Trigger Garbage Collection
+## Trigger garbage collection
 
 Every time the application instance is upgraded, image garbage collection automatically deletes images that are no longer used.
 
@@ -32,7 +32,7 @@ Where `NAMESPACE` is the namespace where the application is installed.
 
 For more information, see [admin-console garbage-collect-images](/reference/kots-cli-admin-console-garbage-collect-images/).
 
-## Disable Image Garbage Collection
+## Disable image garbage collection
 
 Image garbage collection is enabled by default for kURL clusters that use the kURL registry.
 
@@ -47,7 +47,7 @@ To enable garbage collection again:
 kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-image-deletion\":\"true\"}}"
 ```
 
-## Restore Deleted Images
+## Restore deleted images
 
 Deleted images can be reloaded from air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](/reference/kots-cli-admin-console-push-images/) in the KOTS CLI documentation.
 

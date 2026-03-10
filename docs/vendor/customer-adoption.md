@@ -1,8 +1,8 @@
-# Adoption Report
+# Adoption report
 
 This topic describes the insights in the **Adoption** section on the Replicated Vendor Portal **Dashboard** page.
 
-## About Adoption Rate
+## About adoption rate
 
 The **Adoption** section on the **Dashboard** provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
 
@@ -23,7 +23,7 @@ You can filter the graph and metrics in the **Adoption** report by:
 * Time period (the previous month, three months, six months, or twelve months)
 * Release channel to which instance licenses are assigned, such as Stable or Beta
 
-## Adoption Graph {#graph}
+## Adoption graph {#graph}
 
 The **Adoption** report includes a graph that shows the percent of active instances that are running different versions of your application within the selected time period.
 
@@ -41,7 +41,7 @@ You can also hover over a color-coded section in the graph to view the number an
 
 If there are no active instances of your application, then the adoption rate graph displays a "No Instances" message.
 
-## Adoption Metrics {#metrics}
+## Adoption metrics {#metrics}
 
 The **Adoption** section includes metrics that show how frequently your customers discover and complete upgrades to new versions of your application. It is important that your users adopt new versions of your application so that they have access to the latest features and bug fixes. Additionally, when most of your users are on the latest versions, you can also reduce the number of versions for which you provide support and maintain documentation.
 

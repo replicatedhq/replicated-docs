@@ -1,4 +1,4 @@
-# Example: Adding Database Configuration Options
+# Example: Adding database configuration options
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.
@@ -19,13 +19,13 @@ This guide assumes you have:
 * A running instance of the Replicated Admin Console (`kotsadm`) to iterate against in either an existing cluster or an embedded cluster created with Replicated kURL.
 * A local git checkout of your application manifests.
 
-### Accompanying Code Examples
+### Accompanying code examples
 
 A full example of the code for this guide can be found in the [kotsapps repository](https://github.com/replicatedhq/kotsapps/tree/master/postgres-snapshots).
 
 * * *
 
-## The Example Application
+## The example application
 
 For demonstration purposes, we'll use a simple app that connects to a Postgres database via the `psql` CLI.
 Once you've finished this guide, you should feel confident replacing it with any Kubernetes workload(s) that need to connect to a database.
@@ -130,7 +130,7 @@ Now that our test app is deployed, we'll walk through presenting options to the 
 
 * * *
 
-## User-Facing Configuration
+## User-facing configuration
 
 The core of this guide will be around how to give your end users the option to do one of the following actions:
 
@@ -199,7 +199,7 @@ This creates a toggle to allow the user to choose between an embedded or externa
 As mentioned in the introduction, a full example of the code for this guide can be found in the [kotsapps repository](https://github.com/replicatedhq/kotsapps/tree/master/postgres-snapshots).
 
 
-### Validating Config Changes
+### Validating Config changes
 
 Even though the options aren't wired, let's create a new release to validate the configuration screen was modified.
 Create a release by running `replicated release create --auto`.
@@ -216,11 +216,11 @@ Now that we have the configuration screen started, we can proceed to implement t
 
 * * *
 
-## Embedding a Database
+## Embedding a database
 
 To implement the embedded Database option, we'll add a Kubernetes [Statefulset](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/), and use the [annotations for optional resources](packaging-include-resources/) to control when it will be included in the application.
 
-### Adding the Secret and StatefulSet
+### Adding the secret and statefulset
 
 First, we'll create a secret to store the root password for our embedded postgres instance:
 
@@ -315,7 +315,7 @@ spec:
   type: ClusterIP
 ```
 
-### Validating the embedded Database
+### Validating the embedded database
 
 After you've added these resources, you can push a new release and update in the Admin Console.
 You should see the following in the deployment logs:
@@ -433,11 +433,11 @@ Now that we've configured our application to read from an embedded postgres inst
 
 * * *
 
-## Connecting to an External Database
+## Connecting to an external database
 
 In this section, we'll expand our configuration section to allow end users to bring their own Postgres instance.
 
-### Modifying the Config Screen
+### Modifying the Config screen
 
 Let's update our config screen to allow an end user to input some details about their database.
 We'll add the following YAML, noting the use of the `when` field to conditionally hide or show fields in the user-facing config screen:
@@ -556,7 +556,7 @@ $ kubectl logs -l app=pg-consumer
 psql: could not translate host name "postgres" to address: Name or service not known
 ```
 
-### Mapping User Inputs
+### Mapping user inputs
 
 To map the user-supplied configuration, we'll start by expanding our secret we created before, adding fields for additional variables, using `{{repl if ... }}` blocks to switch between embedded/external contexts.
 
@@ -671,13 +671,13 @@ psql: could not translate host name "fake" to address: Name or service not known
 
 We'll optionally wire this to a real external Postgres database later, but for now we'll proceed to add the rest of the fields.
 
-### Extending this to All Fields
+### Extending this to all fields
 
 Now that we've wired the DB_HOST field all the way through, we'll do the same for the other fields.
 In the end, your Secret and Deployment should look like the following YAML files:
 
 ```yaml
-# postgres-secret.yaml
+# Postgres-secret.YAML
 apiVersion: v1
 kind: Secret
 metadata:
@@ -827,7 +827,7 @@ data:
   DB_PORT: NTQzMjE=
   DB_USER: ZmFrZQ==
 kind: Secret
-# ...snip...
+# ...Snip...
 ```
 
 We can also print the environment in our sample app to verify that all of the values are piped properly:
@@ -841,7 +841,7 @@ DB_HOST=fake
 DB_USER=fake
 ```
 
-### Testing Config Changes
+### Testing Config changes
 
 Now let's make some changes to the database credentials. In this case, we'll use a Postgres database provisioned in Amazon RDS, but you can use any external database.
 To start, head to the "Config" screen and input your values:
@@ -879,7 +879,7 @@ DB_HOST=10.128.0.12
 DB_USER=postgres
 ```
 
-### Triggering Restarts on Changes
+### Triggering restarts on changes
 
 In order to automate this restart on changes, we're going to use a hash of all database parameters to trigger a rolling update whenever database parameters are changed.
 We'll use a `hidden`, `readonly` field to store this in our config screen:
@@ -946,6 +946,6 @@ spec:
 ```
 
 
-### Integrating a Real Database
+### Integrating a real database
 
 If you'd like at this point, you can integrate a real database in your environment, just fill out your configuration fields. You'll know you did it right if your pg-consumer pod can connect.

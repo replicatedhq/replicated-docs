@@ -1,4 +1,4 @@
-# Velero Backup Resource for Snapshots
+# Velero Backup resource for snapshots
 
 This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
 
@@ -54,7 +54,7 @@ spec:
         post: []
 ```
 
-## Supported Fields for Full Backups with Snapshots {#fields}
+## Supported fields for full backups with snapshots {#fields}
 
 For partial backups with the snapshots feature, you can use all of the fields that Velero supports. See [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
 

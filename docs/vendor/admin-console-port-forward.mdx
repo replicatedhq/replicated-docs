@@ -8,7 +8,7 @@ import NginxService from "../partials/application-links/_nginx-service.mdx"
 import NginxDeployment from "../partials/application-links/_nginx-deployment.mdx"
 import EcCr from "../partials/getting-started/_slackernews-embedded-cluster.mdx"
 
-# Port Forward Services with KOTS
+# Port forward services with KOTS
 
 This topic describes how to add one or more ports to the Replicated KOTS port forward tunnel by configuring the `ports` key in the KOTS Application custom resource.
 
@@ -22,7 +22,7 @@ Adding ports to the port forward tunnel allows you to port forward application s
 
 This can be particularly useful when developing and testing KOTS releases for your application, because it provides a quicker way to access an application after installation compared to setting up an ingress controller or adding a load balancer.
 
-## Port Forward a Service with the KOTS Application `ports` Key
+## Port forward a service with the KOTS application `ports` key
 
 To port forward a service with KOTS for existing cluster installations:
 
@@ -73,7 +73,7 @@ To port forward a service with KOTS for existing cluster installations:
 
 1. (Optional) Add a link to the service on the Admin Console dashboard. See [Add a Link to a Port-Forwarded Service on the Admin Console Dashboard](#add-link) below.
 
-## Add a Link to a Port-Forwarded Service on the Admin Console Dashboard {#add-link}
+## Add a link to a port-forwarded service on the Admin Console dashboard {#add-link}
 
 After you add a service to the KOTS port forward tunnel, you can also optionally add a link to the port-forwarded service on the Admin Console dashboard.
 
@@ -129,11 +129,11 @@ To add a link to a port-forwarded service on the Admin Console dashboard:
 
    [View a larger version of this image](/images/gitea-open-app.png)
 
-## Access Port-Forwarded Services
+## Access port-forwarded services
 
 This section describes how to access port-forwarded services.
 
-### Command Line
+### Command line
 
 Run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel.
 
@@ -160,7 +160,7 @@ The following example shows an **Open App** link on the dashboard of the Admin C
 
 [View a larger version of this image](/images/gitea-open-app.png)
 
-## Example: NGINX Application with ClusterIP and NodePort Services
+## Example: Nginx application with clusterip and nodeport services
 
 The following example demonstrates how to link to a port-forwarded ClusterIP service for existing cluster KOTS installations. It also shows how to use the `ports` key to add a link to a NodePort service for Embedded Cluster or kURL installations. Although the primary purpose of the `ports` key is to port forward services for existing cluster KOTS installations, it is also possible to use the `ports` key so that links to NodePort services for Embedded Cluster or kURL installations use the hostname in the browser. For information about exposing NodePort services for Embedded Cluster or kURL installations, see [Exposing Services Using NodePorts](kurl-nodeport-services).
 
