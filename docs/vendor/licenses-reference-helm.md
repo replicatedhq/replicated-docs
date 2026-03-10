@@ -9,7 +9,7 @@ The Replicated SDK API can be used to check entitlements at runtime. For more in
 The Replicated registry automatically injects customer entitlement information in the `global.replicated.licenseFields` field of your Helm chart values. For example:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 global:
   replicated:
     licenseFields:

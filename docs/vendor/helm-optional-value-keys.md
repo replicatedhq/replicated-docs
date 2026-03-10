@@ -27,7 +27,7 @@ You can use static values to set Helm values for Replicated installations, witho
 For example, the following Helm chart `values.yaml` file contains `replicatedOnlyValue.enabled`, which is set to `false` by default: 
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 replicatedOnlyValue:
   enabled: false
 ```
