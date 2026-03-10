@@ -12,7 +12,7 @@
 // @ts-check
 
 // Import modular sidebars
-const vendorPlatformSidebar = require('./sidebarVendorPlatform');
+const vendorPlatformSidebar = require('./sidebarVendorPortal');
 const enterprisePortalSidebar = require('./sidebarEnterprisePortal');
 const securityCenterSidebar = require('./sidebarSecurityCenter');
 const compatibilityMatrixSidebar = require('./sidebarCompatibilityMatrix');
@@ -21,6 +21,7 @@ const kurlSidebar = require('./sidebarKURL');
 const helmInstallationsSidebar = require('./sidebarHelmInstallations');
 const replicatedSdkSidebar = require('./sidebarReplicatedSDK');
 const preflightSupportSidebar = require('./sidebarPreflightSupport');
+const proxyRegistrySidebar = require('./sidebarProxyRegistry');
 
 // @type {import('@docusaurus/plugin-content-docs').SidebarsConfig}
 const sidebars = {
@@ -68,35 +69,44 @@ const sidebars = {
         "vendor/tutorial-helm-cli",
       ],
     },
+    // {
+    //   type: "category",
+    //   label: "Labs",
+    //   items: [
+    //     {
+    //       type: "link",
+    //       href: "https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN",
+    //       label: "Distributing Your Application with Replicated",
+    //     },
+    //     {
+    //       type: "link",
+    //       href: "https://play.instruqt.com/embed/replicated/tracks/delivering-as-an-appliance?token=em_lUZdcv0LrF6alIa3",
+    //       label: "Delivering Your Application as a Kubernetes Appliance",
+    //     },
+    //     {
+    //       type: "link",
+    //       href: "https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG",
+    //       label: "Avoiding Installation Pitfalls",
+    //     },
+    //     {
+    //       type: "link",
+    //       href: "https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca",
+    //       label: "Closing the Support Information Gap",
+    //     },
+    //     {
+    //       type: "link",
+    //       href: "https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd",
+    //       label: "Protecting Your Assets",
+    //     },
+    //   ],
+    // },
     {
       type: "category",
-      label: "Labs",
+      label: "Add Replicated to CI/CD Workflows",
       items: [
-        {
-          type: "link",
-          href: "https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN",
-          label: "Distributing Your Application with Replicated",
-        },
-        {
-          type: "link",
-          href: "https://play.instruqt.com/embed/replicated/tracks/delivering-as-an-appliance?token=em_lUZdcv0LrF6alIa3",
-          label: "Delivering Your Application as a Kubernetes Appliance",
-        },
-        {
-          type: "link",
-          href: "https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG",
-          label: "Avoiding Installation Pitfalls",
-        },
-        {
-          type: "link",
-          href: "https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca",
-          label: "Closing the Support Information Gap",
-        },
-        {
-          type: "link",
-          href: "https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd",
-          label: "Protecting Your Assets",
-        },
+        "vendor/ci-overview",
+        "vendor/ci-workflows",
+        "vendor/ci-workflows-github-actions",
       ],
     },
     // PRODUCT DOCS
@@ -104,9 +114,9 @@ const sidebars = {
     {
       type: "ref",
       id: "vendor/vendor-portal-creating-account",
-      label: "Vendor Platform",
+      label: "Vendor Portal",
       customProps: {
-        sidebar: "vendorPlatformSidebar"
+        sidebar: "vendorPortalSidebar"
       }
     },
     {
@@ -140,6 +150,14 @@ const sidebars = {
     },
     {
       type: "ref",
+      id: "vendor/helm-install-overview",
+      label: "Helm Installations with Replicated",
+      customProps: {
+        sidebar: "helmInstallationsSidebar"
+      }
+    },
+    {
+      type: "ref",
       id: "intro-kots",
       label: "KOTS",
       customProps: {
@@ -156,10 +174,10 @@ const sidebars = {
     },
     {
       type: "ref",
-      id: "vendor/helm-install-overview",
-      label: "Helm Installations with Replicated",
+      id: "vendor/private-images-about",
+      label: "Replicated proxy registry",
       customProps: {
-        sidebar: "helmInstallationsSidebar"
+        sidebar: "proxyRegistrySidebar"
       }
     },
     {
@@ -173,7 +191,7 @@ const sidebars = {
     {
       type: "ref",
       id: "vendor/preflight-support-bundle-about",
-      label: "Preflight Checks and Support Bundles",
+      label: "Preflight Checks and support bundles",
       customProps: {
         sidebar: "preflightSupportSidebar"
       }
@@ -208,7 +226,6 @@ const sidebars = {
       ],
     },
     "reference/cron-expressions",
-    "reference/replicated-sdk-apis",
     {
       type: "category",
       label: "Replicated CLI", // This label is generated. Do not edit.
@@ -520,6 +537,7 @@ const sidebars = {
   ...helmInstallationsSidebar,
   ...replicatedSdkSidebar,
   ...preflightSupportSidebar,
+  ...proxyRegistrySidebar,
 };
 
 module.exports = sidebars;

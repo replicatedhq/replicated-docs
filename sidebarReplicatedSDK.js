@@ -5,5 +5,6 @@ module.exports = {
     "vendor/replicated-sdk-airgap",
     "vendor/replicated-sdk-development",
     "vendor/replicated-sdk-customizing",
+    "reference/replicated-sdk-apis",
   ],
 };
