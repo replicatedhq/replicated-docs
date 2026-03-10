@@ -147,7 +147,7 @@ Add a job with the following steps to provision clusters with CMX, deploy your a
 
 1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) Replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
-## Replicated platform release workflow
+## Replicated Platform release workflow
 
 In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then the application is made available to customers. In this example release workflow, a release is created and promoted to a channel in the Replicated vendor platform so that it can be installed by internal teams or by customers.
 

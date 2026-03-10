@@ -7,17 +7,17 @@ pagination_prev: null
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 import VeleroCompatibility from "../partials/snapshots/_velero-compatibility.mdx"
 
-# KOTS Release Notes
+# KOTS release notes
 
 This topic contains release notes for the [Replicated KOTS](../intro-kots) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
-## Kubernetes Compatibility
+## Kubernetes compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of KOTS:
 
 <KubernetesCompatibility/>
 
-## Velero Compatibility
+## Velero compatibility
 
 Velero is used to provide backup and restore functionality for the Replicated snapshots feature. For more information, see [About Backup and Restore with Snapshots](/vendor/snapshots-overview).
 
@@ -44,7 +44,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 * Fixes high and low severity CVEs CVE-2025-64756, CVE-2025-15284, CVE-2025-12816, CVE-2025-59057, CVE-2026-21884, and CVE-2025-7339 in the KOTS front-end dependencies.
 * Fixes high and medium severity CVEs CVE-2026-22772, CVE-2025-61729, and CVE-2025-61727 in the KOTS Go binaries.
 
-### Bug Fixes {#bug-fixes-1-129-3}
+### Bug fixes {#bug-fixes-1-129-3}
 * Fixes an issue where end users could skip required releases if the required release failed to deploy. For more information about required releases, see [Required Releases](/vendor/releases-about#required-releases) in _About Channels and Releases_.
 
 ## 1.129.2
@@ -53,7 +53,7 @@ Released on January 14, 2026
 
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
-### Bug Fixes {#bug-fixes-1-129-2}
+### Bug fixes {#bug-fixes-1-129-2}
 * Fixes an issue introduced in KOTS 1.129.1 where application upgrades could fail due to Helm v4’s default server-side apply by pinning KOTS to Helm v3 for compatibility.
 * Fixes an issue where AES-GCM nonces were incorrectly reused in KOTS encryption, now generating a unique nonce per encryption while maintaining backward compatibility with existing data.
 
@@ -67,10 +67,10 @@ Released on December 5, 2025
 
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
-### New Features {#new-features-1-129-1}
+### New features {#new-features-1-129-1}
 * Adds support for kots.io/v1beta2 License format
 
-### Bug Fixes {#bug-fixes-1-129-1}
+### Bug fixes {#bug-fixes-1-129-1}
 * Provides values for additional fields in the `LicenseFieldValue` template function.
 * Fixes a broken troubleshoot.sh link on the redactors page.
 * Fixes an issue where KOTS uses short image names causing failures in OpenShift 4.20 and OKE clusters using CRI-O 1.34+.
@@ -85,7 +85,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 * Adds fully qualified registry prefix for KOTS to improve registry handling.
 * Updates multiple security dependencies to address potential vulnerabilities.
 
-### Bug Fixes {#bug-fixes-1-128-3}
+### Bug fixes {#bug-fixes-1-128-3}
 * Fixes an issue when editing the release config on Embedded Cluster where the sidebar items would disappear.
 * Fixes an issue where channel switches in Embedded Cluster installations would skip infrastructure upgrades, leaving the cluster on an outdated Kubernetes version.
 
@@ -108,7 +108,7 @@ Support for Kubernetes: 1.31, 1.32, and 1.33
 ### Improvements {#improvements-1-128-1}
 * Adds the channel ID and channel sequence in the output of the [kubectl kots get versions](/reference/kots-cli-get-versions) CLI command.
 
-### Bug Fixes {#bug-fixes-1-128-1}
+### Bug fixes {#bug-fixes-1-128-1}
 * Fixes an issue that causes license field signatures to be empty for air gap installations when injected into the [Helm chart values file](https://docs.replicated.com/vendor/helm-install-values-schema) at the `global.replicated.licenseFields` key.
 * Fixes an issue that can cause the UI to show the app version as deploying when it is deployed and require a page refresh.
 * Fixes an issue that can cause the UI to get stuck at the progress page when a restore is complete.
@@ -128,7 +128,7 @@ Released on August 27, 2025
 
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
-### Bug Fixes {#bug-fixes-1-127-2}
+### Bug fixes {#bug-fixes-1-127-2}
 * Fixes high CVEs found in the KOTS Go binaries.
 
 ## 1.127.1
@@ -137,7 +137,7 @@ Released on August 25, 2025
 
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
-### Bug Fixes {#bug-fixes-1-127-1}
+### Bug fixes {#bug-fixes-1-127-1}
 * Fixes high CVEs found in the KOTS Go binaries.
 
 ## 1.126.0
@@ -146,7 +146,7 @@ Released on August 15, 2025
 
 Support for Kubernetes: 1.31, 1.32, and 1.33
 
-### New Features {#new-features-1-126-0}
+### New features {#new-features-1-126-0}
 * When checking for application updates for an online installation, KOTS now tries to automatically refresh the metadata (version labels, release notes, and required status) for pending releases that belong to the same channel of the currently deployed version.
 
 ## 1.125.2
@@ -158,7 +158,7 @@ Support for Kubernetes: 1.31, 1.32, and 1.33
 ### Improvements {#improvements-1-125-2}
 * Fixes CVEs CVE-2021-23337 and CVE-2025-7783
 
-### Bug Fixes {#bug-fixes-1-125-2}
+### Bug fixes {#bug-fixes-1-125-2}
 * Fixes an issue that caused debug output to print to the Kots CLI logs when installing.
 * Fixes an issue where the file viewer find menu was missing icons.
 
@@ -190,7 +190,7 @@ Support for Kubernetes: 1.29, 1.30, 1.31, 1.32, and 1.33
 ### Improvements {#improvements-1-124-18}
 * Fixes CVE CVE-2024-0406.
 
-### Bug Fixes {#bug-fixes-1-124-18}
+### Bug fixes {#bug-fixes-1-124-18}
 * Fixes an issue where configuring the snapshot storage location failed to restart Velero, so the change didn't take effect.
 
 ## 1.124.17
@@ -209,7 +209,7 @@ Released on April 28, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### Bug Fixes {#bug-fixes-1-124-16}
+### Bug fixes {#bug-fixes-1-124-16}
 * Fixes an issue where license verification failed unexpectedly with the following error: `failed to verify signature: "IsEmbeddedClusterMultinodeEnabled" field has changed to false (license) from true (within signature)`.
 
 ## 1.124.15
@@ -255,7 +255,7 @@ Released on March 27, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### Bug Fixes {#bug-fixes-1-124-10}
+### Bug fixes {#bug-fixes-1-124-10}
 * Fixes an issue where extracting Helm charts failed on deploy if duplicate files were found in the chart. This error often looked like this: `failed to deploy helm charts: failed to find removed charts: failed to find current matching v1beta2 charts: failed to find chart name and version in /tmp/helm2856031708/curr-v1beta2/helm/mychart: failed to unarchive: reading file in tar archive: file already exists: /tmp/kots1381434460/charts/mychart/Chart.yaml`.
 
 ## 1.124.9
@@ -300,7 +300,7 @@ Released on March 11, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### Bug Fixes {#bug-fixes-1-124-5}
+### Bug fixes {#bug-fixes-1-124-5}
 * Fixes SBOM generation and signing issue. A properly signed SBOM is now included in the release artifacts.
 
 ## 1.124.4
@@ -312,7 +312,7 @@ Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 ### Improvements {#improvements-1-124-4}
 * Improves error visibility by displaying the actual error message in the UI instead of a generic one when an upgrade fails to start.
 
-### Bug Fixes {#bug-fixes-1-124-4}
+### Bug fixes {#bug-fixes-1-124-4}
 * Fixes an issue when installing with a provided license, that can cause the installer not to respect the custom domain in the license and instead make a request to https://replicated.app.
 
 ## 1.124.3
@@ -339,7 +339,7 @@ Released on January 29, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### Bug Fixes {#bug-fixes-1-123-1}
+### Bug fixes {#bug-fixes-1-123-1}
 * Improves an unclear error message that could occur when rewriting private images.
 
 ## 1.124.0
@@ -348,7 +348,7 @@ Released on January 24, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### New Features {#new-features-1-124-0}
+### New features {#new-features-1-124-0}
 * You can migrate Helm charts that were installed with HelmChart `v1beta1` and `useHelmInstall: false` to HelmChart `v1beta2` by passing the `--take-ownership` flag to the `helmUpgradeFlags` field in HelmChart custom resource as shown below:
 
    ```yaml
@@ -372,7 +372,7 @@ Released on January 13, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### Bug Fixes {#bug-fixes-1-123-1}
+### Bug fixes {#bug-fixes-1-123-1}
 * Fixes an issue where the navigation menu was not visible on the Config page.
 
 ## 1.123.0
@@ -381,7 +381,7 @@ Released on January 2, 2025
 
 Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
-### New Features {#new-features-1-123-0}
+### New features {#new-features-1-123-0}
 * Adds the `--tolerations` flag to `kots install` to supply additional tolerations to the KOTS pods.
 
 ## 1.122.1
@@ -390,7 +390,7 @@ Released on December 20, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-122-1}
+### Bug fixes {#bug-fixes-1-122-1}
 * Fixes a bug that could result in instance being reported as unavailable if application includes an Ingress resource.
 
 ## 1.122.0
@@ -399,7 +399,7 @@ Released on December 12, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-122-0}
+### New features {#new-features-1-122-0}
 * Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This annotation is useful when migrating existing KOTS installations to the KOTS HelmChart v2 installation method. For more information, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
 
 ## 1.121.2
@@ -417,7 +417,7 @@ Released on November 26, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-121-1}
+### Bug fixes {#bug-fixes-1-121-1}
 * Various fixes for Embedded Cluster.
 
 ## 1.121.0
@@ -426,7 +426,7 @@ Released on November 12, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-121-0}
+### New features {#new-features-1-121-0}
 * Adds the ability to download the application archive for any version, including the currently deployed version, by using the `--sequence` and `--current` flags for the `kots download` command.
 
 ## 1.120.3
@@ -444,7 +444,7 @@ Released on November 5, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-120-2}
+### Bug fixes {#bug-fixes-1-120-2}
 * Fixes an issue where generating a support bundle in air gap kURL environments took a really long time.
 
 ## 1.120.1
@@ -453,7 +453,7 @@ Released on November 4, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-120-1}
+### Bug fixes {#bug-fixes-1-120-1}
 * Fixes an issue where generating support bundles failed in air gap and minimal RBAC installations.
 * Fixes an issue where pushing images from an air gap bundle could time out due to the host's environment variables interfering with the temporary registry used by the KOTS CLI.
 
@@ -463,7 +463,7 @@ Released on October 30, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-120-0}
+### New features {#new-features-1-120-0}
 * Various new features to support Replicated Embedded Cluster.
 
 ## 1.119.1
@@ -472,7 +472,7 @@ Released on October 22, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-119-1}
+### Bug fixes {#bug-fixes-1-119-1}
 
 * Fixes an issue where proxy settings was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
 * Fixes an issue where `--strict-security-context` was removed when upgrading the Admin Console with `kubectl kots admin-console upgrade`.
@@ -483,7 +483,7 @@ Released on October 18, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-119-0}
+### Bug fixes {#bug-fixes-1-119-0}
 * Fixes an issue where the Replicated SDK failed to deploy if a private CA was provided to the installation but the SDK was installed into a different namespace than KOTS.
 * If an application includes the Replicated SDK, the SDK will be deployed with the same ClusterRole as the Admin Console.
 
@@ -496,7 +496,7 @@ Support for Kubernetes: 1.29, 1.30, and 1.31
 ### Improvements {#improvements-1-118-0}
 * Improves the flexibility of configuring the [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) collector in support bundle specs by limiting KOTS's default collection to its own namespace.
 
-### Bug Fixes {#bug-fixes-1-118-0}
+### Bug fixes {#bug-fixes-1-118-0}
 * Fixes an issue where you could not upgrade Embedded Cluster instances if the new version didn't include config and preflight checks.
 
 ## 1.117.5
@@ -523,7 +523,7 @@ Released on September 23, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-117-3}
+### New features {#new-features-1-117-3}
 * If the Replicated SDK is deployed by KOTS as part of an application, the SDK will automatically be configured with any additional CA certificates provided to `--private-ca-configmap` flag for the `kots install` command.
 
 ## 1.117.2
@@ -541,7 +541,7 @@ Released on September 17, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### Bug Fixes {#bug-fixes-1-117-1}
+### Bug fixes {#bug-fixes-1-117-1}
 * Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK when running an automated install.
 
 ## 1.117.0
@@ -550,11 +550,11 @@ Released on September 13, 2024
 
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
-### New Features {#new-features-1-117-0}
+### New features {#new-features-1-117-0}
 * Adds the `--private-ca-configmap` flag to the `install` and `generate-manifests` commands. The contents of the provided ConfigMap are used as additional trusted certificate authorities.
 * Adds the [`PrivateCACert` template function](/reference/template-functions-static-context#privatecacert) to return the name of a ConfigMap containing additional trusted CA certificates provided by the end user.
 
-### Bug Fixes {#bug-fixes-1-117-0}
+### Bug fixes {#bug-fixes-1-117-0}
 * Fixes an issue where `dropdown` Config items did not respect the `when` property.
 
 ## 1.116.1
@@ -563,7 +563,7 @@ Released on September 12, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-116-1}
+### Bug fixes {#bug-fixes-1-116-1}
 * KOTS now uses the fully qualified `.svc.cluster.local` address when making requests to the `kotsadm-rqlite` and `kotsadm-minio` services for simplified HTTP proxy configuration using `NO_PROXY=.cluster.local`.
 
 ## 1.116.0
@@ -572,7 +572,7 @@ Released on September 9, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-116-0}
+### New features {#new-features-1-116-0}
 * Adds the ability to specify additional annotations (`--additional-annotations`) and labels (`--additional-labels`) that will be applied to kotsadm pods.
 
 ## 1.115.2
@@ -586,7 +586,7 @@ Support for Kubernetes: 1.28, 1.29, and 1.30
 * When nodes need to be added to the cluster during an Embedded Cluster restore operation, the `join` command is more clearly shown in the Admin Console.
 * Improves messaging when the requested channel slug is not allowed by the provided license.
 
-### Bug Fixes {#bug-fixes-1-115-2}
+### Bug fixes {#bug-fixes-1-115-2}
 * Fixes an issue where the values provided to the `--http-proxy`, `--https-proxy`, and `--no-proxy` flags for the `kots install` command were not propagated to the Replicated SDK.
 * Hides a banner on the **View Files** page in Embedded Cluster that told users to use `kubectl kots` commands that are not intended for Embedded Cluster.
 
@@ -596,7 +596,7 @@ Released on August 22, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-115-1}
+### Bug fixes {#bug-fixes-1-115-1}
 * Fixes an issue where the default `nodeMetrics` analyzer did not run.
 
 ## 1.115.0
@@ -615,7 +615,7 @@ Released on August 12, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-114-0}
+### New features {#new-features-1-114-0}
 * Adds support for the `dropdown` config item type, which creates a dropdown on the config screen. See [dropdown](/reference/custom-resource-config#dropdown) in _Config_.
 * Adds the `radio` config item type, which is functionally equivalent to the `select_one` item type but is more clearly named. The `select_one` config item type is deprecated in favor of `radio` but is still fully functional. See [radio](/reference/custom-resource-config#radio) in _Config_.
 
@@ -629,15 +629,15 @@ Released on August 9, 2024
 
 Support for Kubernetes: 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-113-0}
+### New features {#new-features-1-113-0}
 * Adds support for multi-channel licenses. This allows each license to be assigned to more than one channel.
 
    With the introduction of multi-channel licenses, an installation error can occur if you use the `kots install` command without specifying a channel slug _and_ the license used to install does not have access to the Stable channel. For more information, see [Breaking Change](#breaking-changes-1-113-0) below.
 
-### Bug Fixes {#bug-fixes-1-113-0}
+### Bug fixes {#bug-fixes-1-113-0}
 * Fixes an issue in Embedded Cluster where going back to the Nodes page during the installation and then clicking continue did not work.
 
-### Breaking Change {#breaking-changes-1-113-0}
+### Breaking change {#breaking-changes-1-113-0}
 
 In KOTS 1.113.0 and later, the following error will occur during installation if the `kots install` command lacks a channel slug _and_ the license does not have access to the Stable channel: `"failed to verify and update license: requested channel not found in latest license"`. This can break existing automation and documentation that includes a `kots install` command without a channel slug.
 
@@ -657,7 +657,7 @@ Released on July 31, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-112-4}
+### Bug fixes {#bug-fixes-1-112-4}
 * Fixes an issue in Embedded Cluster upgrades where preflights did not rerun when the config was re-edited.
 * Fixes an issue that caused K8s minor version parsing errors to be logged repeatedly.
 
@@ -667,7 +667,7 @@ Released on July 30, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-112-3}
+### Bug fixes {#bug-fixes-1-112-3}
 * Fixes an issue where the Admin Console **vVersion history** page for Embedded Cluster had to be refreshed to show a newly available version after uploading an air gap bundle.
 
 ## 1.112.2
@@ -676,7 +676,7 @@ Released on July 26, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-112-2}
+### Bug fixes {#bug-fixes-1-112-2}
 * Fixes an issue in Embedded Cluster upgrades where rendering Helm charts that utilize Helm capabilities could fail.
 
 ## 1.112.1
@@ -685,7 +685,7 @@ Released on July 16, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-112-1}
+### Bug fixes {#bug-fixes-1-112-1}
 * Fixes an issue where reporting information wasn't sent for Embedded Cluster in some cases.
 
 ## 1.112.0
@@ -694,7 +694,7 @@ Released on June 27, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-112-0}
+### New features {#new-features-1-112-0}
 * Changes the workflow for upgrading to newly available versions in the Admin Console for Embedded Cluster only. When upgrading to new versions, users are taken through a wizard where the license is sycned, config can be edited, and preflight checks are run before deploying.
 
 ## 1.111.0
@@ -703,7 +703,7 @@ Released on July 9, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-111-0}
+### Bug fixes {#bug-fixes-1-111-0}
 * Fixes an issue where the Troubleshoot button on the **Resource status** modal didn't take you to the Troubleshoot page.
 
 ## 1.110.0
@@ -712,7 +712,7 @@ Released on June 27, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### New Features {#new-features-1-110-0}
+### New features {#new-features-1-110-0}
 * Adds the ability to specify a custom storage class for the KOTS Admin Console components when installing to an existing cluster.
 
 ## 1.109.14
@@ -721,7 +721,7 @@ Released on June 21, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-109-14}
+### Bug fixes {#bug-fixes-1-109-14}
 * Fixes an issue where required releases were enforced in air gapped mode when changing between channels that didn't have semantic versioning enabled
 
 ## 1.109.13
@@ -742,7 +742,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 ### Improvements {#improvements-1-109-12}
 * Updates to enable high availability support for embedded cluster.
 
-### Bug Fixes {#bug-fixes-1-109-12}
+### Bug fixes {#bug-fixes-1-109-12}
 * Fixes an issue where air gap uploads could incorrectly fail with an error indicating the version being uploaded matches the current version. This occurred because the version labels matched and were valid semantic versions. Comparing version labels is intentional for channels with semantic versioning enabled, but was unintentional for channels without semantic versioning enabled.
 
 ## 1.109.11
@@ -754,7 +754,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 ### Improvements {#improvements-1-109-11}
 * Minor UI improvements for the air gap bundle upload progress bar.
 
-### Bug Fixes {#bug-fixes-1-109-11}
+### Bug fixes {#bug-fixes-1-109-11}
 * Fixes an issue where the `--skip-preflights` flag would not work if all strict preflights passed but a non-strict preflight failed.
 
 ## 1.109.10
@@ -775,7 +775,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 ### Improvements {#improvements-1-109-9}
 * Various updates to enable high availability support for embedded cluster.
 
-### Bug Fixes {#bug-fixes-1-109-9}
+### Bug fixes {#bug-fixes-1-109-9}
 * An incorrect CLI command for generating support bundles is no longer shown on the Troubleshoot page in embedded clusters.
 
 ## 1.109.8
@@ -820,7 +820,7 @@ Released on May 21, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-109-4}
+### Bug fixes {#bug-fixes-1-109-4}
 * Fix `kubectl kots port-forward` for high-latency network connections.
 
 ## 1.109.3
@@ -829,7 +829,7 @@ Released on May 15, 2024
 
 Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 
-### Bug Fixes {#bug-fixes-1-109-3}
+### Bug fixes {#bug-fixes-1-109-3}
 * Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returned `k0s` instead of `embedded-cluster` for embedded clusters.
 
 ## 1.109.2
@@ -850,7 +850,7 @@ Support for Kubernetes: 1.27, 1.28, 1.29, and 1.30
 ### Improvements {#improvements-1-109-1}
 * Displays the volume name, Pod name, and namespace of snapshotted volumes in the snapshot details page.
 
-### Bug Fixes {#bug-fixes-1-109-1}
+### Bug fixes {#bug-fixes-1-109-1}
 * Fixes an issue where the **Config** and **View files** tabs did not display as active when clicked.
 * Fixes an issue where KOTS failed to process Helm charts with required values that were configured with the v1beta2 HelmChart custom resource.
 
@@ -860,7 +860,7 @@ Released on May 9, 2024
 
 Support for Kubernetes: 1.27, 1.28, and 1.29
 
-### New Features {#new-features-1-109-0}
+### New features {#new-features-1-109-0}
 * Adds the ability to detect embedded cluster with the [Distribution](/reference/template-functions-static-context#distribution) template function.
 
 ## 1.108.13
@@ -878,7 +878,7 @@ Released on May 3, 2024
 
 Support for Kubernetes: 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-108-12}
+### Bug fixes {#bug-fixes-1-108-12}
 * Fixes an issue where the snapshot settings card on the admin console dashboard contained an extra slash in the object store bucket path.
 
 ## 1.108.11
@@ -909,7 +909,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 ### Improvements {#improvements-1-108-9}
 * Updates images to resolve CVE-2024-3817 with critical severity.
 
-### Bug Fixes {#bug-fixes-1-108-9}
+### Bug fixes {#bug-fixes-1-108-9}
 * Fixes an issue where the **Edit config** link on the dashboard didn't work.
 
 ## 1.108.8
@@ -984,7 +984,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 ### Improvements {#improvements-1-108-1}
 * Prevents application rollback in Embedded Cluster installations.
 
-### Bug Fixes {#bug-fixes-1-108-1}
+### Bug fixes {#bug-fixes-1-108-1}
 * Fixes an issue in Embedded Cluster where forward slashes were replaced with dashes in custom role labels.
 
 ## 1.108.0
@@ -993,7 +993,7 @@ Released on March 5, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### New Features {#new-features-1-108-0}
+### New features {#new-features-1-108-0}
 * Adds the ability to get the config values of the currently deployed app version via the CLI by passing the `--current` flag to the [kubectl kots get config](/reference/kots-cli-get-config) CLI command.
 * Adds the ability to update the config values of the currently deployed app version via the CLI by passing the `--current` flag to the [kubectl kots set config](/reference/kots-cli-set-config) CLI command.
 * Adds the ability to update the config values of any app version via the CLI by providing the target sequence with the `--sequence` flag in the [kubectl kots set config](/reference/kots-cli-set-config) CLI command.
@@ -1002,7 +1002,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 ### Improvements {#improvements-1-108-0}
 * Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
 
-### Bug Fixes {#bug-fixes-1-108-0}
+### Bug fixes {#bug-fixes-1-108-0}
 * Fixes an issue where the license upload page flashed briefly before being redirected to the login page.
 * Fixes an issue in embedded cluster (Beta) where the cluster upgrade modal occasionally failed to display during upgrades.
 
@@ -1021,7 +1021,7 @@ Released on February 23, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-107-7}
+### Bug fixes {#bug-fixes-1-107-7}
 * Fixes an issue where the "Ignore Preflights" button was not displayed on the preflights page when preflights were running.
 * Fixes an issue where the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function did not return the new value when syncing the license.
 
@@ -1040,7 +1040,7 @@ Released on February 20, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-107-5}
+### Bug fixes {#bug-fixes-1-107-5}
 * Fixes an issue in kURL clusters where images from Helm charts configured using the v1beta2 HelmChart custom resource were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
 
 ## 1.107.4
@@ -1049,7 +1049,7 @@ Released on February 16, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-107-4}
+### Bug fixes {#bug-fixes-1-107-4}
 * Fixes an issue where processing images from Helm charts configured using the v1beta2 HelmChart custom resource may fail in air gapped mode.
 
 ## 1.107.3
@@ -1058,7 +1058,7 @@ Released on February 12, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-107-3}
+### Bug fixes {#bug-fixes-1-107-3}
 * Fixes an issue where the preflights page was not displayed during initial installation if the preflight spec was included in a Secret or ConfigMap in the Helm chart templates.
 
 ## 1.107.2
@@ -1087,7 +1087,7 @@ Released on January 30, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### New Features {#new-features-1-107-0}
+### New features {#new-features-1-107-0}
 * Adds support for running KOTS on ARM64 nodes. For air gap installations, the KOTS air gap bundle has an updated format and also now includes images for both AMD64 and ARM64 architectures. When updating KOTS in air gap environments, ensure the CLI version you use matches the version of the KOTS air gap bundle because earlier KOTS versions are not compatible with the new air gap bundle format. For more information about KOTS installation requirements, see [Installation Requirements](/enterprise/installing-general-requirements). 
 
 ### Improvements {#improvements-1-107-0}
@@ -1099,7 +1099,7 @@ Released on January 23, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### New Features {#new-features-1-106-0}
+### New features {#new-features-1-106-0}
 * Adds support for an experimental air gap bundle feature that allows KOTS to process partial air gap bundles that only include the images needed to update to the desired version.
 
 ## 1.105.5
@@ -1117,7 +1117,7 @@ Released on January 16, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-105-4}
+### Bug fixes {#bug-fixes-1-105-4}
 * Fixes an issue where Pods associated with KOTS components could be incorrectly scheduled on a non-AMD64 node.
 * Fixes an issue where configuring snapshots to use internal storage failed in kURL clusters with HA MinIO and OpenEBS.
 
@@ -1136,7 +1136,7 @@ Released on January 9, 2024
 
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
-### Bug Fixes {#bug-fixes-1-105-2}
+### Bug fixes {#bug-fixes-1-105-2}
 * Fixes an issue where rendering KOTS custom resources could fail if there are required configuration items that don't have defaults.
 * Fixes an issue where the `kotsadm-rqlite` and `kotsadm-minio` Pods could be incorrectly scheduled on Arm nodes.
 
@@ -1146,7 +1146,7 @@ Released on December 29, 2023
 
 Support for Kubernetes: 1.26, 1.27, and 1.28
 
-### Bug Fixes {#bug-fixes-1-105-1}
+### Bug fixes {#bug-fixes-1-105-1}
 * Fixes an issue where the `minKotsVersion` and `targetKotsVersion` fields in the Application custom resource would not be enforced if it was part of a multi-doc yaml file.
 
 ## 1.105.0
@@ -1155,10 +1155,10 @@ Released on December 28, 2023
 
 Support for Kubernetes: 1.26, 1.27, and 1.28
 
-### New Features {#new-features-1-105-0}
+### New features {#new-features-1-105-0}
 * Adds the ability to template the entire [values](/reference/custom-resource-helmchart-v2#values) field in the HelmChart custom resource.
 
-### Bug Fixes {#bug-fixes-1-105-0}
+### Bug fixes {#bug-fixes-1-105-0}
 * Fixes an issue where the [namespace](/reference/custom-resource-helmchart-v2#namespace) field in HelmChart custom resources was not rendered when uninstalling the corresponding chart.
 * Fixes an issue where KOTS failed to parse the Preflight custom resource if template functions were used for non-string fields.
 
@@ -1183,7 +1183,7 @@ Support for Kubernetes: 1.26, 1.27, and 1.28
 * Uses Chainguard to build the MinIO image to resolve CVE-2022-27943 and CVE-2022-29458 with low severity.
 * Uses Chainguard to build the dex image to resolve CVE-2022-48174 with critical severity; CVE-2023-5363, CVE-2023-39325, and GHSA-m425-mq94-257g with high severity; and CVE-2023-2975, CVE-2023-3446, CVE-2023-3817, CVE-2023-5678, GHSA-2c7c-3mj9-8fqh, CVE-2023-3978, and CVE-2023-44487 with medium severity.
 
-### Bug Fixes {#bug-fixes-1-104-6}
+### Bug fixes {#bug-fixes-1-104-6}
 * Fixes an issue where preflights could hang indefinitely when rerun, if the sequence was created by KOTS versions earlier than 1.96.0.
 
 ## 1.104.5
@@ -1195,7 +1195,7 @@ Support for Kubernetes: 1.26, 1.27, and 1.28
 ### Improvements {#improvements-1-104-5}
 * Uses Chainguard to build the kurl-proxy image to resolve CVE-2023-45853 with critical severity; CVE-2023-25652, CVE-2023-29007 CVE-2023-5981, CVE-2023-2953, CVE-2023-44487, CVE-2023-31484, and CVE-2023-47038 with high severity; CVE-2023-4039, CVE-2023-5678, and CVE-2023-4641 with medium severity; CVE-2011-3374, TEMP-0841856-B18BAF, CVE-2022-0563, CVE-2016-2781, CVE-2017-18018, CVE-2022-27943, CVE-2018-1000021, CVE-2022-24975, CVE-2023-25815, CVE-2022-3219, CVE-2010-4756, CVE-2018-20796, CVE-2019-1010022, CVE-2019-1010023, CVE-2019-1010024, CVE-2019-1010025, CVE-2019-9192, CVE-2018-6829, CVE-2011-3389, CVE-2018-5709, CVE-2015-3276, CVE-2017-14159, CVE-2017-17740, CVE-2020-15719, CVE-2011-4116, CVE-2023-31486, CVE-2007-6755, CVE-2010-0928, CVE-2013-4392, CVE-2023-31437, CVE-2023-31438, CVE-2023-31439, CVE-2007-5686, CVE-2019-19882, CVE-2023-29383, TEMP-0628843-DBAD28, TEMP-0517018-A83CE6, CVE-2005-2541, CVE-2022-48303, and TEMP-0290435-0B57B5 with low severity.
 
-### Bug Fixes {#bug-fixes-1-104-5}
+### Bug fixes {#bug-fixes-1-104-5}
 * Fixes an issue that stripped the port from the argument passed to the `--kotsadm-registry` flag. This could result in an error when validating the registry when installing, upgrading, or pushing admin console images.
 
 ## 1.104.4
@@ -1207,7 +1207,7 @@ Support for Kubernetes: 1.26, 1.27, and 1.28
 ### Improvements {#improvements-1-104-3}
 * Uses Chainguard to build the `kotsadm` image to resolve CVE-2023-45853 with critical severity; CVE-2023-25652, CVE-2023-29007, CVE-2023-5981, CVE-2023-2953, CVE-2023-44487, CVE-2023-31484, CVE-2023-47038, CVE-2023-24329, CVE-2023-41105, and CVE-2023-2253 with high severity; CVE-2023-4039, CVE-2023-27043, CVE-2023-40217, CVE-2023-5678, and CVE-2023-4641 with medium severity; and CVE-2011-3374, TEMP-0841856-B18BAF, CVE-2022-0563, CVE-2016-2781, CVE-2017-18018, CVE-2022-3219, CVE-2022-27943, CVE-2018-1000021, CVE-2022-24975, CVE-2023-25815, CVE-2010-4756, CVE-2018-20796, CVE-2019-1010022, CVE-2019-1010023, CVE-2019-1010024, CVE-2019-1010025, CVE-2019-9192, CVE-2018-6829, CVE-2011-3389, CVE-2018-5709, CVE-2015-3276, CVE-2017-14159, CVE-2017-17740, CVE-2020-15719, CVE-2011-4116, CVE-2023-31486, CVE-2023-24535, CVE-2021-45346, CVE-2007-6755, CVE-2010-0928, CVE-2013-4392, CVE-2023-31437, CVE-2023-31438, CVE-2023-31439, CVE-2007-5686, CVE-2019-19882, CVE-2023-29383, TEMP-0628843-DBAD28, TEMP-0517018-A83CE6, CVE-2005-2541, CVE-2022-48303, and TEMP-0290435-0B57B5 with low severity.
 
-### Bug Fixes {#bug-fixes-1-104-4}
+### Bug fixes {#bug-fixes-1-104-4}
 * Fixes an issue on the admin console Cluster Management page where a secondary node join command was displayed when the primary node type was selected.
 
 ## 1.104.3
@@ -1243,7 +1243,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 * Upgrades the google.golang.org/grpc go module to v1.59.0 to resolve GHSA-m425-mq94-257g with high severity and CVE-2023-44487 with medium severity.
 * Upgrades the github.com/docker/docker go module to v24.0.7 to resolve GHSA-jq35-85cj-fj4p with medium severity.
 
-### Bug Fixes {#bug-fixes-1-104-1}
+### Bug fixes {#bug-fixes-1-104-1}
 * Fixes an issue where the reporting data stored in Secrets in air gapped installations could exceed the size of the secret (1MB).
 
 ## 1.104.0
@@ -1252,7 +1252,7 @@ Released on November 6, 2023
 
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
-### New Features {#new-features-1-104-0}
+### New features {#new-features-1-104-0}
 * Releases that include version 1.0.0-beta.12 or later of the Replicated SDK can now be installed by KOTS. When KOTS deploys a release that includes the SDK, the SDK and KOTS both operate in the environment and independently report telemetry. Replicated recommends that everyone--not just vendors that support Helm CLI installations--include the SDK in their application for access to the latest features from Replicated!
 
 ### Improvements {#improvements-1-104-0}
@@ -1261,7 +1261,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 * Upgrades the minio/minio image to RELEASE.2023-10-25T06-33-25Z to resolve CVE-2023-4911 and CVE-2023-44487 with high severity, CVE-2023-4527, CVE-2023-4806, CVE-2023-4813, CVE-2023-39325, and CVE-2023-44487 with medium severity.
 * Upgrades the minio/mc image to RELEASE.2023-10-14T01-57-03Z to resolve CVE-2023-4911 with high severity, and CVE-2023-4527, CVE-2023-4806, CVE-2023-4813, and CVE-2023-39325 with medium severity.
 
-### Bug Fixes {#bug-fixes-1-104-0}
+### Bug fixes {#bug-fixes-1-104-0}
 * Fixes an issue where KOTS didn't discover specs with the `troubleshoot.sh/kind=support-bundle` label when generating support bundles.
 
 ## 1.103.3
@@ -1285,7 +1285,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 * Upgrades the Helm binary in the kotsadm image to 3.13.0 to resolve CVE-2023-28840 with high severity and CVE-2023-28841, CVE-2023-28842, and GHSA-6xv5-86q9-7xr8 with medium severity.
 * Log preflight checks to the CLI and kotsadm logs whenever there are checks that fail leading to a failed deployment.
 
-### Bug Fixes {#bug-fixes-1-103-2}
+### Bug fixes {#bug-fixes-1-103-2}
 * Fixes a bug that caused no status code to be returned from the custom metrics API requests.
 
 ## 1.103.1
@@ -1297,7 +1297,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 ### Improvements {#improvements-1-103-1}
 * Adds clarifying language that configured automatic update checks use the local server time.
 
-### Bug Fixes {#bug-fixes-1-103-1}
+### Bug fixes {#bug-fixes-1-103-1}
 * Fixes an issue where Helm charts that were previously deployed with the Replicated HelmChart kots.io/v1beta2 installation method were not uninstalled as expected after making configuration changes to exclude the chart.
 * Fixes an issue where image pull secrets and hook informers were not applied for dynamically created namespaces if the `kotsadm` pod/API restarts.
 * Fixes an issue where the applications dropdown for automatic partial snapshots settings showed no options or applications to select.
@@ -1308,7 +1308,7 @@ Released on September 20, 2023
 
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
-### New Features {#new-features-1-103-0}
+### New features {#new-features-1-103-0}
 * Adds support for [Lookup](/reference/template-functions-static-context#lookup) template function.
 
 ## 1.102.2
@@ -1320,7 +1320,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 ### Improvements {#improvements-1-102-2}
 * The [custom metrics](/vendor/custom-metrics#configure-custom-metrics) API no longer requires authorization header.
 
-### Bug Fixes {#bug-fixes-1-102-2}
+### Bug fixes {#bug-fixes-1-102-2}
 * Fixes an issue where updating the registry settings would not always display the loading indicator and status messages in the UI.
 * Fixes an issue where deployments or diffing could fail after upgrading from KOTS 1.95 or earlier to KOTS 1.101.2-1.102.1 if versions contained empty Kustomize bases.
 
@@ -1330,7 +1330,7 @@ Released on September 8, 2023
 
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
-### Bug Fixes {#bug-fixes-1-102-1}
+### Bug fixes {#bug-fixes-1-102-1}
 * Fixes an issue where uploading the application air gap bundle could fail due to a permissions issue when creating files under the `/tmp` directory inside the `kotsadm` pod/container. This is only applicable to embedded cluster installations with Replicated kURL.
 
 ## 1.102.0
@@ -1339,7 +1339,7 @@ Released on September 6, 2023
 
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
-### New Features {#new-features-1-102-0}
+### New features {#new-features-1-102-0}
 * Adds support for sending custom application metrics using the `/api/v1/app/custom-metrics` endpoint. For more information, see [Configuring Custom Metrics (Beta)](/vendor/custom-metrics).
 
 ## 1.101.3
@@ -1351,7 +1351,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 ### Improvements {#improvements-1-101-3}
 * Updates the MinIO image to RELEASE.2023-08-09T23-30-22Z to resolve CVE-2023-27536, CVE-2023-28321, CVE-2023-34969, CVE-2023-2603, CVE-2023-28484, CVE-2023-29469 with medium severity and CVE-2023-2602 with low severity.
 
-### Bug Fixes {#bug-fixes-1-101-3}
+### Bug fixes {#bug-fixes-1-101-3}
 * Removes the distinction between `gke` and `gke-autopilot` from Kubernetes distribution reporting as this check was not working as intended and potentially displaying inconsistent information. All Standard and Autopilot GKE clusters are now reported as `gke`.
 * Fixes an issue where the admin console was not correctly processing multi-doc yaml files containing windows line endings.
 
@@ -1364,7 +1364,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 ### Improvements {#improvements-1-101-2}
 * Upgrades the Helm binary in the kotsadm image to 3.12.2 to resolve CVE-2023-2253 with high severity.
 
-### Bug Fixes {#bug-fixes-1-101-2}
+### Bug fixes {#bug-fixes-1-101-2}
 * Fixes an issue where parsing invalid KOTS kinds failed silently.
 
 ## 1.101.1
@@ -1373,7 +1373,7 @@ Released on July 31, 2023
 
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
-### Bug Fixes {#bug-fixes-1-101-1}
+### Bug fixes {#bug-fixes-1-101-1}
 * Fixes an issue where defaults were not used for [repeatable config items](/reference/custom-resource-config#repeatable-items) when doing an automated install with the kots CLI.
 * Fixes an issue where processing Helm charts or sub-charts that have `-charts` as a suffix failed.
 
@@ -1383,7 +1383,7 @@ Released on July 19, 2023
 
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
-### New Features {#new-features-1-101-0}
+### New features {#new-features-1-101-0}
 * KOTS now supports running preflight checks defined in a Helm chart. If any Helm charts in a release contain preflight specifications, KOTS runs those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS uses the previous behavior and runs any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations
 ](/vendor/preflight-helm-defining).
 
@@ -1393,7 +1393,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 * Updates the MinIO image to RELEASE.2023-06-29T05-12-28Z to resolve CVE-2020-24736, CVE-2023-1667, CVE-2023-2283, and CVE-2023-26604 with medium severity.
 * Upgrades webpack to 5.88.1 to resolve CVE-2023-28154 with critical severity.
 
-### Bug Fixes {#bug-fixes-1-101-0}
+### Bug fixes {#bug-fixes-1-101-0}
 * Fixes an issue where the `rendered` directory was not created for airgap application updates.
 
 ## 1.100.3
@@ -1407,7 +1407,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 * Updates the github.com/sigstore/rekor module to v1.2.0 to resolve CVE-2023-30551 with high severity and CVE-2023-33199 with medium severity.
 * Updates the github.com/gin-gonic/gin module to v1.9.1 in the kurl-proxy to resolve CVE-2023-26125 and CVE-2023-29401 with medium severity.
 
-### Bug Fixes {#bug-fixes-1-100-3}
+### Bug fixes {#bug-fixes-1-100-3}
 * Fixes an issue where [repeatable items](/reference/custom-resource-config#repeatable-items) did not work as expected on the Config page.
 
 ## 1.100.2
@@ -1416,7 +1416,7 @@ Released on June 7, 2023
 
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
-### Bug Fixes {#bug-fixes-1-100-2}
+### Bug fixes {#bug-fixes-1-100-2}
 * Fixes an issue where the Config values were not saved when a release contained a multiple-document YAML file.
 * Fixes an issue where the Config specification was missing from the rendered release in the kotsKinds folder if the release contained a multiple-document YAML file.
 * Fixes an issue that allowed users to edit `readonly` Config items.
@@ -1437,7 +1437,7 @@ Released on May 26, 2023
 
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
-### New Features {#new-features-1-100-0}
+### New features {#new-features-1-100-0}
 * Adds support for `kots.io/creation-phase` and `kots.io/deletion-phase` annotations to control the order in which native Kubernetes resources are created and deleted, respectively. See [Deployment Phases](/vendor/orchestrating-resource-deployment#deployment-phases) in _Orchestrating Resource Deployment_.
 * Adds support for a `kots.io/wait-for-ready` annotation, which causes KOTS to wait for a native Kubernetes resource to be ready before continuing with the deployment. See [Waiting for a Resource to be Ready](/vendor/orchestrating-resource-deployment#wait-for-a-resource-to-be-ready) in _Orchestrating Resource Deployment_.
 * Adds support for a `kots.io/wait-for-properties` annotation, which causes KOTS to wait for one or more properties to match a desired value before continuing with the deployment. See [Wait for Resource Properties](/vendor/orchestrating-resource-deployment#wait-for-resource-properties) in _Orchestrating Resource Deployment_.
@@ -1445,7 +1445,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 ### Improvements {#improvements-1-100-0}
 * Updates the github.com/cloudflare/circl module to v1.3.3 to resolve CVE-2023-1732 with medium severity.
 
-### Bug Fixes {#bug-fixes-1-100-0}
+### Bug fixes {#bug-fixes-1-100-0}
 * Fixes an issue where Helm charts deployed using the native Helm installation method were uninstalled then reinstalled when the chart version changed or was updated.
 * Fixes an issue in embedded clusters where images from native Helm v2 (Beta) charts were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
 * Bumps the Helm version used by KOTS to 3.12.0 to fix an issue where native Helm installations were failing on Kubernetes 1.27.
@@ -1456,7 +1456,7 @@ Released on May 18, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-99-0}
+### New features {#new-features-1-99-0}
 * Adds a new native Helm v2 installation method (Beta) that leverages the `kots.io/v1beta2` HelmChart custom resource. This v2 installation method does a Helm installation or upgrade of your Helm chart without modifying the chart with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. See [HelmChart v2 (Beta)](/reference/custom-resource-helmchart-v2) in the _Custom Resources_ section.
 
 ### Improvements {#improvements-1-99-0}
@@ -1465,7 +1465,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Replace the misleading call-to-action button on the instance snapshot restore modal, which could have mistakenly lead the user to believe the instance restore was initiated.
 * Enhances formatting to accommodate lengthy strings for fields such as the application name and config item names.
 
-### Bug Fixes {#bug-fixes-1-99-0}
+### Bug fixes {#bug-fixes-1-99-0}
 * Fixes a bug where the rqlite collector was unable to collect a data dump if the name of the rqlite container changed.
 * Fixes an issue where re-running preflights during the initial installation could cause the UI to incorrectly show a status of "Currently pending version".
 * Fixes an issue where re-running preflights during the initial installation could cause the application to be re-deployed.
@@ -1487,7 +1487,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * The `kots admin-console push-images` command now returns an error if the provided air gap bundle file is missing.
 * Adds a **Back** button to the **Preflights** page.
 
-### Bug Fixes {#bug-fixes-1-98-3}
+### Bug fixes {#bug-fixes-1-98-3}
 * Fixes an issue where snapshot restores hung if RabbitMQ cluster custom resources were used.
 * Fixes an issue where Helm releases were not uninstalled when undeploying an application using the [kots remove](/reference/kots-cli-remove) command and passing the `--undeploy` flag.
 * Fixes an issue where Helm charts that were deployed with native Helm to a different namespace than KOTS were not uninstalled when they were removed from subsequent application releases.
@@ -1505,7 +1505,7 @@ Released on April 26, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
-### Bug Fixes {#bug-fixes-1-98-2}
+### Bug fixes {#bug-fixes-1-98-2}
 * Fixes an issue where quotes were stripped from fields in HelmChart custom resources, which led to unexpected behavior and failed deployments.
 * Fixes an issue where invalid Kustomize patches were generated for Helm charts with deeply nested dependencies.
 * Fixes an issue where processing application manifests occasionally failed if null values were encountered after rendering.
@@ -1516,7 +1516,7 @@ Released on April 21, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
-### Bug Fixes {#bug-fixes-1-98-1}
+### Bug fixes {#bug-fixes-1-98-1}
 * Fixes an issue where multiple copies of the same Kubernetes resource (for example, the same `kind` and `name`) were deduplicated even if they had a different namespace. This deduplication resulted in the app manager deploying only one of the resources to the cluster.
 * Fixes an issue that caused config updates to fail when the user did not provide a value for a required config item with a default value, even if the item was hidden.
 * Fixes an issue where switching the license to a different channel did not fetch the current release on that channel if the number of releases was the same on both channels.
@@ -1527,7 +1527,7 @@ Released on April 19, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-98-0}
+### New features {#new-features-1-98-0}
 * Adds support for validating config items with type `text`, `textarea`, `password`, or `file` by matching the item's values against a regex pattern. For more information, see [validation](/reference/custom-resource-config#validation) in _Config_.
 * Adds a new `kotsKinds` directory to the application archive that includes the rendered KOTS custom resources.
 
@@ -1541,7 +1541,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Updates the minio/mc image to RELEASE.2023-04-12T02-21-51Z to resolve CVE-2023-0361 with medium severity.
 * Adds support for template functions to the `namespace` and `helmUpgradeFlags` fields of the [HelmChart](/reference/custom-resource-helmchart) custom resource.
 
-### Bug Fixes {#bug-fixes-1-98-0}
+### Bug fixes {#bug-fixes-1-98-0}
 * Fixes an issue where strict security context configurations were not applied in OpenShift environments when the `--strict-security-context` flag was passed to the [kots install](https://docs.replicated.com/reference/kots-cli-install) or [kots admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade) commands.
 
 ## 1.97.0
@@ -1550,7 +1550,7 @@ Released on April 7, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-97-0}
+### New features {#new-features-1-97-0}
 * Allows users to unmask passwords on various forms in the admin console.
 
 ### Improvements {#improvements-1-97-0}
@@ -1568,7 +1568,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Wraps the logs in the deploy logs modal to increase readability by eliminating the need to scroll horizontally.
 * Removes support for cipher suites that use the CBC encryption algorithm or SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
 
-### Bug Fixes {#bug-fixes-1-96-3}
+### Bug fixes {#bug-fixes-1-96-3}
 * Fixes a bug that caused application upgrades to fail because the app manager attempted to migrate the Helm release secret when the release secret already existed in the release namespace.
 
 ## 1.96.2
@@ -1584,7 +1584,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Updates the golang.org/x/net module in the kurl-proxy to resolve CVE-2022-41723 with high severity.
 * Upgrades the schemahero image tag to v0.14.0 and replicated/local-volume-provider image to v0.5.2 to resolve CVE-2022-41723 with high severity.
 
-### Bug Fixes {#bug-fixes-1-96-2}
+### Bug fixes {#bug-fixes-1-96-2}
 * Fixes a bug where multi-node embedded cluster installations hang indefinitely with the KOTS add-on.
 * Increases the time for displaying the slow loading indicator to two minutes to prevent the admin console from continuously reloading when the internet connection is slow.
 * Removes hardcoded application name on the Troubleshoot page when a community license is used.
@@ -1617,7 +1617,7 @@ Released on March 9, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-96-0}
+### New features {#new-features-1-96-0}
 * Adds the deployable, rendered application manifests to the version archive. This increases the transparency of what KOTS deploys by showing the exact manifests that are deployed as part of this version on the **View Files** page. For more information, see [Rendered](/enterprise/updating-patching-with-kustomize#rendered) in _Patching with Kustomize_.
 
 ### Improvements {#improvements-1-96-0}
@@ -1625,7 +1625,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Improves the performance of creating, diffing, configuring, and deploying application versions by retrieving the rendered application manifests when they are available, instead of rendering them on the fly.
 * Improves the performance of creating application versions by running private image checks concurrently.
 
-### Bug Fixes {#bug-fixes-1-96-0}
+### Bug fixes {#bug-fixes-1-96-0}
 * Resolves a clickjacking vulnerability that was present in the kurl_proxy service that runs in embedded cluster installations.
 * Adds a **Rerun** button on the preflights page when an application is initially installed.
 * Fixes an issue where the selected subnavigation tab was not underlined.
@@ -1642,7 +1642,7 @@ Released on March 1, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-95-0}
+### New features {#new-features-1-95-0}
 * Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
 * Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Private Registry Requirements](/enterprise//installing-general-requirements#private-registry-requirements).
 * Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
@@ -1654,10 +1654,10 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * The [kots admin-console generate-manifests](/reference/kots-cli-admin-console-generate-manifests) command now supports OpenShift and GKE Autopilot, if it is executed with a Kubernetes cluster context.
 * Support bundles generated from the admin console include a copy of rqlite data for debugging purposes.
 
-### Bug Fixes {#bug-fixes-1-95-0}
+### Bug fixes {#bug-fixes-1-95-0}
 * Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource was not respected when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) was set to `true`.
 
-### Known Issue {#known-issues-1-95-0}
+### Known issue {#known-issues-1-95-0}
 
 There is a known issue in the app manager v1.95.0 that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method. For more information about native Helm, see [How Replicated Deploys Helm Charts](/vendor/helm-overview#how-replicated-deploys-helm-charts) in _About Packaging with Helm_.
 
@@ -1679,7 +1679,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Updates kurl_proxy go mod gopkg.in/yaml.v3 to resolve CVE-2022-28948 with high severity.
 * Support bundles generated from the admin console now include collectors and analyzers from all support bundle specifications found in the cluster. This includes support bundle specifications found in Secret and ConfigMap objects. For more information about how to generate support bundles using discovery, see [Generating Support Bundles](/vendor/support-bundle-generating#generate-a-bundle).
 
-### Bug Fixes {#bug-fixes-1-94-2}
+### Bug fixes {#bug-fixes-1-94-2}
 * Fixes a bug that didn't properly display config items that had the `affix` property.
 * Fixes an issue where the button to rerun preflights did not show if preflights failed during an air gapped installation.
 * Fixes a bug where Velero backups failed due to pods in the Shutdown state.
@@ -1693,7 +1693,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 ### Improvements {#improvements-1-94-1}
 * Adds support for Velero 1.10.
 
-### Bug Fixes {#bug-fixes-1-94-1}
+### Bug fixes {#bug-fixes-1-94-1}
 * Fixes an issue where errors related to parsing and rendering HelmChart custom resources were silently ignored.
 
 ## 1.94.0
@@ -1702,7 +1702,7 @@ Released on February 7, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
-### New Features {#new-features-1-94-0}
+### New features {#new-features-1-94-0}
 * Updates the [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) and [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) commands to remove required manual steps and better automate the workflow. Users are now given a command to install Velero without a backup storage location. Then the user reruns the configure command to automatically configure the storage destination.
 * Updates the [kots velero subcommands](/reference/kots-cli-velero-index) for configuring storage destinations, with instructions on how to install Velero if it is not yet installed.
 * The instructions displayed in the admin console for configuring an NFS or host path snapshot storage destination no longer use the `kots velero print-fs-instructions` command. Instead they use the [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) and [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) commands to instruct the user to install Velero and configure the storage destination.
@@ -1715,7 +1715,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Deprecates the [kots velero print-fs-instructions](/reference/kots-cli-velero-print-fs-instructions) command because its functionality is replaced by the improved [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) and [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) commands.
 * Improves the layout of deploy and redeploy network errors.
 
-### Bug Fixes {#bug-fixes-1-94-0}
+### Bug fixes {#bug-fixes-1-94-0}
 * Fixes an issue where the Edit Config icon was visible on the dashboard for application versions that did not include config.
 * Fixes an issue where a user had to refresh the page to generate a new support bundle after deleting a support bundle that was still being generated.
 * Fixes a regression where the text wasn't colored for certain status informer states.
@@ -1733,7 +1733,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Updates the golang.org/x/net module to resolve CVE-2022-41721 with high severity.
 * Public and private SSH keys are deleted when GitOps is disabled and the keys are not in use by another application.
 
-### Bug Fixes {#bug-fixes-1-93-1}
+### Bug fixes {#bug-fixes-1-93-1}
 * Fixes a bug where the snapshots page showed no snapshots for a moment after starting a snapshot.
 * Fixes a bug where a warning related to `kubectl apply` displayed during embedded cluster installations.
 * Fixes an issue where registry.replicated.com images were rewritten to proxy.replicated.com when the application version specified a custom domain for the Replicated registry.
@@ -1745,14 +1745,14 @@ Released on January 19, 2023
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-93-0}
+### New features {#new-features-1-93-0}
 * Adds the ability to delete support bundles from the Troubleshoot page of the admin console.
 * Config navigation links are highlighted as the user scrolls.
 
 ### Improvements {#improvements-1-93-0}
 * Updates the helm.sh/helm/v3 module to v3.10.3 to resolve CVE-2022-23524, CVE-2022-23525, and CVE-2022-23526 with high severity.
 
-### Bug Fixes {#bug-fixes-1-93-0}
+### Bug fixes {#bug-fixes-1-93-0}
 * Fixes an issue where the Cluster Management tab does not show up in Kubernetes installer clusters.
 * Fixes an issue where the description for generating a support bundle used a hard coded application name.
 * Fixes an issue on the Version History page where the row layout broke when displaying preflight check warnings.
@@ -1769,7 +1769,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Updates the kubectl binary in the kotsadm image to resolve CVE-2022-27664 and CVE-2022-32149 with high severity.
 * Updates the replicated/local-volume-provider image to v0.4.3 to resolve CVE-2021-46848 with critical severity.
 
-### Bug Fixes {#bug-fixes-1-92-1}
+### Bug fixes {#bug-fixes-1-92-1}
 * Fixes an issue that caused the license upload to fail for applications that include Helm charts with [required](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
 
 ## 1.92.0
@@ -1778,7 +1778,7 @@ Released on December 16, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-92-0}
+### New features {#new-features-1-92-0}
 * The app manager uses the `replicatedRegistryDomain` domain to rewrite images stored in the Replicated registry, when the `replicatedRegistryDomain` field is provided in the Application custom resource.
 * Adds the [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions.
 
@@ -1787,7 +1787,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Pins the config navigation so that it does not disappear when scrolling.
 * The [`LicenseDockerCfg`](/reference/template-functions-license-context#licensedockercfg) template function in the License Context now utilizes the `replicatedRegistryDomain` and `proxyRegistryDomain` values from the Application custom resource, if specified.
 
-### Bug Fixes {#bug-fixes-1-92-0}
+### Bug fixes {#bug-fixes-1-92-0}
 * Disables image garbage collection when an external registry is enabled.
 * Fixes a bug where the rqlite headless service manifest was not generated.
 * Fixes an issue where labels displayed as config items in the config navigation.
@@ -1799,7 +1799,7 @@ Released on December 10, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### Bug Fixes {#bug-fixes-1-91-3}
+### Bug fixes {#bug-fixes-1-91-3}
 * Fixes an issue where air gap uploads failed for applications containing required configuration without default values.
 * Fixes errors when generating support bundles in existing clusters via the CLI.
 
@@ -1819,7 +1819,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Improved the TLS certificate flow to make it clearer which fields are needed when using a self-signed certificate or uploading your own.
 * Adds the `proxyRegistryDomain` field to the Application custom resource. When this field is provided, the app manager will rewrite proxied private images using that domain instead of proxy.replicated.com.
 
-### Bug Fixes {#bug-fixes-1-91-2}
+### Bug fixes {#bug-fixes-1-91-2}
 * Fixes overlapping labels on TLS configuration page.
 * Fixes an issue that caused the login button to be stuck in the "Logging in" state in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
 * Fixes an issue where snapshots to NFS storage locations failed due to file permission issues in environments running without MinIO.
@@ -1832,7 +1832,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Fixes leaked goroutines.
 * Increases the memory limit for rqlite to 1Gi to fix an issue where rqlite was OOM killed during the migration from Postgres when there was a very large number of versions available in the admin console.
 
-### Known Issue {#known-issues-1-91-2}
+### Known issue {#known-issues-1-91-2}
 
 There is a known issue in the app manager v1.91.2 that causes air gap uploads to fail when there are configuration items with the `required` property set to `true` and no default value specified.
 
@@ -1853,7 +1853,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Updates the replicated/local-volume-provider image to v0.4.1 to resolve CVE-2022-29458 with high severity.
 * Updates the Helm dependency from 3.9.0 to 3.9.4 to resolve CVE-2022-36055 with medium severity.
 
-### Bug Fixes {#bug-fixes-1-91-1}
+### Bug fixes {#bug-fixes-1-91-1}
 * Fixes a bug that could result in `invalid status code from registry 400` error when pushing images from an air gap bundle into a private registry.
 * Fixes an issue where configuring snapshot schedules in Firefox didn't work.
 * Fixes an issue where installing or upgrading the app manager failed for GKE Autopilot clusters.
@@ -1865,14 +1865,14 @@ Released on November 14, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-91-0}
+### New features {#new-features-1-91-0}
 * Updates the Troubleshoot and Config pages to standardize the look of admin console.
 
 ### Improvements {#improvements-1-91-0}
 * Updates the kotsadm base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
 * Shows password complexity rules when setting the admin console password with the CLI. Passwords must be at least six characters long.
 
-### Bug Fixes {#bug-fixes-1-91-0}
+### Bug fixes {#bug-fixes-1-91-0}
 * Fixes an issue where the admin console automatically redirected to the login page after a snapshot was restored successfully, which could have prevented users from knowing the outcome of the restore.
 
 ## 1.90.0
@@ -1881,7 +1881,7 @@ Released on November 4, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-90-0}
+### New features {#new-features-1-90-0}
 * Adds the ability to remove registry info from the **Registry settings** page.
 * Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
 
@@ -1889,7 +1889,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Updates the golang.org/x/text module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2022-32149 with high severity.
 * The file explorer now includes rendered `values.yaml` files for each Helm chart that is deployed by the app manager.
 
-### Bug Fixes {#bug-fixes-1-90-0}
+### Bug fixes {#bug-fixes-1-90-0}
 * Updates the Prometheus query to show disk usage by instance and mount point.
 * Fixes an issue where checking for updates failed with the message "License is expired", but the **License** tab indicated that the license was not expired.
 * Fixes an issue where the admin console could restart during the migration from Postgres to rqlite due to a short timeout.
@@ -1900,10 +1900,10 @@ Released on October 28, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-89-0}
+### New features {#new-features-1-89-0}
 * Automatically migrates data from Postgres to rqlite and removes Postgres. Also introduces a new [kubectl kots enable-ha](/reference/kots-cli-enable-ha) command that runs rqlite as three replicas for higher availability. This command should only be run on clusters with at least three nodes. Now multiple node clusters deployed with the Kubernetes installer can use OpenEBS local PV, because data will be replicated across all three replicas of rqlite, allowing the app manager to run on any node in the cluster without requiring distributed storage like Rook provides.
 
-### Bug Fixes {#bug-fixes-1-89-0}
+### Bug fixes {#bug-fixes-1-89-0}
 * Fixes an issue that causes the Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Allows kots CLI commands to use the kubeconfig namespace by default if a flag is not provided.
 * Fixes an issue where installing, updating, or configuring applications that have many images defined in KOTS custom resources (such as collectors, preflights, and analyzers) hangs or takes a long time.
@@ -1917,7 +1917,7 @@ Released on October 19, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-88-0}
+### New features {#new-features-1-88-0}
 * Adds ability to deploy an application with new values after syncing license from admin console in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-88-0}
@@ -1926,7 +1926,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Updates the schemahero image to v0.13.5 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
 * Updates the replicated/local-volume-provider image to v0.3.10 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
 
-### Bug Fixes {#bug-fixes-1-88-0}
+### Bug fixes {#bug-fixes-1-88-0}
 * Fixes an issue where the cluster management page was blank when the pod capacity for a node was defined with an SI prefix (e.g., `1k`).
 * Fixes an issue where the admin console occasionally would not redirect to the dashboard after preflight checks were skipped.
 * Fixes an issue where the application icon did not show on the login page until the application was deployed.
@@ -1937,13 +1937,13 @@ Released on October 12, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, 1.25
 
-### New Features {#new-features-1-87-0}
+### New features {#new-features-1-87-0}
 * Uses Ed25519 SSH keys for GitOps when integrating with Github Enterprise. See [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
 
 ### Improvements {#improvements-1-87-0}
 * Adds support for template functions to the `spec.graphs` field of the Application custom resource. See [Application](/reference/custom-resource-application).
 
-### Bug Fixes {#bug-fixes-1-87-0}
+### Bug fixes {#bug-fixes-1-87-0}
 * Fixes an issue where log tabs for Helm installs were hidden.
 * Fixes a bug that caused pre-existing rows on the version history page in Helm-managed mode (Alpha) to be highlighted as newly available versions when the page is opened. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * Fixes an issue that could cause embedded installations to fail with error "yaml: did not find expected node content" when installing behind an `HTTP_PROXY`.
@@ -1951,7 +1951,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, 1.25
 * Fixes an issue that caused the Troubleshoot page to display the support bundle collection progress bar even when a support bundle was not being collected.
 * Sorts the entitlements returned in the `/license` endpoint to ensure that they display consistently in the admin console.
 
-### Known Issue {#known-issues-1-87-0}
+### Known issue {#known-issues-1-87-0}
 
 There is a known issue in the app manager v1.87.0 that causes a KOTS icon, instead of the application icon, to display on the login page before the application is deployed. After the application is deployed, the application icon shows on the login screen.
 
@@ -1964,7 +1964,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Improvements {#improvements-1-86-2}
 * Changes the way CSS and font files are included for custom admin console branding (Alpha). If you have early access to this feature, see the Alpha documentation for more information.
 
-### Bug Fixes {#bug-fixes-1-86-2}
+### Bug fixes {#bug-fixes-1-86-2}
 * Fixes an issue where large font files for custom admin console branding (Alpha) caused the admin console to fail to create a new application version.
 * Fixes an issue where the identity service login redirected to the login page after a successful login.
 * Fixes an issue in the **Cluster Management** tab where the button for adding a primary node stopped working if the original join token expired.
@@ -1981,7 +1981,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Only show relevant tabs on the deployment logs modal depending on whether or not the admin console is in Helm-managed mode.
 * Standardizes all page titles using the format **Page Name | App Slug | Admin Console**. The page title is the text that shows in the browser tab.
 
-### Bug Fixes {#bug-fixes-1-86-1}
+### Bug fixes {#bug-fixes-1-86-1}
 * Fixes an issue where automatic update checks failed when the interval is too short for pending updates to be fetched.
 * Fixes an issue where the automatic update checks modal didn't show custom schedules after they were saved. See [Configure Automatic Updates](/enterprise/updating-apps#configure-automatic-updates).
 * Fixes an issue in Helm-managed mode where checking for updates from the version history page did not show the "License is expired" error when the check failed due to an expired license. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
@@ -2001,14 +2001,14 @@ Released on September 27, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-86-0}
+### New features {#new-features-1-86-0}
 * Allows icon colors to be changed with the CSS when branding the admin console (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
 
 ### Improvements {#improvements-1-86-0}
 * Removes the license upload page when the admin-console Helm chart is installed without installing a Replicated application.
 * Makes port forward reconnections faster.
 
-### Bug Fixes {#bug-fixes-1-86-0}
+### Bug fixes {#bug-fixes-1-86-0}
 * Fixes the message alignment when a strict preflight check fails.
 * Fixes a bug where versions with `pending_download` status were shown incorrectly on the version history page.
 * Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that had not been downloaded yet, resulting in a UI error.
@@ -2020,7 +2020,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes a bug that caused the currently deployed version to temporarily appear as a newly available version when an update check ran in Helm-managed mode (Alpha).
 * Fixes styling on `<pre>` elements in the Helm install modals (Alpha) so that their heights match the content.
 
-### Known Issue {#known-issues-1-86-0}
+### Known issue {#known-issues-1-86-0}
 
 This issue is resolved in the app manager v1.86.1.
 
@@ -2036,7 +2036,7 @@ Released on September 19, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-85-0}
+### New features {#new-features-1-85-0}
 * Adds the ability to automatically check for new chart versions that are available when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * In Helm-managed mode, new Helm chart versions that introduce a required configuration value must be configured before they can be deployed.
 
@@ -2046,7 +2046,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates the github.com/open-policy-agent/opa module to resolve CVE-2022-36085 with critical severity.
 * Updates the kotsadm/dex image to v2.34.0 to resolve CVE-2022-37434 with critical severity and CVE-2021-43565, CVE-2022-27191, and CVE-2021-44716 with high severity.
 
-### Bug Fixes {#bug-fixes-1-85-0}
+### Bug fixes {#bug-fixes-1-85-0}
 * Fixes an issue in embedded clusters where image garbage collection deletes images that are still in use by the application.
 * Increases the memory limit for the `kotsadm-minio` StatefulSet from 200Mi to 512Mi.
 * Fixes an issue where headless/unattended installations hang in embedded clusters with recent Kubernetes versions.
@@ -2060,7 +2060,7 @@ Released on September 12, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-84-0}
+### New features {#new-features-1-84-0}
 * Adds the ability to configure and deploy new Helm chart versions when the admin console is running in Helm-managed mode (Alpha).
 * Adds support for including custom font files in an application release, which can be used when branding the admin console (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
 
@@ -2069,7 +2069,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates the github.com/gin-gonic/gin module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2020-28483 with high severity.
 * Updates SchemaHero to v0.13.2 to resolve CVE-2022-21698.
 
-### Bug Fixes {#bug-fixes-1-84-0}
+### Bug fixes {#bug-fixes-1-84-0}
 * Updates the `support-bundle` CLI command provided in the admin console to use the generated Kubernetes resources instead of the raw upstream specification when running in Helm-managed mode (Alpha).
 * Fixes an issue that caused Secrets and ConfigMaps created by the admin console to be left in the namespace after a Helm chart is uninstalled in Helm-managed mode (Alpha).
 * Fixes an issue where application status informers did not update if the admin console Pod was restarted.
@@ -2082,13 +2082,13 @@ Released on September 1, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-83-0}
+### New features {#new-features-1-83-0}
 * Adds support for custom branding of the admin console using CSS (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
 
 ### Improvements {#improvements-1-83-0}
 * Icons supplied in the `icon` field of the Application custom resource can be square or circular.
 
-### Bug Fixes {#bug-fixes-1-83-0}
+### Bug fixes {#bug-fixes-1-83-0}
 * Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
@@ -2102,7 +2102,7 @@ Released on August 25, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-82-0}
+### New features {#new-features-1-82-0}
 * Adds support for a new air gap bundle format that supports image digests and deduplication of image layers shared across images in the bundle. The new air gap bundle format is in Beta. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "new air gap bundle format".
 * Adds support for deploying images that are referenced by digest or by digest and tag, rather than by tag alone, in online installations that have a private registry configured.
 * Adds support for displaying the config values for each revision deployed in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
@@ -2111,7 +2111,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates the `local-volume-provider image` to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
 * Updates the configuration pages for the GitOps workflow, making it easier to set up.
 
-### Bug Fixes {#bug-fixes-1-82-0}
+### Bug fixes {#bug-fixes-1-82-0}
 * Fixes an issue that prevented you from typing in the **Path** field when **Other S3-Compatible Storage** was set as the snapshot storage destination.
 * Fixes an issue where the `LicenseFieldValue` template function always returned an empty string for the `isSnapshotSupported` value. For more information about the `LicenseFieldValue` template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue).
 
@@ -2127,7 +2127,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates the golang.org/x/net module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2021-44716 with high severity.
 * Updates the dex image from 2.32.0 to 2.33.0 to resolve CVE-2022-30065, CVE-2022-2097, and CVE-2022-27191 with high severity.
 
-### Bug Fixes {#bug-fixes-1-81-1}
+### Bug fixes {#bug-fixes-1-81-1}
 * Fixes an issue where starting a manual snapshot resulted in an error dialog when using Firefox or Safari.
 * Fixes an issue that caused images formatted as `docker.io/image:tag` to not be rewritten when upgrading applications in airgapped environments. For more information about rewriting images, see [Patching the Image Location with Kustomize](/vendor/packaging-private-images#patching-the-image-location-with-kustomize) in _Connecting to an Image Registry_.
 
@@ -2137,7 +2137,7 @@ Released on August 12, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-81-0}
+### New features {#new-features-1-81-0}
 * Adds support for the `alias` field in Helm chart dependencies.
 * Adds support for image tags and digests to be used together for most online installations. For more information, see [Support for Image Tags and Digests](/vendor/packaging-private-images#support-for-image-tags-and-digests) in *Connecting to an Image Registry*.
 
@@ -2145,7 +2145,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Helm v2 will only be used if `helmVersion` is set to `v2` in the HelmChart custom resource. Support for Helm v2, including security patches, ended on November 13, 2020, and support for Helm v2 in the app manager will be removed in the near future. For more information about the HelmChart custom resource, see [HelmChart](/reference/custom-resource-helmchart).
 * Improves the UI responsiveness on the Config page.
 
-### Bug Fixes {#bug-fixes-1-81-0}
+### Bug fixes {#bug-fixes-1-81-0}
 * Fixes an issuse where the license tab did not show for Helm-managed installations.
 * Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when `useHelmInstall` is set to `true` and `namespace` is an empty string. For more information about these fields, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) and [namespace](/reference/custom-resource-helmchart#usehelminstall) in *HelmChart*.
 * Fixes an issue where GitOps was enabled before the deploy key was added to the git provider.
@@ -2157,14 +2157,14 @@ Released on August 8, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-80-0}
+### New features {#new-features-1-80-0}
 * Displays the `helm rollback` command when deploying previous revisions from the version history page in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-80-0}
 * Password complexity rules will now be shown when changing the password in the admin console.
 * Updates Kustomize from 3.5.4 to 4.5.7. Note that Kustomize v4.5.7 does not allow duplicate YAML keys to be present in your application manifests, whereas v3.5.4 did. Kustomize v4.5.7 is a bit slower than v3.5.4, so fetching and deploying new versions takes a bit more time. Our benchmarking did not show this performance degradation to be significant. Updating Kustomize resolves several critical and high severity CVEs, and unblocks additional feature work in the app manager.
 
-### Bug Fixes {#bug-fixes-1-80-0}
+### Bug fixes {#bug-fixes-1-80-0}
 * Fixes an issue where an ambiguous error message was shown when the endpoint field was modified in the license.
 * Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 * Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) in *Troubleshooting an Application*.
@@ -2175,14 +2175,14 @@ Released on August 4, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-79-0}
+### New features {#new-features-1-79-0}
 * Adds an [HTTPSProxy](/reference/template-functions-static-context#httpsproxy) template function to return the address of the proxy that the Replicated admin console is configured to use.
 * Dynamically adds collectors, analyzers, and custom redactors when collecting support bundles from the [troubleshoot](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-79-0}
 * Removes the "Add new application" option when running the admin console in [Helm-managed mode (Alpha)](/vendor/helm-install).
 
-### Bug Fixes {#bug-fixes-1-79-0}
+### Bug fixes {#bug-fixes-1-79-0}
 * Fixes an issue that caused the [affix](/reference/custom-resource-config#affix) property of config items to be ignored.
 * Fixes an issue that caused the [help_text](/reference/custom-resource-config#help_text) property of config items to be ignored.
 * Fixes an issue that caused the license card to not be updated when switching applications in the admin console.
@@ -2198,14 +2198,14 @@ Released on July 28, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-78-0}
+### New features {#new-features-1-78-0}
 * The analyze application button on the [Troubleshoot tab](/enterprise/troubleshooting-an-app) now works in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Adds a deploy modal for versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-78-0}
 * Upgrades the internal database (Postgres) used by the admin console from `10.21-alpine` to `14.4-alpine`.
 
-### Bug Fixes {#bug-fixes-1-78-0}
+### Bug fixes {#bug-fixes-1-78-0}
 * Fixes an issue where all [dashboard links](/vendor/admin-console-adding-buttons-links) were rewritten to use the admin console hostname instead of the hostname provided in the application manifest.
 * Fixes a bug that caused errors when trying to generate `helm upgrade` commands from the [config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes a bug where the same version could be listed twice on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
@@ -2216,7 +2216,7 @@ Released on July 22, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-77-0}
+### New features {#new-features-1-77-0}
 * Displays version history information for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
 * License information can now be synced from the admin console's Dashboard and License pages for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
 * Admin console now supports limited RBAC mode when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
@@ -2226,7 +2226,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Helm install command now includes authentication in Helm-managed mode (Alpha).
 * Adresses the following high severity CVEs: CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
 
-### Bug Fixes {#bug-fixes-1-77-0}
+### Bug fixes {#bug-fixes-1-77-0}
 * Fixes an issue that caused automatic deployments not to work on channels where semantic versioning was disabled, unless the version labels were valid [semantic versions](https://semver.org/).
 * Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
 * Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
@@ -2237,7 +2237,7 @@ Released on July 15, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### Bug Fixes {#bug-fixes-1-76-1}
+### Bug fixes {#bug-fixes-1-76-1}
 * Fixes an issue that caused private images in some collectors to not be rewritten during preflight checks.
 * Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returns an empty string in minimal RBAC installations running on OpenShift clusters.
 * Updates the golang.org/x/text go module to address CVE-2021-38561 with high severity.
@@ -2250,10 +2250,10 @@ Released on July 12, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-76-0}
+### New features {#new-features-1-76-0}
 * Displays license information on the admin console Dashboard and License page for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
 
-### Bug Fixes {#bug-fixes-1-76-0}
+### Bug fixes {#bug-fixes-1-76-0}
 * Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-sig-application) to not be rewritten to the hostname used in the browser.
 
 ## 1.75.0
@@ -2262,10 +2262,10 @@ Released on July 5, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-75-0}
+### New features {#new-features-1-75-0}
 * Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
 
-### Bug Fixes {#bug-fixes-1-75-0}
+### Bug fixes {#bug-fixes-1-75-0}
 * Addresses the following critical severity CVEs: CVE-2022-26945, CVE-2022-30321, CVE-2022-30322, and CVE-2022-30323.
 * Fixes a bug that causes the [`push-images`](/reference/kots-cli-admin-console-push-images) command to fail when `--registry-password` and `--registry-username` are not specified for use with anonymous registries.
 
@@ -2275,10 +2275,10 @@ Released on July 1, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-74-0}
+### New features {#new-features-1-74-0}
 * Adds the ability to use a preflight check to compare the Kubernetes installer included in particular application version against the installer that is currently deployed. For more information, see [Include a Supporting Preflight Check](/vendor/packaging-embedded-kubernetes#include-a-supporting-preflight-check) in Creating a Kubernetes Installer Specification.
 
-### Bug Fixes {#bug-fixes-1-74-0}
+### Bug fixes {#bug-fixes-1-74-0}
 * Fixes an issue where you could not deploy valid application releases if the previously deployed version resulted in a kustomize error.
 * Fixes an issue where kustomize would fail if a Helm chart and one of its sub-charts had the same name.
 * Fixes an issue that caused Velero pods to be stuck in a Pending state when using the Internal Storage snapshot setting in Kubernetes installer-created clusters.
@@ -2290,13 +2290,13 @@ Released on June 24, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-73-0}
+### New features {#new-features-1-73-0}
 * Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
 * Improved UX on the version history page when the application is up to date or when there are new available versions.
 
-### Bug Fixes {#bug-fixes-1-73-0}
+### Bug fixes {#bug-fixes-1-73-0}
 * Fixes an issue where the preflight screen was displayed even if no analyzers were run.
 * Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-overview).
 
@@ -2306,7 +2306,7 @@ Released on June 22, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### Bug Fixes {#bug-fixes-1-72-2}
+### Bug fixes {#bug-fixes-1-72-2}
 * Fixed a bug that would cause duplicate Helm installations to be shown when running in helm-managed mode in clusters with open permissions.
 
 ## 1.72.1
@@ -2318,7 +2318,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Improvements {#improvements-1-72-1}
 * Config values are now stored in a secret when the admin console runs in Helm-managed mode (Alpha), so that the values can be rerendered when a user returns to the Config page.
 
-### Bug Fixes {#bug-fixes-1-72-1}
+### Bug fixes {#bug-fixes-1-72-1}
 * The dashboard "Disk Usage" graph now reports metrics for Prometheus deployments using the `kubernetes-service-endpoints` job.
 * The configured Prometheus address now shows as the placeholder in the "Configure Prometheus address" modal.
 * Fixes a bug that prevented an application from being deployed if a strict preflight check existed but was excluded.
@@ -2334,14 +2334,14 @@ Released on June 14, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-72-0}
+### New features {#new-features-1-72-0}
 * The admin console now shows the chart version and icon for the currently deployed Helm chart when running in Helm-managed mode (Alpha).
 
 ### Improvements {#improvements-1-72-0}
 * Moves **Change password**, **Add new application**, and **Log out** functionality into a new menu in the top right of the navigation bar.
 * Shows a meaningful error message when the license is expired on the dashboard version card.
 
-### Bug Fixes {#bug-fixes-1-72-0}
+### Bug fixes {#bug-fixes-1-72-0}
 * Fixes a bug that caused the deploy confirmation modal on the dashboard to always show "Redeploy" even if the version was not already deployed.
 * Fixes a discrepancy between the license expiry date in the vendor portal and the expiry date in the admin console.
 * Sets the User-Agent to the KOTS version string in outgoing HTTP requests where missing.
@@ -2355,13 +2355,13 @@ Released on June 1, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features
+### New features
 * Adds a `--port` flag to the `kots install` and `kots admin-console` commands to allow for overriding the local port on which to access the admin console.
 
 ### Improvements
 * A temporary success message is displayed if preflight checks pass for a version.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a nil pointer panic when checking for updates if a file in the new release contains incomplete metadata information.
 
 ## 1.70.1
@@ -2380,7 +2380,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Supports Helm v3.8.2 in the app manager.
 * Shows Helm installations when running in Helm managed mode (alpha).
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue where uploading the airgap bundle using the admin console hangs at 0%.
 * Fixes an issue where applications using semantic versioning did not receive updates when `--app-version-label` was used in the [kots install](/reference/kots-cli-install) command.
 * Fixes an issue where the application was re-deployed when the admin console restarted.
@@ -2397,7 +2397,7 @@ Released on May 2, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Charts are applied by weight in ascending order, with lower numbered weights applied first.
 * Adds the ability to change the admin console password from the **Change Password** link in the admin console page footer.
 * Adds the ability to download `Config` file types for a given application sequence.
@@ -2410,7 +2410,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * License and preflight errors are now displayed when performing an automated installation using the CLI.
 * When changing the password using the `kubectl kots reset-password`, all active sessions are terminated and new sessions can be established with the new password.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue where ingress status informers always reported as "Missing" in Kubernetes 1.22+.
 * Fixes an issue that caused image garbage collection in Kubernetes installer-created clusters (embedded clusters) to remove images outside of the application's dedicated registry namespace.
 * Fixes an issue where a newer version might not have a **Deploy** button after the configuration is updated for the currently deployed version.
@@ -2426,7 +2426,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### Improvements
 * Updates `local-volume-provider` to v0.3.3.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue where links and text within the `app.k8s.io/v1beta1` `Application` kind were not templated.
 
 ## 1.69.0
@@ -2435,7 +2435,7 @@ Released on April 8, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](/enterprise/updating-licenses#change-community-licenses).
 
 ### Improvements
@@ -2445,7 +2445,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Removes expired sessions from the store in a daily cleanup job.
 * Adds a Beta option for vendors to exclude MinIO images from app manager air gap bundles from the download portal. For more information, see [ MinIO from Air Gap Bundles](/vendor/packaging-air-gap-excluding-minio) in the documentation.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue where the registry image pull secrets were not applied in the additional namespaces specified by the application in minimal RBAC installations.
 * Fixes an issue where some releases could be missed if they were promoted while other releases were being downloaded and semantic versioning was enabled.
 * Fixes an issue where the "Select a different file" link did not allow the user to change the selected file on the config page.
@@ -2456,7 +2456,7 @@ Released on April 4, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 * Adds the `supportMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportMinimalRBACPrivileges`](/reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
 
@@ -2465,7 +2465,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Displays on the cluster management page of the admin console the labels applied to nodes in a Kubernetes installer-created cluster.
 * The default Troubleshoot analyzers will now specifically call out issues with Envoy/Contour if detected.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug with automatic updates where new versions would be deployed automatically regardless of preflight outcomes. When automatic updates are configured, new versions will now only be deployed automatically if the preflights succeed.
 * Fixes an issue where NFS snapshots could not be configured when MinIO is enabled in the cluster.
 * Fixes an issue where updating the snapshot storage location to NFS or Host Path would incorrectly display a dialog indicating that Velero was not installed and configured properly.
@@ -2484,13 +2484,13 @@ Released on March 21, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
 * Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-kots-defining).
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue that could cause images that are still used by the application to be deleted from the private registry in a Kubernetes installer-created cluster during image garbage collection.
 * Fixes an issue where the same license could be installed more than once in some cases.
 * Fixes an issue where the Cluster Management tab was not always initially present for Kubernetes installer-created clusters.
@@ -2503,14 +2503,14 @@ Released on March 8, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds the ability to exclude the applications or the admin console from full snapshot restores using the [`kots restore`](/reference/kots-cli-restore-index) command.
 * Adds the ability to display the command to restore only the admin console from a [full snapshot](/enterprise/snapshots-understanding#full-snapshots-recommended) on the Full Snapshots page in the admin console.
 
 ### Improvements
 * Adds the [`--no-port-forward`](/reference/kots-cli-install#usage) flag to the `kots install` command to disable automatic port-forwarding. The old `--port-forward` flag has been deprecated.
 
-### Bug Fixes
+### Bug fixes
 * Corrects the placeholder Prometheus URL in the admin console dashboard so that it is accurate for embedded installations.
 * Fixes a bug where the warning message sometimes printed incorrectly when a mismatch was detected between the kots CLI version and the version of the admin console that was running in the cluster.
 * Fixes a bug where the **See details** button on the support bundle analysis page did not show any information about an unhealthy pod.
@@ -2523,7 +2523,7 @@ Released on February 25, 2022
 
 Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Permanently enables the redesigned admin console app dashboard and version history pages introduced in [KOTS 1.60.0](#1600).
 * Application versions that fail to download now appear in the version history. A new button is also present with the version to allow the download to be retried. Previously, these failures were lost when a newer version was downloaded successfully.
 * Introduces the [`kots upstream download`](../reference/kots-cli-upstream-download) command to retry downloading a failed update of the upstream application.
@@ -2532,7 +2532,7 @@ Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 * The port-forward initiated to access the admin console will continually retry when it is disconnected. If a new kotsadm pod comes up, the port forward will switch and forward to the new pod.
 * If the `kots` CLI version doesn't match the KOTS API version in the cluster, a warning message is displayed advising the user to update the `kots` CLI to the appropriate version.
 
-### Bug Fixes
+### Bug fixes
 * Fixes uploading preflight results from the CLI.
 * Fixes a bug where the app icon in the metadata would not show as the favicon in Google Chrome.
 
@@ -2546,7 +2546,7 @@ Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 * A MinIO image will no longer be present in new deployments when MinIO is not specified as an add-on in the Kubernetes installer specification.
 * Enables an alternative that does not use MinIO for `hostPath` snapshots if the MinIO image is not present on the instance.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that showed an incorrect diff on the version history page.
 * Fixes deploy log errors for PVCs when using OpenEBS with Kubernetes 1.19 through 1.21.
 
@@ -2556,7 +2556,7 @@ Released on February 11, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Changes the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command to be synchronous by default and exposes error messages for it.
 
 ### Improvements
@@ -2568,7 +2568,7 @@ Released on February 4, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds [`targetKotsVersion`](../reference/custom-resource-application#targetkotsversion) as a field in the application spec. This field allows you to set a target version of KOTS for a release. The initial installation of an application will fail if the currently installed KOTS version is greater than the target version. When a target version is set, end users will receive a notification in the admin console if their currently deployed version of KOTS is less than the target version. For more informaiton, see the documentation.
 
 * Adds [`minKotsVersion`](../reference/custom-resource-application/#minkotsversion-beta) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](../reference/custom-resource-application/#minkotsversion-beta) for caveats since this is a Beta feature.
@@ -2577,7 +2577,7 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 * Defaults [`kubectl kots get config --appslug`](../reference/kots-cli-get-config) to the app slug of the deployed application if there is only one in the namespace.
 * Defaults [`kubectl kots get config --sequence`](../reference/kots-cli-get-config) to the sequence of the latest available version.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that caused the "Details" link, which shows the [application status](../vendor/admin-console-display-app-status), to be not visible in the new dashboard UI.
 * Fixes the omission of certain password values from the rendered YAML file when using [`kubectl kots pull`](../reference/kots-cli-get-config).
 * Fixes an issue that caused the license file included in a support bundle to contain a long array of integers instead of a string in the signature field.
@@ -2589,11 +2589,11 @@ Released on February 1, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
-### New Features
+### New features
 * Adds a CLI command to [get all available versions for an application](../reference/kots-cli-get-versions) from the app manager.
 * Adds the ability to block installing or upgrading an application if the current KOTS version is incompatible with the KOTS version required by the application. This feature is experimental and is only available to vendors who have requested access.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that caused images to be pushed to a private registry multiple times during an air gap installation.
 * Fixes a bug that erroneously displays a message to edit the current config when performing a new installation.
 * Fixes an issue that caused [image garbage collection](../enterprise/image-registry-embedded-cluster#enable-and-disable-image-garbage-collection) to only remove images with the "latest" tag.
@@ -2604,14 +2604,14 @@ Released on January 25, 2022
 
 Supported on Kubernetes: 1.20, 1.21, and 1.22
 
-### New Features
+### New features
 * The admin console app dashboard and version history pages have been redesigned! This redesign improves the aesthetics of these pages and brings key functionality directly to the app dashboard. See [this blog](https://www.replicated.com/blog/new-features-announced-improvements-to-ux-host-preflights/) for more details.
 
 ### Improvements
 * Updates MinIO to RELEASE.2022-01-08T03-11-54Z (resolves CVE-2021-43858 CVE).
 * Updates Postgres to version 10.19.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-overview#native) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
@@ -2624,7 +2624,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 ### Improvements
 * Updates the [kubectl](../reference/custom-resource-application#kubectlversion) patch versions and added kubectl version 1.22.x.
 
-### Bug Fixes
+### Bug fixes
 * Fixes an issue that caused the load balancer services to regenerate, resulting in downtime.
 
 ## 1.59.2
@@ -2633,7 +2633,7 @@ Release on January 18, 2022
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### Bug Fixes
+### Bug fixes
 * Adds a more descriptive error message to the KOTS CLI when the provided host path does not exist for snapshots storage.
 * Fixes a bug that caused the "Send bundle to vendor" link to display when this feature is not enabled.
 * Resolves CSS style issues.
@@ -2647,7 +2647,7 @@ Released on December 29, 2021
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### Bug Fixes
+### Bug fixes
 * Fixes a `panic: runtime error` that occurs when the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command is run.
 
 ## 1.59.0
@@ -2656,14 +2656,14 @@ Released on December 22, 2021
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### New Features
+### New features
 * Adds the `kubectl kots get config` command to export config values. This includes a `--decrypt` flag to decrypt sensitive values.
 * The internal storage location for snapshots now uses a persistent volume instead of object storage when the `disableS3` flag is set to `true` for embedded clusters. For more information about removing KOTS use of object storage, see the [kURL add-on documentation](https://kurl.sh/docs/add-ons/kotsadm).
 
 ### Improvements
 * Adds version output for current and new releases to the [`upstream upgrade`](../reference/kots-cli-upstream-upgrade) CLI command.
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that caused analyzers to surface errors in namespaces not used by the application when the admin console has cluster access in existing cluster installations.
 * Fixes an issue that caused image pull secrets to be rendered in the admin console namespace instead of the `namespace` specified in the kots.io/v1beta1.HelmChart when using `useHelmInstall`.
 * Fixes the `kots pull` CLI command to properly inject `imagePullSecrets` when using Helm Charts with `useHelmInstall` set to `true`.
@@ -2676,7 +2676,7 @@ Released on December 14, 2021
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that caused config updates to take a long time.
 
 ## 1.58.1
@@ -2685,7 +2685,7 @@ Released on December 1, 2021
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### Bug Fixes
+### Bug fixes
 * Fixes a bug that caused Native Helm to skip deploying some Helm resources on automated installations.
 
 ## 1.58.0
@@ -2694,10 +2694,10 @@ Released on December 1, 2021
 
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
-### New Features
+### New features
  * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](/vendor/releases-about#semantic-versioning) that the license is currently on.
  * Adds the ability to automatically deploy new patch, minor, or major [valid](https://semver.org/) semantic versions when [semantic versioning is enabled](/vendor/releases-about#semantic-versioning). This new capability can be configured from the **Version History** page under the 'Configure automatic updates' option.
 
-## 1.57.0 and earlier
+## 1.57.0 And earlier
 
 For release notes for app manager versions earlier than 1.58.0, see the [Replicated App Manager Release Notes v1.9.0 - v1.65.0](../pdfs/app-manager-release-notes.pdf) PDF.
