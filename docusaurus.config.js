@@ -154,7 +154,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Vendor Platform',
+            label: 'Product docs',
             position: 'left',
             items: [
               {
@@ -172,49 +172,32 @@ const config = {
                 docId: 'vendor/private-images-about',
                 label: 'Proxy Registry',
               },
+              {
+                type: 'doc',
+                docId: 'vendor/testing-about',
+                label: 'Compatibility Matrix',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/replicated-sdk-overview',
+                label: 'Replicated SDK',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/preflight-support-bundle-about',
+                label: 'Preflight checks and support bundles',
+              },
+              {
+                type: 'doc',
+                docId: 'intro-kots',
+                label: 'KOTS',
+              },
+              {
+                type: 'doc',
+                docId: 'vendor/kurl-about',
+                label: 'kURL',
+              },
             ],  
-          },
-          {
-            type: 'doc',
-            docId: 'vendor/testing-about',
-            label: 'Compatibility Matrix',
-          },
-          {
-            type: 'doc',
-            docId: 'vendor/replicated-sdk-overview',
-            label: 'Replicated SDK',
-          },
-          {
-            type: 'dropdown',
-            label: 'Troubleshoot',
-            position: 'left',
-            items: [
-                {
-                  type: 'doc',
-                  docId: 'vendor/preflight-support-bundle-about',
-                  label: 'About Preflight Checks and Support Bundles',
-                },
-                {
-                  type: 'doc',
-                  docId: 'vendor/preflight-defining',
-                  label: 'Define Preflight Checks',
-                },
-                {
-                  type: 'doc',
-                  docId: 'vendor/support-bundle-customizing',
-                  label: 'Customize Support Bundles',
-                }
-            ],
-          },
-          {
-            type: 'doc',
-            docId: 'intro-kots',
-            label: 'KOTS',
-          },
-          {
-            type: 'doc',
-            docId: 'vendor/kurl-about',
-            label: 'kURL',
           },
           {
             type: 'dropdown',
