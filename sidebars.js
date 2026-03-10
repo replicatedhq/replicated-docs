@@ -22,7 +22,7 @@ const sidebars = {
     "intro",
     {
       type: "category",
-      label: "Release Notes",
+      label: "Release notes",
       items: [
         "release-notes/rn-whats-new",
         "release-notes/rn-embedded-cluster",
@@ -134,7 +134,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Channels and Releases",
+          label: "Channels and releases",
           items: [
             "vendor/releases-about",
             "vendor/releases-creating-channels",
@@ -147,7 +147,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Customers and Licenses",
+          label: "Customers and licenses",
           items: [
             "vendor/licenses-about",
             "vendor/releases-creating-customer",
@@ -158,7 +158,7 @@ const sidebars = {
             "vendor/licenses-download",
             {
               type: "category",
-              label: "Query License Entitlements",
+              label: "Query license entitlements",
               items: [
                 "vendor/licenses-using-builtin-fields",
                 "vendor/licenses-reference-sdk",
@@ -172,12 +172,12 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Custom Domains",
+          label: "Custom domains",
           items: ["vendor/custom-domains", "vendor/custom-domains-using"],
         },
         {
           type: "category",
-          label: "Insights and Telemetry",
+          label: "Insights and telemetry",
           items: [
             "vendor/instance-insights-event-data",
             "vendor/insights-app-status",
@@ -237,7 +237,7 @@ const sidebars = {
         "vendor/testing-ci-cd",
         {
           type: "category",
-          label: "Manage Cost and Usage",
+          label: "Manage cost and usage",
           items: [
             "vendor/testing-pricing",
             "vendor/compatibility-matrix-usage",
@@ -268,7 +268,7 @@ const sidebars = {
             "vendor/embedded-disaster-recovery",
             {
               type: "category",
-              label: "Embedded Cluster Commands",
+              label: "Embedded Cluster commands",
               items: [
                 "reference/embedded-cluster-admin-console",
                 "reference/embedded-cluster-completion",
@@ -297,7 +297,7 @@ const sidebars = {
               items: [
                 {
                   type: "category",
-                  label: "Configure the HelmChart Custom Resource",
+                  label: "Configure the HelmChart custom resource",
                   items: [
                     "vendor/helm-native-about",
                     "vendor/helm-native-v2-using",
@@ -318,7 +318,7 @@ const sidebars = {
                 },
                 {
                   type: "category",
-                  label: "Configure the Admin Console Config Screen",
+                  label: "Configure the Admin Console config screen",
                   items: [
                     "vendor/config-screen-about",
                     "vendor/admin-console-customize-config-screen",
@@ -328,12 +328,12 @@ const sidebars = {
                 },
                 {
                   type: "category",
-                  label: "Manage Resources and Objects",
+                  label: "Manage resources and objects",
                   items: [
                     "vendor/admin-console-display-app-status",
                     {
                       type: "category",
-                      label: "Conditionally Deploy Resources",
+                      label: "Conditionally deploy resources",
                       items: [
                         "vendor/packaging-include-resources",
                         "vendor/tutorial-adding-db-config",
@@ -369,7 +369,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Install in Existing Clusters with KOTS",
+              label: "Install in existing clusters with KOTS",
               items: [
                 "enterprise/installing-overview",
                 "enterprise/installing-general-requirements",
@@ -381,7 +381,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Perform Updates in Existing Cluster KOTS Installations",
+              label: "Perform updates in existing cluster KOTS installations",
               items: [
                 "enterprise/updating-app-manager",
                 "enterprise/updating-apps",
@@ -390,7 +390,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Configure Local Image Registries",
+              label: "Configure local image registries",
               items: [
                 "enterprise/image-registry-settings",
                 "enterprise/image-registry-rate-limits",
@@ -399,12 +399,12 @@ const sidebars = {
             "enterprise/updating-licenses",
             {
               type: "category",
-              label: "Perform Backup and Restore with Snapshots",
+              label: "Perform backup and restore with snapshots",
               items: [
                 "vendor/snapshots-overview",
                 {
                   type: "category",
-                  label: "Enable and Configure Snapshots",
+                  label: "Enable and configure snapshots",
                   items: [
                     "vendor/snapshots-configuring-backups",
                     "reference/custom-resource-backup",
@@ -413,7 +413,7 @@ const sidebars = {
                 },
                 {
                   type: "category",
-                  label: "Configure Backup Storage for Snaphots",
+                  label: "Configure backup storage for snapshots",
                   items: [
                     "enterprise/snapshots-velero-cli-installing",
                     "enterprise/snapshots-configuring-hostpath",
@@ -430,7 +430,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Manage Admin Console User Access",
+              label: "Manage Admin Console user access",
               items: [
                 "enterprise/auth-changing-passwords",
                 "enterprise/auth-identity-provider",
@@ -439,7 +439,7 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Monitor Applications with Prometheus",
+              label: "Monitor applications with Prometheus",
               items: [
                 "enterprise/monitoring-applications",
                 "enterprise/monitoring-access-dashboards",
@@ -449,7 +449,7 @@ const sidebars = {
             "enterprise/delete-admin-console",
             {
               type: "category",
-              label: "Use a GitOps Workflow",
+              label: "Use a GitOps workflow",
               items: [
                 "enterprise/gitops-workflow",
                 "enterprise/gitops-managing-secrets",
@@ -485,7 +485,7 @@ const sidebars = {
             "enterprise/cluster-management-add-nodes",
             {
               type: "category",
-              label: "Perform Updates with kURL",
+              label: "Perform updates with kURL",
               items: [
                 "enterprise/updating-kurl-about",
                 "enterprise/updating-kurl",
@@ -500,7 +500,7 @@ const sidebars = {
         },
     {
       type: "category",
-      label: "Helm Installations with Replicated",
+      label: "Helm installations with Replicated",
       items: [
         "vendor/helm-install-overview",
         "vendor/helm-install-values-schema",
@@ -523,12 +523,12 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Preflight Checks and Support Bundles",
+      label: "Preflight checks and support bundles",
       items: [
         "vendor/preflight-support-bundle-about",
         {
           type: "category",
-          label: "Preflight Checks",
+          label: "Preflight checks",
           items: [
             "vendor/preflight-defining",
             "vendor/preflight-examples",
@@ -538,7 +538,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Support Bundles",
+          label: "Support bundles",
           items: [
             "vendor/support-bundle-customizing",
             "vendor/support-bundle-examples",
@@ -546,7 +546,7 @@ const sidebars = {
             "vendor/support-modular-support-bundle-specs",
             {
               type: "category",
-              label: "Generate Support Bundles",
+              label: "Generate support bundles",
               items: [
                 "vendor/support-bundle-generating",
                 "vendor/support-bundle-embedded",
@@ -561,7 +561,7 @@ const sidebars = {
         "vendor/preflight-sb-helm-templates-about",
         {
           type: "category",
-          label: "Troubleshoot Custom Resources",
+          label: "Troubleshoot custom resources",
           items: [
             "reference/custom-resource-preflight",
             "reference/custom-resource-redactor",
@@ -571,7 +571,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Replicated Proxy Registry",
+      label: "Replicated proxy registry",
       items: [
         "vendor/private-images-about",
         "vendor/packaging-private-images",
@@ -592,7 +592,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Add Replicated to CI/CD Workflows",
+      label: "Add Replicated to CI/CD workflows",
       items: [
         "vendor/ci-overview",
         "vendor/ci-workflows",
@@ -604,7 +604,7 @@ const sidebars = {
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
     {
       type: "category",
-      label: "Custom Resources",
+      label: "Custom resources",
       items: [
         "reference/custom-resource-about",
         "reference/custom-resource-application",
@@ -618,7 +618,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Replicated Template Functions",
+      label: "Replicated template functions",
       items: [
         "reference/template-functions-about",
         "reference/template-functions-examples",
@@ -894,7 +894,7 @@ const sidebars = {
     'vendor/firewall-openings',
     {
       type: "category",
-      label: "Replicated Policies",
+      label: "Replicated policies",
       items: [
         "vendor/policies-vulnerability-patch",
         "vendor/policies-support-lifecycle",
@@ -904,7 +904,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Replicated Data Storage",
+      label: "Replicated data storage",
       items: ["vendor/data-availability", "vendor/offsite-backup"],
     },
     {

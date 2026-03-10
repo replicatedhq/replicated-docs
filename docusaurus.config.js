@@ -94,7 +94,7 @@ const config = {
         items: [
           {
             type: 'dropdown',
-            label: 'Release Notes',
+            label: 'Release notes',
             position: 'left',
             items: [
               {
@@ -126,7 +126,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Product Docs',
+            label: 'Product docs',
             position: 'left',
             items: [
               {
@@ -157,7 +157,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'vendor/private-images-about',
-                label: 'Replicated Proxy Registry',
+                label: 'Replicated proxy registry',
               },
               {
                 type: 'doc',
@@ -173,7 +173,7 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Developer Tools',
+            label: 'Developer tools',
             position: 'left',
             items: [
               {
@@ -207,7 +207,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Release Notes',
+                label: 'Release notes',
                 to: 'release-notes/rn-whats-new',
               },
               {
