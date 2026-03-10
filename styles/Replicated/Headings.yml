@@ -7,7 +7,6 @@ scope: heading
 match: $sentence
 indicators:
   - ":"
-# Aligned with scripts/headings-to-sentence-case.js PRESERVE set
 exceptions:
   - 2FA
   - Admin Console
@@ -100,6 +99,8 @@ exceptions:
   - RE2
   - REST
   - Replicated
+  - Replicated CLI
+  - Replicated Platform
   - RKE2
   - SAML
   - SBOM
@@ -125,6 +126,7 @@ exceptions:
   - URL
   - URLs
   - Vendor API
+  - Vendor Platform
   - Vendor Portal
   - Velero
   - Visual
