@@ -9,6 +9,7 @@ bcrypt
 clsx
 containerd
 Dex
+Docker
 Docusaurus
 EKS
 Gitea

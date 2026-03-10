@@ -40,8 +40,8 @@ The following is a summary of the most important elements of our style guide, pl
     - Do not use bold text to emphasize important content. Instead, if discoverability is a concern, consider how the content could be reorganized or how you could use clearer headings. 
     - It's okay to use bold text for introducing an example (`**Example:**`) or for run-in headings in unordered lists (`* **Item 1:** Description`)
   - Use colons instead of dashes for run-in headings in description lists (`- Item 1: Description`, not `- Item 1 - Description`)
-  - Use title case for titles and headings
-  - Use a bare infinitive verb form for how-to titles/headings. As in, use "Create a Release" instead of "Creating a Release"
+  - Use sentence case for titles and headings.
+  - Use a bare infinitive verb form for how-to titles/headings. As in, use "Create a release" instead of "Creating a release".
   - Procedural/how-to content must use numbered steps. For one-step procedures, use a bullet point. See https://developers.google.com/style/procedures#single-step-procedures for examples
   - Use the following formats for cross references:
     - "For more information about X, see [Topic Title](mdc:url)"
