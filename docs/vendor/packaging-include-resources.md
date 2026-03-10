@@ -85,7 +85,7 @@ You can add `kots.io/installer-only` to a Kubernetes resource in a Helm chart's 
 The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
 
 ```yaml
-# Example-chart/templates/preflight-job.YAML
+# example-chart/templates/preflight-job.yaml
 
 apiVersion: batch/v1
 kind: Job

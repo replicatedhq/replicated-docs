@@ -237,7 +237,7 @@ spec:
 The `values.services.myservice.annotations` field in the HelmChart custom resource corresponds to a `services.myservice.annotations` field in the `value.yaml` file of the application Helm chart, as shown in the example below:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 services:
   myservice:
@@ -249,7 +249,7 @@ During installation, the ConfigOption template function in the HelmChart custom 
 Then, KOTS replaces the value in the corresponding field in the `values.yaml` in the chart archive, as shown in the example below.
 
 ```yaml
-# Rendered Helm chart values.YAML
+# Rendered Helm chart values.yaml
 
 services:
   myservice:

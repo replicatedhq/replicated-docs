@@ -32,7 +32,7 @@ Once you've finished this guide, you should feel confident replacing it with any
 The deployment we'll use can be seen below:
 
 ```yaml
-# Pg-consumer.YAML
+# pg-consumer.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -225,7 +225,7 @@ To implement the embedded Database option, we'll add a Kubernetes [Statefulset](
 First, we'll create a secret to store the root password for our embedded postgres instance:
 
 ```yaml
-# Postgres-secret.YAML
+# postgres-secret.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -238,7 +238,7 @@ Next, create a new YAML file in your `manifests` directory with the following co
 Note the use of `kots.io/when` to only conditionally include this based on end-user inputs:
 
 ```yaml
-# Postgres-statefulset.YAML
+# postgres-statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -298,7 +298,7 @@ Finally, lets add a Service object so we can route traffic to our postgres insta
 
 
 ```yaml
-# Postgres-service.YAML
+# postgres-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -716,7 +716,7 @@ data:
 ```
 
 ```yaml
-# Pg-consumer.YAML
+# pg-consumer.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -778,7 +778,7 @@ spec:
 Optionally, you can be extra concise and collapse each individual `env` `valueFrom` into a single `envFrom` `secretRef` entry:
 
 ```yaml
-# Pg-consumer.YAML
+# pg-consumer.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

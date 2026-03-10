@@ -2,7 +2,7 @@
 
 This topic describes how to remove installed applications and delete the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS.
 
-## Remove an Application
+## Remove an application
 
 The Replicated KOTS CLI `kots remove` command removes the reference to an installed application from the Admin Console. When you use `kots remove`, the Admin Console no longer manages the application because the record of that application’s installation is removed. This means that you can no longer manage the application through the Admin Console or through the KOTS CLI.
 

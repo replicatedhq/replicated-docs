@@ -1,6 +1,6 @@
 This section lists the ports used by Embedded Cluster. These ports must be open and available for both single- and multi-node installations.
 
-#### Ports Used by Local Processes
+#### Ports used by local processes
 
 The following ports must be open and available for use by local processes running on the same node. It is not necessary to create firewall openings for these ports.
 
@@ -11,7 +11,7 @@ The following ports must be open and available for use by local processes runnin
 * 10257/TCP
 * 10259/TCP
 
-#### Ports Required for Bidirectional Communication Between Nodes
+#### Ports required for bidirectional communication between nodes
 
 The following ports are used for bidirectional communication between nodes.
 
@@ -28,7 +28,7 @@ For single-node installations, ensure that there are no other processes using th
 * 10250/TCP
 * 10256/TCP
 
-#### Admin Console Port
+#### Admin Console port
 
 The KOTS Admin Console requires that port 30000/TCP is open and available. Create a firewall opening for port 30000/TCP so that the Admin Console can be accessed by the end user.
 
@@ -36,7 +36,7 @@ Additionally, port 30000 must be accessible by nodes joining the cluster.
 
 If port 30000 is occupied, you can select a different port for the Admin Console during installation. For more information, see [install](/reference/embedded-cluster-install).
 
-#### LAM Port
+#### LAM port
 
 The Local Artifact Mirror (LAM) requires that port 50000/TCP is open and available.
 

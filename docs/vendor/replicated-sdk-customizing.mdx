@@ -60,7 +60,7 @@ rules:
 With the Replicated SDK version 1.7.0 and later, you can enable a fully-featured but less permissive RBAC role by setting `minimalRBAC` to true in your Helm chart values, as shown below:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   minimalRBAC: true
@@ -207,7 +207,7 @@ If you defined custom status informers for your application, then the default Mi
 For example, the following custom `statusInformer` configuration defines specific Deployment and Service resources as status informers for the application:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   minimalRBAC: true
@@ -394,7 +394,7 @@ This ensures that users can set the environment variables that they require with
 To add environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   extraEnv:
@@ -409,7 +409,7 @@ If the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` variables are configured with
 **Example**:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   extraEnv:
@@ -464,7 +464,7 @@ The Replicated SDK provides a `replicated.tolerations` value that allows users t
 To add tolerations to the Replicated SDK deployment, include the `replicated.tolerations` array in your Helm chart `values.yaml` file. The `replicated.tolerations` array accepts a list of tolerations in the following format:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   tolerations:
@@ -480,7 +480,7 @@ The Replicated SDK provides a `replicated.affinity` value that allows users to a
 To add affinity to the Replicated SDK deployment, include the `replicated.affinity` map in your Helm chart `values.yaml` file. The `replicated.affinity` map accepts a standard Kubernets affinity object in the following format:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   affinity:
@@ -511,7 +511,7 @@ The `replicated.commonLabels` value allows you to add one or more labels to all 
 For example:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   commonLabels:
@@ -526,7 +526,7 @@ The `replicated.podLabels` value allows you to add pod-specific labels to the po
 For example:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   podLabels:
@@ -581,7 +581,7 @@ When enabled, the SDK watches pod images across all accessible namespaces and re
 To enable reporting all images, set the `replicated.reportAllImages` value in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   reportAllImages: true
@@ -596,7 +596,7 @@ When enabled, the SDK will use the configured proxy for requests to Replicated A
 To use a proxy, set the `replicated.proxy.httpsProxy` or `global.replicated.httpsProxy` value in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   proxy:
@@ -605,7 +605,7 @@ replicated:
 ```
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 global:
   replicated:
@@ -627,7 +627,7 @@ With the Replicated SDK version 1.13.0 and later, you can configure the SDK for 
 To enable HA for the SDK, set `replicaCount` to a value greater than 1 in your Helm chart `values.yaml` file:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   replicaCount: 3
@@ -650,7 +650,7 @@ If a [custom affinity](#add-affinity) is set with the `replicated.affinity` key,
 To configure pod anti-affinity:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   replicaCount: 3
@@ -665,7 +665,7 @@ A PodDisruptionBudget ensures that a minimum number of replicas remain available
 You can configure the minimum number of available replicas:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   replicaCount: 3
@@ -678,7 +678,7 @@ replicated:
 Alternatively, you can specify the maximum number of unavailable replicas:
 
 ```yaml
-# Helm chart values.YAML
+# Helm chart values.yaml
 
 replicated:
   replicaCount: 3

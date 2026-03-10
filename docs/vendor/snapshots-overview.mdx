@@ -53,7 +53,7 @@ In addition to the default functionality that Velero provides, KOTS exposes hook
 
 This section describes the types of backups that are supported with snapshots. For information about how to configure backup storage destinations for snapshots, see the [Configuring Backup Storage](/enterprise/snapshots-velero-cli-installing) section.
 
-### Application and Admin Console (full) Backups
+### Application and Admin Console (full) backups
 
 Full backups (also referred to as _instance_ backups) include the KOTS Admin Console and all application data, including application volumes and manifest files.
 
@@ -63,7 +63,7 @@ If you manage multiple applications with the Admin Console, data from all applic
 
 Full backups are recommended because they support all types of restores. For example, you can restore both the Admin Console and application from a full backup to a new cluster in disaster recovery scenarios. Or, you can use a full backup to restore only application data for the purpose of rolling back after deploying a new version of an application.
 
-### Application-only (partial) Backups
+### Application-only (partial) backups
 
 Partial backups back up the application volumes and manifest files only. Partial backups do not back up the KOTS Admin Console.
 
