@@ -29,7 +29,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          breadcrumbs: false,
+          breadcrumbs: true,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
@@ -203,9 +203,19 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Developer tools',
+            label: 'Reference',
             position: 'left',
             items: [
+              {
+                type: 'doc',
+                docId: 'reference/custom-resource-about',
+                label: 'Custom resources',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/template-functions-about',
+                label: 'Template functions',
+              },
               {
                 type: 'doc',
                 docId: 'reference/kots-cli-getting-started',
