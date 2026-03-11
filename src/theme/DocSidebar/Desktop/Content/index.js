@@ -40,7 +40,7 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
       data-sidebar={sidebarKey}
       className={styles.sidebarContentTransition}
     >
-      {product && (
+      {product && product.key !== 'installer' && (
         <h2 className={styles.sidebarProductHeading}>{product.name}</h2>
       )}
       {product?.key === 'installer' && <InstallerVersionSelector />}

@@ -19,7 +19,7 @@ const DocSidebarMobileSecondaryMenu = ({ sidebar, path }) => {
 
   return (
     <>
-      {product && (
+      {product && product.key !== 'installer' && (
         <h2 className="sidebar-product-heading-mobile">{product.name}</h2>
       )}
       {product?.key === 'installer' && (
