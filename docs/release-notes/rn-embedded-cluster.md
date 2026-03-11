@@ -36,7 +36,7 @@ Released on March 11, 2026
 </table>
 
 ### New features {#new-features-2-14-0}
-* Adds support for Kubernetes 1.34 and drops support for Kubernetes 1.31. Vendors using 1.31 need to upgrade to 1.32. Kubernetes does not support upgrading by more than one minor version at a time, so it's important to move to the next minor version of Kubernetes rather than skipping to the latest.
+* Adds support for Kubernetes 1.34 and removes support for Kubernetes 1.31. If you are using a version of Embedded Cluster with Kubernetes 1.31, upgrade your Embedded Cluster Config to 2.14.0+k8s-1.32 before upgrading to 2.14.0+k8s-1.33 or 2.14.0+k8s-1.34. Kubernetes does not support upgrading by more than one minor version at a time.
 
 ### Improvements {#improvements-2-14-0}
 * Updates Kubernetes component images (CoreDNS, Calico, kube-proxy, metrics-server) across all supported versions.
