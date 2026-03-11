@@ -2,19 +2,71 @@
  * DocSidebar Desktop Content styles
  */
 
- @media (min-width: 997px) {
+/* Wrapper: flex column so the nav can fill and scroll; min-height: 0 allows overflow */
+.sidebarContentTransition {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Product sidebars (installer + main-docs product sidebars) slide in from right */
+.sidebarContentTransition[data-sidebar]:not([data-sidebar='main']) {
+  animation: sidebarSlideInFromRight 0.2s ease-out forwards;
+}
+
+.sidebarContentTransition[data-sidebar='main'] {
+  animation: sidebarSlideInFromLeft 0.2s ease-out forwards;
+}
+
+@keyframes sidebarSlideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes sidebarSlideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Product name heading at top of product-specific sidebars */
+.sidebarProductHeading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 18px 12px 8px 18px;
+  color: var(--ifm-font-color-base);
+  line-height: 1.3;
+}
+
+@media (min-width: 997px) {
+  .menu {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.5rem;
+  }
+  @supports (scrollbar-gutter: stable) {
     .menu {
-      flex-grow: 1;
-      padding: 0.5rem;
-    }
-    @supports (scrollbar-gutter: stable) {
-      .menu {
-        padding: 0.5rem 0 0.5rem 0.5rem;
-        scrollbar-gutter: stable;
-      }
-    }
-  
-    .menuWithAnnouncementBar {
-      margin-bottom: var(--docusaurus-announcement-bar-height);
+      padding: 0.5rem 0 0.5rem 0.5rem;
+      scrollbar-gutter: stable;
     }
   }
+
+  .menuWithAnnouncementBar {
+    margin-bottom: var(--docusaurus-announcement-bar-height);
+  }
+}

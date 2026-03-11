@@ -146,7 +146,7 @@ const sidebars = {
     },
     {
       type: "link",
-      href: "/installer/v3/embedded-overview",
+      href: "installer/v3/v3-placeholder",
       label: "Embedded Cluster",
     },
     {

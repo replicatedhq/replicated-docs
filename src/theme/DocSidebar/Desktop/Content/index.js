@@ -1,6 +1,6 @@
 /**
- * Custom DocSidebar Desktop Content: shows the installer version selector
- * at the top of the sidebar when the user is on an installer docs page.
+ * Custom DocSidebar Desktop Content: product heading, installer version selector,
+ * and slide+fade transition when switching between main and product sidebars.
  */
 import React, { useState } from 'react';
 import clsx from 'clsx';
@@ -12,6 +12,7 @@ import {
 import { translate } from '@docusaurus/Translate';
 import DocSidebarItems from '@theme/DocSidebarItems';
 import InstallerVersionSelector from '@site/src/components/InstallerVersionSelector';
+import { getProductForPath } from '@site/src/utils/sidebarProductFromPath';
 import styles from './styles.module.css';
 
 function useShowAnnouncementBar() {
@@ -30,11 +31,19 @@ function useShowAnnouncementBar() {
 
 export default function DocSidebarDesktopContent({ path, sidebar, className }) {
   const showAnnouncementBar = useShowAnnouncementBar();
-  const isInstallerDocs = path?.startsWith('/installer');
+  const product = getProductForPath(path);
+  const sidebarKey = product?.key ?? 'main';
 
   return (
-    <>
-      {isInstallerDocs && <InstallerVersionSelector />}
+    <div
+      key={sidebarKey}
+      data-sidebar={sidebarKey}
+      className={styles.sidebarContentTransition}
+    >
+      {product && (
+        <h2 className={styles.sidebarProductHeading}>{product.name}</h2>
+      )}
+      {product?.key === 'installer' && <InstallerVersionSelector />}
       <nav
         aria-label={translate({
           id: 'theme.docs.sidebar.navAriaLabel',
@@ -52,6 +61,6 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
           <DocSidebarItems items={sidebar} activePath={path} level={1} />
         </ul>
       </nav>
-    </>
+    </div>
   );
 }

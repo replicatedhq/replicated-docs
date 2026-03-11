@@ -1,3 +1,5 @@
+// sidebar heading is set in src/utils/sidebarProductFromPath.js in SIDEBAR_CONFIG
+
 module.exports = {
   compatibilityMatrixSidebar: [
     "vendor/testing-about",

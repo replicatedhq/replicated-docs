@@ -88,3 +88,13 @@
 .installer-version-selector.dropdown--show .installer-version-selector__trigger-icon {
   transform: rotate(180deg);
 }
+
+/* Product name heading (mobile sidebar, padding aligned with menu) */
+.sidebar-product-heading-mobile {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  padding: 0.75rem 1rem 0 1rem;
+  color: var(--ifm-font-color-base);
+  line-height: 1.3;
+}
