@@ -135,7 +135,7 @@ The built-in extensions installed by Embedded Cluster include:
 
 * **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
 
-## Limitations
+## Limitations {#ec-limitations}
 
 Embedded Cluster has the following limitations:
 
@@ -161,7 +161,9 @@ Embedded Cluster has the following limitations:
 
 * **KOTS Auto-GitOps workflow not supported**: Embedded Cluster does not support the KOTS Auto-GitOps workflow. If an end-user is interested in GitOps, consider the Helm install method instead. For more information, see [Install with Helm](/vendor/install-with-helm).
 
-* **Downgrading Embedded Cluster or Kubernetes not supported**: Downgrading the versions of Embedded Cluster or Kubernetes that are installed in the cluster is not supported. Don't promote new application releases with Embedded Cluster or Kubernetes versions earlier than what's used in the current release.
+* **Downgrading Embedded Cluster or Kubernetes not supported**: Embedded Cluster does not support downgrading the version of Embedded Cluster or Kubernetes. Only promote new releases that use the same or later versions of Embedded Cluster and Kubernetes.
+
+* **Upgrading by more than one Kubernetes version at a time not supported**: Kubernetes does not support upgrading by more than one minor version at a time. To upgrade Kubernetes by more than one minor version, promote multiple releases, incrementing the version of Kubernetes by one minor version in each release.  
 
 * **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [Replicated template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
 
