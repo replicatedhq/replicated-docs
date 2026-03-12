@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.14.0
+
+Released on March 11, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.14.0+k8s-1.34</td>
+    <td id="center">2.14.0+k8s-1.33</td>
+    <td id="center">2.14.0+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.4-ec.0</td>
+  </tr>
+</table>
+
+### New features {#new-features-2-14-0}
+* Adds support for Kubernetes 1.34 and removes support for Kubernetes 1.31. If you are using a version of Embedded Cluster with Kubernetes 1.31, upgrade your Embedded Cluster Config to 2.14.0+k8s-1.32 before upgrading to 2.14.0+k8s-1.33 or 2.14.0+k8s-1.34. Kubernetes does not support upgrading by more than one minor version at a time.
+
+### Improvements {#improvements-2-14-0}
+* Updates Kubernetes component images (CoreDNS, Calico, kube-proxy, metrics-server) across all supported versions.
+
 ## 2.13.5
 
 Released on February 27, 2026
