@@ -22,7 +22,7 @@ The Embedded Cluster Config lets you define several aspects of the Kubernetes cl
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
-  version: 2.13.3+k8s-1.33
+  version: 2.14.0+k8s-1.34
   roles:
     controller:	
       name: app	
@@ -69,11 +69,12 @@ spec:
 
 ## version
 
-Specify which version of Embedded Cluster to install. Each version of Embedded Cluster includes particular versions of components like KOTS (Admin Console) and OpenEBS.
+Specify the versions of Embedded Cluster and Kubernetes to install. The version of Kubernetes is appended to the Embedded Cluster version in the format `+k8s-1.34`. For example, Embedded Cluster 2.14.0+k8s-1.34 uses Embedded Cluster 2.14.0 and Kubernetes 1.34.
 
-Additionally, each version of Embedded Cluster also specifies a version of Kubernetes. For example, Embedded Cluster 2.6.0+k8s-1.31 uses Kubernetes 1.31, while 2.6.0+k8s-1.30 uses Kubernetes 1.30.
+Each version of Embedded Cluster includes specific versions of components like KOTS (Admin Console) and OpenEBS.
+For more information, see the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
 
-For a full list of versions, see the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster). Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
+Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
 
 <DoNotDowngrade/>
 
