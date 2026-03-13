@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.18.0
+
+Released on March 13, 2026
+
+### New features {#new-features-1-18-0}
+* Adds `POST /api/v1/supportbundle/metadata` and `PATCH /api/v1/supportbundle/metadata` endpoints for configuring support bundle metadata. See [POST /supportbundle/metadata](/reference/replicated-sdk-apis#post-supportbundlemetadata) and [PATCH /supportbundle/metadata](/reference/replicated-sdk-apis#patch-supportbundlemetadata) in _Replicated SDK API_.
+
 ## 1.17.1
 
 Released on March 5, 2026
