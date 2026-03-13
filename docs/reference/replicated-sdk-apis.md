@@ -210,6 +210,49 @@ Response: Status `201` Created
 }
 ```
 
+## supportbundle
+
+### POST /supportbundle/metadata
+
+Set support bundle metadata by replacing any existing metadata. The metadata is stored as top-level keys in a Kubernetes secret named `replicated-support-metadata` in the SDK namespace, and can be included in a support bundle with the Support Bundle Metadata [collector](https://troubleshoot.sh/docs/collect/support-bundle-metadata) 
+
+```bash
+POST http://replicated:3000/api/v1/supportbundle/metadata
+```
+
+Request:
+
+```json
+{
+  "data": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+}
+```
+
+Response: Status `200` OK
+
+### PATCH /supportbundle/metadata
+
+Merge support bundle metadata with any existing metadata. New keys are added and existing keys are updated, but keys not included in the request are preserved.
+
+```bash
+PATCH http://replicated:3000/api/v1/supportbundle/metadata
+```
+
+Request:
+
+```json
+{
+  "data": {
+    "key3": "value3"
+  }
+}
+```
+
+Response: Status `200` OK
+
 ## license
 
 ### GET /license/info
