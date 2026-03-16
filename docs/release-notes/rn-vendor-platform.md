@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 12, 2026
 
 ### New Features {#new-features-v2026-03-12-5}
-* Vendors can now set custom display names for support bundles from the bundle detail page.
+* Adds ability to set custom display names for support bundles from the bundle detail page.
 
 ## V2026.02.17-3
 
