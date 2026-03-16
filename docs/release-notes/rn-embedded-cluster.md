@@ -40,7 +40,7 @@ Released on March 16, 2026
 * Updates Kubernetes to 1.34.5, 1.33.9, and 1.32.13 across all supported versions.
 
 ### Bug fixes {#bug-fixes-2-14-1}
-* Fixes an issue where airgap installation upgrades could fail because the local artifact mirror image was pulled from the internet instead of the local registry.
+* Fixes an issue where air gap upgrades could fail because the local artifact mirror image was pulled from the internet instead of the local registry.
 
 ## 2.14.0
 
