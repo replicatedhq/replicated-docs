@@ -77,8 +77,10 @@ To create an event notification subscription:
 Event Notifications (Beta) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
 
 ### Instance events
-- **Instance Created**: When a new instance is created
-- **Instance Upgraded**: When an instance upgrades to a new release version
+- **Instance Created**: When a new instance sends its first check-in
+- **Instance Ready**: When a new instance's application status is ready for the first time
+- **Instance Upgrade Started**: When an instance begins upgrading to a new release version. This event fires when the first telemetry with a new version is received, before the application is necessarily ready.
+- **Instance Upgrade Completed**: When an instance's application status is ready after upgrading to a new release version
 - **Instance Version Behind**: When an instance falls behind by a specified number of versions
 - **Instance Inactive**: When an instance has not reported in for 24 hours (declared "Inactive"). Air-gapped instances are excluded from this event type.
 - **Instance State Duration**: When an instance has been in a specific state (such as Unavailable or Degraded) for a specified duration
@@ -191,7 +193,7 @@ You can filter notifications based on your custom license field values. This all
 
 Filtering by custom license fields is supported for the following event types:
 - Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
-- Instance events (Instance Created, Instance Upgraded, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
+- Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
 - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
 
 License field conditions have a field, an operator, and a value. The available operators depend on the field type:
