@@ -1,10 +1,9 @@
 /**
  * CopyMarkdown Component
- * 
+ *
  * React component that provides a dropdown menu to:
  * - Copy the current page as markdown
  * - View the page as plain text
- * - Open the page in ChatGPT
  */
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
@@ -87,42 +86,6 @@ function CopyMarkdown() {
     }
   }, []);
 
-  // Open in ChatGPT
-  const openInChatGpt = useCallback(async () => {
-    try {
-      // Get the current page path
-      const currentPath = window.location.pathname;
-      
-      // Remove trailing slash if it exists
-      const normalizedPath = currentPath.endsWith('/') && currentPath !== '/'
-        ? currentPath.slice(0, -1) 
-        : currentPath;
-      
-      // For the homepage/intro, use /intro specifically
-      const docPath = normalizedPath === '/' ? '/intro' : normalizedPath;
-      
-      // Construct the full markdown URL with domain
-      const fullMarkdownUrl = `https://docs.replicated.com${docPath}.md`;
-      
-      // Create the prompt to send to ChatGPT
-      const prompt = `Read ${fullMarkdownUrl} so I can ask questions about it`;
-      
-      // URL encode the prompt for the ChatGPT URL
-      const encodedPrompt = encodeURIComponent(prompt);
-      
-      // Create the ChatGPT URL with the prompt
-      const chatGptUrl = `https://chat.openai.com/?prompt=${encodedPrompt}`;
-      
-      // Open ChatGPT with the prompt
-      window.open(chatGptUrl, '_blank');
-      
-      // Close the dropdown
-      setIsOpen(false);
-    } catch (error) {
-      console.error('Failed to open ChatGPT:', error);
-    }
-  }, []);
-
   // Handle click outside to close dropdown
   const handleClickOutside = useCallback((event) => {
     // Only close if clicking outside both the button and dropdown
@@ -191,6 +154,7 @@ function CopyMarkdown() {
         onClick={!isCopied ? toggleDropdown : undefined}
         aria-expanded={isOpen}
         aria-haspopup="true"
+        aria-label={isCopied ? 'Copied' : 'Copy or view markdown'}
         disabled={isCopied}
       >
         {isCopied ? (
@@ -199,11 +163,10 @@ function CopyMarkdown() {
           <>
             <img 
               src={isDarkTheme ? "/images/icons/copy-white.svg" : "/images/icons/copy.svg"} 
-              alt="Copy" 
+              alt="" 
               className={styles.copyIcon} 
             />
-            <span className={styles.buttonText}>Open in ChatGPT</span>
-            <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor">
+            <svg className={styles.icon} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path 
                 fillRule="evenodd" 
                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" 
@@ -222,18 +185,6 @@ function CopyMarkdown() {
           aria-orientation="vertical"
         >
           <ul className={styles.list}>
-            <li className={styles.item}>
-              <button 
-                className={styles.actionButton} 
-                onClick={openInChatGpt}
-                role="menuitem"
-              >
-                <div className={styles.actionContent}>
-                  <span className={styles.actionTitle}>Open in ChatGPT</span>
-                  <span className={styles.actionDescription}>Ask questions about this page</span>
-                </div>
-              </button>
-            </li>
             <li className={styles.item}>
               <button 
                 className={styles.actionButton} 

@@ -37,7 +37,7 @@
   background-color: transparent;
   border: 1px solid var(--ifm-color-gray-400, #cfd3d9);
   border-radius: 8px;
-  padding: 0.45rem 0.5rem;
+  padding: 0.45rem 0.35rem;
   cursor: pointer;
   transition: all 0.2s ease;
   outline: none;
@@ -46,6 +46,8 @@
 
 .copied {
   cursor: default;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .button:hover {
@@ -222,8 +224,8 @@ html[data-theme='dark'] .actionDescription {
 }
 
 .copied .buttonText {
-  padding-left: 24px; /* Equal to the width of the copy icon */
-  padding-right: 27px; /* Equal to the width of the arrow icon plus its margin */
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 
 @media (max-width: 768px) {
