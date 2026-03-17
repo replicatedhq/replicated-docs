@@ -41,16 +41,24 @@ function MarkdownMarkIcon({ className }) {
   );
 }
 
+const GITHUB_NEW_ISSUE_BASE =
+  'https://github.com/replicatedhq/replicated-docs/issues/new';
+
+function buildIssueHref() {
+  if (typeof window === 'undefined') return GITHUB_NEW_ISSUE_BASE;
+  const url = window.location.href;
+  const issueTitle = url.substring(url.lastIndexOf('/') + 1) || 'docs';
+  return `${GITHUB_NEW_ISSUE_BASE}?title=${encodeURIComponent(`Docs feedback on ${issueTitle}`)}&body=${encodeURIComponent(`URL: ${url}\nFeedback details:`)}`;
+}
+
 export default function DocSidebarLinks({ editUrl }) {
   const location = useLocation();
   const markdownPath = getMarkdownPath(location.pathname);
 
-  const url = typeof window !== 'undefined' ? window.location.href : '';
-  const issueTitle = typeof window !== 'undefined' ? url.substring(url.lastIndexOf('/') + 1) : '';
-  const issueHref =
-    typeof window !== 'undefined'
-      ? `https://github.com/replicatedhq/replicated-docs/issues/new?title=${encodeURIComponent(`Docs feedback on ${issueTitle}`)}&body=${encodeURIComponent(`URL: ${url}\nFeedback details:`)}`
-      : '#';
+  const handleReportIssueClick = (e) => {
+    e.preventDefault();
+    window.open(buildIssueHref(), '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <nav className={styles.sidebarLinks} aria-label="Doc actions">
@@ -64,7 +72,13 @@ export default function DocSidebarLinks({ editUrl }) {
           <span className={styles.text}>Edit this page</span>
         </a>
       )}
-      <a href={issueHref} target="_blank" rel="noopener noreferrer" className={styles.link}>
+      <a
+        href={GITHUB_NEW_ISSUE_BASE}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleReportIssueClick}
+        className={styles.link}
+      >
         <ReportIcon className={styles.icon} />
         <span className={styles.text}>Report a docs issue</span>
       </a>
