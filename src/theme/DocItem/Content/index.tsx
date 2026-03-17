@@ -12,7 +12,6 @@ import {useDoc} from '@docusaurus/plugin-content-docs/client';
 import Heading from '@theme/Heading';
 import MDXContent from '@theme/MDXContent';
 import type {Props} from '@theme/DocItem/Content';
-import CopyMarkdown from '../../../components/CopyMarkdown';
 import styles from './styles.module.css';
 
 /**
@@ -39,7 +38,6 @@ export default function DocItemContent({children}: Props): ReactNode {
   const syntheticTitle = useSyntheticTitle();
   return (
     <div className={clsx(ThemeClassNames.docs.docMarkdown, 'markdown', styles.docItemContainer)}>
-      <CopyMarkdown />
       {syntheticTitle && (
         <header>
           <Heading as="h1">{syntheticTitle}</Heading>
