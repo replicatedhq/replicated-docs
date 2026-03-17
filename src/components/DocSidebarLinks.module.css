@@ -1,0 +1,44 @@
+.sidebarLinks {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.75rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.125rem 0;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ifm-toc-link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.logo {
+  flex-shrink: 0;
+  width: 20px;
+  height: 14px;
+  opacity: 0.9;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.text {
+  white-space: nowrap;
+}
