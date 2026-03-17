@@ -10,21 +10,24 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-<<<<<<< automation/vendor-portal-release-notes-v2026.03.16-3
+
 ## v2026.03.16-3
 
 Released on March 16, 2026
 
-### New Features {#new-features-v2026-03-16-3}
-* Improved support bundle name editing UX to use a modal and match the instance name pattern. Long names now truncate with ellipsis. Fixed troubleshoot page scroll.
-=======
+### Improvements {#improvements-v2026-03-16-3}
+* Adds modal for editing support bundle names.
+* Truncates long support bundle names with an ellipsis.
+
+### Bug fixes {#bug-fixes-v2026-03-16-3}
+* Fixes troubleshoot page scroll.
+
 ## v2026.03.12-5
 
 Released on March 12, 2026
 
 ### New Features {#new-features-v2026-03-12-5}
 * Adds ability to set custom display names for support bundles from the bundle detail page.
->>>>>>> main
 
 ## V2026.02.17-3
 
