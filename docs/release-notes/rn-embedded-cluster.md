@@ -12,6 +12,36 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.14.1
+
+Released on March 16, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.14.1+k8s-1.34</td>
+    <td id="center">2.14.1+k8s-1.33</td>
+    <td id="center">2.14.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.5</td>
+    <td id="center">1.33.9</td>
+    <td id="center">1.32.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-14-1}
+* Updates SeaweedFS to 4.17.0.
+* Updates Kubernetes to 1.34.5, 1.33.9, and 1.32.13 across all supported versions.
+
+### Bug fixes {#bug-fixes-2-14-1}
+* Fixes an issue where air gap upgrades could fail because the local artifact mirror image was pulled from the internet instead of the local registry.
+
 ## 2.14.0
 
 Released on March 11, 2026
@@ -660,7 +690,7 @@ Released on April 8, 2025
 ## 2.3.0 - Removed
 
 :::important
-Embedded Cluster 2.3.0 has been removed because new installations do not work unless a worker profile is specified in the Embedded Cluster Config under `unsupportedOverrides`. For more information, see [Configure the Kubelet with k0s Worker Profiles](/reference/embedded-config#configure-the-kubelet). Upgrades to 2.3.0 were not affected because worker profiles are not used on upgrades. New upgrades to 2.3.0 are not available. Any users that already upgraded can continue to use 2.3.0. 
+Embedded Cluster 2.3.0 has been removed because new installations do not work unless a worker profile is specified in the Embedded Cluster Config under `unsupportedOverrides`. For more information, see [Configure the Kubelet with k0s Worker Profiles](/reference/embedded-config#configure-the-kubelet). Upgrades to 2.3.0 were not affected because worker profiles are not used on upgrades. New upgrades to 2.3.0 are not available. Any users that already upgraded can continue to use 2.3.0.
 :::
 
 Released on April 3, 2025
@@ -870,7 +900,7 @@ Released on February 7, 2025
 
 ### Improvements {#improvements-2-0-0}
 * If you don't provide a new Admin Console password to `admin-console reset-password`, you'll be prompted for one. This prevents the password from ending up in your terminal history.
-* If there is no TTY (like in CI), the CLI suppresses repeated log lines when there is a spinner, making output more readable. 
+* If there is no TTY (like in CI), the CLI suppresses repeated log lines when there is a spinner, making output more readable.
 
 ## 1.22.0
 
@@ -919,7 +949,7 @@ Released on January 22, 2025
 
 ### New features {#new-features-1-21-0}
 * The `--no-prompt` flag is deprecated and replaced with the `--yes` flag. `--no-prompt` will be removed in a future release.
-* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release. 
+* The `--skip-host-preflights` flag is deprecated and replaced with `--ignore-host-preflights`. When `--ignore-host-preflights` is passed, the host preflights are still executed, but the user is prompted and can choose to continue if failures occur. This new behavior ensures that users see any incompatibilities in their environment, while still enabling them to bypass failures if absolutely necessary. To ignore host preflight failures in automation, use both the `--ignore-host-preflights` and `--yes` flags to address the prompt for `--ignore-host-preflights`. `--skip-host-preflights` will be removed in a future release.
 
 ### Improvements {#improvements-1-21-0}
 * Adds preflight checks to ensure nodes joining the cluster can communicate with all other nodes in the cluster on ports 6443, 9443, 2380, and 10250.
@@ -928,10 +958,10 @@ Released on January 22, 2025
 * Adds a preflight check to ensure that a nameserver is configured in `/etc/resolv.conf`.
 * If a network interface is not specified with the `--network-interface` flag, Embedded Cluster will use improved logic to determine which interface to use.
 * The license file is now stored in the data directory and is included in host support bundles.
-* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured. 
+* Host support bundles now include whether `/etc/resolv.conf` has at least one nameserver configured.
 * Host support bundles now include  the output of `firewall-cmd --list-all`.
 * Potentially sensitive CLI flag values are no longer included in metrics reporting.
-* Usage and error messages have been improved for understandability. 
+* Usage and error messages have been improved for understandability.
 * `kubernetes.default.svc.cluster.local` has been added as a Kubernetes API server SAN.
 
 ### Bug fixes {#bug-fixes-1-21-0}
@@ -1063,7 +1093,7 @@ Released on October 23, 2024
 * Adds an `admin-console reset-password` command that allows resetting the password for the Admin Console.
 * Adds a `--cidr` flag to the `install` command that replaces the `--pod-cidr` and `--service-cidr` flags. The CIDR range specified with the `--cidr` flag is split and used for both the Pod and Service CIDRs. See [install](/reference/embedded-cluster-install).
    :::note
-   The `--pod-cidr` and `--service-cidr` flags are hidden, but still functional. Replicated recommends that you update any automation that uses the `--pod-cidr` and 
+   The `--pod-cidr` and `--service-cidr` flags are hidden, but still functional. Replicated recommends that you update any automation that uses the `--pod-cidr` and
    `--service-cidr` flags to use the `--cidr` flag instead.
    :::
 * Adds the following preflight checks:
