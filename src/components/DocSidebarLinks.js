@@ -66,7 +66,7 @@ export default function DocSidebarLinks({ editUrl }) {
       )}
       <a href={issueHref} target="_blank" rel="noopener noreferrer" className={styles.link}>
         <ReportIcon className={styles.icon} />
-        <span className={styles.text}>Open a docs issue</span>
+        <span className={styles.text}>Report a docs issue</span>
       </a>
     </nav>
   );
