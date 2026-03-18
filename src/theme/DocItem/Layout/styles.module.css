@@ -1,0 +1,58 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.docItemContainer header + *,
+.docItemContainer article > *:first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 997px) {
+  .docItemCol {
+    max-width: 75% !important;
+  }
+}
+
+.tocColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar links (View as Markdown, Edit, Issue) on mobile */
+.sidebarLinksMobile {
+  display: none;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 996px) {
+  .sidebarLinksMobile {
+    display: block;
+  }
+}
+
+@media (min-width: 997px) {
+  .sidebarLinksMobile {
+    display: none;
+  }
+}
+
+/* "On this page" heading above TOC */
+.tocHeading {
+  color: var(--ifm-color-content-secondary);
+  margin: 1.25rem 0 0.5rem 0;
+  padding: 0;
+  border: none;
+}
+
+html[data-theme='dark'] .tocHeading {
+  color: var(--ifm-color-content-secondary);
+}
+
+/* Mini TOC: no top padding, keep rest from Infima */
+.tocColumn :global(.table-of-contents) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
