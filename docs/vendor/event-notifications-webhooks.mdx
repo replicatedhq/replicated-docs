@@ -96,7 +96,7 @@ The following describes the fields in the webhook payload:
         <li>`app_slug` - Application slug (URL-safe identifier)</li>
         <li>`event_type` - Event type identifier</li>
         <li>`subscription_name` - Custom subscription name, if set</li>
-        <li>Additional fields specific to the event type (customer_id, instance_id, channel_id, etc.). For event-specific field reference, see <a href="#event-specific-fields">Event-specific fields</a> below.</li>
+        <li>Additional fields specific to the event type (`customer_id`, `instance_id`, `channel_id`, etc.). For event-specific field reference, see <a href="#event-specific-fields">Event-specific fields</a> on this page.</li>
       </ul>
     </td>
    </tr>
@@ -106,7 +106,7 @@ The following describes the fields in the webhook payload:
 
 The `data` object in the webhook payload contains fields that vary by event type. The following describes the additional fields for event types that have notable fields beyond the common set.
 
-### release.asset_downloaded
+### Release asset downloaded
 
 The `release.asset_downloaded` event fires each time a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image).
 
@@ -120,9 +120,9 @@ The `release.asset_downloaded` event fires each time a customer pulls a release 
 | `asset_type` | string | Type of asset pulled: `helm_chart`, `embedded_cluster_bundle`, or `proxy_image` |
 | `asset_name` | string | Name of the asset (chart name, app slug, or full proxy path) |
 | `asset_version` | string | Version or tag of the asset |
-| `service_account_name` | string | Enterprise Portal service account name, if the pull was made via a service account. Empty for direct license pulls. |
-| `is_first_customer_pull` | boolean | `true` if this is the first software pull by this customer across all asset types; `false` for all subsequent pulls. Forward-only: customers who pulled software before this field was introduced will always have `false`. |
-| `downloaded_at` | string | ISO 8601 timestamp of when the pull occurred |
+| `service_account_name` | string | Enterprise Portal service account name, if the pull was made through a service account. Empty for direct license pulls. |
+| `is_first_customer_pull` | boolean | `true` if this is the first software pull by this customer across all asset types; `false` for all subsequent pulls. Forward-only: customers who pulled software before this feature shipped will always have `false`. |
+| `downloaded_at` | string | Timestamp (International Organization for Standardization (ISO) 8601 format) of when the pull occurred |
 
 :::note
 The `is_first_customer_pull` field is useful for revenue recognition workflows. Use the **Pull Type: First Pull Only** filter on your subscription to receive notifications only for first pulls.
