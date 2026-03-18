@@ -93,7 +93,6 @@ To enable users to auto-join your team:
 
    <CollabRbacImportant/>
 
-
 ## Remove members and end sessions
 As a Vendor Portal team admin, you can remove team members, except for the account you are currently logged in with.
 
