@@ -120,7 +120,7 @@ The `release.asset_downloaded` event fires each time a customer pulls a release 
 | `asset_type` | string | Type of asset pulled: `helm_chart`, `embedded_cluster_bundle`, or `proxy_image` |
 | `asset_name` | string | Name of the asset (chart name, app slug, or full proxy path) |
 | `asset_version` | string | Version or tag of the asset |
-| `service_account_name` | string | Enterprise Portal service account name, if the pull was made through a service account. Empty for direct license pulls. |
+| `service_account_name` | string | Enterprise Portal service account name, if a service account made the pull. Empty for direct license pulls. |
 | `is_first_customer_pull` | boolean | `true` if this is the first software pull by this customer across all asset types; `false` for all subsequent pulls. Forward-only: customers who pulled software before this feature shipped will always have `false`. |
 | `downloaded_at` | string | Timestamp (International Organization for Standardization (ISO) 8601 format) of when the pull occurred |
 
