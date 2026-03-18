@@ -7,7 +7,7 @@ const darkTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Replicated Docs',
+  title: 'Replicated',
   tagline: 'Technical documentation for Replicated vendors and their enterprise end-customers.',
   url: 'https://docs.replicated.com',
   baseUrl: '/',
@@ -29,7 +29,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          breadcrumbs: false,
+          breadcrumbs: true,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
             keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
@@ -50,7 +50,36 @@ const config = {
       }),
     ],
   ],
-
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'installer',
+        path: 'installer',
+        routeBasePath: 'installer',
+        sidebarPath: './sidebarInstaller.js',
+        breadcrumbs: true,
+        editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
+        // Versioning configuration
+        lastVersion: 'current', // Make 3.0.0 the default version
+        includeCurrentVersion: true, // Include the "next" version from installer/ folder
+        versions: {
+          current: {
+            label: 'Embedded Cluster 3.0.0',
+            path: 'v3',
+            banner: 'none',
+            badge: false,
+          },
+          '2.0.0': {
+            label: 'Embedded Cluster 2.13.3',
+            path: 'v2',
+            banner: 'unmaintained',
+            badge: false,
+          },
+        },
+      },
+    ],
+  ],
   scripts: [
     {
       src:
@@ -136,7 +165,8 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'vendor/embedded-overview',
+                docId: 'v3-placeholder',
+                docsPluginId: 'installer',
                 label: 'Embedded Cluster',
               },
               {
@@ -173,9 +203,19 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Developer tools',
+            label: 'Reference',
             position: 'left',
             items: [
+              {
+                type: 'doc',
+                docId: 'reference/custom-resource-about',
+                label: 'Custom resources',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/template-functions-about',
+                label: 'Template functions',
+              },
               {
                 type: 'doc',
                 docId: 'reference/kots-cli-getting-started',
