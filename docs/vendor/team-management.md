@@ -95,24 +95,24 @@ To enable users to auto-join your team:
 
 ## Set a default application
 
-Teams with multiple applications can set a default application so that new team members, or anyone without browser history, land on the correct application when they first log in. Without a default, the Vendor Portal selects whichever application comes first alphabetically.
+Teams with multiple applications can set a default application. This ensures that new team members, or anyone without browser history, land on the correct application when they first log in. Without a default, the Vendor Portal selects whichever application comes first alphabetically.
 
 The Vendor Portal uses the following priority to determine which application to show:
 
 1. **URL slug**: Direct links to a specific application always take priority.
 1. **Browser local storage**: If you previously selected an application, the Vendor Portal remembers your last choice.
-1. **Team default application**: The admin-configured default is used when there is no URL slug or browser history.
-1. **Alphabetical**: If none of the above apply, the first application alphabetically is used.
+1. **Team default application**: The Vendor Portal uses the admin-configured default when there is no URL slug or browser history.
+1. **Alphabetical**: If no other option applies, the Vendor Portal selects the first application alphabetically.
 
 To set a default application:
 
-1. From the Team Members page, click **Team Settings** from the left navigation.
+1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Team Settings**.
 
 1. Select an application from the **Default application** dropdown.
 
 1. Click **Save changes**.
 
-To clear the default, click **Clear default** on the Team Settings page. When the default is cleared, the Vendor Portal falls back to alphabetical ordering.
+To clear the default, click **Clear default** on the Team Settings page. After you clear the default, the Vendor Portal falls back to alphabetical ordering.
 
 Setting the default application requires the `team/default-app/update` RBAC permission. Viewing the current setting requires the `team/default-app/read` permission. The built-in Admin policy has both permissions by default.
 
