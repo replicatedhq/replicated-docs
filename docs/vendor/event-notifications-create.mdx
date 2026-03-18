@@ -107,7 +107,7 @@ Instance event notifications use the **Instance Name** if set. Otherwise, they u
 - **Release Created**: When a new release is created
 - **Release Promoted**: When a release is promoted to a channel
 - **Release Demoted (Unpublished)**: When a release is demoted from a channel
-- **Release Assets Downloaded**: When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer
+- **Release Assets Downloaded**: When a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image) is pulled by a customer. Fires once per individual asset pull. Includes whether this is the customer's first ever software pull, which is useful for revenue recognition tracking.
 
 ### Channel events
 - **Channel Created**: When a new channel is created for an application
@@ -187,6 +187,28 @@ The following frequency options control how often the notification triggers:
 | When Changed | Notifies when the metric meets the threshold and its value has changed since the last notification. |
 | Each Time | Notifies every time a metric report meets the threshold condition. |
 
+### Release assets downloaded filter requirements
+
+The following table describes the available filters for the Release Assets Downloaded event type:
+
+| Filter | Required | Options |
+|--------|----------|---------|
+| Application | No | Any application in your account |
+| Channel | No | Any channel for the selected application |
+| Customer | No | Any customer for the selected application |
+| License Type | No | Paid, Trial, Community, Dev |
+| Asset Type | No | Helm Chart, Embedded Cluster Bundle, Proxy Registry Image |
+| Pull Type | No | First Pull Only, Any Pull |
+
+The **Pull Type** filter controls whether the notification fires on every pull or only the first time a customer pulls any software asset:
+
+- **First Pull Only**: The notification fires only when a customer pulls a release asset for the first time, across all asset types. Use this to track the revenue recognition milestone when a customer first retrieves your software.
+- **Any Pull** (default): The notification fires on every pull. This is equivalent to leaving the filter unset, and all existing subscriptions behave this way.
+
+:::note
+First pull tracking is forward-only. Customers who pulled software before this feature was released will have `is_first_customer_pull: false` on all subsequent pulls.
+:::
+
 ### License field condition filters
 
 You can filter notifications based on your custom license field values. This allows you to create targeted notifications based on your customers' entitlement data. For more information about adding custom license fields, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
@@ -252,6 +274,17 @@ As a Development Leader, I want to be notified when a paid customer pulls releas
   - Filter - License Type: "Paid"
   - Filter - Asset Type: Any, or narrow further
 - **Delivery Method:** Email to your work email (or team email alias)
+
+### Revenue operations: First software pull for revenue recognition
+
+As a Revenue Operations Manager, I want to be notified the first time a customer actually retrieves software, so I can record the exact revenue recognition timestamp.
+
+- **Event Type:** Release Asset Downloaded
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - License Type: "Paid"
+  - Filter - Pull Type: "First Pull Only"
+- **Delivery Method:** Webhook to your CRM or revenue tracking system
 
 ### Support engineer: Unhealthy instance alert
 
