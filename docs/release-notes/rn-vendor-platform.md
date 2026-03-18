@@ -10,6 +10,18 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2026.03.16-3
+
+Released on March 16, 2026
+
+### Improvements {#improvements-v2026-03-16-3}
+* Adds modal for editing support bundle names.
+* Truncates long support bundle names with an ellipsis.
+
+### Bug fixes {#bug-fixes-v2026-03-16-3}
+* Fixes troubleshoot page scroll.
+
 ## v2026.03.12-5
 
 Released on March 12, 2026
