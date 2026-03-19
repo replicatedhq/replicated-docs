@@ -34,6 +34,22 @@ To enable the Enterprise Portal on a per-customer basis:
    When the global **Enable Enterprise Portal for all customers** setting is on, the per-customer toggle is disabled. To manage Enterprise Portal access on a per-customer basis, disable the global setting. See [Enable the Enterprise Portal Globally](#enable-global).
    :::
 
+### Automatically invite customers on creation {#auto-invite}
+
+You can enable automatic invitations so that each new customer automatically receives an Enterprise Portal invitation on creation.
+
+You can also override this global automatic invitation setting for individual customers. For more information, see [Create a customer](releases-creating-customer#create-a-customer).
+
+#### Requirements
+* Enable the **Enterprise Portal > Customer Access > Enable Enterprise Portal for all customers** setting. Disabling this setting automatically turns off automatic invitations. See [Enable the Enterprise Portal globally](#enable-global) on this page.
+* Ensure that you have the Enterprise Portal invite RBAC permission. If the user creating the customer does not have this permission, then the automatic invitation checkbox on the **Create a new customer** page is disabled and the Enterprise Portal does not send the automatic invitation. For more information about configuring RBAC policies, see [Configuring RBAC policies](team-management-rbac-configuring).
+
+#### Enable automatic Enterprise Portal invitations
+
+To enable automatic invitations:
+
+* In the Vendor Portal, go to **Enterprise Portal > Customer Access**. In the **Portal Access** section, enable the **Automatically invite customer email to Enterprise Portal on creation** toggle.
+
 ## Configure allowed domains for user invitations
 
 You can restrict user invitations for a customer's Enterprise Portal to specific email domains. When you add allowed domains for a customer, only users with allowed email domains can be invited to the Enterprise Portal.
@@ -61,6 +77,10 @@ To view Enterprise Portal email history and delivery status, do one of the follo
 ## Invite users
 
 This section describes how to invite users to the Enterprise Portal from the Vendor Portal. Your customers can also invite users to the Enterprise Portal from the Enterprise Portal **Team settings** page. For more information about using the **Team settings** page, see [Manage Team Settings](/vendor/enterprise-portal-use#manage-team-settings) in _Log In To and Use the Enterprise Portal_.
+
+:::note
+You can also configure automatic invitations so that new customers receive an Enterprise Portal invite when you create them. See [Automatically Invite Customers on Creation](#auto-invite).
+:::
 
 To invite users to the Enterprise Portal:
 
