@@ -1,40 +1,42 @@
-# Event types (Beta)
+# Event types and filters (Beta)
 
-Event Notifications (Beta) supports the following event types, organized by category. You can further refine each event type using filters to match your specific needs. You can also select multiple event types in a single subscription.
+This topic lists the types of events supported for the Event Notifications (Beta) feature. For more information about event notifications, see [About event notifications (Beta)](/vendor/event-notifications).
 
-## Filter logic
+## Channel events
 
-Each event type that you select in a notification subscription has its own set of filters.
+### Channel Created
 
-For subscriptions that include multiple event types, each event type is evaluated independently against its filters. In this case, any events of the included types that matches its filters triggers a notification.
+When a new channel is created for an application.
 
-The following describes the filter logic used for each event:
+### Channel Archived
 
-- **No filters**: Any event of the given type triggers the notification.
-- **One or more filters**: An event must match _all_ specified filters (AND logic) to trigger the notification.
+When a channel is archived.
 
-If a filter contains multiple selected values, the event must match _any_ of the selected values (OR logic) to satisfy the filter.
+## Customer events
 
-## License field operators
+### Customer Created
 
-You can filter notifications based on your custom license field values. This allows you to create targeted notifications based on your customers' entitlement data. For more information about adding custom license fields, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
+When a new customer is created.
 
-Filtering by custom license fields is supported for the following event types:
+### Customer Updated
 
-- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
-- Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
-- Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+When a customer's details or license is updated.
 
-License field conditions have a field, an operator, and a value. The available operators depend on the field type:
+### Customer Archived
 
-| Field Type | Available Operators |
-|------------|-------------------|
-| Integer | equals, does not equal, greater than, less than, greater than or equal, less than or equal |
-| String / Text | equals, does not equal, contains, does not contain |
-| Boolean | is true, is false |
+When a customer is archived.
 
-When multiple license field conditions are specified, all conditions must match for the notification to trigger (AND logic).
+### Customer Unarchived (Restored)
 
+When a customer is restored from archived state.
+
+### Customer License Expiring
+
+Time-based warning of an upcoming license expiration.
+
+### Pending Self-Service Signup
+
+When someone signs up via the self-service portal (if enabled).
 
 ## Instance events
 
@@ -78,8 +80,6 @@ The notification triggers when an instance has been in the specified state for a
 ### Instance State Flapping
 
 When an instance is changing states frequently within a configured time window.
-
-### Instance state flapping filter requirements
 
 The Instance State Flapping event type requires you to specify the sensitivity of flapping detection:
 
@@ -130,42 +130,6 @@ The following frequency options control how often the notification triggers:
 | When Changed | Notifies when the metric meets the threshold and its value has changed since the last notification. |
 | Each Time | Notifies every time a metric report meets the threshold condition. |
 
-## Customer events
-
-### Customer Created
-
-When a new customer is created.
-
-### Customer Updated
-
-When a customer's details or license is updated.
-
-### Customer Archived
-
-When a customer is archived.
-
-### Customer Unarchived (Restored)
-
-When a customer is restored from archived state.
-
-### Customer License Expiring
-
-Time-based warning of an upcoming license expiration.
-
-### Pending Self-Service Signup
-
-When someone signs up via the self-service portal (if enabled).
-
-## Support events
-
-### Support Bundle Uploaded
-
-When a support bundle is uploaded.
-
-### Support Bundle Analyzed
-
-When a support bundle analysis is completed.
-
 ## Release events
 
 ### Release Created
@@ -182,14 +146,34 @@ When a release is demoted from a channel.
 
 ### Release Assets Downloaded
 
-When a release asset (such as a Helm chart or .tgz bundle) is pulled by a customer.
+When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Fires one time per individual asset pull. Includes whether this is the customer's first ever software pull, which is useful for revenue recognition tracking.
 
-## Channel events
+The following table describes the available filters for the Release Assets Downloaded event type:
 
-### Channel Created
+| Filter | Required | Options |
+|--------|----------|---------|
+| Application | No | Any application in your account |
+| Channel | No | Any channel for the selected application |
+| Customer | No | Any customer for the selected application |
+| License Type | No | Paid, Trial, Community, `dev` |
+| Asset Type | No | Helm Chart, Embedded Cluster Bundle, Proxy Registry Image |
+| Pull Type | No | First Pull Only, Any Pull |
 
-When a new channel is created for an application.
+The **Pull Type** filter controls whether the notification fires on every pull or only the first time a customer pulls any software asset:
 
-### Channel Archived
+- **First Pull Only**: The notification fires only when a customer pulls a release asset for the first time, across all asset types. Use this to track the revenue recognition milestone when a customer first retrieves your software.
+- **Any Pull** (default): The notification fires on every pull. This is equivalent to leaving the filter unset, and all existing subscriptions behave this way.
 
-When a channel is archived.
+:::note
+First pull tracking is forward-only. Customers who pulled software before this feature shipped will have `is_first_customer_pull: false` on all subsequent pulls.
+:::
+
+## Support events
+
+### Support Bundle Uploaded
+
+When a support bundle is uploaded.
+
+### Support Bundle Analyzed
+
+When a support bundle analysis is completed.

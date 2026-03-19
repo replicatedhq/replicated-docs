@@ -2,23 +2,6 @@
 
 This topic describes how to create event notification subscriptions in the Replicated Vendor Portal.
 
-## RBAC requirements
-
-Roles with write access (Admin, Support Engineer, Sales, or custom roles) can create and manage their own notifications. They can also view team notifications.
-
-Only Admins can create and manage team notifications. Admins can also manage notifications created by other team members.
-
-For teams that use custom RBAC policies, the following permissions are available:
-- `team/notifications/**`: Full access to all notification features including managing other users' subscriptions
-- `team/notifications/subscriptions/read`: View all team subscriptions
-- `team/notifications/subscriptions/create`: Set up their own alerts
-- `team/notifications/subscriptions/update`: Modify their own alerts
-- `team/notifications/subscriptions/delete`: Remove their own alerts
-- `team/notifications/types/list`: See available event types
-- `team/notifications/events/read`: View notification history
-
-For more information, see [Configure RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
-
 ## Create an event notification
 
 To create an event notification subscription:
@@ -39,7 +22,7 @@ To create an event notification subscription:
 
    <!-- TODO: Add screenshot of event type selection -->
 
-1. (Optional) For each of the event types that you selected, click the filter icon to configure event filters. For more information, see [Event filter logic and requirements](/reference/event-types#event-filter-logic-and-requirements).
+1. (Optional) For each of the event types that you selected, click the filter icon to configure event filters. For more information, see [About filter logic](#filter-logic) on this page.
 
    :::note
    To configure a channel filter, you must first select an application.
@@ -59,7 +42,7 @@ To create an event notification subscription:
          - Response time must be less than five seconds
       1. (Recommended) Enter a signing secret for HMAC signature verification. For more information, see [Verify Webhook Signatures](event-notifications-webhooks#verify-webhook-signatures).
       1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About Adding Custom HTTP Headers](event-notifications-webhooks#custom-headers).
-      1. Click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard. For more information, see [About the Webhook Payload Format](event-notifications-webhooks#payload-preview).
+      1. Click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard. For more information, see [About the webhook payload format](/reference/webhooks#payload-preview).
       1. Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity.
       
          The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.

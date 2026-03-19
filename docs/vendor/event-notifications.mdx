@@ -4,15 +4,75 @@ This topic provides an introduction to the Event Notifications (Beta) feature, w
 
 ## Overview
 
-Event Notifications allow you to subscribe to specific events and receive alerts through email or webhook. A single subscription can include multiple event types, each with its own independent filter configuration. You can create highly-targeted notifications using filters to focus on the events that matter most to your workflow.
+You can define and subscribe to notifications in the Vendor Portal to receive alerts through email or webhook when a specific event occurs. A single subscription can include one or multiple event types, and each event has its own set of filters. This allows you to create highly-targeted notifications using filters to focus on the events that matter most to your workflow. Events are queued to SQS for reliable processing, and notifications are matched against your custom event filters in real time.
 
-Event types are predefined and organized by category (Instance, Customer, Support, Release, Channel). You can also filter events by application, customer, channel, license type, and your custom license field values (entitlements).
+For information about how to create and subscribe to event notifications, see [Create event notification subscriptions (Beta)](event-notifications-create).
 
-Events are queued to SQS for reliable processing, and notifications are matched against event filters in real-time. Email notifications are sent through the email service that you configure. Webhook notifications include HMAC signatures for verification.
+## Events and filters
 
-For more information about how to configure notifications, see [Create Event Notification Subscriptions (Beta)](event-notifications-create).
+This section describes the types of events and filters that are available for creating notifications. It also describes the logic that the Vendor Portal uses to determine if a given event satisfies the conditions to send a notification.
 
-## Comparison to instance notifications (classic)
+### Supported event types
+
+You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, and channels.
+
+For example, you can create notifications for when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, or when a customer license is expiring soon.
+
+For the full list of available event types, see [Event types and filters](/reference/event-types).
+
+### Multi-event notifications
+
+Each notification can have one or more event types. For notifications that include multiple event types, each event type is evaluated independently against its filters. Any event that matches its filters triggers a notification.
+
+For example, if you create a notification with both the **Release Created** and **Release Promoted** events and no additional filters, then the Vendor Portal sends a notification any time a release is created _or_ promoted. 
+
+### Event filters
+
+Each event type that you select in a notification subscription has its own set of filters. You can filter events by application, customer, channel, license type, and your custom license field values (entitlements).
+
+An event must match _all_ specified filters to trigger the notification (AND logic).
+
+### Filters with multiple values
+
+If a single filter has multiple values, then the event must match _any_ of the selected values (OR logic) to satisfy the filter.
+
+For example, if you select both **Paid** and **Community** for the **License type** filter, then the filter is satisfied if the license type is either Paid or Community.
+
+### Custom licese field filters
+
+When you specify multiple custom license field filters, all conditions must match for the notification to trigger (AND logic). For example, if you add filters for `seats > 99` and `tier == Enterprise`, then the value of the `seats` custom license field must be greater than `99` _and_ the value of the `tier` custom license field must be `Enterprise` to trigger an event.
+
+Filtering by custom license fields is supported for the following event types:
+    - Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+    - Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
+    - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+
+## RBAC requirements
+
+Roles with write access (Admin, Support Engineer, Sales, or custom roles) can create and manage their own notifications. They can also view notifications created by others.
+
+Only Admins can create and manage notifications created by other team members.
+
+For teams that use custom RBAC policies, the following permissions are available:
+- `team/notifications/**`: Full access to all notification features including managing other users' subscriptions
+- `team/notifications/subscriptions/read`: View all team subscriptions
+- `team/notifications/subscriptions/create`: Set up their own alerts
+- `team/notifications/subscriptions/update`: Modify their own alerts
+- `team/notifications/subscriptions/delete`: Remove their own alerts
+- `team/notifications/types/list`: See available event types
+- `team/notifications/events/read`: View notification history
+
+For more information, see [Configure RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
+
+## Limitations
+
+Event Notifications (Beta) has the following limitations
+
+- Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
+- It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
+- The Release Assets Downloaded event might fire per chart or image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
+
+## Comparison to instance notifications (Classic)
 
 Event Notifications (Beta) is the next generation of instance notification functionality in the Vendor Portal. Compared to [Instance Notifications (Classic)](instance-notifications-config), Event Notifications offers more event types, fine-grained filtering, flexible delivery routing, notification history tracking, and better access control.
 
@@ -30,9 +90,3 @@ The following table compares the functionality offered by Instance Notifications
 | **Webhook Security** | Basic | HMAC-SHA256 signing |
 | **Webhook Testing** | Manual | Built-in payload preview and test webhook button |
 | **Notification History** | Minimal | Full delivery attempt tracking with event details |
-
-## Limitations
-
-- Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
-- It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
-- The Release Assets Downloaded event might fire per chart or image if the customer pulls each separately as part of your installation instructions. As these assets can be shared across many release versions, the access event is recorded at the chart/image level and is not easily identifiable to a specific release version. If you find this alert too noisy, please reach out to us to further discuss your specific use case.
