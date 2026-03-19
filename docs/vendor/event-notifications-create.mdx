@@ -119,6 +119,17 @@ As a Development Leader, I want to be notified when a paid customer pulls releas
   - Filter - Asset Type: Any, or narrow further
 - **Delivery Method:** Email to your work email (or team email alias)
 
+### Revenue operations: First software pull for revenue recognition
+
+As a Revenue Operations Manager, receive a notification the first time a customer retrieves software to record the exact revenue recognition timestamp.
+
+- **Event Type:** Release Asset Downloaded
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - License Type: "Paid"
+  - Filter - Pull Type: "First Pull Only"
+- **Delivery Method:** Webhook to your customer relationship management system
+
 ### Support engineer: Unhealthy instance alert
 
 As a Support Engineer, you want to be notified when a customer instance has been in an unhealthy state for an extended period so that you can proactively reach out.
