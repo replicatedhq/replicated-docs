@@ -43,7 +43,7 @@ The following describes the top-level fields in the webhook payload:
   <tr>
     <td>`event`</td>
     <td>string</td>
-    <td>Event type identifier (e.g., "customer.created", "instance.upgrade_started")</td>
+    <td>Event type identifier such as "customer.created" or "instance.upgrade_started"</td>
    </tr>
   <tr>
     <td>`timestamp`</td>
@@ -59,7 +59,7 @@ The following describes the top-level fields in the webhook payload:
     <td>`data`</td>
     <td>object</td>
     <td>
-      <p>Event-specific data containing detailed information about the event. For common fields, see <a href="#data-object-fields"><code>data</code> object fields</a> below. For fields that vary by event type, see <a href="#event-specific-fields">Event-specific fields</a>.</p>
+      <p>Event-specific data containing detailed information about the event. See <a href="#data-object-fields"><code>data</code> object fields</a> on this page.</p>
     </td>
    </tr>
 </table>
