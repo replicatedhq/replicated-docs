@@ -1,12 +1,12 @@
 # About event notifications (Beta)
 
-This topic provides an introduction to the Event Notifications (Beta) feature, which allows you to set up notifications for key events from the Vendor Portal.
+This topic provides an overview of the Event Notifications (Beta) feature, which allows you to set up notifications for key events from the Vendor Portal.
 
 ## Overview
 
-You can define and subscribe to notifications in the Vendor Portal to receive alerts through email or webhook when a specific event occurs. A single subscription can include one or multiple event types, and each event has its own set of filters. This allows you to create highly-targeted notifications using filters to focus on the events that matter most to your workflow. Events are queued to SQS for reliable processing, and notifications are matched against your custom event filters in real time.
+You can define and subscribe to notifications in the Vendor Portal to receive alerts when specific events occur. Built-in event types and filters allow you to create highly-targeted notifications for the events that matter most to your workflow. For example, Customer Success Managers could get an email notification when a key customer uploads a support bundle. Or, Support Engineers could get a Slack notification when a customer instance has been in an unhealthy state for an extended period.
 
-For information about how to create and subscribe to event notifications, see [Create event notification subscriptions (Beta)](event-notifications-create).
+Events are queued to SQS for reliable processing, and notifications are matched against your custom event filters in real time. You can receive notifications through email or webhook. For information about how to create and subscribe to event notifications, see [Create event notification subscriptions (Beta)](event-notifications-create).
 
 ## Events and filters
 
@@ -14,23 +14,21 @@ This section describes the types of events and filters that are available for cr
 
 ### Supported event types
 
-You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, and channels.
+You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, and channels. For example, you can create notifications for when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, or when a customer license is expiring soon.
 
-For example, you can create notifications for when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, or when a customer license is expiring soon.
-
-For the full list of available event types, see [Event types and filters](/reference/event-types).
+For the full list of available event types and event-specific filters, see [Event types and filters (Beta)](/reference/notifications-events-filters).
 
 ### Multi-event notifications
 
-Each notification can have one or more event types. For notifications that include multiple event types, each event type is evaluated independently against its filters. Any event that matches its filters triggers a notification.
+Each notification can have one or more events. For notifications that include multiple events, each event is evaluated independently against its filters. If any event matches its filters, then the Vendor Portal triggers a notification.
 
 For example, if you create a notification with both the **Release Created** and **Release Promoted** events and no additional filters, then the Vendor Portal sends a notification any time a release is created _or_ promoted. 
 
 ### Event filters
 
-Each event type that you select in a notification subscription has its own set of filters. You can filter events by application, customer, channel, license type, and your custom license field values (entitlements).
+You can configure a unique set of filters for each event that you add to a notification. An event must match _all_ its filters to trigger the notification (AND logic).
 
-An event must match _all_ specified filters to trigger the notification (AND logic).
+The filters available depend on the event type. All events support filtering by application name. Other common filters that apply to most event types include the channel, customer name, and license type. For more information, see [Event types and filters (Beta)](/reference/notifications-events-filters).
 
 ### Filters with multiple values
 
@@ -40,12 +38,14 @@ For example, if you select both **Paid** and **Community** for the **License typ
 
 ### Custom licese field filters
 
-When you specify multiple custom license field filters, all conditions must match for the notification to trigger (AND logic). For example, if you add filters for `seats > 99` and `tier == Enterprise`, then the value of the `seats` custom license field must be greater than `99` _and_ the value of the `tier` custom license field must be `Enterprise` to trigger an event.
+When you specify multiple custom license field filters, all conditions must match for the notification to trigger (AND logic). For example, if you add filters for `seats > 99` and `tier == Enterprise`, then the value of the `seats` custom license field must be greater than `99` _and_ the value of the `tier` custom license field must be `Enterprise` to trigger a notification.
 
 Filtering by custom license fields is supported for the following event types:
-    - Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
-    - Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
-    - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+- Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
+- Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
+
+For information about how to create custom license fields, see [Manage custom license fields](/vendor/licenses-adding-custom-fields#manage-custom-license-fields) in _Create and manage customers_.
 
 ## RBAC requirements
 
@@ -62,11 +62,11 @@ For teams that use custom RBAC policies, the following permissions are available
 - `team/notifications/types/list`: See available event types
 - `team/notifications/events/read`: View notification history
 
-For more information, see [Configure RBAC Policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
+For more information, see [Configure RBAC policies](team-management-rbac-configuring#configure-a-custom-rbac-policy).
 
 ## Limitations
 
-Event Notifications (Beta) has the following limitations
+Event Notifications (Beta) has the following limitations:
 
 - Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.

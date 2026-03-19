@@ -1,8 +1,8 @@
 # Webhook payload structure (Beta)
 
-This topic describes the JSON payload format for event notification webhooks, including details about the fields.
+This topic describes the JSON payload format for event notification webhooks, including details about the fields. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
 
-## Webhook payload structure
+## Webhook payload structure {#webhook-payload-structure}
 
 Webhooks deliver a JSON payload with the following structure:
 
@@ -112,11 +112,11 @@ The webhook payload includes the following common `data` object fields for all e
 
 ### Event-specific fields {#event-specific-fields}
 
-This section describes the event-specific fields in the webhok payload `data` object.
+This section describes the event-specific fields in the webhook payload `data` object.
 
 #### Release Assets Downloaded events
 
-The following fields apply to the [Release Assets Downloaded](/reference/event-types#release-assets-downloaded) event type:
+The following fields apply to the [Release Assets Downloaded](/reference/notifications-events-filters#release-assets-downloaded) event type:
 
 | Field | Type | Description |
 |-------|------|-------------|

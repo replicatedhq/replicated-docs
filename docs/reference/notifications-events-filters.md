@@ -1,6 +1,8 @@
 # Event types and filters (Beta)
 
-This topic lists the types of events supported for the Event Notifications (Beta) feature. For more information about event notifications, see [About event notifications (Beta)](/vendor/event-notifications).
+For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
+
+This topic lists the types of events supported for the Event Notifications (Beta) feature.
 
 ## Channel events
 
@@ -144,7 +146,7 @@ When a release is promoted to a channel.
 
 When a release is demoted from a channel.
 
-### Release Assets Downloaded
+### Release Assets Downloaded {#release-assets-downloaded}
 
 When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Fires one time per individual asset pull. Includes whether this is the customer's first ever software pull, which is useful for revenue recognition tracking.
 
@@ -155,7 +157,7 @@ The following table describes the available filters for the Release Assets Downl
 | Application | No | Any application in your account |
 | Channel | No | Any channel for the selected application |
 | Customer | No | Any customer for the selected application |
-| License Type | No | Paid, Trial, Community, `dev` |
+| License Type | No | Paid, Trial, Community, Development |
 | Asset Type | No | Helm Chart, Embedded Cluster Bundle, Proxy Registry Image |
 | Pull Type | No | First Pull Only, Any Pull |
 
