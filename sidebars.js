@@ -192,6 +192,7 @@ const sidebars = {
               items: [
                 "vendor/event-notifications",
                 "vendor/event-notifications-create",
+                "reference/event-types",
                 "vendor/event-notifications-manage",
                 "vendor/event-notifications-webhooks",
               ],
