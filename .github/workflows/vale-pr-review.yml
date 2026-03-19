@@ -26,6 +26,7 @@ jobs:
           files_ignore: |
             docs/reference/kots-cli-*
             docs/reference/replicated-cli-*
+            docs/reference/notifications-*
             docs/release-notes/rn-*
           separator: " "
 

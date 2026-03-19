@@ -1,132 +1,48 @@
 # Configure and use webhooks (Beta)
 
-This topic describes how to configure and use webhooks for Event Notifications.
+This topic describes how to configure and use webhooks for event notifications. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
 
-Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations.
+Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations. For the JSON envelope and field descriptions, see [Webhook payload structure (Beta)](/reference/notifications-webhook-payload).
 
-## About adding custom HTTP headers {#custom-headers}
+## Configure a Slack webhook
 
-You can add custom HTTP headers to webhook subscriptions to authenticate with your receiving endpoint. This is useful when your endpoint requires an API key, bearer token, or other credentials in the request headers.
+For more information about configuring incoming webhooks with Slack, see the [Sending messages using incoming webhooks](https://api.slack.com/messaging/webhooks) in the Slack documentation.
 
-Header values are encrypted at rest and masked in the UI after you save the subscription. To update a saved header value, you must re-enter it. Custom headers are included in both real webhook deliveries and test webhook requests.
+To send notifications to a Slack channel using webhooks:
 
-Custom headers have the following limitations:
+1. Go to your Slack workspace settings.
+1. Go to **Apps** > **Incoming Webhooks** and click **Add to Slack**.
+1. Select the channel where you want to receive notifications.
+1. Copy the webhook URL.
+1. Create a notification in the Vendor Portal using your Slack webhook URL. See [Create an event notification](/vendor/event-notifications-create#create-an-event-notification).
+1. Trigger a test event to verify that the webhook is configured properly.
 
-- Maximum of five headers per subscription
-- Header values can be up to 2048 characters
-- Duplicate header names are not allowed
-- Certain reserved headers (such as `Content-Type` and `Host`) cannot be overridden
+## Test webhooks locally {#test-webhook}
 
-## About the webhook payload format {#payload-preview}
+You can test a webhook locally using a development endpoint that is either publicly accessible, or reachable through a secure tunnel. You can also test webhooks from the Vendor Portal when you create a webhook notification subscription. For more information, see [Create an event notification](/vendor/event-notifications-create#create-an-event-notification).
 
-When you create or edit a webhook notification and select event types, you can click the **View example** button to open the payload preview modal and see the exact JSON structure your endpoint receives. This is useful when building your endpoint's request parser.
+When testing webhooks locally, note the following:
+- If you configured a signing secret, the test payload is signed with HMAC-SHA256 using the same `X-Replicated-Signature` header as real deliveries
+- If you configured custom HTTP headers, they are included in the test request so you can verify your endpoint's authentication logic
+- Private and internal IP addresses (localhost, RFC 1918 ranges, link-local, cloud metadata endpoints) are blocked for security
 
-The preview shows:
-- The top-level payload envelope (`event`, `timestamp`, `data`, `text`)
-- All event-specific fields in the `data` object, with type annotations (string, number, boolean, ISO-8601-timestamp, array, or object)
+To test webhooks against a local development endpoint:
 
-{/* Add screenshot of expanded webhook payload format preview */}
+1. Use a tunnel service like [ngrok](https://ngrok.com/docs/start) to expose your local endpoint:
+   
+   ```bash
+   ngrok http 3000
+   ```
 
-### Webhook payload structure
+2. Enter the ngrok URL as your webhook URL in the notification form:
+   
+   ```bash
+   https://abc123.ngrok.io/webhook
+   ```
 
-Event Notifications webhooks deliver a JSON payload with the following structure:
+3. Click **Send test webhook** to send a sample payload to your local endpoint through the tunnel.
 
-```json
-{
-  "event": "customer.created",
-  "timestamp": "2026-01-25T22:48:32Z",
-  "text": "A new customer has been created.\n\nCustomer: Testy McTestface\nCustomer ID: 38ljzNKNZZSIp3bUQYSPzJUUBpd\nApplication: Demo\nChannel: Stable\nLicense Type: trial\nExpiration: 2026-02-24\nCreated at: 2026-01-25 22:48:32 UTC\n\nView customer: https://vendor.replicated.com/apps/demo-jaybird/customer/38ljzNKNZZSIp3bUQYSPzJUUBpd",
-  "data": {
-    "app_id": "34LgWqPkIlmhPDhvQVrbWcRwvLW",
-    "team_id": "CKUTNRX16FghU69v_RjZ1Q1EFXBcQBMZ",
-    "app_name": "Demo",
-    "app_slug": "demo-jaybird",
-    "eventType": "customer.created",
-    "channel_id": "34LgWuB1oCNbdLV6BbeepUSAEA6",
-    "created_at": "2026-01-25T22:48:32.391894468Z",
-    "event_type": "customer.created",
-    "expires_at": "2026-02-24T22:47:37Z",
-    "customer_id": "38ljzNKNZZSIp3bUQYSPzJUUBpd",
-    "channel_name": "Stable",
-    "license_type": "trial",
-    "customer_name": "Testy McTestface",
-    "subscription_name": "Trial Customer Alerts"
-  }
-}
-```
-
-:::note
-The `subscription_name` field is included in the `data` object only when a custom name is set on the subscription. For email notifications, the custom name is prepended to the email subject line.
-:::
-
-### Payload fields
-
-The following describes the fields in the webhook payload:
-
-<table>
-  <tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Description</th>
-   </tr>
-  <tr>
-    <td>`event`</td>
-    <td>string</td>
-    <td>Event type identifier (e.g., "customer.created", "instance.upgrade_started")</td>
-   </tr>
-  <tr>
-    <td>`timestamp`</td>
-    <td>string</td>
-    <td>ISO 8601 timestamp when the event occurred</td>
-   </tr>
-  <tr>
-    <td>`text`</td>
-    <td>string</td>
-    <td>Human-readable text description of the event, formatted for readability in Slack and other chat tools</td>
-    </tr>
-  <tr>
-    <td>`data`</td>
-    <td>object</td>
-    <td>
-      <p>Event-specific data containing detailed information about the event. The `data` object contains fields specific to each event type. Common fields include:</p>
-      <ul>
-        <li>`app_id` - Application identifier</li>
-        <li>`team_id` - Team identifier</li>
-        <li>`app_name` - Application name</li>
-        <li>`app_slug` - Application slug (URL-safe identifier)</li>
-        <li>`event_type` - Event type identifier</li>
-        <li>`subscription_name` - Custom subscription name, if set</li>
-        <li>Additional fields specific to the event type (`customer_id`, `instance_id`, `channel_id`, etc.). For event-specific field reference, see <a href="#event-specific-fields">Event-specific fields</a> on this page.</li>
-      </ul>
-    </td>
-   </tr>
-</table>
-
-## Event-specific fields {#event-specific-fields}
-
-The `data` object in the webhook payload contains fields that vary by event type. The following describes the additional fields for event types that have notable fields beyond the common set.
-
-### Release asset downloaded
-
-The `release.asset_downloaded` event fires each time a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image).
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `customer_id` | string | Customer identifier |
-| `customer_name` | string | Customer display name |
-| `channel_id` | string | Channel identifier |
-| `channel_name` | string | Channel name |
-| `license_type` | string | License type: `paid`, `trial`, `dev`, or `community` |
-| `asset_type` | string | Type of asset pulled: `helm_chart`, `embedded_cluster_bundle`, or `proxy_image` |
-| `asset_name` | string | Name of the asset (chart name, app slug, or full proxy path) |
-| `asset_version` | string | Version or tag of the asset |
-| `service_account_name` | string | Enterprise Portal service account name, if a service account made the pull. Empty for direct license pulls. |
-| `is_first_customer_pull` | boolean | `true` if this is the first software pull by this customer across all asset types; `false` for all subsequent pulls. Forward-only: customers who pulled software before this feature shipped will always have `false`. |
-| `downloaded_at` | string | Timestamp (International Organization for Standardization (ISO) 8601 format) of when the pull occurred |
-
-:::note
-The `is_first_customer_pull` field is useful for revenue recognition workflows. Use the **Pull Type: First Pull Only** filter on your subscription to receive notifications only for first pulls.
-:::
+4. Check the ngrok dashboard or your application logs to verify the request was received and processed correctly.
 
 ## Verify webhook signatures
 
@@ -174,48 +90,6 @@ To verify webhook signatures in your endpoint:
    // Signature verified - process the webhook
    ```
 
-## Integrate with Slack using webhooks
-
-For more information about configuring incoming webhooks with Slack, see the [Sending messages using incoming webhooks](https://api.slack.com/messaging/webhooks) in the Slack documentation.
-
-To send notifications to a Slack channel using webhooks:
-
-1. Go to your Slack workspace settings.
-1. Go to **Apps** > **Incoming Webhooks** and click **Add to Slack**.
-1. Select the channel where you want to receive notifications.
-1. Copy the webhook URL.
-1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL. See [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
-1. Trigger a test event to verify that the webhook is configured properly.
-
-## Test webhooks locally {#test-webhook}
-
-You can test a webhook locally using a development endpoint that is either publicly accessible, or reachable through a secure tunnel.
-
-Note the following:
-- If you configured a signing secret, the test payload is signed with HMAC-SHA256 using the same `X-Replicated-Signature` header as real deliveries
-- If you configured custom HTTP headers, they are included in the test request so you can verify your endpoint's authentication logic
-- Private and internal IP addresses (localhost, RFC 1918 ranges, link-local, cloud metadata endpoints) are blocked for security
-
-You can also test webhooks from the Vendor Portal when you create a webhook notification subscription. For more information, see [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
-
-To test webhooks against a local development endpoint:
-
-1. Use a tunnel service like ngrok to expose your local endpoint:
-   
-   ```bash
-   ngrok http 3000
-   ```
-
-2. Enter the ngrok URL as your webhook URL in the notification form:
-   
-   ```bash
-   https://abc123.ngrok.io/webhook
-   ```
-
-3. Click **Send test webhook** to send a sample payload to your local endpoint through the tunnel.
-
-4. Check the ngrok dashboard or your application logs to verify the request was received and processed correctly.
-
 ## About delivery retries and timeouts for webhooks
 
 The Vendor Portal automatically retries failed webhook deliveries to ensure reliability. When a webhook delivery attempt fails, the Vendor Portal makes up to eight retry attempts. Each delivery attempt times out after five seconds. The retry schedule is approximately 1m, 2m, 4m, 8m, 16m, 32m, 64m, 128m after the first failed attempt.
@@ -228,3 +102,16 @@ A webhook delivery is considered failed when:
 After eight retry attempts, the Vendor Portal marks the notification as permanently failed. The Vendor Portal also sends an email to both the subscription creator and team Admins with details about the failure, including the event type, the last error message, and a link to the delivery history in the Vendor Portal.
 
 If a webhook subscription has 10 consecutive permanent failures, the Vendor Portal automatically disables it. To resume deliveries, verify that your endpoint is reachable and then re-enable the subscription from the **Notifications** page.
+
+## About adding custom HTTP headers {#custom-headers}
+
+You can add custom HTTP headers to webhook subscriptions to authenticate with your receiving endpoint. This is useful when your endpoint requires an API key, bearer token, or other credentials in the request headers.
+
+Header values are encrypted at rest and masked in the UI after you save the subscription. To update a saved header value, you must re-enter it. Custom headers are included in both real webhook deliveries and test webhook requests.
+
+Custom headers have the following limitations:
+
+- Maximum of five headers per subscription
+- Header values can be up to 2048 characters
+- Duplicate header names are not allowed
+- Certain reserved headers (such as `Content-Type` and `Host`) cannot be overridden
