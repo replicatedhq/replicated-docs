@@ -8,6 +8,14 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.18.1
+
+Released on March 23, 2026
+
+### Improvements {#improvements-1-18-1}
+* Updates Kubernetes libraries from v0.35.2 to v0.35.3.
+* Updates google.golang.org/grpc from v1.72.2 to v1.79.3.
+
 ## 1.18.0
 
 Released on March 13, 2026
