@@ -98,6 +98,9 @@ Instance event notifications use the **Instance Name** if set. Otherwise, they u
 - **Customer Unarchived (Restored)**: When a customer is restored from archived state
 - **Customer License Expiring**: Time-based warning of an upcoming license expiration
 - **Pending Self-Service Signup**: When someone signs up via the self-service portal (if enabled)
+- **Enterprise Portal Invite Sent**: When an Enterprise Portal invite is sent to a user
+- **Enterprise Portal Access Granted**: When the first user accesses the Enterprise Portal for that customer team
+- **Enterprise Portal User Joined**: When a user joins an Enterprise Portal customer (invite acceptance, self-signup, or SAML JIT)
 
 ### Support events
 - **Support Bundle Uploaded**: When a support bundle is uploaded
@@ -214,7 +217,7 @@ First pull tracking is forward-only. Customers who pulled software before this f
 You can filter notifications based on your custom license field values. This allows you to create targeted notifications based on your customers' entitlement data. For more information about adding custom license fields, see [Manage Customer License Fields](/vendor/licenses-adding-custom-fields).
 
 Filtering by custom license fields is supported for the following event types:
-- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring, Enterprise Portal Invite Sent, Enterprise Portal Access Granted, Enterprise Portal User Joined)
 - Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
 - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
 
