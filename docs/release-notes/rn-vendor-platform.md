@@ -14,14 +14,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on March 24, 2026
 
-### New Features {#new-features-v2026-03-24-2}
+### Improvements {#improvements-v2026-03-24-2}
 * Added bundle_name and metadata fields to the support.bundle.analyzed webhook event payload, Slack notifications, and email notifications.
 
 ## v2026.03.18-4
 
 Released on March 18, 2026
 
-### Improvements {#improvements-v2026-03-18-4}
+### New Features {#new-features-v2026-03-18-4}
 * Added a "Default Application" team setting that allows admins to configure which application new team members land on by default, instead of the first app alphabetically.
 
 ## v2026.03.16-3
