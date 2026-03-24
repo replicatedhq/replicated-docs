@@ -41,7 +41,7 @@ For example, if you select both **Paid** and **Community** for the **License typ
 When you specify multiple custom license field filters, all conditions must match for the notification to trigger (AND logic). For example, if you add filters for `seats > 99` and `tier == Enterprise`, then the value of the `seats` custom license field must be greater than `99` _and_ the value of the `tier` custom license field must be `Enterprise` to trigger a notification.
 
 The Vendor Portal supports filtering by custom license fields for the following event types:
-- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring)
+- Customer events (Customer Created, Customer Updated, Customer Archived, Customer Unarchived, Customer License Expiring, Enterprise Portal Invite Sent, Enterprise Portal Access Granted, Enterprise Portal User Joined)
 - Instance events (Instance Created, Instance Ready, Instance Upgrade Started, Instance Upgrade Completed, Instance Version Behind, Instance Inactive, Instance State Duration, Instance State Flapping)
 - Support Bundle events (Support Bundle Uploaded, Support Bundle Analyzed)
 

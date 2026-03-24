@@ -40,6 +40,18 @@ Time-based warning of an upcoming license expiration.
 
 When someone signs up via the self-service portal (if enabled).
 
+### Enterprise Portal Invite Sent
+
+When a vendor sends an Enterprise Portal invite to a user
+
+### Enterprise Portal Access Granted
+
+When the first user accesses the Enterprise Portal for that customer team
+
+### Enterprise Portal User Joined
+
+When a user joins an Enterprise Portal customer
+
 ## Instance events
 
 :::note
