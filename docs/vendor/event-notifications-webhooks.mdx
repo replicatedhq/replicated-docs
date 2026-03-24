@@ -1,20 +1,23 @@
-# Configure and use webhooks (Beta)
+# Configure and test webhooks (Beta)
 
-This topic describes how to configure and use webhooks for event notifications. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
+This topic describes how to configure and test webhooks for event notifications. For information about how to create a notification using a webhook URL, see [Create event notification subscriptions (Beta)](/vendor/event-notifications-create).
 
-Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations. For the JSON envelope and field descriptions, see [Webhook payload structure (Beta)](/reference/notifications-webhook-payload).
+Webhooks allow you to receive notifications as HTTP POST requests to an endpoint you control. This enables integration with services like Slack, PagerDuty, custom monitoring systems, and other tools that support webhook integrations.
 
-## Configure a Slack webhook
+## Integrate with Slack using webhooks
 
-For more information about configuring incoming webhooks with Slack, see the [Sending messages using incoming webhooks](https://api.slack.com/messaging/webhooks) in the Slack documentation.
+To send notifications to Slack, enable incoming webhooks on a new or existing Slack app, and then use the generated webhook URL as your subscription endpoint. For more information about incoming webhooks, see [Sending messages using incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) in the Slack documentation.
 
 To send notifications to a Slack channel using webhooks:
 
-1. Go to your Slack workspace settings.
-1. Go to **Apps** > **Incoming Webhooks** and click **Add to Slack**.
-1. Select the channel where you want to receive notifications.
-1. Copy the webhook URL.
-1. Create a notification in the Vendor Portal using your Slack webhook URL. See [Create an event notification](/vendor/event-notifications-create#create-an-event-notification).
+1. Create a Slack app for your workspace, or use an existing one. To use the Slack API to create an app, go to `https://api.slack.com/apps/new` in a browser.
+1. In your Slack app settings, enable **Incoming Webhooks**.
+1. Click **Add New Webhook to Workspace** and select the channel where you want to receive notifications.
+   :::note
+   You can send each notification to one Slack channel. To generate additional webhooks URLs to use for different event notifications, click **Add New Webhook to Workspace** again and select the target channel. 
+   :::
+1. Copy the generated webhook URL.
+1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL. See [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
 1. Trigger a test event to verify that the webhook is configured properly.
 
 ## Test webhooks locally {#test-webhook}
