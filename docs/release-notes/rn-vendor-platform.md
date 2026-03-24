@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on March 24, 2026
 
-### New Features {#new-features-v2026-03-24-7}
+### Improvements {#improvements-v2026-03-24-7}
 * Sales RBAC role now includes Enterprise Portal invite permissions, allowing Sales users to send EP invites and support auto-invite on customer creation.
 
 ## v2026.03.18-4
