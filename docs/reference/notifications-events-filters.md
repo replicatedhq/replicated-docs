@@ -42,6 +42,10 @@ When someone signs up via the self-service portal (if enabled).
 
 ## Instance events
 
+:::note
+Instance event notifications use the **Instance Name** if set. Otherwise, they use the Instance ID.
+:::
+
 ### Instance Created
 
 When a new instance sends its first check-in.
@@ -97,10 +101,6 @@ The notification triggers when an instance accumulates the specified number of s
 
 When a custom metric value reported by an instance meets a configured threshold condition.
 
-:::note
-Instance event notifications use the **Instance Name** if set. Otherwise, they use the Instance ID.
-:::
-
 The Custom Metric Threshold Reached event type requires a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
 
 The following table describes each of the filters for the Custom Metric Threshold Reached event type:
@@ -148,7 +148,7 @@ When a release is demoted from a channel.
 
 ### Release Assets Downloaded {#release-assets-downloaded}
 
-When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Fires one time per individual asset pull. Includes whether this is the customer's first ever software pull, which is useful for revenue recognition tracking.
+When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). This event fires one time per individual asset pull. It also includes whether this is the customer's first software pull.
 
 The following table describes the available filters for the Release Assets Downloaded event type:
 
@@ -163,7 +163,7 @@ The following table describes the available filters for the Release Assets Downl
 
 The **Pull Type** filter controls whether the notification fires on every pull or only the first time a customer pulls any software asset:
 
-- **First Pull Only**: The notification fires only when a customer pulls a release asset for the first time, across all asset types. Use this to track the revenue recognition milestone when a customer first retrieves your software.
+- **First Pull Only**: The notification fires only when a customer pulls a release asset for the first time, across all asset types.
 - **Any Pull** (default): The notification fires on every pull. This is equivalent to leaving the filter unset, and all existing subscriptions behave this way.
 
 :::note
