@@ -150,20 +150,19 @@ To verify webhook signatures in your endpoint:
 
 ## Integrate with Slack using webhooks
 
-To send Event Notifications to Slack, you create a Slack app with incoming webhooks enabled and use the generated webhook URL as your subscription endpoint. For more information about incoming webhooks, see [Sending messages using incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) in the Slack documentation.
+To send notifications to Slack, enable incoming webhooks on a new or existing Slack app, and then use the generated webhook URL as your subscription endpoint. For more information about incoming webhooks, see [Sending messages using incoming webhooks](https://docs.slack.dev/messaging/sending-messages-using-incoming-webhooks) in the Slack documentation.
 
 To send notifications to a Slack channel using webhooks:
 
-1. [Create a Slack app](https://api.slack.com/apps/new) for your workspace, or use an existing one.
+1. Create a Slack app for your workspace, or use an existing one. To use the Slack API to create an app, go to `https://api.slack.com/apps/new` in a browser.
 1. In your Slack app settings, enable **Incoming Webhooks**.
 1. Click **Add New Webhook to Workspace** and select the channel where you want to receive notifications.
+   :::note
+   You can send each notification to one Slack channel. To generate additional webhooks URLs to use for different event notifications, click **Add New Webhook to Workspace** again and select the target channel. 
+   :::
 1. Copy the generated webhook URL.
 1. Create an Event Notification subscription in the Vendor Portal using your Slack webhook URL. See [Create an Event Notification](/vendor/event-notifications-create#create-an-event-notification).
 1. Trigger a test event to verify that the webhook is configured properly.
-
-:::note
-To send different events to different Slack channels, repeat step 3 to generate a separate webhook URL for each target channel within the same Slack app. Then use the appropriate webhook URL when creating each Event Notification subscription.
-:::
 
 ## Test webhooks locally {#test-webhook}
 
