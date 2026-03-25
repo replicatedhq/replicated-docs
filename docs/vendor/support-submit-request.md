@@ -50,14 +50,7 @@ To submit a support request from the Vendor Portal **Support** page:
 
 1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support)**.
 
-1. Select the product area related to your request. The available products depend on your account and may include:
-    - **KOTS**: Issues with the KOTS Admin Console or KOTS CLI
-    - **Embedded Cluster**: Issues with the Embedded Cluster installer
-    - **kURL**: Issues with the legacy kURL installer
-    - **Compatibility Matrix**: Issues with cluster and VM creation and usage
-    - **Vendor Portal**: Issues with hosted services including Enterprise Portal, Registry/Proxy Registry, and channel/release management
-    - **Helm CLI**: Issues with direct Helm installs and the Replicated SDK microservice
-    - **Native Scheduler**: Issues with the legacy Replicated Native Scheduler
+1. Select the product area related to your request. The available products depend on your account.
 
 1. On the self-service page, review the suggested community articles and documentation links to see if your question has already been answered. If you still need help, click **Open a support request**.
 
@@ -67,7 +60,7 @@ To submit a support request from the Vendor Portal **Support** page:
    If your team has a collab repository configured, you can also click **View open issues and requests** to see all submitted issues and feature requests on GitHub.
    :::
 
-1. (KOTS, Embedded Cluster, and kURL only) Upload one or more support bundles. The support bundle metadata is used to pre-populate customer information in the request form.
+1. (KOTS, Embedded Cluster, and kURL only) Upload one or more support bundles. The Vendor Portal uses support bundle metadata to pre-populate customer information in the request form.
 
 1. Complete the support request form:
 
@@ -79,13 +72,13 @@ To submit a support request from the Vendor Portal **Support** page:
       <tr>
         <th>First Name, Last Name, and GitHub Username</th>
         <td>
-          <p>These fields are only displayed if your Vendor Portal account does not have a GitHub username configured. Your GitHub username is required to access the GitHub collab repo used for support tickets.</p>
+          <p>These fields are only displayed if you haven't added a GitHub username to your Vendor Portal account. Your GitHub username is required to access the GitHub collab repo used for support tickets.</p>
         </td>
       </tr>
       <tr>
         <th>Customer Name</th>
         <td>
-          <p>Search for the name of the customer associated with this support request. This field is available when customer information was provided from a support bundle or from the application context.</p>
+          <p>Search for the name of the customer associated with this support request. This field is available if you uploaded a support bundle in the previous step, or when customer information is available from the application context.</p>
           <p>Choosing a customer is required to enable some SLA levels that are specific to paid licenses.</p>
         </td>
       </tr>
@@ -115,7 +108,7 @@ To submit a support request from the Vendor Portal **Support** page:
       </tr>
     </table>
 
-1. If you selected a high-severity impact level (such as a production or service-inoperative issue), answer the additional assessment questions that are displayed:
+1. If you selected a high-severity impact level (such as a production or service-inoperative issue), answer the additional assessment questions:
 
     <table>
       <tr>
@@ -150,12 +143,12 @@ To submit a support request from the Vendor Portal **Support** page:
 
 1. Click **Submit Request**.
 
-   If the severity calculation results in a Severity 1 (critical) issue, a confirmation dialog is displayed warning that an on-call engineer will be paged. You can choose to:
+   If the severity calculation results in a Severity 1 (critical) issue, the Vendor Portal displays a confirmation dialog that informs you that an on-call engineer will be paged. From this dialog, you can choose to:
    - Go back and edit the request details
    - Continue and submit as Severity 2 without paging an engineer
    - Continue and submit as Severity 1, which pages an on-call engineer
 
-   After submission, you receive a link to your support issue where you can interact with the support team.
+   After you submit the support request, you receive a link to your support issue where you can interact with the support team.
 
 ## Provide support bundles to Replicated after opening a support request {#add-bundle-after}
 
