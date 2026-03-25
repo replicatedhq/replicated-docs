@@ -11,12 +11,12 @@
   overflow: hidden;
 }
 
-/* Product sidebars (installer + main-docs product sidebars) slide in from right */
-.sidebarContentTransition[data-sidebar]:not([data-sidebar='main']) {
+/* Only animate when crossing between main and embedded cluster sidebar (data-animate set by JS) */
+.sidebarContentTransition[data-animate='true'][data-sidebar]:not([data-sidebar='main']) {
   animation: sidebarSlideInFromRight 0.2s ease-out forwards;
 }
 
-.sidebarContentTransition[data-sidebar='main'] {
+.sidebarContentTransition[data-animate='true'][data-sidebar='main'] {
   animation: sidebarSlideInFromLeft 0.2s ease-out forwards;
 }
 
@@ -40,16 +40,6 @@
     opacity: 1;
     transform: translateX(0);
   }
-}
-
-/* Product name heading at top of product-specific sidebars */
-.sidebarProductHeading {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 0;
-  padding: 18px 12px 8px 18px;
-  color: var(--ifm-font-color-base);
-  line-height: 1.3;
 }
 
 @media (min-width: 997px) {

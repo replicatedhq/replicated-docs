@@ -1,6 +1,5 @@
 /**
- * Custom DocSidebar Mobile: product heading and installer version selector
- * when the user is on an installer docs page.
+ * Custom DocSidebar Mobile: version selector for embedded cluster docs.
  */
 import React from 'react';
 import clsx from 'clsx';
@@ -19,10 +18,7 @@ const DocSidebarMobileSecondaryMenu = ({ sidebar, path }) => {
 
   return (
     <>
-      {product && product.key !== 'installer' && (
-        <h2 className="sidebar-product-heading-mobile">{product.name}</h2>
-      )}
-      {product?.key === 'installer' && (
+      {product?.key === 'embedded-cluster' && (
         <div style={{ padding: '0.5rem 1rem' }}>
           <InstallerVersionSelector />
         </div>

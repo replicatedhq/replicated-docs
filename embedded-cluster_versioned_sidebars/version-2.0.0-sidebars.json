@@ -1,5 +1,5 @@
 {
-  "installerSidebar": [
+  "embeddedClusterSidebar": [
     "embedded-overview",
     "embedded-using",
     "embedded-config",

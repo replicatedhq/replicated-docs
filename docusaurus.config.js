@@ -54,10 +54,10 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'installer',
-        path: 'installer',
-        routeBasePath: 'installer',
-        sidebarPath: './sidebarInstaller.js',
+        id: 'embedded-cluster',
+        path: 'embedded-cluster',
+        routeBasePath: 'embedded-cluster',
+        sidebarPath: './sidebarEmbeddedCluster.js',
         breadcrumbs: true,
         editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
         // Versioning configuration
@@ -166,7 +166,7 @@ const config = {
               {
                 type: 'doc',
                 docId: 'v3-placeholder',
-                docsPluginId: 'installer',
+                docsPluginId: 'embedded-cluster',
                 label: 'Embedded Cluster',
               },
               {

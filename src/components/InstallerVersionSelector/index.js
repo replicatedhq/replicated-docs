@@ -13,7 +13,7 @@ import {
 import { useHistorySelector } from '@docusaurus/theme-common';
 import clsx from 'clsx';
 
-const DOCS_PLUGIN_ID = 'installer';
+const DOCS_PLUGIN_ID = 'embedded-cluster';
 
 function getVersionMainDoc(version) {
   return version.docs.find((doc) => doc.id === version.mainDocId);
