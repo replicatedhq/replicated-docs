@@ -10,6 +10,24 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.03.18-4
+
+Released on March 18, 2026
+
+### New Features {#new-features-v2026-03-18-4}
+* Added a "Default Application" team setting that allows admins to configure which application new team members land on by default, instead of the first app alphabetically.
+
+## v2026.03.16-3
+
+Released on March 16, 2026
+
+### Improvements {#improvements-v2026-03-16-3}
+* Adds modal for editing support bundle names.
+* Truncates long support bundle names with an ellipsis.
+
+### Bug fixes {#bug-fixes-v2026-03-16-3}
+* Fixes troubleshoot page scroll.
+
 ## v2026.03.12-5
 
 Released on March 12, 2026

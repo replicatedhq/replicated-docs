@@ -94,6 +94,20 @@ To get an application slug with the Replicated CLI:
 
 1. Copy the value in the `SLUG` field.
 
+## Set a default application
+
+Teams with multiple applications can set a default application. This ensures that all team members land on the correct application when they first log in. Without a default, the Vendor Portal selects whichever application comes first alphabetically.
+
+To set a default application:
+
+1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Team Settings**.
+
+1. Select an application from the **Default application** dropdown.
+
+1. Click **Save changes**.
+
+To clear the default, click **Clear default** on the **Team Settings** page.
+
 ## Delete an application
 
 When you delete an application, you also delete all licenses and data associated with the application. You can also optionally delete all images associated with the application from the Replicated registry. Deleting an application cannot be undone.

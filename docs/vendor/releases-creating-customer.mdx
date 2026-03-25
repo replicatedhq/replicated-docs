@@ -26,11 +26,13 @@ To create a customer:
 
 1. For **Customer name**, enter a name for the customer.
 
-1. For **Customer email**, enter the email address for the customer.
+1. For **Customer email**, enter the email address for the customer. A customer email address is required for Helm installations. This email address is never used to send emails to customers.
 
-   :::note
-   A customer email address is required for Helm installations. This email address is never used to send emails to customers.
-   :::
+1. (Optional) Disable the **Send Enterprise Portal invite to customer email** checkbox if you don't want the Enterprise Portal to automatically send this customer an invitation. If you disable the checkbox, you can manually invite the customer to the Enterprise Portal later.
+
+    :::note
+    The **Send Enterprise Portal invite to customer email** checkbox appears only when the Enterprise Portal is enabled globally for all customers. For more information, see [Automatically invite customers on creation](enterprise-portal-invite#auto-invite) in _Manage Enterprise Portal customer access_.
+    :::
 
 1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install.
 

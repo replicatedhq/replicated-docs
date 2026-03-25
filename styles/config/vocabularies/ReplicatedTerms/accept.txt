@@ -36,3 +36,5 @@ SlackerNews
 statusInformers
 supportMinimalRBACPrivileges
 targetKotsVersion
+unarchive
+Unarchived

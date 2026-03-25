@@ -101,7 +101,7 @@ This policy is automatically created for teams with the Enterprise plan only.
 
 ### Sales
 
-The Sales policy grants read-write access to customers and license details, read-only access to resources necessary to manage licenses (applications, channels, and license fields), the ability to manage the user's own notification subscriptions, and read-only access to the activity stream and Enterprise Portal data.
+The Sales policy grants read-write access to customers and license details. It also grants read-only access to applications, channels, license fields, the activity stream, and Enterprise Portal data. Additionally, it grants the ability to manage notification subscriptions and invite Enterprise Portal customer users.
 
 :::note
 This policy is automatically created for teams with the Enterprise plan only.
@@ -125,7 +125,10 @@ This policy is automatically created for teams with the Enterprise plan only.
         "team/notifications/types/list",
         "team/notifications/events/read",
         "team/activity-stream/read",
-        "kots/app/*/enterprise-portal/**/read"
+        "kots/app/*/enterprise-portal/**/read",
+        "kots/app/*/enterprise-portal/customer-users/read",
+        "kots/app/*/enterprise-portal/customer-user/create",
+        "kots/app/*/enterprise-portal/customer-user/login"
       ],
       "denied": [
         "**/*"

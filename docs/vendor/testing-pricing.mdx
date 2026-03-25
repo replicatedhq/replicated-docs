@@ -4,11 +4,13 @@ This topic describes the pricing for Replicated Compatibility Matrix (CMX).
 
 ## Usage-based pricing
 
-There is a minimum cost of $0.50 plus one minute for each running cluster or VM created with CMX. Cost is rounded up to the nearest cent and subtracted from the available credits in the team account.
+There is a minimum startup cost plus one minute for each running cluster or VM created with CMX. Cost is rounded up to the nearest cent and subtracted from the available credits in the team account.
 
 The following provides more detail about the costs that are included in CMX usage-based pricing:
 
-* A $0.50 per cluster or VM startup cost.
+* A per cluster or VM startup cost:
+  * **$0.65** for cloud-based clusters (EKS, GKE, AKS, OKE)
+  * **$0.50** for VMs and VM-based clusters
 
 * By-the-minute pricing based on instance size and count, starting at the time the cluster or VM status is `running` and ending when the cluster or VM is either expired (TTL) or removed. Minutes are rounded up.
 
@@ -45,7 +47,44 @@ You can request increased quotas at any time with no additional cost. To view yo
 
 [View a larger version of this image](/images/compatibility-matrix-settings.png)
 
-## VMs and VM-based cluster pricing (OpenShift, RKE2, k3s, kind, Embedded Cluster, kURL)
+## OpenShift cluster pricing
+
+OpenShift clusters use VM-based infrastructure with additional licensing costs.
+
+<table>
+  <tr>
+    <th width="25%">Instance Type</th>
+    <th width="25%">VCPUs</th>
+    <th width="25%">Memory (GiB)</th>
+    <th width="25%">USD/Credit per hour</th>
+  </tr>
+  <tr>
+    <td>r1.medium</td>
+    <td>4</td>
+    <td>16</td>
+    <td>$0.384</td>
+  </tr>
+  <tr>
+    <td>r1.large</td>
+    <td>8</td>
+    <td>32</td>
+    <td>$0.768</td>
+  </tr>
+  <tr>
+    <td>r1.xlarge</td>
+    <td>16</td>
+    <td>64</td>
+    <td>$1.536</td>
+  </tr>
+  <tr>
+    <td>r1.2xlarge</td>
+    <td>32</td>
+    <td>128</td>
+    <td>$3.072</td>
+  </tr>
+</table>
+
+## VMs and VM-based cluster pricing (RKE2, k3s, kind, Embedded Cluster, kURL)
 
 VM-based clusters approximately match the AWS m6.i instance type pricing.
 
