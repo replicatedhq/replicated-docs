@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.18.2
+
+Released on March 23, 2026
+
+### Improvements {#improvements-1-18-1}
+* The SDK image is now built with apk.cve0.io packages.
+
 ## 1.18.1
 
 Released on March 23, 2026
