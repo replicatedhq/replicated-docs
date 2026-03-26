@@ -1,0 +1,55 @@
+# replicated network report
+
+Get network report
+
+### Synopsis
+
+Get a network report showing detailed network activity for a specified network.
+
+The report shows individual network events including source/destination IPs, ports, protocols,
+pods, processes, and DNS queries. Reports must be enabled with 'replicated network update NETWORK_ID --collect-report'.
+
+Output formats:
+  - Default: Full event details in JSON format
+  - --summary: Aggregated statistics with top domains and destinations
+  - --watch: Continuous stream of new events in JSON Lines format
+
+```
+replicated network report [NETWORK_ID] [flags]
+```
+
+### Examples
+
+```
+# Get full network traffic report (external traffic only)
+replicated network report NETWORK_ID
+
+# Get aggregated summary with statistics. Only available for networks that have been terminated.
+replicated network report NETWORK_ID --summary
+
+# Watch for new network events in real-time
+replicated network report NETWORK_ID --watch
+```
+
+### Options
+
+```
+  -h, --help        help for report
+      --id string   Network ID to get report for
+      --summary     Get aggregated report summary with statistics instead of individual events
+  -w, --watch       Watch for new network events in real-time (polls every 2 seconds)
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated network](replicated-cli-network)	 - Manage test networks for VMs and Clusters
+
