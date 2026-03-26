@@ -1,0 +1,74 @@
+# Update custom TLS certificates in Embedded Cluster installations
+
+This topic describes how to update custom TLS certificates in Replicated Embedded Cluster installations.
+
+## Update custom TLS certificates
+
+Users can use the CLI or the Admin Console to update the TLS certificates used to secure the Admin Console in Embedded Cluster installations. This is useful when certificates expire or need to be rotated regularly.
+
+### Update using the CLI (recommended)
+
+:::note
+The `admin-console update-tls` command is available in Embedded Cluster v2.13.2 and later.
+:::
+
+The `admin-console update-tls` command provides a secure way to update TLS certificates for the Admin Console.
+
+To update TLS certificates using the CLI:
+
+1. SSH onto a controller node where Embedded Cluster is installed. Ensure the new TLS certificate and key files that you want to use are present on the node.
+
+1. Run the following command to update the TLS certificate and key:
+
+   ```bash
+   sudo ./APP_SLUG admin-console update-tls --tls-cert PATH_TO_CERT --tls-key PATH_TO_KEY
+   ```
+
+   Replace:
+   - `APP_SLUG` with the unique slug of the installed application.
+   - `PATH_TO_CERT` with the path to the TLS certificate file.
+   - `PATH_TO_KEY` with the path to the TLS key file.
+
+### Update using the Admin Console
+
+You can also update TLS certificates through the Admin Console. This method requires temporarily enabling anonymous uploads.
+
+:::important
+Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
+
+Replicated recommends using the CLI method above when possible. If you use this method, complete the upload process quickly to minimize the vulnerability risk.
+:::
+
+To upload a new custom TLS certificate through the Admin Console:
+
+1. SSH onto a controller node where Embedded Cluster is installed. Then, run the following command to start a shell so that you can access the cluster with kubectl:
+
+   ```bash
+   sudo ./APP_SLUG shell
+   ```
+   Where `APP_SLUG` is the unique slug of the installed application.
+
+1. In the shell, run the following command to restore the ability to upload new TLS certificates by adding the `acceptAnonymousUploads` annotation:
+
+   ```bash
+   kubectl -n kotsadm annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite
+   ```
+
+1. Run the following command to get the name of the kurl-proxy server:
+
+   ```bash
+   kubectl get pods -A | grep kurl-proxy | awk '{print $2}'
+   ```
+   :::note
+   This server is named `kurl-proxy`, but is used in both Embedded Cluster and kURL installations.
+   :::
+
+1. Run the following command to delete the kurl-proxy pod. The pod automatically restarts after the command runs.
+
+   ```bash
+   kubectl delete pods PROXY_SERVER
+   ```
+
+   Replace `PROXY_SERVER` with the name of the kurl-proxy server that you got in the previous step.
+
+1. After the pod has restarted, go to `http://<ip>:30000/tls` in your browser and complete the process in the Admin Console to upload a new certificate.

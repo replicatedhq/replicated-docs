@@ -6,9 +6,17 @@ This topic describes how to create event notification subscriptions in the Repli
 
 To create an event notification subscription:
 
-1. In the Vendor Portal, go to **Notifications**.
+1. In the Vendor Portal, go to **Notifications** and click **Create notification**.
 
-1. Click **Create Notification**.
+   ![notifications overview page](/images/notifications-overview.png)
+
+   [View a larger version of this image](/images/notifications-overview.png)
+
+   The **New Notification** page opens:
+
+   ![notifications overview page](/images/new-notification.png)
+
+   [View a larger version of this image](/images/new-notification.png)
 
 1. (Optional) Enter a custom name for the subscription. Custom names help you identify subscriptions when you have multiple subscriptions for the same event type. The name is also included in email subjects and webhook payloads.
 
@@ -20,17 +28,13 @@ To create an event notification subscription:
    Alternatively, click **Configure with AI instead**. With the AI-assisted notification builder, you can describe in natural language the events that you want to be notified about. For example, "Notify me when trial customers upload support bundles" or "Alert me when instances fall more than 3 versions behind on the Stable channel". The AI builder has context of pre-defined event types and filters, but cannot create new event types or filters.
    :::
 
-   <!-- TODO: Add screenshot of event type selection -->
-
 1. (Optional) For each of the events that you selected, click the filter icon to configure event filters. For more information about how the Vendor Portal uses filters to trigger notifications, see [Events and filters](/vendor/event-notifications#events-and-filters) in _About event notifications (Beta)_.
 
 1. Click **Done**.
 
-   <!-- TODO: Add screenshot of filter configuration -->
-
 1. Do one of the following, depending on your notification delivery method:
    * For email delivery, enter an email address.
-   * For webhook delivery: 
+   * For webhook delivery:
       1. Enter a webhook URL. The endpoint must meet the following requirements:
          - Must be able to receive HTTP POST requests
          - Must be publicly accessible (or use a secure tunnel for testing)
