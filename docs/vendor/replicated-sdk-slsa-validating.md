@@ -1,5 +1,9 @@
 # Validate provenance of releases for the Replicated SDK
 
+:::note
+This information applies to Replicated SDK versions 1.18.1 and earlier.
+:::
+
 This topic describes how to verify the authenticity and integrity of Replicated SDK container images using SLSA provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
 
 ## About supply chain levels for software artifacts (SLSA)
