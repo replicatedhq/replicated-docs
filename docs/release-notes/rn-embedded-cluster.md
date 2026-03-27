@@ -12,6 +12,39 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.15.0
+
+Released on March 26, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.15.0+k8s-1.34</td>
+    <td id="center">2.15.0+k8s-1.33</td>
+    <td id="center">2.15.0+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.4-ec.3</td>
+  </tr>
+</table>
+
+### New features {#new-features-2-15-0}
+* Migrates Helm to version 4.
+
+### Improvements {#improvements-2-15-0}
+* Updates Kubernetes to 1.34.6 and 1.33.10 across the supported versions.
+
+### Bug fixes {#bug-fixes-2-15-0}
+* Fixes an issue in high availability (HA) installations where the registry could fail due to missing shared HTTP secret or stale bucket hooks.
+* Fixes an issue where adding a Helm repository was attempted during air gap installations, causing failures.
+
 ## 2.14.1
 
 Released on March 16, 2026
