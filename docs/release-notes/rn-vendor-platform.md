@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.03.27-0
+
+Released on March 27, 2026
+
+### New Features {#new-features-v2026-03-27-0}
+* Vendors can proxy private GitHub Terraform modules through proxy.replicated.com, allowing customers to pull modules using their license ID.
+
 ## v2026.03.18-4
 
 Released on March 18, 2026
