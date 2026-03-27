@@ -60,7 +60,7 @@ The following table describes the available filters for the Enterprise Portal Ac
 
 The **Access Type** filter controls whether the notification fires on every access or only on first-access milestones per license type:
 
-- **First Access for Selected License Type**: The notification fires the first time a user accesses the Enterprise Portal for a customer under a specific license type. Use this with the **License Type** filter to track access milestones per license type. For example, combining "First Access for Selected License Type" with License Type "Paid" will fire when a customer first accesses the portal under a paid license, even if they previously accessed it on a trial.
+- **First Access for Selected License Type**: The notification fires the first time a user accesses the Enterprise Portal for a customer with a specific license type. Use this with the **License Type** filter to track access milestones per license type. For example, combining this with License Type "Paid" fires when a customer first accesses the portal on a paid license, even if they previously accessed it on a trial.
 - **Any Access** (default): The notification fires on every access event.
 
 ### Enterprise Portal User Joined
@@ -191,11 +191,11 @@ The following table describes the available filters for the Release Assets Downl
 The **Pull Type** filter controls whether the notification fires on every pull or only on first-pull milestones:
 
 - **First Pull Only**: The notification fires only when a customer pulls a release asset for the very first time, regardless of license type. If a customer first pulls on a trial license, this will not fire again when they convert to a paid license.
-- **First Pull for Selected License Type**: The notification fires the first time a customer pulls a release asset under a specific license type. Use this with the **License Type** filter to track milestones per license type. For example, combining "First Pull for Selected License Type" with License Type "Paid" will fire the first time a customer pulls under a paid license, even if they previously pulled on a trial.
+- **First Pull for Selected License Type**: The notification fires the first time a customer pulls a release asset with a specific license type. Use this with the **License Type** filter to track milestones per license type. For example, combining this with License Type "Paid" fires the first time a customer pulls on a paid license, even if they previously pulled on a trial.
 - **Any Pull** (default): The notification fires on every pull. This is equivalent to leaving the filter unset, and all existing subscriptions behave this way.
 
 :::note
-First pull tracking is forward-only. Customers who pulled software before this feature shipped will have `is_first_customer_pull: false` on all subsequent pulls. Similarly, per-license-type milestones only track pulls that occur after the feature was enabled.
+First pull tracking is forward-only. Customers who pulled software before March 18, 2026 will have `is_first_customer_pull: false` on all subsequent pulls. Per-license-type milestones only track pulls that occur after March 27, 2026.
 :::
 
 ## Support events
