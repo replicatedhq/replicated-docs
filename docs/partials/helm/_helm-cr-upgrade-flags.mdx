@@ -4,7 +4,7 @@ KOTS uses `helm upgrade` for _all_ deployments of an application, not just upgra
 
 > Introduced in Embedded Cluster v2.15.0
 
-With Helm v4, if `helmUpgradeFlags` includes `--take-ownership` or `--force-replace`/`--force`, KOTS automatically appends `--server-side=false`. Resources previously deployed using HelmChart v1 without `useHelmInstall: true` were applied with `kubectl apply`, which uses client-side apply (CSA). When Helm v4 attempts to take ownership of those resources using SSA, field manager conflicts cause an error. The `--force` and `--force-replace` flags are also not permitted by Helm when SSA is enabled.
+With Helm v4, if `helmUpgradeFlags` includes `--take-ownership` or `--force-replace`/`--force`, KOTS automatically appends `--server-side=false`. HelmChart v1 without `useHelmInstall: true` uses `kubectl apply` to deploy resources, which uses client-side apply (CSA). When Helm v4 attempts to take ownership of those resources, server-side apply (SSA) causes field manager conflicts. Helm also does not allow `--force` or `--force-replace` with SSA.
 
 **Example:**
 
