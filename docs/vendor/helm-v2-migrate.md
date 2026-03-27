@@ -195,6 +195,12 @@ The `--take-ownership` flag is required for the following types of migrations:
 
 `--take-ownership` is _not_ needed when migrating from HelmChart v1 with `useHelmInstall: true` to HelmChart v2.
 
+### How does Helm v4 affect `--take-ownership` and `--force`?
+
+> Introduced in Embedded Cluster v2.15.0
+
+With Helm v4, if `helmUpgradeFlags` includes `--take-ownership` or `--force-replace`/`--force`, KOTS automatically appends `--server-side=false`. HelmChart v1 without `useHelmInstall: true` uses `kubectl apply` to deploy resources, which uses client-side apply (CSA). When Helm v4 attempts to take ownership of those resources, server-side apply (SSA) causes field manager conflicts. Helm also does not allow `--force` or `--force-replace` with SSA.
+
 ### What is the difference between HelmChart v1 with `useHelmInstall: false` and `useHelmInstall: true`?
 
 With HelmChart v1 and `useHelmInstall: false`, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. This differs from both the HelmChart v1 with `useHelmInstall: true` and HelmChart v2 methods, where KOTS installs the application using Helm.

@@ -2,10 +2,6 @@ Specifies additional flags to pass to the `helm upgrade` command for charts. The
 
 KOTS uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array.
 
-> Introduced in Embedded Cluster v2.15.0
-
-With Helm v4, if `helmUpgradeFlags` includes `--take-ownership` or `--force-replace`/`--force`, KOTS automatically appends `--server-side=false`. HelmChart v1 without `useHelmInstall: true` uses `kubectl apply` to deploy resources, which uses client-side apply (CSA). When Helm v4 attempts to take ownership of those resources, server-side apply (SSA) causes field manager conflicts. Helm also does not allow `--force` or `--force-replace` with SSA.
-
 **Example:**
 
 ```yaml
