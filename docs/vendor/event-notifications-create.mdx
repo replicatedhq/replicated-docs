@@ -123,7 +123,7 @@ As a Development Leader, I want to be notified when a paid customer pulls releas
 
 ### Revenue operations: First software pull for revenue recognition
 
-As a Revenue Operations Manager, receive a notification the first time a paid customer retrieves software to record the exact revenue recognition timestamp.
+As a Revenue Operations Manager, I want to receive a notification the first time a paid customer pulls software so that I can record the exact revenue recognition timestamp.
 
 - **Event Type:** Release Asset Downloaded
 - **Configuration:**
@@ -131,10 +131,6 @@ As a Revenue Operations Manager, receive a notification the first time a paid cu
   - Filter - License Type: "Paid"
   - Filter - Pull Type: "First Pull for Selected License Type"
 - **Delivery Method:** Webhook to your customer relationship management system
-
-:::note
-Use "First Pull for Selected License Type" rather than "First Pull Only" if customers may start on a trial before converting to a paid license. "First Pull Only" tracks the first-ever pull regardless of license type. If a customer pulls on a trial license first, the notification will not fire again after they convert to paid. "First Pull for Selected License Type" tracks milestones per license type. The notification fires the first time the customer pulls software with a paid license, even if they previously pulled on a trial.
-:::
 
 ### Support engineer: Unhealthy instance alert
 
