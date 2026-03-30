@@ -245,7 +245,7 @@ The following table describes the available filters for the Release Assets Downl
             <li>First Pull Only: Triggers a notification only the first time that a customer pulls a release asset.</li>
             <li>First Pull for Selected License Type: Triggers a notification the first time that a customer pulls a release asset with the selected license type. For example, if you select "Paid" for the License Type filter, you will receive a notification the first time that a customer pulls a release asset using a Paid license, even if the customer had previously pulled assets using a Trial license.</li>
           </ul>
-          <p>For customers who pulled software before March 18, 2026, the Vendor Portal applies <code>is_first_customer_pull: false</code> on all subsequent pulls. **First Pull for Selected License Type** only tracks asset pulls that occur after March 27, 2026.</p>
+          <p>For customers who pulled software before March 18, 2026, the Vendor Portal applies <code>is_first_customer_pull: false</code> on all subsequent pulls. Also, First Pull for Selected License Type only tracks asset pulls that occur after March 27, 2026.</p>
         </td>
     </tr>
 </table>
