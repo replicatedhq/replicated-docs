@@ -83,7 +83,8 @@ The following table describes the available filters for the Enterprise Portal Ac
         <ul>
           <li>Any Access (default): Triggers a notification every time a user accesses the Enterprise Portal.</li>
           <li>First Access for Selected License Type: Triggers a notification the first time that a customer with a specific license type accesses the Enterprise Portal. For example, if you select "Paid" for the License Type filter, then you will receive a notification the first time that a customer with a Paid license access the Enterprise Portal, even if they previously logged in when they had a Trial license.</li>
-        </ul>  
+        </ul>
+        <p>First Access for Selected License Type only tracks Enterprise Portal access events that occur after March 27, 2026.</p>
       </td>
     </tr>
 </table>
