@@ -44,11 +44,25 @@ To submit a support request from the **Support Bundle Analysis** page:
 
 Replicated support SLAs are a combination of the customer license type, your Replicated plan, which product is impacted, and other considerations. Your answers to the questions in the support request form generate a severity calculation that is posted on the GitHub issue as a label, and potentially result in a page for high severity incidents.
 
+The support page uses a multi-step wizard to guide you through submitting a support request or feature request.
+
 To submit a support request from the Vendor Portal **Support** page:
 
-1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support) > Open a support request**.
+1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support)**.
 
-1. In section 1 of the support request form, complete the required fields that apply to all requests:
+1. Select the product area related to your request. The available products depend on your account.
+
+1. On the self-service page, review the suggested community articles and documentation links to see if your question has already been answered. If you still need help, click **Open a support request**.
+
+   :::note
+   You can also click **Make a feature request** to submit a feature request instead. Feature requests collect a title, problem description, and an optional proposed solution.
+
+   If your team has a collab repository configured, you can also click **View open issues and requests** to see all submitted issues and feature requests on GitHub.
+   :::
+
+1. (KOTS, Embedded Cluster, and kURL only) Upload one or more support bundles. The Vendor Portal uses support bundle metadata to pre-populate customer information in the request form.
+
+1. Complete the support request form:
 
     <table>
       <tr>
@@ -56,125 +70,85 @@ To submit a support request from the Vendor Portal **Support** page:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <th>First Name and Last Name</th>
-        <td>Enter your first and last name.</td>
-      </tr>
-      <tr>
-        <th>Please choose the application you're troubleshooting</th>
+        <th>First Name, Last Name, and GitHub Username</th>
         <td>
-          <p>Select the application associated with this support request.</p>
-          <p>The application that you select informs which customers (if any) associated with this support request.</p>
+          <p>These fields are only displayed if you haven't added a GitHub username to your Vendor Portal account. Your GitHub username is required to access the GitHub collab repo used for support tickets.</p>
         </td>
       </tr>
       <tr>
-        <th>Which customer are you supporting?</th>
+        <th>Customer Name</th>
         <td>
-          <p>Search for the name of the customer associated with this support request.</p>
+          <p>Search for the name of the customer associated with this support request. This field is available if you uploaded a support bundle in the previous step, or when customer information is available from the application context.</p>
           <p>Choosing a customer is required to enable some SLA levels that are specific to paid licenses.</p>
         </td>
       </tr>
       <tr>
-        <th>What type of installation is this impacting?</th>
+        <th>Issue Title</th>
         <td>
-          <p>The options available in this field vary depending on the license type of the customer that you selected. Your selection for installation type determines the additional dynamic fields that are displayed on this request form.</p>
-          <p>The following describes each option:</p>
-          <ul>
-            <li><strong>This is a non-critical question:</strong> Select this option for general questions</li>
-            <li><strong>This is a problem outside of the customer premises:</strong> Issues that are not related to an on-prem installation, but still impact customers</li>
-            <li><strong>This is a problem affecting our internal team:</strong> Issues impacting internal teams (such as CI/CD or issues seen in development environments)</li>
-            <li><strong>This is a problem with software installed at a customer premises:</strong> Issues impacting one of your customers with the on-prem software</li>
-          </ul>
+          <p>(Required) The issue title on GitHub.</p>
         </td>
       </tr>
       <tr>
-        <th>Product area</th>
+        <th>Problem Description</th>
         <td>
-          <p>The options available in this field vary depending on the products included in your account and enabled for the selected customer.</p>
-          <p>The following describes each option:</p>
-          <ul>
-            <li><strong>KOTS:</strong> Issues with the KOTS Admin Console or KOTS CLI</li>
-            <li><strong>Embedded Kubernetes (kURL):</strong> Issues with the kURL installer</li>
-            <li><strong>Embedded Kubernetes (Embedded Cluster):</strong> Issues with the Embedded Cluster installer</li>
-            <li><strong>Download Portal:</strong> Issues with the SaaS customer facing portals, including the Download Portal or the Enterprise Portal</li>
-            <li><strong>Product Documentation:</strong> Questions or issues with documentation</li>
-            <li><strong>Support Bundles and Preflights:</strong> Questions about Troubleshoot Support Bundles and Preflights</li>
-            <li><strong>Replicated SDK</strong>: Questions about the Replicated SDK</li>
-          </ul>
+          <p>(Required) A description of the issue or problem.</p>
         </td>
       </tr>
       <tr>
-        <th>Issue title</th>
-        <td>The issue title on GitHub.</td>
-      </tr>
-      <tr>
-        <th>Describe the issue, problem, or potential bug</th>
-        <td>The issue description on GitHub.</td>
+        <th>Issue Impact</th>
+        <td>
+          <p>(Required) The impact level of the issue. The available options vary by product:</p>
+          <ul>
+            <li><strong>KOTS, kURL, Embedded Cluster, and Native Scheduler:</strong> Issue in paid production environment, Issue in non-production environment, Any other question</li>
+            <li><strong>Compatibility Matrix:</strong> Resources are entirely unavailable, A feature or resource is degraded, Any other question</li>
+            <li><strong>Helm CLI:</strong> Production issue with SDK Microservice, Production issue with Helm install, Non-production issue, Any other question</li>
+            <li><strong>Vendor Portal:</strong> SaaS Service inoperative, SaaS Service/Feature degraded, Any other question</li>
+          </ul>
+        </td>
       </tr>
     </table>
 
-1. Complete the additional dynamic fields that are displayed in the request form. A subset of these dynamic fields is displayed depending on what you selected for the fields in the previous step.   
+1. If you selected a high-severity impact level (such as a production or service-inoperative issue), answer the additional assessment questions:
 
-   <table>
+    <table>
       <tr>
         <th width="30%">Field</th>
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <th>The application is currently down in a customer environment</th>
+        <th>Is this issue currently preventing you from using the product in production?</th>
         <td>
-          <p>This field is only present if you selected **This is a problem with software installed at a customer premises** for the installation type.</p>
-          <p>Indicates if business critical functionality is not working at all.</p>
+          <p>Indicates whether business-critical functionality is completely unavailable.</p>
         </td>
       </tr>
       <tr>
-        <th>What is impacted?</th>
+        <th>Has this been reproduced in a different installation/environment?</th>
         <td>
-          <p>This field is only present if you selected **This is a problem outside of the customer premises** for the installation type.</p>
-          <p>Select one of the options:</p>
-          <ul>
-            <li><strong>I have a question:</strong> Select for general questions</li>
-            <li><strong>One or more components:</strong> The issue is with one or more specific components</li>
-            <li><strong>I cannot use the service at all:</strong> Indicates that functionality is not working at all</li>
-          </ul>
+          <p>Indicates whether the issue has been confirmed in more than one environment. If the issue is both blocking production and reproducible, the request may be escalated to Severity 1.</p>
         </td>
       </tr>
       <tr>
-        <th>Is the issue with installing an application?</th>
+        <th>Is this blocking a production release of the product?</th>
         <td>
-          <p>This field is only present if you selected **This is a problem with software installed at a customer premises** for the installation type.</p>
-          <p>Select one of the following options:</p>
-          <ul>
-            <li><strong>New install:</strong> The issue is with a first time installation</li>
-            <li><strong>Existing instance:</strong> The issue is with an instance after an initial successful installation, including upgrades.</li>
-          </ul>  
+          <p>(Compatibility Matrix only) Displayed when the impact level is "Resources are entirely unavailable". Indicates whether the issue is blocking a production release.</p>
         </td>
       </tr>
       <tr>
-        <th>Type of cluster</th>
+        <th>Select Cluster/VM</th>
         <td>
-          <p>This field is present unless you selected **This is a problem outside of the customer premises** for the installation type.</p>
-          <p>Indicates the type of Kubernetes cluster where the issue is present:</p>
-          <ul>
-            <li><strong>kURL:</strong> kURL installations</li>
-            <li><strong>Embedded Cluster:</strong> Embedded Cluster installations</li>
-            <li><strong>Customer-supplied:</strong> Any other cluster type supplied by the customer</li>
-          </ul>
+          <p>(Compatibility Matrix only) Optionally select a cluster or VM from your recent Compatibility Matrix history to associate with the request.</p>
         </td>
       </tr>
-      <tr>
-        <th>Is the issue in an air gap environment?</th>
-        <td>
-          <p>This field is present unless you selected **This is a problem outside of the customer premises** for the installation type.</p>
-          <p>Indicates if the installation is air-gapped.</p>
-        </td>
-      </tr>
-    </table> 
+    </table>
 
-1. In section 2, attach one or more support bundles:
-    - Use your pre-selected support bundle or select a different bundle in the pick list
-    - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
+1. Click **Submit Request**.
 
-1. Click **Submit support request**. You receive a link to your support issue where you can interact with the support team.
+   If the severity calculation results in a Severity 1 (critical) issue, the Vendor Portal displays a confirmation dialog that informs you that an on-call engineer will be paged. From this dialog, you can choose to:
+   - Go back and edit the request details
+   - Continue and submit as Severity 2 without paging an engineer
+   - Continue and submit as Severity 1, which pages an on-call engineer
+
+   After you submit the support request, you receive a link to your support issue where you can interact with the support team.
 
 ## Provide support bundles to Replicated after opening a support request {#add-bundle-after}
 

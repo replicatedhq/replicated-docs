@@ -15,7 +15,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on March 24, 2026
 
 ### Improvements {#improvements-v2026-03-24-7}
-* Sales RBAC role now includes Enterprise Portal invite permissions, allowing Sales users to send EP invites and support auto-invite on customer creation.
+* Adds Enterprise Portal invite permissions to the Sales RBAC role. This allows Sales users to manually send Enterprise Portal invitations, and to enable Enterprise Portal auto-invitations on new customer creation.
+
+## v2026.03.24-2
+
+Released on March 24, 2026
+
+### Improvements {#improvements-v2026-03-24-2}
+* Added bundle_name and metadata fields to the support.bundle.analyzed webhook event payload, Slack notifications, and email notifications.
 
 ## v2026.03.18-4
 

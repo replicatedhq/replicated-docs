@@ -6,39 +6,62 @@ This topic describes how to create event notification subscriptions in the Repli
 
 To create an event notification subscription:
 
-1. In the Vendor Portal, go to **Notifications**.
+1. In the Vendor Portal, go to **Notifications** and click **Create notification**.
 
-1. Click **Create Notification**.
+   ![notifications overview page](/images/create-notification.png)
+
+   [View a larger version of this image](/images/create-notification.png)
+
+   The **New Notification** page opens:
+
+   ![notifications overview page](/images/new-notification.png)
+
+   [View a larger version of this image](/images/new-notification.png)
 
 1. (Optional) Enter a custom name for the subscription. Custom names help you identify subscriptions when you have multiple subscriptions for the same event type. The name is also included in email subjects and webhook payloads.
 
    Subscription names can contain up to 255 ASCII characters (letters, numbers, and basic punctuation).
 
-1. Select one or more event types to include in the subscription. For more information, see [Event types and filters (Beta)](/reference/notifications-events-filters).
+1. Select one or more event types to include in the subscription. For the full list of available event types, see [Event types and filters (Beta)](/reference/notifications-events-filters).
 
    :::note
    Alternatively, click **Configure with AI instead**. With the AI-assisted notification builder, you can describe in natural language the events that you want to be notified about. For example, "Notify me when trial customers upload support bundles" or "Alert me when instances fall more than 3 versions behind on the Stable channel". The AI builder has context of pre-defined event types and filters, but cannot create new event types or filters.
    :::
 
-   <!-- TODO: Add screenshot of event type selection -->
+1. (Optional) For each of the events that you selected, click the filter icon to configure event filters. Click **Done** to save the filters.
 
-1. (Optional) For each of the events that you selected, click the filter icon to configure event filters. For more information about how the Vendor Portal uses filters to trigger notifications, see [Events and filters](/vendor/event-notifications#events-and-filters) in _About event notifications (Beta)_.
+    For more information about how the Vendor Portal uses filters to trigger notifications, see [Events and filters](/vendor/event-notifications#events-and-filters) in _About event notifications (Beta)_.
 
-1. Click **Done**.
+    ![Event filters](/images/notification-event-filters.png)
 
-   <!-- TODO: Add screenshot of filter configuration -->
+    [View a larger version of this image](/images/notification-event-filters.png)
 
 1. Do one of the following, depending on your notification delivery method:
+   
    * For email delivery, enter an email address.
-   * For webhook delivery: 
+   
+   * For webhook delivery:
+      
       1. Enter a webhook URL. The endpoint must meet the following requirements:
          - Must be able to receive HTTP POST requests
          - Must be publicly accessible (or use a secure tunnel for testing)
          - Must respond with a 2xx status code (200-299) for successful delivery
          - Response time must be less than five seconds
+
       1. (Recommended) Enter a signing secret for HMAC signature verification. For more information, see [Verify webhook signatures](event-notifications-webhooks#verify-webhook-signatures) in _Configure and test webhooks (Beta)_.
+      
       1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About adding custom HTTP headers](event-notifications-webhooks#custom-headers) in _Configure and test webhooks (Beta)_.
+
+         <img alt="Webhook delivery fields" src="/images/notification-webhook-delivery.png" width="600px"/>
+
+         [View a larger version of this image](/images/notification-webhook-delivery.png)
+      
       1. Click **View example** to open the webhook payload preview modal and see the exact JSON payload structure your endpoint receives for the selected event types. Click **Copy payload** to copy the format to your clipboard.
+
+         <img alt="Webhook payload preview" src="/images/webhook-payload.png" width="500px"/>
+
+         [View a larger version of this image](/images/webhook-payload.png)
+
       1. Click **Send test webhook** to send a sample payload to your endpoint and verify connectivity.
       
          The test sends an HTTP POST request to your endpoint with a sample payload that matches the structure of a real event. Test webhook payloads include a `"test": true` field to distinguish them from real event notifications. The `data` object contains representative sample values (such as "Acme Corp" for customer names) rather than real data from your account.
@@ -100,14 +123,18 @@ As a Development Leader, I want to be notified when a paid customer pulls releas
 
 ### Revenue operations: First software pull for revenue recognition
 
-As a Revenue Operations Manager, receive a notification the first time a customer retrieves software to record the exact revenue recognition timestamp.
+As a Revenue Operations Manager, receive a notification the first time a paid customer retrieves software to record the exact revenue recognition timestamp.
 
 - **Event Type:** Release Asset Downloaded
 - **Configuration:**
   - Filter - Application: Select your application
   - Filter - License Type: "Paid"
-  - Filter - Pull Type: "First Pull Only"
+  - Filter - Pull Type: "First Pull for Selected License Type"
 - **Delivery Method:** Webhook to your customer relationship management system
+
+:::note
+Use "First Pull for Selected License Type" rather than "First Pull Only" if customers may start on a trial before converting to a paid license. "First Pull Only" tracks the first-ever pull regardless of license type. If a customer pulls on a trial license first, the notification will not fire again after they convert to paid. "First Pull for Selected License Type" tracks milestones per license type. The notification fires the first time the customer pulls software with a paid license, even if they previously pulled on a trial.
+:::
 
 ### Support engineer: Unhealthy instance alert
 

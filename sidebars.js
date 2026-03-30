@@ -707,6 +707,7 @@ const sidebars = {
       "reference/replicated-cli-logout",
       "reference/replicated-cli-network",
       "reference/replicated-cli-network-ls",
+      "reference/replicated-cli-network-report",
       "reference/replicated-cli-network-update",
       "reference/replicated-cli-profile",
       "reference/replicated-cli-profile-add",
