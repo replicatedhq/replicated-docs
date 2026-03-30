@@ -46,22 +46,48 @@ When a vendor sends an Enterprise Portal invite to a user
 
 ### Enterprise Portal Access Granted
 
-When a user accesses the Enterprise Portal for a customer team.
+When a user accesses the Enterprise Portal.
 
 The following table describes the available filters for the Enterprise Portal Access Granted event type:
 
-| Filter | Required | Options |
-|--------|----------|---------|
-| Application | No | Any application in your account |
-| Customer | No | Any customer for the selected application |
-| Access Method | No | Invite, Self-Signup, SAML JIT |
-| License Type | No | Paid, Trial, Community, Development |
-| Access Type | No | Any Access, First Access for Selected License Type |
-
-The **Access Type** filter controls whether the notification fires on every access or only on first-access milestones per license type:
-
-- **First Access for Selected License Type**: The notification fires the first time a user accesses the Enterprise Portal for a customer with a specific license type. Use this with the **License Type** filter to track access milestones per license type. For example, combining this with License Type "Paid" fires when a customer first accesses the portal on a paid license, even if they previously accessed it on a trial.
-- **Any Access** (default): The notification fires on every access event.
+<table>
+    <tr>
+        <td>Filter</td>
+        <td>Required</td>
+        <td>Options</td>
+    </tr>
+    <tr>
+        <td>Application</td>
+        <td>No</td>
+        <td>Any application in your account</td>
+    </tr>
+    <tr>
+        <td>Customer</td>
+        <td>No</td>
+        <td>Any customer for the selected application</td>
+    </tr>
+    <tr>
+        <td>Access Method</td>
+        <td>No</td>
+        <td>Invite, Self-Signup, SAML JIT</td>
+    </tr>
+    <tr>
+        <td>License Type</td>
+        <td>No</td>
+        <td>Paid, Trial, Community, Development</td>
+    </tr>
+    <tr>
+      <td>Access Type</td>
+      <td>No</td>
+      <td>
+        <ul>
+          <li>Any Access (default): Triggers a notification every time a user accesses the Enterprise Portal.</li>
+          <li>First Access for Selected License Type: Triggers a notification the first time that a customer with a specific license type accesses the Enterprise Portal. For example, if you select "Paid" for the License Type filter, then you will receive a notification the first time that a customer with a Paid license access the Enterprise Portal, even if they previously logged in when they had a Trial license.</li>
+        </ul>
+        <p>First Access for Selected License Type only tracks Enterprise Portal access events that occur after March 27, 2026.</p>
+      </td>
+    </tr>
+</table>
 
 ### Enterprise Portal User Joined
 
@@ -175,28 +201,54 @@ When a release is demoted from a channel.
 
 ### Release Assets Downloaded {#release-assets-downloaded}
 
-When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). This event fires one time per individual asset pull. It also includes whether this is the customer's first software pull.
+When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Each individual asset pull triggers one Release Assets Downloaded event.
 
 The following table describes the available filters for the Release Assets Downloaded event type:
 
-| Filter | Required | Options |
-|--------|----------|---------|
-| Application | No | Any application in your account |
-| Channel | No | Any channel for the selected application |
-| Customer | No | Any customer for the selected application |
-| License Type | No | Paid, Trial, Community, Development |
-| Asset Type | No | Helm Chart, Embedded Cluster Bundle, Proxy Registry Image |
-| Pull Type | No | First Pull Only, First Pull for Selected License Type, Any Pull |
-
-The **Pull Type** filter controls whether the notification fires on every pull or only on first-pull milestones:
-
-- **First Pull Only**: The notification fires only when a customer pulls a release asset for the very first time, regardless of license type. If a customer first pulls on a trial license, this will not fire again when they convert to a paid license.
-- **First Pull for Selected License Type**: The notification fires the first time a customer pulls a release asset with a specific license type. Use this with the **License Type** filter to track milestones per license type. For example, combining this with License Type "Paid" fires the first time a customer pulls on a paid license, even if they previously pulled on a trial.
-- **Any Pull** (default): The notification fires on every pull. This is equivalent to leaving the filter unset, and all existing subscriptions behave this way.
-
-:::note
-First pull tracking is forward-only. Customers who pulled software before March 18, 2026 will have `is_first_customer_pull: false` on all subsequent pulls. Per-license-type milestones only track pulls that occur after March 27, 2026.
-:::
+<table>
+    <tr>
+        <td>Filter</td>
+        <td>Required</td>
+        <td>Options</td>
+    </tr>
+    <tr>
+        <td>Application</td>
+        <td>No</td>
+        <td>Any application</td>
+    </tr>
+    <tr>
+        <td>Channel</td>
+        <td>No</td>
+        <td>Any channel for the selected application</td>
+    </tr>
+    <tr>
+        <td>Customer</td>
+        <td>No</td>
+        <td>Any customer for the selected application</td>
+    </tr>
+    <tr>
+        <td>License Type</td>
+        <td>No</td>
+        <td>Paid, Trial, Community, Development</td>
+    </tr>
+    <tr>
+        <td>Asset Type</td>
+        <td>No</td>
+        <td>Helm Chart, Embedded Cluster Bundle, Proxy Registry Image</td>
+    </tr>
+    <tr>
+        <td>Pull Type</td>
+        <td>No</td>
+        <td>
+          <ul>
+            <li>Any Pull (default): Triggers a notification on every asset pull.</li>
+            <li>First Pull Only: Triggers a notification only the first time that a customer pulls a release asset.</li>
+            <li>First Pull for Selected License Type: Triggers a notification the first time that a customer pulls a release asset with the selected license type. For example, if you select "Paid" for the License Type filter, you will receive a notification the first time that a customer pulls a release asset using a Paid license, even if the customer had previously pulled assets using a Trial license.</li>
+          </ul>
+          <p>For customers who pulled software before March 18, 2026, the Vendor Portal applies <code>is_first_customer_pull: false</code> on all subsequent pulls. Also, First Pull for Selected License Type only tracks asset pulls that occur after March 27, 2026.</p>
+        </td>
+    </tr>
+</table>
 
 ## Support events
 
