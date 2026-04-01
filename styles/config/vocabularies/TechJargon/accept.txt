@@ -3,6 +3,8 @@
 
 AMI
 API
+ISV
+ISVs
 APIs
 allowlist
 boolean
