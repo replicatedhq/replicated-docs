@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.04.01-3
+
+Released on April 1, 2026
+
+### Bug Fixes {#bug-fixes-v2026-04-01-3}
+* Fixed duplicate instances on the Customers - Instances page by tracking per-cluster metrics in Timescale.
+
 ## v2026.03.24-7
 
 Released on March 24, 2026
