@@ -19,21 +19,25 @@ This topic provides an introduction to the Replicated Platform, including a plat
 
 <Replicated/>
 
-The Replicated Platform features are designed to support ISVs during each phase of the Commercial Software Distribution Lifecycle. For more information, see [Commercial Software Distribution Lifecycle](#csdl) below.
+The Replicated Platform features are designed to support ISVs during each phase of the Commercial Software Distribution Lifecycle. For more information, see [Commercial Software Distribution Lifecycle](#csdl) on this page.
 
-The following diagram demonstrates the process of using the Replicated Platform to distribute an application, install the application in a customer environment, and support the application after installation:
+The following diagram demonstrates the processes of using the Replicated Platform to distribute an application, install the application in a customer environment using Embedded Cluster, and support the application after installation:
 
 ![replicated platform features workflow](/images/replicated-platform.png)
 
 [View a larger version of this image](/images/replicated-platform.png)
 
-The diagram above shows an application that is packaged with the [**Replicated SDK**](/vendor/replicated-sdk-overview). The application is tested in clusters provisioned with the [**Replicated Compatibility Matrix (CMX)**](/vendor/testing-about), then added to a new release in the [**Vendor Portal**](/vendor/releases-about) using an automated CI/CD pipeline.
+As shown in the diagram above, software vendors can use CI/CD pipelines to test their application releases in environments provisioned by the [Replicated Compatibility Matrix (CMX)](/vendor/testing-about), then promote releases to a customer-facing or internal channel in the [Vendor Portal](/vendor/releases-about).
 
-The application is then installed by a customer ("Big Bank") on a VM. To install, the customer downloads their license, which grants proxy access to the application images through the [**Replicated proxy registry**](/vendor/private-images-about). They also download the installation assets for the [**Replicated Embedded Cluster**](/vendor/embedded-overview) installer.
+Customers can install application releases that are promoted to the channel where they are subscribed. To install, the customer logs in to the [Replicated Enterprise Portal](/vendor/enterprise-portal-about) to download their license, which grants proxy access to the application images through the [Replicated proxy registry](/vendor/private-images-about). They also download the installation assets for the [Replicated Embedded Cluster](/vendor/embedded-overview) installer.
 
-Embedded Cluster runs [**preflight checks**](/vendor/preflight-support-bundle-about) to verify that the environment meets the installation requirements, provisions a cluster on the VM, and installs [**Replicated KOTS**](intro-kots) in the cluster. KOTS provides an [**Admin Console**](intro-kots#kots-admin-console) where the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and then deploys the application. After installation, customers can manage both the application and the cluster from the Admin Console.
+Customers can access the Enterprise Portal at any time to get installation and update instructions, upload [support bundles](/vendor/preflight-support-bundle-about#support-bundles) to get support from their software vendor, view security information for each application release from the [Security Center](/vendor/security-center-about), and more.
 
-Finally, the diagram shows how [**instance data**](/vendor/instance-insights-event-data) is automatically sent from the customer environment to the Vendor Portal by the Replicated SDK API and the KOTS Admin Console. Additionally, tooling from the open source [**Troubleshoot**](https://troubleshoot.sh/docs/collect/) project is used to generate and send [**support bundles**](/vendor/preflight-support-bundle-about), which include logs and other important diagnostic data.
+During installation, Embedded Cluster runs [preflight checks](/vendor/preflight-support-bundle-about) on the host to verify that the environment meets the installation requirements. Then, it creates a Kubernetes cluster in the VM and installs [Replicated KOTS](intro-kots) in the cluster. KOTS provides an [Admin Console](intro-kots#kots-admin-console) where the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and then deploys the application. After installation, customers can manage both the application and the cluster from the Admin Console.
+
+Embedded Cluster also deploys the [Replicated SDK](/vendor/replicated-sdk-overview) in the cluster, if the vendor included the SDK as a dependency of their application. The SDK's in-cluster API sends [instance data](/vendor/instance-insights-event-data) and custom metrics from the customer environment to the Vendor Portal.
+
+Vendors can configure [event notifications](/vendor/event-notifications) to email or webhook destinations to get alerted of important events, such as a customer uploading a support bundle, when an instance is in an unhealthy state for a given period of time, or when a trial license is close to expiring.
 
 ## Replicated Platform features
 
