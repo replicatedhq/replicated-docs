@@ -4,37 +4,28 @@ This topic describes how to view, edit, disable, and delete event notifications 
 
 ## View notification subscriptions
 
-For each notification subscription, you can view the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title.
+For each notification subscription, you can view the delivery channel (email or webhook), the delivery address, the date created, and who created it. If a custom name is set, it appears as the card title. You can also use the search bar or filters to find subscriptions by name or event type, or view subscriptions created by other team members. 
 
 To view notification subscriptions:
 
-1. Navigate to **Notifications** in the Vendor Portal.
-2. The **Overview** tab displays your active and inactive subscriptions.
-3. (Optional) Select the **Show team notifications** checkbox to include notifications created by other team members.
-4. (Optional) Use the search bar to filter subscriptions by name or event type.
+* In the Vendor Portal, go to **Notifications > Overview**. Use the search bar or filters to find notification subscriptions.
 
-{/* TODO: Add screenshot of Overview view */}
+    The following shows an example of the notifications **Overview** page:
+
+    ![notifications overview page](/images/notifications-overview.png)
+
+    [View a larger version of this image](/images/notifications-overview.png)
 
 ## View notification history and status
 
-Shows all triggered notification events for the selected time period. You can filter the history to show only your notifications or filter by a specific notification, including deleted subscriptions.
+The **Notifications > History** page shows all triggered notification events for the selected time period. You can filter the history to show only your notifications or filter by a specific notification, including deleted subscriptions. You can also click on an event to view details, such as the timestamp, the associated customer instance, and any error messages when applicable.
 
 To view notification history:
 
-1. In the Vendor Portal, go to **Notifications > History**.
-3. Use the filters to narrow results:
-   - Filter by time period
-   - Filter to "My Notifications Only"
-   - Filter to a specific notification (active or deleted)
-   - Filter by delivery status (Delivered, Failed, or Pending)
-1. (Optional) Click on an event to view details:
-   - List of all events that matched this notification's filters
-   - Timestamp when each event occurred
-   - Event details (customer, instance, application, etc.)
-   - Delivery status (Delivered, Failed, Pending)
-   - For failures: Error message explaining why delivery failed   
+* In the Vendor Portal, go to **Notifications > History**. Use the search bar or filters to narrow your results.
 
-{/* TODO: Add screenshot of History view */}
+   <img alt="notifications history page" src="/images/notifications-history.png" width="700px"/>
+   [View a larger version of this image](/images/notifications-history.png)
 
 ## Resend a failed notification
 
@@ -56,17 +47,19 @@ To edit a notification:
 
 1. In the Vendor Portal, go to **Notifications**.
 
-1. Next to the notification that you want to modify, click **Edit**.
+1. In the dot menu for the notification that you want to modify, click **Edit**.
 
-1. Make your changes. For example:
+   ![Edit notification option](/images/edit-notification.png)
+
+   [View a larger version of this image](/images/edit-notification.png)
+
+1. Edit the notification's settings. For example:
    - Add or update a custom subscription name to help identify the subscription
    - Add or remove event types, or modify filters on existing event types to broaden or narrow the scope
    - Change the delivery method or destination
    - Check or uncheck the **Enable this notification** checkbox to pause or unpause the notification
 
 1. Click **Save Changes**.
-
-{/* Add screenshot of Edit notification form */}
 
 ## Temporarily disable a notification
 
@@ -78,7 +71,11 @@ To temporarily disable a notification without deleting its history or configurat
 
 1. In the Vendor Portal, go to **Notifications**.
 
-1. Next to the notification that you want to disable, click **Edit**.
+1. In the dot menu for the notification that you want to modify, click **Edit**.
+
+   ![Edit notification option](/images/edit-notification.png)
+
+   [View a larger version of this image](/images/edit-notification.png)
 
 1. Disable the **Enable this notification** checkbox at the bottom of the form.
 
