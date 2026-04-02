@@ -38,3 +38,5 @@ supportMinimalRBACPrivileges
 targetKotsVersion
 unarchive
 Unarchived
+collab
+Reinvite

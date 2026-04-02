@@ -2,19 +2,19 @@ import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-r
 
 # Configure RBAC policies
 
-This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated Vendor Portal.
+This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions in the Replicated Vendor Portal.
 
 ## About RBAC policies
 
-By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable. For more information, see [Default RBAC Policies](#default-rbac) below.
+By default, every team has two policies created automatically: **Admin** and **Read Only**. If you have an Enterprise plan, you will also have the **Sales** and **Support** policies created automatically. These default policies are not configurable. For more information, see [Default RBAC Policies](#default-rbac).
 
-You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Vendor Portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels. Or, you can grant only certain users permission to promote releases to your production channels. 
+You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which Vendor Portal areas team members can access and control read and read/write privileges by role. For example, you can limit access for the sales team to one application and to specific channels. Or, you can grant only certain users permission to promote releases to your production channels. 
 
 You can also create custom RBAC policies in the Vendor Portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
 
 ## Default RBAC policies {#default-rbac}
 
-This section describes the default RBAC policies that are included for Vendor Portal teams, depending on the team's Replicated pricing plan.
+This section describes the default RBAC policies for Vendor Portal teams, depending on the team's Replicated pricing plan.
 
 ### Admin
 
@@ -142,7 +142,7 @@ This policy is automatically created for teams with the Enterprise plan only.
 
 To configure a custom RBAC policy:
 
-1. From the Vendor Portal [Team page](https://vendor.replicated.com/team), select **RBAC** from the left menu.
+1. From the Vendor Portal [Team page](https://vendor.replicated.com/team), select **RBAC** from the navigation menu.
 
 1. Do _one_ of the following:
 
@@ -177,7 +177,7 @@ To configure a custom RBAC policy:
 
 ## Policy definition
 
-A policy is defined in a single JSON document:
+Define a policy in a single JSON document:
 
 ```
 {
@@ -196,9 +196,9 @@ A policy is defined in a single JSON document:
 }
 ```
 
-The primary content of a policy document is the resources key. The resources key should contain two arrays, identified as `allowed` and `denied`. Resources specified in the allowed list are allowed for users assigned to the policy, and resources specified in the denied list are denied.
+The primary content of a policy document is the resources key. The resources key should contain two arrays, identified as `allowed` and `denied`. Resources in the `allowed` list grant access to users assigned to the policy. Resources in the `denied` list block access.
 
-Resource names are hierarchical, and support wildcards and globs. For a complete list of resource names that can be defined in a policy document, see [RBAC Resource Names](team-management-rbac-resource-names).
+Resource names are hierarchical, and support wildcards and globs. For a complete list of resource names to use in a policy document, see [RBAC Resource Names](team-management-rbac-resource-names).
 
 When a policy document has conflicting rules, the behavior is predictable. For more information about conflicting rules, see [Rule Order](#rule-order).
 
@@ -222,7 +222,7 @@ When a policy document has conflicting rules, the behavior is predictable. For m
       }
     }
     ```
-  The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
+  The preceding example uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
 
   - To get the application ID, click **Settings > Show Application ID (Advanced)** in the Vendor Portal.
 
@@ -230,12 +230,12 @@ When a policy document has conflicting rules, the behavior is predictable. For m
 
 ## Rule order
 
-When a resource name is specified in both the `allow` and the `deny` chains of a policy, defined rules determine which rule is applied.
+When a resource name appears in both the `allow` and `deny` chains of a policy, defined rules determine which rule applies.
 
-If `denied` is left empty, it is implied as a `**/*` rule, unless `**/*` rule is specified in the `allowed` resources. If a rule exactly conflicts with another rule, the `denied` rule takes precedence.
+If `denied` is empty, it defaults to a `**/*` rule, unless the `allowed` resources include a `**/*` rule. If a rule exactly conflicts with another rule, the `denied` rule takes precedence.
 
 ### Defining precedence using rule specificity
-The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of asterisks (`**` and `*`) in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
+The most specific rule definition is always applied, when compared with less specific rules. The number of asterisks (`**` and `*`) in a rule determines its specificity. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
 
 ### Example: No access to stable channel
 
