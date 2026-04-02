@@ -6,17 +6,17 @@ import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.
 This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Manage Collab Repository Access](team-management-github-username).
 
 ## Viewing team members
-The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
+The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role. Administrators can also take actions such as removing, re-inviting, and editing permissions.
 
 <img src="/images/teams-view.png" alt="View team members list in the Vendor Portal" width="700"/>
 
 [View a larger image](/images/teams-view.png)
 
-All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
+All users, including read-only, can see the name of the RBAC role assigned to each team member. When the team enables SAML authentication, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
 ### SCIM
 
-You can enable System for Cross-domain Identity Management (SCIM) for automated provisioning and deprovisioning. SCIM requires SAML to be configured first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
+You can enable System for Cross-domain Identity Management (SCIM) for automated provisioning and deprovisioning. SCIM requires that you configure SAML first. For more information, see [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning).
 
 ## Invite members
 By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
@@ -43,7 +43,7 @@ To invite a new team member:
 
 1. Click **Invite member**.
 
-   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
+   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, accepting your invitation automatically moves them to your team.
 
 ## Managing invitations
 
@@ -59,13 +59,13 @@ To re-invite or remove a prospective member, do one of the following on the **Te
 
 ## Edit policy permissions
 
-You can edit the RBAC policy that is assigned to a member at any time.
+You can edit the RBAC policy assigned to a member at any time.
 
 <CollabRbacImportant/>
 
 To edit policy permissions for individual team members:
 
-1. From the the Team Members list, click **Edit permissions** next to a members name.
+1. From the Team Members list, click **Edit permissions** for the member.
 
    :::note
    The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Manage Two-Factor Authentication](team-management-two-factor-auth).
@@ -76,41 +76,41 @@ To edit policy permissions for individual team members:
    <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the Vendor Portal" width="400"/>
 
 ## Enable users to auto-join your team
-By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the Vendor Portal.
+By default, users must receive an invitation to join your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if the team enables it. The auto-join feature does not apply to SAML authentication because SAML users log in through their SAML provider's portal.
 
 To add, edit, or delete custom RBAC policies, see [Configure RBAC Policies](team-management-rbac-configuring).
 
 To enable users to auto-join your team:
 
-1. From the Team Members page, click **Auto-join** from the left navigation.
+1. From the Team Members page, click **Auto-join** in the navigation menu.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
 
    <img src="/images/teams-auto-join.png" alt="Auto join dialog in the Vendor Portal" width="600"/>
 
    [View a larger image](/images/teams-auto-join.png)
 
-1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
+1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy applies to all users who join the team with the auto-join feature.
 
    <CollabRbacImportant/>
 
 ## Remove members and end sessions
-As a Vendor Portal team admin, you can remove team members, except for the account you are currently logged in with.
+As a Vendor Portal team admin, you can remove team members, except for your own account.
 
-If the team member that you remove added their GitHub username to their Account Settings page in the Vendor Portal to access the Replicated collab repository, then the Vendor Portal also automatically removes their username from the collab repository. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
+If the removed team member added their GitHub username in the Vendor Portal, the Vendor Portal also removes their username from the collab repository. For more information, see [Manage Access to the Collab Repository](team-management-github-username).
 
-If SCIM is not enabled, remove SAML-created users using this method to end their existing sessions. If SCIM is enabled, deprovision the user from your identity provider to deactivate the account in Replicated.
+If you have not enabled SCIM, remove SAML-created users using this method to end their existing sessions. If you have enabled SCIM, deprovision the user from your identity provider to deactivate the account in Replicated.
 
 To remove a member:
 
-1. From the Team Members page, click **Remove** on the right side of a user's row.
+1. From the Team Members page, click **Remove** in a user's row.
 
 1. Click **Remove** in the confirmation dialog.
 
-   The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
+   Replicated removes the member. All their current sessions end, and their next server request logs them out of their browser session.
 
-   If the member added their GitHub username to the Vendor Portal to access the collab repository, then the Vendor Portal also removes their GitHub username from the collab repository. For more information, see [Manage Collab Repository Access](team-management-github-username).
+   If the member added their GitHub username to the Vendor Portal, the Vendor Portal also removes their GitHub username from the collab repository. For more information, see [Manage Collab Repository Access](team-management-github-username).
 
-   For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated Vendor Portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the Vendor Portal unless the username and password are allowed.
+   For Google-authenticated users, if Google suspends or deletes the user's account, Replicated ends all their Vendor Portal sessions within 10 minutes. The user remains in the team list but cannot log in unless you enable username and password login.
 
 ## Update email addresses
 
