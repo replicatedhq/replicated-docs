@@ -1,5 +1,4 @@
-import HaArchitecture from "../../docs/partials/embedded-cluster/v2/_multi-node-ha-arch.mdx"
-import ShellCommand from "../../docs/partials/embedded-cluster/_shell-command.mdx"
+import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
 
 # Access and manage embedded clusters
 
@@ -7,7 +6,7 @@ This topic describes managing nodes in clusters created with Replicated Embedded
 
 ## Access the cluster
 
-With Embedded Cluster, end users rarely need to use the CLI. Typical workflows, like updating the application and the cluster, can be done through the Admin Console. However, there are times when vendors or their customers need to use the CLI for development or troubleshooting.
+You can use the CLI to access the cluster. This is useful for development or troubleshooting.
 
 <ShellCommand/>
 
@@ -105,12 +104,6 @@ To automate controller node joins with Embedded Cluster:
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
 
 Users are automatically prompted to enable HA when joining the third controller node to a cluster. Alternatively, users can enable HA with the `enable-ha` command after adding three or more controller nodes.
-
-### HA architecture
-
-<HaArchitecture/>
-
-For more information about the Embedded Cluster built-in extensions, see [Built-In Extensions](embedded-overview#built-in-extensions) in _Embedded Cluster Overview_.
 
 ### Requirements
 

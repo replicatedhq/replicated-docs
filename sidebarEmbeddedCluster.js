@@ -7,6 +7,7 @@ module.exports = {
     "installing-embedded",
     "installing-embedded-air-gap",
     "installing-embedded-automation",
+    "embedded-manage-nodes",
     "updating-embedded",
     "embedded-troubleshooting",
     {
