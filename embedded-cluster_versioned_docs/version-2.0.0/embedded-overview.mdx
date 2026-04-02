@@ -32,8 +32,8 @@ The following diagram demonstrates how Kubernetes and an application are install
 As shown in the diagram above, the Embedded Cluster Config is included in the application release in the Replicated Vendor Portal and is used to generate the Embedded Cluster installation assets. Users can download these installation assets from the Replicated app service (`replicated.app`) on the command line, then run the Embedded Cluster installation command to install Kubernetes and the KOTS Admin Console. Finally, users access the Admin Console to optionally add nodes to the cluster and to configure and install the application.
 
 For more information about how to install with Embedded Cluster, see:
-* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
-* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Online Installation wtih Embedded Cluster](installing-embedded)
+* [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap)
 
 ### Embedded Cluster host preflight checks {#about-host-preflight-checks}
 
@@ -55,13 +55,13 @@ Embedded Cluster host preflight checks have the following limitations:
 
 ### Multi-node installations
 
-Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the Admin Console. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the Admin Console. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
 
 #### High availability
 
 Multi-node clusters are not highly available by default. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
 
-For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](/enterprise/embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
+For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
 
 #### Node roles
 
@@ -127,9 +127,9 @@ The built-in extensions installed by Embedded Cluster include:
 
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
 
-* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+* **(Disaster Recovery Only) Velero:** If the installation uses the Embedded Cluster disaster recovery feature, Embedded Cluster installs Velero, which is an open-source tool that provides backup and restore functionality. For more information about Velero, see the [Velero](https://velero.io/docs/latest/) documentation. For more information about the disaster recovery feature, see [Disaster Recovery for Embedded Cluster (Alpha)](embedded-disaster-recovery).
 
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 ## Limitations {#ec-limitations}
 
@@ -137,11 +137,11 @@ Embedded Cluster has the following limitations:
 
 * **Migration from kURL**: We are helping several customers migrate from kURL to Embedded Cluster. For more information about migrating from kURL to Embedded Cluster, including key considerations before migrating and an example step-by-step migration process, see [Replicated kURL to Embedded Cluster Migration](https://docs.google.com/document/d/1Qw9owCK4xNXHRRmxDgAq_NJdxQ4O-6w2rWk_luzBD7A/edit?tab=t.0). For additional questions and to begin the migration process for your application, reach out to Alex Parker at alexp@replicated.com.
 
-* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
+* **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](embedded-disaster-recovery).
 
 * **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 
-* **Changing node hostnames is not supported**: After a host is added to a cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster, reset it, and then rejoin it.  For information about how to reset nodes with Embedded Cluster, see [Reset a Node](/enterprise/embedded-manage-nodes#reset-a-node). For information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
+* **Changing node hostnames is not supported**: After a host is added to a cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster, reset it, and then rejoin it.  For information about how to reset nodes with Embedded Cluster, see [Reset a Node](embedded-manage-nodes#reset-a-node). For information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
    
     :::note
     If you need to change the hostname or IP address of a controller node in a three-node cluster, Replicated recommends that you join a fourth controller node to the cluster before removing the target node. This ensures that you maintain a minimum of three nodes for the Kubernetes control plane. You can add and remove worker nodes as needed because they do not have any control plane components. For information about how to remove controller nodes, see [Remove or Replace a Controller](https://docs.k0sproject.io/stable/remove_controller/) in the k0s documentation.

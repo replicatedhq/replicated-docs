@@ -61,17 +61,17 @@ const config = {
         breadcrumbs: true,
         editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
         // Versioning configuration
-        lastVersion: 'current', // Make 3.0.0 the default version
+        lastVersion: 'current', // v3 is the default version
         includeCurrentVersion: true, // Include the "next" version from installer/ folder
         versions: {
           current: {
-            label: 'Embedded Cluster 3.0.0',
+            label: 'Embedded Cluster v3',
             path: 'v3',
             banner: 'none',
             badge: false,
           },
           '2.0.0': {
-            label: 'Embedded Cluster 2.13.3',
+            label: 'Embedded Cluster v2',
             path: 'v2',
             banner: 'unmaintained',
             badge: false,

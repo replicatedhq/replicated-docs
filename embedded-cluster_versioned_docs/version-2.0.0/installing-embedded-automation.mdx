@@ -28,13 +28,13 @@ For more information, see [ConfigValues](/reference/custom-resource-configvalues
 
 ## Limitation
 
-Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](updating-embedded).
 
 ## Online (internet-connected) installation
 
 To install with Embedded Cluster in an online environment:
 
-1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster installation assets. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded).
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster installation assets. For more information, see [Online Installation with Embedded Cluster](installing-embedded).
 
 1. Run the following command to install:
 
@@ -50,13 +50,13 @@ To install with Embedded Cluster in an online environment:
     * `ADMIN_CONSOLE_PASSWORD` is a password for accessing the Admin Console.
     * `PATH_TO_CONFIGVALUES` is the path to the ConfigValues file.
 
-    For more information about the `install` command options, see [install](/reference/embedded-cluster-install).
+    For more information about the `install` command options, see [install](embedded-cluster-install).
 
 ## Air gap installation
 
 To install with Embedded Cluster in an air-gapped environment:
 
-1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster air gap installation assets. For more information, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Follow the steps provided in the Vendor Portal to download and untar the Embedded Cluster air gap installation assets. For more information, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 1. Ensure that the Embedded Cluster installation assets are available on the air-gapped machine, then run the following command to install:
 
@@ -74,11 +74,11 @@ To install with Embedded Cluster in an air-gapped environment:
     * `ADMIN_CONSOLE_PASSWORD` with a password for accessing the Admin Console.
     * `PATH_TO_AIRGAP_BUNDLE` with the path to the Embedded Cluster `.airgap` bundle for the release.
 
-    For the complete list of `install` options, see [install](/reference/embedded-cluster-install).
+    For the complete list of `install` options, see [install](embedded-cluster-install).
 
 ## (Optional) Ignore preflight checks during installation
 
-You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](/reference/embedded-cluster-install).
+You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](embedded-cluster-install).
 
 Ignoring host preflight checks is _not_ recommended for production installations.
 

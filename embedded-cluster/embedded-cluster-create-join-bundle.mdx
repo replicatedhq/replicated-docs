@@ -1,0 +1,39 @@
+# create-join-bundle
+
+This topic describes the options available with the Embedded Cluster `create-join-bundle` command. Use this command to produce a bundle that nodes can use to join the cluster with a given role.
+
+## Usage
+
+```bash
+sudo ./<app-slug> create-join-bundle [flags]
+```
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>`--output`</td>
+    <td>string</td>
+    <td>Output path for the bundle. **Default:** A path of the form `./cli-join-ROLE-TIMESTAMP.tar.gz` (role and timestamp are filled in by the CLI).</td>
+  </tr>
+  <tr>
+    <td>`--role`</td>
+    <td>string</td>
+    <td>Node role: `controller` or `worker`. **Required.**</td>
+  </tr>
+  <tr>
+    <td>`--ttl`</td>
+    <td>string</td>
+    <td>Token expiration time (for example, `24h`, `48h`, `168h`). **Default:** `24h`</td>
+  </tr>
+  <tr>
+    <td>`-h`, `--help`</td>
+    <td></td>
+    <td>Help for `create-join-bundle`.</td>
+  </tr>
+</table>

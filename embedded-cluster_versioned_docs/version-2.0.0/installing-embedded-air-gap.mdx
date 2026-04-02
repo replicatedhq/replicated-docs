@@ -12,10 +12,6 @@ The Embedded Cluster air gap bundle not only contains the assets normally contai
 
 During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
 
-## Requirement
-
-Air gap installations are supported with Embedded Cluster version 1.3.0 or later.
-
 ## Limitations and known issues
 
 Embedded Cluster installations in air gap environments have the following limitations and known issues:
@@ -82,11 +78,11 @@ To install with Embedded Cluster in an air gap environment:
     ```
     Where `APP_SLUG` is the unique application slug.
     
-    For the list of flags supported with the Embedded Cluster `install` command, see [install](/reference/embedded-cluster-install).
+    For the list of flags supported with the Embedded Cluster `install` command, see [install](embedded-cluster-install).
 
 1. When prompted, enter a password for accessing the KOTS Admin Console.
 
-     The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](/vendor/embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
+     The installation command takes a few minutes to complete. During installation, Embedded Cluster completes tasks to prepare the cluster and install KOTS in the cluster. Embedded Cluster also automatically runs a default set of [_host preflight checks_](embedded-overview#about-host-preflight-checks) which verify that the environment meets the requirements for the installer.
 
       **Example output:**
 
@@ -119,7 +115,7 @@ To install with Embedded Cluster in an air gap environment:
 
 1. On the **Nodes** page, you can view details about the machine where you installed, including its node role, status, CPU, and memory. 
 
-     Optionally, add nodes to the cluster before deploying the application. For more information about joining nodes, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes). Click **Continue**.
+     Optionally, add nodes to the cluster before deploying the application. For more information about joining nodes, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes). Click **Continue**.
 
 1. On the **Configure [App Name]** screen, complete the fields for the application configuration options. Click **Continue**.
 

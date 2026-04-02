@@ -19,11 +19,11 @@ This section describes how to join nodes to a cluster with Embedded Cluster.
 
 Multi-node clusters with Embedded Cluster have the following limitations:
 
-* Setting node roles with the Embedded Cluster Config [roles](embedded-config#roles-beta) key is Beta.
+* Setting node roles with the Embedded Cluster Config [roles](embedded-config#roles) key is Beta.
 
-* The first node added to the cluster is always a controller and cannot be assigned any custom roles. For more information about configuring node roles, see [roles](embedded-config#roles-beta) in _Embedded Cluster Config_.
+* The first node added to the cluster is always a controller and cannot be assigned any custom roles. For more information about configuring node roles, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
 
-* The same Embedded Cluster data directory used at installation is used for all nodes joined to the cluster. This is either the default `/var/lib/embedded-cluster` directory or the directory set with the [`--data-dir`](/reference/embedded-cluster-install#flags) flag. You cannot choose a different data directory for Embedded Cluster when joining nodes.
+* The same Embedded Cluster data directory used at installation is used for all nodes joined to the cluster. This is either the default `/var/lib/embedded-cluster` directory or the directory set with the [`--data-dir`](embedded-cluster-install#flags) flag. You cannot choose a different data directory for Embedded Cluster when joining nodes.
 
 * More than one controller node should not be joined at the same time. When joining a controller node, a warning is printed that explains that the user should not attempt to join another node until the controller node joins successfully.
 
@@ -39,17 +39,17 @@ This section describes how to add nodes to a cluster with Embedded Cluster.
 
 To add a node to a cluster with Embedded Cluster:
 
-1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](embedded-config#roles-beta) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
+1. (Optional) In the Embedded Cluster Config, configure the `roles` key to customize node roles. For more information, see [roles](embedded-config#roles) in _Embedded Cluster Config_. When you are done, create and promote a new release with the updated Config.
 
 1. Do one of the following:
 
-   1. Follow the steps in [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
+   1. Follow the steps in [Online Installation with Embedded Cluster](installing-embedded) or [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap) to install. When you see the **Nodes** screen as part of the installation flow in the Admin Console, continue to the next step.
 
    1. Otherwise, to add a node to an existing cluster:
 
        1. Log in to the Admin Console.
       
-       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](/enterprise/updating-embedded).
+       1. If you promoted a new release that configures the `roles` key in the Embedded Cluster Config, update the instance to the new version. See [Perform Updates in Embedded Clusters](updating-embedded).
       
        1. Go to **Cluster Management > Add node** at the top of the page.
    
@@ -110,7 +110,7 @@ Users are automatically prompted to enable HA when joining the third controller 
 
 <HaArchitecture/>
 
-For more information about the Embedded Cluster built-in extensions, see [Built-In Extensions](/vendor/embedded-overview#built-in-extensions) in _Embedded Cluster Overview_.
+For more information about the Embedded Cluster built-in extensions, see [Built-In Extensions](embedded-overview#built-in-extensions) in _Embedded Cluster Overview_.
 
 ### Requirements
 
@@ -126,7 +126,7 @@ Enabling high availability has the following requirements:
 
 Consider the following best practices and recommendations for creating HA clusters:
 
-* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the controller node role, see [roles](embedded-config#roles-beta) in _Embedded Cluster Config_.
+* At least three _controller_ nodes that run the Kubernetes control plane are required for HA. This is because clusters use a quorum system, in which more than half the nodes must be up and reachable. In clusters with three controller nodes, the Kubernetes control plane can continue to operate if one node fails because a quorum can still be reached by the remaining two nodes. By default, with Embedded Cluster, all new nodes added to a cluster are controller nodes. For information about customizing the controller node role, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
 
 * Always use an odd number of controller nodes in HA clusters. Using an odd number of controller nodes ensures that the cluster can make decisions efficiently with quorum calculations. Clusters with an odd number of controller nodes also avoid split-brain scenarios where the cluster runs as two, independent groups of nodes, resulting in inconsistencies and conflicts.
 
@@ -138,7 +138,7 @@ You can enable high availability for a multi-node cluster when joining the third
 
 To create a multi-node HA cluster:
 
-1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](/enterprise/installing-embedded) or [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+1. Set up a cluster with at least two controller nodes. You can do an online (internet-connected) or air gap installation. For more information, see [Online Installation with Embedded Cluster](installing-embedded) or [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
 
 1. Get the commands for downloading the Embedded Cluster binary, extracting the binary, and joining the third controller node either in the Admin Console **Cluster Management** tab or by running the following command on an existing node:
 
@@ -171,7 +171,7 @@ Where `APP_SLUG` is the unique slug for the application.
 
 ## Reset nodes and remove clusters
 
-This section describes how to reset individual nodes and how to delete an entire multi-node cluster using the Embedded Cluster [reset](/reference/embedded-cluster-reset) command.
+This section describes how to reset individual nodes and how to delete an entire multi-node cluster using the Embedded Cluster [reset](embedded-cluster-reset) command.
 
 ### About the `reset` command
 
@@ -186,7 +186,7 @@ The `reset` command performs the following steps:
 1. Remove all Embedded Cluster files
 1. Reboot the node
 
-For more information about the command, see [reset](/reference/embedded-cluster-reset).
+For more information about the command, see [reset](embedded-cluster-reset).
 
 ### Limitations and best practices
 

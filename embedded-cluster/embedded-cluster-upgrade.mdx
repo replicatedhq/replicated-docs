@@ -1,0 +1,84 @@
+# upgrade
+
+This topic describes the options available with the Embedded Cluster `upgrade` command. For procedural steps, see [Perform updates in embedded clusters](updating-embedded).
+
+## Usage
+
+```bash
+sudo ./<app-slug> upgrade --license <path-to-license> [flags]
+```
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>`--config-values`</td>
+    <td>string</td>
+    <td>Path to the [ConfigValues](/reference/custom-resource-configvalues) file for headless upgrades.</td>
+  </tr>
+  <tr>
+    <td>`--force-skip-ha-migration-check`</td>
+    <td></td>
+    <td>Skip checks related to high availability (HA) migration. Use with caution.</td>
+  </tr>
+  <tr>
+    <td>`--headless`</td>
+    <td></td>
+    <td>Run the upgrade without the interactive installer UI.</td>
+  </tr>
+  <tr>
+    <td>`--hostname`</td>
+    <td>string</td>
+    <td>Hostname to use for this node.</td>
+  </tr>
+  <tr>
+    <td>`--ignore-app-preflights`</td>
+    <td></td>
+    <td>Skip application preflight checks.</td>
+  </tr>
+  <tr>
+    <td>`--ignore-host-preflights`</td>
+    <td></td>
+    <td>Skip Embedded Cluster host preflight checks.</td>
+  </tr>
+  <tr>
+    <td>`--installer-password`</td>
+    <td>string</td>
+    <td>Password for the installer UI.</td>
+  </tr>
+  <tr>
+    <td>`--installer-port`</td>
+    <td>int</td>
+    <td>Port for the installer UI. **Default:** `30080`</td>
+  </tr>
+  <tr>
+    <td>`-l`, `--license`</td>
+    <td>string</td>
+    <td>Path to the license file.</td>
+  </tr>
+  <tr>
+    <td>`--tls-cert`</td>
+    <td>string</td>
+    <td>Path to a TLS certificate file for the installer.</td>
+  </tr>
+  <tr>
+    <td>`--tls-key`</td>
+    <td>string</td>
+    <td>Path to a TLS private key file for the installer.</td>
+  </tr>
+  <tr>
+    <td>`-y`, `--yes`</td>
+    <td></td>
+    <td>Assume yes to prompts.</td>
+  </tr>
+  <tr>
+    <td>`-h`, `--help`</td>
+    <td></td>
+    <td>Help for `upgrade`.</td>
+  </tr>
+</table>
