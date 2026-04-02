@@ -689,7 +689,7 @@ replicated:
 ```
 ## Enable read-only mode {#read-only-mode}
 
-With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode. When read-only mode is enabled, the SDK does not create or update any Kubernetes secrets at runtime. This is useful for environments where the SDK should not have write access to the cluster, such as security-hardened deployments or clusters managed with GitOps.
+With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode. After you enable read-only mode, the SDK does not create or update any Kubernetes secrets at runtime. This is useful for environments where the SDK should not have write access to the cluster, such as security-hardened deployments or clusters managed with GitOps.
 
 **Requirement:** Read-only mode requires version 1.19.0 or later of the SDK.
 
@@ -704,12 +704,12 @@ replicated:
 
 ### Behavior in read-only mode
 
-When read-only mode is enabled:
+Enabling read-only mode changes the following SDK behaviors:
 
-* **RBAC is reduced**: The SDK Role does not include `create` or `update` verbs for secrets. Only read (`get`) permissions are granted for secrets.
+* **Reduced RBAC**: The SDK Role excludes `create` and `update` verbs for secrets. The Role grants only read (`get`) permissions for secrets.
 * **The `replicated-support-metadata` Secret is not created** by the Helm chart.
 * **Instance and custom app metrics reports are not persisted** to secrets in the cluster. The SDK logs a message and skips the write.
-* **Custom app metrics are still synced to Replicated APIs** when the cluster has internet access. However, sync failures are treated as non-fatal and do not cause errors.
+* **Custom app metrics are still synced to Replicated APIs** when the cluster has internet access. However, the SDK treats sync failures as non-fatal and does not return errors.
 * **Write API endpoints return `422 Unprocessable Entity`** with a JSON response indicating that the operation is unavailable in read-only mode. The affected endpoints are:
   - `POST /api/v1/app/instance-tags`
   - `DELETE /api/v1/app/custom-metrics/{metric_name}`
@@ -720,7 +720,7 @@ When read-only mode is enabled:
 
 ### Example error response
 
-When a write endpoint is called in read-only mode, the SDK returns a `422` status with the following response body:
+Calling a write endpoint in read-only mode returns a `422` status with the following response body:
 
 ```json
 {
