@@ -5,10 +5,6 @@ import HaArchitecture from "../../docs/partials/embedded-cluster/_multi-node-ha-
 
 This topic provides an introduction to Replicated Embedded Cluster.
 
-:::note
-If you are instead looking for information about creating Kubernetes Installers with Replicated kURL, see the [Replicated kURL](/vendor/packaging-embedded-kubernetes) section.
-:::
-
 ## Overview
 
 <EmbeddedCluster/>
@@ -21,7 +17,7 @@ Embedded Cluster is a successor to Replicated kURL. Compared to kURL, Embedded C
 * Improved support for multi-node clusters
 * One-click updates of both the application and the cluster at the same time
 
-Additionally, Embedded Cluster automatically deploys several built-in extensions like KOTS and OpenEBS to provide capabilities such as application management and storage. This represents an improvement over kURL because vendors distributing their application with Embedded Cluster no longer need choose and define various add-ons in the installer spec. For additional functionality that is not included in the built-in extensions, such as an ingress controller, vendors can provide their own [`extensions`](/reference/embedded-config#extensions) that will be deployed alongside the application.
+Additionally, Embedded Cluster automatically deploys several built-in extensions like KOTS and OpenEBS to provide capabilities such as application management and storage. This represents an improvement over kURL because vendors distributing their application with Embedded Cluster no longer need choose and define various add-ons in the installer spec. For additional functionality that is not included in the built-in extensions, such as an ingress controller, vendors can provide their own [`extensions`](embedded-config#extensions) that will be deployed alongside the application.
 
 ## About installing with Embedded Cluster
 
@@ -71,13 +67,13 @@ For more information about creating HA multi-node clusters with Embedded Cluster
 
 You can optionally define node roles in the Embedded Cluster Config. For multi-node clusters, roles can be useful for the purpose of assigning specific application workloads to nodes. If nodes roles are defined, users assign one or more roles to a node when it is joined to the cluster. 
 
-For more information, see [roles](/reference/embedded-config#roles) in _Embedded Cluster Config_.
+For more information, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
 
 ## About configuring Embedded Cluster
 
 To support installations with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
 
-For more information, see [Embedded Cluster Config](/reference/embedded-config).
+For more information, see [Embedded Cluster Config](embedded-config).
 
 ## Architecture
 
@@ -97,7 +93,7 @@ When the user runs the Embedded Cluster install command, the Embedded Cluster bi
 
 After all the Kubernetes components for the cluster are available, the Embedded Cluster binary then installs the Embedded Cluster built-in extensions.
 
-Any Helm extensions that were included in the [`extensions`](/reference/embedded-config#extensions) field of the Embedded Cluster Config are also installed. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config.
+Any Helm extensions that were included in the [`extensions`](embedded-config#extensions) field of the Embedded Cluster Config are also installed. The namespace or namespaces where Helm extensions are installed is defined by the vendor in the Embedded Cluster Config.
 
 Finally, Embedded Cluster also installs Local Artifact Mirror (LAM). In air gap installations, LAM is used to store and update images.
 
@@ -113,7 +109,7 @@ As shown in the diagram above, in multi-node installations, the Embedded Cluster
 
 For installations that include disaster recovery with Velero, the Velero Node Agent runs on each node in the cluster. The Node Agent is a Kubernetes DaemonSet that performs backup and restore tasks such as creating snapshots and transferring data during restores.
 
-Additionally, any Helm [`extensions`](/reference/embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and how it is configured to be deployed.
+Additionally, any Helm [`extensions`](embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and how it is configured to be deployed.
 
 ### Multi-node architecture with high availability
 
@@ -143,7 +139,7 @@ Embedded Cluster has the following limitations:
 
 * **Disaster recovery is in alpha**: Disaster Recovery for Embedded Cluster installations is in alpha. For more information, see [Disaster Recovery for Embedded Cluster (Alpha)](/vendor/embedded-disaster-recovery).
 
-* **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/reference/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
+* **Partial rollback support**: In Embedded Cluster 1.17.0 and later, rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config. For more information about how to enable rollbacks for your application in the KOTS Application custom resource, see [allowRollback](/reference/custom-resource-application#allowrollback) in _Application_.
 
 * **Changing node hostnames is not supported**: After a host is added to a cluster, Kubernetes assumes that the hostname and IP address of the host will not change. If you need to change the hostname or IP address of a node, you must first remove the node from the cluster, reset it, and then rejoin it.  For information about how to reset nodes with Embedded Cluster, see [Reset a Node](/enterprise/embedded-manage-nodes#reset-a-node). For information about the requirements for naming nodes, see [Node name uniqueness](https://kubernetes.io/docs/concepts/architecture/nodes/#node-name-uniqueness) in the Kubernetes documentation.
    
@@ -165,7 +161,7 @@ Embedded Cluster has the following limitations:
 
 * **Upgrading by more than one Kubernetes version at a time not supported**: Kubernetes does not support upgrading by more than one minor version at a time. To upgrade Kubernetes by more than one minor version, promote multiple releases, incrementing the version of Kubernetes by one minor version in each release.  
 
-* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](/reference/embedded-config) resource does not support the use of Go template functions, including [Replicated template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
+* **Templating not supported in Embedded Cluster Config**: The [Embedded Cluster Config](embedded-config) resource does not support the use of Go template functions, including [Replicated template functions](/reference/template-functions-about). This only applies to the Embedded Cluster Config. You can still use template functions in the rest of your release as usual.
 
 * **Policy enforcement on Embedded Cluster workloads is not supported**: The Embedded Cluster runs workloads that require higher levels of privilege. If your application installs a policy enforcement engine such as Gatekeeper or Kyverno, ensure that its policies are not enforced in the namespaces used by Embedded Cluster.
 

@@ -1,0 +1,98 @@
+import EmbeddedCluster from "../docs/partials/embedded-cluster/_definition.mdx"
+import HaArchitecture from "../docs/partials/embedded-cluster/_multi-node-ha-arch.mdx"
+
+# Embedded Cluster overview
+
+This topic provides an introduction to Replicated Embedded Cluster.
+
+## Overview
+
+<EmbeddedCluster/>
+
+## Comparison to Embedded Cluster v2
+
+### Breaking changes
+
+Embedded Cluster v3 introduces the following breaking changes compared to Embedded Cluster v2: 
+
+* **Removal of KOTS:** Embedded Cluster 3.x removes KOTS from the architecture. That simplifies install and upgrade, but the KOTS CLI no longer works with Embedded Cluster, and there is no KOTS Admin Console in the previous form. The new installer provides the UI instead. Benefits include increased reliability, simpler feature work, and fewer dependencies running in the cluster.
+
+* **Helm only with HelmChart v1beta2:** Embedded Cluster 3.x supports installing Helm charts only when each chart has a corresponding [HelmChart custom resource](/reference/custom-resource-helmchart-v2) that uses API version `helmchart/v1beta2`. Kustomize, plain Kubernetes manifests, and `HelmChart` `v1beta1` are not supported.
+
+* **Replicated SDK required for status reporting:** Because KOTS is removed, you must include the [Replicated SDK](/vendor/replicated-sdk-overview) in your application to get reporting from application status informers (for example, for notifications and visibility in the Vendor Portal and Enterprise Portal).
+
+* **Some template functions not available:** Some Replicated template functions are not implemented in Embedded Cluster v3, either because they are discouraged in this model or because they are not yet ported. Contact Replicated if a missing template function blocks your release.
+
+* **Troubleshoot Preflight `v1beta3` required:** Preflight checks must use Troubleshoot `v1beta3`. `v1beta2` preflight specs are not supported. For more information, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
+
+### Non-breaking change
+
+The default paths change from `/var/lib/embedded-cluster` and `/var/log/embedded-cluster` to `/var/lib/APP_SLUG` and `/var/log/APP_SLUG`, where `APP_SLUG` is your application slug. This better matches your brand and avoids Replicated-specific paths in the default layout. The change applies only to **new** installations. Upgrades from Embedded Cluster 2.x do not migrate or change existing data and log directories.
+
+## About installing with Embedded Cluster
+
+Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
+
+The Embedded Cluster Config is included in the application release in the Replicated Vendor Portal and is used to generate the Embedded Cluster installation assets. Users can download these installation assets from the Replicated app service (`replicated.app`) on the command line, then run the Embedded Cluster installation command to install Kubernetes. Finally, users can install the application using the UI or CLI. During installation, users can optionally add nodes to the cluster and configure the application.
+
+For more information about how to install with Embedded Cluster, see:
+* [Online Installation wtih Embedded Cluster](/enterprise/installing-embedded)
+* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+
+### Embedded Cluster host preflight checks {#about-host-preflight-checks}
+
+During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks are designed to verify that the installation environment meets the requirements for Embedded Cluster, such as:
+* The system has sufficient disk space
+* The system has at least 2G of memory and 2 CPU cores
+* The system clock is synchronized
+
+If any of the Embedded Cluster host preflight checks fail, installation is blocked and a message describing the failure is displayed.
+
+For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
+
+#### Limitations
+
+Embedded Cluster host preflight checks have the following limitations:
+
+* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
+* Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
+
+### Multi-node installations
+
+Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the Admin Console. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](/enterprise/embedded-manage-nodes).
+
+#### High availability
+
+Multi-node clusters are not highly available by default. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
+
+For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](/enterprise/embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
+
+#### Node roles
+
+You can optionally define node roles in the Embedded Cluster Config. For multi-node clusters, roles can be useful for the purpose of assigning specific application workloads to nodes. If nodes roles are defined, users assign one or more roles to a node when it is joined to the cluster. 
+
+For more information, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
+
+## About configuring Embedded Cluster
+
+To support installations with Embedded Cluster, an Embedded Cluster Config must be present in the application release. The Embedded Cluster Config lets you define several characteristics about the cluster that will be created.
+
+For more information, see [Embedded Cluster Config](embedded-config).
+
+## Built-in extensions {#built-in-extensions}
+
+Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Each built-in extension is installed in its own namespace.
+
+The built-in extensions installed by Embedded Cluster include:
+
+* **Embedded Cluster Operator**: The Operator is used for reporting purposes as well as some clean up operations.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
+
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where the images required to install and run the application are pushed. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap).
+
+## Limtiations
+
+* No disaster recovery support
+
+* 

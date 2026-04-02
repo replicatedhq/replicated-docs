@@ -1,0 +1,97 @@
+import Prerequisites from "../docs/partials/install/_ec-prereqs.mdx"
+
+# Online installation with Embedded Cluster
+
+This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster 3.x. For air gap installations, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap). For an introduction to Embedded Cluster, see [Embedded Cluster overview](embedded-overview).
+
+During installation, Embedded Cluster runs a default set of [host preflight checks](embedded-overview#about-host-preflight-checks) that verify the environment meets installer requirements.
+
+For supported CLI flags (proxy, network interface, and more), see [install](/reference/embedded-cluster-install).
+
+## Prerequisites
+
+Before you install, complete the following prerequisites:
+
+<Prerequisites/>
+
+* Ensure that the required domains are reachable from the installation host. See [Firewall openings for online installations](installing-embedded-requirements#firewall).
+
+## Install using the UI
+
+### Use the Enterprise Portal for a guided install
+
+To use the guided install experience in the Enterprise Portal:
+
+1. Log in to the [Replicated Enterprise Portal](/vendor/enterprise-portal-about) with a user for your test customer.
+
+1. Follow the Linux install instructions for Embedded Cluster.
+
+### Install using the Replicated Vendor Portal
+
+To install from the Vendor Portal:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+
+1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
+
+   :::note
+   You can also open the Enterprise Portal to get install and upgrade instructions.
+   :::
+
+1. Under **Select a version** (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
+
+1. On a Linux machine, run the three commands from the dialog in order: download the archive, extract it, then run the install command.
+
+   After extraction, you may see additional binaries and artifacts compared to Embedded Cluster 2.x. Embedded Cluster uses these internally. You can ignore them.
+
+1. Complete any prompts from the install command (for example, acceptance of a self-signed certificate and installer password).
+
+1. Open the URL from the install output in a browser to open the installer UI.
+
+1. Log in to the installer with the password you set when you ran the install command.
+
+1. On the **Configure** page, enter the configuration values for your application. This page serves the same role as the config screen in KOTS Admin Console, with an updated design.
+
+1. On the **Set Up** page, provide any information required for the cluster installation. This corresponds to values you previously passed with install flags in Embedded Cluster 2.x (for example, proxy settings).
+
+1. On the **Run** page, start the installation and wait for it to complete.
+
+1. On the **Finish** page, confirm completion. If your KOTS Application custom resource defines links, they appear here.
+
+   :::note
+   Links to port-forwarded services are not available on this page.
+   :::
+
+## Install using the CLI (headless)
+
+Embedded Cluster 3.x supports headless installs. The way you start a headless install is slightly different from Embedded Cluster 2.x.
+
+1. In the Vendor Portal, open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+
+1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
+
+   :::note
+   You can also open the Enterprise Portal to get install and upgrade instructions.
+   :::
+
+1. Under **Select a version** (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
+
+1. On a Linux machine, run the first two commands from the dialog (download the archive, then extract it).
+
+   After extraction, you may see additional binaries and artifacts compared to Embedded Cluster 2.x. Embedded Cluster uses these internally. You can ignore them.
+
+1. For the third command, run `install` with the following flags:
+
+   * `--headless` to run without the interactive installer UI.
+   * `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file.
+   * `--installer-password` with the password you will use to access the installer later.
+
+   Example:
+
+   ```bash
+   sudo ./APP_SLUG install --license LICENSE_FILE --headless --config-values PATH_TO_CONFIGVALUES --installer-password INSTALLER_PASSWORD
+   ```
+
+   Replace `APP_SLUG`, `LICENSE_FILE`, `PATH_TO_CONFIGVALUES`, and `INSTALLER_PASSWORD` with the values for your environment. Add any other flags you need. For the full set of flags, see [install](/reference/embedded-cluster-install).
+
+1. Monitor the command output until the install completes, then access your application as you normally do.

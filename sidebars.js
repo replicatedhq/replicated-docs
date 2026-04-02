@@ -256,7 +256,7 @@ const sidebars = {
     },
     {
       type: "link",
-      href: "/embedded-cluster/v3/v3-placeholder",
+      href: "/embedded-cluster/v3/embedded-overview",
       label: "Embedded Cluster",
     },
     {

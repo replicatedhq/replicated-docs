@@ -165,7 +165,7 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'v3-placeholder',
+                docId: 'embedded-overview',
                 docsPluginId: 'embedded-cluster',
                 label: 'Embedded Cluster',
               },

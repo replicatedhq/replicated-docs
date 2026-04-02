@@ -1,6 +1,6 @@
-import UpdateOverview from "../../docs/partials/embedded-cluster/_update-overview.mdx"
-import EcConfig from "../../docs/partials/embedded-cluster/_ec-config.mdx"
-import ShellCommand from "../../docs/partials/embedded-cluster/_shell-command.mdx"
+import UpdateOverview from "../docs/partials/embedded-cluster/_update-overview.mdx"
+import EcConfigV3 from "../docs/partials/embedded-cluster/_ec-config-v3.mdx"
+import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
 
 # Configure Embedded Cluster
 
@@ -18,7 +18,7 @@ To add the Embedded Cluster Config:
 
 1. In the release, add an [Embedded Cluster Config](embedded-config) manifest that specifies the Embedded Cluster version to use:
 
-     <EcConfig/>
+     <EcConfigV3/>
 
 1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, update the Embedded Cluster Config to add [extensions](embedded-config#extensions).
 
