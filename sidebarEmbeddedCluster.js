@@ -3,9 +3,16 @@ module.exports = {
     "embedded-overview",
     "embedded-using",
     "embedded-config",
-    "installing-embedded-requirements",
-    "installing-embedded",
-    "installing-embedded-air-gap",
+    {
+
+      type: "category",
+      label: "Install with Embedded Cluster",
+      items: [
+        "installing-embedded-requirements",
+        "installing-embedded",
+        "installing-embedded-air-gap",
+      ]
+    },
     "embedded-manage-nodes",
     "updating-embedded",
     "embedded-troubleshooting",

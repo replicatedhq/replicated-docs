@@ -2,11 +2,7 @@ import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 
 # Air gap installation with Embedded Cluster
 
-This topic describes how to install an application with Replicated Embedded Cluster 3.x on a virtual machine (VM) or bare metal server with no outbound internet access. For online installations, see [Online installation with Embedded Cluster](installing-embedded). For an introduction to Embedded Cluster, see [Embedded Cluster overview](embedded-overview).
-
-During installation, Embedded Cluster runs a default set of [host preflight checks](embedded-overview#about-host-preflight-checks) that verify the environment meets installer requirements.
-
-For supported CLI flags, see [install](embedded-cluster-install).
+This topic describes how to install an application with Replicated Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access. For online installations, see [Online installation with Embedded Cluster](installing-embedded). For an introduction to Embedded Cluster, see [Embedded Cluster overview](embedded-overview).
 
 ## Overview
 
@@ -34,9 +30,13 @@ Before you install, complete the following prerequisites:
 
 <Prerequisites/>
 
-## Install using the UI
+## Install using the Embedded Cluster UI
 
+This section describes how to install using the interative Embedded Cluster installer UI.
+
+:::note
 These steps assume you download installation assets on a host that has internet access, then copy them into the air-gapped environment where Embedded Cluster will run.
+:::
 
 ### Use the Enterprise Portal for a guided install
 
@@ -107,7 +107,7 @@ To install from the Vendor Portal:
 
 1. Log in to the installer with the password you set when you ran the install command.
 
-1. On the **Configure** page, enter the configuration values for your application. This page serves the same role as the config screen in KOTS Admin Console, with an updated design.
+1. On the **Configure** page, enter the configuration values for your application.
 
 1. On the **Set Up** page, provide any information required for the cluster installation. This corresponds to values you previously passed with install flags in Embedded Cluster 2.x (for example, proxy settings), where those options apply in your air gap environment.
 
@@ -121,7 +121,7 @@ To install from the Vendor Portal:
 
 ## Install using the CLI (headless)
 
-With headless installation, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
+With headless installations, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
 
 To install headlessly in an air gap environment:
 

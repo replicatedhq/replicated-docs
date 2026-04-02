@@ -2,11 +2,7 @@ import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 
 # Online installation with Embedded Cluster
 
-This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster 3.x. For air gap installations, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap). For an introduction to Embedded Cluster, see [Embedded Cluster overview](embedded-overview).
-
-During installation, Embedded Cluster runs a default set of [host preflight checks](embedded-overview#about-host-preflight-checks) that verify the environment meets installer requirements.
-
-For supported CLI flags (proxy, network interface, and more), see [install](embedded-cluster-install).
+This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster. For air gap installations, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap). For an introduction to Embedded Cluster, see [Embedded Cluster overview](embedded-overview).
 
 ## Prerequisites
 
@@ -16,7 +12,9 @@ Before you install, complete the following prerequisites:
 
 * Ensure that the required domains are reachable from the installation host. See [Firewall openings for online installations](installing-embedded-requirements#firewall).
 
-## Install using the UI
+## Install using the Embedded Cluster UI
+
+This section describes how to install using the interative Embedded Cluster installer UI.
 
 ### Use the Enterprise Portal for a guided install
 
@@ -50,7 +48,7 @@ To install from the Vendor Portal:
 
 1. Log in to the installer with the password you set when you ran the install command.
 
-1. On the **Configure** page, enter the configuration values for your application. This page serves the same role as the config screen in KOTS Admin Console, with an updated design.
+1. On the **Configure** page, enter the configuration values for your application.
 
 1. On the **Set Up** page, provide any information required for the cluster installation. This corresponds to values you previously passed with install flags in Embedded Cluster 2.x (for example, proxy settings).
 

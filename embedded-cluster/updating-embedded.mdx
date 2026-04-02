@@ -8,7 +8,7 @@ Each Embedded Cluster binary that you download is built for a particular applica
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
-## Upgrade using the UI
+## Upgrade using the Embedded Cluster UI
 
 ### Use the Enterprise Portal for a guided upgrade
 
@@ -18,7 +18,7 @@ To use the guided upgrade experience in the Enterprise Portal:
 
 1. Open the **Update** tab and follow the instructions to upgrade the instance.
 
-### Upgrade using the Replicated Vendor Portal
+### Upgrade using the instructions in the Vendor Portal
 
 To upgrade more directly from the Vendor Portal:
 
@@ -52,19 +52,15 @@ To upgrade more directly from the Vendor Portal:
 
 ## Upgrade using the CLI (headless)
 
-Embedded Cluster 3.x supports headless upgrades.
+To perform a headless upgrade from the CLI:
 
-1. In the Vendor Portal, open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+1. In the Vendor Portal, open the **Customers** page and select the target customer.
 
-1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
+1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The label might also appear as **Embedded Cluster install instructions**).
 
-   :::note
-   You can also open the Enterprise Portal to get install and upgrade instructions.
-   :::
+1. Under **Select a version**, choose the application version to upgrade to.
 
-1. Under **Select a version** (or equivalent), choose the application version to upgrade to.
-
-1. On a Linux machine, run the first two commands from the dialog (download the archive, then extract it).
+1. On a Linux machine, run the first two commands from the dialog to download the archive and extract it.
 
 1. For the third command, do the following:
 
@@ -79,16 +75,35 @@ Embedded Cluster 3.x supports headless upgrades.
    sudo ./APP_SLUG upgrade --license LICENSE_FILE --headless
    ```
 
-1. Monitor the command output until the upgrade completes, then access your application as you normally do.
+1. Monitor the command output until the upgrade completes.
 
-## Redeploy or reconfigure without changing the application version
+## Reconfigure an application without upgrading the application version
 
-Installing or upgrading with a given binary always targets the application version that binary was built for.
+If you need to redeploy or reconfigure an instance without upgrading to a later application version, you can do so by including the installation assets for the application versions that is currently installed when you perform the upgrade.
 
-To redeploy or reconfigure without upgrading to a newer application version, run the `upgrade` command using the binary for the version that is **already** installed. For example, if version 1.2.3 is installed, download and run `upgrade` with the 1.2.3 assets. That redeploys the release.
+### UI-based upgrade
 
-To change configuration without a version change, pass updated values with `--config-values` (headless) or change values on the **Configure** page (interactive upgrade).
+To change an application's configuration without upgrading the application version:
 
-## Upgrade in air gap clusters
+* In the Embedded Cluster UI, change the target values on the **Configure** page. Then, follow the interactive upgrade process in the UI. 
 
-For air gap environments, enable air gap in the **Install instructions** dialog, download the assets to a machine with internet access, transfer them to the air-gapped host, then run `upgrade` with the same air gap flags you use for `install` (for example, `--airgap-bundle`). For more information about air gap assets, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+### Headless upgrade
+
+To change an application's configuration without upgrading the application version:
+
+1. Update the ConfigValues to make the application configuration changes.
+1. Run the `upgrade` command using the binary for the application version that is already installed. For example, if version 1.2.3 is installed, download and run `upgrade` with the assets for version 1.2.3. Pass the updated configuration values with `--config-values`.
+
+## Upgrade in air-gapped environments
+
+To perform an upgrade with Embedded Cluster in air-gapped environments:
+
+1. In the Vendor Portal, open the **Customers** page and select the target customer.
+
+1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The label might also appear as **Embedded Cluster install instructions**).
+
+1. In the **Install instructions** dialog, enable the air gap option.
+
+1. Download the installations assets to a machine with internet access and transfer them to the air-gapped host.
+
+1. Run `upgrade` with the same air gap flags you use for `install` (for example, `--airgap-bundle`). For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).

@@ -24,27 +24,7 @@ To add the Embedded Cluster Config:
 
 1. Save the release and promote it to the channel that you use for testing internally.
 
-1. Install with Embedded Cluster in a development environment to test:
-
-     1. Go to the **Manage customer** page for a new or existing Development customer.
-     
-     1. Under **Install types**, enable the **Embedded Cluster (current generation product)** option. Click **Save**.
-
-     1. At the top right of the customer page, click **Install instructions** and choose **Embedded Cluster**. A dialog appears with instructions on how to download the Embedded Cluster installation assets and install your application.
-
-        ![Customer install instructions drop down button](/images/customer-install-instructions-dropdown.png)
-
-        [View a larger version of this image](/images/customer-install-instructions-dropdown.png)
- 
-     1. On your VM, run the commands in the **Embedded Cluster install instructions** dialog.
-
-          <img alt="Embedded cluster install instruction dialog" src="/images/embedded-cluster-install-dialog-latest.png" width="550px"/>
-
-          [View a larger version of this image](/images/embedded-cluster-install-dialog-latest.png)
-
-     1. Enter an Admin Console password when prompted.
-
-        The Admin Console URL is printed when the installation finishes. Access the Admin Console and follow the instructions in the wizard to install your application.
+1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
 
 1. After successfully installing your application with Embedded Cluster, customize the [Embedded Cluster Config](embedded-config) as desired:
      * Add your custom domain for the Replicated proxy registry and Replicated app service. See [domains](embedded-config#domains).
@@ -53,7 +33,7 @@ To add the Embedded Cluster Config:
      
      Replicated recommends that you work in small iterations and test your changes frequently in your development environment.
 
-## (Optional) Serve installation assets using the vendor API
+## (Optional) Serve installation assets using the Vendor API
 
 To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle. End customers can download all these installation assets using a curl command by following the installation steps available in the [Replicated Enterprise Portal](/vendor/enterprise-portal-about).
 
