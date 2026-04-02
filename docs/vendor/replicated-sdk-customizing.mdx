@@ -687,6 +687,48 @@ replicated:
       enabled: true
       maxUnavailable: 1
 ```
+## Enable read-only mode {#read-only-mode}
+
+With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode. When read-only mode is enabled, the SDK does not create or update any Kubernetes secrets at runtime. This is useful for environments where the SDK should not have write access to the cluster, such as security-hardened deployments or clusters managed with GitOps.
+
+**Requirement:** Read-only mode requires version 1.19.0 or later of the SDK.
+
+To enable read-only mode, set the `replicated.readOnlyMode` value in your Helm chart `values.yaml` file:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  readOnlyMode: true
+```
+
+### Behavior in read-only mode
+
+When read-only mode is enabled:
+
+* **RBAC is reduced**: The SDK Role does not include `create` or `update` verbs for secrets. Only read (`get`) permissions are granted for secrets.
+* **The `replicated-support-metadata` Secret is not created** by the Helm chart.
+* **Instance and custom app metrics reports are not persisted** to secrets in the cluster. The SDK logs a message and skips the write.
+* **Custom app metrics are still synced to Replicated APIs** when the cluster has internet access. However, sync failures are treated as non-fatal and do not cause errors.
+* **Write API endpoints return `422 Unprocessable Entity`** with a JSON response indicating that the operation is unavailable in read-only mode. The affected endpoints are:
+  - `POST /api/v1/app/instance-tags`
+  - `DELETE /api/v1/app/custom-metrics/{metric_name}`
+  - `POST /api/v1/supportbundle/metadata`
+  - `PATCH /api/v1/supportbundle/metadata`
+  - `POST /api/v1/integration/mock-data`
+* **Read endpoints are not affected**. All `GET` endpoints continue to work normally.
+
+### Example error response
+
+When a write endpoint is called in read-only mode, the SDK returns a `422` status with the following response body:
+
+```json
+{
+  "error": "instance tags are unavailable in read-only mode",
+  "readOnlyMode": true
+}
+```
+
 ## Use a custom domain for the Replicated SDK
 
 The image used by the Replicated SDK Helm chart is automatically pulled through the Replicated proxy registry during deployment. The default location for the SDK image is `proxy.replicated.com/library/replicated-sdk-image`. You can see the Replicated SDK image properties in the SDK Helm chart [values.yaml](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L33) file in GitHub.
