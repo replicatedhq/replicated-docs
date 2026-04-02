@@ -4,7 +4,7 @@ This topic describes how to upgrade, redeploy, or reconfigure an application ins
 
 ## Overview
 
-Each Embedded Cluster binary that you download is built for a particular application version. Running `install` or `upgrade` with that binary installs or upgrades to that version. Upgrades can update both your application and cluster infrastructure (including Kubernetes and Embedded Cluster components), depending on what changed in the release.
+Each Embedded Cluster binary that you download targets a particular application version. Running `install` or `upgrade` with that binary installs or upgrades to that version. Upgrades can update both your application and cluster infrastructure (including Kubernetes and Embedded Cluster components), depending on what changed in the release.
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
@@ -22,7 +22,7 @@ To use the guided upgrade experience in the Enterprise Portal:
 
 To upgrade more directly from the Vendor Portal:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+1. In the [Vendor Portal](https://vendor.replicated.com), open the **Customers** page and select a customer that you assigned to the channel you use for testing.
 
 1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
 
@@ -30,7 +30,7 @@ To upgrade more directly from the Vendor Portal:
    You can also open the Enterprise Portal to get install and upgrade instructions.
    :::
 
-1. Under **Select a version** (or equivalent), choose the application version to upgrade to.
+1. In the **Select a version** section (or equivalent), choose the application version to upgrade to.
 
 1. On a Linux machine, run the first two commands from the dialog (download the archive, then extract it).
 
@@ -58,7 +58,7 @@ To perform a headless upgrade from the CLI:
 
 1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The label might also appear as **Embedded Cluster install instructions**).
 
-1. Under **Select a version**, choose the application version to upgrade to.
+1. In the **Select a version** section, choose the application version to upgrade to.
 
 1. On a Linux machine, run the first two commands from the dialog to download the archive and extract it.
 
@@ -79,7 +79,7 @@ To perform a headless upgrade from the CLI:
 
 ## Reconfigure an application without upgrading the application version
 
-If you need to redeploy or reconfigure an instance without upgrading to a later application version, you can do so by including the installation assets for the application versions that is currently installed when you perform the upgrade.
+If you need to redeploy or reconfigure an instance without upgrading to a later application version, include the installation assets for the application version that is already installed when you perform the upgrade.
 
 ### UI-based upgrade
 
@@ -92,7 +92,7 @@ To change an application's configuration without upgrading the application versi
 To change an application's configuration without upgrading the application version:
 
 1. Update the ConfigValues to make the application configuration changes.
-1. Run the `upgrade` command using the binary for the application version that is already installed. For example, if version 1.2.3 is installed, download and run `upgrade` with the assets for version 1.2.3. Pass the updated configuration values with `--config-values`.
+1. Run the `upgrade` command using the binary for the application version that you already have installed. For example, if you installed version 1.2.3, download and run `upgrade` with the assets for version 1.2.3. Pass the updated configuration values with `--config-values`.
 
 ## Upgrade in air-gapped environments
 

@@ -85,7 +85,7 @@ See `references/vale-rules.md` for full fix patterns, before/after examples, and
 
 **`Replicated.PositionalLanguage`** — Replace "above/below" with "the following" or a section link; replace directional "right/left" with "the following" or a UI element name.
 
-**`Replicated.Headings`** — Apply sentence case: lowercase all words except the first word and proper nouns (product names, trademarks).
+**`Replicated.Headings`** — Apply sentence case, with two exceptions: (1) **Skip entirely** when the heading IS a CLI command name or YAML field name (e.g., `# install (Beta)`, `## helmCharts`) — those follow the thing's own casing conventions. (2) **Parentheticals reset sentence case** — `(Beta)` is correct, not `(beta)`. See `references/vale-rules.md` for full patterns.
 
 **`Replicated.WordsToAvoid`** — Remove "easy/easily", "simple/simply", "just" (when minimizing). Rephrase or omit.
 

@@ -14,7 +14,7 @@ Before you install, complete the following prerequisites:
 
 ## Install using the Embedded Cluster UI
 
-This section describes how to install using the interative Embedded Cluster installer UI.
+This section describes how to install using the interactive Embedded Cluster installer UI.
 
 ### Use the Enterprise Portal for a guided install
 
@@ -28,7 +28,7 @@ To use the guided install experience in the Enterprise Portal:
 
 To install from the Vendor Portal:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+1. In the [Vendor Portal](https://vendor.replicated.com), open the **Customers** page and select a customer that belongs to the channel you use for testing.
 
 1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
 
@@ -36,7 +36,7 @@ To install from the Vendor Portal:
    You can also open the Enterprise Portal to get install and upgrade instructions.
    :::
 
-1. Under **Select a version** (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
+1. In the **Select a version** field (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
 
 1. On a Linux machine, run the three commands from the dialog in order: download the archive, extract it, then run the install command.
 
@@ -54,7 +54,7 @@ To install from the Vendor Portal:
 
 1. On the **Run** page, start the installation and wait for it to complete.
 
-1. On the **Finish** page, confirm completion. If your KOTS Application custom resource defines links, they appear here.
+1. On the **Finish** page, confirm completion. If your KOTS Application custom resource defines links, they appear on this page.
 
    :::note
    Links to port-forwarded services are not available on this page.
@@ -62,11 +62,11 @@ To install from the Vendor Portal:
 
 ## Install using the CLI (Headless)
 
-With headless installation, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
+With headless installation, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. During headless installations, any preflight checks defined for the application run automatically from the command line rather than appearing in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
 
 To install using the CLI:
 
-1. In the Vendor Portal, open the **Customers** page and select a customer that is assigned to the channel you use for testing.
+1. In the Vendor Portal, open the **Customers** page and select a customer that belongs to the channel you use for testing.
 
 1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
 
@@ -74,7 +74,7 @@ To install using the CLI:
    You can also open the Enterprise Portal to get install and upgrade instructions.
    :::
 
-1. Under **Select a version** (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
+1. In the **Select a version** field (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
 
 1. On a Linux machine, run the first two commands from the dialog (download the archive, then extract it).
 

@@ -5,7 +5,7 @@ import FirewallOpeningsEc from "../docs/partials/install/_firewall-openings-embe
 
 # Embedded Cluster installation requirements (Beta)
 
-This topic lists the installation requirements for Replicated Embedded Cluster. Ensure that the installation environment meets these requirements before attempting to install.
+This topic lists the installation requirements for Replicated Embedded Cluster. Ensure that the installation environment meets these requirements before you attempt to install.
 
 ## System requirements
 
@@ -17,14 +17,14 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 ## Unix accounts for Kubernetes components
 
-During installation, Embedded Cluster automatically creates the following Unix accounts that are required by internal Kubernetes components:
+During installation, Embedded Cluster automatically creates the following Unix accounts, which internal Kubernetes components require:
 
 * **etcd**: Used by the Kubernetes etcd database, which stores cluster state.
 * **konnectivity-server**: Used by the Konnectivity service, which facilitates secure communication between internal components.
 * **kube-apiserver**: Used by the Kubernetes API server.
 * **kube-scheduler**: Used by the Kubernetes scheduler to schedule workloads such as pods.
 
-No action is required to create these roles. Removing them will make the cluster non-functional.
+You do not need to take any action to create these roles. Removing them will make the cluster non-functional.
 
 For more information about the internal Kubernetes components, see [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/) in the Kubernetes documentation.
 
@@ -37,14 +37,14 @@ For more information about the Konnectivity service, see [Set up Konnectivity se
 <FirewallOpeningsEc/>
 
 :::note
-If you monitor the outbound traffic attempts made by Embedded Cluster, you might see an attempted call to `updates.k0sproject.io` approximately every 30 minutes. These calls are made by a feature of the upstream k0s project called `update-prober`, which checks for k0s updates. Embedded Cluster does not use the `update-prober` feature and blocking it in your firewall rules will not affect Replicated product functionality.
+If you monitor the outbound traffic attempts made by Embedded Cluster, you might see an attempted call to `updates.k0sproject.io` approximately every 30 minutes. A feature of the upstream k0s project called `update-prober` makes these calls to check for k0s updates. Embedded Cluster does not use the `update-prober` feature and blocking it in your firewall rules will not affect Replicated product functionality.
 :::
 
 ## About firewalld configuration
 
-When Firewalld is enabled in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks and to open the required ports on the host. No additional configuration is required.
+When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks and to open the required ports on the host. No additional configuration is necessary.
 
-The following rule is added to Firewalld:
+Embedded Cluster adds the following rule to Firewalld:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -60,7 +60,7 @@ The following rule is added to Firewalld:
 </zone>
 ```
 
-The following ports are opened in the default zone:
+Embedded Cluster opens the following ports in the default zone:
 
 <table>
 <tr>

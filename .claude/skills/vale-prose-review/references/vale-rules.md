@@ -101,6 +101,26 @@ Avoid directional and spatial language that assumes a page layout. Users may be 
 
 Headings should use sentence case: capitalize only the first word and proper nouns.
 
+### Skip this rule entirely for reference page headings
+
+Do NOT apply sentence case to headings that are the exact name of a CLI command, YAML field, or other code identifier. These headings document the thing itself, so their capitalization is determined by the thing's own conventions, not sentence case.
+
+**Skip examples (leave unchanged):**
+- `# install (Beta)` — CLI command name; do not capitalize "install"
+- `# create-join-bundle (Beta)` — CLI command name
+- `### helmCharts` — YAML field name; do not change to `### HelmCharts`
+- `#### roles.controller` — dotted YAML field path
+- `## metadata` — YAML field name
+- `## unsupportedOverrides` — YAML field name
+
+### Parentheticals reset sentence case
+
+A parenthetical like `(Beta)` or `(Preview)` opens a new "sentence" within the heading. Capitalize the first word inside the parenthetical.
+
+- `(Beta)` is correct — **not** `(beta)`
+- `(Preview)` is correct — **not** `(preview)`
+- `(Deprecated)` is correct — **not** `(deprecated)`
+
 ### What to capitalize (proper nouns and trademarks)
 
 - Replicated product names: Embedded Cluster, KOTS, Vendor Portal, Enterprise Portal, Compatibility Matrix, Replicated SDK, Admin Console, Replicated CLI
@@ -109,17 +129,19 @@ Headings should use sentence case: capitalize only the first word and proper nou
 
 ### What to lowercase
 
-- Descriptive words that aren't proper names: "matrix" (when not a product name), "lifecycle", "overview", "portal" (when standalone), "guide", "about"
-- Status/qualifier words in parentheses: "(beta)", "(preview)", "(deprecated)"
+- Descriptive words that aren't proper names: "config", "overview", "lifecycle", "portal" (when standalone), "guide", "about"
+- Capitalized common words mid-heading: "Matrix" → "matrix" (when not a product name), "Values" → "values", "Built-In" → "built-in"
 
 ### Examples
 
 | Before | After |
 |---|---|
 | `### Compatibility Matrix` | `### Compatibility matrix` |
-| `### Enterprise Portal (Beta)` | `### Enterprise Portal (beta)` |
+| `### Enterprise Portal (Beta)` | `### Enterprise Portal (Beta)` ← keep capital B |
 | `## Commercial Software Distribution Lifecycle` | `## Commercial software distribution lifecycle` |
 | `### Vendor Portal Overview` | `### Vendor Portal overview` |
+| `# install (Beta)` | `# install (Beta)` ← CLI command, do not change |
+| `### helmCharts` | `### helmCharts` ← YAML field, do not change |
 
 **Note:** Only headings are subject to this rule. Body text references to product names keep their standard capitalization.
 

@@ -6,11 +6,11 @@ This topic describes how to install an application with Replicated Embedded Clus
 
 ## Overview
 
-When an air gap bundle is built for a release containing an Embedded Cluster Config, both an application air gap bundle and an Embedded Cluster air gap bundle are built. The application air gap bundle can be used for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. The Embedded Cluster air gap bundle is used for air gap installations with Embedded Cluster.
+When you build an air gap bundle for a release containing an Embedded Cluster Config, Replicated produces both an application air gap bundle and an Embedded Cluster air gap bundle. You can use the application air gap bundle for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. Use the Embedded Cluster air gap bundle for air gap installations with Embedded Cluster.
 
-The Embedded Cluster air gap bundle not only contains the assets normally contained in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory), but it also contains an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [extensions](embedded-config#extensions)).
+The Embedded Cluster air gap bundle contains the assets normally found in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory). It also includes an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [extensions](embedded-config#extensions)).
 
-During installation with Embedded Cluster in air gap environments, a Docker registry is deployed to the cluster to store application images. Infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts are preloaded on each node at installation time.
+During installation with Embedded Cluster in air gap environments, Embedded Cluster deploys a Docker registry to the cluster to store application images. The installer preloads infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts on each node at installation time.
 
 ## Limitations and known issues
 
@@ -18,9 +18,9 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
 
-* Images used by Helm extensions must not refer to a multi-architecture image by digest. Only x64 images are included in air gap bundles, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing the image from being discovered in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
+* Images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how the digests should be set to empty string to pull by tag only, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
 
-* Images for Helm extensions are loaded directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to set `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
+* Embedded Cluster loads images for Helm extensions directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to configure `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
 
 * On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
 
@@ -32,10 +32,10 @@ Before you install, complete the following prerequisites:
 
 ## Install using the Embedded Cluster UI
 
-This section describes how to install using the interative Embedded Cluster installer UI.
+This section describes how to install using the interactive Embedded Cluster installer UI.
 
 :::note
-These steps assume you download installation assets on a host that has internet access, then copy them into the air-gapped environment where Embedded Cluster will run.
+These steps assume you download installation assets on a host that has internet access. Then copy them into the air-gapped environment where Embedded Cluster will run.
 :::
 
 ### Use the Enterprise Portal for a guided install
@@ -50,9 +50,9 @@ To use the guided install experience in the Enterprise Portal:
 
 To install from the Vendor Portal:
 
-1. In the [Vendor Portal](https://vendor.replicated.com), open the channel where the target release was promoted so the air gap bundle can be built. Do one of the following:
+1. In the [Vendor Portal](https://vendor.replicated.com), open the channel where you promoted the target release so Replicated can build the air gap bundle. Do one of the following:
 
-   * If **Automatically create airgap builds for newly promoted releases in this channel** is enabled on the channel, wait until the build completes.
+   * If you have **Automatically create airgap builds for newly promoted releases in this channel** enabled on the channel, wait until the build completes.
    * If automatic air gap builds are not enabled, open the **Release history** page for the channel and build the air gap bundle manually.
 
    :::note
@@ -61,7 +61,7 @@ To install from the Vendor Portal:
 
 1. Open **Customers** and select the target customer.
 
-1. On the **Manage customer** tab, under **License options**, enable **Airgap Download Enabled**.
+1. On the **Manage customer** tab, in **License options**, enable **Airgap Download Enabled**.
 
 1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The control may appear as **Embedded Cluster install instructions**.)
 
@@ -79,7 +79,7 @@ To install from the Vendor Portal:
 
    [View a larger version of this image](/images/embedded-cluster-install-dialog-airgap.png)
 
-1. Under **Select a version** (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
+1. In the **Select a version** field (or equivalent), choose the application version you promoted to that channel for testing, or leave the latest version selected if that is what you want to install.
 
 1. On a machine **with internet access**, run the download command from the dialog to save the air gap installation assets as a `.tgz` archive.
 
@@ -113,7 +113,7 @@ To install from the Vendor Portal:
 
 1. On the **Run** page, start the installation and wait for it to complete.
 
-1. On the **Finish** page, confirm completion. If your KOTS Application custom resource defines links, they appear here.
+1. On the **Finish** page, confirm completion. If your KOTS Application custom resource defines links, they appear on this page.
 
    :::note
    Links to port-forwarded services are not available on this page.
@@ -121,13 +121,13 @@ To install from the Vendor Portal:
 
 ## Install using the CLI (headless)
 
-With headless installations, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
+With headless installations, you provide all the necessary installation assets with the installation command rather than through the UI. These assets include the license file and the application config values. Any preflight checks defined for the application run automatically from the command line rather than displaying in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
 
 To install headlessly in an air gap environment:
 
 1. Complete the Vendor Portal steps to build the air gap bundle, enable **Airgap Download Enabled** for the customer, and open **Install instructions** with **Install in an air gap environment** selected. For more detail, see steps 1 through 6 in [Install using the Replicated Vendor Portal](#install-using-the-replicated-vendor-portal).
 
-1. Under **Select a version** (or equivalent), choose the application version to install.
+1. In the **Select a version** field (or equivalent), choose the application version to install.
 
 1. On a machine **with internet access**, run the first two commands from the dialog (download the archive, then extract it).
 
