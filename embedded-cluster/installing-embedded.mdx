@@ -26,7 +26,7 @@ To use the guided install experience in the Enterprise Portal:
 
 1. Follow the Linux install instructions for Embedded Cluster.
 
-### Install using the Replicated Vendor Portal
+### Install using instructions from the Vendor Portal
 
 To install from the Vendor Portal:
 
@@ -62,9 +62,11 @@ To install from the Vendor Portal:
    Links to port-forwarded services are not available on this page.
    :::
 
-## Install using the CLI (headless)
+## Install using the CLI (Headless)
 
-Embedded Cluster 3.x supports headless installs. The way you start a headless install is slightly different from Embedded Cluster 2.x.
+With headless installation, you provide all the necessary installation assets, such as the license file and the application config values, with the installation command rather than through the UI. Any preflight checks defined for the application run automatically during headless installations from the command line rather than being displayed in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
+
+To install using the CLI:
 
 1. In the Vendor Portal, open the **Customers** page and select a customer that is assigned to the channel you use for testing.
 
@@ -95,3 +97,19 @@ Embedded Cluster 3.x supports headless installs. The way you start a headless in
    Replace `APP_SLUG`, `LICENSE_FILE`, `PATH_TO_CONFIGVALUES`, and `INSTALLER_PASSWORD` with the values for your environment. Add any other flags you need. For the full set of flags, see [install](embedded-cluster-install).
 
 1. Monitor the command output until the install completes, then access your application as you normally do.
+
+
+## (Optional) Ignore preflight checks during installation {#ignore-preflights}
+
+You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](embedded-cluster-install).
+
+Ignoring host preflight checks is _not_ recommended for production installations.
+
+* To ignore preflight checks:
+
+    ```bash
+    sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --ignore-app-preflights --yes
+    ```
+    Where:
+    * `APP_SLUG` is the unique slug for the application
+    * The `--yes` flag addresses the prompt for `--ignore-host-preflights` to continue with installation
