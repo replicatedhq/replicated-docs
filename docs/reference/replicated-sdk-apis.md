@@ -147,6 +147,7 @@ Response: Status `200` OK
 
 Delete an application custom metric. 
 
+
 ```bash
 DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
 ```
@@ -154,6 +155,7 @@ DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
 Response: Status `204` No Content 
 
 ### POST /app/instance-tags
+
 
 Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
 
@@ -214,6 +216,7 @@ Response: Status `201` Created
 
 ### POST /supportbundle/metadata
 
+
 Set support bundle metadata (key-value pairs) by replacing any existing metadata.
 
 The SDK stores metadata as top-level keys in a Kubernetes secret named `replicated-support-metadata` in the SDK namespace. You can use the `supportBundleMetadata` collector to include this metadata in support bundles. For more information about this collector, see [Support Bundle Metadata](https://troubleshoot.sh/docs/collect/support-bundle-metadata) in the Troubleshoot documentation.
@@ -236,6 +239,7 @@ Request:
 Response: Status `200` OK
 
 ### PATCH /supportbundle/metadata
+
 
 Merge support bundle metadata (key-value pairs) with any existing metadata. `PATCH /supportbundle/metadata` adds new keys and updates existing keys. It preserves any keys excluded from the request.
 
@@ -448,6 +452,7 @@ Get mock data that is used when Development Mode is enabled.
 ```
 
 ### POST /api/v1/integration/mock-data
+
 
 Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
 

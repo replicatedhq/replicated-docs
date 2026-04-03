@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.0
+
+Released on April 2, 2026
+
+### New features {#new-features-1-19-0}
+* Adds a `readOnlyMode` Helm value that prevents the SDK from creating or updating Kubernetes secrets at runtime. When enabled, the SDK RBAC Role is reduced to read-only permissions, write API endpoints return `422 Unprocessable Entity`, and the `replicated-support-metadata` Secret is not created. Custom app metrics are still synced to Replicated APIs when the cluster has internet access. For more information, see [Enable Read-Only Mode](/vendor/replicated-sdk-customizing#read-only-mode) in _Customize the Replicated SDK_.
+
 ## 1.18.2
 
 Released on March 23, 2026
