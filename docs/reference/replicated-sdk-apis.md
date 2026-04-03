@@ -147,9 +147,6 @@ Response: Status `200` OK
 
 Delete an application custom metric. 
 
-:::note
-This endpoint returns `422 Unprocessable Entity` when the SDK is running in [read-only mode](/vendor/replicated-sdk-customizing#read-only-mode).
-:::
 
 ```bash
 DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
@@ -159,9 +156,6 @@ Response: Status `204` No Content
 
 ### POST /app/instance-tags
 
-:::note
-This endpoint returns `422 Unprocessable Entity` when the SDK is running in [read-only mode](/vendor/replicated-sdk-customizing#read-only-mode).
-:::
 
 Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
 
@@ -222,9 +216,6 @@ Response: Status `201` Created
 
 ### POST /supportbundle/metadata
 
-:::note
-This endpoint returns `422 Unprocessable Entity` when the SDK is running in [read-only mode](/vendor/replicated-sdk-customizing#read-only-mode).
-:::
 
 Set support bundle metadata (key-value pairs) by replacing any existing metadata.
 
@@ -249,9 +240,6 @@ Response: Status `200` OK
 
 ### PATCH /supportbundle/metadata
 
-:::note
-This endpoint returns `422 Unprocessable Entity` when the SDK is running in [read-only mode](/vendor/replicated-sdk-customizing#read-only-mode).
-:::
 
 Merge support bundle metadata (key-value pairs) with any existing metadata. `PATCH /supportbundle/metadata` adds new keys and updates existing keys. It preserves any keys excluded from the request.
 
@@ -465,9 +453,6 @@ Get mock data that is used when Development Mode is enabled.
 
 ### POST /api/v1/integration/mock-data
 
-:::note
-This endpoint returns `422 Unprocessable Entity` when the SDK is running in [read-only mode](/vendor/replicated-sdk-customizing#read-only-mode).
-:::
 
 Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
 
