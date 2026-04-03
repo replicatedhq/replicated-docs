@@ -56,6 +56,8 @@ Do not apply prose fixes to:
 
 Vale sometimes flags these; ignore those warnings.
 
+**Exception — markdown inside HTML tables:** When `Vale.Spelling` flags a word like `_Using` inside an HTML `<td>` or `<p>` element, the cause is markdown italic syntax (`_text_`) used inside raw HTML. Do NOT add `_Using` to an accept list. Instead, convert the markdown formatting to HTML (`_foo_` → `<em>foo</em>`). See `references/vale-rules.md` for details.
+
 ### Step 5: Verify
 
 After making all changes, do a quick pass to confirm:
@@ -94,3 +96,4 @@ See `references/vale-rules.md` for full fix patterns, before/after examples, and
 ## Additional Resources
 
 - **`references/vale-rules.md`** — Detailed fix patterns, edge cases, and examples for every common Replicated vale rule
+- **`README.md` (repo root)** — The Replicated Docs style guide lives in the "Style Guide" section of this file. Read it when deciding how to rewrite a flagged sentence, choose word alternatives, or apply formatting conventions. This is the authoritative source — do not rely on cached knowledge of its contents.

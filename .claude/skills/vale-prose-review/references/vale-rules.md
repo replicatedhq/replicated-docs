@@ -28,6 +28,19 @@ Fix if the flagged word is a genuine misspelling. Vale flags these as errors, so
 - Flagged words inside inline code or code blocks
 - Acronyms in YAML frontmatter keys
 
+### Markdown formatting inside HTML tables
+
+When a file uses HTML `<table>`/`<td>`/`<p>` tags and the cell content contains markdown italic syntax (e.g., `_Using Embedded Cluster_`), vale treats the leading underscore as part of a word and flags `_Using` as a misspelling.
+
+**Do NOT add these to an accept list.** The fix is to convert the markdown formatting inside the HTML element to its HTML equivalent:
+
+| Before (markdown inside HTML) | After (HTML formatting) |
+|---|---|
+| `_Using Embedded Cluster_` | `<em>Using Embedded Cluster</em>` |
+| `**important**` | `<strong>important</strong>` |
+
+Apply this fix to the specific cell content where the flag appears. Other cells in the same table that use plain text are fine as-is.
+
 ---
 
 ## Replicated.Passive (suggestion)
