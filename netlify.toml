@@ -43,6 +43,139 @@
   to = "https://docs.replicated.com/release-notes/rn-whats-new"
 
 
+###################################################
+# Embedded Cluster docs (moved to /embedded-cluster plugin)
+#
+# Default version is v3. Pages that exist only in v2 use /embedded-cluster/v2/...
+# Note: URL fragments (#anchors) are not sent to the server; old deep links may
+# land on the new page without the intended heading anchor.
+###################################################
+
+# bare plugin path → current Embedded Cluster docs (v3 landing page)
+
+[[redirects]]
+  from = "https://docs.replicated.com/embedded-cluster"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/embedded-cluster/"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/embedded-cluster/v3"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/embedded-cluster/v3/"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+
+# Vendor (→ v3)
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-overview"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-using"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-using"
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-troubleshooting"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-troubleshooting"
+
+# Vendor (→ v2 only)
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-disaster-recovery"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-disaster-recovery"
+
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/embedded-tls-certs"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-tls-certs"
+
+# Enterprise install / manage / update (→ v3)
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/installing-embedded"
+  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/installing-embedded-air-gap"
+  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/installing-embedded-requirements"
+  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded-requirements"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/embedded-manage-nodes"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/updating-embedded"
+  to = "https://docs.replicated.com/embedded-cluster/v3/updating-embedded"
+
+# Enterprise (→ v2 only)
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/installing-embedded-automation"
+  to = "https://docs.replicated.com/embedded-cluster/v2/installing-embedded-automation"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise/embedded-tls-certs"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-tls-certs"
+
+# Reference (→ v3)
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-config"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-config"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-install"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-install"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-reset"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-reset"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-shell"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-shell"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-version"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-version"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-support-bundle"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-support-bundle"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-enable-ha"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-enable-ha"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-completion"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-completion"
+
+# Reference: v3 renamed CLI topics (old slug → new doc)
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-update"
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-upgrade"
+
+# Reference (→ v2 only)
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-join"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-join"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-join-print-command"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-join-print-command"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-restore"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-restore"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference/embedded-cluster-admin-console"
+  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-admin-console"
+
 
 ###################################################
 # Redirects To the Getting Started Section
@@ -85,7 +218,7 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying"
-  to="https://docs.replicated.com/enterprise/installing-embedded-cluster#install-with-ha-in-online-environments"
+  to="https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes#create-ha"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
@@ -212,7 +345,7 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/embedded-kubernetes-overview"
-  to = "https://docs.replicated.com/vendor/embedded-overview"               
+  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
 
 ###################################################
 # Redirects To the Enterprise Section
@@ -244,15 +377,15 @@
 
 [[redirects]]
   from="https://docs.replicated.com/enterprise/installing-embedded-airgapped"
-  to="https://docs.replicated.com/enterprise/installing-kurl-airgap"  
+  to="https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap"
 
 [[redirects]]
   from="https://docs.replicated.com/enterprise/installing-embedded-cluster"
-  to="https://docs.replicated.com/enterprise/installing-kurl"  
+  to="https://docs.replicated.com/embedded-cluster/v3/installing-embedded"
 
 [[redirects]]
   from="https://docs.replicated.com/enterprise/updating-embedded-cluster"
-  to="https://docs.replicated.com/enterprise/updating-kurl"  
+  to="https://docs.replicated.com/embedded-cluster/v3/updating-embedded"
 
 [[redirects]]
   from="https://docs.replicated.com/enterprise/image-registry-embedded-cluster"
@@ -260,7 +393,7 @@
    
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-configvalues"
-  to="https://docs.replicated.com/enterprise/installing-embedded-automation"  
+  to="https://docs.replicated.com/embedded-cluster/v2/installing-embedded-automation"
 
 
 [[redirects]]
