@@ -1,0 +1,79 @@
+import UpdateAirGapAdm from "../../docs/partials/embedded-cluster/v2/_update-air-gap-admin-console.mdx"
+import UpdateAirGapCli from "../../docs/partials/embedded-cluster/v2/_update-air-gap-cli.mdx"
+import UpdateAirGapOverview from "../../docs/partials/embedded-cluster/v2/_update-air-gap-overview.mdx"
+import DoNotDowngrade from "../../docs/partials/embedded-cluster/_warning-do-not-downgrade.mdx"
+import Overview from "../../docs/partials/embedded-cluster/v2/_update-overview.mdx"
+
+# Perform updates in embedded clusters
+
+This topic describes how to perform updates for [Replicated Embedded Cluster](embedded-overview) installations.
+
+## Overview
+
+<Overview/>
+
+The following diagram demonstrates how updates are performed with Embedded Cluster in online (internet-connected) environments: 
+
+![Embedded Cluster updates Kubernetes and an app in a customer environment](/images/embedded-cluster-update.png)
+
+[View a larger version of this image](/images/embedded-cluster-update.png)
+
+As shown in the diagram above, users check for available updates from the KOTS Admin Console. When deploying the new version, both the application and the cluster infrastructure are updated as needed.   
+
+## Update in online clusters
+
+To perform an update with Embedded Cluster:
+
+1. In the Admin Console, go to the **Version history** tab.
+
+   All versions available for upgrade are listed in the **Available Updates** section:
+
+   ![Version history page](/images/ec-upgrade-version-history.png)
+
+   [View a larger version of this image](/images/ec-upgrade-version-history.png)
+
+1. Click **Deploy** next to the target version.
+
+1. On the **Config** screen of the upgrade wizard, make any necessary changes to the configuration for the application. Click **Next**.
+
+    ![Config screen in the upgrade wizard](/images/ec-upgrade-wizard-config.png)
+
+    [View a larger version of this image](/images/ec-upgrade-wizard-config.png)
+
+    :::note
+    Any changes made on the **Config** screen of the upgrade wizard are not set until the new version is deployed.
+    :::
+
+1. On the **Preflight** screen, view the results of the preflight checks.
+
+   ![Preflight screen in the upgrade wizard](/images/ec-upgrade-wizard-preflights.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-preflights.png)
+
+1. On the **Confirm** screen, click **Deploy**.
+
+   ![Confirmation screen in the upgrade wizard](/images/ec-upgrade-wizard-confirm.png)
+
+   [View a larger version of this image](/images/ec-upgrade-wizard-confirm.png)
+
+   During updates, the Admin Console is unavailable. A modal is displayed with a message that the update is in progress.
+   
+   :::note
+   KOTS can experience downtime during an update, such as in single-node installations. If downtime occurs, refreshing the page results in a connection error. Users can refresh the page again after the update is complete to access the Admin Console.
+   :::
+
+## Update in air gap clusters
+
+<UpdateAirGapOverview/>
+
+### Upload the new version from the command line
+
+To update by uploading the air gap bundle for the new version from the command line:
+
+<UpdateAirGapCli/>
+
+### Upload the new version from the Admin Console
+
+To update by uploading the air gap bundle for the new version from the Admin Console:
+
+<UpdateAirGapAdm/>

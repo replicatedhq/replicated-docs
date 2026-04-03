@@ -1,0 +1,114 @@
+# install (Beta)
+
+This topic describes the options available with the Embedded Cluster `install` command. For procedural steps, see [Online installation with Embedded Cluster](installing-embedded), [Air gap installation with Embedded Cluster](installing-embedded-air-gap), and [Automate installation with Embedded Cluster](installing-embedded-automation).
+
+## Usage
+
+```bash
+sudo ./<app-slug> install --license <path-to-license> [flags]
+```
+
+## Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>`--airgap`</td>
+    <td></td>
+    <td>Perform an air-gapped installation. For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).</td>
+  </tr>
+  <tr>
+    <td>`--cidr`</td>
+    <td>string</td>
+    <td>CIDR range for Pod and Service IP addresses. **Default:** `10.244.0.0/16`</td>
+  </tr>
+  <tr>
+    <td>`--config-values`</td>
+    <td>string</td>
+    <td>Path to the [ConfigValues](/reference/custom-resource-configvalues) file for headless installs.</td>
+  </tr>
+  <tr>
+    <td>`--data-dir`</td>
+    <td>string</td>
+    <td>Data directory for Embedded Cluster. **Default:** `/data-dir` (confirm with `install --help` for your binary).</td>
+  </tr>
+  <tr>
+    <td>`--headless`</td>
+    <td></td>
+    <td>Run installation without the interactive installer UI.</td>
+  </tr>
+  <tr>
+    <td>`--hostname`</td>
+    <td>string</td>
+    <td>Hostname to use for this node.</td>
+  </tr>
+  <tr>
+    <td>`--http-proxy`</td>
+    <td>string</td>
+    <td>HTTP proxy URL.</td>
+  </tr>
+  <tr>
+    <td>`--https-proxy`</td>
+    <td>string</td>
+    <td>HTTPS proxy URL.</td>
+  </tr>
+  <tr>
+    <td>`--ignore-app-preflights`</td>
+    <td></td>
+    <td>Skip application preflight checks.</td>
+  </tr>
+  <tr>
+    <td>`--ignore-host-preflights`</td>
+    <td></td>
+    <td>Skip Embedded Cluster host preflight checks.</td>
+  </tr>
+  <tr>
+    <td>`--installer-password`</td>
+    <td>string</td>
+    <td>Password for the installer UI.</td>
+  </tr>
+  <tr>
+    <td>`--installer-port`</td>
+    <td>int</td>
+    <td>Port for the installer UI. **Default:** `30080`</td>
+  </tr>
+  <tr>
+    <td>`-l`, `--license`</td>
+    <td>string</td>
+    <td>Path to the license file.</td>
+  </tr>
+  <tr>
+    <td>`--network-interface`</td>
+    <td>string</td>
+    <td>Network interface to use.</td>
+  </tr>
+  <tr>
+    <td>`--no-proxy`</td>
+    <td>string</td>
+    <td>Comma-separated list of hosts that should not use the proxy.</td>
+  </tr>
+  <tr>
+    <td>`--tls-cert`</td>
+    <td>string</td>
+    <td>Path to a TLS certificate file for the installer.</td>
+  </tr>
+  <tr>
+    <td>`--tls-key`</td>
+    <td>string</td>
+    <td>Path to a TLS private key file for the installer.</td>
+  </tr>
+  <tr>
+    <td>`-y`, `--yes`</td>
+    <td></td>
+    <td>Assume yes to prompts (for example, when skipping preflights).</td>
+  </tr>
+  <tr>
+    <td>`-h`, `--help`</td>
+    <td></td>
+    <td>Help for `install`.</td>
+  </tr>
+</table>

@@ -22,6 +22,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DOCS_DIR = path.join(__dirname, "../../docs");
+const EC_DOCS_DIR = path.join(__dirname, "../../embedded-cluster_versioned_docs/version-2.0.0");
 const STATIC_DIR = path.join(__dirname, "../../static");
 const OUTPUT_FILE = path.join(STATIC_DIR, "llms.txt");
 const OUTPUT_FULL_FILE = path.join(STATIC_DIR, "llms-full.txt");
@@ -41,14 +42,14 @@ const INCLUDED_FILES = [
     'vendor/testing-about.md',
     'vendor/testing-how-to.md',
     'vendor/testing-supported-clusters.md',
-    // Embedded Cluster docs
-    'enterprise/embedded-manage-nodes.mdx',
-    'enterprise/installing-embedded-air-gap.mdx',
-    'enterprise/installing-embedded-automation.mdx',
-    'enterprise/installing-embedded-requirements.mdx',
-    'enterprise/installing-embedded.mdx',
-    'reference/embedded-cluster-install.mdx',
-    'vendor/embedded-overview.mdx',
+    // Embedded Cluster docs (in embedded-cluster plugin, prefixed with ec:)
+    'ec:embedded-manage-nodes.mdx',
+    'ec:installing-embedded-air-gap.mdx',
+    'ec:installing-embedded-automation.mdx',
+    'ec:installing-embedded-requirements.mdx',
+    'ec:installing-embedded.mdx',
+    'ec:embedded-cluster-install.mdx',
+    'ec:embedded-overview.mdx',
     // Helm Install docs
     'vendor/helm-install-airgap.mdx',
     'vendor/helm-install-overview.mdx',
@@ -79,7 +80,7 @@ const INCLUDED_FILES = [
     'reference/template-functions-license-context.md',
     'reference/template-functions-static-context.md',
     'vendor/helm-native-about.mdx',
-    'vendor/helm-native-v2-using.md',
+    'vendor/helm-native-v2-using.mdx',
     'vendor/helm-packaging-airgap-bundles.mdx',
     'vendor/resources-annotations-templating.md',
     'vendor/snapshots-overview.mdx',
@@ -109,7 +110,7 @@ const INCLUDED_FILES = [
     'reference/replicated-sdk-apis.md',
     'vendor/replicated-sdk-installing.mdx',
     'vendor/replicated-sdk-overview.mdx',
-    'vendor/replicated-sdk-customizing.md',
+    'vendor/replicated-sdk-customizing.mdx',
     // Vendor Portal docs
     'vendor/custom-domains-using.md',
     'vendor/custom-domains.md',
@@ -117,7 +118,7 @@ const INCLUDED_FILES = [
     'vendor/insights-app-status.md',
     'vendor/instance-insights-event-data.mdx',
     'vendor/licenses-about.mdx',
-    'vendor/licenses-adding-custom-fields.md',
+    'vendor/licenses-adding-custom-fields.mdx',
     'vendor/licenses-install-types.mdx',
     'vendor/licenses-reference-sdk.mdx',
     'vendor/releases-about.mdx',
@@ -205,7 +206,10 @@ function shouldSkipDirectory(filePath, excludedDirs = ['.history', 'templates', 
     return excludedDirs.some(dir => filePath.includes(dir));
 }
 
-function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true) {
+function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true, baseDir = null) {
+    if (!baseDir) baseDir = dir;
+    const urlPrefix = (baseDir === EC_DOCS_DIR) ? 'embedded-cluster/v2/' : '';
+
     fs.readdirSync(dir).forEach(file => {
         const filePath = path.join(dir, file);
         
@@ -219,7 +223,7 @@ function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true) {
         }
         
         if (fs.statSync(filePath).isDirectory()) {
-            getAllMarkdownFiles(filePath, fileList, excludeReleaseNotes);
+            getAllMarkdownFiles(filePath, fileList, excludeReleaseNotes, baseDir);
         } else if ((path.extname(file) === '.md' || path.extname(file) === '.mdx') && !file.startsWith('_')) {
             const content = fs.readFileSync(filePath, 'utf8');
             
@@ -229,8 +233,8 @@ function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true) {
             const titleMatch = processedContent.match(/^#\s+(.+)$/m);
             const title = titleMatch ? titleMatch[1] : file.replace(/\.(md|mdx)$/, '');
             
-            const relativePath = filePath
-                .replace(`${DOCS_DIR}/`, '')
+            const relativePath = urlPrefix + filePath
+                .replace(`${baseDir}/`, '')
                 .replace(/\.(md|mdx)$/, '');
                 
             fileList.push({
@@ -243,15 +247,22 @@ function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true) {
     return fileList;
 }
 
-// New function to get all markdown files including release-notes (only for static folder)
+// Get all markdown files including release-notes (only for static folder)
 function getAllMarkdownFilesForStatic(dir, fileList = []) {
-    return getAllMarkdownFiles(dir, fileList, false);
+    return getAllMarkdownFiles(dir, fileList, false, dir);
 }
 
 function getCuratedFiles(dir) {
     const fileList = [];
     INCLUDED_FILES.forEach(relativePath => {
-        const filePath = path.join(dir, relativePath);
+        // Files prefixed with ec: live in the embedded cluster docs directory
+        const isEC = relativePath.startsWith('ec:');
+        const actualRelPath = isEC ? relativePath.slice(3) : relativePath;
+        const filePath = isEC ? path.join(EC_DOCS_DIR, actualRelPath) : path.join(dir, actualRelPath);
+        // For URL paths, embedded cluster docs are under embedded-cluster/v2/
+        const urlPath = isEC
+            ? `embedded-cluster/v2/${actualRelPath.replace(/\.(md|mdx)$/, '')}`
+            : actualRelPath.replace(/\.(md|mdx)$/, '');
         
         try {
             const content = fs.readFileSync(filePath, 'utf8');
@@ -260,12 +271,12 @@ function getCuratedFiles(dir) {
             const processedContent = processContent(content, filePath);
             
             const titleMatch = processedContent.match(/^#\s+(.+)$/m);
-            const title = titleMatch ? titleMatch[1] : path.basename(relativePath).replace(/\.(md|mdx)$/, '');
+            const title = titleMatch ? titleMatch[1] : path.basename(actualRelPath).replace(/\.(md|mdx)$/, '');
             
             const description = extractFirstSentence(processedContent);
             
             fileList.push({
-                path: relativePath.replace(/\.(md|mdx)$/, ''),
+                path: urlPath,
                 title: title,
                 description: description,
                 content: processedContent
@@ -375,10 +386,15 @@ function generateLLMsTxt(files) {
 
 // Update the main execution
 loadPartials(DOCS_DIR);
-// Get files for llms-full.txt (excluding release-notes)
+
+// Get files for llms-full.txt (excluding release-notes) from both docs sources
 const allFiles = getAllMarkdownFiles(DOCS_DIR);
+getAllMarkdownFiles(EC_DOCS_DIR, allFiles);
+
 // Get all files including release-notes for copying to static
 const allFilesForStatic = getAllMarkdownFilesForStatic(DOCS_DIR);
+getAllMarkdownFilesForStatic(EC_DOCS_DIR, allFilesForStatic);
+
 const curatedFiles = getCuratedFiles(DOCS_DIR);
 
 // Generate llms-full.txt (excluding release-notes)

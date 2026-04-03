@@ -1,0 +1,76 @@
+import EmbeddedCluster from "../docs/partials/embedded-cluster/v3/_definition.mdx"
+import HaArchitecture from "../docs/partials/embedded-cluster/v3/_multi-node-ha-arch.mdx"
+
+# Embedded Cluster overview (Beta)
+
+This topic provides an introduction to Replicated Embedded Cluster.
+
+## Overview
+
+<EmbeddedCluster/>
+
+## Limitations {#ec-limitations}
+
+* Embedded Cluster v3 is Beta. The limitations and features are subject to change.
+
+* Embedded Cluster v3 (Beta) does not support disaster recovery.
+
+* Some Replicated template functions are not implemented in Embedded Cluster v3, either because Replicated discourages their use or because they are not yet ported. Contact Replicated if a missing template function blocks your release.
+
+## Built-in extensions {#built-in-extensions}
+
+Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Embedded Cluster installs each built-in extension in its own namespace.
+
+The built-in extensions installed by Embedded Cluster include:
+
+* **Embedded Cluster Operator**: The Operator handles reporting and some clean up operations.
+
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
+
+* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where it pushes the images required to install and run the application. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
+
+## About installing with Embedded Cluster
+
+Embedded Cluster supports installations in online (internet-connected) environments and air gap environments with no outbound internet access.
+
+To install, users first download and extract the Embedded Cluster installation assets. Then, users can choose to follow a guided installation with the UI or a headless install with the CLI.
+
+During installation, Embedded Cluster automatically runs preflight checks to verify that the installation environment meets the requirements. Users then configure the application and can optionally add nodes to the cluster before deploying.
+
+For more information about how to install with Embedded Cluster, see:
+* [Online Installation wtih Embedded Cluster](installing-embedded)
+* [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap)
+
+## Embedded Cluster host preflight checks {#about-host-preflight-checks}
+
+During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks verify that the installation environment meets the requirements for Embedded Cluster, such as:
+* The system has sufficient disk space
+* The system has at least 2G of memory and 2 CPU cores
+* The system clock syncs
+
+If any of the Embedded Cluster host preflight checks fail, Embedded Cluster blocks installation and displays a message describing the failure.
+
+For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
+
+### Limitations
+
+Embedded Cluster host preflight checks have the following limitations:
+
+* Vendors cannot modify the default host preflight checks for Embedded Cluster or provide their own custom host preflight spec for Embedded Cluster.
+* Host preflight checks do not verify that the application meets any application-specific requirements. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
+
+## Multi-node installations
+
+Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
+
+### High availability
+
+Multi-node clusters are not highly available by default. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
+
+For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
+
+### Node roles
+
+You can optionally define node roles in the Embedded Cluster Config. For multi-node clusters, roles can be useful for assigning specific application workloads to nodes. If you define node roles, users assign one or more roles to a node when it joins the cluster.
+
+For more information, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
