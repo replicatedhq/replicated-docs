@@ -1,22 +1,16 @@
 import DoNotDowngrade from "../docs/partials/embedded-cluster/_warning-do-not-downgrade.mdx"
 
-# Embedded Cluster config (Beta)
+# Embedded Cluster Config (Beta)
 
 This topic is a reference for the Replicated Embedded Cluster Config custom resource. For more information about Embedded Cluster, see [Use Embedded Cluster](embedded-overview).
 
-## Overview
+## Limitations
 
-To install your application with Embedded Cluster, you must include an Embedded Cluster Config in the release. Embedded Cluster installation artifacts are available only for releases that include an Embedded Cluster Config.
-
-The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that Embedded Cluster creates.
-
-### Limitations
-
-* Top-level fields and most of the Config spec are plain YAML and do not support Go template functions, including Replicated template functions. The `values` field for each entry in `extensions.helmCharts` does support [Replicated template functions](/reference/template-functions-about).
+* Most of the fields in the Config spec are plain YAML and do not support Go template functions, including [Replicated template functions](/reference/template-functions-about). The `values` field for each entry in `extensions.helmCharts` does support the use of template functions.
 
 * There are additional, property-specific limitations. For more information, see the following sections.
 
-### Example
+## Example
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -24,7 +18,7 @@ kind: Config
 metadata:
   name: my-embedded-cluster-config
 spec:
-  version: "3.0.0-alpha-26+k8s-1.34"
+  version: "3.0.0-alpha-27+k8s-1.34"
   binaryOverrideUrl: ""
   metadataOverrideUrl: ""
   domains:
@@ -101,15 +95,13 @@ spec:
             repository: 'repl{{ ReplicatedImageName "docker.io/bloomberg/goldpinger" }}'
 ```
 
-## metadata
+## version (Required)
 
-The Config is a Kubernetes custom resource. Set `metadata.name` to a name for this object in the cluster (for example, `my-embedded-cluster-config`).
+Specify the versions of Embedded Cluster and Kubernetes to install. 
 
-## version
+Embedded Cluster appends the version of Kubernetes to the version label in the format `+k8s-1.34`. For example, Embedded Cluster `3.0.0-alpha-26+k8s-1.34` uses Embedded Cluster `3.0.0-alpha-26` and Kubernetes 1.34.
 
-Specify the versions of Embedded Cluster and Kubernetes to install. Embedded Cluster appends the version of Kubernetes to the Embedded Cluster version in the format `+k8s-1.34`. For example, Embedded Cluster `3.0.0-alpha-26+k8s-1.34` uses Embedded Cluster `3.0.0-alpha-26` and Kubernetes 1.34.
-
-Each version of Embedded Cluster includes specific versions of components like KOTS (Admin Console) and OpenEBS.
+Each version of Embedded Cluster includes specific versions of components like OpenEBS.
 For more information, see the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
 
 Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
@@ -118,17 +110,17 @@ Replicated recommends that you update the version frequently to ensure that you 
 
 ## binaryOverrideUrl and metadataOverrideUrl
 
-Optional. Use `spec.binaryOverrideUrl` and `spec.metadataOverrideUrl` to override the default locations of Embedded Cluster binary and metadata artifacts when you need a non-default artifact source. Leave them as empty strings when you are using the defaults from the release.
+Use `spec.binaryOverrideUrl` and `spec.metadataOverrideUrl` to override the default locations of Embedded Cluster binary and metadata artifacts.
 
-## roles (Beta) {#roles}
+## roles {#roles}
 
-You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
+Use the `roles` key to customize node roles.
 
-A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role. This role adds a `gpu=true` label to any node that takes it on. You can then schedule GPU workloads on nodes labeled `gpu=true`.
+A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that adds a `gpu=true` label to the node. You could then schedule GPU workloads on nodes labeled `gpu=true`.
 
 When you configure the `roles` key, users select one or more roles to assign to a node when they join it to the cluster. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
 
-If the `roles` key is _not_ configured, Embedded Cluster assigns all nodes that join the cluster the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application or Replicated KOTS workloads.
+If the `roles` key is _not_ configured, Embedded Cluster assigns all nodes that join the cluster the `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads in addition to the control plane.
 
 #### Example
 
@@ -150,11 +142,9 @@ spec:
         gpu: "true"
 ```
 
-### Limitations
+### Limitation
 
-* Defining node roles with the `roles` key is Beta.
-
-* The first node added to the cluster is always a controller and cannot receive any custom roles. You can add custom labels to the first node by setting the `labels` field in the `roles.controller` key.
+The first node added to the cluster is always a controller. You cannot assign custom roles to the first node. To add labels to the first node, set the `labels` field in the `roles.controller` key.
 
 ### roles.controller
 
@@ -164,20 +154,20 @@ In the `roles.controller` key, you can set the following fields to customize the
     :::note
     If you plan to create any custom roles, Replicated recommends that you change the default name for the controller role to a clear, descriptive term, such as “app”. When you add custom roles, the user sees both the name of the controller role and the names of any custom roles when they join a node.
     :::
-* `labels`: Kubernetes labels that Embedded Cluster applies to any node in the cluster that takes on the given role.
+* `labels`: Kubernetes labels applied to any node in the cluster with the given role.
 
 ### roles.custom
 
 In the `roles.custom` key, you can add custom roles. Each custom role includes the following fields:
 
 * `name`: (Required) A name for the custom role.
-* `labels`: Kubernetes labels that Embedded Cluster applies to any node in the cluster that takes on the given role.
+* `labels`: Kubernetes labels applied to any node in the cluster with the given role.
 
 ## domains
 
 Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
 
-When you set `domains.proxyRegistryDomain` and `domains.replicatedAppDomain`, Embedded Cluster uses the custom domains specified when making requests to the given service. Embedded Cluster also passes the values to KOTS to ensure that KOTS uses the same domains for these services.
+Embedded Cluster uses the custom domains specified in `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` when making requests to the given service.
 
 You must add the custom domains that you specify in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields to the Vendor Portal before Embedded Cluster can use them. For more information, see [Add a Custom Domain in the Vendor Portal](/vendor/custom-domains-using#add-domain) in _Using Custom Domains_.
 
@@ -190,8 +180,8 @@ apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 spec:
   domains:
-    proxyRegistryDomain: proxy.yourcompany.com
-    replicatedAppDomain: updates.yourcompany.com
+    proxyRegistryDomain: proxy.mycompany.com
+    replicatedAppDomain: updates.mycompany.com
 ```
 
 ## extensions
@@ -207,18 +197,16 @@ Each object in `helmCharts` can include the following fields:
   * `chartVersion`: Chart version string to install.
 * `releaseName`: (Required) Helm release name.
 * `namespace`: (Required) Namespace for the release.
-* `weight`: Optional. Controls ordering relative to other `helmCharts` entries. **Lower** `weight` values install **earlier**. If omitted, Embedded Cluster applies a default value.
-* `values`: Optional multi-line string of Helm values. This field supports [Replicated template functions](/reference/template-functions-about) (for example, `ReplicatedImageName`, `HelmValue`, `ReplicatedImageRegistry`, and `ReplicatedImageRepository`) so you can align images and values with your release.
-
-Embedded Cluster updates Helm extensions when you deploy new versions of your application from the Admin Console. For example, you can change `values` from one release to another, and those changes apply when you deploy the new version.
+* `weight`: Controls installation order relative to other Helm chart extensions. Lower weights install before higher weights.
+* `values`: Multi-line string of Helm values. This field supports [Replicated template functions](/reference/template-functions-about). Embedded Cluster updates Helm extensions when users deploy new versions of your application. For example, you can change `values` from one release to another, and those changes apply when the user deploys the new version.
 
 #### Requirements
 
 * You must provide `chart.chartVersion`. Omitting it can cause upgrade issues.
 
-* For air gap bundles, follow the same image and digest guidance as in prior Embedded Cluster releases: avoid multi-architecture image digests in extension values where the air gap bundle includes only single-arch images. Use tags and empty digests where appropriate so the air gap builder can resolve images.
+* For air gap bundles, images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. For an example of how to set digests to empty strings and pull by tag only, see the `ingress-nginx` [Example](embedded-config#extension-example).
 
-#### Example
+#### Example {#extension-example}
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -285,13 +273,6 @@ spec:
 ### Override the Helm values for built-in extensions
 
 Embedded Cluster deploys built-in extensions with Helm. You can patch their values with `unsupportedOverrides.builtInExtensions`. Each item sets `name` (the chart to patch) and `values` (a multi-line YAML string). Embedded Cluster merges your values into the defaults it uses.
-
-Common `name` values include:
-
-- `admin-console`
-- `embedded-cluster-operator`
-- `openebs`
-- `velero`
 
 #### Example
 
