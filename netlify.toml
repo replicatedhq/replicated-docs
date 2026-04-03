@@ -15,6 +15,11 @@
   #to = "TO_URL"
 
 # For more information, see https://docs.netlify.com/configure-builds/file-based-configuration/#redirects
+#
+# Use path-only `from` and `to` values (starting with `/`, not
+# `https://docs.replicated.com/...`) so redirects run on production, branch
+# deploys, and Deploy Previews. Host-specific `from` URLs only match that exact
+# hostname.
 
 ###################################################
 # High-Level Redirects
@@ -27,20 +32,20 @@
   #to = "/blog/:splat"
   # See https://docs.netlify.com/configure-builds/file-based-configuration/#redirects
 
-  from = "https://docs.replicated.com/vendor"
-  to = "https://docs.replicated.com/"
+  from = "/vendor"
+  to = "/"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise"
-  to = "https://docs.replicated.com/enterprise/installing-overview"
+  from = "/enterprise"
+  to = "/enterprise/installing-overview"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference"
-  to = "https://docs.replicated.com/reference/kots-cli-getting-started"
+  from = "/reference"
+  to = "/reference/kots-cli-getting-started"
 
 [[redirects]]
-  from = "https://docs.replicated.com/release-notes"
-  to = "https://docs.replicated.com/release-notes/rn-whats-new"
+  from = "/release-notes"
+  to = "/release-notes/rn-whats-new"
 
 
 ###################################################
@@ -54,351 +59,455 @@
 # bare plugin path → current Embedded Cluster docs (v3 landing page)
 
 [[redirects]]
-  from = "https://docs.replicated.com/embedded-cluster"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/embedded-cluster"
+  to = "/embedded-cluster/v3/embedded-overview"
 
 [[redirects]]
-  from = "https://docs.replicated.com/embedded-cluster/"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/embedded-cluster/"
+  to = "/embedded-cluster/v3/embedded-overview"
 
 [[redirects]]
-  from = "https://docs.replicated.com/embedded-cluster/v3"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/embedded-cluster/v3"
+  to = "/embedded-cluster/v3/embedded-overview"
 
 [[redirects]]
-  from = "https://docs.replicated.com/embedded-cluster/v3/"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/embedded-cluster/v3/"
+  to = "/embedded-cluster/v3/embedded-overview"
+
+# Unversioned /embedded-cluster/<doc-id> → default Embedded Cluster version (v3).
+# Use these stable URLs in cross-docs links; when "latest" changes, update the
+# `to` paths below (or switch v3 → v4 in bulk). Keep this list in sync with
+# sidebarEmbeddedCluster.js doc IDs.
+#
+# Does not use a single /embedded-cluster/* wildcard so /embedded-cluster/v2/...
+# and /embedded-cluster/v3/... are never rewritten incorrectly.
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-overview"
+  to = "/embedded-cluster/v3/embedded-overview"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-v3-migrate"
+  to = "/embedded-cluster/v3/embedded-v3-migrate"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-using"
+  to = "/embedded-cluster/v3/embedded-using"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-config"
+  to = "/embedded-cluster/v3/embedded-config"
+
+[[redirects]]
+  from = "/embedded-cluster/installing-embedded-requirements"
+  to = "/embedded-cluster/v3/installing-embedded-requirements"
+
+[[redirects]]
+  from = "/embedded-cluster/installing-embedded"
+  to = "/embedded-cluster/v3/installing-embedded"
+
+[[redirects]]
+  from = "/embedded-cluster/installing-embedded-air-gap"
+  to = "/embedded-cluster/v3/installing-embedded-air-gap"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-manage-nodes"
+  to = "/embedded-cluster/v3/embedded-manage-nodes"
+
+[[redirects]]
+  from = "/embedded-cluster/updating-embedded"
+  to = "/embedded-cluster/v3/updating-embedded"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-troubleshooting"
+  to = "/embedded-cluster/v3/embedded-troubleshooting"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-completion"
+  to = "/embedded-cluster/v3/embedded-cluster-completion"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-create-join-bundle"
+  to = "/embedded-cluster/v3/embedded-cluster-create-join-bundle"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-create-upgrade-bundle"
+  to = "/embedded-cluster/v3/embedded-cluster-create-upgrade-bundle"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-enable-ha"
+  to = "/embedded-cluster/v3/embedded-cluster-enable-ha"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-install"
+  to = "/embedded-cluster/v3/embedded-cluster-install"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-node-join"
+  to = "/embedded-cluster/v3/embedded-cluster-node-join"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-node-upgrade"
+  to = "/embedded-cluster/v3/embedded-cluster-node-upgrade"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-remove-node"
+  to = "/embedded-cluster/v3/embedded-cluster-remove-node"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-reset"
+  to = "/embedded-cluster/v3/embedded-cluster-reset"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-shell"
+  to = "/embedded-cluster/v3/embedded-cluster-shell"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-status"
+  to = "/embedded-cluster/v3/embedded-cluster-status"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-support-bundle"
+  to = "/embedded-cluster/v3/embedded-cluster-support-bundle"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-upgrade"
+  to = "/embedded-cluster/v3/embedded-cluster-upgrade"
+
+[[redirects]]
+  from = "/embedded-cluster/embedded-cluster-version"
+  to = "/embedded-cluster/v3/embedded-cluster-version"
 
 # Vendor (→ v3)
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-overview"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/vendor/embedded-overview"
+  to = "/embedded-cluster/v3/embedded-overview"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-using"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-using"
+  from = "/vendor/embedded-using"
+  to = "/embedded-cluster/v3/embedded-using"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-troubleshooting"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-troubleshooting"
+  from = "/vendor/embedded-troubleshooting"
+  to = "/embedded-cluster/v3/embedded-troubleshooting"
 
 # Vendor (→ v2 only)
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-disaster-recovery"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-disaster-recovery"
+  from = "/vendor/embedded-disaster-recovery"
+  to = "/embedded-cluster/v2/embedded-disaster-recovery"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-tls-certs"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-tls-certs"
+  from = "/vendor/embedded-tls-certs"
+  to = "/embedded-cluster/v2/embedded-tls-certs"
 
 # Enterprise install / manage / update (→ v3)
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/installing-embedded"
-  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded"
+  from = "/enterprise/installing-embedded"
+  to = "/embedded-cluster/v3/installing-embedded"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/installing-embedded-air-gap"
-  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap"
+  from = "/enterprise/installing-embedded-air-gap"
+  to = "/embedded-cluster/v3/installing-embedded-air-gap"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/installing-embedded-requirements"
-  to = "https://docs.replicated.com/embedded-cluster/v3/installing-embedded-requirements"
+  from = "/enterprise/installing-embedded-requirements"
+  to = "/embedded-cluster/v3/installing-embedded-requirements"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/embedded-manage-nodes"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes"
+  from = "/enterprise/embedded-manage-nodes"
+  to = "/embedded-cluster/v3/embedded-manage-nodes"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/updating-embedded"
-  to = "https://docs.replicated.com/embedded-cluster/v3/updating-embedded"
+  from = "/enterprise/updating-embedded"
+  to = "/embedded-cluster/v3/updating-embedded"
 
 # Enterprise (→ v2 only)
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/installing-embedded-automation"
-  to = "https://docs.replicated.com/embedded-cluster/v2/installing-embedded-automation"
+  from = "/enterprise/installing-embedded-automation"
+  to = "/embedded-cluster/v2/installing-embedded-automation"
 
 [[redirects]]
-  from = "https://docs.replicated.com/enterprise/embedded-tls-certs"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-tls-certs"
+  from = "/enterprise/embedded-tls-certs"
+  to = "/embedded-cluster/v2/embedded-tls-certs"
 
 # Reference (→ v3)
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-config"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-config"
+  from = "/reference/embedded-config"
+  to = "/embedded-cluster/v3/embedded-config"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-install"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-install"
+  from = "/reference/embedded-cluster-install"
+  to = "/embedded-cluster/v3/embedded-cluster-install"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-reset"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-reset"
+  from = "/reference/embedded-cluster-reset"
+  to = "/embedded-cluster/v3/embedded-cluster-reset"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-shell"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-shell"
+  from = "/reference/embedded-cluster-shell"
+  to = "/embedded-cluster/v3/embedded-cluster-shell"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-version"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-version"
+  from = "/reference/embedded-cluster-version"
+  to = "/embedded-cluster/v3/embedded-cluster-version"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-support-bundle"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-support-bundle"
+  from = "/reference/embedded-cluster-support-bundle"
+  to = "/embedded-cluster/v3/embedded-cluster-support-bundle"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-enable-ha"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-enable-ha"
+  from = "/reference/embedded-cluster-enable-ha"
+  to = "/embedded-cluster/v3/embedded-cluster-enable-ha"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-completion"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-completion"
+  from = "/reference/embedded-cluster-completion"
+  to = "/embedded-cluster/v3/embedded-cluster-completion"
 
 # Reference: v3 renamed CLI topics (old slug → new doc)
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-update"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-upgrade"
+  from = "/reference/embedded-cluster-update"
+  to = "/embedded-cluster/v3/embedded-cluster-upgrade"
 
 # Reference (→ v2 only)
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-join"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-join"
+  from = "/reference/embedded-cluster-join"
+  to = "/embedded-cluster/v2/embedded-cluster-join"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-join-print-command"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-join-print-command"
+  from = "/reference/embedded-cluster-join-print-command"
+  to = "/embedded-cluster/v2/embedded-cluster-join-print-command"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-restore"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-restore"
+  from = "/reference/embedded-cluster-restore"
+  to = "/embedded-cluster/v2/embedded-cluster-restore"
 
 [[redirects]]
-  from = "https://docs.replicated.com/reference/embedded-cluster-admin-console"
-  to = "https://docs.replicated.com/embedded-cluster/v2/embedded-cluster-admin-console"
+  from = "/reference/embedded-cluster-admin-console"
+  to = "/embedded-cluster/v2/embedded-cluster-admin-console"
 
 
 ###################################################
 # Redirects To the Getting Started Section
 ###################################################
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/tutorial-installing-with-existing-cluster"
-  to = "https://docs.replicated.com/vendor/quick-start"
+  from = "/vendor/tutorial-installing-with-existing-cluster"
+  to = "/vendor/quick-start"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/tutorial-installing-with-cli"
-  to = "https://docs.replicated.com/vendor/quick-start"
+  from = "/vendor/tutorial-installing-with-cli"
+  to = "/vendor/quick-start"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/tutorial-installing-without-existing-cluster"
-  to = "https://docs.replicated.com/vendor/quick-start"
+  from = "/vendor/tutorial-installing-without-existing-cluster"
+  to = "/vendor/quick-start"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/helm-mapping-example"
-  to = "https://docs.replicated.com/vendor/quick-start"
+  from = "/vendor/helm-mapping-example"
+  to = "/vendor/quick-start"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/releases-download-airgap-bundles"
-  to = "https://docs.replicated.com/vendor/releases-share-download-portal"  
+  from = "/vendor/releases-download-airgap-bundles"
+  to = "/vendor/releases-share-download-portal"  
 
 ###################################################
 # Redirects To the Vendor Section
 ###################################################
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/helm-chart-components"
-  to = "https://docs.replicated.com/vendor/packaging-include-resources"
+  from = "/vendor/helm-chart-components"
+  to = "/vendor/packaging-include-resources"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/helm-optional-charts"
-  to = "https://docs.replicated.com/vendor/packaging-include-resources" 
+  from = "/vendor/helm-optional-charts"
+  to = "/vendor/packaging-include-resources" 
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/packaging-custom-resources"
-  to = "https://docs.replicated.com/vendor/releases-creating-releases"
+  from = "/vendor/packaging-custom-resources"
+  to = "/vendor/releases-creating-releases"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying"
-  to="https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes#create-ha"
+  from="/vendor/tutorial-ha-cluster-deploying"
+  to="/embedded-cluster/v3/embedded-manage-nodes#create-ha"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
-  to="https://docs.replicated.com/enterprise/installing-existing-cluster-airgapped"
+  from="/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
+  to="/enterprise/installing-existing-cluster-airgapped"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/releases-promoting"
-  to="https://docs.replicated.com/vendor/releases-creating-releases"
+  from="/vendor/releases-promoting"
+  to="/vendor/releases-creating-releases"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/packaging-private-registry-cname"
-  to="https://docs.replicated.com/vendor/custom-domains"
+  from="/vendor/packaging-private-registry-cname"
+  to="/vendor/custom-domains"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/releases-semantic-versioning"
-  to="https://docs.replicated.com/vendor/releases-about"
+  from="/vendor/releases-semantic-versioning"
+  to="/vendor/releases-about"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-installing-native-helm"
-  to="https://docs.replicated.com/vendor/helm-native-about"
+  from="/vendor/helm-installing-native-helm"
+  to="/vendor/helm-native-about"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-processing"
-  to="https://docs.replicated.com/vendor/helm-native-about"
+  from="/vendor/helm-processing"
+  to="/vendor/helm-native-about"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/team-management-rbac-about"
-  to="https://docs.replicated.com/vendor/team-management-rbac-configuring"
+  from="/vendor/team-management-rbac-about"
+  to="/vendor/team-management-rbac-configuring"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/preflight-support-bundle-creating"
-  to="https://docs.replicated.com/vendor/preflight-support-bundle-about"
+  from="/vendor/preflight-support-bundle-creating"
+  to="/vendor/preflight-support-bundle-about"
 
  
 [[redirects]]
-  from="https://docs.replicated.com/vendor/custom-domains-download-portal"
-  to="https://docs.replicated.com/vendor/custom-domains-using"
+  from="/vendor/custom-domains-download-portal"
+  to="/vendor/custom-domains-using"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-release-creating-package"
-  to="https://docs.replicated.com/vendor/helm-install-release" 
+  from="/vendor/helm-release-creating-package"
+  to="/vendor/helm-install-release" 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-release"
-  to="https://docs.replicated.com/vendor/helm-native-v2-using"   
+  from="/vendor/helm-release"
+  to="/vendor/helm-native-v2-using"   
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-overview"
-  to="https://docs.replicated.com/vendor/helm-install-overview"
+  from="/vendor/helm-overview"
+  to="/vendor/helm-install-overview"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/helm-install-overview"
+  from="/vendor/helm-install"
+  to="/vendor/helm-install-overview"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
-  to="https://docs.replicated.com/vendor/testing-supported-clusters" 
+  from="/vendor/testing-replicated-instance-types"
+  to="/vendor/testing-supported-clusters" 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/testing-shared-networks"
-  to="https://docs.replicated.com/vendor/testing-how-to"
+  from="/vendor/testing-shared-networks"
+  to="/vendor/testing-how-to"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/testing-vm-about"
-  to="https://docs.replicated.com/vendor/testing-about"
+  from="/vendor/testing-vm-about"
+  to="/vendor/testing-about"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/testing-vm-networking"
-  to="https://docs.replicated.com/vendor/testing-ingress"
+  from="/vendor/testing-vm-networking"
+  to="/vendor/testing-ingress"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/testing-transfer-files"
-  to="https://docs.replicated.com/vendor/testing-vm-create"      
+  from="/vendor/testing-transfer-files"
+  to="/vendor/testing-vm-create"      
 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/repository-workflow-and-tagging-releases"
-  to="https://docs.replicated.com/vendor/ci-workflows"
+  from="/vendor/repository-workflow-and-tagging-releases"
+  to="/vendor/ci-workflows"
      
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/releases-about-channels"
-  to="https://docs.replicated.com/vendor/releases-about" 
+  from="/vendor/releases-about-channels"
+  to="/vendor/releases-about" 
   
 [[redirects]]
-  from="https://docs.replicated.com/vendor/replicated-sdk-rbac"
-  to="https://docs.replicated.com/vendor/replicated-sdk-customizing" 
+  from="/vendor/replicated-sdk-rbac"
+  to="/vendor/replicated-sdk-customizing" 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-kots-using-sdk"
-  to="https://docs.replicated.com/vendor/helm-native-about"      
+  from="/vendor/helm-kots-using-sdk"
+  to="/vendor/helm-native-about"      
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/helm-native-helm-install-order" 
-  to="https://docs.replicated.com/vendor/orchestrating-resource-deployment"        
+  from="/vendor/helm-native-helm-install-order" 
+  to="/vendor/orchestrating-resource-deployment"        
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/preflight-kots-defining"
-  to="https://docs.replicated.com/vendor/preflight-defining" 
+  from="/vendor/preflight-kots-defining"
+  to="/vendor/preflight-defining" 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/preflight-helm-defining"
-  to="https://docs.replicated.com/vendor/preflight-defining"
+  from="/vendor/preflight-helm-defining"
+  to="/vendor/preflight-defining"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/support-bundle-kots-customizing"
-  to="https://docs.replicated.com/vendor/support-bundle-customizing" 
+  from="/vendor/support-bundle-kots-customizing"
+  to="/vendor/support-bundle-customizing" 
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/support-bundle-helm-customizing"
-  to="https://docs.replicated.com/vendor/support-bundle-customizing"   
+  from="/vendor/support-bundle-helm-customizing"
+  to="/vendor/support-bundle-customizing"   
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/distributing-overview"
-  to="https://docs.replicated.com/intro-replicated"                                
+  from="/vendor/distributing-overview"
+  to="/intro-replicated"                                
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/distributing-workflow"
-  to="https://docs.replicated.com/vendor/replicated-onboarding"                                      
+  from="/vendor/distributing-workflow"
+  to="/vendor/replicated-onboarding"                                      
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/tutorial-ci-cd-integration"
-  to = "https://docs.replicated.com/vendor/ci-overview"   
+  from = "/vendor/tutorial-ci-cd-integration"
+  to = "/vendor/ci-overview"   
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/embedded-kubernetes-overview"
-  to = "https://docs.replicated.com/embedded-cluster/v3/embedded-overview"
+  from = "/vendor/embedded-kubernetes-overview"
+  to = "/embedded-cluster/v3/embedded-overview"
 
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/updating-existing-cluster"
-  to="https://docs.replicated.com/enterprise/updating-app-manager" 
+  from="/enterprise/updating-existing-cluster"
+  to="/enterprise/updating-app-manager" 
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/snapshots-restoring-partial"
-  to="https://docs.replicated.com/enterprise/snapshots-restoring-full"
+  from="/enterprise/snapshots-restoring-partial"
+  to="/enterprise/snapshots-restoring-full"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/snapshots-scheduling"
-  to="https://docs.replicated.com/enterprise/snapshots-creating" 
+  from="/enterprise/snapshots-scheduling"
+  to="/enterprise/snapshots-creating" 
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise//snapshots-config-workflow"
-  to="https://docs.replicated.com/enterprise/snapshots-velero-cli-installing"
+  from="/enterprise//snapshots-config-workflow"
+  to="/enterprise/snapshots-velero-cli-installing"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/image-registry-airgap"
-  to="https://docs.replicated.com/enterprise/installing-general-requirements"
+  from="/enterprise/image-registry-airgap"
+  to="/enterprise/installing-general-requirements"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/installing-app-setup"
-  to="https://docs.replicated.com/enterprise/installing-existing-cluster#install-app"
+  from="/enterprise/installing-app-setup"
+  to="/enterprise/installing-existing-cluster#install-app"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/installing-embedded-airgapped"
-  to="https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap"
+  from="/enterprise/installing-embedded-airgapped"
+  to="/embedded-cluster/v3/installing-embedded-air-gap"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/installing-embedded-cluster"
-  to="https://docs.replicated.com/embedded-cluster/v3/installing-embedded"
+  from="/enterprise/installing-embedded-cluster"
+  to="/embedded-cluster/v3/installing-embedded"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/updating-embedded-cluster"
-  to="https://docs.replicated.com/embedded-cluster/v3/updating-embedded"
+  from="/enterprise/updating-embedded-cluster"
+  to="/embedded-cluster/v3/updating-embedded"
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/image-registry-embedded-cluster"
-  to="https://docs.replicated.com/enterprise/image-registry-kurl"   
+  from="/enterprise/image-registry-embedded-cluster"
+  to="/enterprise/image-registry-kurl"   
    
 [[redirects]]
-  from="https://docs.replicated.com/vendor/releases-configvalues"
-  to="https://docs.replicated.com/embedded-cluster/v2/installing-embedded-automation"
+  from="/vendor/releases-configvalues"
+  to="/embedded-cluster/v2/installing-embedded-automation"
 
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/snapshots-understanding"
-  to="https://docs.replicated.com/vendor/snapshots-overview"    
+  from="/enterprise/snapshots-understanding"
+  to="/vendor/snapshots-overview"    
    
 ###################################################
 # Redirects To the References Section
@@ -406,30 +515,30 @@
 
 # Redirects from the removed packaging-template-functions topic
 [[redirects]]
-  from="https://docs.replicated.com/vendor/packaging-template-functions"
-  to= "https://docs.replicated.com/reference/template-functions-about"
+  from="/vendor/packaging-template-functions"
+  to= "/reference/template-functions-about"
 
 # Redirects from the old topic name KOTS Lint Rules to the new topic name Lint Rules
 [[redirects]]
-  from="https://docs.replicated.com/reference/kots-lint"
-  to="https://docs.replicated.com/reference/linter"
+  from="/reference/kots-lint"
+  to="/reference/linter"
 
 # Redirects from the reference section to the teams section for generating API tokens
 [[redirects]]
-  from="https://docs.replicated.com/reference/replicated-cli-tokens"
-  to="https://docs.replicated.com/vendor/replicated-api-tokens"
+  from="/reference/replicated-cli-tokens"
+  to="/vendor/replicated-api-tokens"
 
 [[redirects]]
-  from="https://docs.replicated.com/reference/custom-resource-sig-application"
-  to="https://docs.replicated.com/vendor/admin-console-adding-buttons-links"
+  from="/reference/custom-resource-sig-application"
+  to="/vendor/admin-console-adding-buttons-links"
 
 [[redirects]]
-  from="https://docs.replicated.com/reference/replicated-cli-app-delete"
-  to="https://docs.replicated.com/reference/replicated-cli-app-rm"     
+  from="/reference/replicated-cli-app-delete"
+  to="/reference/replicated-cli-app-rm"     
 
 [[redirects]]
-  from="https://docs.replicated.com/reference/replicated-cli-channel-delete"
-  to="https://docs.replicated.com/reference/replicated-cli-channel-rm"     
+  from="/reference/replicated-cli-channel-delete"
+  to="/reference/replicated-cli-channel-rm"     
 
 ###################################################
 # Redirects To the Release Notes Section
