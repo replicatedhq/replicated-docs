@@ -71,6 +71,7 @@ PVC
 PVCs
 preflights
 preloaded
+preloads
 rqlite
 Subcommands
 unsupportedOverrides

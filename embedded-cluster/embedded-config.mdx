@@ -124,7 +124,7 @@ Optional. Use `spec.binaryOverrideUrl` and `spec.metadataOverrideUrl` to overrid
 
 You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
-A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role that adds a `gpu=true` label to any node that takes on the role. You can then schedule GPU workloads on nodes labeled `gpu=true`.
+A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could create a `custom` role. This role adds a `gpu=true` label to any node that takes it on. You can then schedule GPU workloads on nodes labeled `gpu=true`.
 
 When you configure the `roles` key, users select one or more roles to assign to a node when they join it to the cluster. For more information, see [Managing Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
 
@@ -249,7 +249,7 @@ spec:
 Advanced users who understand the risks and ramifications of changing the default configuration should use this feature with caution.
 :::
 
-Unsupported overrides allow you to override Embedded Cluster's default configuration, including the k0s config and the Helm values for built-in extensions like KOTS and the Embedded Cluster Operator. Use overrides carefully. These combinations have not been tested and can disrupt clusters. Replicated does not support issues caused by unsupported overrides.
+Use unsupported overrides to change Embedded Cluster's default configuration, including the k0s config and Helm values for built-in extensions like KOTS and the Embedded Cluster Operator. Use overrides carefully. Replicated has not tested these combinations and they can disrupt clusters. Replicated does not support issues caused by unsupported overrides.
 
 While you should use them with caution, unsupported overrides are useful if you need to make changes that Embedded Cluster does not otherwise expose.
 
@@ -261,7 +261,7 @@ For more information on the k0s config, see [Configuration options](https://docs
 
 The value of `unsupportedOverrides.k0s` is a string containing YAML that becomes (or patches) the k0s configuration Embedded Cluster uses. How deeply Embedded Cluster merges that YAML with its defaults depends on the field. Treat overrides as high risk and validate in a non-production cluster.
 
-For example, you can enable WireGuard-based encryption. Other configuration may be required. See [`spec.network.calico`](https://docs.k0sproject.io/stable/configuration/#specnetworkcalico) in the k0s documentation:
+For example, you can enable WireGuard-based encryption. You might need to add other configuration. See [`spec.network.calico`](https://docs.k0sproject.io/stable/configuration/#specnetworkcalico) in the k0s documentation:
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
