@@ -1,6 +1,7 @@
 module.exports = {
   embeddedClusterSidebar: [
     "embedded-overview",
+    "embedded-v3-migrate",
     "embedded-using",
     "embedded-config",
     {
