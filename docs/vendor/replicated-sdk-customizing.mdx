@@ -322,7 +322,7 @@ rules:
 
 ### Read-only mode {#read-only-mode}
 
-With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode for the most restrictive RBAC configuration. Read-only mode prevents the SDK from creating or updating any Kubernetes secrets at runtime, making it suitable for security-hardened deployments or clusters managed with GitOps.
+With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode for the most restrictive RBAC configuration. Read-only mode prevents the SDK from creating or updating any Kubernetes secrets at runtime. This mode is suitable for security-hardened deployments or clusters managed with GitOps.
 
 **Requirement:** Read-only mode requires version 1.19.0 or later of the SDK.
 
@@ -345,7 +345,7 @@ Read-only mode affects the following SDK features:
 
 * **Instance tags**: You cannot programmatically set instance tags with the SDK API because tag data requires writing to the `replicated-meta-data` secret. The `POST /api/v1/app/instance-tags` endpoint returns `422 Unprocessable Entity`.
 * **Support bundle metadata**: You cannot use the SDK API to write enrichment data that the `supportBundleMetadata` collector would otherwise include in a generated support bundle. The `POST` and `PATCH /api/v1/supportbundle/metadata` endpoints return `422 Unprocessable Entity`.
-* **Custom app metrics (air-gapped environments)**: In air-gapped environments, the SDK cannot persist custom metrics to secrets for later collection via support bundles. You can still send custom metrics using the `POST` and `PATCH /api/v1/app/custom-metrics` endpoints, but the data is not stored locally.
+* **Custom app metrics (air-gapped environments)**: In air-gapped environments, the SDK cannot persist custom metrics to secrets for later collection through support bundles. You can still send custom metrics using the `POST` and `PATCH /api/v1/app/custom-metrics` endpoints, but the data is not stored locally.
 * **Custom app metrics (online environments)**: The `POST` and `PATCH /api/v1/app/custom-metrics` endpoints continue to work. The SDK sends metrics directly to Replicated APIs but skips persisting them to local secrets. Deleting individual custom metric keys is not available: the `DELETE /api/v1/app/custom-metrics/{metric_name}` endpoint returns `422 Unprocessable Entity`.
 * **Integration mock data**: You cannot update mock data in development mode. The `POST /api/v1/integration/mock-data` endpoint returns `422 Unprocessable Entity`.
 * **Read endpoints**: All `GET` endpoints continue to work normally.
