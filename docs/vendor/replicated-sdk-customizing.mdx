@@ -16,7 +16,7 @@ Common use cases for customizing the SDK include adding common labels and pod la
 
 ## Customize RBAC for the SDK
 
-This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, and how to install the SDK with custom RBAC.
+This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, read-only mode, and how to install the SDK with custom RBAC.
 
 ### Default RBAC
 
@@ -324,7 +324,11 @@ rules:
 
 With the Replicated SDK version 1.19.0 and later, you can run the SDK in read-only mode for the most restrictive RBAC configuration. Read-only mode prevents the SDK from creating or updating any Kubernetes secrets at runtime. This mode is suitable for security-hardened deployments or clusters managed with GitOps.
 
-**Requirement:** Read-only mode requires version 1.19.0 or later of the SDK.
+#### Requirement
+
+Read-only mode requires version 1.19.0 or later of the SDK.
+
+#### Enable read-only mode
 
 To enable read-only mode, set `readOnlyMode` to true in your Helm chart values:
 
@@ -335,11 +339,11 @@ replicated:
   readOnlyMode: true
 ```
 
-#### RBAC changes
+#### About the read-only role
 
-The SDK Role excludes `create` and `update` verbs for secrets. The Role includes only `get` permissions for secrets, and the Helm chart does not create the `replicated-support-metadata` Secret.
+The read-only SDK Role excludes `create` and `update` verbs for secrets. It includes only `get` permissions for secrets, and the Helm chart does not create the `replicated-support-metadata` Secret.
 
-#### Impact on SDK features
+#### About using the SDK API in read-only mode
 
 Read-only mode affects the following SDK features:
 
@@ -348,18 +352,7 @@ Read-only mode affects the following SDK features:
 * **Custom app metrics (air-gapped environments)**: In air-gapped environments, the SDK cannot persist custom metrics to secrets for later collection through support bundles. You can still send custom metrics using the `POST` and `PATCH /api/v1/app/custom-metrics` endpoints, but the data is not stored locally.
 * **Custom app metrics (online environments)**: The `POST` and `PATCH /api/v1/app/custom-metrics` endpoints continue to work. The SDK sends metrics directly to Replicated APIs but skips persisting them to local secrets. Deleting individual custom metric keys is not available: the `DELETE /api/v1/app/custom-metrics/{metric_name}` endpoint returns `422 Unprocessable Entity`.
 * **Integration mock data**: You cannot update mock data in development mode. The `POST /api/v1/integration/mock-data` endpoint returns `422 Unprocessable Entity`.
-* **Read endpoints**: All `GET` endpoints continue to work normally.
-
-#### Example error response
-
-Calling an unavailable write endpoint in read-only mode returns a `422` status with the following response body:
-
-```json
-{
-  "error": "instance tags are unavailable in read-only mode",
-  "readOnlyMode": true
-}
-```
+* **Read endpoints**: All `GET` endpoints work normally.
 
 ### Install the SDK with custom RBAC
 
