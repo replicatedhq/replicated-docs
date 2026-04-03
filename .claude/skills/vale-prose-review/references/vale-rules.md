@@ -121,6 +121,23 @@ A parenthetical like `(Beta)` or `(Preview)` opens a new "sentence" within the h
 - `(Preview)` is correct — **not** `(preview)`
 - `(Deprecated)` is correct — **not** `(deprecated)`
 
+### Kubernetes custom resource kinds — always capitalize
+
+Custom resource kind names are proper names and must remain capitalized wherever they appear in headings, even mid-sentence. The key examples in Replicated docs:
+
+- `Preflight`
+- `SupportBundle`
+- `Config`
+- `HelmChart`
+
+**How to decide:** Look at the surrounding context. If the page or section is about a Kubernetes custom resource and the word refers to its `kind:` value, keep it capitalized. If the word is used in a different sense (for example, `config` as a generic noun, or `install` as a CLI command), lowercase it per the normal rules.
+
+**Examples:**
+- `## About the Preflight custom resource` — `Preflight` is the kind name, keep capital P
+- `## Configure your HelmChart` — `HelmChart` is the kind name, keep capital H
+- `## Embedded Cluster Config` — `Config` is the kind name (`kind: Config`), keep capital C
+- `## Override the k0s config` — `config` here is a generic noun referring to a k0s configuration file, lowercase is correct
+
 ### What to capitalize (proper nouns and trademarks)
 
 - Replicated product names: Embedded Cluster, KOTS, Vendor Portal, Enterprise Portal, Compatibility Matrix, Replicated SDK, Admin Console, Replicated CLI
