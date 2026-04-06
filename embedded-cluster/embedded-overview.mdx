@@ -15,7 +15,9 @@ This topic provides an introduction to Replicated Embedded Cluster.
 
 * Embedded Cluster v3 (Beta) does not support disaster recovery.
 
-* Some Replicated template functions are not implemented in Embedded Cluster v3, either because Replicated discourages their use or because they are not yet ported. Contact Replicated if a missing template function blocks your release.
+* Some Replicated template functions are not implemented in Embedded Cluster v3 (Beta). Contact Replicated if a missing template function blocks your release.
+
+* Embedded Cluster v3 (Beta) does not support assigning node roles. For more information, see [roles](/v2/embedded-config#roles) in the Embedded Cluster v2 documentation.
 
 ## Built-in extensions {#built-in-extensions}
 
@@ -23,11 +25,9 @@ Embedded Cluster includes several built-in extensions. The built-in extensions p
 
 The built-in extensions installed by Embedded Cluster include:
 
-* **Embedded Cluster Operator**: The Operator handles reporting and some clean up operations.
-
 * **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
 
-* **(Air Gap Only) Image registry:** For air gap installations in environments with limited or no outbound internet access, Embedded Cluster installs an image registry where it pushes the images required to install and run the application. For more information about installing in air-gapped environments, see [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap).
+* **Image registry:** Embedded Cluster installs an image registry where it pushes the images required to install and run the application.
 
 ## About installing with Embedded Cluster
 
@@ -50,7 +50,7 @@ During installation, Embedded Cluster automatically runs a default set of _host 
 
 If any of the Embedded Cluster host preflight checks fail, Embedded Cluster blocks installation and displays a message describing the failure.
 
-For the full default host preflight spec for Embedded Cluster, see [`host-preflight.yaml`](https://github.com/replicatedhq/embedded-cluster/blob/main/pkg/preflights/host-preflight.yaml) in the `embedded-cluster` repository in GitHub.
+For the full default host preflight spec for Embedded Cluster, see [`preflight/embedded`](https://github.com/replicatedhq/ec/tree/f845ba382719a6218ebdca1e0e712452cb3483a4/pkg/preflight/embedded) in the `ec` repository in GitHub.
 
 ### Limitations
 
@@ -65,12 +65,6 @@ Embedded Cluster supports installations in mutli-node clusters. Your end custome
 
 ### High availability
 
-Multi-node clusters are not highly available by default. Enabling high availability (HA) requires that at least three controller nodes are present in the cluster. Users can enable HA when joining the third node.
+Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
 
 For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
-
-### Node roles
-
-You can optionally define node roles in the Embedded Cluster Config. For multi-node clusters, roles can be useful for assigning specific application workloads to nodes. If you define node roles, users assign one or more roles to a node when it joins the cluster.
-
-For more information, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
