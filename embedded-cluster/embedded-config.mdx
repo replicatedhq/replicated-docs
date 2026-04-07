@@ -23,16 +23,6 @@ spec:
     proxyRegistryDomain: proxy.example.com
     replicatedAppDomain: updates.example.com
   unsupportedOverrides:
-    builtInExtensions:
-      - name: admin-console
-        values: |
-          labels:
-            release-custom-label: release-custom-value
-      - name: embedded-cluster-operator
-        values: |
-          global:
-            labels:
-              release-custom-label: release-custom-value
     k0s: |
       config:
         metadata:
@@ -168,7 +158,7 @@ spec:
 Advanced users who understand the risks and ramifications of changing the default configuration should use this feature with caution.
 :::
 
-Use unsupported overrides to change Embedded Cluster's default configuration, including the k0s config and Helm values for built-in extensions like KOTS and the Embedded Cluster Operator. Use overrides carefully. Replicated has not tested these combinations and they can disrupt clusters. Replicated does not support issues caused by unsupported overrides.
+Use unsupported overrides to change Embedded Cluster's default configuration, including the k0s config and Helm values for built-in extensions. Use overrides carefully. Replicated has not tested these combinations and they can disrupt clusters. Replicated does not support issues caused by unsupported overrides.
 
 While you should use them with caution, unsupported overrides are useful if you need to make changes that Embedded Cluster does not otherwise expose.
 
@@ -205,7 +195,7 @@ spec:
 
 Embedded Cluster deploys built-in extensions with Helm. You can patch their values with `unsupportedOverrides.builtInExtensions`. Each item sets `name` (the chart to patch) and `values` (a multi-line YAML string). Embedded Cluster merges your values into the defaults it uses.
 
-#### Example
+{/* #### Example
 
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
@@ -213,16 +203,11 @@ kind: Config
 spec:
   unsupportedOverrides:
     builtInExtensions:
-    - name: admin-console
+    - name: openebs
       values: |
         labels:
           release-custom-label: release-custom-value
-    - name: embedded-cluster-operator
-      values: |
-        global:
-          labels:
-            release-custom-label: release-custom-value
-```
+``` */}
 
 ### Configure the Kubelet
 
