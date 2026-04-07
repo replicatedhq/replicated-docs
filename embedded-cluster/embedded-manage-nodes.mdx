@@ -79,21 +79,21 @@ Consider the following best practices and recommendations for HA clusters:
 
 To create a multi-node cluster with HA:
 
-* During installation with Embedded Cluster, follow the steps in the Embedded Cluster UI to join a total of three `controller` nodes to the cluster.
+* During installation with Embedded Cluster, follow the steps in the Embedded Cluster UI to join a total of three `controller` nodes to the cluster. For more information about joining nodes, see [Join nodes](#add-nodes) on this page.
 
-   Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present.
-
-For more information about joining nodes, see [Join nodes](#add-nodes) on this page. 
+   Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present. 
 
 ### Enable HA for an existing cluster {#enable-ha-existing}
 
-To enable HA for an existing Embedded Cluster installation with three or more controller nodes, run the following command:
+To enable HA for an existing Embedded Cluster installation with three or more controller nodes:
 
-```bash
-sudo ./APP_SLUG enable-ha
-```
+* On one of the controller nodes, run this command:
 
-Where `APP_SLUG` is the unique slug for the application.
+   ```bash
+   sudo ./APP_SLUG enable-ha
+   ```
+
+   Where `APP_SLUG` is the unique slug for the application.
 
 ## Reset nodes and remove clusters
 

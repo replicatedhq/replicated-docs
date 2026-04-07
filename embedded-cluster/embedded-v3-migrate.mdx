@@ -1,4 +1,5 @@
 import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
+import EcConfig from "../docs/partials/embedded-cluster/v3/_ec-config.mdx"
 
 # Migrate from Embedded Cluster v2
 
@@ -54,14 +55,7 @@ To update your release to support installation with Embedded Cluster v3:
 
     **Example:**
 
-    ```yaml
-    apiVersion: embeddedcluster.replicated.com/v1beta1
-    kind: Config
-    metadata:
-      name: my-embedded-cluster-config
-    spec:
-      version: "3.0.0-alpha-31+k8s-1.34"
-    ```    
+    <EcConfig/>    
 
 1. Update any existing Helm extensions to use the `extensions.helmChart` format. See [`extensions`](embedded-config#extensions).
 
