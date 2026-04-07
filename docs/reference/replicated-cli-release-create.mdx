@@ -13,11 +13,14 @@ Create a new release by providing application manifests for the next release in
   helm, and manifests will be collected using glob patterns.
 
   Example .replicated config:
+
+```
     appSlug: "my-app"
     charts:
       - path: ./chart
     manifests:
       - ./manifests/*.yaml
+```
 
   With this config, simply run:
     replicated release create --version 1.0.0 --promote Unstable
