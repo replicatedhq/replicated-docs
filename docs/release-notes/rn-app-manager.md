@@ -27,6 +27,15 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 ## 1.130.0
 
+Released on April 7, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### New Features {#new-features-1-130-0}
+* Upgrade Helm to v4.
+
+## 1.130.0
+
 Released on April 1, 2026
 
 Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
