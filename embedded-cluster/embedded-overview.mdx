@@ -17,17 +17,17 @@ This topic provides an introduction to Replicated Embedded Cluster.
 
 * Some Replicated template functions are not implemented in Embedded Cluster v3 (Beta). Contact Replicated if a missing template function blocks your release.
 
-* Embedded Cluster v3 (Beta) does not support assigning node roles. For more information, see [roles](/v2/embedded-config#roles) in the Embedded Cluster v2 documentation.
+* Embedded Cluster v3 (Beta) does not support custom node roles. You can assign nodes the `controller` or `worker` role.
 
 ## Built-in extensions {#built-in-extensions}
 
-Embedded Cluster includes several built-in extensions. The built-in extensions provide capabilities such as application management and storage. Embedded Cluster installs each built-in extension in its own namespace.
-
 The built-in extensions installed by Embedded Cluster include:
 
-* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage, including the PV storage for rqlite used by KOTS. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
+* **OpenEBS:** Embedded Cluster uses OpenEBS to provide local PersistentVolume (PV) storage. For more information, see the [OpenEBS](https://openebs.io/docs/) documentation.
 
 * **Image registry:** Embedded Cluster installs an image registry where it pushes the images required to install and run the application.
+
+Embedded Cluster installs each built-in extension in its own namespace.
 
 ## About installing with Embedded Cluster
 
@@ -61,10 +61,8 @@ Embedded Cluster host preflight checks have the following limitations:
 
 ## Multi-node installations
 
-Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
-
-### High availability
+Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI.
 
 Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
 
-For more information about creating HA multi-node clusters with Embedded Cluster, see [Enable High Availability](embedded-manage-nodes#ha) in _Managing Multi-Node Clusters with Embedded Cluster_.
+For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
