@@ -490,7 +490,7 @@
 
 [[redirects]]
   from="/enterprise/installing-embedded-cluster"
-  to="/embedded-cluster/v3/installing-embedded"
+  to="/enterprise/installing-kurl"
 
 [[redirects]]
   from="/enterprise/updating-embedded-cluster"
@@ -502,7 +502,7 @@
    
 [[redirects]]
   from="/vendor/releases-configvalues"
-  to="/embedded-cluster/v2/installing-embedded-automation"
+  to="/reference/custom-resource-configvalues"
 
 
 [[redirects]]
