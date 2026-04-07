@@ -28,6 +28,19 @@ Fix if the flagged word is a genuine misspelling. Vale flags these as errors, so
 - Flagged words inside inline code or code blocks
 - Acronyms in YAML frontmatter keys
 
+### Markdown formatting inside HTML tables
+
+When a file uses HTML `<table>`/`<td>`/`<p>` tags and the cell content contains markdown italic syntax (e.g., `_Using Embedded Cluster_`), vale treats the leading underscore as part of a word and flags `_Using` as a misspelling.
+
+**Do NOT add these to an accept list.** The fix is to convert the markdown formatting inside the HTML element to its HTML equivalent:
+
+| Before (markdown inside HTML) | After (HTML formatting) |
+|---|---|
+| `_Using Embedded Cluster_` | `<em>Using Embedded Cluster</em>` |
+| `**important**` | `<strong>important</strong>` |
+
+Apply this fix to the specific cell content where the flag appears. Other cells in the same table that use plain text are fine as-is.
+
 ---
 
 ## Replicated.Passive (suggestion)
@@ -101,6 +114,43 @@ Avoid directional and spatial language that assumes a page layout. Users may be 
 
 Headings should use sentence case: capitalize only the first word and proper nouns.
 
+### Skip this rule entirely for reference page headings
+
+Do NOT apply sentence case to headings that are the exact name of a CLI command, YAML field, or other code identifier. These headings document the thing itself, so their capitalization is determined by the thing's own conventions, not sentence case.
+
+**Skip examples (leave unchanged):**
+- `# install (Beta)` — CLI command name; do not capitalize "install"
+- `# create-join-bundle (Beta)` — CLI command name
+- `### helmCharts` — YAML field name; do not change to `### HelmCharts`
+- `#### roles.controller` — dotted YAML field path
+- `## metadata` — YAML field name
+- `## unsupportedOverrides` — YAML field name
+
+### Parentheticals reset sentence case
+
+A parenthetical like `(Beta)` or `(Preview)` opens a new "sentence" within the heading. Capitalize the first word inside the parenthetical.
+
+- `(Beta)` is correct — **not** `(beta)`
+- `(Preview)` is correct — **not** `(preview)`
+- `(Deprecated)` is correct — **not** `(deprecated)`
+
+### Kubernetes custom resource kinds — always capitalize
+
+Custom resource kind names are proper names and must remain capitalized wherever they appear in headings, even mid-sentence. The key examples in Replicated docs:
+
+- `Preflight`
+- `SupportBundle`
+- `Config`
+- `HelmChart`
+
+**How to decide:** Look at the surrounding context. If the page or section is about a Kubernetes custom resource and the word refers to its `kind:` value, keep it capitalized. If the word is used in a different sense (for example, `config` as a generic noun, or `install` as a CLI command), lowercase it per the normal rules.
+
+**Examples:**
+- `## About the Preflight custom resource` — `Preflight` is the kind name, keep capital P
+- `## Configure your HelmChart` — `HelmChart` is the kind name, keep capital H
+- `## Embedded Cluster Config` — `Config` is the kind name (`kind: Config`), keep capital C
+- `## Override the k0s config` — `config` here is a generic noun referring to a k0s configuration file, lowercase is correct
+
 ### What to capitalize (proper nouns and trademarks)
 
 - Replicated product names: Embedded Cluster, KOTS, Vendor Portal, Enterprise Portal, Compatibility Matrix, Replicated SDK, Admin Console, Replicated CLI
@@ -109,17 +159,19 @@ Headings should use sentence case: capitalize only the first word and proper nou
 
 ### What to lowercase
 
-- Descriptive words that aren't proper names: "matrix" (when not a product name), "lifecycle", "overview", "portal" (when standalone), "guide", "about"
-- Status/qualifier words in parentheses: "(beta)", "(preview)", "(deprecated)"
+- Descriptive words that aren't proper names: "config", "overview", "lifecycle", "portal" (when standalone), "guide", "about"
+- Capitalized common words mid-heading: "Matrix" → "matrix" (when not a product name), "Values" → "values", "Built-In" → "built-in"
 
 ### Examples
 
 | Before | After |
 |---|---|
 | `### Compatibility Matrix` | `### Compatibility matrix` |
-| `### Enterprise Portal (Beta)` | `### Enterprise Portal (beta)` |
+| `### Enterprise Portal (Beta)` | `### Enterprise Portal (Beta)` ← keep capital B |
 | `## Commercial Software Distribution Lifecycle` | `## Commercial software distribution lifecycle` |
 | `### Vendor Portal Overview` | `### Vendor Portal overview` |
+| `# install (Beta)` | `# install (Beta)` ← CLI command, do not change |
+| `### helmCharts` | `### helmCharts` ← YAML field, do not change |
 
 **Note:** Only headings are subject to this rule. Body text references to product names keep their standard capitalization.
 

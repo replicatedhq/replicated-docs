@@ -1,0 +1,19 @@
+### Generate a support bundle
+
+The `support-bundle` command uses the default Embedded Cluster support bundle spec to collect both cluster- and host-level information. It also automatically includes any application-specific support bundle specs in the generated bundle. 
+
+To generate a support bundle:
+
+1. SSH onto a controller node.
+
+   :::note
+   You can SSH onto a worker node to generate a support bundle that contains information specific to that node. However, when run on a worker node, the `support-bundle` command does not capture cluster-wide information.
+   :::
+
+1. Run the following command:
+
+   ```bash
+   sudo ./APP_SLUG support-bundle
+   ```
+
+   Where `APP_SLUG` is the unique slug for the application.

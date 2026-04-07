@@ -1009,7 +1009,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Adds the ability to update the config values for any app version using the admin console.
 
 ### Improvements {#improvements-1-108-0}
-* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+* Hides the **Application** and **Cluster Management** tabs on the admin console navbar during the initial installation flow with Replicated embedded cluster (Beta). For more information, see [Using Embedded Cluster](/embedded-cluster/v3/embedded-overview).
 
 ### Bug fixes {#bug-fixes-1-108-0}
 * Fixes an issue where the license upload page flashed briefly before being redirected to the login page.
@@ -1393,8 +1393,7 @@ Released on July 19, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### New features {#new-features-1-101-0}
-* KOTS now supports running preflight checks defined in a Helm chart. If any Helm charts in a release contain preflight specifications, KOTS runs those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS uses the previous behavior and runs any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations
-](/vendor/preflight-helm-defining).
+* KOTS now supports running preflight checks defined in a Helm chart. If any Helm charts in a release contain preflight specifications, KOTS runs those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS uses the previous behavior and runs any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations](/vendor/preflight-defining).
 
 ### Improvements {#improvements-1-101-0}
 * Updates the replicated/local-volume-provider image to v0.5.4 to resolve CVE-2023-0464 with high severity.
@@ -1653,7 +1652,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New features {#new-features-1-95-0}
 * Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
-* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Private Registry Requirements](/enterprise//installing-general-requirements#private-registry-requirements).
+* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Private Registry Requirements](/enterprise/installing-general-requirements#private-registry-requirements).
 * Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
 * When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
 
@@ -1668,7 +1667,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Known issue {#known-issues-1-95-0}
 
-There is a known issue in the app manager v1.95.0 that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method. For more information about native Helm, see [How Replicated Deploys Helm Charts](/vendor/helm-overview#how-replicated-deploys-helm-charts) in _About Packaging with Helm_.
+There is a known issue in the app manager v1.95.0 that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method. For more information about native Helm, see [How KOTS deploys Helm charts](/vendor/helm-native-about#how-kots-deploys-helm-charts) in _About distributing Helm charts with KOTS_.
 
 The upgrade failure occurs for a Helm chart when the following conditions are met:
 - The Helm chart in the application has been installed previously using the app manager v1.94.2 or earlier.
@@ -1830,7 +1829,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Bug fixes {#bug-fixes-1-91-2}
 * Fixes overlapping labels on TLS configuration page.
-* Fixes an issue that caused the login button to be stuck in the "Logging in" state in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
+* Fixes an issue that caused the login button to be stuck in the "Logging in" state in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/install-with-helm).
 * Fixes an issue where snapshots to NFS storage locations failed due to file permission issues in environments running without MinIO.
 * Fixes an issue that caused the license upload to fail for applications that include Helm charts with [`required`](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
 * Fixes an issue where release notes did not display when the release notes icon was clicked on the dashboard.
@@ -1892,7 +1891,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New features {#new-features-1-90-0}
 * Adds the ability to remove registry info from the **Registry settings** page.
-* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
+* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-90-0}
 * Updates the golang.org/x/text module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2022-32149 with high severity.
@@ -1913,7 +1912,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Automatically migrates data from Postgres to rqlite and removes Postgres. Also introduces a new [kubectl kots enable-ha](/reference/kots-cli-enable-ha) command that runs rqlite as three replicas for higher availability. This command should only be run on clusters with at least three nodes. Now multiple node clusters deployed with the Kubernetes installer can use OpenEBS local PV, because data will be replicated across all three replicas of rqlite, allowing the app manager to run on any node in the cluster without requiring distributed storage like Rook provides.
 
 ### Bug fixes {#bug-fixes-1-89-0}
-* Fixes an issue that causes the Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that causes the Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/install-with-helm).
 * Allows kots CLI commands to use the kubeconfig namespace by default if a flag is not provided.
 * Fixes an issue where installing, updating, or configuring applications that have many images defined in KOTS custom resources (such as collectors, preflights, and analyzers) hangs or takes a long time.
 * Fixes an issue that could cause the preflight progress bar to be stuck at nearly 100% but never complete.
@@ -1927,7 +1926,7 @@ Released on October 19, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New features {#new-features-1-88-0}
-* Adds ability to deploy an application with new values after syncing license from admin console in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Adds ability to deploy an application with new values after syncing license from admin console in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-88-0}
 * Updates the kotsadm/dex image to v2.35.3 to resolve CVE-2022-27664 with high severity.
@@ -1954,7 +1953,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, 1.25
 
 ### Bug fixes {#bug-fixes-1-87-0}
 * Fixes an issue where log tabs for Helm installs were hidden.
-* Fixes a bug that caused pre-existing rows on the version history page in Helm-managed mode (Alpha) to be highlighted as newly available versions when the page is opened. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes a bug that caused pre-existing rows on the version history page in Helm-managed mode (Alpha) to be highlighted as newly available versions when the page is opened. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Fixes an issue that could cause embedded installations to fail with error "yaml: did not find expected node content" when installing behind an `HTTP_PROXY`.
 * Fixes an issue where APIs that require an auth token were called while the client was logged out.
 * Fixes an issue that caused the Troubleshoot page to display the support bundle collection progress bar even when a support bundle was not being collected.
@@ -1978,7 +1977,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes an issue where the identity service login redirected to the login page after a successful login.
 * Fixes an issue in the **Cluster Management** tab where the button for adding a primary node stopped working if the original join token expired.
 * Fixes a bug that allowed the identity service route to be accessed even if the feature was not enabled.
-* Fixes a bug that caused the admin console Pod to terminate with an error due to a panic when checking for application updates in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes a bug that caused the admin console Pod to terminate with an error due to a panic when checking for application updates in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 
 ## 1.86.1
 
@@ -1993,7 +1992,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug fixes {#bug-fixes-1-86-1}
 * Fixes an issue where automatic update checks failed when the interval is too short for pending updates to be fetched.
 * Fixes an issue where the automatic update checks modal didn't show custom schedules after they were saved. See [Configure Automatic Updates](/enterprise/updating-apps#configure-automatic-updates).
-* Fixes an issue in Helm-managed mode where checking for updates from the version history page did not show the "License is expired" error when the check failed due to an expired license. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue in Helm-managed mode where checking for updates from the version history page did not show the "License is expired" error when the check failed due to an expired license. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Fixes an issue where some icons displayed in a very large size on Firefox. See [Known Issue](#known-issues-1-86-0) under _1.86.0_.
 * Fixes an issue where the specified registry namespace was sometimes ignored for KOTS images if the specified registry hostname already included a namespace.
 
@@ -2023,7 +2022,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that had not been downloaded yet, resulting in a UI error.
 * Fixes a bug where downloading an application version that is incompatible with the current admin console version made it impossible to check for updates until the admin console pod was restarted.
 * Fixes a bug that caused CLI feedback spinners to spin indefinitely.
-* Fixes an issue that caused config templates to be applied to the wrong values.yaml file in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue that caused config templates to be applied to the wrong values.yaml file in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Fixes an issue where the license was not synced when checking for application updates in Helm-managed mode (Alpha).
 * Fixes a bug in Helm-managed mode (Alpha) that required you to visit the config screen to deploy a new version with required config items, even if all of the config values had been set in a previously deployed version.
 * Fixes a bug that caused the currently deployed version to temporarily appear as a newly available version when an update check ran in Helm-managed mode (Alpha).
@@ -2046,7 +2045,7 @@ Released on September 19, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-85-0}
-* Adds the ability to automatically check for new chart versions that are available when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Adds the ability to automatically check for new chart versions that are available when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * In Helm-managed mode, new Helm chart versions that introduce a required configuration value must be configured before they can be deployed.
 
 ### Improvements {#improvements-1-85-0}
@@ -2098,11 +2097,11 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Icons supplied in the `icon` field of the Application custom resource can be square or circular.
 
 ### Bug fixes {#bug-fixes-1-83-0}
-* Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
-* Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
-* Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
+* Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
+* Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials have access to the registry.
-* Fixes an issue in Helm-managed mode that could cause Replicated templates to show on the config page instead of the rendered values. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue in Helm-managed mode that could cause Replicated templates to show on the config page instead of the rendered values. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Fixes an issue where trailing line breaks were removed during Helm chart rendering.
 
 ## 1.82.0
@@ -2114,7 +2113,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### New features {#new-features-1-82-0}
 * Adds support for a new air gap bundle format that supports image digests and deduplication of image layers shared across images in the bundle. The new air gap bundle format is in Beta. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "new air gap bundle format".
 * Adds support for deploying images that are referenced by digest or by digest and tag, rather than by tag alone, in online installations that have a private registry configured.
-* Adds support for displaying the config values for each revision deployed in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Adds support for displaying the config values for each revision deployed in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-82-0}
 * Updates the `local-volume-provider image` to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
@@ -2131,7 +2130,7 @@ Released on August 22, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-81-1}
-* Show deploy logs for Helm charts when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Show deploy logs for Helm charts when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/install-with-helm).
 * Updates the Helm binary included in the kotsadm image from 3.8.2 to 3.9.3 to resolve CVE-2022-21698 and CVE-2022-27191 with high severity.
 * Updates the golang.org/x/net module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2021-44716 with high severity.
 * Updates the dex image from 2.32.0 to 2.33.0 to resolve CVE-2022-30065, CVE-2022-2097, and CVE-2022-27191 with high severity.
@@ -2167,7 +2166,7 @@ Released on August 8, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-80-0}
-* Displays the `helm rollback` command when deploying previous revisions from the version history page in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
+* Displays the `helm rollback` command when deploying previous revisions from the version history page in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-80-0}
 * Password complexity rules will now be shown when changing the password in the admin console.
@@ -2175,8 +2174,8 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Bug fixes {#bug-fixes-1-80-0}
 * Fixes an issue where an ambiguous error message was shown when the endpoint field was modified in the license.
-* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
-* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) in *Troubleshooting an Application*.
+* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm).
+* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/install-with-helm). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) in *Troubleshooting an Application*.
 
 ## 1.79.0
 
@@ -2186,16 +2185,16 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-79-0}
 * Adds an [HTTPSProxy](/reference/template-functions-static-context#httpsproxy) template function to return the address of the proxy that the Replicated admin console is configured to use.
-* Dynamically adds collectors, analyzers, and custom redactors when collecting support bundles from the [troubleshoot](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Dynamically adds collectors, analyzers, and custom redactors when collecting support bundles from the [troubleshoot](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-79-0}
-* Removes the "Add new application" option when running the admin console in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Removes the "Add new application" option when running the admin console in [Helm-managed mode (Alpha)](/vendor/install-with-helm).
 
 ### Bug fixes {#bug-fixes-1-79-0}
 * Fixes an issue that caused the [affix](/reference/custom-resource-config#affix) property of config items to be ignored.
 * Fixes an issue that caused the [help_text](/reference/custom-resource-config#help_text) property of config items to be ignored.
 * Fixes an issue that caused the license card to not be updated when switching applications in the admin console.
-* Fixes the ordering of versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Fixes the ordering of versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/install-with-helm).
 * Fixes the display of node statistics in the Cluster Management tab.
 * Fixes an issue where legacy encryption keys were not loaded properly during snapshot restores.
 * Fixes an issue where snapshots would fail if a wildcard (`"*"`) was listed in the `additionalNamespaces` field of an Application manifest.
@@ -2208,16 +2207,16 @@ Released on July 28, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-78-0}
-* The analyze application button on the [Troubleshoot tab](/enterprise/troubleshooting-an-app) now works in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Adds a deploy modal for versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+* The analyze application button on the [Troubleshoot tab](/enterprise/troubleshooting-an-app) now works in [Helm managed mode (Alpha)](/vendor/install-with-helm).
+* Adds a deploy modal for versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/install-with-helm).
 
 ### Improvements {#improvements-1-78-0}
 * Upgrades the internal database (Postgres) used by the admin console from `10.21-alpine` to `14.4-alpine`.
 
 ### Bug fixes {#bug-fixes-1-78-0}
 * Fixes an issue where all [dashboard links](/vendor/admin-console-adding-buttons-links) were rewritten to use the admin console hostname instead of the hostname provided in the application manifest.
-* Fixes a bug that caused errors when trying to generate `helm upgrade` commands from the [config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes a bug where the same version could be listed twice on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes a bug that caused errors when trying to generate `helm upgrade` commands from the [config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/install-with-helm).
+* Fixes a bug where the same version could be listed twice on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/install-with-helm).
 
 ## 1.77.0
 
@@ -2226,9 +2225,9 @@ Released on July 22, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-77-0}
-* Displays version history information for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
-* License information can now be synced from the admin console's Dashboard and License pages for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
-* Admin console now supports limited RBAC mode when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* Displays version history information for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm)
+* License information can now be synced from the admin console's Dashboard and License pages for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm)
+* Admin console now supports limited RBAC mode when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm)
 
 ### Improvements {#improvements-1-77-0}
 * Better handling for network errors on the Helm install modal in Helm-managed mode (Alpha).
@@ -2238,7 +2237,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug fixes {#bug-fixes-1-77-0}
 * Fixes an issue that caused automatic deployments not to work on channels where semantic versioning was disabled, unless the version labels were valid [semantic versions](https://semver.org/).
 * Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
-* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
+* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm).
 
 ## 1.76.1
 
@@ -2260,10 +2259,10 @@ Released on July 12, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-76-0}
-* Displays license information on the admin console Dashboard and License page for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* Displays license information on the admin console Dashboard and License page for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/install-with-helm)
 
 ### Bug fixes {#bug-fixes-1-76-0}
-* Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-sig-application) to not be rewritten to the hostname used in the browser.
+* Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-application) to not be rewritten to the hostname used in the browser.
 
 ## 1.75.0
 
@@ -2272,7 +2271,7 @@ Released on July 5, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-75-0}
-* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
+* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-native-about). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
 
 ### Bug fixes {#bug-fixes-1-75-0}
 * Addresses the following critical severity CVEs: CVE-2022-26945, CVE-2022-30321, CVE-2022-30322, and CVE-2022-30323.
@@ -2300,14 +2299,14 @@ Released on June 24, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New features {#new-features-1-73-0}
-* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
+* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-native-about). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
 * Improved UX on the version history page when the application is up to date or when there are new available versions.
 
 ### Bug fixes {#bug-fixes-1-73-0}
 * Fixes an issue where the preflight screen was displayed even if no analyzers were run.
-* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-overview).
+* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-native-about).
 
 ## 1.72.2
 
@@ -2407,7 +2406,7 @@ Released on May 2, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New features
-* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Charts are applied by weight in ascending order, with lower numbered weights applied first.
+* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-native-about). Charts are applied by weight in ascending order, with lower numbered weights applied first.
 * Adds the ability to change the admin console password from the **Change Password** link in the admin console page footer.
 * Adds the ability to download `Config` file types for a given application sequence.
 * Adds a template function `YamlEscape` to escape a string for inclusion in a YAML file.
@@ -2494,9 +2493,9 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New features
-* Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster) and [Online installation with kURL](/enterprise/installing-kurl).
 * Extends the ability of status informers to detect if the application is being updated.
-* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-kots-defining).
+* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-defining).
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
 
 ### Bug fixes
@@ -2514,7 +2513,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New features
 * Adds the ability to exclude the applications or the admin console from full snapshot restores using the [`kots restore`](/reference/kots-cli-restore-index) command.
-* Adds the ability to display the command to restore only the admin console from a [full snapshot](/enterprise/snapshots-understanding#full-snapshots-recommended) on the Full Snapshots page in the admin console.
+* Adds the ability to display the command to restore only the admin console from a [full snapshot](/enterprise/snapshots-creating#full) on the Full Snapshots page in the admin console.
 
 ### Improvements
 * Adds the [`--no-port-forward`](/reference/kots-cli-install#usage) flag to the `kots install` command to disable automatic port-forwarding. The old `--port-forward` flag has been deprecated.
@@ -2605,7 +2604,7 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 ### Bug fixes
 * Fixes a bug that caused images to be pushed to a private registry multiple times during an air gap installation.
 * Fixes a bug that erroneously displays a message to edit the current config when performing a new installation.
-* Fixes an issue that caused [image garbage collection](../enterprise/image-registry-embedded-cluster#enable-and-disable-image-garbage-collection) to only remove images with the "latest" tag.
+* Fixes an issue that caused [image garbage collection](/enterprise/image-registry-kurl#disable-image-garbage-collection) to only remove images with the "latest" tag.
 
 ## 1.60.0
 
@@ -2621,7 +2620,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Bug fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-overview#native) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-native-about#v1beta1) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
 ## 1.59.3
@@ -2676,7 +2675,7 @@ Supported on Kubernetes: 1.19, 1.20, and 1.21
 * Fixes a bug that caused analyzers to surface errors in namespaces not used by the application when the admin console has cluster access in existing cluster installations.
 * Fixes an issue that caused image pull secrets to be rendered in the admin console namespace instead of the `namespace` specified in the kots.io/v1beta1.HelmChart when using `useHelmInstall`.
 * Fixes the `kots pull` CLI command to properly inject `imagePullSecrets` when using Helm Charts with `useHelmInstall` set to `true`.
-* Fixes a bug that causes application images to not be deleted from a [private registry](../enterprise/image-registry-embedded-cluster).
+* Fixes a bug that causes application images to not be deleted from a [private registry](/enterprise/image-registry-kurl).
 * Fixes a bug that causes images included in support bundle's [`run` collector](https://troubleshoot.sh/docs/collect/run/#image-required) to not be deleted from a private registry.
 
 ## 1.58.2

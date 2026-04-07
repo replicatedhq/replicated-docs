@@ -56,6 +56,8 @@ Do not apply prose fixes to:
 
 Vale sometimes flags these; ignore those warnings.
 
+**Exception — markdown inside HTML tables:** When `Vale.Spelling` flags a word like `_Using` inside an HTML `<td>` or `<p>` element, the cause is markdown italic syntax (`_text_`) used inside raw HTML. Do NOT add `_Using` to an accept list. Instead, convert the markdown formatting to HTML (`_foo_` → `<em>foo</em>`). See `references/vale-rules.md` for details.
+
 ### Step 5: Verify
 
 After making all changes, do a quick pass to confirm:
@@ -85,7 +87,7 @@ See `references/vale-rules.md` for full fix patterns, before/after examples, and
 
 **`Replicated.PositionalLanguage`** — Replace "above/below" with "the following" or a section link; replace directional "right/left" with "the following" or a UI element name.
 
-**`Replicated.Headings`** — Apply sentence case: lowercase all words except the first word and proper nouns (product names, trademarks).
+**`Replicated.Headings`** — Apply sentence case, with three exceptions: (1) **Skip entirely** when the heading IS a CLI command name or YAML field name (e.g., `# install (Beta)`, `## helmCharts`) — those follow the thing's own casing conventions. (2) **Parentheticals reset sentence case** — `(Beta)` is correct, not `(beta)`. (3) **Kubernetes custom resource kind names stay capitalized** — `Preflight`, `SupportBundle`, `Config`, `HelmChart` are proper names; check context to confirm the word refers to a `kind:` value before lowercasing. See `references/vale-rules.md` for full patterns.
 
 **`Replicated.WordsToAvoid`** — Remove "easy/easily", "simple/simply", "just" (when minimizing). Rephrase or omit.
 
@@ -94,3 +96,4 @@ See `references/vale-rules.md` for full fix patterns, before/after examples, and
 ## Additional Resources
 
 - **`references/vale-rules.md`** — Detailed fix patterns, edge cases, and examples for every common Replicated vale rule
+- **`README.md` (repo root)** — The Replicated Docs style guide lives in the "Style Guide" section of this file. Read it when deciding how to rewrite a flagged sentence, choose word alternatives, or apply formatting conventions. This is the authoritative source — do not rely on cached knowledge of its contents.
