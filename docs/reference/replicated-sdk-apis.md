@@ -186,7 +186,9 @@ Request:
 
 Response: Status `200` OK
 
-### POST /app/supportbundle
+## supportbundle
+
+### POST /supportbundle
 
 Upload a support bundle through the SDK. The bundle is streamed to Replicated for analysis and is available in the Vendor Portal.
 
@@ -196,7 +198,7 @@ Upload a support bundle through the SDK. The bundle is streamed to Replicated fo
 * The request must include the `Content-Length` header
 
 ```bash
-POST http://replicated:3000/api/v1/app/supportbundle
+POST http://replicated:3000/api/v1/supportbundle
 Content-Type: application/gzip
 Content-Length: <bundle-size-in-bytes>
 
@@ -211,8 +213,6 @@ Response: Status `201` Created
   "slug": "my-app-supportbundle-abc123"
 }
 ```
-
-## supportbundle
 
 ### POST /supportbundle/metadata
 
@@ -490,7 +490,7 @@ This section provides example use cases for the Replicated SDK API.
 
 The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. You could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from your application.
 
-Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your application by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
+Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your application by injecting values returned by the `/api/v1/license/info` and `/api/v1/app/info` endpoints. 
 
 The following examples show how you could include a page in your application that lists available updates and also provides customer-specific upgrade instructions:  
 
