@@ -8,6 +8,17 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.1
+
+Released on April 7, 2026
+
+### Bug fixes {#bug-fixes-1-19-1}
+* Fixes an issue where the "Enable mock data for development" checkbox in the Vendor Portal did not reliably disable mock mode for development licenses. By default, the SDK now disables mock data when the `integration-enabled` key is absent from the `replicated` secret. Also, the Helm chart template now always writes the `integration-enabled` key explicitly.
+
+### Improvements {#improvements-1-19-1}
+* Switches to the GA `discovery.k8s.io/v1` EndpointSlice API for service status discovery, replacing the legacy Endpoints API.
+* Adds support for specifying the replicated-sdk image by digest.
+
 ## 1.19.0
 
 Released on April 2, 2026
