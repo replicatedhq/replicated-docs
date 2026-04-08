@@ -13,7 +13,7 @@ This topic contains release notes for the [Replicated SDK](/vendor/replicated-sd
 Released on April 7, 2026
 
 ### Bug fixes {#bug-fixes-1-19-1}
-* Fixes an issue where the "Enable mock data for development" checkbox in the Vendor Portal did not reliably disable mock mode for development licenses. The SDK now defaults mock mode to OFF when the `integration-enabled` key is absent from the replicated secret. The Helm chart template now always writes the `integration-enabled` key explicitly.
+* Fixes an issue where the "Enable mock data for development" checkbox in the Vendor Portal did not reliably disable mock mode for development licenses. By default, the SDK now disables mock data when the `integration-enabled` key is absent from the `replicated` secret. Also, the Helm chart template now always writes the `integration-enabled` key explicitly.
 
 ### Improvements {#improvements-1-19-1}
 * Switches to the GA `discovery.k8s.io/v1` EndpointSlice API for service status discovery, replacing the legacy Endpoints API.
