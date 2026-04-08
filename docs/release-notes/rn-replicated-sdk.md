@@ -60,7 +60,7 @@ Released on March 5, 2026
 Released on March 4, 2026
 
 ### New features {#new-features-1-17-0}
-* Adds a `POST /api/v1/app/supportbundle` endpoint that allows uploading support bundles through the SDK. See [POST /app/support-bundle](/reference/replicated-sdk-apis#post-appsupportbundle) in _Replicated SDK API_.
+* Adds a `POST /api/v1/supportbundle` endpoint that allows uploading support bundles through the SDK. See [POST /supportbundle](/reference/replicated-sdk-apis#post-supportbundle) in _Replicated SDK API_.
 
 ### Improvements {#improvements-1-17-0}
 * Updates Kubernetes libraries from v0.35.0 to v0.35.2.
