@@ -10,6 +10,19 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.04.09-0
+
+Released on April 9, 2026
+
+### New Features {#new-features-v2026-04-09-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.13.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.34.6 1.33.10 1.32.13 1.31.14.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.89.0-82.13.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2025-10-15T17-29-55Z.
+
+### Bug Fixes {#bug-fixes-v2026-04-09-0}
+* Fixes an issue installing on Amazon Linux 2023 with kernel 6.18 related to missing ip_tables kernel module.
+
 ## V2026.02.24-0
 
 Released on February 24, 2026
