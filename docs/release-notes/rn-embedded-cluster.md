@@ -31,7 +31,7 @@ Released on April 10, 2026
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td colspan="3" id="center">1.129.4-ec.3</td>
+    <td colspan="3" id="center">1.130.0-ec.1</td>
   </tr>
 </table>
 
