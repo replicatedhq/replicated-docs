@@ -4,6 +4,7 @@ module.exports = {
     "embedded-v3-migrate",
     "embedded-using",
     "embedded-config",
+    "embedded-image-template-functions",
     {
 
       type: "category",
