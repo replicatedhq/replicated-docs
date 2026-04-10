@@ -12,6 +12,37 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.16.0
+
+Released on April 10, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.16.0+k8s-1.34</td>
+    <td id="center">2.16.0+k8s-1.33</td>
+    <td id="center">2.16.0+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.129.4-ec.3</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-16-0}
+* Updates SeaweedFS to 4.18.0.
+* Updates Velero to v1.18.0.
+* Updates Troubleshoot to v0.126.0.
+
+### Bug fixes {#bug-fixes-2-16-0}
+* Fixed a race condition where restore could fail on the first attempt if Velero hadn't finished syncing all backup metadata from S3.
+
 ## 2.15.0
 
 Released on March 26, 2026
