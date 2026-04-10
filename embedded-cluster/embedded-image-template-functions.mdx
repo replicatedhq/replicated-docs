@@ -43,8 +43,6 @@ spec:
     image:
       registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
       repository: '{{repl ReplicatedImageRepository (HelmValue ".image.repository") true }}'
-    imagePullSecrets:
-      - name: '{{repl ImagePullSecretName }}'
 ```
 
 `ReplicatedImageRegistry` omits `noProxy` so the function returns the correct proxy domain for the installation, including any [custom domain](/vendor/custom-domains) configuration. `ReplicatedImageRepository` sets `noProxy` to `true` because the repository value in `values.yaml` already contains the proxy path prefix (`proxy/my-app/...`). In air gap mode, both functions rewrite to the local registry regardless of `noProxy`.
@@ -103,29 +101,6 @@ values:
       repository: '{{repl ReplicatedImageRepository (HelmValue ".my-subchart.image.repository") true }}'
 ```
 
-### imagePullSecrets
-
-The `ImagePullSecretName` function returns the name of a pull secret that authenticates to the proxy registry or local registry. This secret is automatically created when you include the [Replicated SDK](/vendor/replicated-sdk-overview) as a subchart in your application.
-
-Configure `imagePullSecrets` for your application and for each subchart. Set `imagePullSecrets` at whatever level each chart reads from. Consult each subchart's documentation to determine the correct location. Common patterns include:
-
-```yaml
-# Top-level (used by most charts)
-imagePullSecrets:
-  - name: '{{repl ImagePullSecretName }}'
-
-# Some charts use global.imagePullSecrets (for example, Bitnami charts)
-my-subchart:
-  global:
-    imagePullSecrets:
-      - '{{repl ImagePullSecretName }}'
-
-# Some charts nest imagePullSecrets under the chart key
-my-subchart:
-  imagePullSecrets:
-    - name: '{{repl ImagePullSecretName }}'
-```
-
 ### Embedded Cluster extension images
 
 For Helm extensions in the [Embedded Cluster Config](embedded-config), the approach depends on whether you control the chart's `values.yaml`.
@@ -154,9 +129,6 @@ extensions:
           image:
             registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
             repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
-            tag: 'repl{{ HelmValue ".Values.controller.image.tag" }}'
-            digest: ""
-            digestChroot: ""
 ```
 
 **Note:** `ReplicatedImageRepository` requires the full upstream image path including the registry (for example, `registry.k8s.io/ingress-nginx/controller`), not just the repository portion.
@@ -172,7 +144,6 @@ If the chart uses a single image field:
 ## Tips
 
 - When referencing Docker Hub images, use `docker.io` as the hostname (for example, `docker.io/bitnami/postgresql`).
-- Always include `imagePullSecrets` using `ImagePullSecretName` for every pod that pulls from the proxy or local registry.
 
 ## Function Reference
 
@@ -217,14 +188,6 @@ Returns the repository path. Use this together with `ReplicatedImageRegistry`.
 | Online | omitted | `proxy/<app-slug>/<repository>` |
 | Online | `true` | `<repository>` (unchanged) |
 | Air gap | any | `<app-slug>/<name>` |
-
-### ImagePullSecretName
-
-```go
-func ImagePullSecretName() string
-```
-
-Returns the name of the automatically created image pull secret (format: `<app-slug>-registry`).
 
 ### HelmValue
 
