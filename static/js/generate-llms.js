@@ -22,6 +22,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DOCS_DIR = path.join(__dirname, "../../docs");
+const EC_V3_DOCS_DIR = path.join(__dirname, "../../embedded-cluster");
 const EC_DOCS_DIR = path.join(__dirname, "../../embedded-cluster_versioned_docs/version-2.0.0");
 const STATIC_DIR = path.join(__dirname, "../../static");
 const OUTPUT_FILE = path.join(STATIC_DIR, "llms.txt");
@@ -208,7 +209,7 @@ function shouldSkipDirectory(filePath, excludedDirs = ['.history', 'templates', 
 
 function getAllMarkdownFiles(dir, fileList = [], excludeReleaseNotes = true, baseDir = null) {
     if (!baseDir) baseDir = dir;
-    const urlPrefix = (baseDir === EC_DOCS_DIR) ? 'embedded-cluster/v2/' : '';
+    const urlPrefix = (baseDir === EC_DOCS_DIR) ? 'embedded-cluster/v2/' : (baseDir === EC_V3_DOCS_DIR) ? 'embedded-cluster/v3/' : '';
 
     fs.readdirSync(dir).forEach(file => {
         const filePath = path.join(dir, file);
@@ -255,12 +256,15 @@ function getAllMarkdownFilesForStatic(dir, fileList = []) {
 function getCuratedFiles(dir) {
     const fileList = [];
     INCLUDED_FILES.forEach(relativePath => {
-        // Files prefixed with ec: live in the embedded cluster docs directory
-        const isEC = relativePath.startsWith('ec:');
-        const actualRelPath = isEC ? relativePath.slice(3) : relativePath;
-        const filePath = isEC ? path.join(EC_DOCS_DIR, actualRelPath) : path.join(dir, actualRelPath);
-        // For URL paths, embedded cluster docs are under embedded-cluster/v2/
-        const urlPath = isEC
+        // Files prefixed with ec: live in the v2 embedded cluster docs directory
+        // Files prefixed with ec3: live in the v3 (current) embedded cluster docs directory
+        const isEC3 = relativePath.startsWith('ec3:');
+        const isEC = !isEC3 && relativePath.startsWith('ec:');
+        const actualRelPath = (isEC || isEC3) ? relativePath.slice(isEC3 ? 4 : 3) : relativePath;
+        const filePath = isEC3 ? path.join(EC_V3_DOCS_DIR, actualRelPath) : isEC ? path.join(EC_DOCS_DIR, actualRelPath) : path.join(dir, actualRelPath);
+        const urlPath = isEC3
+            ? `embedded-cluster/v3/${actualRelPath.replace(/\.(md|mdx)$/, '')}`
+            : isEC
             ? `embedded-cluster/v2/${actualRelPath.replace(/\.(md|mdx)$/, '')}`
             : actualRelPath.replace(/\.(md|mdx)$/, '');
         
@@ -389,10 +393,12 @@ loadPartials(DOCS_DIR);
 
 // Get files for llms-full.txt (excluding release-notes) from both docs sources
 const allFiles = getAllMarkdownFiles(DOCS_DIR);
+getAllMarkdownFiles(EC_V3_DOCS_DIR, allFiles);
 getAllMarkdownFiles(EC_DOCS_DIR, allFiles);
 
 // Get all files including release-notes for copying to static
 const allFilesForStatic = getAllMarkdownFilesForStatic(DOCS_DIR);
+getAllMarkdownFilesForStatic(EC_V3_DOCS_DIR, allFilesForStatic);
 getAllMarkdownFilesForStatic(EC_DOCS_DIR, allFilesForStatic);
 
 const curatedFiles = getCuratedFiles(DOCS_DIR);
