@@ -41,6 +41,7 @@ Released on April 10, 2026
 * Updates Troubleshoot to v0.126.0.
 
 ### Bug fixes {#bug-fixes-2-16-0}
+* Fixes an issue that causes kube-proxy to fall back to single stack networking in dual-stack mode.
 * Fixed a race condition where restore could fail on the first attempt if Velero hadn't finished syncing all backup metadata from S3.
 
 ## 2.15.0
