@@ -143,7 +143,7 @@ If the chart uses a single image field:
 
 ## Tips
 
-- When referencing Docker Hub images, use `docker.io` as the hostname (for example, `docker.io/bitnami/postgresql`).
+- When referencing Docker Hub images through the Replicated proxy registry, use the full path including `docker.io` and the namespace. For official images, this means including `library`. For example, to proxy the `nginx` image, use `proxy.replicated.com/proxy/my-app/docker.io/library/nginx` (not `proxy.replicated.com/proxy/my-app/nginx`). For other Docker Hub images, include the organization (for example, `proxy.replicated.com/proxy/my-app/docker.io/bitnami/postgresql`).
 
 ## Function Reference
 
