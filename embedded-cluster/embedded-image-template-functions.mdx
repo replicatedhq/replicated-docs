@@ -153,7 +153,7 @@ If the chart uses a single image field:
 func ReplicatedImageName(image string, noProxy ...bool) string
 ```
 
-Returns a full image reference (registry + repository + tag). Use this when a chart expects the entire image reference in a single field.
+Returns a full image reference (registry + repository + tag). Use this when a chart expects the entire image reference in a single field. The optional `noProxy` parameter, when set to `true`, leaves the image unchanged in online mode.
 
 | Mode | noProxy | Result |
 |------|---------|--------|
@@ -167,7 +167,7 @@ Returns a full image reference (registry + repository + tag). Use this when a ch
 func ReplicatedImageRegistry(registry string, noProxy ...bool) string
 ```
 
-Returns the registry host. Use this when a chart splits the image reference into separate `registry` and `repository` fields.
+Returns the registry host. Use this when a chart splits the image reference into separate `registry` and `repository` fields. The optional `noProxy` parameter, when set to `true`, returns the input registry unchanged in online mode.
 
 | Mode | noProxy | Result |
 |------|---------|--------|
@@ -181,7 +181,7 @@ Returns the registry host. Use this when a chart splits the image reference into
 func ReplicatedImageRepository(repository string, noProxy ...bool) string
 ```
 
-Returns the repository path. Use this together with `ReplicatedImageRegistry`.
+Returns the repository path. Use this together with `ReplicatedImageRegistry`. The optional `noProxy` parameter, when set to `true`, returns the input repository unchanged in online mode.
 
 | Mode | noProxy | Result |
 |------|---------|--------|
