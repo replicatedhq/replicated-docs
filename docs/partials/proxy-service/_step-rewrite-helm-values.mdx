@@ -1,11 +1,11 @@
-For each image reference in your Helm chart values file, set the image repository URL to the location of the image in the proxy registry.
+For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update all references to private or third-party images to use the Replicated proxy registry domain.
 
-    The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`
-    
+    The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
+
     Where:
-    * `DOMAIN` is either `proxy.replicated.com` or your custom domain.
-    * `APP_SLUG` is the unique slug of your application.
-    * `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
+    - `DOMAIN` is either `proxy.replicated.com` or your custom domain
+    - `APP_SLUG` is the unique slug of your application
+    - `UPSTREAM_REGISTRY/IMAGE_PATH` is the full upstream image path. For example, `ghcr.io/my-org/my-image` or `docker.io/bitnami/postgresql`.
     
     **Example:**
 
