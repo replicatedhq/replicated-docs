@@ -26,30 +26,43 @@ Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](
 ### Troubleshoot Preflight `v1beta3` required
 
 Application preflight checks must use Troubleshoot `v1beta3`. `v1beta2` preflight specs are not supported.
-
 For more information, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
+
+### Package your application with Helm
+
+To use Embedded Cluster v3, package your application as one or more Helm charts. Embedded Cluster v3 does not support Kustomize or Kubernetes manifests.
 
 ### HelmChart v2 required
 
-Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`).
+Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`). It does not support HelmChart v1.
 
-Embedded Cluster v3 does not support Kustomize, Kubernetes manifests, or HelmChart v1.
+### Automatic authentication to the Replicated proxy registry
+
+If your application uses the Replicated proxy registry, Embedded Cluster v2 configures the cluster to automatically authenticate to the proxy registry for all pods. This means that it's no longer necessary to manually inject a Replicated pull secret using the ImagePullSecretName template function.
 
 ## Update your release to Embedded Cluster v3
 
-To update your release to support installation with Embedded Cluster v3:
+To update a release from Embedded Cluster v2 to v3:
 
-1. Remove any standalone Kubernetes manifests or `kustomization.yaml` files from your release. Embedded Cluster v3 only deploys resources that are managed by Helm charts. If you need to deploy any resources before Embedded Cluster deploys your application, you can use Helm chart [`extensions`](embedded-config#extensions) in the Embedded Cluster Config.
+1. Remove any standalone Kubernetes manifests or `kustomization.yaml` files from your release. Embedded Cluster v3 only deploys resources defined in Helm charts. If you need to deploy any resources before Embedded Cluster deploys your application, you can use Helm chart [`extensions`](embedded-config#extensions) in the Embedded Cluster Config.
 
-1. In your application Helm chart `Chart.yaml` file, add the SDK as a dependency. With Embedded Cluster v3, the SDK is required to get instance insights from status informers.
+1. In your application Helm chart `Chart.yaml` file, add the SDK as a dependency. With Embedded Cluster v3, you must include the SDK to get instance insights from status informers.
     
-    If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
+    If your application uses multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
 
     <DependencyYaml/>
 
+1. If you use the Replicated proxy registry, update your release to remove the ImagePullSecretName template function from your HelmChart `values` key. Embedded Cluster v3 configures the cluster to automatically authenticate to the proxy registry for all pods, so you don't need to manually inject a pull secret. See the _Embedded Cluster v3_ steps in [Configure your application to use the proxy registry](/vendor/private-images-kots#configure-v3).
+
+1. If you support air gap installations, update your image references to use the Embedded Cluster ReplicatedImageName, ReplicatedImageRegistry, and ReplicatedImageRepository template functions. This ensures that image references resolve correctly in both online and air gap installations. See [Add support for air gap installations](embedded-using#local-image-registry).
+
+    :::note
+    In Embedded Cluster v3, these template functions replace the [LocalImageName](/reference/template-functions-config-context#localimagename), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions.
+    :::
+
 1. Update your application Preflight specs to API version `troubleshoot.sh/v1beta3`. For more information, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
-1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. For information about how to configure the HelmChart v2 custom resource, see [Support installations with HelmChart v2](/vendor/helm-native-v2-using). For information about how to migrate from HelmChart v1 or Kubernetes manifests to HelmChart v2, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
+1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. For information about how to migrate from HelmChart v1 or Kubernetes manifests to HelmChart v2, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
 
