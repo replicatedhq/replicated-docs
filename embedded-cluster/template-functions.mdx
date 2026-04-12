@@ -1,3 +1,7 @@
+---
+toc_max_heading_level: 2
+---
+
 # Template Functions for Embedded Cluster (Beta)
 
 This topic lists the Replicated template functions for Embedded Cluster. For more imformation about how to use Replicated template functions, including a list of all available template functions, see [About Template Functions](/reference/template-functions-about).
@@ -46,7 +50,6 @@ Use this when a chart expects the entire image reference in a single field.
 #### image
 
 The image reference to rewrite.
-
 Use the [HelmValue](#helmvalue-func) function to return the value from the chart's `values.yaml` at the given dotted path.
 
 #### noProxy
@@ -90,43 +93,11 @@ Returns the registry host.
 
 Use this with the ReplicatedImageRepository template function when the image reference in the Helm chart uses separate `registry` and `repository` fields.
 
-### Examples
-
-#### Rewrite image references using HelmValues
-
-```yaml
-# HelmChart custom resource
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-spec:
-  values:
-    image:
-      registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
-      repository: '{{repl ReplicatedImageRepository (HelmValue ".image.repository") true }}'
-```
-
-#### Rewrite upstream image references for third-party Helm extensions
-
-```yaml
-# Embedded Cluster Config
-extensions:
-  helmCharts:
-    - chart:
-        name: ingress-nginx
-        chartVersion: "4.11.3"
-      releaseName: ingress-nginx
-      namespace: ingress-nginx
-      values: |
-        controller:
-          image:
-            registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
-            repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
-```
-
 ### Parameters
 
 #### image
 
+The image reference to rewrite.
 Use the [HelmValue](#helmvalue-func) function to return the value from the chart's `values.yaml` at the given dotted path.
 
 #### noProxy
@@ -139,16 +110,6 @@ The following table describes the value returned by ReplicatedImageName in onlin
 | Online | `true` | Returns the image registry value with no changes |
 | Air gap | `true` or omitted | Returns the local registry address |
 
-## ReplicatedImageRepository
-
-```go
-func ReplicatedImageRepository(repository string, noProxy ...bool) string
-```
-
-Returns the repository path.
-
-Use this with the ReplicatedImageRegistry template function when the image reference in the Helm chart uses separate `registry` and `repository` fields.
-
 ### Examples
 
 #### Rewrite image references using HelmValues
@@ -182,10 +143,21 @@ extensions:
             repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
 ```
 
+## ReplicatedImageRepository
+
+```go
+func ReplicatedImageRepository(repository string, noProxy ...bool) string
+```
+
+Returns the repository path.
+
+Use this with the ReplicatedImageRegistry template function when the image reference in the Helm chart uses separate `registry` and `repository` fields.
+
 ### Parameters
 
 #### image
 
+The image reference to rewrite.
 Use the [HelmValue](#helmvalue-func) function to return the value from the chart's `values.yaml` at the given dotted path.
 
 #### noProxy
@@ -197,3 +169,36 @@ The following table describes the value returned by ReplicatedImageName in onlin
 | Online | Omitted | Returns the proxy registry image repository in the format: `proxy/<app-slug>/<repository>`, where `app_slug` is the unique application slug |
 | Online | `true` | Returns the image repository value with no changes |
 | Air gap | `true` or omitted | Returns the local image repository in the format: `<app-slug>/<name>` |
+
+### Examples
+
+#### Rewrite image references using HelmValues
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    image:
+      registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
+      repository: '{{repl ReplicatedImageRepository (HelmValue ".image.repository") true }}'
+```
+
+#### Rewrite upstream image references for third-party Helm extensions
+
+```yaml
+# Embedded Cluster Config
+extensions:
+  helmCharts:
+    - chart:
+        name: ingress-nginx
+        chartVersion: "4.11.3"
+      releaseName: ingress-nginx
+      namespace: ingress-nginx
+      values: |
+        controller:
+          image:
+            registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+            repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
+```
