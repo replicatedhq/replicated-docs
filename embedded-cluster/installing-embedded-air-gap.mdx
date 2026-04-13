@@ -87,13 +87,11 @@ To install from the Vendor Portal:
    * The license file
    * The air gap bundle (`APP_SLUG.airgap`)
 
-1. On the air-gapped machine, run the `install` command from the dialog. It must include `--airgap` pointing at your `.airgap` file. For example:
+1. On the air-gapped machine, run the `install` command from the dialog. It must include the `--airgap` flag. For example:
 
    ```bash
-   sudo ./APP_SLUG install --license license.yaml --airgap APP_SLUG.airgap
+   sudo ./APP_SLUG install --license license.yaml --airgap
    ```
-
-   Replace `APP_SLUG` with your application slug and use the correct paths for your license and bundle files. Add any other flags you need. For the full set of flags, see [install](embedded-cluster-install).
 
 1. Complete any prompts from the install command (for example, acceptance of a self-signed certificate and installer password).
 
@@ -129,7 +127,7 @@ To install headlessly in an air gap environment:
 
 1. On the air-gapped machine, run `install` with:
 
-   * `--airgap` and the `APP_SLUG.airgap` file.
+   * `--airgap` to use the extracted airgap images bundle and disable outbound network requests.
    * `--headless` to skip the interactive installer UI.
    * `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file.
    * `--installer-password` with the password you will use to access the installer later.
@@ -137,7 +135,7 @@ To install headlessly in an air gap environment:
    Example:
 
    ```bash
-   sudo ./APP_SLUG install --license license.yaml --airgap APP_SLUG.airgap --headless --config-values PATH_TO_CONFIGVALUES --installer-password INSTALLER_PASSWORD
+   sudo ./APP_SLUG install --license license.yaml --airgap --headless --config-values PATH_TO_CONFIGVALUES --installer-password INSTALLER_PASSWORD
    ```
 
    Replace placeholders with values for your environment. Add any other flags you need. For the full set of flags, see [install](embedded-cluster-install).
