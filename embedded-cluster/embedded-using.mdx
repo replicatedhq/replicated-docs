@@ -1,39 +1,220 @@
 import UpdateOverview from "../docs/partials/embedded-cluster/v3/_update-overview.mdx"
 import EcConfig from "../docs/partials/embedded-cluster/v3/_ec-config.mdx"
 import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
+import RewriteHelmValues from "../docs/partials/proxy-service/_step-rewrite-helm-values.mdx"
+import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Configure Embedded Cluster (Beta)
 
-This topic describes how to configure your application releases to support installations with Replicated Embedded Cluster. For an introduction, see [Embedded Cluster Overview](embedded-overview).
+This topic describes how to configure and use Replicated Embedded Cluster with your application.
+For more information about Embedded Cluster, see [Embedded Cluster Overview](embedded-overview). For information about updating an existing release from Embedded Cluster v2 to v3, see [Migrate from Embedded Cluster v2](embedded-v3-migrate).
 
-## Add the Embedded Cluster Config resource
+## Create a release with Embedded Cluster v3
 
-An [Embedded Cluster Config](embedded-config) must be present in the release to support installation with Embedded Cluster. The Embedded Cluster Config sets the version of Embedded Cluster to install, and lets you define additional characteristics about the cluster.
+To create an application release that supports installation with Embedded Cluster v3:
 
-To add the Embedded Cluster Config:
+1. If you use the Replicated proxy registry, update all references to private or third-party images to use the Replicated proxy registry domain. See the _Embedded Cluster v3_ steps in [Configure your application to use the proxy registry](/vendor/private-images-kots#configure-v3).
 
-1. Create a new release that includes your application and a unique [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource for each Helm chart in the release.
+1. In your application Helm chart `Chart.yaml` file, add the SDK as a dependency. If your application uses multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
 
-   If you have not yet configured the HelmChart custom resource for your application, see [Onboard to the Replicated Platform](/vendor/replicated-onboarding). The onboarding guide provides detailed instructions for configuring releases that support installation with a Replicated installer.
+    <DependencyYaml/>
 
-1. In the release, add an [Embedded Cluster Config](embedded-config) manifest that specifies the Embedded Cluster version to use:
+1. Package each chart into a `.tgz` chart archive. See [Package a Helm chart for a release](/vendor/helm-install-release).
+
+1. For each chart archive, add a unique HelmChart v2 custom resource (version `kots.io/v1beta2`).
+
+   ```yaml
+   # HelmChart custom resource
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+     # chart identifies a matching chart from a .tgz
+     chart:
+       name: samplechart
+       chartVersion: 3.1.7
+   ```    
+
+1. If you support air gap installations, update all image references so they resolve correctly in both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
+
+1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
 
      <EcConfig/>
 
-1. If your application requires that Embedded Cluster deploy certain components before the application and as part of the cluster itself, update the Embedded Cluster Config to add [extensions](embedded-config#extensions).
+1. If you use custom domains for the Replicated proxy registry or Replicated app service, add them to the Embedded Cluster Config `domains` key. See [Configure Embedded Cluster to use custom domains](/vendor/custom-domains-using#ec) in _Use custom domains_.
+
+1. If you need Embedded Cluster to deploy certain components to the cluster before it deploys your application, add the Helm charts for those components to the Embedded Cluster Config `extensions` key. See [(Optional) Add Helm chart extensions](#add-extensions) on this page.
 
 1. Save the release and promote it to the channel that you use for testing internally.
 
 1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
 
-1. After successfully installing your application with Embedded Cluster, customize the [Embedded Cluster Config](embedded-config) as desired:
-     * Add your custom domain for the Replicated proxy registry and Replicated app service. See [domains](embedded-config#domains).
-     * Add custom Helm extensions. Extensions allow you to provide Helm charts that Embedded Cluster deploys before your application. For example, you can add a Helm extension to ship an ingress controller. See [extensions](embedded-config#extensions).
-     * Define roles to assign workloads to specific nodes in multi-node installations. See [roles](/embedded-cluster/v2/embedded-config#roles).
-     
-     Replicated recommends that you work in small iterations and test your changes frequently in your development environment.
+## Add support for air gap installations {#local-image-registry}
 
-## (Optional) Serve installation assets using the Vendor API
+To support air gap installations:
+
+1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+1. Configure each HelmChart custom resource to ensure that all image reference resolve correctly in online and air gap installations. You do this in the HelmChart custom resource's [`values`](/reference/custom-resource-helmchart-v2#values) key using the [ReplicatedImageName](template-functions#replicatedimagename), [ReplicatedImageRegistry](template-functions#replicatedimageregistry), and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions. See the following examples for more information:
+
+    <details>
+
+    <summary>Example (Single value for full image name)</summary>
+
+    For charts that expect the full image reference in a single field, use the [ReplicatedImageName](template-functions#replicatedimagename) template function in the HelmChart custom resource. ReplicatedImageName returns the full image name, including both the repository and registry.
+    
+    For example:
+
+    ```yaml
+    # values.yaml
+    initImage: proxy.replicated.com/proxy/my-app/docker.io/library/busybox:1.36
+    ```
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        initImage: '{{repl ReplicatedImageName (HelmValue ".initImage") true }}'
+    ```
+    ReplicatedImageName sets `noProxy` to `true` because the image reference value in `values.yaml` already contains the proxy path prefix (`proxy.replicated.com/proxy/my-app/...`)
+    </details>
+
+    <details>
+
+    <summary>Example (Separate values for image registry and repository)</summary>
+
+    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions in the HelmChart custom resource:
+
+    ```yaml
+    # values.yaml
+    image:
+      registry: proxy.replicated.com
+      repository: proxy/my-app/ghcr.io/my-org/my-image
+      tag: v1.0.0
+    ```
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        image:
+          registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
+          repository: '{{repl ReplicatedImageRepository (HelmValue ".image.repository") true }}'
+    ```
+    ReplicatedImageRepository sets `noProxy` to `true` because the repository value in `values.yaml` already contains the proxy path prefix (`proxy/my-app/...`). ReplicatedImageRegistry omits `noProxy` so the function returns the correct proxy domain for the installation, including any [custom domain](/vendor/custom-domains) configuration.
+    </details>
+
+    <details>
+    <summary>Example (References to public images)</summary>
+
+    For public images that don't go through the Replicated proxy registry, set the upstream reference directly in the chart's `values.yaml`. Use `noProxy` so the reference remains unchanged in online installations but is still rewritten for air gap.
+
+    ```yaml
+    # values.yaml
+    publicImage: docker.io/library/busybox:1.36
+    ```
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        publicImage: '{{repl ReplicatedImageName (HelmValue ".publicImage") true }}'
+    ```
+    </details>
+
+1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image reference using the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions:
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        replicated:
+          image:
+            registry: '{{repl ReplicatedImageRegistry (HelmValue ".replicated.image.registry") }}'
+            # The default location for the SDK image is
+            # proxy.replicated.com/library/replicated-sdk-image
+            repository: '{{repl ReplicatedImageRepository (HelmValue ".replicated.image.repository") true }}'
+    ```
+
+1. If you added any Helm chart `extensions` in the Embedded Cluster Config, rewrite image references in each extension using either the [ReplicatedImageName](template-functions#replicatedimagename) template function (if the chart uses a single field for the full image reference) or the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions (if the chart uses separate fields for the image registry and repository values). 
+
+    <details>
+    <summary>Example (Extension for a Helm chart that you own)</summary>
+
+    ```yaml
+    # Embedded Cluster Config
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      extensions:
+        helmCharts:
+          - chart:
+              name: ingress
+              chartVersion: "1.2.3"
+            releaseName: ingress
+            namespace: ingress
+            values: |
+              controller:
+                image:
+                  registry: 'repl{{ ReplicatedImageRegistry (HelmValue ".controller.image.registry") }}'
+                  repository: 'repl{{ ReplicatedImageRepository (HelmValue ".controller.image.repository") true }}'
+    ```
+    </details>
+
+    <details>
+    <summary>Example (Extension for a third-party Helm chart)</summary>
+
+    ```yaml
+    # Embedded Cluster Config
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      extensions:
+        helmCharts:
+          - chart:
+              name: ingress-nginx
+              chartVersion: "4.11.3"
+            releaseName: ingress-nginx
+            namespace: ingress-nginx
+            values: |
+              controller:
+                image:
+                  registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+                  repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
+    ```
+    The template functions will add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
+
+    ReplicatedImageRepository requires the full upstream image path including the registry (for example, `registry.k8s.io/ingress-nginx/controller`), not just the repository.
+    </details>
+
+
+1. Save the release and promote it to the channel that you use for testing internally.
+
+1. Install with Embedded Cluster in a development environment to test. See [Air gap installation with Embedded Cluster](installing-embedded-air-gap). 
+
+## Add Helm chart extensions {#add-extensions}
+
+If your application requires certain components deployed before the application and as part of the cluster itself, add them as [extensions](embedded-config#extensions) in the Embedded Cluster Config. For example, you can add a Helm extension to deploy an ingress controller. You can add extensions for Helm charts that you own or for third-party charts.
+
+To add Helm extensions:
+
+1. In the Embedded Cluster Config, add the Helm chart to the [`extensions`](embedded-config#extensions) key.
+
+1. If you support air gap installations, configure each of your `extensions` so that they resolve correctly for both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
+
+1. Save the release and promote it to the channel that you use for testing internally.
+
+1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+
+## Serve installation assets using the Vendor API
 
 To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle. End customers can download all these installation assets using a curl command by following the installation steps available in the [Replicated Enterprise Portal](/vendor/enterprise-portal-about).
 
@@ -92,6 +273,6 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
 
 When you configure the containerd options as shown earlier on this page, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
 
-If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services running on the host (such as those deployed by Docker) before installing the release with Embedded Cluster. If any containerd services are present on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia-gpu-operator) in _Troubleshooting Embedded Cluster_.
+If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services from the host before installing with Embedded Cluster. This includes services deployed by Docker. If any containerd services are present on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia-gpu-operator) in _Troubleshooting Embedded Cluster_.
 
 This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.

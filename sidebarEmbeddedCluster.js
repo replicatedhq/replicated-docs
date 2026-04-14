@@ -1,9 +1,8 @@
 module.exports = {
   embeddedClusterSidebar: [
     "embedded-overview",
-    "embedded-v3-migrate",
     "embedded-using",
-    "embedded-config",
+    "embedded-v3-migrate",
     {
 
       type: "category",
@@ -17,6 +16,10 @@ module.exports = {
     "embedded-manage-nodes",
     "updating-embedded",
     "embedded-troubleshooting",
+    //REFERENCE DOCS
+    { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
+    "embedded-config",
+    "template-functions",
     {
       type: "category",
       label: "Embedded Cluster Commands",

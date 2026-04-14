@@ -194,6 +194,10 @@ Returns true if the configuration option value is not equal to the supplied valu
 
 ## LocalRegistryAddress
 
+:::note
+The LocalRegistryAddress template function is not supported for installations with Embedded Cluster v3. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+:::
+
 ```go
 func LocalRegistryAddress() string
 ```
@@ -202,6 +206,10 @@ Returns the local registry host or host/namespace that's configured.
 This will always return everything before the image name and tag.
 
 ## LocalRegistryHost
+
+:::note
+The LocalRegistryHost template function is not supported for installations with Embedded Cluster v3. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+:::
 
 ```go
 func LocalRegistryHost() string
@@ -236,6 +244,10 @@ For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-valu
 
 ## LocalRegistryNamespace
 
+:::note
+The LocalRegistryNamespace template function is not supported for installations with Embedded Cluster v3. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+:::
+
 ```go
 func LocalRegistryNamespace() string
 ```
@@ -266,6 +278,10 @@ spec:
 For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
 
 ## LocalImageName
+
+:::note
+The LocalImageName template function is not supported for installations with Embedded Cluster v3. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+:::
 
 ```go
 func LocalImageName(remoteImageName string) string
@@ -345,6 +361,10 @@ spec:
 ```
 
 ## HasLocalRegistry
+
+:::note
+The HasLocalRegistry template function is not supported for installations with Embedded Cluster v3. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+:::
 
 ```go
 func HasLocalRegistry() bool
