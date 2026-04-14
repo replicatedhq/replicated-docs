@@ -56,7 +56,7 @@ To support air gap installations:
 
 1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-1. Configure each HelmChart custom resource to ensure that all image reference resolve correctly in online and air gap installations. You do this in the HelmChart custom resource's [`values`](/reference/custom-resource-helmchart-v2#values) key using the [ReplicatedImageName](template-functions#replicatedimagename), [ReplicatedImageRegistry](template-functions#replicatedimageregistry), and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions. See the following examples for more information:
+1. Configure each HelmChart custom resource to ensure that all image references resolve correctly in online and air gap installations. You do this in the HelmChart custom resource's [`values`](/reference/custom-resource-helmchart-v2#values) key using the [ReplicatedImageName](template-functions#replicatedimagename) and [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template functions. See the following examples for more information:
 
     <details>
 
@@ -85,7 +85,7 @@ To support air gap installations:
 
     <summary>Example (Separate values for image registry and repository)</summary>
 
-    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions in the HelmChart custom resource:
+    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template function to rewrite only the `registry` field. The `repository` field does not need to be templated — it passes through from `values.yaml` unchanged.
 
     ```yaml
     # values.yaml
@@ -103,9 +103,7 @@ To support air gap installations:
       values:
         image:
           registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
-          repository: '{{repl ReplicatedImageRepository (HelmValue ".image.repository") true }}'
     ```
-    ReplicatedImageRepository sets `noProxy` to `true` because the repository value in `values.yaml` already contains the proxy path prefix (`proxy/my-app/...`). ReplicatedImageRegistry omits `noProxy` so the function returns the correct proxy domain for the installation, including any [custom domain](/vendor/custom-domains) configuration.
     </details>
 
     <details>
@@ -128,7 +126,7 @@ To support air gap installations:
     ```
     </details>
 
-1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image reference using the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions:
+1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image registry using the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template function:
 
     ```yaml
     # HelmChart custom resource
@@ -139,12 +137,9 @@ To support air gap installations:
         replicated:
           image:
             registry: '{{repl ReplicatedImageRegistry (HelmValue ".replicated.image.registry") }}'
-            # The default location for the SDK image is
-            # proxy.replicated.com/library/replicated-sdk-image
-            repository: '{{repl ReplicatedImageRepository (HelmValue ".replicated.image.repository") true }}'
     ```
 
-1. If you added any Helm chart `extensions` in the Embedded Cluster Config, rewrite image references in each extension using either the [ReplicatedImageName](template-functions#replicatedimagename) template function (if the chart uses a single field for the full image reference) or the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) and [ReplicatedImageRepository](template-functions#replicatedimagerepository) template functions (if the chart uses separate fields for the image registry and repository values). 
+1. If you added any Helm chart `extensions` in the Embedded Cluster Config, rewrite image references in each extension using either the [ReplicatedImageName](template-functions#replicatedimagename) template function (if the chart uses a single field for the full image reference) or the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template function (if the chart uses separate fields for registry and repository).
 
     <details>
     <summary>Example (Extension for a Helm chart that you own)</summary>
@@ -165,7 +160,6 @@ To support air gap installations:
               controller:
                 image:
                   registry: 'repl{{ ReplicatedImageRegistry (HelmValue ".controller.image.registry") }}'
-                  repository: 'repl{{ ReplicatedImageRepository (HelmValue ".controller.image.repository") true }}'
     ```
     </details>
 
@@ -188,11 +182,8 @@ To support air gap installations:
               controller:
                 image:
                   registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
-                  repository: 'repl{{ ReplicatedImageRepository "registry.k8s.io/ingress-nginx/controller" }}'
     ```
     The template functions will add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
-
-    ReplicatedImageRepository requires the full upstream image path including the registry (for example, `registry.k8s.io/ingress-nginx/controller`), not just the repository.
     </details>
 
 
