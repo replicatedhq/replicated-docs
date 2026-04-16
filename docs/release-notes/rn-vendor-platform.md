@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.04.16-2
+
+Released on April 16, 2026
+
+### New Features {#new-features-v2026-04-16-2}
+* Automatically shares all attached and selected support bundles with Replicated support team when submitting a ticket.
+
 ## v2026.03.24-7
 
 Released on March 24, 2026
