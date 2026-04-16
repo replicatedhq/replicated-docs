@@ -24,6 +24,35 @@ To enable Enterprise Portal self-service sign-ups:
 
 1. Click **Save**.
 
+## Add custom signup fields {#custom-signup-fields}
+
+You can add custom fields to the self-service sign-up form to collect additional information from users during sign-up, such as job title, company size, or use case. This helps you qualify leads and prioritize outreach without requiring custom integrations.
+
+To add custom signup fields:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**.
+
+1. Under **Custom Signup Fields**, click **Add** to add a new field.
+
+1. For each field, configure the following:
+
+   - **Label**: The name of the field displayed to the user on the sign-up form (for example, "Job Title").
+   - **Placeholder**: (Optional) Hint text displayed inside the field before the user enters a value.
+   - **Required**: Select this option to require users to fill in the field before submitting the sign-up form. Required fields display a red asterisk next to the label on the sign-up form.
+
+   Each field is automatically assigned a unique **Key** based on the label (for example, "Job Title" becomes `job_title`). The key is a stable identifier used in notification webhook payloads. Renaming a field's label does not change its key. To change a key, delete the field and create a new one.
+
+1. Click **Save**.
+
+When users sign up through the Enterprise Portal, the custom field values they provide are:
+
+- Displayed in the **Pending Trials** list in the Vendor Portal. Click a pending trial to expand and view the submitted custom field values.
+- Included in notification events for pending sign-ups, including email, Slack, and webhook notifications. Webhook payloads include both the field keys and their human-readable labels.
+
+:::note
+If no custom signup fields are configured, the sign-up form displays only the default fields (email address and company name) and existing behavior is unchanged.
+:::
+
 ## Share your sign-up URL {#share-trial-url}
 
 Each application has a dedicated sign-up URL where users can access the self-servive sign up. When a new user naviagtes to the sign-up page and clicks **Create account**, they receive an email with a 12-digit verification code. The following shows an example of a self-service sign-up page for an application:
