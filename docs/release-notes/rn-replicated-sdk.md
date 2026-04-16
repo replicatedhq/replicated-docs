@@ -8,6 +8,14 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.2
+
+Released on April 16, 2026
+
+### Improvements {#improvements-1-19-2}
+* Updates Helm from 3.20.1 to 3.20.2.
+* Updates Go from 1.26.1 to 1.26.2.
+
 ## 1.19.1
 
 Released on April 7, 2026
