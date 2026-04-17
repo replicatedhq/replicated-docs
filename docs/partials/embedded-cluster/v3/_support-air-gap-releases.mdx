@@ -1,0 +1,151 @@
+To support air gap installations with Embedded Cluster v3:
+
+1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+   <details>
+   <summary>How do I know if I need to configure the `builder` key?</summary>
+   
+   When building an air gap bundle, the Vendor Portal runs `helm template` on each Helm chart to detect which images to include. The bundle includes all images that `helm template` yields.
+
+   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
+
+   If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
+   </details>
+
+1. Configure each HelmChart custom resource to ensure that all image references resolve correctly in both online and air gap installations. You do this in the HelmChart custom resource's [`values`](/reference/custom-resource-helmchart-v2#values) key using the [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) and [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template functions. See the following examples for more information:
+
+    <details>
+
+    <summary>Example (Single value for full image name)</summary>
+
+    For charts that expect the full image reference in a single field, use the [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) template function in the HelmChart custom resource. ReplicatedImageName returns the full image name, including both the repository and registry.
+    
+    For example:
+
+    ```yaml
+    # values.yaml
+    initImage: proxy.replicated.com/proxy/my-app/docker.io/library/busybox:1.36
+    ```
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        initImage: '{{repl ReplicatedImageName (HelmValue ".initImage") true }}'
+    ```
+    ReplicatedImageName sets `noProxy` to `true` because the image reference value in `values.yaml` already contains the proxy path prefix (`proxy.replicated.com/proxy/my-app/...`)
+    </details>
+
+    <details>
+
+    <summary>Example (Separate values for image registry and repository)</summary>
+
+    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function to rewrite the `registry` field. You do not need to template the `repository` field.
+
+    ```yaml
+    # values.yaml
+    image:
+      registry: proxy.replicated.com
+      repository: proxy/my-app/ghcr.io/my-org/my-image
+      tag: v1.0.0
+    ```
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        image:
+          registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
+    ```
+    </details>
+
+    <details>
+    <summary>Example (References to public images)</summary>
+
+    For public images that don't go through the Replicated proxy registry, set the upstream reference directly in the chart's `values.yaml`. Use `noProxy` so that ReplicatedImageName leaves the reference unchanged in online installations. When you include `noProxy`, ReplicatedImageName still rewrites the image to the local registry in air gap installations.
+
+    ```yaml
+    # values.yaml
+    publicImage: docker.io/library/busybox:1.36
+    ```
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        publicImage: '{{repl ReplicatedImageName (HelmValue ".publicImage") true }}'
+    ```
+    </details>
+
+1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image registry using the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function:
+
+    ```yaml
+    # HelmChart custom resource
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    spec:
+      values:
+        replicated:
+          image:
+            registry: '{{repl ReplicatedImageRegistry (HelmValue ".replicated.image.registry") }}'
+    ```
+
+1. If you added any Helm chart `extensions` in the Embedded Cluster Config, rewrite image references in each extension using either the [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) template function (if the chart uses a single field for the full image reference) or the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function (if the chart uses separate fields for registry and repository).
+
+    <details>
+    <summary>Example (Extension for a Helm chart that you own)</summary>
+
+    ```yaml
+    # Embedded Cluster Config
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      extensions:
+        helmCharts:
+          - chart:
+              name: ingress
+              chartVersion: "1.2.3"
+            releaseName: ingress
+            namespace: ingress
+            values: |
+              controller:
+                image:
+                  registry: 'repl{{ ReplicatedImageRegistry (HelmValue ".controller.image.registry") }}'
+    ```
+    </details>
+
+    <details>
+    <summary>Example (Extension for a third-party Helm chart)</summary>
+
+    ```yaml
+    # Embedded Cluster Config
+    apiVersion: embeddedcluster.replicated.com/v1beta1
+    kind: Config
+    spec:
+      extensions:
+        helmCharts:
+          - chart:
+              name: ingress-nginx
+              chartVersion: "4.11.3"
+            releaseName: ingress-nginx
+            namespace: ingress-nginx
+            values: |
+              controller:
+                image:
+                  registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+    ```
+    The template functions add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
+    </details>
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the channel where you promoted the release to build the air gap bundle. Do one of the following:
+     * If you enabled the **Automatically create airgap builds for newly promoted releases in this channel** setting for the channel, watch for the build status to complete.
+     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
+
+1. Create or edit a customer with the **Air Gap Installation Option (Replicated Installers only)** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
+
+1. Install with Embedded Cluster in a development environment to test. See [Air gap installation with Embedded Cluster](/embedded-cluster/v3/installing-embedded-air-gap).

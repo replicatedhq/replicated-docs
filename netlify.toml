@@ -456,6 +456,10 @@
   from = "/vendor/embedded-kubernetes-overview"
   to = "/embedded-cluster/v3/embedded-overview"
 
+[[redirects]]
+  from = "/vendor/helm-packaging-airgap-bundles"
+  to = "/vendor/replicated-onboarding-air-gap"
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
