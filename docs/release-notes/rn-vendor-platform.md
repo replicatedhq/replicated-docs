@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.04.16-2
+
+Released on April 16, 2026
+
+### Improvements {#improvements-v2026-04-16-2}
+* When you submit a suppot ticket, the Vendor Portal automatically shares all attached and selected support bundles with Replicated support team.
+
 ## v2026.03.24-7
 
 Released on March 24, 2026
