@@ -44,3 +44,8 @@ ubuntu
 Velero
 GSuite
 Okta
+Chainguard
+Fulcio
+Rekor
+SecureBuild
+Sigstore
