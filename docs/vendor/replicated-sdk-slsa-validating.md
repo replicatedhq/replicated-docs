@@ -101,7 +101,7 @@ Use this method when verifying a Replicated SDK image after SecureBuild has rebu
 
 ### Use the verification script
 
-SecureBuild provides a verification script in the securebuild repository that you can use directly or as a basis for your own verification automation. The script is located at https://github.com/securebuildhq/securebuild/blob/main/scripts/verify-securebuild-image.sh.
+SecureBuild provides a verification script in the securebuild repository that you can use directly or as a basis for your own verification automation. You can find the script at https://github.com/securebuildhq/securebuild/blob/main/scripts/verify-securebuild-image.sh.
 
 The verification script performs three security checks against the SecureBuild signing identity:
 1. SLSA v1.0 provenance verification
