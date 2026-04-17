@@ -47,10 +47,10 @@ Use this method when verifying a Replicated SDK image during the window between 
 
 Replicated provides a verification script in the replicated-sdk repository that you can use directly or as a basis for your own verification automation. You can see the script at https://github.com/replicatedhq/replicated-sdk/blob/main/certs/verify-image.sh.
 
-The verification script performs three security checks:
-1. SLSA provenance verification
-1. Image signature verification
-1. SBOM attestation verification
+The verification script performs these security checks:
+* SLSA provenance verification
+* Image signature verification
+* SBOM attestation verification
 
 **Usage:**
 ```bash
@@ -77,16 +77,16 @@ Optional Arguments:
 
 The script performs the following checks:
 
-1. **SLSA provenance verification:**
+1. SLSA provenance verification:
    - Validates the build chain integrity
    - Verifies that the build ran through the secure build pipeline
    - Displays build details
 
-1. **Image signature verification:**
+1. Image signature verification:
    - Uses environment-specific public keys for verification
    - The replicated-sdk repository contains the public keys in the `certs` directory. For example, the `cosign-prod.pub` key validates a production release of the SDK.
 
-1. **SBOM attestation verification:**
+1. SBOM attestation verification:
    - Validates the SBOM
    - Displays SBOM details, including:
       - Document name
@@ -97,16 +97,16 @@ The script performs the following checks:
 
 ## Verify a SecureBuild-rebuilt SDK image {#verify-securebuild}
 
-Use this method when verifying a Replicated SDK image after SecureBuild has rebuilt it (approximately six hours after the release). SecureBuild rebuilds produce a new digest signed using keyless signing through Sigstore Fulcio and Rekor.
+Use this method when verifying a Replicated SDK image after SecureBuild has rebuilt it (approximately six hours after the release). SecureBuild rebuilds produce a new digest signed using keyless signing through Sigstore, Fulcio, and Rekor.
 
 ### Use the verification script
 
 SecureBuild provides a verification script in the securebuild repository that you can use directly or as a basis for your own verification automation. You can find the script at https://github.com/securebuildhq/securebuild/blob/main/scripts/verify-securebuild-image.sh.
 
-The verification script performs three security checks against the SecureBuild signing identity:
-1. SLSA v1.0 provenance verification
-1. Cosign image signature verification
-1. Software Package Data Exchange (SPDX) SBOM attestation verification
+The verification script performs these security checks against the SecureBuild signing identity:
+* SLSA v1.0 provenance verification
+* Cosign image signature verification
+* Software Package Data Exchange (SPDX) SBOM attestation verification
 
 Contact your Replicated account team for the SecureBuild signing identity (a GCP service account email) that applies to your images.
 
@@ -138,16 +138,16 @@ To get the digest for a tag, run `crane digest <image:tag>`.
 
 The script performs the following checks:
 
-1. **SLSA provenance verification:**
+1. SLSA provenance verification:
    - Runs `cosign verify-attestation --type https://slsa.dev/provenance/v1` against the image
    - Validates that the SecureBuild keyless identity signed the attestation
    - Displays build details, including the build type, builder ID, build ID, and start and finish timestamps
 
-1. **Image signature verification:**
+1. Image signature verification:
    - Runs `cosign verify` against the image using the SecureBuild keyless identity
    - Confirms that SecureBuild signed the image through Fulcio and recorded it in the Rekor transparency log
 
-1. **SBOM attestation verification:**
+1. SBOM attestation verification:
    - Runs `cosign verify-attestation --type https://spdx.dev/Document` against the image
    - Validates that the SecureBuild keyless identity signed the SPDX SBOM attestation
 
