@@ -100,10 +100,14 @@ To perform an upgrade with Embedded Cluster in air-gapped environments:
 
 1. In the Vendor Portal, open the **Customers** page and select the target customer.
 
-1. At the top of the customer page, click **Install instructions** and select **Embedded Cluster**. (The label might also appear as **Embedded Cluster install instructions**).
+1. At the top of the customer page, click **Install instructions > Embedded Cluster** or **Embedded Cluster install instructions**.
 
-1. In the **Install instructions** dialog, enable the air gap option.
+1. In the **Embedded Cluster install instructions** dialog, enable the air gap option.
 
-1. Download the installations assets to a machine with internet access and transfer them to the air-gapped host.
+1. Run the first command to download the installations assets to a machine with internet access.
 
-1. Run `upgrade` with the same air gap flags you use for `install` (for example, `--airgap-bundle`). For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+1. Transfer them to the air-gapped host. Run the second command to untar.
+
+1. Copy the `install` command and replace `install` with `upgrade`. For example, `sudo ./app-slug upgrade --license license.yaml`.
+
+    Embedded Cluster automatically detects the air gap installation, and performs an air gap upgrade.
