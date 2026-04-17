@@ -128,7 +128,7 @@ Options:
 **Example:**
 ```bash
 ./verify-securebuild-image.sh \
-  registry.replicated.com/library/replicated-sdk-image@sha256:0a83d01a984fb8d77db882648461021d9cef97113bf6332cc939b30d291a09a3 \
+  cve0.io/replicated-sdk-image@sha256:0a83d01a984fb8d77db882648461021d9cef97113bf6332cc939b30d291a09a3 \
   --identity attestor@your-securebuild-project.iam.gserviceaccount.com
 ```
 
