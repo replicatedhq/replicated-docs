@@ -85,7 +85,7 @@ To support air gap installations:
 
     <summary>Example (Separate values for image registry and repository)</summary>
 
-    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template function to rewrite only the `registry` field. The `repository` field does not need to be templated — it passes through from `values.yaml` unchanged.
+    If a chart uses separate registry and repository fields for image references, use the [ReplicatedImageRegistry](template-functions#replicatedimageregistry) template function to rewrite the `registry` field. The `repository` field does not need to be templated.
 
     ```yaml
     # values.yaml
@@ -109,7 +109,7 @@ To support air gap installations:
     <details>
     <summary>Example (References to public images)</summary>
 
-    For public images that don't go through the Replicated proxy registry, set the upstream reference directly in the chart's `values.yaml`. Use `noProxy` so the reference remains unchanged in online installations but is still rewritten for air gap.
+    For public images that don't go through the Replicated proxy registry, set the upstream reference directly in the chart's `values.yaml`. Use `noProxy` so that ReplicatedImageName leaves the reference unchanged in online installations. When you include `noProxy`, ReplicatedImageName still rewrites the image to the local registry in air gap installations.
 
     ```yaml
     # values.yaml
@@ -183,7 +183,7 @@ To support air gap installations:
                 image:
                   registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
     ```
-    The template functions will add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
+    The template functions add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
     </details>
 
 
