@@ -1,6 +1,6 @@
 # Validate provenance of releases for the Replicated SDK
 
-This topic describes how to verify the authenticity and integrity of Replicated SDK container images using SLSA provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
+This topic describes how to verify the authenticity and integrity of Replicated SDK container images. It covers Supply Chain Levels for Software Artifacts (SLSA) provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
 
 ## About supply chain levels for software artifacts (SLSA)
 
@@ -8,7 +8,7 @@ This topic describes how to verify the authenticity and integrity of Replicated 
 
 ## Purpose of attestations
 
-Attestations enable the inspection of an image to determine its origin, the identity of its creator, the creation process, and its contents. When building software using the Replicated SDK, the image's SBOM and SLSA-based provenance attestations empower your customers to make informed decisions regarding the impact of an image on the supply chain security of your application.
+Attestations enable the inspection of an image to determine its origin, the identity of its creator, the creation process, and its contents. When building software using the Replicated SDK, the image's SBOM and SLSA-based provenance attestations help your customers assess your application's supply chain security.
 
 The Replicated SDK build process uses Chainguard's Wolfi-based images to minimize the number of CVEs. The build process automatically generates:
 - SLSA provenance attestations
@@ -17,20 +17,20 @@ The Replicated SDK build process uses Chainguard's Wolfi-based images to minimiz
 
 ## About the SDK image verification lifecycle
 
-Replicated SDK images are published in two phases, and the verification method depends on which phase an image is in:
+Replicated publishes SDK images in two phases, and the verification method depends on which phase an image is in:
 
-1. **Original release build.** When a new SDK version is released, Replicated builds the image through its own pipeline, which attaches:
+1. **Original release build.** When Replicated releases a new SDK version, it builds the image through its own pipeline, which attaches:
     - SLSA L3 provenance from the GitHub Actions build
     - A cosign signature using Replicated's environment-specific keys
     - An SBOM attestation signed with the same keys
 
-    During this phase, verify images using [Verify an original SDK release image](#verify-original) below.
+    During this phase, see [Verify an original SDK release image](#verify-original).
 
-1. **SecureBuild rebuild.** Approximately six hours after a release, [SecureBuild](https://securebuild.com/) rebuilds the image against the latest upstream package versions to remediate any newly-disclosed CVEs. This rebuild produces a new image digest signed with SecureBuild's keyless identity (Sigstore Fulcio and Rekor, backed by a GCP service account). After this rebuild, the upstream verification script fails because the digest, signing identity, and provenance builder have all changed.
+1. **SecureBuild rebuild.** Approximately six hours after a release, [SecureBuild](https://securebuild.com/) rebuilds the image against the latest upstream package versions to remediate any newly-disclosed CVEs. This rebuild produces a new image digest signed with SecureBuild's keyless identity (Sigstore Fulcio and Rekor, backed by a Google Cloud Platform (GCP) service account). After this rebuild, the upstream verification script fails because the digest, signing identity, and provenance builder have all changed.
 
-    During this phase, verify images using [Verify a SecureBuild-rebuilt SDK image](#verify-securebuild) below.
+    During this phase, see [Verify a SecureBuild-rebuilt SDK image](#verify-securebuild).
 
-This lifecycle reflects a trade-off between provenance continuity and CVE remediation: SLSA provenance is bound to a specific build pipeline and digest, so any rebuild by a different builder requires a new attestation chain. Both verification paths provide equivalent cryptographic guarantees, only with different trust anchors.
+This lifecycle reflects a trade-off between provenance continuity and CVE remediation. SLSA provenance binds to a specific build pipeline and digest, so any rebuild by a different builder requires a new attestation chain. Both verification paths provide equivalent cryptographic guarantees, only with different trust anchors.
 
 ## Prerequisites
 
@@ -45,7 +45,7 @@ Use this method when verifying a Replicated SDK image during the window between 
 
 ### Use the verification script
 
-Replicated provides a verification script in the replicated-sdk repository that you can use directly or as a basis for your own verification automation. The script is located at https://github.com/replicatedhq/replicated-sdk/blob/main/certs/verify-image.sh.
+Replicated provides a verification script in the replicated-sdk repository that you can use directly or as a basis for your own verification automation. You can see the script at https://github.com/replicatedhq/replicated-sdk/blob/main/certs/verify-image.sh.
 
 The verification script performs three security checks:
 1. SLSA provenance verification
@@ -79,7 +79,7 @@ The script performs the following checks:
 
 1. **SLSA provenance verification:**
    - Validates the build chain integrity
-   - Verifies that the build was performed through the secure build pipeline
+   - Verifies that the build ran through the secure build pipeline
    - Displays build details
 
 1. **Image signature verification:**
@@ -106,7 +106,7 @@ SecureBuild provides a verification script in the securebuild repository that yo
 The verification script performs three security checks against the SecureBuild signing identity:
 1. SLSA v1.0 provenance verification
 1. Cosign image signature verification
-1. SBOM (SPDX) attestation verification
+1. Software Package Data Exchange (SPDX) SBOM attestation verification
 
 Contact your Replicated account team for the SecureBuild signing identity (a GCP service account email) that applies to your images.
 
@@ -140,15 +140,15 @@ The script performs the following checks:
 
 1. **SLSA provenance verification:**
    - Runs `cosign verify-attestation --type https://slsa.dev/provenance/v1` against the image
-   - Validates that the attestation was signed by the SecureBuild keyless identity
+   - Validates that the SecureBuild keyless identity signed the attestation
    - Displays build details, including the build type, builder ID, build ID, and start and finish timestamps
 
 1. **Image signature verification:**
    - Runs `cosign verify` against the image using the SecureBuild keyless identity
-   - Confirms that the image was signed by SecureBuild through Fulcio and recorded in the Rekor transparency log
+   - Confirms that SecureBuild signed the image through Fulcio and recorded it in the Rekor transparency log
 
 1. **SBOM attestation verification:**
    - Runs `cosign verify-attestation --type https://spdx.dev/Document` against the image
-   - Validates that the SPDX SBOM attestation was signed by the SecureBuild keyless identity
+   - Validates that the SecureBuild keyless identity signed the SPDX SBOM attestation
 
 For more information about the SDK release process, see [Manage releases with the Vendor Portal](/vendor/releases-creating-releases).
