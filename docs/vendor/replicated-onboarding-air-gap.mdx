@@ -3,6 +3,8 @@ import SupportAirGapV3 from "../partials/embedded-cluster/v3/_support-air-gap-re
 import HelmCrBuilderIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
 import BuilderKeyDetails from "../partials/airgap/_builder-key-details-dropdown.mdx"
+import CmxAirGapVm from "../partials/cmx/_air-gap-vm-commands.mdx"
+import CmxAirGapCluster from "../partials/cmx/_air-gap-cluster-commands.mdx"
 
 # Support air gap installations
 
@@ -55,6 +57,24 @@ The following shows an example of the **Compatibility Matrix > Network Policy** 
 [View a larger version of this image](/images/cmx-network-policy.png)
 
 You can also generate _network reports_ with Compatibility Matrix that capture and log all network events. These reports include details about each network event, including the domain names requested, destination IP Addresses connected to, and the source details. This helps you identify unexpected network calls before deploying to an air-gapped environment. For more information, see [Collect and view network reports](/vendor/testing-network-policy).
+
+### Air gap install instructions in Enterprise Portal
+
+Your customers can access air gap installation and upgrade instructions from their Replicated Enteprise Portal.
+
+From the Enterprise Portal's **Installation Guide**, customers with the air gap license entitlement can choose their **Network Availability** to proceed with an online installation, installation behind an HTTPS proxy, or an air gap installation:
+
+<img alt="Enterprise Portal Installation Guide" src="/images/enterprise-portal-install-guide-network-availability.png" width="700px"/>
+
+[View a larger version of this image](/images/enterprise-portal-install-guide-network-availability.png)
+
+After selecting their network availability, customers can continue to view the installation steps for their target release version:
+
+<img alt="Enterprise Portal air gap install steps" src="/images/enterprise-portal-air-gap-install-steps.png" width="700px"/>
+
+[View a larger version of this image](/images/enterprise-portal-air-gap-install-steps.png)
+
+For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-about).
 
 ## Configure releases to support air gap installation
 
@@ -131,7 +151,9 @@ To support air gap installations with Embedded Cluster v2:
 
 1. Create or edit a customer with the **Air Gap Installation Option (Replicated Installers only)** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
 
-1. Install in a development environment to test. See [Install in Air Gap Environments with Embedded Cluster](/embedded-cluster/v2/installing-embedded-air-gap).
+1. <CmxAirGapVm/>
+
+1. Install in your development environment to test. See [Install in Air Gap Environments with Embedded Cluster](/embedded-cluster/v2/installing-embedded-air-gap).
 
 ### Helm CLI
 
@@ -148,5 +170,7 @@ To support air gap installations with the Helm CLI:
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
 
 1. Create or edit a customer with the **Helm CLI Air Gap Instructions (Helm CLI only)** entitlement enabled so that you can test air gap installations. See [Create and Manage Customers](/vendor/releases-creating-customer).
+
+1. <CmxAirGapCluster/>
 
 1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to test the installation in a development environment.
