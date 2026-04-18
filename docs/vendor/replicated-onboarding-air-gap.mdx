@@ -2,10 +2,11 @@ import CreateRelease from "../partials/getting-started/_create-promote-release.m
 import SupportAirGapV3 from "../partials/embedded-cluster/v3/_support-air-gap-releases.mdx"
 import HelmCrBuilderIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
+import BuilderKeyDetails from "../partials/airgap/_builder-key-details-dropdown.mdx"
 
 # Support air gap installations
 
-This topic describes how to configure releases in the Replicated Platform to support installation in environments with little or no outbound internet access. The information in this guide applies to applications installed with Replicated Embedded Cluster or the Helm CLI.
+This topic describes how to configure your application releases to support installations in air-gapped environments with little or no outbound internet access. The information in this guide applies to applications installed with Replicated Embedded Cluster or the Helm CLI.
 
 ## About air gap installations with Replicated
 
@@ -15,7 +16,9 @@ This section provides an introduction to the Replicated Platform features that s
 
 Air gap bundles contain the images needed to install and run a single release of your application in environments without outbound internet access. For Embedded Cluster installations, the air gap bundle also includes assets needed to install the infrastructure, including the Embedded Cluster installer, k0s, and any Helm extensions.
 
-You need to build an air gap bundle for any release that supports air gap installation with a Replicated installer. You can build and download air gap bundles from each of channel's **Release History** page. You can also enable the **Automatically create airgap builds for newly promoted releases in this channel** setting for each channel. This avoids having to manually build the air gap bundle.
+You need to build an air gap bundle for each release that will be installed in an air-gapped environment. You can build and download air gap bundles from a channel's **Release History** page. You can also enable the **Automatically create airgap builds for newly promoted releases in this channel** setting for each channel. This avoids having to manually build the air gap bundle.
+
+The following shows an example of the **Release History** page for a channel:
 
 ![Release history page](/images/channel-release-history.png)
 
@@ -29,11 +32,13 @@ For more information, see [`builder`](/reference/custom-resource-helmchart-v2#bu
 
 ### Air gap customer license entitlements
 
-By default, licenses support online installations only. You can control which of your customers has access to air gap installations by enabling these built-in license fields:
+By default, licenses support online installations only. You can control which of your customers have access to air gap installations by enabling the following built-in license fields:
 * **Helm CLI Air Gap Instructions (Helm CLI only)**: When enabled, a customer will see instructions in the Enterprise Portal for how to pull images into their local repository. This entitlement applies to Helm CLI installations only.
 * **Air Gap Installation Option (Replicated Installers only)**: When enabled, new installations with this license show an option to install from an air gap bundle. This entitlement applies to Replicated installers only.
 
 Licenses with these air gap entitlements support both air gap and online installations.
+
+The following shows these license fields in the **Additional install options** section of the **Manager customer** page:
 
 <img alt="air gap license entitlements" src="/images/air-gap-license-entitlements.png" width="600px"/>
 
@@ -42,6 +47,8 @@ Licenses with these air gap entitlements support both air gap and online install
 ### Air-gapped environments with Compatibility Matrix
 
 You can change the network policy of environments created with Replicated Compatibility Matrix to `airgap` to block outbound network requests. This allows you to simulate air-gapped environments where you can test your releases. For more information, see [Create air-gapped environments](/vendor/testing-how-to#air-gap).
+
+The following shows an example of the **Compatibility Matrix > Network Policy** page: 
 
 ![Compatibility Matrix Network policies](/images/cmx-network-policy.png)
 
@@ -69,15 +76,7 @@ To support air gap installations with Embedded Cluster v2:
 
 1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-   <details>
-   <summary>How do I know if I need to configure the `builder` key?</summary>
-   
-   When building an air gap bundle, the Vendor Portal runs `helm template` on each Helm chart to detect which images to include. The bundle includes all images that `helm template` yields.
-
-   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
-
-   If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
-   </details>
+   <BuilderKeyDetails/>
 
 1. Configure each HelmChart custom resource to ensure that all image references resolve correctly in both online and air gap installations. You do this in `optionalValues` key using the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions. These functions return the location of the image in the user's local registry in air gap installations.
 
@@ -136,13 +135,7 @@ To support air gap installations with the Helm CLI:
 
 1. For each Helm chart in your release, configure the corresponding HelmChart custom resource [builder](/reference/custom-resource-helmchart-v2#builder) key. In the `builder` key, define the Helm values that `helm template` requires to expose all container images needed to install the chart. This ensures that the Vendor Portal can build the air gap bundle for the release and generate the customer-facing air gap install instructions in the Enterprise Portal.
 
-   <details>
-   <summary>How do I know if I need to configure the `builder` key?</summary>
-   
-   When building an air gap bundle, the Vendor Portal runs `helm template` on each Helm chart to detect which images to include. The bundle includes all images that `helm template` yields.
-
-   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images. If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
-   </details>
+   <BuilderKeyDetails/>
 
 1. <CreateRelease/>
 

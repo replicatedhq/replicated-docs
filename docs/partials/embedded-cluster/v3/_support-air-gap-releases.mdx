@@ -1,16 +1,10 @@
+import BuilderKeyDetails from "../../airgap/_builder-key-details-dropdown.mdx"
+
 To support air gap installations with Embedded Cluster v3:
 
 1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-   <details>
-   <summary>How do I know if I need to configure the `builder` key?</summary>
-   
-   When building an air gap bundle, the Vendor Portal runs `helm template` on each Helm chart to detect which images to include. The bundle includes all images that `helm template` yields.
-
-   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
-
-   If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
-   </details>
+   <BuilderKeyDetails/>
 
 1. Configure each HelmChart custom resource to ensure that all image references resolve correctly in both online and air gap installations. You do this in the HelmChart custom resource's [`values`](/reference/custom-resource-helmchart-v2#values) key using the [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) and [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template functions. See the following examples for more information:
 
