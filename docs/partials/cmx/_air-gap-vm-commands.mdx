@@ -1,0 +1,9 @@
+(Optional) Create a VM with Compatibility Matrix and set its network policy to `airgap` to block outbound network access:
+
+   ```bash
+   replicated vm create --distribution ubuntu 
+   ```
+   ```bash
+   replicated network update NETWORK_ID --policy airgap
+   ```
+   Where `NETWORK_ID` is the ID of the network from the output of the `vm create` command.
