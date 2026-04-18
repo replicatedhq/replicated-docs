@@ -12,18 +12,6 @@ The Embedded Cluster air gap bundle contains the assets normally found in an app
 
 During installation with Embedded Cluster in air gap environments, Embedded Cluster deploys a Docker registry to the cluster to store application images. The installer preloads infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts on each node at installation time.
 
-## Limitations and known issues
-
-Embedded Cluster installations in air gap environments have the following limitations and known issues:
-
-* If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
-
-* Images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how to set digests to empty strings and pull by tag only, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
-
-* Embedded Cluster loads images for Helm extensions directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to configure `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
-
-* On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
-
 ## Prerequisites
 
 Before you install, complete the following prerequisites:
