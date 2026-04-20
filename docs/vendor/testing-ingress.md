@@ -131,7 +131,7 @@ To remove a port (and the associated DNS records and TLS certificates) before an
 replicated cluster port rm CLUSTER_ID_OR_NAME --id PORT_ID
 
 # For VMs
-eplicated vm port rm VM_ID_OR_NAME --id PORT_ID
+replicated vm port rm VM_ID_OR_NAME --id PORT_ID
 ```
 
 ## Create an external load balancer (cloud-based cluster distributions only) {#loadbalancer-services}
