@@ -10,7 +10,7 @@ This topic describes how to verify the authenticity and integrity of Replicated 
 
 Attestations enable the inspection of an image to determine its origin, the identity of its creator, the creation process, and its contents. When building software using the Replicated SDK, the image's SBOM and SLSA-based provenance attestations help your customers assess your application's supply chain security.
 
-The Replicated SDK build process uses Chainguard's Wolfi-based images to minimize the number of CVEs. The build process automatically generates:
+The Replicated SDK build process uses [apko](https://github.com/chainguard-dev/apko) with packages from Replicated's [SecureBuild](https://securebuild.com/) package repository to minimize the number of CVEs. The build process automatically generates:
 - SLSA provenance attestations
 - Image signatures
 - SBOM
