@@ -128,10 +128,10 @@ To remove a port (and the associated DNS records and TLS certificates) before an
 
 ```bash
 # For clusters
-replicated cluster port rm PORT_ID --id CLUSTER_ID
+replicated cluster port rm CLUSTER_ID_OR_NAME --id PORT_ID
 
 # For VMs
-replicated vm port rm VM_ID
+replicated vm port rm VM_ID_OR_NAME --id PORT_ID
 ```
 
 ## Create an external load balancer (cloud-based cluster distributions only) {#loadbalancer-services}
