@@ -1,4 +1,8 @@
-# Use an identity provider for user access (Beta)
+# Use an identity provider for user access (Deprecated)
+
+:::important
+The identity service is deprecated. This feature is supported only in clusters created by Replicated kURL, and will not be extended to other install methods such as KOTS existing cluster or Embedded Cluster. No new development is planned for this feature.
+:::
 
 When you install an application for the first time, the Replicated KOTS Admin Console is secured with a single shared password for all users. It is possible to further configure the Admin Console to authenticate users with your organization's user management system. This feature is only available for licenses that have the Replicated identity service feature enabled.
 
