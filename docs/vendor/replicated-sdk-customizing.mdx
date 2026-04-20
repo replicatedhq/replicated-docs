@@ -341,12 +341,18 @@ replicated:
 
 #### About the read-only role
 
-The read-only SDK Role excludes `create` and `update` verbs for secrets. It includes only `get` permissions for secrets, and the Helm chart does not create the `replicated-support-metadata` Secret.
+The read-only SDK Role excludes `create` and `update` verbs for secrets. It includes only `get` permissions for secrets.
+
+When `readOnlyMode` is enabled, the SDK Helm chart also skips the chart-managed secrets that normally support support bundle collection and metadata enrichment:
+
+* `replicated-support-metadata`
+* `<release-name>-supportbundle`
 
 #### About using the SDK API in read-only mode
 
 Read-only mode affects the following SDK features:
 
+* **Chart-managed support bundle secrets**: The SDK Helm chart does not create the `replicated-support-metadata` Secret or the `<release-name>-supportbundle` Secret. This means the chart does not install the support bundle spec Secret and there is no local Secret for support bundle metadata.
 * **Instance tags**: You cannot programmatically set instance tags with the SDK API because tag data requires writing to the `replicated-meta-data` secret. The `POST /api/v1/app/instance-tags` endpoint returns `422 Unprocessable Entity`.
 * **Support bundle metadata**: You cannot use the SDK API to write enrichment data that the `supportBundleMetadata` collector would otherwise include in a generated support bundle. The `POST` and `PATCH /api/v1/supportbundle/metadata` endpoints return `422 Unprocessable Entity`.
 * **Custom app metrics (air-gapped environments)**: In air-gapped environments, the SDK cannot persist custom metrics to secrets for later collection through support bundles. You can still send custom metrics using the `POST` and `PATCH /api/v1/app/custom-metrics` endpoints, but the data is not stored locally.

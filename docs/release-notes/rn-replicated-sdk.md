@@ -8,6 +8,17 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.3
+
+Released on April 20, 2026
+
+### Bug fixes {#bug-fixes-1-19-3}
+* Fixes an issue where the SDK Helm chart still created the `<release-name>-supportbundle` Secret when `readOnlyMode` was enabled. Read-only mode now skips creation of both chart-managed support bundle secrets: `replicated-support-metadata` and `<release-name>-supportbundle`.
+
+### Improvements {#improvements-1-19-3}
+* Updates Kubernetes libraries from v0.35.3 to v0.35.4.
+* Updates `go.opentelemetry.io/otel/sdk` from v1.40.0 to v1.43.0.
+
 ## 1.19.2
 
 Released on April 16, 2026
