@@ -179,7 +179,7 @@ Before pushing changes to the remote repository, build and serve the site locall
 
 Replicated supports the [llms.txt](https://llmstxt.org/) convention for making documentation available to LLMs.
 
-- [llms.txt](https://docs.replicated.com/llms.txt): Hand-curated index of important topics (editable in `static/llms.txt` in this repository). Links point at plain Markdown copies under `static/` produced at build time.
+- [llms.txt](https://docs.replicated.com/llms.txt): Index of important topics (editable in `static/llms.txt` in this repository). Links point at plain Markdown copies under `static/` produced at build time.
 - [llms-full.txt](https://docs.replicated.com/llms-full.txt): Complete archive of documentation content, generated at build time.
 
 ### How LLM Files Are Generated
@@ -189,8 +189,6 @@ The `static/js/generate-llms.js` script runs automatically with the `prebuild` n
    - `static/llms-full.txt`: Complete archive of all documentation (not tracked in git)
    - Plain `.md` files under `static/vendor/`, `static/embedded-cluster/`, `static/enterprise/`, `static/reference/`, and `static/release-notes/` (not tracked in git)
 
-`static/llms.txt` is **not** produced by this script; update it manually when you want to change the curated list.
+The `prebuild` hook is defined in `package.json`. To ensure it runs, the Netlify build command must be `npm run build` (not `docusaurus build`).
 
-The `prebuild` hook is defined in `package.json`. To ensure it runs, the Netlify build command must be `npm run build` (not `docusaurus build` directly).
-
-Most generated outputs are listed in `.gitignore` because they are recreated on every build. `static/llms.txt` is tracked so the curated index is reviewed like any other doc change.
+Most generated outputs are listed in `.gitignore` because they are recreated on every build.
