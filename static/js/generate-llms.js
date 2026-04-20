@@ -8,7 +8,7 @@
  * - static/llms.txt - Hand-curated (tracked in git); not produced by this script
  * - static/llms-full.txt - Complete archive of all documentation (generated; gitignored)
  * - static/vendor/*.md - Plain markdown copies of vendor docs
- * - static/embedded-cluster/**/*.md - Plain markdown copies of Embedded Cluster docs (v2/v3)
+ * - static/embedded-cluster/ — Plain markdown copies of Embedded Cluster docs (recursive; v2 and v3 paths)
  * - static/enterprise/*.md - Plain markdown copies of enterprise docs
  * - static/reference/*.md - Plain markdown copies of reference docs
  * - static/release-notes/*.md - Plain markdown copies of release notes
