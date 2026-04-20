@@ -8,7 +8,6 @@
 .docusaurus
 .cache-loader
 .history
-static/llms.txt
 static/llms-full.txt
 static/intro-kots.md
 static/intro-replicated.md
@@ -17,6 +16,7 @@ static/enterprise/
 static/reference/
 static/release-notes/
 static/vendor/
+static/embedded-cluster/
 
 # Misc
 .DS_Store
