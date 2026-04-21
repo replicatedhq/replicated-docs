@@ -1,33 +1,46 @@
-For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update all references to private or third-party images to use the Replicated proxy registry domain.
+For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry for any private or third-party images to use the Replicated proxy registry URL.
 
     The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
 
     Where:
-    - `DOMAIN` is either `proxy.replicated.com` or your custom domain
-    - `APP_SLUG` is the unique slug of your application
-    - `UPSTREAM_REGISTRY/IMAGE_PATH` is the full upstream image path. For example, `ghcr.io/my-org/my-image` or `docker.io/bitnami/postgresql`.
+      - `DOMAIN` is either `proxy.replicated.com` or your custom domain
+      - `APP_SLUG` is the unique slug of your application
+      - `UPSTREAM_REGISTRY/IMAGE_PATH` is the full upstream image path. For example, `ghcr.io/my-org/my-image` or `docker.io/bitnami/postgresql`.
     
-    **Example:**
+    The following examples demonstrate how to rewrite the registry depending on if you use separate values for the registry and repository or a single value for the full image name:
+    
+    <details>
+      <summary>Example (Separate values for image registry and repository)</summary>
 
     ```yaml
-    # values.yaml
-    api:
+    # Current values.yaml
+    postgresql:
+      image:
+        registry: docker.io
+        repository: bitnami/postgresql
+    ```
+    
+    ```yaml
+    # New values.yaml
+    postgresql:
       image:
         # proxy.replicated.com or your custom domain
-        registry: proxy.replicated.com
-        repository: proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
-        tag: catalog-1.24.0
+        registry: proxy.replicated.com/proxy/app-slug/docker.io
+        repository: bitnami/postgresql
     ```
+    </details>
 
-    Ensure that any references to the image in your Helm chart access the field from your values file.  
+    <details>
+      <summary>Example (Single value for full image name)</summary>
 
-    **Example**:
-
-      ```yaml
-      apiVersion: v1
-      kind: Pod
-      spec:
-        containers:
-          - name: api 
-              # Access the registry, repository, and tag fields from the values file
-              image: {{ .Values.image.api.registry }}/{{ .Values.image.api.repository }}:{{ .Values.image.api.tag }}
+    ```yaml
+    # Current values.yaml
+    initImage: docker.io/library/busybox:1.36
+    ```
+    
+    ```yaml
+    # New values.yaml
+    # proxy.replicated.com or your custom domain
+    initImage: proxy.replicated.com/proxy/app-slug/docker.io/library/busybox:1.36
+    ```
+    </details>

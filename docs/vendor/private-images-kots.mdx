@@ -41,7 +41,50 @@ To configure your application to use the proxy registry for installations with a
 
 1. <StepCustomDomain/>
 
-1. <RewriteHelmValues/>
+1. For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry and repository for any private or third-party images to use the Replicated proxy registry URL.
+
+    The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
+
+    Where:
+      - `DOMAIN` is either `proxy.replicated.com` or your custom domain
+      - `APP_SLUG` is the unique slug of your application
+      - `UPSTREAM_REGISTRY/IMAGE_PATH` is the full upstream image path. For example, `ghcr.io/my-org/my-image` or `docker.io/bitnami/postgresql`.
+
+    The following examples demonstrate how to rewrite the registry depending on if you use separate values for the registry and repository or a single value for the full image name:  
+
+    <details>
+      <summary>Example (Separate values for image registry and repository)</summary>
+    ```yaml
+    # Current values.yaml
+    api:
+      image:
+        registry: ghcr.io
+        repository: cloudnative-pg/cloudnative-pg
+    ```
+    ```yaml
+    # New values.yaml
+    api:
+      image:
+        # proxy.replicated.com or your custom domain
+        registry: proxy.replicated.com
+        repository: proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    </details>
+
+    <details>
+      <summary>Example (Single value for full image name)</summary>
+    ```yaml
+    # Current values.yaml
+    api:
+      image: ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    ```yaml
+    # New values.yaml
+    api:
+      # proxy.replicated.com or your custom domain
+      image: proxy.replicated.com/proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    </details>
 
 1. <InjectPullSecret/>
 
