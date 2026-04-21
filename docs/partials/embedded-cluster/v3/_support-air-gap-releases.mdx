@@ -40,10 +40,11 @@ To support air gap installations with Embedded Cluster v3:
 
     ```yaml
     # values.yaml
-    image:
-      registry: proxy.replicated.com
-      repository: proxy/my-app/ghcr.io/my-org/my-image
-      tag: v1.0.0
+    postgresql:
+      image:
+        # proxy.replicated.com or your custom domain
+        registry: proxy.replicated.com/proxy/app-slug/docker.io
+        repository: bitnami/postgresql
     ```
 
     ```yaml
