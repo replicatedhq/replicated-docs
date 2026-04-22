@@ -1,7 +1,8 @@
 # Replicated registry security
 
-This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private. For more information about pushing images to the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
+This document lists the security measures and processes in place for the Replicated registry.
 
+The Replicated registry is a private OCI registry hosted by Replicated at `registry.replicated.com`. When you promote a release, the Replicated Vendor Portal automatically extracts any Helm charts included in the release and pushes them as OCI objects to the Replicated registry.
 
 ## Single tenant isolation
 
