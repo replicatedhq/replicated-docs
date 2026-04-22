@@ -14,7 +14,7 @@ Grants the holder permission to view the catalog events and triggers available f
 
 ### KOTS/app/create
 
-When allowed, the holder will be allowed to create new applications.
+When allowed, the holder can create new applications.
 
 ### KOTS/app/[:appid]/read
 Grants the holder permission to view the application. If the holder does not have permissions to view an application, it will not appear in lists.
@@ -28,15 +28,15 @@ Grants the holder permission to delete an application.
 Grants the holder permission to modify application settings, such as renaming the application, toggling trial signup, configuring security center settings, and managing support bundle upload visibility.
 
 ### KOTS/externalregistry/list
-Grants the holder the ability to list external docker registry for application(s).
+Grants the holder the ability to list external docker registry for applications.
 
 ### KOTS/externalregistry/create
 
-Grants the holder the ability to link a new external docker registry to application(s).
+Grants the holder the ability to link a new external docker registry to applications.
 
 ### KOTS/externalregistry/[:registryname]/delete
 
-Grants the holder the ability to delete the specified linked external docker registry in application(s).
+Grants the holder the ability to delete the specified linked external docker registry in applications.
 
 ### KOTS/externalregistry/update
 
@@ -52,39 +52,39 @@ Grants the holder the ability to view external registry sync logs.
 
 ### KOTS/app/[:appid]/channel/create
 
-Grants the holder the ability to create a new channel in the specified application(s).
+Grants the holder the ability to create a new channel in the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/archive
 
-Grants the holder permission to archive the specified channel(s) of the specified application(s).
+Grants the holder permission to archive the specified channels of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/delete
 
-Grants the holder permission to delete the specified channel of the specified application(s).
+Grants the holder permission to delete the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/promote
 
-Grants the holder the ability to promote a new release to the specified channel(s) of the specified application(s).
+Grants the holder the ability to promote a new release to the specified channels of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/update
 
-Grants the holder permission to update the specified channel of the specified application(s).
+Grants the holder permission to update the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/read
 
-Grants the holder the permission to view information about the specified channel of the specified application(s).
+Grants the holder the permission to view information about the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/enterprisechannel/[:channelid]/read
 
-Grants the holder the permission to view information about the specified enterprise channel of the specified application(s).
+Grants the holder the permission to view information about the specified enterprise channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/releases/read
 
-Grants the holder permission to list releases promoted to the specified channel of the specified application(s).
+Grants the holder permission to list releases promoted to the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/releases/update
 
-Grants the holder permission to update a release on the specified channel of the specified application(s).
+Grants the holder permission to update a release on the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/releases/airgap
 
@@ -96,19 +96,19 @@ Grants the holder permission to get an airgap bundle download URL for any releas
 
 ### KOTS/app/[:appid]/channel/[:channelid]/installers/read
 
-Grants the holder permission to list installers promoted to the specified channel of the specified application(s).
+Grants the holder permission to list installers promoted to the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/embeddedcluster/release
 
-Grants the holder permission to manage embedded cluster releases on the specified channel of the specified application(s).
+Grants the holder permission to manage embedded cluster releases on the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/release/[:sequence]/demote
 
-Grants the holder permission to demote a release from the specified channel of the specified application(s).
+Grants the holder permission to demote a release from the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/channel/[:channelid]/release/[:sequence]/undemote
 
-Grants the holder permission to un-demote a previously demoted release on the specified channel of the specified application(s).
+Grants the holder permission to un-demote a previously demoted release on the specified channel of the specified applications.
 
 ### KOTS/app/[:appid]/Installer/create
 
@@ -127,28 +127,28 @@ Grants the holder permission to view kURL installers. For more information, see 
 Grants the holder permission to promote kURL installers to a channel. For more information, see [Creating a kURL installer](packaging-embedded-kubernetes).
 
 :::note
-The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Users must be assigned both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to have permissions to view, create, and promote installers.
+The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Assign users both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to grant permissions to view, create, and promote installers.
 :::
 
 ### KOTS/app/[:appid]/license/create
 
-Grants the holder permission to create a new license in the specified application(s).
+Grants the holder permission to create a new license in the specified applications.
 
 ### KOTS/app/[:appid]/license/[:customerid]/read
 
-Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal, and the holder will not be able to subscribe to this license's instance notifications.
+Grants the holder permission to view the license specified by ID. If you deny this permission, the licenses do not appear in search, CSV export, or the Vendor Portal. The holder also cannot subscribe to this license's instance notifications.
 
 ### KOTS/app/[:appid]/license/[:customerid]/update
 
-Grants the holder permission to edit the license specified by ID for the specified application(s).
+Grants the holder permission to edit the license specified by ID for the specified applications.
 
 ### KOTS/app/[:appid]/license/[:customerid]/delete
 
-Grants the holder permission to delete the customer specified by ID for the specified application(s).
+Grants the holder permission to delete the customer specified by ID for the specified applications.
 
 ### KOTS/app/[:appid]/license/[:customerid]/unarchive
 
-Grants the holder permission to unarchive (restore) the customer specified by ID for the specified application(s).
+Grants the holder permission to unarchive (restore) the customer specified by ID for the specified applications.
 
 ### KOTS/app/[:appid]/license/[:customerid]/slack-notifications/read
 
@@ -160,15 +160,15 @@ Grants the holder permission to edit the team's Slack notification subscriptions
 
 ### KOTS/app/[:appid]/builtin-licensefields/update
 
-Grants the holder permission to edit the builtin license field override values for the specified application(s).
+Grants the holder permission to edit the builtin license field override values for the specified applications.
 
 ### KOTS/app/[:appid]/builtin-licensefields/delete
 
-Grants the holder permission to delete the builtin license field override values for the specified application(s).
+Grants the holder permission to delete the builtin license field override values for the specified applications.
 
 ### KOTS/license/[:customerid]/airgap/password
 
-Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
+Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified applications.
 
 ### KOTS/license/[:customerid]/archive
 
@@ -184,39 +184,39 @@ Grants the holder permissions to unarchive the specified license (by ID).
 
 ### KOTS/app/[:appid]/licensefields/create
 
-Grants the holder permission to create new license fields in the specified application(s).
+Grants the holder permission to create new license fields in the specified applications.
 
 ### KOTS/app/[:appid]/licensefields/read
 
-Grants the holder permission to view the license fields in the specified application(s).
+Grants the holder permission to view the license fields in the specified applications.
 
 ### KOTS/app/[:appid]/licensefields/update
 
-Grants the holder permission to edit the license fields for the specified application(s).
+Grants the holder permission to edit the license fields for the specified applications.
 
 ### KOTS/app/[:appid]/licensefields/delete
 
-Grants the holder permission to delete the license fields for the specified application(s).
+Grants the holder permission to delete the license fields for the specified applications.
 
 ### KOTS/app/[:appid]/release/create
 
-Grants the holder permission to create a new release in the specified application(s).
+Grants the holder permission to create a new release in the specified applications.
 
 ### KOTS/app/[:appid]/release/[:sequence]/update
 
-Grants the holder permission to update the files saved in release sequence `[:sequence]` in the specified application(s). Once a release is promoted to a channel, it's not editable by anyone.
+Grants the holder permission to update the files saved in release sequence `[:sequence]` in the specified applications. Once you promote a release to a channel, no one can edit it.
 
 ### KOTS/app/[:appid]/release/[:sequence]/read
 
-Grants the holder permission to read the files at release sequence `[:sequence]` in the specified application(s).
+Grants the holder permission to read the files at release sequence `[:sequence]` in the specified applications.
 
 ### KOTS/app/[:appid]/release/[:sequence]/archive
 
-Grants the holder permission to archive the release at sequence `[:sequence]` in the specified application(s).
+Grants the holder permission to archive the release at sequence `[:sequence]` in the specified applications.
 
 ### KOTS/app/[:appid]/releases/test
 
-Grants the holder permission to run release compatibility tests for the specified application(s).
+Grants the holder permission to run release compatibility tests for the specified applications.
 
 ### KOTS/app/[:appid]/customhostname/list
 
@@ -240,7 +240,7 @@ Grants the holder permission to unset the default custom hostnames.
 
 ### KOTS/app/[:appid]/defaulthostname/list
 
-Grants the holder permission to list default hostnames for the specified application(s).
+Grants the holder permission to list default hostnames for the specified applications.
 
 ### KOTS/app/[:appid]/SupportBundle/read
 
@@ -404,7 +404,7 @@ Grants the holder permission to update nodegroup details.
 
 ### KOTS/cluster[:clusterid]/kubeconfig
 
-Grants the holder permision to get the kubeconfig for a cluster.
+Grants the holder permission to get the kubeconfig for a cluster.
 
 ### KOTS/cluster/[:clusterid]/delete
 
@@ -534,11 +534,11 @@ Grants the holder permission to create an integration.
 
 ### Team/integration/[:integrationid]/delete
 
-Grants the holder permission to delete specified integration(s).
+Grants the holder permission to delete specified integrations.
 
 ### Team/integration/[:integrationid]/update
 
-Grants the holder permission to update specified integration(s).
+Grants the holder permission to update specified integrations.
 
 ### Team/members/list
 

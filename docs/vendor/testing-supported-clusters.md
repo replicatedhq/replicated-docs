@@ -76,7 +76,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_k3s_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.32.13, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.33.9, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.34.5, 1.35.0, 1.35.1, 1.35.2{/* END_k3s_VERSIONS */}</td>
+    <td>{/* START_k3s_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.32.13, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.33.9, 1.33.10, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.34.5, 1.34.6, 1.35.0, 1.35.1, 1.35.2, 1.35.3{/* END_k3s_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -123,7 +123,7 @@ CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_rke2_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.35.0, 1.35.1{/* END_rke2_VERSIONS */}</td>
+    <td>{/* START_rke2_VERSIONS */}1.32.0, 1.32.1, 1.32.2, 1.32.3, 1.32.4, 1.32.5, 1.32.6, 1.32.7, 1.32.8, 1.32.9, 1.32.10, 1.32.11, 1.32.12, 1.32.13, 1.33.0, 1.33.1, 1.33.2, 1.33.3, 1.33.4, 1.33.5, 1.33.6, 1.33.7, 1.33.8, 1.33.9, 1.33.10, 1.34.1, 1.34.2, 1.34.3, 1.34.4, 1.34.5, 1.34.6, 1.35.0, 1.35.1, 1.35.2, 1.35.3{/* END_rke2_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -214,9 +214,9 @@ By default, kubeconfig context is set to the `kubeadmin` user. To switch to the 
   </tr>
 </table>
 
-### Embedded Cluster
+### Embedded Cluster (v2)
 
-CMX supports creating clusters with Replicated Embedded Cluster. For more information, see [Embedded Cluster Overview](/vendor/embedded-overview).
+CMX supports creating clusters with Replicated Embedded Cluster v2. For more information, see [Embedded Cluster Overview](/embedded-cluster/v2/embedded-overview).
 
 <table>
   <tr>
@@ -321,7 +321,7 @@ CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td><p>{/* START_eks_VERSIONS */}1.29, 1.30, 1.31, 1.32, 1.33, 1.34, 1.35{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.29, 1.30, 1.31</p></td>
+    <td><p>{/* START_eks_VERSIONS */}1.30, 1.31, 1.32, 1.33, 1.34, 1.35{/* END_eks_VERSIONS */}</p><p>Extended Support Versions: 1.30, 1.31, 1.32</p></td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -409,7 +409,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_aks_VERSIONS */}1.32, 1.33, 1.34{/* END_aks_VERSIONS */}</td>
+    <td>{/* START_aks_VERSIONS */}1.33, 1.34, 1.35{/* END_aks_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>

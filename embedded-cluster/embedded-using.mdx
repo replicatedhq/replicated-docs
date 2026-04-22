@@ -1,0 +1,149 @@
+import UpdateOverview from "../docs/partials/embedded-cluster/v3/_update-overview.mdx"
+import EcConfig from "../docs/partials/embedded-cluster/v3/_ec-config.mdx"
+import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
+import RewriteHelmValues from "../docs/partials/proxy-service/_step-rewrite-helm-values.mdx"
+import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
+import SupportAirGapV3 from "../docs/partials/embedded-cluster/v3/_support-air-gap-releases.mdx"
+
+# Configure Embedded Cluster (Beta)
+
+This topic describes how to configure and use Replicated Embedded Cluster with your application.
+For more information about Embedded Cluster, see [Embedded Cluster Overview](embedded-overview). For information about updating an existing release from Embedded Cluster v2 to v3, see [Migrate from Embedded Cluster v2](embedded-v3-migrate).
+
+## Create a release with Embedded Cluster v3
+
+To create an application release that supports installation with Embedded Cluster v3:
+
+1. If you use the Replicated proxy registry, update all references to private or third-party images to use the Replicated proxy registry domain. See the _Embedded Cluster v3_ steps in [Configure your application to use the proxy registry](/vendor/private-images-kots#configure-v3).
+
+1. In your application Helm chart `Chart.yaml` file, add the SDK as a dependency. If your application uses multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
+
+    <DependencyYaml/>
+
+1. Package each chart into a `.tgz` chart archive. See [Package a Helm chart for a release](/vendor/helm-install-release).
+
+1. For each chart archive, add a unique HelmChart v2 custom resource (version `kots.io/v1beta2`).
+
+   ```yaml
+   # HelmChart custom resource
+   apiVersion: kots.io/v1beta2
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+     # chart identifies a matching chart from a .tgz
+     chart:
+       name: samplechart
+       chartVersion: 3.1.7
+   ```    
+
+1. If you support air gap installations, update all image references so they resolve correctly in both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
+
+1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
+
+     <EcConfig/>
+
+1. If you use custom domains for the Replicated proxy registry or Replicated app service, add them to the Embedded Cluster Config `domains` key. See [Configure Embedded Cluster to use custom domains](/vendor/custom-domains-using#ec) in _Use custom domains_.
+
+1. If you need Embedded Cluster to deploy certain components to the cluster before it deploys your application, add the Helm charts for those components to the Embedded Cluster Config `extensions` key. See [(Optional) Add Helm chart extensions](#add-extensions) on this page.
+
+1. Save the release and promote it to the channel that you use for testing internally.
+
+1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+
+## Add support for air gap installations {#local-image-registry}
+
+This section describes how to support air gap installations with Embedded Cluster v3. It includes information about how to configure your release and lists the limitations and known issues of air gap installations with Embedded Cluster v3.
+
+### Configure the release
+
+<SupportAirGapV3/>
+
+### Limitations and known issues
+
+Embedded Cluster installations in air gap environments have the following limitations and known issues:
+
+* If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
+
+* Images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how to set digests to empty strings and pull by tag only, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
+
+* Embedded Cluster loads images for Helm extensions directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to configure `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
+
+* On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
+
+## Add Helm chart extensions {#add-extensions}
+
+If your application requires certain components deployed before the application and as part of the cluster itself, add them as [extensions](embedded-config#extensions) in the Embedded Cluster Config. For example, you can add a Helm extension to deploy an ingress controller. You can add extensions for Helm charts that you own or for third-party charts.
+
+To add Helm extensions:
+
+1. In the Embedded Cluster Config, add the Helm chart to the [`extensions`](embedded-config#extensions) key.
+
+1. If you support air gap installations, configure each of your `extensions` so that they resolve correctly for both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
+
+1. Save the release and promote it to the channel that you use for testing internally.
+
+1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+
+## Serve installation assets using the Vendor API
+
+To install with Embedded Cluster, your end customers need to download the Embedded Cluster installer binary and their license. Air gap installations also require an air gap bundle. End customers can download all these installation assets using a curl command by following the installation steps available in the [Replicated Enterprise Portal](/vendor/enterprise-portal-about).
+
+However, some vendors already have a portal where their customers can log in to access documentation or download artifacts. In cases like this, you can serve the Embedded Cluster installation assets yourself using the Replicated Vendor API. This removes the need for customers to download assets from the Replicated app service using a curl command during installation.
+
+To serve Embedded Cluster installation assets with the Vendor API:
+
+1. If you have not done so already, create an API token for the Vendor API. See [Use the Vendor API v3](/reference/vendor-api-using#api-token-requirement).
+
+1. Call the [Get an Embedded Cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) endpoint to download the assets needed to install your application with Embedded Cluster. Your customers must take this binary and their license and copy them to the machine where they will install your application.
+
+     Note the following:
+
+     * (Recommended) Provide the `customerId` query parameter so that the downloaded tarball includes the customer’s license. This mirrors what the Replicated app service returns when a customer downloads the binary directly and is the most useful option. Excluding the `customerId` is useful if you plan to distribute the license separately.
+
+     * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
+
+## Distribute the NVIDIA gpu operator with Embedded Cluster {#nvidia-gpu-operator}
+
+:::note
+Distributing the NVIDIA GPU Operator with Embedded Cluster is not an officially supported feature from Replicated. However, it is a common use case.
+:::
+
+The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation.
+
+### Include the NVIDIA gpu operator and configure containerd options
+
+You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
+
+Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
+
+```yaml
+# Embedded Cluster Config
+
+  extensions:
+    helm:
+      repositories:
+        - name: nvidia
+          url: https://nvidia.github.io/gpu-operator
+      charts:
+        - name: gpu-operator
+          chartname: nvidia/gpu-operator
+          namespace: gpu-operator
+          version: "v24.9.1"
+          values: |
+            # configure the containerd options
+            toolkit:
+             env:
+             - name: CONTAINERD_CONFIG
+               value: /etc/k0s/containerd.d/nvidia.toml
+             - name: CONTAINERD_SOCKET
+               value: /run/k0s/containerd.sock
+```
+
+### containerd known issue
+
+When you configure the containerd options as shown earlier on this page, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
+
+If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services from the host before installing with Embedded Cluster. This includes services deployed by Docker. If any containerd services are present on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia-gpu-operator) in _Troubleshooting Embedded Cluster_.
+
+This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.

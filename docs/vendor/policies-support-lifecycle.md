@@ -65,7 +65,7 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/vendor/embedded-overview">Replicated Embedded Cluster Installer</a></td>
+    <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
@@ -95,9 +95,16 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <th>End of Replicated Support</th>
   </tr>
   <tr>
+    <td>1.35</td>
+    <td>NA</td>
+    <td>1.129.4 and later</td>
+    <td>NA</td>
+    <td>2027 February 28</td>
+  </tr>
+  <tr>
     <td>1.34</td>
-    <td>NA</td>
-    <td>NA</td>
+    <td>2.14.0 and later</td>
+    <td>1.128.3 and later</td>
     <td>v2025.10.08-0 and later</td>
     <td>2026 October 27</td>
   </tr>
@@ -108,20 +115,6 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <td>v2025.08.26-0 and later</td>
     <td>2026 June 28</td>
   </tr>
-  <tr>
-    <td>1.32</td>
-    <td>2.9.0 and later</td>
-    <td>1.123.0 and later</td>
-    <td>2025.03.19-0 and later</td>
-    <td>2026 Feb 28</td>
-  </tr>
-  <tr>
-    <td>1.31</td>
-    <td>2.6.0 and later</td>
-    <td>1.117.0 and later</td>
-    <td>2024.08.26-0 and later</td>
-    <td>2025 October 28</td>
-  </tr>
 </table>
 
 Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS, kURL or Embedded Cluster, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
@@ -129,4 +122,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2025 October 9.
+Last modified 2026 April 20.

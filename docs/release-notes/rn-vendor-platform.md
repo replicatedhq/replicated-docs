@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.04.16-2
+
+Released on April 16, 2026
+
+### Improvements {#improvements-v2026-04-16-2}
+* When you submit a suppot ticket, the Vendor Portal automatically shares all attached and selected support bundles with Replicated support team.
+
 ## v2026.03.24-7
 
 Released on March 24, 2026
@@ -485,7 +492,7 @@ Released on March 17, 2025
 Released on March 13, 2025
 
 ### New features {#new-features-v2025-03-13-5}
-* Enforces that the custom domains set in the Embedded Cluster Config match the custom domains set on the channel when promoting a release. For more information about using custom domains for Embedded Cluster installations, see [domains](https://docs.replicated.com/reference/embedded-config#domains) in _Embedded Cluster Config_.
+* Enforces that the custom domains set in the Embedded Cluster Config match the custom domains set on the channel when promoting a release. For more information about using custom domains for Embedded Cluster installations, see [domains](https://docs.replicated.com/embedded-cluster/v3/embedded-config#domains) in _Embedded Cluster Config_.
 
 ## V2025.03.08-0
 
@@ -1737,7 +1744,7 @@ Released on March 7, 2024
 Released on March 7, 2024
 
 ### New features {#new-features-v2024-03-07-0}
-* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+* Adds the Replicated embedded cluster (Beta) distribution to the compatibility matrix. For more information, see [Using Embedded Cluster](/embedded-cluster/v3/embedded-overview).
 
 ## V2024.03.06-3
 
@@ -1758,7 +1765,7 @@ Released on February 29, 2024
 Released on February 29, 2024
 
 ### New features {#new-features-v2024-02-29-0}
-* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster](/vendor/embedded-overview).
+* Enables the Embedded Cluster option on the customer license page. For more information, see [Using Embedded Cluster](/embedded-cluster/v3/embedded-overview).
 
 
 ## V2024.02.27-1

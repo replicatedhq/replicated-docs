@@ -126,5 +126,5 @@ To view network reports from the CLI:
 
 ## Related topics
 
-* [Air Gap Installation with Embedded Cluster](/enterprise/installing-embedded-air-gap)
+* [Air Gap Installation with Embedded Cluster](/embedded-cluster/v3/installing-embedded-air-gap)
 * [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap).

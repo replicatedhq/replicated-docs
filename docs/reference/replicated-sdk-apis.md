@@ -147,6 +147,7 @@ Response: Status `200` OK
 
 Delete an application custom metric. 
 
+
 ```bash
 DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
 ```
@@ -154,6 +155,7 @@ DELETE http://replicated:3000/api/v1/app/custom-metrics/numProjects
 Response: Status `204` No Content 
 
 ### POST /app/instance-tags
+
 
 Programmatically set new instance tags or overwrite existing tags. Instance tags are key-value pairs, where the key and the value are strings.
 
@@ -184,7 +186,9 @@ Request:
 
 Response: Status `200` OK
 
-### POST /app/supportbundle
+## supportbundle
+
+### POST /supportbundle
 
 Upload a support bundle through the SDK. The bundle is streamed to Replicated for analysis and is available in the Vendor Portal.
 
@@ -194,7 +198,7 @@ Upload a support bundle through the SDK. The bundle is streamed to Replicated fo
 * The request must include the `Content-Length` header
 
 ```bash
-POST http://replicated:3000/api/v1/app/supportbundle
+POST http://replicated:3000/api/v1/supportbundle
 Content-Type: application/gzip
 Content-Length: <bundle-size-in-bytes>
 
@@ -210,9 +214,8 @@ Response: Status `201` Created
 }
 ```
 
-## supportbundle
-
 ### POST /supportbundle/metadata
+
 
 Set support bundle metadata (key-value pairs) by replacing any existing metadata.
 
@@ -236,6 +239,7 @@ Request:
 Response: Status `200` OK
 
 ### PATCH /supportbundle/metadata
+
 
 Merge support bundle metadata (key-value pairs) with any existing metadata. `PATCH /supportbundle/metadata` adds new keys and updates existing keys. It preserves any keys excluded from the request.
 
@@ -449,6 +453,7 @@ Get mock data that is used when Development Mode is enabled.
 
 ### POST /api/v1/integration/mock-data
 
+
 Programmatically set mock data that is used when Development Mode is enabled. The payload will overwrite the existing mock data. Any data that is not included in the payload will be removed. For example, to remove release data, simply include empty arrays:
 
 ```bash
@@ -485,7 +490,7 @@ This section provides example use cases for the Replicated SDK API.
 
 The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. You could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from your application.
 
-Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your application by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
+Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your application by injecting values returned by the `/api/v1/license/info` and `/api/v1/app/info` endpoints. 
 
 The following examples show how you could include a page in your application that lists available updates and also provides customer-specific upgrade instructions:  
 

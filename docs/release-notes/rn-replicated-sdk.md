@@ -8,6 +8,43 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.3
+
+Released on April 20, 2026
+
+### Bug fixes {#bug-fixes-1-19-3}
+* Fixes an issue where the SDK Helm chart still created the `<release-name>-supportbundle` Secret when `readOnlyMode` was enabled. Read-only mode now skips creation of both chart-managed support bundle secrets: `replicated-support-metadata` and `<release-name>-supportbundle`.
+
+### Improvements {#improvements-1-19-3}
+* Updates Kubernetes libraries from v0.35.3 to v0.35.4.
+* Updates `go.opentelemetry.io/otel/sdk` from v1.40.0 to v1.43.0.
+
+## 1.19.2
+
+Released on April 16, 2026
+
+### Improvements {#improvements-1-19-2}
+* Updates Helm from 3.20.1 to 3.20.2.
+* Updates Go from 1.26.1 to 1.26.2.
+
+## 1.19.1
+
+Released on April 7, 2026
+
+### Bug fixes {#bug-fixes-1-19-1}
+* Fixes an issue where the "Enable mock data for development" checkbox in the Vendor Portal did not reliably disable mock mode for development licenses. By default, the SDK now disables mock data when the `integration-enabled` key is absent from the `replicated` secret. Also, the Helm chart template now always writes the `integration-enabled` key explicitly.
+
+### Improvements {#improvements-1-19-1}
+* Switches to the GA `discovery.k8s.io/v1` EndpointSlice API for service status discovery, replacing the legacy Endpoints API.
+* Adds support for specifying the replicated-sdk image by digest.
+
+## 1.19.0
+
+Released on April 2, 2026
+
+### New features {#new-features-1-19-0}
+* Adds a `readOnlyMode` Helm value that prevents the SDK from creating or updating Kubernetes secrets at runtime. When enabled, the SDK RBAC Role is reduced to read-only permissions, write API endpoints return `422 Unprocessable Entity`, and the `replicated-support-metadata` Secret is not created. Custom app metrics are still synced to Replicated APIs when the cluster has internet access. For more information, see [Enable Read-Only Mode](/vendor/replicated-sdk-customizing#read-only-mode) in _Customize the Replicated SDK_.
+
 ## 1.18.2
 
 Released on March 23, 2026
@@ -42,7 +79,7 @@ Released on March 5, 2026
 Released on March 4, 2026
 
 ### New features {#new-features-1-17-0}
-* Adds a `POST /api/v1/app/supportbundle` endpoint that allows uploading support bundles through the SDK. See [POST /app/support-bundle](/reference/replicated-sdk-apis#post-appsupportbundle) in _Replicated SDK API_.
+* Adds a `POST /api/v1/supportbundle` endpoint that allows uploading support bundles through the SDK. See [POST /supportbundle](/reference/replicated-sdk-apis#post-supportbundle) in _Replicated SDK API_.
 
 ### Improvements {#improvements-1-17-0}
 * Updates Kubernetes libraries from v0.35.0 to v0.35.2.

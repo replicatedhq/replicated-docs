@@ -11,9 +11,29 @@ This topic describes how to use the Replicated proxy registry for applications d
 
 ## Configure your application to use the proxy registry
 
-These steps assume that you package your application with Helm and that you install with the KOTS [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource.
+These steps assume that you package your application with Helm and that you install with the [HelmChart v2](/reference/custom-resource-helmchart-v2) custom resource.
 
-If you are installing with the HelmChart v1 custom resource, or if your application is not packaged with Helm, there are different steps for configuring your application to use the proxy registry. See [Configure Other Application Types](#other) below.
+If you are installing with the HelmChart v1 custom resource, or if your application is not packaged with Helm, there are different steps for configuring your application to use the proxy registry. See [Configure other application types](#other) below.
+
+### Embedded Cluster v3 (Beta) {#configure-v3}
+
+Follow these steps to use the proxy registry with applications installed with [Embedded Cluster v3 (Beta)](/embedded-cluster/v3/embedded-overview).
+
+Embedded Cluster v3 configures the cluster to automatically authenticate to the Replicated proxy registry for all pods.
+
+For installations Embedded Cluster v3, 
+
+1. <StepCreds/>
+
+1. <StepCustomDomain/>
+
+1. <RewriteHelmValues/>
+
+1. Create a new release with your changes. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
+
+1. Install in a development environment to test your changes. See [Online installation with Embedded Cluster](/embedded-cluster/v3/installing-embedded).
+
+### Embedded Cluster v2, KOTS, or kURL
 
 To configure your application to use the proxy registry for installations with a Replicated installer:
 
@@ -21,7 +41,50 @@ To configure your application to use the proxy registry for installations with a
 
 1. <StepCustomDomain/>
 
-1. <RewriteHelmValues/>
+1. For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry and repository for any private or third-party images to use the Replicated proxy registry URL.
+
+    The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
+
+    Where:
+      - `DOMAIN` is either `proxy.replicated.com` or your custom domain
+      - `APP_SLUG` is the unique slug of your application
+      - `UPSTREAM_REGISTRY/IMAGE_PATH` is the full upstream image path. For example, `ghcr.io/my-org/my-image` or `docker.io/bitnami/postgresql`.
+
+    The following examples demonstrate how to rewrite the registry depending on if you use separate values for the registry and repository or a single value for the full image name:  
+
+    <details>
+      <summary>Example (Separate values for image registry and repository)</summary>
+    ```yaml
+    # Current values.yaml
+    api:
+      image:
+        registry: ghcr.io
+        repository: cloudnative-pg/cloudnative-pg
+    ```
+    ```yaml
+    # New values.yaml
+    api:
+      image:
+        # proxy.replicated.com or your custom domain
+        registry: proxy.replicated.com
+        repository: proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    </details>
+
+    <details>
+      <summary>Example (Single value for full image name)</summary>
+    ```yaml
+    # Current values.yaml
+    api:
+      image: ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    ```yaml
+    # New values.yaml
+    api:
+      # proxy.replicated.com or your custom domain
+      image: proxy.replicated.com/proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
+    ```
+    </details>
 
 1. <InjectPullSecret/>
 

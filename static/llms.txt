@@ -1,0 +1,146 @@
+<!--
+  Curated manually. Edit this file in pull requests when you want to change what
+  LLMs surface first—not via build scripts. Full documentation archive:
+  llms-full.txt (generated at build by static/js/generate-llms.js).
+-->
+
+# Replicated Documentation
+
+> Replicated is a commercial software distribution platform. Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air-gapped environment with little or no outbound internet access.
+
+For a complete archive of all documentation pages, see [llms-full.txt](https://docs.replicated.com/llms-full.txt)
+
+## Key terminology
+
+- Vendor Portal: Portal for software vendors to manage their app and customers
+- Replicated CLI: Software vendors can use the Replicated CLI to manage their app, customer, and more from the command line
+- Embedded Cluster: An installer that lets software vendors deploy distribute a Kubernetes cluster and their app together as a single appliance
+- Enterprise Portal: Portal for end customers where they can get app install and upgrade instructions, see when new versions are available, see their license details, and more
+- Compatibility Matrix (CMX): Vendors can create clusters and VMs. Useful for testing their releases and also for troubleshooting issues
+- Preflight Checks: Vendors can define a custom spec so that customers can run preflight checks before installing your application
+- Support bundles: Vendors can define a custom spec so that customers can generate support bundles with important troubleshooting information that's specific to their app
+- Replicated proxy registry: Grant end customers proxy access the private images. Uses the customer's license ID for auth
+- KOTS: Legacy Replicated installer for installing apps in existing clusters. KOTS also provides the install experience for Embedded Cluster v2. KOTS is NOT used in Embedded Cluster v3 and later.
+- Admin Console: End customer-facing portal used for KOTS existing cluster, Embedded Cluster v2, and kURL installations. Customers can fetch new versions, sync their license, upgrade, and more. Admin Console is not used for Embedded Cluster v3 
+
+## Get started and main tasks
+
+Start here for product overview, onboarding paths, and automation in CI/CD. For comprehensive API and packaging reference, use the full archive linked below.
+
+- [Introduction to Replicated](https://docs.replicated.com/intro-replicated.md): This topic provides an introduction to the Replicated Platform, including a platform overview and a list of key features.
+- [Replicated quick start](https://docs.replicated.com/vendor/quick-start.md): This topic provides a quick start workflow to help new users learn about the Replicated Platform.
+- [Replicated FAQs](https://docs.replicated.com/vendor/kots-faq.md): This topic lists frequently-asked questions (FAQs) for different components of the Replicated Platform.
+- [Onboard to the Replicated Platform](https://docs.replicated.com/vendor/replicated-onboarding.md): This topic describes how to onboard applications to the Replicated Platform to support installations with Replicated Embedded Cluster and the Helm CLI.
+- [Onboard to the Replicated Platform (Helm CLI installs only)](https://docs.replicated.com/vendor/replicated-onboarding-helm-only.md): This topic provides Replicated onboarding steps for vendors that support Helm CLI installations only for their application.
+- [Set up your environment](https://docs.replicated.com/vendor/environment-setup.md): This topic describes how to set up your environment to get started with the Replicated Platform.
+- [About integrating with CI/CD](https://docs.replicated.com/vendor/ci-overview.md): This topic provides an introduction to integrating Replicated CLI commands in your continuous integration and continuous delivery (CI/CD) pipelines, including Replicated's best practices and recommendations.
+- [Recommended CI/CD workflows](https://docs.replicated.com/vendor/ci-workflows.md): This topic provides Replicated's recommended development and release workflows for your continuous integration and continuous delivery (CI/CD) pipelines.
+- [Use Replicated GitHub actions in CI/CD](https://docs.replicated.com/vendor/ci-workflows-github-actions.md): This topic describes how to integrate Replicated's custom GitHub actions into continuous integration and continuous delivery (CI/CD) workflows that use the GitHub Actions platform.
+
+## Vendor Portal
+
+Manage applications, channels, releases, licenses, teams, RBAC, and telemetry for customer instances.
+
+- [Manage applications](https://docs.replicated.com/vendor/vendor-portal-manage-app.md): This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated Vendor Portal and with the Replicated CLI.
+- [Application settings page](https://docs.replicated.com/vendor/vendor-portal-application-settings.md): Each application has its own settings, which include the application name and application slug.
+- [About channels and releases](https://docs.replicated.com/vendor/releases-about.md): This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated Vendor Portal.
+- [Create and edit channels](https://docs.replicated.com/vendor/releases-creating-channels.md): This topic describes how to create and edit channels using the Replicated Vendor Portal.
+- [Manage releases with the Vendor Portal](https://docs.replicated.com/vendor/releases-creating-releases.md): This topic describes how to use the Replicated Vendor Portal to create and promote releases, edit releases, edit release properties, and archive releases.
+- [Manage releases with the CLI](https://docs.replicated.com/vendor/releases-creating-cli.md): This topic describes how to use the Replicated CLI to create and promote releases.
+- [Find installation commands for a release](https://docs.replicated.com/vendor/releases-sharing-license-install-script.md): This topic describes where to find the installation commands and instructions for releases in the Replicated Vendor Portal.
+- [Access a customer's Download Portal](https://docs.replicated.com/vendor/releases-share-download-portal.md): This topic describes how to access installation instructions and download installation assets (such as customer license files and air gap bundles) from the Replicated Download Portal.
+- [About customers and licensing](https://docs.replicated.com/vendor/licenses-about.md): This topic provides an overview of customers and licenses in the Replicated Platform.
+- [Create and manage customers](https://docs.replicated.com/vendor/releases-creating-customer.md): This topic describes how to create and manage customers in the Replicated Vendor Portal.
+- [Manage install types for a license](https://docs.replicated.com/vendor/licenses-install-types.md): This topic describes how to manage which installation types and options are enabled for a license.
+- [Query entitlements with the Replicated SDK API](https://docs.replicated.com/vendor/licenses-reference-sdk.md): This topic describes how to query license entitlements at runtime using the Replicated SDK in-cluster API.
+- [Manage team members](https://docs.replicated.com/vendor/team-management.md): This topic describes how to manage team members in the Replicated Vendor Portal, such as inviting and removing members, and editing permissions.
+- [Configure RBAC policies](https://docs.replicated.com/vendor/team-management-rbac-configuring.md): This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions in the Replicated Vendor Portal.
+- [RBAC resource names](https://docs.replicated.com/vendor/team-management-rbac-resource-names.md): Reference list of Vendor Portal RBAC permission resource names.
+- [Generate API tokens](https://docs.replicated.com/vendor/replicated-api-tokens.md): This topic describes the available types of API tokens and how to generate them for use with the Replicated CLI and Replicated Vendor API v3.
+- [About instance and event data](https://docs.replicated.com/vendor/instance-insights-event-data.md): This topic provides an overview of the customer and instance insights that you can view in the Replicated Vendor Portal.
+- [Enable and understand application status](https://docs.replicated.com/vendor/insights-app-status.md): This topic describes how to configure your application so that you can view the status of application instances in the Replicated Vendor Portal.
+- [Configure custom metrics (Beta)](https://docs.replicated.com/vendor/custom-metrics.md): This topic describes how to configure an application to send custom metrics to the Replicated Vendor Portal.
+- [Submit a support request](https://docs.replicated.com/vendor/support-submit-request.md): This topic describes how to open a support request with the Replicated team, including information about the fields in the support request form.
+
+## Compatibility Matrix (CMX)
+
+Provision test clusters and VMs, simulate air-gapped network policy, validate distributions, and connect over SSH for debugging.
+
+- [About CMX](https://docs.replicated.com/vendor/testing-about.md): This topic describes Replicated Compatibility Matrix (CMX), including use cases, billing, limitations, and more.
+- [Create and manage environments with CMX](https://docs.replicated.com/vendor/testing-how-to.md): This topic describes how to use Replicated Compatibility Matrix (CMX) to create and manage clusters and VMs.
+- [CMX cluster and VM types](https://docs.replicated.com/vendor/testing-supported-clusters.md): This topic lists the supported cluster and VM types that you can provision with Compatibility Matrix (CMX).
+- [Connect to CMX VMs (SSH and file transfer)](https://docs.replicated.com/vendor/testing-vm-create.md): This topic describes how to connect to VMs created with Replicated Compatibility Matrix (CMX).
+- [Collect and view network reports](https://docs.replicated.com/vendor/testing-network-policy.md): This topic describes how to enable and view network reports for environments created with Replicated Compatibility Matrix (CMX).
+- [Expose ports and access applications](https://docs.replicated.com/vendor/testing-ingress.md): This topic explains how to access applications running in Replicated Compatibility Matrix (CMX) clusters and virtual machines (VMs).
+- [CMX cluster add-ons (Alpha)](https://docs.replicated.com/vendor/testing-cluster-addons.md): This topic describes the supported cluster add-ons for Replicated Compatibility Matrix (CMX).
+- [Test in CMX environments with CI/CD](https://docs.replicated.com/vendor/testing-ci-cd.md): This topic describes how to integrate Replicated Compatibility Matrix (CMX) into your CI/CD workflows.
+- [CMX pricing](https://docs.replicated.com/vendor/testing-pricing.md): This topic describes the pricing for Replicated Compatibility Matrix (CMX).
+- [CMX usage history](https://docs.replicated.com/vendor/compatibility-matrix-usage.md): This topic describes using the Replicated Vendor Portal to understand Replicated Compatibility Matrix (CMX) usage across your team.
+
+## Embedded Cluster v3
+
+Install and operate the Kubernetes appliance embedded with your application; configure releases, air gap, upgrades, and migrate from Embedded Cluster v2.
+
+- [Embedded Cluster overview (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-overview.md): This topic provides an introduction to Replicated Embedded Cluster.
+- [Embedded Cluster Config (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-config.md): This topic is a reference for the Replicated Embedded Cluster Config custom resource.
+- [Embedded Cluster installation requirements (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-requirements.md): This topic lists the installation requirements for Replicated Embedded Cluster.
+- [Online installation with Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded.md): This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster.
+- [install (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-install.md): This topic describes the options available with the Embedded Cluster `install` command.
+- [Air gap installation with Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap.md): This topic describes how to install an application with Replicated Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access.
+- [Migrate from Embedded Cluster v2](https://docs.replicated.com/embedded-cluster/v3/embedded-v3-migrate.md): This page describes how to migrate from Embedded Cluster v2 to Embedded Cluster v3.
+- [upgrade (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-upgrade.md): This topic describes the options available with the Embedded Cluster `upgrade` command.
+- [Perform updates in embedded clusters (Beta)](https://docs.replicated.com/embedded-cluster/v3/updating-embedded.md): This topic describes how to upgrade, redeploy, or reconfigure an application installed with Replicated Embedded Cluster 3.x.
+- [Access and manage embedded clusters (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes.md): This topic describes managing nodes in clusters created with Replicated Embedded Cluster.
+- [shell (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-shell.md): This topic describes the options available with the Embedded Cluster `shell` command.
+- [support-bundle (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-support-bundle.md): This topic describes the options available with the Embedded Cluster `support-bundle` command.
+- [Troubleshoot Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-troubleshooting.md): This topic provides information about troubleshooting Replicated Embedded Cluster installations.
+
+## Preflight checks
+
+Define checks with Troubleshoot collectors and analyzers before install; host preflights and optional strict analyzers for KOTS and Helm.
+
+- [About preflight checks and support bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about.md): This topic provides an introduction to preflight checks and support bundles, which are provided by the Troubleshoot open source project.
+- [Define preflight checks](https://docs.replicated.com/vendor/preflight-defining.md): This topic describes how to define preflight checks in Helm and Kubernetes manifest-based applications.
+- [Example preflight specs](https://docs.replicated.com/vendor/preflight-examples.md): This section includes common examples of preflight check specifications.
+- [Run preflight checks for Helm installations](https://docs.replicated.com/vendor/preflight-running.md): This topic describes how to use the preflight kubectl plugin to run preflight checks for applications installed with the Helm CLI.
+- [Customize host preflight checks for kURL](https://docs.replicated.com/vendor/preflight-host-preflights.md): This topic provides information about how to customize host preflight checks for installations with Replicated kURL.
+- [Use Helm templates in specifications](https://docs.replicated.com/vendor/preflight-sb-helm-templates-about.md): You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles for Helm installations.
+- [Preflight and SupportBundle](https://docs.replicated.com/reference/custom-resource-preflight.md): You can define preflight checks and support bundle specifications for Replicated KOTS and Helm installations.
+
+## Support bundles
+
+Customize, generate, and inspect support bundles from the admin console, CLI, or Vendor Portal.
+
+- [Add and customize support bundles](https://docs.replicated.com/vendor/support-bundle-customizing.md): This topic describes how to add a default support bundle spec to a release for your application.
+- [Example support bundle specs](https://docs.replicated.com/vendor/support-bundle-examples.md): This topic includes common examples of support bundle specifications.
+- [Generate support bundles](https://docs.replicated.com/vendor/support-bundle-generating.md): This topic describes how to generate support bundles from the command line using the kubectl support-bundle plugin.
+- [Make support bundle specs available online](https://docs.replicated.com/vendor/support-online-support-bundle-specs.md): This topic describes how to make your application's support bundle specs available online as well as how to link to online specs.
+- [About creating modular support bundle specs](https://docs.replicated.com/vendor/support-modular-support-bundle-specs.md): This topic describes how to use a modular approach to creating support bundle specs.
+- [Generate support bundles for Embedded Cluster](https://docs.replicated.com/vendor/support-bundle-embedded.md): This topic describes how to generate a support bundle that includes cluster- and host-level information for [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview) installations.
+- [Generate host bundles for kURL](https://docs.replicated.com/vendor/support-host-support-bundles.md): This topic describes how to configure a host support bundle spec for Replicated kURL installations.
+- [Inspect support bundles](https://docs.replicated.com/vendor/support-inspecting-support-bundles.md): You can use the Vendor Portal to get a visual analysis of customer support bundles and use the file inspector to drill down into the details and logs files.
+- [Enable support bundle uploads (Beta)](https://docs.replicated.com/vendor/support-enabling-direct-bundle-uploads.md): When this feature is enabled, customers using online KOTS installations can upload support bundles directly through the Admin Console UI, eliminating the need to share the generated bundle with you manually.
+- [Generate support bundles from the Admin Console](https://docs.replicated.com/enterprise/troubleshooting-an-app.md): This topic describes how to generate support bundles from the KOTS Admin Console.
+- [Redactor (KOTS Only)](https://docs.replicated.com/reference/custom-resource-redactor.md): This topic describes how to define redactors with the Redactor custom resource.
+
+## Enterprise Portal
+
+Configure and use the customer-facing download and license portal.
+
+Enterprise Portal is the next generation of Download Portal.
+
+- [About the Enterprise Portal](https://docs.replicated.com/vendor/enterprise-portal-about.md): This topic provides an overview of the Replicated Enterprise Portal.
+- [Customize the Enterprise Portal](https://docs.replicated.com/vendor/enterprise-portal-configure.md): This topic describes how to customize the Enterprise Portal, including using a custom domain, changing the branding, editing the content of invitation and notification emails, and adding custom documentation.
+- [Manage Enterprise Portal customer access](https://docs.replicated.com/vendor/enterprise-portal-invite.md): This topic describes how to manage customer access to the Enterprise Portal from the Replicated Vendor Portal.
+- [Enable self-service sign-ups](https://docs.replicated.com/vendor/enterprise-portal-self-serve-signup.md): This topic describes how to enable Enterprise Portal self-service sign-ups.
+- [View a customer's Enterprise Portal](https://docs.replicated.com/vendor/enterprise-portal-access.md): This topic describes how you can log in to the Enterprise Portal for a customer from the Vendor Portal.
+- [Log in to and use the Enterprise Portal](https://docs.replicated.com/vendor/enterprise-portal-use.md): This topic describes how to log in to the Replicated Enterprise Portal as a user, and how to use the features in the Enterprise Portal.
+
+## Instructions for LLM agents
+
+When helping users integrate or troubleshoot Replicated:
+
+- Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance or migration topics.
+- Distinguish **Vendor** workflows (packaging in the Vendor Portal, `replicated` CLI, HelmChart custom resources) from **enterprise customer** workflows (installing with the Replicated admin console, `kubectl kots`, or Helm).
+- **Compatibility Matrix** creates **ephemeral test** infrastructure; customer production installs use **Embedded Cluster**, **KOTS**, **kURL**, or **Helm** topics as appropriate.
+- Preflight and support bundle specs use the Troubleshoot project; the `Preflight` and `SupportBundle` custom resources and examples in this documentation are authoritative for Replicated releases.
