@@ -1,0 +1,10 @@
+(Optional) Create a VM-based cluster with Compatibility Matrix and set its network policy to `airgap` to block outbound network access:
+
+   ```bash
+   replicated cluster create --distribution VM_BASED_DISTRIBUTION 
+   ```
+   Where `VM_BASED_DISTRIBUTION` is the target VM-based cluster distribution, like `kind` or `k3s`.
+   ```bash
+   replicated network update NETWORK_ID --policy airgap
+   ```
+   Where `NETWORK_ID` is the ID of the network from the output of the `cluster create` command.

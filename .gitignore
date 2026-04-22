@@ -12,6 +12,7 @@ static/llms-full.txt
 static/intro-kots.md
 static/intro-replicated.md
 static/intro.md
+static/embedded-cluster/
 static/enterprise/
 static/reference/
 static/release-notes/

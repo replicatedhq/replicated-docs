@@ -38,7 +38,9 @@ Node
 nodegroup
 npm
 onboard
+onboarded
 onboarding
+templated
 PEM
 RBAC
 SBOM

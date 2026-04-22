@@ -205,31 +205,7 @@ After completing the main onboarding tasks, Replicated recommends that you also 
 
 Replicated supports installations in _air gap_ environments with little or no outbound internet access. For Helm CLI installations, users install by following automatically-generated instructions provided in the Enterprise Portal to pull all images and push them to their local image registry.
 
-:::note
-Replicated recommends that you use Compatibility Matrix (CMX) to create an air-gapped environment for testing your releases. For more information, see [Create and Manage Environments with CMX](/vendor/testing-how-to).
-:::
-
-To add support for air gap installations with the Helm CLI:
-
-1. For each Helm chart in your release, configure the corresponding HelmChart custom resource [builder](/reference/custom-resource-helmchart-v2#builder) key. In the `builder` key, define any Helm values that must be set so that the output of `helm template` exposes all container images needed to install the chart. This ensures that the Vendor Portal can build the air gap bundle for the release and generate the customer-facing air gap install instructions in the Enterprise Portal.
-
-   <details>
-   <summary>How do I know if I need to configure the `builder` key?</summary>
-   
-   When building an air gap bundle, the Vendor Portal templates the Helm charts in a release with `helm template` in order to detect the images that need to be included in the bundle. Images yielded by `helm template` are included in the bundle for the release.
-
-   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images. If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
-   </details>
-
-1. <CreateRelease/>
-
-1. In the [Vendor Portal](https://vendor.replicated.com), go the channel where the release was promoted to build the air gap bundle. Do one of the following:
-     * If the **Automatically create airgap builds for newly promoted releases in this channel** setting is enabled on the channel, watch for the build status to complete.
-     * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
-
-1. Enable the **Helm CLI Air Gap Instructions (Helm CLI only)** entitlement for the customer that you will use to test the installation. See [Create and Manage Customers](/vendor/releases-creating-customer).
-
-1. Follow the steps in [Install and Update with Helm in Air Gap Environments](/vendor/helm-install-airgap) to test the installation in a development environment.
+For more information, see [Add support for air gap installations](replicated-onboarding-air-gap).
 
 ### Add custom metrics
 

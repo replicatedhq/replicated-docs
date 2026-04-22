@@ -1,0 +1,9 @@
+<details>
+   <summary>My chart's default values already expose all images. Do I still need to configure the `builder` key?</summary>
+
+   If the default values in your Helm chart already expose all the images for air gap installations, then you do not need to configure the `builder` key.
+   
+   When building an air gap bundle, the Vendor Portal runs `helm template` on each Helm chart to detect which images to include. The bundle includes all images that `helm template` yields.
+
+   For many applications, running `helm template` with the default values would not yield all the images required to install. In these cases, vendors can pass the additional values in the `builder` key to ensure that the air gap bundle includes all the necessary images.
+</details>

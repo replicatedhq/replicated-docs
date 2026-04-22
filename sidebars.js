@@ -38,9 +38,16 @@ const sidebars = {
     "intro-replicated",
     "vendor/kots-faq",
     "vendor/quick-start",
-    "vendor/environment-setup",
-    "vendor/replicated-onboarding",
-    "vendor/replicated-onboarding-helm-only",
+    {
+      type: "category",
+      label: "Onboard",
+      items: [
+        "vendor/environment-setup",
+        "vendor/replicated-onboarding",
+        "vendor/replicated-onboarding-helm-only",
+        "vendor/replicated-onboarding-air-gap",
+      ],
+    },
     // {
     //   type: 'category',
     //   label: 'Planning',
@@ -286,7 +293,6 @@ const sidebars = {
               items: [
                 "vendor/helm-native-about",
                 "vendor/helm-native-v2-using",
-                "vendor/helm-packaging-airgap-bundles",
                 "vendor/helm-optional-value-keys",
                 "vendor/helm-v2-migrate",
               ],
