@@ -3,14 +3,14 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 # About the Replicated registry option for KOTS installations
 
 :::important
-Pushing Docker images to the Replicated registry is deprecated. Replicated recommends that all vendors use the proxy registry to distribute private images. Vendors who currently push images to the Replicated registry should migrate to an external registry and use the proxy registry for distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+Replicated has deprecated pushing Docker images to the Replicated registry. Replicated recommends that all vendors use the proxy registry to distribute private images. Vendors who push images to the Replicated registry should migrate to an external registry and use the proxy registry for distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 :::
 
 This topic describes the Replicated registry and how to migrate to the recommended proxy registry. The information in this topic applies only to installations managed with Replicated KOTS.
 
 ## Overview
 
-The Replicated registry (`registry.replicated.com`) allows vendors to host private container images for KOTS-managed applications. However, the ability to push Docker images to the Replicated registry is deprecated.
+The Replicated registry (`registry.replicated.com`) allows vendors to host private container images for KOTS-managed applications. However, Replicated has deprecated the ability to push Docker images to the Replicated registry.
 
 For all image distribution, Replicated recommends using the Replicated proxy registry. The proxy registry provides a globally-distributed and highly-performant method to grant pull-through access to application images stored in your own external registry. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 
@@ -18,7 +18,7 @@ For information about security for the Replicated registry, see [Replicated Regi
 
 ## Migrate to the proxy registry
 
-If you currently push Docker images to the Replicated registry, Replicated recommends migrating to an external registry (such as Docker Hub, Amazon ECR, or Google Artifact Registry) and using the Replicated proxy registry for distribution.
+If you push Docker images to the Replicated registry, Replicated recommends migrating to an external registry and using the Replicated proxy registry for distribution. Compatible external registries include Docker Hub, Amazon Elastic Container Registry (ECR), and Google Artifact Registry.
 
 To migrate:
 
@@ -26,7 +26,7 @@ To migrate:
 1. Configure the proxy registry to grant your customers pull-through access to your external registry. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 1. Update your application manifests to reference images through the proxy registry.
 
-Images that are already hosted on the Replicated registry will continue to be available for pull access. No action is needed for existing images that are already in use.
+Images that are already hosted on the Replicated registry will continue to be available for pull access. You do not need to take action for existing images that are already in use.
 
 ## Limitations
 
@@ -43,7 +43,7 @@ The Replicated registry has the following limitations:
 ## Push images to the Replicated registry (deprecated) {#push-images}
 
 :::important
-Pushing Docker images to the Replicated registry is deprecated. See [Migrate to the proxy registry](#migrate-to-the-proxy-registry) above for the recommended approach.
+Replicated has deprecated pushing Docker images to the Replicated registry. For the recommended approach, see [Migrate to the proxy registry](#migrate-to-the-proxy-registry).
 :::
 
 <details>

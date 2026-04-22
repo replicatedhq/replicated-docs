@@ -1,7 +1,7 @@
 # Replicated registry security
 
 :::important
-Pushing Docker images to the Replicated registry is deprecated. Replicated recommends using the proxy registry for all private image distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+Replicated has deprecated pushing Docker images to the Replicated registry. Replicated recommends using the proxy registry for all private image distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 :::
 
 This document lists the security measures and processes in place for the Replicated registry. For more information about the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
