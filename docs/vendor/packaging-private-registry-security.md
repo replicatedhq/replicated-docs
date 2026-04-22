@@ -1,11 +1,8 @@
 # Replicated registry security
 
-:::important
-Replicated has deprecated pushing Docker images to the Replicated registry. Replicated recommends using the proxy registry for all private image distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
-:::
+This document lists the security measures and processes in place for the Replicated registry.
 
-This document lists the security measures and processes in place for the Replicated registry. For more information about the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
-
+The Replicated registry is a private OCI registry hosted by Replicated at `registry.replicated.com`. When you promote a release, the Replicated Vendor Portal automatically extracts any Helm charts included in the release and pushes them as OCI objects to the Replicated registry.
 
 ## Single tenant isolation
 

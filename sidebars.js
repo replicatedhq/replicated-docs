@@ -499,14 +499,7 @@ const sidebars = {
         "vendor/private-images-kots",
         "vendor/private-images-tags-digests",
         "vendor/packaging-public-images",
-        {
-          type: "category",
-          label: "Replicated Private Registry",
-          items: [
-            "vendor/private-images-replicated",
-            "vendor/packaging-private-registry-security",
-          ],
-        },
+        "vendor/private-images-replicated",
         "vendor/tutorial-ecr-private-images",
       ],
     },
@@ -901,6 +894,7 @@ const sidebars = {
         "enterprise/sbom-validating",
         "vendor/vendor-password-integrity",
         "vendor/replicated-sdk-slsa-validating",
+        "vendor/packaging-private-registry-security",
       ],
     },
   ],
