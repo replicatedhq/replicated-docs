@@ -12,6 +12,37 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.17.0
+
+Released on April 22, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.17.0+k8s-1.34</td>
+    <td id="center">2.17.0+k8s-1.33</td>
+    <td id="center">2.17.0+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.0-ec.1</td>
+  </tr>
+</table>
+
+### New features {#new-features-2-17-0}
+* Adds sysctl collectors and analyzers to the host support bundle to help diagnose networking and filesystem issues.
+
+### Improvements {#improvements-2-17-0}
+* Updates SeaweedFS to 4.21.0.
+* Updates Troubleshoot to v0.127.1.
+* Updates kube-proxy component images across supported versions.
+
 ## 2.16.0
 
 Released on April 10, 2026
