@@ -1,6 +1,10 @@
 # Replicated registry security
 
-This document lists the security measures and processes in place to ensure that images pushed to the Replicated registry remain private. For more information about pushing images to the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
+:::important
+Pushing Docker images to the Replicated registry is deprecated. Replicated recommends using the proxy registry for all private image distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+:::
+
+This document lists the security measures and processes in place for the Replicated registry. For more information about the Replicated registry, see [About the Replicated Registry Option for KOTS Installations](private-images-replicated).
 
 
 ## Single tenant isolation

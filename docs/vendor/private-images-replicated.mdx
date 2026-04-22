@@ -2,21 +2,31 @@ import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
 
 # About the Replicated registry option for KOTS installations
 
-This topic describes how to push images to the Replicated registry. The information in this topic applies only to installations managed with Replicated KOTS.
+:::important
+Pushing Docker images to the Replicated registry is deprecated. Replicated recommends that all vendors use the proxy registry to distribute private images. Vendors who currently push images to the Replicated registry should migrate to an external registry and use the proxy registry for distribution. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+:::
+
+This topic describes the Replicated registry and how to migrate to the recommended proxy registry. The information in this topic applies only to installations managed with Replicated KOTS.
 
 ## Overview
 
-For applications installed with KOTS, you can optionally host private images on the Replicated registry. Hosting your images on the Replicated registry can be useful for testing purposes.
+The Replicated registry (`registry.replicated.com`) allows vendors to host private container images for KOTS-managed applications. However, the ability to push Docker images to the Replicated registry is deprecated.
 
-For all production releases, Replicated recommends using the Replicated proxy registry for both private and public image distribution, rather than hosting images on the Replicated registry. The proxy registry provides a globally-distributed and highly-performant method to grant pull-through access to application images. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
-
-Images pushed to the Replicated registry are displayed on the **Images** page in the Vendor Portal:
-
-![Replicated Private Registry section of the vendor portal Images page](/images/images-replicated-registry.png)
-
-[View a larger version of this image](/images/images-replicated-registry.png)
+For all image distribution, Replicated recommends using the Replicated proxy registry. The proxy registry provides a globally-distributed and highly-performant method to grant pull-through access to application images stored in your own external registry. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 
 For information about security for the Replicated registry, see [Replicated Registry Security](packaging-private-registry-security).
+
+## Migrate to the proxy registry
+
+If you currently push Docker images to the Replicated registry, Replicated recommends migrating to an external registry (such as Docker Hub, Amazon ECR, or Google Artifact Registry) and using the Replicated proxy registry for distribution.
+
+To migrate:
+
+1. Push your images to your own external registry.
+1. Configure the proxy registry to grant your customers pull-through access to your external registry. For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+1. Update your application manifests to reference images through the proxy registry.
+
+Images that are already hosted on the Replicated registry will continue to be available for pull access. No action is needed for existing images that are already in use.
 
 ## Limitations
 
@@ -30,7 +40,14 @@ The Replicated registry has the following limitations:
 
 * The ability to push images to the Replicated registry is available only for KOTS-managed installations. Pushing images to the Replicated registry is not supported for Helm installations.
 
-## Push images to the Replicated registry
+## Push images to the Replicated registry (deprecated) {#push-images}
+
+:::important
+Pushing Docker images to the Replicated registry is deprecated. See [Migrate to the proxy registry](#migrate-to-the-proxy-registry) above for the recommended approach.
+:::
+
+<details>
+<summary>View deprecated push instructions</summary>
 
 This procedure describes how to tag and push images to the Replicated registry. For more information about building, tagging, and pushing Docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
@@ -80,4 +97,6 @@ Docker format:
    docker push registry.replicated.com/myapp/worker:1.0.1
    ```    
 
-1. In the [Vendor Portal](https://vendor.replicated.com/), go to **Images** and scroll down to the **Replicated Private Registry** section to confirm that the image was pushed. 
+1. In the [Vendor Portal](https://vendor.replicated.com/), go to **Images** and scroll down to the **Replicated Private Registry** section to confirm that the image was pushed.
+
+</details>
