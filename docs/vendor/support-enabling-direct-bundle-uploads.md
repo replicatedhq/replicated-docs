@@ -29,4 +29,4 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 
 - You will not receive a notification when a customer sends a support bundle to the Vendor Portal. To avoid overlooking these uploads, activate this feature only if there is a reliable escalation process already in place for the customer license.
 - This feature only supports online KOTS installations. If enabled, but installed in air gap mode, the upload button will not appear.
-- There is a 500 MB limit for support bundles uploaded directly via the Admin Console. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.
+- There is a 500 MB limit for support bundles uploaded directly through the Admin Console. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.

@@ -198,7 +198,7 @@ Upload a support bundle through the SDK. The bundle is streamed to Replicated fo
 * The request must include the `Content-Length` header
 
 :::note
-Unlike support bundle uploads through the Admin Console or Enterprise Portal, which are limited to 500 MB, this endpoint uploads directly to cloud storage using a presigned URL. There is no enforced size limit on bundles uploaded through the SDK.
+The Admin Console and Enterprise Portal limit support bundle uploads to 500 MB. This endpoint has no size limit because it uploads directly to cloud storage.
 :::
 
 ```bash
