@@ -117,6 +117,14 @@ const config = {
         askAi: {
           assistantId: '3d7bee1a-53a3-4fee-bbd2-86ade3b1959a',
           agentStudio: true,
+          sidePanel: {
+            translations: {
+              newConversationScreen: {
+                introductionText:
+                  'I search the Replicated documentation to help you find onboarding guides, product details, reference material, and more.',
+              },
+            },
+          },
         },
       },
       navbar: {
