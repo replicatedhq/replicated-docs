@@ -51,6 +51,7 @@ const config = {
     ],
   ],
   plugins: [
+    '@docsearch/docusaurus-adapter',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -106,14 +107,17 @@ const config = {
           hideable: true,
         },
       },
-      algolia: {
+      docsearch: {
         // The application ID provided by Algolia
         appId: 'GHHO0O7LF5',
 
         // Public API key: it is safe to commit it
         apiKey: '94355b8c51360cebbfff7519ab737aa8',
         indexName: 'Replicated Docs',
-        askAi: '3d7bee1a-53a3-4fee-bbd2-86ade3b1959a',
+        askAi: {
+          assistantId: '3d7bee1a-53a3-4fee-bbd2-86ade3b1959a',
+          agentStudio: true,
+        },
       },
       navbar: {
         title: 'Docs',
