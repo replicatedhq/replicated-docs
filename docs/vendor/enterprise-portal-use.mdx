@@ -314,6 +314,8 @@ To manage user settings in the Enterprise Portal:
 
 End customers can use the portal to collect, upload, and manage support bundles.
 
+The Enterprise Portal limits support bundle uploads to 500 MB. If your support bundle is larger than 500 MB, use the Replicated SDK API `POST /supportbundle` endpoint instead. This endpoint has no size limit because it uploads the bundle directly to cloud storage. For more information, see [supportbundle](/reference/replicated-sdk-apis) in _Replicated SDK API_.
+
 To manage support bundles in the Enterprise Portal:
 
 1. In the Enterprise Portal, go to **Support**.

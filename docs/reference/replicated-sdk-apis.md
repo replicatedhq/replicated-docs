@@ -197,10 +197,6 @@ Upload a support bundle through the SDK. The bundle is streamed to Replicated fo
 * The environment must have outbound internet access
 * The request must include the `Content-Length` header
 
-:::note
-The Admin Console and Enterprise Portal limit support bundle uploads to 500 MB. This endpoint has no size limit because it uploads directly to cloud storage.
-:::
-
 ```bash
 POST http://replicated:3000/api/v1/supportbundle
 Content-Type: application/gzip
