@@ -111,7 +111,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
 ### RKE2 (Deprecated)
 
 :::caution
-Replicated has deprecated RKE2 in CMX. Replicated will not add new Kubernetes versions for this distribution. As existing supported versions reach Kubernetes end of life, Replicated will remove them.
+RKE2 is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
 :::
 
 CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
@@ -448,7 +448,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
 ### OKE (Deprecated)
 
 :::caution
-Replicated has deprecated OKE in CMX. Replicated will not add new Kubernetes versions for this distribution. As existing supported versions reach Kubernetes end of life, Replicated will remove them.
+OKE is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
 :::
 
 CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
