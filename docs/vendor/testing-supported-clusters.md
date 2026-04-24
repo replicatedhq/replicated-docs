@@ -1,4 +1,4 @@
-import Pool from "../partials/cmx/_openshift-pool.mdx"
+import Pool from "../partials/cmx/\_openshift-pool.mdx"
 
 # CMX cluster and VM types
 
@@ -6,11 +6,11 @@ This topic lists the supported cluster and VM types that you can provision with 
 
 ## Overview
 
-CMX can create VMs, VM-based clusters (such as kind, k3s, RKE2, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
+CMX can create VMs, VM-based clusters (such as kind, k3s, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
 
-* Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+- Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
 
-* VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
+- VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
 
 ## VM clusters
 
@@ -108,7 +108,11 @@ CMX supports creating [k3s](https://k3s.io) clusters.
   </tr>
 </table>
 
-### RKE2 (Beta)
+### RKE2 (Deprecated)
+
+:::caution
+RKE2 is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
+:::
 
 CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
 
@@ -326,8 +330,8 @@ CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters
   <tr>
     <th>Supported Instance Types</th>
     <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m5.large, m5.xlarge, m5.2xlarge,
-			m5.4xlarge, m5.8xlarge, m7g.large (arm), m7g.xlarge (arm), m7g.2xlarge (arm), m7g.4xlarge (arm), m7g.8xlarge (arm), c5.large, c5.xlarge, c5.2xlarge, c5.4xlarge,
-			c5.9xlarge, g4dn.xlarge (gpu), g4dn.2xlarge (gpu), g4dn.4xlarge (gpu), g4dn.8xlarge (gpu), g4dn.12xlarge (gpu), g4dn.16xlarge (gpu)</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
+   m5.4xlarge, m5.8xlarge, m7g.large (arm), m7g.xlarge (arm), m7g.2xlarge (arm), m7g.4xlarge (arm), m7g.8xlarge (arm), c5.large, c5.xlarge, c5.2xlarge, c5.4xlarge,
+   c5.9xlarge, g4dn.xlarge (gpu), g4dn.2xlarge (gpu), g4dn.4xlarge (gpu), g4dn.8xlarge (gpu), g4dn.12xlarge (gpu), g4dn.16xlarge (gpu)</p><p>g4dn instance types depend on available capacity. After a g4dn cluster is running, you also need to install your version of the NVIDIA device plugin for Kubernetes. See [Amazon EKS optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami) in the AWS documentation.</p></td>
   </tr>
   <tr>
     <th>Node Groups</th>
@@ -441,7 +445,11 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
   </tr>
 </table>
 
-### OKE (Beta)
+### OKE (Deprecated)
+
+:::caution
+OKE is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
+:::
 
 CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
 
@@ -488,11 +496,10 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
 
 The following VM types are supported:
 
-| Distribution | Versions | Instance Types |
-| :---- | :---- | :---- |
-| ubuntu | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#types).|
-| almalinux | 8, 9, 10 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#types). |
-
+| Distribution | Versions     | Instance Types                                                                                 |
+| :----------- | :----------- | :--------------------------------------------------------------------------------------------- |
+| ubuntu       | 24.04, 22.04 | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#types). |
+| almalinux    | 8, 9, 10     | r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge. See [Replicated Instance Types](#types). |
 
 ## Replicated instance types {#types}
 
