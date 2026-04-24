@@ -8,7 +8,7 @@ This topic lists the supported cluster and VM types that you can provision with 
 
 CMX can create VMs, VM-based clusters (such as kind, k3s, and Red Hat OpenShift OKD), and cloud-managed clusters (such as EKS, GKE and AKS):
 
-- Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+- CMX runs cloud-based Kubernetes distributions in a Replicated managed and controlled cloud account to optimize and deliver clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
 
 - VMs and VM-based clusters run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
 
@@ -16,7 +16,7 @@ CMX can create VMs, VM-based clusters (such as kind, k3s, and Red Hat OpenShift 
 
 This section lists the supported VM cluster distributions for clusters created with CMX.
 
-VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, CMX offers warm pools to make Openshift startup times very fast.
+VM-based clusters refers to clusters that run on Hetzner servers with the CMX cluster provisioner. This allows for greater flexibility than with Cloud Clusters like AWS, EKS, etc. For example, with VM-based distributions, CMX offers warm pools to make OpenShift startup times fast.
 
 ### kind
 
@@ -72,7 +72,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
   </tr>
   <tr>
     <th>Supported k3s Versions</th>
-    <td>The upstream k8s version that matches the Kubernetes version requested.</td>
+    <td>The upstream Kubernetes version that matches the Kubernetes version requested.</td>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -111,7 +111,7 @@ CMX supports creating [k3s](https://k3s.io) clusters.
 ### RKE2 (Deprecated)
 
 :::caution
-RKE2 is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
+Replicated has deprecated RKE2 in CMX. Replicated will not add new Kubernetes versions for this distribution. As existing supported versions reach Kubernetes end of life, Replicated will remove them.
 :::
 
 CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
@@ -123,7 +123,7 @@ CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
   </tr>
   <tr>
     <th>Supported RKE2 Versions</th>
-    <td>The upstream k8s version that matches the Kubernetes version requested.</td>
+    <td>The upstream Kubernetes version that matches the Kubernetes version requested.</td>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
@@ -163,12 +163,12 @@ CMX supports creating [RKE2](https://docs.rke2.io/) clusters.
 
 CMX supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
-OpenShift clusters are provisioned with two users:
+CMX provisions OpenShift clusters with two users:
 
-- (Default) A `kubeadmin` user with `cluster-admin` priviledges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
-- A `developer` user with namespace-scoped priviledges. The `developer` user can be used to better simulate access in end-customer environments.
+- (Default) A `kubeadmin` user with `cluster-admin` privileges. Use the `kubeadmin` user only for administrative tasks such as creating new users or setting roles.
+- A `developer` user with namespace-scoped privileges. Use the `developer` user to better simulate access in end-customer environments.
 
-By default, kubeconfig context is set to the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
+By default, the kubeconfig context uses the `kubeadmin` user. To switch to the `developer` user, run the command `oc login --username developer`.
 
 <table>
   <tr>
@@ -230,7 +230,7 @@ CMX supports creating clusters with Replicated Embedded Cluster v2. For more inf
   <tr>
     <th>Supported Embedded Cluster Versions</th>
     <td>
-      Any valid release sequence that has previously been promoted to the channel where the customer license is assigned.
+      Any valid release sequence that Replicated previously promoted to the channel associated with the customer license.
       Version is optional and defaults to the latest available release on the channel.
     </td>
   </tr>
@@ -254,8 +254,8 @@ CMX supports creating clusters with Replicated Embedded Cluster v2. For more inf
     <th>Limitations</th>
     <td>
       <ul>
-        <li>The Admin Console UI is not exposed publicly and must be exposed via `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
-        <li><strong>A valid customer license is required to create an Embedded Cluster.</strong></li>
+        <li>The Admin Console UI is not publicly accessible. To access it, run `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
+        <li><strong>You must have a valid customer license to create an Embedded Cluster.</strong></li>
         <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
@@ -278,7 +278,7 @@ CMX supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>Any promoted kURL installer. Version is optional. For an installer version other than "latest", you can find the specific Installer ID for a previously promoted installer under the relevant **Install Command** (ID after kurl.sh/) on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
+    <td>Any promoted kURL installer. Version is optional. For an installer version other than "latest", you can find the specific Installer ID for a previously promoted installer in the relevant **Install Command** (ID after kurl.sh/) on the **Channels > kURL Installer History** page in the Vendor Portal. For more information about viewing the history of kURL installers promoted to a channel, see [Installer History](/vendor/installer-history).</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -339,7 +339,7 @@ CMX supports creating [AWS EKS](https://aws.amazon.com/eks/?nc2=type_a) clusters
   </tr>
   <tr>
     <th>Node Auto Scaling</th>
-    <td>Yes. Cost will be based on the max number of nodes.</td>
+    <td>Yes. Cost depends on the maximum number of nodes.</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -382,7 +382,7 @@ CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) c
   </tr>
   <tr>
     <th>Node Auto Scaling</th>
-    <td>Yes. Cost will be based on the max number of nodes.</td>
+    <td>Yes. Cost depends on the maximum number of nodes.</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -425,7 +425,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
   </tr>
   <tr>
     <th>Node Auto Scaling</th>
-    <td>Yes. Cost will be based on the max number of nodes.</td>
+    <td>Yes. Cost depends on the maximum number of nodes.</td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -448,7 +448,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
 ### OKE (Deprecated)
 
 :::caution
-OKE is deprecated in CMX. No new Kubernetes versions will be added for this distribution. As existing supported versions reach Kubernetes end of life, they will be removed.
+Replicated has deprecated OKE in CMX. Replicated will not add new Kubernetes versions for this distribution. As existing supported versions reach Kubernetes end of life, Replicated will remove them.
 :::
 
 CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm) clusters.
@@ -484,7 +484,7 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>Provising an OKE cluster does take between 8 to 10 minutes. If needed, some timeouts in your CI pipelines might have to be adjusted.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
+    <td><p>Provisioning an OKE cluster takes between 8 to 10 minutes. If needed, you might need to adjust some timeouts in your CI pipelines.</p><p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -494,7 +494,7 @@ CMX supports creating [Oracle Container Engine for Kubernetes (OKE)](https://doc
 
 ## Supported VM types
 
-The following VM types are supported:
+CMX supports the following VM types:
 
 | Distribution | Versions     | Instance Types                                                                                 |
 | :----------- | :----------- | :--------------------------------------------------------------------------------------------- |
@@ -540,4 +540,4 @@ When creating a VM-based cluster with CMX, you must specify a Replicated instanc
 
 ## Kubernetes version support policy
 
-We do not maintain forks or patches of the supported distributions. When a Kubernetes version in CMX is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
+We do not maintain forks or patches of the supported distributions. When a Kubernetes version in CMX is out of support (EOL), Replicated will attempt to continue supporting this version for six months. This extended support enables compatibility testing for customers running out-of-date versions of Kubernetes. If Replicated discovers a critical, unresolved security issue or bug, we might end support for EOL versions of Kubernetes before the 6-month window.
