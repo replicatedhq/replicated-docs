@@ -1,12 +1,12 @@
-# Submit a Support Request or Feature Request
+# Submit a support request or feature request
 
-This topic describes how to open a support request or submit a feature request to the Replicated team. It includes information about the fields in the support request form, how to submit feature requests, and how to attach new support bundles to an existing support issue.
+This topic describes how to open a support request or submit a feature request to the Replicated team. It covers the support request form fields, feature requests, and attaching support bundles to existing issues.
 
 For more information about working with support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 
 ## Overview
 
-You can submit support requests, feature requests, and support bundles to Replicated through the Replicated Vendor Portal. Both support requests and feature requests use the same support page, which guides you through a multi-step wizard to select a product area, review self-service resources, and then submit your request.
+You can submit support requests, feature requests, and support bundles through the Vendor Portal. Both support requests and feature requests use the same support page. A multi-step wizard guides you through selecting a product area, reviewing self-service resources, and submitting your request.
 
 Replicated recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
@@ -45,18 +45,18 @@ To submit a support request from the **Support Bundle Analysis** page:
 The support page uses a multi-step wizard to guide you through submitting a support request or feature request:
 
 1. **Select a product area**: Choose the product related to your request. The available products depend on your account.
-1. **Review self-service resources**: Browse recent community articles and documentation links to see if your question has already been answered. From this page, you can open a support request, make a feature request, or view open issues and requests on GitHub.
+1. **Review self-service resources**: Browse recent community articles and documentation links to find existing answers. From this page, you can open a support request, make a feature request, or view open issues on GitHub.
 1. **Submit your request**: Complete the support request or feature request form.
 
 To get started, go to **[Support](https://vendor.replicated.com/support)** in the Vendor Portal.
 
 :::note
-If your team has a collab repository configured, you can click **View open issues and requests** on the self-service page to see all submitted issues and feature requests on GitHub.
+If your team has a collab repository configured, click **View open issues and requests** on the self-service page to see all issues and feature requests on GitHub.
 :::
 
 ### Submit a support request {#submit-support-request}
 
-Replicated support SLAs are a combination of the customer license type, your Replicated plan, which product is impacted, and other considerations. Your answers to the questions in the support request form generate a severity calculation that is posted on the GitHub issue as a label, and potentially result in a page for high severity incidents.
+Replicated calculates support severity based on customer license type, your Replicated plan, the affected product, and other factors. Your answers to the support request form generate a severity label on the GitHub issue and can page an engineer for high severity incidents.
 
 To submit a support request:
 
@@ -158,7 +158,7 @@ To submit a support request:
 
 ### Submit a feature request {#submit-feature-request}
 
-You can submit feature requests to share ideas for new features or improvements to Replicated products. Feature requests are submitted through the same support page wizard as support requests.
+You can submit feature requests to share ideas for new features or improvements to Replicated products. You submit feature requests through the same support page wizard as support requests.
 
 To submit a feature request:
 
@@ -197,7 +197,7 @@ To submit a feature request:
 
 1. Click **Submit Request**.
 
-   After you submit the feature request, it is tracked as an issue in your team's collab repository on GitHub.
+   After you submit the feature request, Replicated creates an issue in your team's collab repository on GitHub.
 
 ## Provide support bundles to Replicated after opening a support request {#add-bundle-after}
 
