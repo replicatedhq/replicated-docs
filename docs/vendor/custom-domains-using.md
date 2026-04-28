@@ -101,6 +101,10 @@ When you set a custom domain as the default, it is used by default for all new r
 
 Only releases that are promoted to a channel _after_ you set a default domain use the new default domain. Any existing releases that were promoted before you set the default continue to use the same domain that they used previously.
 
+:::important
+When you change the default custom domain for the Replicated registry or proxy registry to a _different_ custom domain, image pulls fail for existing installations of releases promoted under the previous default. The image pull secret rendered into Helm values does not include credentials for the previous custom domain. Ensure existing installations have upgraded to a release promoted under the new custom domain before you change the default.
+:::
+
 :::note
 In Embedded Cluster installations, the KOTS Admin Console will use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config when making requests to the proxy registry and app service, regardless of the default domain or the domain assigned to the given release channel. For more information about using custom domains in Embedded Cluster installations, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
 :::
