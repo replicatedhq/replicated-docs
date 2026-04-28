@@ -23,9 +23,13 @@ import RunPodsCr from "../partials/support-bundles/_run-pods-cr.mdx"
 
 This topic includes common examples of support bundle specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
-## Check API deployment status
+## Check application health
 
-The examples below use the `deploymentStatus` analyzer to check the version of Kubernetes running in the cluster. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
+The recommended approach for checking application health in a support bundle is to use the `deploymentStatus` analyzer with the default `clusterResources` collector.
+
+This approach surfaces the kubelet's authoritative view of application health — whether pods are passing their liveness probes and have the required number of ready replicas. Because it reads from the `clusterResources` collector that is included by default, it requires no additional collectors or RBAC permissions and works reliably whether the bundle is generated from the CLI or from inside the cluster.
+
+While other collectors can probe application health endpoints directly, each has environment-specific limitations: the `http` collector runs client-side and cannot resolve in-cluster DNS when the bundle is generated from the CLI; the `exec` collector requires `pods/exec` RBAC and that tools such as `curl`, `wget`, or `nc` are available in the container; and `runPod` requires `pods/create` RBAC and, in air gap environments, the image must already be available on the node.
 
 For more information, see [Deployment Status](https://troubleshoot.sh/docs/analyze/deployment-status/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
 
@@ -36,7 +40,7 @@ For more information, see [Deployment Status](https://troubleshoot.sh/docs/analy
   <TabItem value="custom-resource" label="SupportBundle Custom Resource">
     <DeployStatusCr/>
   </TabItem>
-</Tabs> 
+</Tabs>
 
 ## Check HTTP requests
 
