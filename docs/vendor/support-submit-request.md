@@ -1,12 +1,12 @@
-# Submit a support request
+# Submit a Support Request or Feature Request
 
-This topic describes how to open a support request with the Replicated team, including information about the fields in the support request form. It also describes how to attach new support bundles to an existing support issue.
+This topic describes how to open a support request or submit a feature request to the Replicated team. It includes information about the fields in the support request form, how to submit feature requests, and how to attach new support bundles to an existing support issue.
 
 For more information about working with support bundles, see [Generating Support Bundles](/vendor/support-bundle-generating).
 
 ## Overview
 
-You can submit support requests and support bundles to Replicated through the Replicated Vendor Portal.
+You can submit support requests, feature requests, and support bundles to Replicated through the Replicated Vendor Portal. Both support requests and feature requests use the same support page, which guides you through a multi-step wizard to select a product area, review self-service resources, and then submit your request.
 
 Replicated recommends that you always provide a support bundle when you open a new support request, and that you attach new bundles to an existing support issue when conditions change or new problems arise. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
@@ -40,25 +40,31 @@ To submit a support request from the **Support Bundle Analysis** page:
 
 1. Click **Submit support request**.
 
-## Open a support request from the support page {#support-page}
+## Open a request from the support page {#support-page}
+
+The support page uses a multi-step wizard to guide you through submitting a support request or feature request:
+
+1. **Select a product area**: Choose the product related to your request. The available products depend on your account.
+1. **Review self-service resources**: Browse recent community articles and documentation links to see if your question has already been answered. From this page, you can open a support request, make a feature request, or view open issues and requests on GitHub.
+1. **Submit your request**: Complete the support request or feature request form.
+
+To get started, go to **[Support](https://vendor.replicated.com/support)** in the Vendor Portal.
+
+:::note
+If your team has a collab repository configured, you can click **View open issues and requests** on the self-service page to see all submitted issues and feature requests on GitHub.
+:::
+
+### Submit a support request {#submit-support-request}
 
 Replicated support SLAs are a combination of the customer license type, your Replicated plan, which product is impacted, and other considerations. Your answers to the questions in the support request form generate a severity calculation that is posted on the GitHub issue as a label, and potentially result in a page for high severity incidents.
 
-The support page uses a multi-step wizard to guide you through submitting a support request or feature request.
-
-To submit a support request from the Vendor Portal **Support** page:
+To submit a support request:
 
 1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support)**.
 
-1. Select the product area related to your request. The available products depend on your account.
+1. Select the product area related to your request.
 
-1. On the self-service page, review the suggested community articles and documentation links to see if your question has already been answered. If you still need help, click **Open a support request**.
-
-   :::note
-   You can also click **Make a feature request** to submit a feature request instead. Feature requests collect a title, problem description, and an optional proposed solution.
-
-   If your team has a collab repository configured, you can also click **View open issues and requests** to see all submitted issues and feature requests on GitHub.
-   :::
+1. On the self-service page, review the suggested resources. If you still need help, click **Open a support request**.
 
 1. (KOTS, Embedded Cluster, and kURL only) Upload one or more support bundles. The Vendor Portal uses support bundle metadata to pre-populate customer information in the request form.
 
@@ -149,6 +155,49 @@ To submit a support request from the Vendor Portal **Support** page:
    - Continue and submit as Severity 1, which pages an on-call engineer
 
    After you submit the support request, you receive a link to your support issue where you can interact with the support team.
+
+### Submit a feature request {#submit-feature-request}
+
+You can submit feature requests to share ideas for new features or improvements to Replicated products. Feature requests are submitted through the same support page wizard as support requests.
+
+To submit a feature request:
+
+1. In the Vendor Portal, go to **[Support](https://vendor.replicated.com/support)**.
+
+1. Select the product area related to your request.
+
+1. On the self-service page, click **Make a feature request**.
+
+1. Complete the feature request form:
+
+    <table>
+      <tr>
+        <th width="30%">Field</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <th>Request Title</th>
+        <td>
+          <p>(Required) A short title for your feature request.</p>
+        </td>
+      </tr>
+      <tr>
+        <th>What is the problem you're trying to solve?</th>
+        <td>
+          <p>(Required) Describe the problem or use case that this feature would address.</p>
+        </td>
+      </tr>
+      <tr>
+        <th>Do you have a proposed product change that would solve this problem?</th>
+        <td>
+          <p>(Optional) Describe any specific product changes or solutions you have in mind.</p>
+        </td>
+      </tr>
+    </table>
+
+1. Click **Submit Request**.
+
+   After you submit the feature request, it is tracked as an issue in your team's collab repository on GitHub.
 
 ## Provide support bundles to Replicated after opening a support request {#add-bundle-after}
 
