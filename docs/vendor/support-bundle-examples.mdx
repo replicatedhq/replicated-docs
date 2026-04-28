@@ -25,10 +25,15 @@ This topic includes common examples of support bundle specifications. For more e
 
 ## Check application health
 
-The examples below use the `deploymentStatus` analyzer to check whether the required number of replicas are available for an application deployment. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
+The following examples use the `deploymentStatus` analyzer to check whether the required number of replicas are available for an application deployment. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
 
 :::tip Why this approach?
-The `deploymentStatus` analyzer surfaces the cluster's own view of application health, whether liveness probes are passing and pods are ready, without requiring additional collectors or RBAC. Alternative collectors (`http`, `exec`, `runPod`) can probe health endpoints directly but each has environment-specific limitations: `http` cannot resolve in-cluster DNS from the CLI; `exec` requires `pods/exec` RBAC and tools such as `curl`, `wget`, or `nc` in the container; `runPod` requires `pods/create` RBAC and, in air gap environments, the image must already be present on the node.
+The `deploymentStatus` analyzer reflects the cluster's own view of application health and requires no additional collectors or RBAC. It checks whether liveness probes are passing and the required number of replicas are ready.
+
+Alternative collectors can probe health endpoints directly, but each has environment-specific limitations:
+- `http` cannot resolve in-cluster DNS from the CLI.
+- `exec` requires `pods/exec` RBAC and tools such as `curl`, `wget`, or `nc` in the container.
+- `runPod` requires `pods/create` RBAC. In air gap environments, the image must already be present on the node.
 :::
 
 For more information, see [Deployment Status](https://troubleshoot.sh/docs/analyze/deployment-status/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.

@@ -92,3 +92,4 @@ SSO
 TOTP
 ttl
 keyless
+liveness
