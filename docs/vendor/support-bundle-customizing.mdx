@@ -24,6 +24,10 @@ You can define support bundle specs in a Kubernetes Secret for the following ins
 * Installations with Helm
 * Helm applications installed with KOTS v1.94.2 and later
 
+:::note
+Support bundle specs must be defined in a Kubernetes Secret (or ConfigMap) when included inside a Helm chart's `templates` directory. A bare `kind: SupportBundle` custom resource in a chart requires the `supportbundles.troubleshoot.sh` CRD to be installed in the cluster, which is not available in most shared clusters and requires cluster-admin permissions. The Secret-based approach works in any cluster without additional setup. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+:::
+
 In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret:   
 
 ```yaml
@@ -64,10 +68,14 @@ After you create this empty support bundle spec, you can test the support bundle
 ### SupportBundle custom resource {#sb-cr}
 
 You can define support bundle specs in a SupportBundle custom resource for the following installation types:
-* Kubernetes manifest-based applications installed with KOTS
+* Kubernetes manifest-based applications installed with KOTS, where the resource is in the root of the release (not inside a Helm chart)
 * Helm applications installed with KOTS v1.94.1 and earlier
 
-In a release for your application, add the following YAML to a new `support-bundle.yaml` manifest file:
+:::note
+A bare `kind: SupportBundle` custom resource is only appropriate at the root of a release. If you place this manifest inside a Helm chart's `templates` directory, the `supportbundles.troubleshoot.sh` CRD must be installed in the cluster before the chart is deployed. For Helm charts, use the Secret-based approach in [Kubernetes secret](#secret) instead.
+:::
+
+In the root of a release for your application (outside of any Helm chart), add the following YAML to a new `support-bundle.yaml` manifest file:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

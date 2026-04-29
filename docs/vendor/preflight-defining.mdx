@@ -20,6 +20,10 @@ You can define preflight checks in a Kubernetes Secret or in a Preflight custom 
 
 For Helm applications installed with Helm or KOTS v1.101.0 or later, define preflight checks in a Kubernetes Secret in your Helm chart `templates`. This allows you to define the preflights spec only one time to support running preflight checks in both Helm and KOTS installations.
 
+:::note
+Preflight checks must be defined in a Kubernetes Secret (or ConfigMap) when included inside a Helm chart's `templates` directory. A bare `kind: Preflight` custom resource in a chart requires the `preflights.troubleshoot.sh` CRD to be installed in the cluster, which is not available in most shared clusters and requires cluster-admin permissions. The Secret-based approach works in any cluster without additional setup. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+:::
+
 Add the following YAML to a Kubernetes Secret in your Helm chart `templates` directory:
 
 ```yaml
@@ -48,15 +52,15 @@ As shown above, the Secret must include the following:
 ### Preflight custom resource {#preflight-cr}
 
 Define preflight checks in a Preflight custom resource for the following installation types:
-* Kubernetes manifest-based applications installed with any version of KOTS
+* Kubernetes manifest-based applications installed with any version of KOTS, where the resource is in the root of the release (not inside a Helm chart)
 * Helm applications installed with KOTS v1.100.3 and earlier
     :::note
-    For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends that you define preflight checks in a Secret in the Helm chart `templates` instead of using the Preflight custom resource. See [Create a Secret](#secret) above.
+    For Helm charts installed with KOTS v1.101.0 and later, Replicated recommends that you define preflight checks in a Secret in the Helm chart `templates` instead of using the Preflight custom resource. See [Create a Secret](#secret) above. A bare `kind: Preflight` resource inside a Helm chart requires the `preflights.troubleshoot.sh` CRD to be installed in the cluster.
 
     In KOTS v1.101.0 and later, preflights defined in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS v1.101.0 and later cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release.
     :::
 
-Add the following YAML to a new file in a release:
+Add the following YAML to a new file in the root of a release (outside of any Helm chart):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
