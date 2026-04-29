@@ -201,7 +201,7 @@ When a release is demoted from a channel.
 
 ### Release Build Failed
 
-When an air gap bundle build fails for a release on a channel.
+When an release build fails for a release on a channel.
 
 The following table describes the available filters for the Release Build Failed event type:
 
