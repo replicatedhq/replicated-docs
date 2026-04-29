@@ -25,7 +25,7 @@ You can define support bundle specs in a Kubernetes Secret for the following ins
 * Helm applications installed with KOTS v1.94.2 and later
 
 :::note
-Support bundle specs must be defined in a Kubernetes Secret (or ConfigMap) when included inside a Helm chart's `templates` directory. A bare `kind: SupportBundle` custom resource in a chart requires the `supportbundles.troubleshoot.sh` CRD to be installed in the cluster, which is not available in most shared clusters and requires cluster-admin permissions. The Secret-based approach works in any cluster without additional setup. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+Support bundle specs must be defined in a Kubernetes Secret (or ConfigMap) when included inside a Helm chart's `templates` directory. Do not place a bare `kind: SupportBundle` custom resource inside a Helm chart — that pattern is not supported in most shared clusters. The Secret-based approach works in any cluster without additional setup. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 :::
 
 In your Helm chart `templates` directory, add the following YAML to a Kubernetes Secret:   
@@ -72,7 +72,7 @@ You can define support bundle specs in a SupportBundle custom resource for the f
 * Helm applications installed with KOTS v1.94.1 and earlier
 
 :::note
-A bare `kind: SupportBundle` custom resource is only appropriate at the root of a release. If you place this manifest inside a Helm chart's `templates` directory, the `supportbundles.troubleshoot.sh` CRD must be installed in the cluster before the chart is deployed. For Helm charts, use the Secret-based approach in [Kubernetes secret](#secret) instead.
+A bare `kind: SupportBundle` custom resource is only appropriate at the root of a release. Do not place this manifest inside a Helm chart's `templates` directory. For Helm charts, use the Secret-based approach in [Kubernetes secret](#secret) instead.
 :::
 
 In the root of a release for your application (outside of any Helm chart), add the following YAML to a new `support-bundle.yaml` manifest file:

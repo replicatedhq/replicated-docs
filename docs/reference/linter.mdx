@@ -1129,8 +1129,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Description</th>
     <td>
-      <p>Notifies if a Helm chart contains a top-level <code>kind: Preflight</code> or <code>kind: SupportBundle</code> custom resource without also including the corresponding CRD (<code>preflights.troubleshoot.sh</code> or <code>supportbundles.troubleshoot.sh</code>) in the chart's <code>crds/</code> directory or templates.</p>
-      <p>Bare Preflight or SupportBundle custom resources inside a Helm chart require the matching CRD to be installed in the cluster before the chart is applied. In most shared clusters, that CRD is not present and installing it requires cluster-admin permissions. Embed the spec in a Kubernetes Secret with the <code>troubleshoot.sh/kind</code> label instead. See <a href="/vendor/preflight-defining">Define preflight checks</a> and <a href="/vendor/support-bundle-customizing">Add and customize support bundles</a>.</p>
+      <p>Notifies if a Helm chart contains a top-level <code>kind: Preflight</code> or <code>kind: SupportBundle</code> custom resource.</p>
+      <p>Preflight and SupportBundle custom resources cannot be applied directly from a Helm chart — they require cluster-side CRDs that are not available in most shared clusters and that need cluster-admin permissions to install. Embed the spec in a Kubernetes Secret with the <code>troubleshoot.sh/kind</code> label instead. See <a href="/vendor/preflight-defining">Define preflight checks</a> and <a href="/vendor/support-bundle-customizing">Add and customize support bundles</a>.</p>
     </td>
   </tr>
   <tr>
