@@ -199,6 +199,17 @@ When a release is promoted to a channel.
 
 When a release is demoted from a channel.
 
+### Release Build Failed
+
+When an air gap bundle build fails for a release on a channel.
+
+The following table describes the available filters for the Release Build Failed event type:
+
+| Filter | Required | Options |
+|--------|----------|---------|
+| Application | No | Any application |
+| Channel | No | Any channel for the selected application |
+
 ### Release Assets Downloaded {#release-assets-downloaded}
 
 When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Each individual asset pull triggers one Release Assets Downloaded event.
