@@ -67,6 +67,46 @@ To install the SDK as a subchart:
     replicated   1/1     1            1           35s
     ```
 
+## Brand the SDK with a Helm alias {#brand-sdk-alias}
+
+When the Replicated SDK is installed as a subchart, it creates Kubernetes resources (such as the `replicated` Deployment, Service, ServiceAccount, and Role) using the name `replicated`. To make these resources match your product or company branding rather than exposing the `replicated` name to end customers in the cluster, you can rename the SDK subchart by using Helm's [`alias`](https://helm.sh/docs/topics/charts/#tags-and-condition-fields-in-dependencies) field on the dependency.
+
+The alias only changes the local name that Helm uses to reference the SDK subchart and the names of the resources it creates in the cluster. The chart is still pulled from `oci://registry.replicated.com/library/replicated`, and the SDK's telemetry, license enforcement, and API behavior are unchanged.
+
+To brand the SDK with a Helm alias:
+
+1. In your application Helm chart `Chart.yaml` file, add the `alias` field to the SDK dependency. The alias must be a valid Kubernetes resource name (lowercase alphanumeric characters and `-`).
+
+   For example, to alias the SDK as `mycompany-sdk`:
+
+   ```yaml
+   # Chart.yaml
+   dependencies:
+   - name: replicated
+     alias: mycompany-sdk
+     repository: oci://registry.replicated.com/library
+     version: 1.19.3
+   ```
+
+   :::note
+   You do not need to add a `global.replicated`, `replicated`, or `<alias>` key to your `values.yaml` file for the SDK. The Replicated registry injects these values automatically when a customer pulls the chart. For more information, see [Helm `global.replicated` Values Schema](/vendor/helm-install-values-schema#replicated-sdk-helm-values).
+   :::
+
+1. Package your application Helm chart and install it as described in [Install the SDK as a subchart](#install-the-sdk-as-a-subchart) above and [Installing with Helm](/vendor/install-with-helm).
+
+### Example result in the cluster
+
+The following example shows the result of installing an application Helm chart named `myapp` that includes the SDK as a dependency aliased to `mycompany-sdk`. The SDK resources in the cluster are named after the alias instead of `replicated`:
+
+```
+$ kubectl get deploy --namespace myapp
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+myapp           1/1     1            1           45s
+mycompany-sdk   1/1     1            1           45s
+```
+
+End customers see the alias name on every SDK-managed resource, so the SDK presents itself as part of your product rather than as a separately-branded `replicated` component.
+
 ## Install the SDK alongside a Kubernetes manifest-based application {#manifest-app}
 
 For applications that use Kubernetes manifest files instead of Helm charts, the SDK Helm chart can be added to a release and then installed by KOTS alongside the application.
