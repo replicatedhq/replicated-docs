@@ -1,6 +1,6 @@
 # Manage event notification subscriptions (Beta)
 
-This topic describes how to view, edit, disable, and delete event notifications in the Replicated Vendor Portal. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
+This topic describes how to view, edit, mute, disable, and delete event notifications in the Replicated Vendor Portal. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
 
 ## View notification subscriptions
 
@@ -36,6 +36,40 @@ To resend a failed notification:
 1. Go to **Notifications** > **History**.
 1. Expand the failed event and click **Resend email** or **Resend webhook**.
 1. Confirm the resend.
+
+## Mute health alerts for a specific instance
+
+You can mute a specific instance on a notification subscription to suppress recurring health alerts for that instance. Muting is useful when an instance is in a known degraded state and you want to reduce noise without disabling the subscription entirely.
+
+Muting applies to the following health event types only:
+- Instance State Duration
+- Instance State Flapping
+- Instance Version Behind
+- Custom Metric Threshold Reached
+
+Mutes are scoped to the subscription — other subscriptions that cover the same instance are not affected.
+
+When one or more instances are muted, an amber banner appears at the top of the **History** tab listing the active mutes. The subscription card on the **Overview** page also shows a badge with the count of muted instances.
+
+### Mute an instance
+
+To mute health alerts for a specific instance:
+
+1. In the Vendor Portal, go to **Notifications > History**.
+1. Expand a health event row for the instance you want to mute.
+1. Click **Mute instance**.
+1. Select a mute duration: **7 days**, **30 days**, or **Indefinitely**.
+1. Confirm the mute.
+
+The Vendor Portal will not deliver health alerts for the muted instance on this subscription until the mute expires or is removed.
+
+### Remove a mute
+
+To remove a mute before it expires:
+
+1. In the Vendor Portal, go to **Notifications > History**.
+1. In the active-mutes banner, click **Manage mutes**.
+1. Click **Unmute** next to the instance you want to re-enable.
 
 ## Edit a notification
 
