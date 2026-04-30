@@ -21,7 +21,7 @@ The following types of tokens are available:
 
 ### Service accounts
 
-Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy when they create a service account.
+Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy when they create a service account. Once created, service account tokens cannot be reassigned a different policy.
 
 Service accounts are useful for operations that are not tied to a particular user, such as CI/CD or integrations.
 
