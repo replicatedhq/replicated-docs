@@ -107,6 +107,39 @@ As shown in the image below, the **Config** page displays the `new_feature_confi
 
 [View a larger version of this image](/images/config-example-newfeature.png)
 
+### Show messaging for unavailable features
+
+When all items in a group are hidden by `when` conditions, the entire group is hidden, including its title and description. To display a message to users when a feature is unavailable (for example, to inform them that they need to upgrade their license to access certain configuration options), add a `label` item to the group that is shown in the negated condition.
+
+In the following example, the `enterprise_features` group contains two items that are shown only when the user's license includes the `enterprise_features` field set to `true`. The `upgrade_notice` item uses `type: label` with a negated `when` condition so that it is displayed when the entitlement is missing, ensuring the group remains visible with an informational message.
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: enterprise_features
+      title: Enterprise Features
+      description: Advanced configuration options.
+      items:
+      - name: advanced_setting
+        title: Advanced Setting
+        type: text
+        when: '{{repl (LicenseFieldValue "enterprise_features" | ParseBool) }}'
+      - name: another_advanced_setting
+        title: Another Advanced Setting
+        type: text
+        when: '{{repl (LicenseFieldValue "enterprise_features" | ParseBool) }}'
+      - name: upgrade_notice
+        type: label
+        title: "Upgrade your license to access these features."
+        when: '{{repl not (LicenseFieldValue "enterprise_features" | ParseBool) }}'
+```
+
+In this example, when the `enterprise_features` license field is missing or false, only the `upgrade_notice` label is shown and the group remains visible. When the entitlement is present, the label is hidden and the actual configuration items are shown.
+
 ### License field value integer comparison
 
 You can show or hide configuration fields based on the values in a license to ensure that users only see configuration options for the features and entitlements granted by their license. You can also compare integer values from license fields to control the configuration experience for your users.
