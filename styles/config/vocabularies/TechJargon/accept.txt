@@ -92,4 +92,5 @@ SSO
 TOTP
 ttl
 keyless
+liveness
 Unmute

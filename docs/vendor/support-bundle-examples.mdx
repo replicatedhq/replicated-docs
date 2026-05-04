@@ -23,9 +23,15 @@ import RunPodsCr from "../partials/support-bundles/_run-pods-cr.mdx"
 
 This topic includes common examples of support bundle specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
-## Check API deployment status
+## Check application health
 
-The examples below use the `deploymentStatus` analyzer to check the version of Kubernetes running in the cluster. The `deploymentStatus` analyzer uses data from the default `clusterResources` collector.
+This example shows how to use the `deploymentStatus` analyzer to check an application's health.
+The `deploymentStatus` analyzer uses data from the default `clusterResources` collector to check if liveness probes are passing and if the required number of replicas are ready for an application deployment.
+
+Replicated recommends using the `deploymentStatus` analyzer to check application health because it doesn't require any additional collectors besides `clusterResources`. It also requires no additional RBAC permissions. The `http`, `exec`, and `runPod` collectors can probe health endpoints directly, but each has environment-specific limitations:
+- `http` cannot resolve in-cluster DNS from the CLI.
+- `exec` requires `pods/exec` RBAC and tools such as `curl`, `wget`, or `nc` in the container.
+- `runPod` requires `pods/create` RBAC. In air-gapped environments, the image must already be present on the node.
 
 For more information, see [Deployment Status](https://troubleshoot.sh/docs/analyze/deployment-status/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
 
@@ -36,7 +42,7 @@ For more information, see [Deployment Status](https://troubleshoot.sh/docs/analy
   <TabItem value="custom-resource" label="SupportBundle Custom Resource">
     <DeployStatusCr/>
   </TabItem>
-</Tabs> 
+</Tabs>
 
 ## Check HTTP requests
 
