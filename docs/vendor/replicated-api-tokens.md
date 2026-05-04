@@ -14,18 +14,18 @@ Using the Replicated CLI and Vendor API V3 requires an API token for authorizati
 
 The following types of tokens are available:
 
-- [Service Accounts](#service-accounts)
-- [User API Tokens](#user-api-tokens)
+- [Service accounts](#service-accounts)
+- [User API tokens](#user-api-tokens)
 
 <TeamTokenNote/>
 
 ### Service accounts
 
-Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy when they create a service account. Once created, service account tokens cannot be reassigned a different policy.
+Service accounts are assigned a token and an RBAC policy. Users with the proper permissions can create, view, and revoke service accounts.
 
 Service accounts are useful for operations that are not tied to a particular user, such as CI/CD or integrations.
 
-Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its tokens are also invalidated.
+When a service account is removed, its tokens are also invalidated.
 
 ### User API tokens
 
@@ -35,44 +35,31 @@ Updates to a user's RBAC role are applied to all of the tokens belonging to that
 
 Revoking a user token immediately invalidates that token. When a user account is deleted, its user tokens are also deleted.
 
-## Generate tokens
+## Create a service account
 
-To use the Replicated CLI or the Vendor API v3, you need a User API token or a Service Account token. Existing team API tokens also continue to work.
+To create a service account:
 
-### Generate a service account
-
-To generate a service account:
-
-1. Log in to the Vendor Portal, and select [**Team > Service Accounts**](https://vendor.replicated.com/team/serviceaccounts).
-1. Select **New Service Account**. If one or more service accounts already exist, you can add another by selecting **New Service Account**.
-
+1. In the Vendor Portal, go to [**Team > Service Accounts**](https://vendor.replicated.com/team/serviceaccounts).
+1. Click **Create Service Account**.
 1. Edit the fields in the **New Service Account** dialog:
 
-     <img alt="New Service Accounts Dialog" src="/images/service-accounts.png" width="400px"/>
+     1. For **Nickname**, enter a name for the service account. Service account names must be unique within the team.
 
-     [View a larger version of this image](/images/service-accounts.png)
+     1. For **RBAC**, select an RBAC policy to assign to the service account. For more information about how to create custom RBAC policies, see [Configure RBAC Policies](team-management-rbac-configuring).
 
-     1. For **Nickname**, enter a name the token. Names for service accounts must be unique within a given team.
+        Note the following:
+         * Admin users can assign any RBAC policy to a service account. Non-admin users can only assign an RBAC policy with their same level of access to avoid permission elevation.
+         * After you create a service account, you can't change which RBAC policy is assigned to the service account. If you need to change the RBAC for an existing service account that uses a custom RBAC policy, then you can update the custom RBAC policy itself. Updates to the RBAC policy are automatically applied to the service account's associated token. Or, you can create a new service account and assign it a different RBAC policy.
 
-     1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
+     1. (Optional) Select **Limit to read-only version of above policy** if you selected a custom RBAC policy that has Read/Write permissions but you want to limit this service account to read-only. This option lets you maintain one version of a custom RBAC policy and use it two ways: as read/write and as read-only.
 
-       This list includes the Vendor Portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configure RBAC Policies](team-management-rbac-configuring).
-
-       Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
-
-     1. (Optional) For custom RBAC policies, select the **Limit to read-only version of above policy** check box to if you want use a policy that has Read/Write permissions but limit this service account to read-only. This option lets you maintain one version of a custom RBAC policy and use it two ways: as read/write and as read-only.
-
-1. Select **Create Service Account**.
+1. Click **Create Service Account**.
 
 1. Copy the service account token and save it in a secure location. The token will not be available to view again.
 
 1. (Recommended) Add the token to a Replicated authentication profile. See [Authenticate](/reference/replicated-cli-installing#auth) in _Installing the Replicated CLI_.
 
-:::note
-To remove a service account, select **Remove** for the service account that you want to delete.
-:::
-
-### Generate a user API token
+## Generate a user API token
 
 To generate a user API token:
 
