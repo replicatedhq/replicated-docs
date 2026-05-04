@@ -53,6 +53,23 @@ The Vendor Portal supports filtering by custom license fields for the following 
 
 For information about how to create custom license fields, see [Manage custom license fields](/vendor/licenses-adding-custom-fields#manage-custom-license-fields) in _Create and manage customers_.
 
+### Instance tag filters
+
+For instance-scoped events, you can target notifications by the tags attached to an instance. This is useful when you want different alert rules for different environments or instance categories. For example, you might page only on Production instances going unhealthy while suppressing alerts from Development instances belonging to the same customer.
+
+Each instance tag filter is a condition that consists of a tag key, a comparison operator, and a value. Supported operators are:
+
+| Operator | Behavior |
+|----------|----------|
+| equals | The tag value matches the configured value exactly. Case-sensitive. |
+| contains | The tag value contains the configured value as a substring. Case-insensitive. |
+
+When you specify multiple tag conditions, all conditions must match for the notification to trigger (AND logic). For example, if you add conditions for `environment equals Production` and `region contains us-`, then both must be true on the instance for the notification to fire. If a condition references a tag key that is not set on the instance, the condition does not match and the notification is suppressed.
+
+Instance tag filters are available on all instance-scoped events except Instance Created. The Instance Created event fires on the instance's first check-in, before tags have been applied, so a tag filter would never match. If you want to be notified about a new instance coming online and need tag-based filtering, use the Instance Ready event instead.
+
+Tags can be set on an instance from the Vendor Portal, by the Replicated SDK on heartbeat, or by the Replicated CLI. For information about instance tags, see [`instance tag`](/reference/replicated-cli-instance-tag) in _Replicated CLI reference_.
+
 ## RBAC requirements
 
 Roles with write access (Admin, Support Engineer, Sales, or custom roles) can create and manage their own notifications. They can also view notifications created by others.

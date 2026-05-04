@@ -115,6 +115,16 @@ As a Product Manager, I want to be notified when a new release version is made a
   - Filter - Channel: Select "Stable"
 - **Delivery Method:** Email to `pm-team@company.com` or webhook to #pm-team channel in Slack
 
+### Release engineer: Release build failed
+
+As a Release Engineer, I want alerts when an air gap bundle build fails on a testing or production channel. This helps me investigate before customers install or upgrade.
+
+- **Event Type:** Release Build Failed
+- **Configuration:**
+  - Filter - Application: Select your application
+  - Filter - Channel: Select "Unstable", "Beta", or "Stable", depending on the channels you monitor
+- **Delivery Method:** Webhook to your team chat or email to your release engineering alias
+
 ### Development leader: Paid customer downloads release assets
 
 As a Development Leader, I want to be notified when a paid customer pulls release assets to initiate a paid install.
