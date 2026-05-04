@@ -18,7 +18,7 @@ The following prerequisites must be met to submit support requests:
 
 * Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](team-management-github-username#add).
 
-## Open a support request from a support bundle
+## (Recommended) Open a support request from a support bundle
 
 If you open a support request when viewing a bundle on the Vendor Portal **Support Bundle Analysis** page, the support request form is pre-populated with information from the support bundle and the associated customer license. The support bundle is also automatically attached to the request.
 
