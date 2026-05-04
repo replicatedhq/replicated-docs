@@ -159,7 +159,7 @@ To submit a feature request:
 1. On the self-service page, click **Make a feature request**.
 
    :::note
-   If your team has a collab repository configured, you can click **View open issues and requests** on the self-service page to see all issues and feature requests in your Replicated collab repository in GitHub.
+   You can click **View open issues and requests** on the self-service page to see all issues and feature requests in your Replicated collab repository in GitHub.
    :::
 
 1. Complete the feature request form:
