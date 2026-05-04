@@ -1,6 +1,5 @@
-# About event notifications (Beta)
-
-This topic provides an overview of the Event Notifications (Beta) feature, which allows you to set up notifications for key events from the Vendor Portal.
+# About event notifications
+This topic provides an overview of the Event Notifications feature, which allows you to set up notifications for key events from the Vendor Portal.
 
 ## Overview
 
@@ -12,7 +11,7 @@ The following shows an example of the notifications **Overview** page:
 
 [View a larger version of this image](/images/notifications-overview.png)
 
-The Vendor Portal queues events to Amazon Simple Queue Service (SQS) for reliable processing, and matches notifications against your custom event filters in real time. You can receive notifications through email or webhook. For information about how to create and subscribe to event notifications, see [Create event notification subscriptions (Beta)](event-notifications-create).
+The Vendor Portal queues events to Amazon Simple Queue Service (SQS) for reliable processing, and matches notifications against your custom event filters in real time. You can receive notifications through email or webhook. For information about how to create and subscribe to event notifications, see [Create event notification subscriptions](event-notifications-create).
 
 ## Events and filters
 
@@ -22,7 +21,7 @@ This section describes the types of events and filters that are available for cr
 
 You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, and channels. For example, you can get a notification when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, or when a customer license is expiring soon.
 
-For the full list of available event types and event-specific filters, see [Event types and filters (Beta)](/reference/notifications-events-filters).
+For the full list of available event types and event-specific filters, see [Event types and filters](/reference/notifications-events-filters).
 
 ### Multi-event notifications
 
@@ -34,7 +33,7 @@ For example, if you create a notification with both the **Release Created** and 
 
 You can configure a unique set of filters for each event that you add to a notification. An event must match _all_ its filters to trigger the notification (AND logic).
 
-The filters available depend on the event type. All events support filtering by application name. Other common filters that apply to most event types include the channel, customer name, and license type. For more information, see [Event types and filters (Beta)](/reference/notifications-events-filters).
+The filters available depend on the event type. All events support filtering by application name. Other common filters that apply to most event types include the channel, customer name, and license type. For more information, see [Event types and filters](/reference/notifications-events-filters).
 
 ### Filters with multiple values
 
@@ -89,7 +88,7 @@ For more information, see [Configure RBAC policies](team-management-rbac-configu
 
 ## Limitations
 
-Event Notifications (Beta) has the following limitations:
+Event Notifications has the following limitations:
 
 - Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
@@ -97,13 +96,13 @@ Event Notifications (Beta) has the following limitations:
 
 ## Comparison to instance notifications (Classic)
 
-Event Notifications (Beta) is the next generation of instance notification functionality in the Vendor Portal. Compared to [Instance Notifications (Classic)](instance-notifications-config), Event Notifications offers more event types, fine-grained filtering, flexible delivery routing, notification history tracking, and better access control.
+Event Notifications is the next generation of instance notification functionality in the Vendor Portal. Compared to [Instance Notifications (Classic)](instance-notifications-config), Event Notifications offers more event types, fine-grained filtering, flexible delivery routing, notification history tracking, and better access control.
 
-You can use Event Notifications (Beta) concurrently with Instance Notifications (Classic) while you evaluate and transition.
+You can use Event Notifications concurrently with Instance Notifications (Classic) while you evaluate and transition.
 
-The following table compares the functionality offered by Instance Notifications (Classic) and Event Notifications (Beta):
+The following table compares the functionality offered by Instance Notifications (Classic) and Event Notifications:
 
-| Feature | Instance Notifications (Classic) | Event Notifications (Beta) |
+| Feature | Instance Notifications (Classic) | Event Notifications |
 |---------|------------------------------|---------------------------|
 | **Event Types** | Three event types: App Status, System Events, Custom Metrics | More than 20 event types across six categories |
 | **Scope** | Per-instance subscriptions | Team-wide with flexible filtering |

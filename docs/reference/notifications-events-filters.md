@@ -1,8 +1,7 @@
-# Event types and filters (Beta)
+# Event types and filters
+For more information about the Event Notifications feature, see [About event notifications](/vendor/event-notifications).
 
-For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
-
-This topic lists the types of events supported for the Event Notifications (Beta) feature.
+This topic lists the types of events supported for the Event Notifications feature.
 
 ## Channel events
 
