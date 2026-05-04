@@ -1,0 +1,48 @@
+# replicated policy ls
+
+List RBAC policies
+
+### Synopsis
+
+List all RBAC policies for your team.
+
+```
+replicated policy ls [flags]
+```
+
+### Aliases
+
+```
+ls, list
+```
+
+### Examples
+
+```
+  # List all policies
+  replicated policy ls
+
+  # List policies in JSON format
+  replicated policy ls --output json
+```
+
+### Options
+
+```
+  -h, --help            help for ls
+  -o, --output string   The output format to use. One of: json|table (default "table")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated policy](replicated-cli-policy)	 - Manage RBAC policies
+
