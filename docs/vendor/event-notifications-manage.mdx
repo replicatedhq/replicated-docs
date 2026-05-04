@@ -37,39 +37,39 @@ To resend a failed notification:
 1. Expand the failed event and click **Resend email** or **Resend webhook**.
 1. Confirm the resend.
 
-## Mute health alerts for a specific instance
+## Mute health alert notifications for specific instances
 
-You can mute a specific instance on a notification subscription to suppress recurring health alerts for that instance. Muting is useful when an instance is in a known degraded state and you want to reduce noise without disabling the subscription entirely.
+For any subscription that alerts on instance health events (such as Custom Metric Threadhold Reached or Instance Version Behind events), you can mute notifications for specific instances. Muting is useful when an instance is in a known degraded state and you want to reduce noise without disabling the subscription entirely.
 
-Muting applies to the following health event types only:
+When you mute health alerts for an instance, the Vendor Portal blocks notifications from the given subscription for that instance. Other subscriptions that apply to the instance are _not_ muted.
+
+The Vendor Portal lists muted instances in a banner at the top of the **Notifications > History** tab. The subscription card on the **Notifications > Overview** page also shows a badge with the count of muted instances.
+
+You can mute notifications for the following event types only:
 - Instance State Duration
 - Instance State Flapping
 - Instance Version Behind
 - Custom Metric Threshold Reached
 
-The mute applies to the subscription only — other subscriptions that cover the same instance are not affected.
-
-When you mute one or more instances, an amber banner appears at the top of the **History** tab listing the active mutes. The subscription card on the **Overview** page also shows a badge with the count of muted instances.
-
 ### Mute an instance
 
-To mute health alerts for a specific instance:
+To mute an instance:
 
 1. In the Vendor Portal, go to **Notifications > History**.
-1. Expand a health event row for the instance you want to mute.
+1. Expand a row for the instance you want to mute.
+   :::note
+   Muting is supported only for subscriptions that alert on instance health events.
+   :::
 1. Click **Mute instance**.
-1. Select a mute duration: **7 days**, **30 days**, or **Indefinitely**.
-1. Confirm the mute.
+1. Select a duration to mute the instance (7 days, 30 days, or Indefinitely), and confirm.
 
-The Vendor Portal will not deliver health alerts for the muted instance on this subscription until the mute expires or you remove it.
+### Unmute an instance
 
-### Remove a mute
-
-To remove a mute before it expires:
+To unmute an instance:
 
 1. In the Vendor Portal, go to **Notifications > History**.
-1. In the active-mutes banner, click **Manage mutes**.
-1. For the instance you want to re-enable, click **Unmute**.
+1. In the banner at the top of the page, click **Manage mutes**.
+1. For the target instance, click **Unmute**.
 
 ## Edit a notification
 
