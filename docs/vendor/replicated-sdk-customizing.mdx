@@ -14,6 +14,48 @@ Common use cases for customizing the SDK include adding common labels and pod la
 
 <SdkValuesLimitation/>
 
+## Brand the SDK with a Helm alias {#brand-sdk-alias}
+
+When the Replicated SDK is installed as a subchart, it creates Kubernetes resources using the name `replicated`. This includes a `replicated` Deployment, Service, ServiceAccount, and Role. To make these resources match your product or company branding rather than exposing the `replicated` name to end customers in the cluster, you can rename the SDK subchart using Helm's [`alias`](https://helm.sh/docs/topics/charts/#tags-and-condition-fields-in-dependencies) field on the dependency.
+
+The Helm alias changes only the local name that Helm uses to reference the SDK subchart and the resources it creates in the cluster. The alias does not change the SDK's telemetry, license enforcement, and API behavior. Also, when you use a Helm alias, the SDK chart is still pulled from the Replicated registry at `oci://registry.replicated.com/library/replicated`. For information about how to set a custom domain for the Replicated registry, see [Use custom domains](custom-domains-using).
+
+To brand the SDK with a Helm alias:
+
+1. In your application Helm chart `Chart.yaml` file, add the `alias` field to the SDK dependency. The alias must be a valid Kubernetes resource name that uses lowercase alphanumeric characters and optionally the `-` character.
+
+   For example, to alias the SDK as `yourcompany-sdk`:
+
+   ```yaml
+   # Chart.yaml
+   dependencies:
+   - name: replicated
+     alias: yourcompany-sdk
+     repository: oci://registry.replicated.com/library
+     version: 1.19.3
+   ```
+
+   :::note
+   You do not need to add a `global.replicated`, `replicated`, or `<alias>` key to your `values.yaml` file for the SDK. The Replicated registry injects these values automatically when a customer pulls the chart. For more information, see [Helm `global.replicated` Values Schema](/vendor/helm-install-values-schema#replicated-sdk-helm-values).
+   :::
+
+1. Update dependencies and package the chart into a `.tgz` archive:
+
+   ```
+   helm package --dependency-update .
+   ```
+
+1. Test your changes by installing the SDK in a development environment. See [Install the SDK as a subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
+
+   After installing, check that the SDK resources in the cluster use your alias. For example:
+
+   ```
+   $ kubectl get deploy --namespace yourapp
+   NAME              READY   UP-TO-DATE   AVAILABLE   AGE
+   yourapp           1/1     1            1           45s
+   yourcompany-sdk   1/1     1            1           45s
+   ```
+
 ## Customize RBAC for the SDK
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimal RBAC, read-only mode, and how to install the SDK with custom RBAC.
