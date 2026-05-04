@@ -1,0 +1,60 @@
+# replicated policy create
+
+Create an RBAC policy
+
+### Synopsis
+
+Create a new RBAC policy from a JSON definition file.
+
+The definition file must be valid JSON in the following format:
+  ```json
+  {
+    "v1": {
+      "name": "My Policy",
+      "resources": {
+        "allowed": ["**/*"],
+        "denied": []
+      }
+    }
+  }
+  ```
+
+Vendors not on an enterprise plan cannot create policies.
+
+```
+replicated policy create [flags]
+```
+
+### Examples
+
+```
+  # Create a policy from a definition file
+  replicated policy create --name "My Policy" --definition policy.json
+
+  # Create a policy with a description
+  replicated policy create --name "My Policy" --description "Custom access policy" --definition policy.json
+```
+
+### Options
+
+```
+      --definition string    Path to the JSON file containing the policy definition
+      --description string   Description of the policy
+  -h, --help                 help for create
+      --name string          Name of the policy
+  -o, --output string        The output format to use. One of: json|table (default "table")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated policy](replicated-cli-policy)	 - Manage RBAC policies
+
