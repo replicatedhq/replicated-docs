@@ -1,6 +1,5 @@
-# Create event notification subscriptions (Beta)
-
-This topic describes how to create event notification subscriptions in the Replicated Vendor Portal. For more information about the Event Notifications (Beta) feature, see [About event notifications (Beta)](/vendor/event-notifications).
+# Create event notification subscriptions
+This topic describes how to create event notification subscriptions in the Replicated Vendor Portal. For more information about the Event Notifications feature, see [About event notifications](/vendor/event-notifications).
 
 ## Create an event notification
 
@@ -22,7 +21,7 @@ To create an event notification subscription:
 
    Subscription names can contain up to 255 ASCII characters (letters, numbers, and basic punctuation).
 
-1. Select one or more event types to include in the subscription. For the full list of available event types, see [Event types and filters (Beta)](/reference/notifications-events-filters).
+1. Select one or more event types to include in the subscription. For the full list of available event types, see [Event types and filters](/reference/notifications-events-filters).
 
    :::note
    Alternatively, click **Configure with AI instead**. With the AI-assisted notification builder, you can describe in natural language the events that you want to be notified about. For example, "Notify me when trial customers upload support bundles" or "Alert me when instances fall more than 3 versions behind on the Stable channel". The AI builder has context of pre-defined event types and filters, but cannot create new event types or filters.
@@ -30,7 +29,7 @@ To create an event notification subscription:
 
 1. (Optional) For each of the events that you selected, click the filter icon to configure event filters. Click **Done** to save the filters.
 
-    For more information about how the Vendor Portal uses filters to trigger notifications, see [Events and filters](/vendor/event-notifications#events-and-filters) in _About event notifications (Beta)_.
+    For more information about how the Vendor Portal uses filters to trigger notifications, see [Events and filters](/vendor/event-notifications#events-and-filters) in _About event notifications_.
 
     ![Event filters](/images/notification-event-filters.png)
 
@@ -54,9 +53,9 @@ To create an event notification subscription:
          - Must respond with a 2xx status code (200-299) for successful delivery
          - Response time must be less than five seconds
 
-      1. (Recommended) Enter a signing secret for HMAC signature verification. For more information, see [Verify webhook signatures](event-notifications-webhooks#verify-webhook-signatures) in _Configure and test webhooks (Beta)_.
+      1. (Recommended) Enter a signing secret for Hash-based Message Authentication Code (HMAC) signature verification. For more information, see [Verify webhook signatures](event-notifications-webhooks#verify-webhook-signatures) in _Configure and test webhooks_.
       
-      1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About adding custom HTTP headers](event-notifications-webhooks#custom-headers) in _Configure and test webhooks (Beta)_.
+      1. (Optional) Expand **Advanced configuration** to add custom HTTP headers for authenticating with your endpoint (for example, `Authorization: Bearer token`). For more information, see [About adding custom HTTP headers](event-notifications-webhooks#custom-headers) in _Configure and test webhooks_.
 
          <img alt="Webhook delivery fields" src="/images/notification-webhook-delivery.png" width="600px"/>
 
