@@ -12,6 +12,36 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.17.1
+
+Released on May 5, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.17.1+k8s-1.34</td>
+    <td id="center">2.17.1+k8s-1.33</td>
+    <td id="center">2.17.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-17-1}
+* Updates KOTS to 1.130.2.
+* Updates SeaweedFS to 4.23.0.
+* Updates Troubleshoot to v0.128.1.
+* Updates Kubernetes component images across supported versions.
+* Addresses a HIGH severity denial of service vulnerability ([CVE-2026-35469](https://nvd.nist.gov/vuln/detail/CVE-2026-35469)) in `moby/spdystream`.
+
 ## 2.17.0
 
 Released on April 22, 2026
