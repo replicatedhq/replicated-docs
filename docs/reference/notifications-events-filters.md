@@ -418,7 +418,7 @@ When an instance falls behind by a specified number of versions.
 
 | Filter | JSON key | Required | Description |
 |--------|----------|----------|-------------|
-| Versions Behind | `versionsBehind` | **Yes** | Minimum number of versions behind to trigger the notification |
+| Versions Behind | `versionsBehind` | **Yes** | Minimum number of versions behind to trigger the notification. Provide as a string (for example, `"3"`). |
 | Application | `appId` | No | Any application in your account |
 | Channel | `channelId` | No | Any channel for the selected application |
 | Customer | `customerId` | No | Any customer for the selected application |
@@ -426,7 +426,7 @@ When an instance falls behind by a specified number of versions.
 #### JSON definition
 
 ```json
-{ "eventType": "instance.version_behind", "filters": { "versionsBehind": 3 } }
+{ "eventType": "instance.version_behind", "filters": { "versionsBehind": "3" } }
 ```
 
 ### Instance Inactive
