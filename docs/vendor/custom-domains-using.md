@@ -15,7 +15,7 @@ To add and verify a custom domain:
 1. In the **Add custom domain** dropdown, select the target Replicated endpoint.
 
     :::note
-    There is a known issue when using a custom domain for the Enterprise Portal if any of your customers use link transformers such as Microsoft Defender Safe Links. For more information, see [Known Issue](custom-domains#known-issue) in _About Custom Domains_.
+    There is a known issue when using a custom domain for the Enterprise Portal if any of your customers use link transformers such as Microsoft Defender Safe Links. For more information, see [Link transformers can cause URLs in emails to break due to rewrapping](custom-domains#broken-urls) in _About Custom Domains_.
     :::
 
     The **Configure a custom domain** wizard opens.
@@ -93,16 +93,14 @@ To configure Embedded Cluster to use your custom domains for the proxy registry 
 
 1. Add the Embedded Cluster Config to a new release. Promote the release to a channel that your team uses for testing, and install with Embedded Cluster in a development environment to test your changes.
 
-### Set a default domain
+### Set application-level default domains {#default-domain}
 
-Setting a default domain is useful for ensuring that the same domain is used across channels for all your customers.
+You can set default domains at the application level so that all your release channels and customers use the same custom domains.
 
-When you set a custom domain as the default, it is used by default for all new releases promoted to any channel, as long as the channel does not have a different domain assigned in its channel settings.
-
-Only releases that are promoted to a channel _after_ you set a default domain use the new default domain. Any existing releases that were promoted before you set the default continue to use the same domain that they used previously.
+When you set a custom domain as the default, it is used by default for all new releases promoted to any channel, as long as the channel does not have a different domain assigned in its channel settings. Only releases that are promoted to a channel _after_ you set a default domain use the new default domain. Any existing releases that were promoted before you set the default continue to use the same domain that they used previously.
 
 :::note
-In Embedded Cluster installations, the KOTS Admin Console will use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config when making requests to the proxy registry and app service, regardless of the default domain or the domain assigned to the given release channel. For more information about using custom domains in Embedded Cluster installations, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+Application- and channel-level default domains for the Replicated proxy registry and the Replicated app service don't apply to Embedded Cluster installations. Instead, for Embedded Cluster, you define the custom domains for these endpoints at the release level in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to use custom domains](#ec) on this page.
 :::
 
 To set a custom domain as the default:
@@ -111,18 +109,22 @@ To set a custom domain as the default:
 
 1. Next to the target domain, click **Set as default**.
 
+    :::important
+    After you set a default custom domain for the Replicated proxy registry or Replicated registry, you can't change it. If you try to change these default custom domains, there is a known issue that causes image pull failures in existing customer installations with the Helm CLI, KOTS existing cluster, or kURL. For more information, see [Image pull errors in Helm CLI, KOTS existing cluster, and kURL installations if you change the default custom domain](custom-domains#image-pull-errors) in _About custom domains_.
+    :::
+
 1. In the confirmation dialog that opens, click **Yes, set as default**.
 
-### Assign a domain to a channel {#channel-domain}
+### Set channel-level default domains {#channel-domain}
 
-You can assign a domain to an individual channel by editing the channel settings. When you specify a domain in the channel settings, new releases promoted to the channel use the selected domain even if there is a different domain set as the default on the **Custom Domains** page.
+You can set a default domain on an individual channel. When you set a default domain in a channel's settings, new releases promoted to the channel use the selected domain even if there is a different domain set as the default on the **Custom Domains** page.
 
-Assigning a domain to a release channel is useful when you need to override either the default Replicated domain or a default custom domain for a specific channel. For example:
-* You need to use a different domain for releases promoted to your Beta and Stable channels.
+Assigning a domain to a release channel is useful when:
+* You need to use a different domain for releases promoted to different channels.
 * You need to test a domain in a development environment before you set the domain as the default for all channels.
 
 :::note
-In Embedded Cluster installations, the KOTS Admin Console will use the domains specified in the `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` fields of the Embedded Cluster Config when making requests to the proxy registry and app service, regardless of the default domain or the domain assigned to the given release channel. For more information about using custom domains in Embedded Cluster installations, see [Configure Embedded Cluster to Use Custom Domains](#ec) above.
+Application- and channel-level default domains for the Replicated proxy registry and the Replicated app service don't apply to Embedded Cluster installations. Instead, for Embedded Cluster, you define the custom domains for these endpoints at the release level in the Embedded Cluster Config. For more information, see [Configure Embedded Cluster to use custom domains](#ec) on this page.
 :::
 
 To assign a custom domain to a channel:
@@ -130,6 +132,10 @@ To assign a custom domain to a channel:
 1. In the Vendor Portal, go to **Channels** and click the settings icon for the target channel.
 
 1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Channel Settings](releases-about#channel-settings) in _About Channels and Releases_.
+
+    :::important
+    After you set a default custom domain for the Replicated proxy registry or Replicated registry on a channel, you can't change it. If you try to change these default custom domains in the channel's settings, there is a known issue that causes image pull failures in existing customer installations with the Helm CLI, KOTS existing cluster, or kURL. For more information, see [Image pull errors in Helm CLI, KOTS existing cluster, and kURL installations if you change the default custom domain](custom-domains#image-pull-errors) in _About custom domains_.
+    :::
 
     <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
 

@@ -1,6 +1,6 @@
 ---
 name: vale-prose-review
-description: This skill should be used when the user asks to "run vale on this file", "lint this file with vale", "check this file with vale", "fix vale errors in this file", "review vale comments", "address vale suggestions", "clean up vale output", "fix vale linter output", "apply vale prose fixes", "resolve vale errors", or shares vale linter output and asks what to change.
+description: This skill should be used when the user asks to "run vale on this file", "lint this file with vale", "check this file with vale", "fix vale errors in this file", "review vale comments", "address vale suggestions", "clean up vale output", "fix vale linter output", "apply vale prose fixes", "resolve vale errors", "run vale on my diff", "vale on changed lines", "vale on the Prerequisites section" (or any named section), or shares vale linter output and asks what to change.
 version: 0.2.0
 ---
 
@@ -11,6 +11,32 @@ A workflow for running the vale prose linter on a documentation file and automat
 ## Overview
 
 Vale is a prose linter that reports issues at three severity levels — **error**, **warning**, and **suggestion** — along with a rule name. Not every flagged item needs to be changed. Use judgment to prioritize fixes that improve clarity without distorting meaning.
+
+## Scoping the Review
+
+By default, the review applies to the **whole file**. Two narrower scopes are supported — check whether the user has requested one before proceeding.
+
+### Git diff scope (changed lines only)
+
+**When to use:** The user asks to review only their edits, the git diff, or "what I changed".
+
+1. Run `git diff <file_path>` (or `git diff HEAD <file_path>` if the file is already staged).
+2. Parse the diff to collect the line ranges of added or modified content. Each hunk header looks like `@@ -old,count +new,start @@`. Walk the `+` lines to build a set of new-file line numbers. Unchanged context lines (`space`-prefixed) do not count; removed lines (`-`-prefixed) have no new-file line number.
+3. Proceed through Steps 1–5 below, but **only act on vale flags whose line number falls within the collected set**. Skip flags on unchanged lines entirely.
+
+If `git diff` returns no output (file is clean / no local changes), tell the user and fall back to whole-file mode.
+
+### Section scope (named heading(s) only)
+
+**When to use:** The user names one or more section headings (e.g., "only review the Prerequisites section").
+
+1. Read the file and scan for Markdown headings (`#`, `##`, etc.) to build a list of `(heading_text, start_line)` pairs. A section ends at the next heading of equal or higher level (or end of file).
+2. Match the user's requested heading(s) against that list (case-insensitive, partial match is fine).
+3. Proceed through Steps 1–5 below, but **only act on vale flags whose line number falls within the matched section range(s)**. Skip flags outside those ranges.
+
+If no heading matches, report the mismatch and list the available headings so the user can clarify.
+
+---
 
 ## Workflow
 
@@ -28,6 +54,8 @@ The `--output=line` flag produces one flag per line in the format:
 ```
 
 Read the target file before making any changes.
+
+If a scope has been established (git diff or section), apply the line-range filter to the vale output now — discard any flag outside the allowed ranges before triaging.
 
 ### Step 2: Locate the vale accept lists (for spelling errors)
 
