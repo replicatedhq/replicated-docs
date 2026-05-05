@@ -23,6 +23,9 @@ Released on May 5, 2026
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.34.7 1.33.11 1.32.13 1.31.14.
 * Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 3.1.0.
 
+### Bug Fixes {#bug-fixes-v2026-05-05-0}
+* Fixes Registry addon compatibility with containerd 2.x.
+
 ## v2026.04.09-0
 
 Released on April 9, 2026
