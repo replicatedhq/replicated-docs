@@ -74,6 +74,12 @@ To create an event notification subscription:
          
          The test result displays the HTTP status code and response time, or an error message with troubleshooting guidance. If you configured a signing secret, the test request is signed with HMAC-SHA256 so you can also verify your signature validation logic.
 
+      1. (Optional) In the **Failure alert contact** field, enter the email address to notify when webhook delivery permanently fails.
+
+         Type a team member's name or email to search for suggestions. You can also enter any external email address, such as an on-call routing address for PagerDuty or OpsGenie.
+
+         Without a failure alert contact, Replicated notifies the subscription creator and all team admins by default.
+
    <!-- TODO: Add screenshot of delivery method selection -->
 
 1. Click **Create Notification**.
