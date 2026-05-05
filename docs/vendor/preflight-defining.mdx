@@ -50,7 +50,7 @@ To add a preflight spec to a release for your application:
     For the complete list of available collectors and analyzers, see the [Collect](https://troubleshoot.sh/docs/collect/all/) and [Analyze](https://troubleshoot.sh/docs/analyze/) sections in the Troubleshoot documentation.
 
     :::note
-    The [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/) and [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/) collectors are included automatically to gather information about the cluster and cluster resources. You do not need manually include the `clusterInfo` or `clusterResources` collectors in the specification.
+    Troubleshoot automatically includes the [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/) and [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/) collectors to gather information about the cluster and cluster resources. You do not need to manually include the `clusterInfo` or `clusterResources` collectors in the specification.
     
     To use only the `clusterInfo` and `clusterResources` collectors, delete the `spec.collectors` key from the preflight spec.
     :::
@@ -67,14 +67,30 @@ To add a preflight spec to a release for your application:
 
 ## (Optional) Block installation with required (strict) preflights {#strict}
 
-For applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), you can set any preflight analyzer to `strict: true`. When `strict: true` is set, any `fail` outcomes for the analyzer block the deployment of the release.
+For applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), you can set any preflight analyzer to `strict: true`. When you set `strict: true`, any `fail` outcomes for the analyzer block the deployment of the release.
 
 :::note
-Strict preflight analyzers are ignored if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
+Troubleshoot ignores strict preflight analyzers if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
 :::
 
-The following image shows how a `fail` outcome is displayed when `strict: true` is set on an analyzer, which prevents installation from continuing if the preflight check fails:
+The following image shows how a `fail` outcome appears when you set `strict: true` on an analyzer, which prevents installation from continuing if the preflight check fails:
 
 ![Preflight checks in Admin Console showing fail message with strict mode](/images/preflight-mysql-fail-strict.png)
 
 [View a larger version of this image](/images/preflight-mysql-fail-strict.png)
+
+## Add a preflight spec for non-Helm applications or installations with KOTS v1.100.3 and earlier
+
+For non-Helm applications or KOTS v1.100.3 and earlier, add the following SupportBundle custom resource at the root level of your release:
+
+```yaml
+# support-bundle.yaml
+
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors: []
+  analyzers: []
+```  

@@ -2,8 +2,6 @@
 
 This topic describes how to add a default support bundle spec to a release for your application. It also describes how to customize the default support bundle spec based on your application's needs. For more information about support bundles, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-The information in this topic applies to Helm applications and Kubernetes manifest-based application installed with Helm or with Replicated KOTS.
-
 ## Add the default support bundle spec to a release
 
 When you add an empty support bundle spec to your Helm chart, the spec automatically includes the [clusterInfo](https://troubleshoot.sh/docs/collect/cluster-info/) and [clusterResources](https://troubleshoot.sh/docs/collect/cluster-resources/) collectors by default. You do not need manually include these collectors in the spec.
@@ -13,7 +11,7 @@ To add the default support bundle spec to a release for your application:
 1. In your Helm chart `templates` directory, create a YAML file. Name the file `support-bundle.yaml` or similar.
 
     :::note
-    If your application is deployed as multiple Helm charts, Replicated recommends that you create separate support bundle specs for each subchart. This allows you to make specs that are specific to different components of your application. When a support bundle is generated, all the specs are combined to provide a single bundle.
+    If you deploy your application as multiple Helm charts, Replicated recommends that you create separate support bundle specs for each subchart. This allows you to make specs that are specific to different components of your application. When Replicated generates a support bundle, it combines all the specs into a single bundle.
     :::
 
 1. In the YAML file, add the following to create a Kubernetes Secret with the default support bundle spec:
@@ -41,7 +39,7 @@ To add the default support bundle spec to a release for your application:
 
 1. (Recommended) Customize the default spec by adding more collectors and analyzers or editing the default collectors. See [Customize the default support bundle spec](#customize-the-spec) on this page.
 
-1. If your application is deployed as multiple subcharts, repeat the previous steps to add a support bundle spec to the templates directory of each chart.
+1. If you deploy your application as multiple subcharts, repeat the previous steps to add a support bundle spec to the templates directory of each chart.
 
 1. Test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating).
 
@@ -89,14 +87,14 @@ To add collectors and analyzers:
     - [postgresql](https://troubleshoot.sh/docs/analyze/postgresql/), [mysql](https://troubleshoot.sh/docs/analyze/mysql/), and [redis](https://troubleshoot.sh/docs/analyze/redis/)
 
     :::note
-    Good analyzers clearly identify failure modes and provide troubleshooting guidance for the user. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log and provides a description of the error to the user. 
+    Good analyzers clearly identify failure modes and provide troubleshooting guidance for the user. For example, if you can identify a log message that indicates a problem in your database component, write an analyzer to check for that log. Include a description of the error for the user.
     :::
 
 ### Customize the default `clusterResources` collector
 
 You can edit the default [`clusterResources`](https://troubleshoot.sh/docs/collect/cluster-resources/) using the following properties:
 
-* `namespaces`: The list of namespaces where the resources and information is collected. If the `namespaces` key is not specified, then the `clusterResources` collector defaults to collecting information from all namespaces. The `default` namespace cannot be removed, but you can specify additional namespaces.
+* `namespaces`: The list of namespaces from which to collect resources and information. If the `namespaces` key is not specified, then the `clusterResources` collector defaults to collecting information from all namespaces. You cannot remove the `default` namespace, but you can specify additional namespaces.
 
 * `ignoreRBAC`: When true, the `clusterResources` collector does not check for RBAC authorization before collecting resource information from each namespace. This is useful when your cluster uses authorization webhooks that do not support SelfSubjectRuleReviews. Defaults to false.
 
@@ -135,9 +133,9 @@ For more information, see [Namespace](/reference/template-functions-static-conte
 
 ### Exclude the default collectors
 
-Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can optionally exclude them. 
+Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data for installation and debugging. However, you can exclude them.
 
-The following example shows how to exclude both the clusterInfo and clusterResources collectors from your support bundle spec:
+The following example shows how to exclude both the `clusterInfo` and `clusterResources` collectors from your support bundle spec:
 
 ```yaml
 spec:
@@ -147,3 +145,19 @@ spec:
     - clusterResources:
         exclude: true
 ```
+
+## Add a support bundle spec for non-Helm applications or installations with KOTS v1.94.1 and earlier
+
+For non-Helm applications or KOTS v1.94.1 and earlier, add the following SupportBundle custom resource at the root level of your release:
+
+```yaml
+# support-bundle.yaml
+
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: example
+spec:
+  collectors: []
+  analyzers: []
+```  

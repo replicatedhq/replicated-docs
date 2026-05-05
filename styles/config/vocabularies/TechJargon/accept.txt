@@ -94,3 +94,7 @@ ttl
 keyless
 liveness
 Unmute
+
+subchart
+subcharts
+namespaces
