@@ -566,7 +566,7 @@ Grants the holder permission to edit the team's Slack webhook for classic instan
 
 ### Team/notifications/\*\*
 
-Grants the holder full access to all notification features, including managing other users' event notification subscriptions. For more information, see [About Event Notifications (Beta)](event-notifications).
+Grants the holder full access to all notification features, including managing other users' event notification subscriptions. For more information, see [About Event Notifications](event-notifications).
 
 ### Team/policy/read
 
