@@ -79,18 +79,20 @@ The following image shows how a `fail` outcome appears when you set `strict: tru
 
 [View a larger version of this image](/images/preflight-mysql-fail-strict.png)
 
-## Add a preflight spec for non-Helm applications or installations with KOTS v1.100.3 and earlier
+## Define preflights for non-Helm applications or KOTS v1.100.3 and earlier
 
-For non-Helm applications or KOTS v1.100.3 and earlier, add the following SupportBundle custom resource at the root level of your release:
+For non-Helm applications or installations with KOTS v1.100.3 and earlier, add the Preflight custom resource to a YAML file at the root level of your release:
 
 ```yaml
-# support-bundle.yaml
+# preflights.yaml
 
 apiVersion: troubleshoot.sh/v1beta2
-kind: SupportBundle
+kind: Preflight
 metadata:
-  name: example
+  name: preflights
 spec:
   collectors: []
   analyzers: []
-```  
+```
+
+Customize the collectors and analyzers as desired.

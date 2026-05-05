@@ -90,6 +90,16 @@ To add collectors and analyzers:
     Good analyzers clearly identify failure modes and provide troubleshooting guidance for the user. For example, if you can identify a log message that indicates a problem in your database component, write an analyzer to check for that log. Include a description of the error for the user.
     :::
 
+1. Test the support bundle by following the instructions in [Generating a Support Bundle](/vendor/support-bundle-generating).
+
+1. From the root directory of your Helm chart, package the chart into a `.tgz` archive:
+
+   ```bash
+   helm package --dependency-update .
+   ```
+
+1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
+
 ### Customize the default `clusterResources` collector
 
 You can edit the default [`clusterResources`](https://troubleshoot.sh/docs/collect/cluster-resources/) using the following properties:
@@ -146,9 +156,9 @@ spec:
         exclude: true
 ```
 
-## Add a support bundle spec for non-Helm applications or installations with KOTS v1.94.1 and earlier
+## Add a support bundle spec for non-Helm applications or KOTS v1.94.1 and earlier
 
-For non-Helm applications or KOTS v1.94.1 and earlier, add the following SupportBundle custom resource at the root level of your release:
+For non-Helm applications or installations with KOTS v1.94.1 and earlier, add the SupportBundle custom resource to a YAML file at the root level of your release:
 
 ```yaml
 # support-bundle.yaml
@@ -160,4 +170,6 @@ metadata:
 spec:
   collectors: []
   analyzers: []
-```  
+```
+
+Customize the collectors and analyzers as desired.
