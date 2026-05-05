@@ -10,7 +10,7 @@ import RunPodsSecret from "../partials/support-bundles/_run-pods-secret.mdx"
 
 # Example support bundle specs
 
-This topic includes common examples of support bundle specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
+This topic includes example support bundle specifications. For more, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
 ## Check application health
 
@@ -30,7 +30,7 @@ For more information, see [Deployment Status](https://troubleshoot.sh/docs/analy
 
 If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
-The examples below use the `http` collector and the `textAnalyze` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
+The example below uses the `http` collector and the `textAnalyze` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
 
 For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
@@ -38,7 +38,7 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
 
 ## Check Kubernetes version
 
-The examples below use the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector.
+The example below uses the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector.
 
 For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
 
@@ -46,7 +46,7 @@ For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze
 
 ## Check node resources
 
-The examples below use the `nodeResources` analyzer to check that the minimum requirements are met for memory, CPU cores, number of nodes, and ephemeral storage. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
+The example below uses the `nodeResources` analyzer to check that the minimum requirements are met for memory, CPU cores, number of nodes, and ephemeral storage. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
 
 For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
 
@@ -54,7 +54,7 @@ For more information, see [Cluster Resources](https://troubleshoot.sh/docs/colle
 
 ## Check node status
 
-The following examples use the `nodeResources` analyzers to check the status of the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
+The following example uses the `nodeResources` analyzer to check the status of the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector.
 
 For more information, see [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
 
@@ -62,17 +62,17 @@ For more information, see [Node Resources](https://troubleshoot.sh/docs/analyze/
 
 ## Collect logs using multiple selectors
 
-The examples below use the `logs` collector to collect logs from various Pods where application workloads are running. They also use the `textAnalyze` collector to analyze the logs for a known error.
+The example below uses the `logs` collector to collect logs from various Pods where application workloads are running. It also uses the `textAnalyze` collector to analyze the logs for a known error.
 
 For more information, see [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
-You can use the `selector` attribute of the `logs` collector to find Pods that have the specified labels. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector, as shown in the examples below. You can include the `logs` collector as many times as needed.
+You can use the `selector` attribute of the `logs` collector to find Pods that have the specified labels. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector, as shown in this example. You can include the `logs` collector as many times as needed.
 
 <LogsSelectorsSecret/>
 
 ## Collect logs using `limits`
 
-The examples below use the `logs` collector to collect Pod logs from the Pod where the application is running. These specifications use the `limits` field to set a `maxAge` and `maxLines` to limit the output provided.
+The example below uses the `logs` collector to collect Pod logs from the Pod where the application is running. This specification uses the `limits` field to set a `maxAge` and `maxLines` to limit the output provided.
 
 For more information, see [Pod Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
 
@@ -80,7 +80,7 @@ For more information, see [Pod Logs](https://troubleshoot.sh/docs/collect/logs/)
 
 ## Collect Redis and MySQL server information
 
-The following examples use the `redis` and `mysql` collectors to collect information about Redis and MySQL servers running in the cluster.
+The following example uses the `redis` and `mysql` collectors to collect information about Redis and MySQL servers running in the cluster.
 
 For more information, see [Redis](https://troubleshoot.sh/docs/collect/redis/) and [MySQL](https://troubleshoot.sh/docs/collect/mysql/) in the Troubleshoot documentation.
 
@@ -88,7 +88,7 @@ For more information, see [Redis](https://troubleshoot.sh/docs/collect/redis/) a
 
 ## Run and analyze a pod
 
-The examples below use the `textAnalyze` analyzer to check that a command successfully executes in a Pod running in the cluster. The Pod specification is defined in the `runPod` collector.
+The example below uses the `textAnalyze` analyzer to check that a command successfully executes in a Pod running in the cluster. The Pod specification is defined in the `runPod` collector.
 
 For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-pod/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
