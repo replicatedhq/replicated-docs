@@ -1,0 +1,52 @@
+# replicated policy update
+
+Update an RBAC policy
+
+### Synopsis
+
+Update an existing RBAC policy.
+
+At least one of --name, --description, or --definition must be provided.
+The Admin, Read Only, Sales, and Support policies cannot be updated.
+Vendors not on an enterprise plan cannot update policies.
+
+```
+replicated policy update NAME_OR_ID [flags]
+```
+
+### Examples
+
+```
+  # Update a policy's definition from a file
+  replicated policy update "My Policy" --definition updated-policy.json
+
+  # Rename a policy
+  replicated policy update "My Policy" --name "New Policy Name"
+
+  # Update a policy's description and definition
+  replicated policy update "My Policy" --description "Updated description" --definition policy.json
+```
+
+### Options
+
+```
+      --definition string    Path to the JSON file containing the updated policy definition
+      --description string   New description for the policy
+  -h, --help                 help for update
+      --name string          New name for the policy
+  -o, --output string        The output format to use. One of: json|table (default "table")
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated policy](replicated-cli-policy)	 - Manage RBAC policies
+

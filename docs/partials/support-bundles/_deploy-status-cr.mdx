@@ -12,10 +12,10 @@ spec:
         outcomes:
           - fail:
               when: "< 1"
-              message: The API deployment does not have any ready replicas.
+              message: The api deployment does not have any ready replicas. Check that the application's liveness probes are passing and that the application is not in a crash loop.
           - warn:
               when: "= 1"
-              message: The API deployment has only a single ready replica.
+              message: The api deployment has only a single ready replica.
           - pass:
-              message: There are multiple replicas of the API deployment ready.
+              message: The api deployment is healthy and has multiple ready replicas.
 ```

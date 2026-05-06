@@ -186,6 +186,10 @@ Each group contains an array of items that map to input fields on the Admin Cons
 
 For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
 
+:::note
+If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden. For more information, see [Show messaging for unavailable features](/vendor/config-screen-conditional#show-messaging-for-unavailable-features) in _Using Conditional Statements in Configuration Fields_.
+:::
+
 ## Item Properties
 
 Items have a `name`, `title`, `type`, and other optional properties.
