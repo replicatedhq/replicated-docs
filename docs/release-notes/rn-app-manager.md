@@ -29,7 +29,7 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 Released on May 1, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Bug fixes {#bug-fixes-1-130-2}
 * Fixes an issue where replicated values were not correctly injected into Helm charts when the Replicated SDK was declared as a Helm dependency with an alias.
@@ -41,7 +41,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on April 28, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Improvements {#improvements-1-130-1}
 * Fixes high, medium, and low severity CVEs CVE-2026-25639, CVE-2026-4800, CVE-2026-41239, CVE-2026-41240, CVE-2026-41238, CVE-2026-2950, CVE-2026-34043, and CVE-2026-2391 in the KOTS front-end dependencies.
@@ -51,7 +51,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on April 1, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### New Features {#new-features-1-130-0}
 * Upgrade Helm to v4.
@@ -60,7 +60,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on February 24, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Improvements {#improvements-1-129-4}
 * Updates images to resolve CVE-2025-61731, CVE-2025-68119, CVE-2025-61726 with high severity, CVE-2025-61730 and CVE-2025-61728 with medium severity, and GHSA-8jvr-vh7g-f8gx, GHSA-h355-32pf-p2xm, and GHSA-fw7p-63qq-7hpr with low severity.
