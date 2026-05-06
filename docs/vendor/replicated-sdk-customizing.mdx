@@ -25,6 +25,8 @@ Both methods produce the same outcome: the SDK's Kubernetes resources are create
 
 Choose the method that best fits your chart layout. The Helm alias also changes the values key used to pass values to the SDK subchart (for example, `yourcompany-sdk:` instead of `replicated:`), but this does not affect how the registry-injected SDK values are delivered to the SDK at install time. The `nameOverride` value does not change the values key.
 
+Replicated recommends using a Helm alias when the SDK is installed as a subchart. If the SDK is installed as a top-level chart instead of a subchart, use `nameOverride` because the Helm `alias` field is only available on chart dependencies.
+
 You can also use both methods together. When both an alias and `nameOverride` are set, `nameOverride` takes precedence and determines the names of the SDK resources in the cluster.
 
 ### Brand the SDK with a Helm alias {#brand-sdk-alias}
