@@ -16,34 +16,32 @@ Common use cases for customizing the SDK include adding common labels and pod la
 
 ## Brand the SDK {#brand-sdk}
 
-When the Replicated SDK is installed as a subchart, it creates Kubernetes resources using the name `replicated`. This includes a `replicated` Deployment, Service, ServiceAccount, and Role. To make these resources match your product or company branding rather than exposing the `replicated` name to end customers in the cluster, you can rename the SDK resources using either of the following methods:
+The Replicated SDK creates Kubernetes resources using the name `replicated`. This includes a `replicated` Deployment, Service, ServiceAccount, and Role. You can brand the SDK to make these resources match your product or company branding rather than exposing the `replicated` name to end customers in the cluster. When you brand the SDK, the SDK's telemetry, license enforcement, or API behavior is unchanged.
 
-* [Use a Helm alias](#brand-sdk-alias) on the SDK dependency in your application's `Chart.yaml`.
-* [Set the `replicated.nameOverride` value](#brand-sdk-name-override) in your application's `values.yaml`.
+Use _one_ of the following methods to brand the SDK:
 
-Both methods produce the same outcome: the SDK's Kubernetes resources are created with the name you choose instead of `replicated`. Neither method changes the SDK's telemetry, license enforcement, or API behavior, and the SDK chart is still pulled from the Replicated registry at `oci://registry.replicated.com/library/replicated`. For information about how to set a custom domain for the Replicated registry, see [Use custom domains](custom-domains-using).
+* [Use a Helm alias](#brand-sdk-alias): You can set an `alias` on the SDK dependency in your application's `Chart.yaml`. Use a Helm alias if the SDK is installed as a subchart.
+* [Set the `replicated.nameOverride` value](#brand-sdk-name-override): You can set the SDK's `replicated.nameOverride` value in your application's `values.yaml` file. Use `nameOverride` if the SDK is installed as a top-level chart instead of a subchart. The Helm `alias` field is only available on chart dependencies.
 
-Choose the method that best fits your chart layout. The Helm alias also changes the values key used to pass values to the SDK subchart (for example, `yourcompany-sdk:` instead of `replicated:`), but this does not affect how the registry-injected SDK values are delivered to the SDK at install time. The `nameOverride` value does not change the values key.
-
-Replicated recommends using a Helm alias when the SDK is installed as a subchart. If the SDK is installed as a top-level chart instead of a subchart, use `nameOverride` because the Helm `alias` field is only available on chart dependencies.
-
-Replicated does not recommend using both methods together. If you do set both an alias and `nameOverride`, `nameOverride` takes precedence and determines the names of the SDK resources in the cluster.
+:::note
+Branding the SDK doesn't change the `proxy.replicated.com` domain where the SDK chart is pulled during installation. For information about how to set a custom domain for the Replicated proxy registry, see [About custom domains](custom-domains).
+:::
 
 ### Brand the SDK with a Helm alias {#brand-sdk-alias}
+
+If the Replicated SDK is installed as a subchart, you can use Helm's `alias` key to brand the SDK. For more information, see [Alias field in dependencies](https://helm.sh/docs/topics/charts/#alias-field-in-dependencies) in the Helm documentation.
+
+When you set a Helm alias, the values key that passes values to the SDK subchart is also rebranded with your alias. For example, if you set the alias `yourcompany-sdk`, then the values key would become `yourcompany-sdk:` instead of `replicated:`. This rebrand doesn't affect how Replicated delivers values to the SDK at install time. For more information, see [Replicated SDK Helm values](/vendor/helm-install-values-schema#replicated-sdk-helm-values).
 
 To brand the SDK with a Helm alias:
 
 1. In your application Helm chart `Chart.yaml` file, add the `alias` field to the SDK dependency. The alias must be a valid Kubernetes resource name that uses lowercase alphanumeric characters and optionally the `-` character.
-
-   For example, to alias the SDK as `yourcompany-sdk`:
 
    ```yaml
    # Chart.yaml
    dependencies:
    - name: replicated
      alias: yourcompany-sdk
-     repository: oci://registry.replicated.com/library
-     version: 1.19.3
    ```
 
    :::note
@@ -69,11 +67,15 @@ To brand the SDK with a Helm alias:
 
 ### Brand the SDK with `nameOverride` {#brand-sdk-name-override}
 
+When you use `nameOverride` to brand the SDK, all of the SDK resources are branded to use your override. However, the following values are unchanged:
+* The name of the SDK dependency in your `Chart.yaml` file is still `replicated`
+* The SDK values key that's injected in your `values.yaml` file is still `replicated`. For more information, see [Replicated SDK Helm values](/vendor/helm-install-values-schema#replicated-sdk-helm-values)
+
+Replicated doesn't recommend setting both a Helm alias and `nameOverride`. If you do set both an alias and `nameOverride`, `nameOverride` takes precedence.
+
 To brand the SDK by setting the `replicated.nameOverride` value:
 
 1. In your application Helm chart `values.yaml` file, set `replicated.nameOverride` to the name you want the SDK resources to use. The value must be a valid Kubernetes resource name that uses lowercase alphanumeric characters and optionally the `-` character.
-
-   For example, to rename the SDK resources to `yourcompany-sdk`:
 
    ```yaml
    # values.yaml
@@ -82,18 +84,8 @@ To brand the SDK by setting the `replicated.nameOverride` value:
    ```
 
    :::note
-   If you also set a Helm `alias` on the SDK dependency, set `nameOverride` under the alias key instead of `replicated`. For example, if the alias is `yourcompany-sdk`, set `yourcompany-sdk.nameOverride` in your `values.yaml` file. This is because the alias changes the values key used to pass values to the SDK subchart. For more information, see [Brand the SDK with a Helm alias](#brand-sdk-alias).
+   If you also followed the steps in [Brand the SDK with a Helm alias](#brand-sdk-alias) to set an `alias`, then you need to set `<your-alias>.nameOverride` in the `values.yaml` file instead of `replicated.nameOverride`. For example, if the alias is `yourcompany-sdk`, set `yourcompany-sdk.nameOverride: yourcompany-sdk` in your `values.yaml` file. This is because the alias changes the name of the key.
    :::
-
-   With this method, the SDK dependency in your `Chart.yaml` file remains unchanged:
-
-   ```yaml
-   # Chart.yaml
-   dependencies:
-   - name: replicated
-     repository: oci://registry.replicated.com/library
-     version: 1.19.3
-   ```
 
 1. Update dependencies and package the chart into a `.tgz` archive:
 
