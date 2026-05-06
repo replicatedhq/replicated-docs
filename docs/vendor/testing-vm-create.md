@@ -144,9 +144,10 @@ To connect to a VM using direct SSH:
 
    Where:
    * `VMID_OR_VMNAME` is the ID or name of the VM. Run `replicated vm ls`.
-   * (Optional) `GITHUB_USERNAME` is a GitHub username used to connect to the SSH endpoint. This is an optional flag that overrides the GitHub username listed in your Vendor Portal account. The `--username` flag is required if you want to:
-      * Use a different GitHub username than what is in Vendor Portal (or if there is no username set in the Vendor Portal)
-      * When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal
+   * `GITHUB_USERNAME` is the GitHub username used to connect to the SSH endpoint. If `--username` is unset, this command uses the GitHub username listed in your Vendor Portal account by default. The `--username` flag is required if the username associated with the VM differs from your GitHub username in the Vendor Portal. For example, you must set `--username` if:
+      * There is no username set in the Vendor Portal
+      * You want to use a different GitHub username than what is in Vendor Portal
+      * You used the `--ssh-public-key` flag to create this VM, and the username from the SSH public key's comment differs from GitHub username in the Vendor Portal. The username is the portion in the SSH key's comment before the first `@`. For example, a key with the comment `ci@host` creates a Linux user named `ci`. In this case, if the GitHub username in the Vendor Portal in not `ci`, then you would pass `--username ci`. For more information about the `--ssh-public-key` flag, see [Use a service account](#github-service-account) on this page.
 
    **Example:**
 
@@ -210,9 +211,10 @@ To copy files to a VM using the scp endpoint:
 
    Where
    * `VMID_OR_VMNAME` is the ID or name of the VM.
-   * (Optional) `GITHUB_USERNAME` is a GitHub username used to connect to the SCP endpoint. This is an optional flag that overrides the GitHub username listed in your Vendor Portal account. The `--username` flag is required if you want to:
-      * Use a different GitHub username than what is in Vendor Portal (or if there is no username set in the Vendor Portal)
-      * When creating a VM, you used the `--ssh-public-key` flag to associate the VM with a GitHub service account, and this doesn't match the GitHub username set in Vendor Portal
+   * `GITHUB_USERNAME` is the GitHub username used to connect to the SSH endpoint. If `--username` is unset, this command uses the GitHub username listed in your Vendor Portal account by default. The `--username` flag is required if the username associated with the VM differs from your GitHub username in the Vendor Portal. For example, you must set `--username` if:
+      * There is no username set in the Vendor Portal
+      * You want to use a different GitHub username than what is in Vendor Portal
+      * You used the `--ssh-public-key` flag to create this VM, and the username from the SSH public key's comment differs from GitHub username in the Vendor Portal. The username is the portion in the SSH key's comment before the first `@`. For example, a key with the comment `ci@host` creates a Linux user named `ci`. In this case, if the GitHub username in the Vendor Portal in not `ci`, then you would pass `--username ci`. For more information about the `--ssh-public-key` flag, see [Use a service account](#github-service-account) on this page.
 
    **Example**
    ```bash
