@@ -110,6 +110,8 @@ Or, to use multiple SSH public keys:
 replicated vm create --distribution ubuntu --version 24.04 --ssh-public-key ~/.ssh/id_rsa.pub --ssh-public-key ~/.ssh/id_ed25519.pub
 ```
 
+The Linux user provisioned on the VM is derived from the comment in the SSH public key: the portion before the first `@`. For example, a key with the comment `ci@host` creates a user named `ci`. When you connect to the VM using `replicated vm ssh-endpoint` or `replicated vm scp-endpoint`, pass that username with the `--username` flag so the endpoint matches the user the key was added to.
+
 ## SSH into a VM
 
 You can SSH into a VM using one of the following methods:
