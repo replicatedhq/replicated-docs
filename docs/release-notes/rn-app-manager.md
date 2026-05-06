@@ -29,7 +29,7 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 Released on May 1, 2026
 
-Support for Kubernetes: 1.33, 1.34, and 1.35
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Bug fixes {#bug-fixes-1-130-2}
 * Fixes an issue where replicated values were not correctly injected into Helm charts when the Replicated SDK was declared as a Helm dependency with an alias.
@@ -41,7 +41,7 @@ Support for Kubernetes: 1.33, 1.34, and 1.35
 
 Released on April 28, 2026
 
-Support for Kubernetes: 1.33, 1.34, and 1.35
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Improvements {#improvements-1-130-1}
 * Fixes high, medium, and low severity CVEs CVE-2026-25639, CVE-2026-4800, CVE-2026-41239, CVE-2026-41240, CVE-2026-41238, CVE-2026-2950, CVE-2026-34043, and CVE-2026-2391 in the KOTS front-end dependencies.
@@ -51,7 +51,7 @@ Support for Kubernetes: 1.33, 1.34, and 1.35
 
 Released on April 1, 2026
 
-Support for Kubernetes: 1.33, 1.34, and 1.35
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### New Features {#new-features-1-130-0}
 * Upgrade Helm to v4.
@@ -60,7 +60,7 @@ Support for Kubernetes: 1.33, 1.34, and 1.35
 
 Released on February 24, 2026
 
-Support for Kubernetes: 1.33, 1.34, and 1.35
+Support for Kubernetes: 1.31, 1.32, 1.33, 1.34, and 1.35
 
 ### Improvements {#improvements-1-129-4}
 * Updates images to resolve CVE-2025-61731, CVE-2025-68119, CVE-2025-61726 with high severity, CVE-2025-61730 and CVE-2025-61728 with medium severity, and GHSA-8jvr-vh7g-f8gx, GHSA-h355-32pf-p2xm, and GHSA-fw7p-63qq-7hpr with low severity.
@@ -69,7 +69,7 @@ Support for Kubernetes: 1.33, 1.34, and 1.35
 
 Released on January 20, 2026
 
-Support for Kubernetes: 1.33 and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Improvements {#improvements-1-129-3}
 * Fixes high and low severity CVEs CVE-2025-64756, CVE-2025-15284, CVE-2025-12816, CVE-2025-59057, CVE-2026-21884, and CVE-2025-7339 in the KOTS front-end dependencies.
@@ -82,7 +82,7 @@ Support for Kubernetes: 1.33 and 1.34
 
 Released on January 14, 2026
 
-Support for Kubernetes: 1.33 and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Bug fixes {#bug-fixes-1-129-2}
 * Fixes an issue introduced in KOTS 1.129.1 where application upgrades could fail due to Helm v4’s default server-side apply by pinning KOTS to Helm v3 for compatibility.
@@ -96,7 +96,7 @@ KOTS 1.129.1 includes an upgrade to Helm 4, which causes failures when migrating
 
 Released on December 5, 2025
 
-Support for Kubernetes: 1.33 and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### New features {#new-features-1-129-1}
 * Adds support for kots.io/v1beta2 License format
@@ -110,7 +110,7 @@ Support for Kubernetes: 1.33 and 1.34
 
 Released on October 28, 2025
 
-Support for Kubernetes: 1.33 and 1.34
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 ### Improvements {#improvements-1-128-3}
 * Adds fully qualified registry prefix for KOTS to improve registry handling.
@@ -124,7 +124,7 @@ Support for Kubernetes: 1.33 and 1.34
 
 Released on September 29, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-128-2}
 
@@ -134,7 +134,7 @@ Support for Kubernetes: 1.33
 
 Released on September 12, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-128-1}
 * Adds the channel ID and channel sequence in the output of the [kubectl kots get versions](/reference/kots-cli-get-versions) CLI command.
@@ -148,7 +148,7 @@ Support for Kubernetes: 1.33
 
 Released on September 1, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-128-0}
 * In online (internet-connected) KOTS existing cluster and kURL installations, demoted releases are hidden from the Admin Console **Version History** page after an update check occurs. This addresses a limitation in KOTS and kURL installations where a demoted release would remain viewable on the **Version History** page if the user had already checked for upstream updates before it was demoted.
@@ -157,7 +157,7 @@ Support for Kubernetes: 1.33
 
 Released on August 27, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Bug fixes {#bug-fixes-1-127-2}
 * Fixes high CVEs found in the KOTS Go binaries.
@@ -166,7 +166,7 @@ Support for Kubernetes: 1.33
 
 Released on August 25, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Bug fixes {#bug-fixes-1-127-1}
 * Fixes high CVEs found in the KOTS Go binaries.
@@ -175,7 +175,7 @@ Support for Kubernetes: 1.33
 
 Released on August 15, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### New features {#new-features-1-126-0}
 * When checking for application updates for an online installation, KOTS now tries to automatically refresh the metadata (version labels, release notes, and required status) for pending releases that belong to the same channel of the currently deployed version.
@@ -184,7 +184,7 @@ Support for Kubernetes: 1.33
 
 Released on August 5, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-125-2}
 * Fixes CVEs CVE-2021-23337 and CVE-2025-7783
@@ -197,7 +197,7 @@ Support for Kubernetes: 1.33
 
 Released on July 31, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-125-1}
 * Updates Troubleshoot to v0.121.2
@@ -206,7 +206,7 @@ Support for Kubernetes: 1.33
 
 Released on July 23, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-125-0}
 * Fixes CVE CVE-2025-53547.
@@ -216,7 +216,7 @@ Support for Kubernetes: 1.33
 
 Released on June 11, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.29, 1.30, 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-124-18}
 * Fixes CVE CVE-2024-0406.
@@ -228,7 +228,7 @@ Support for Kubernetes: 1.33
 
 Released on June 2, 2025
 
-Support for Kubernetes: 1.33
+Support for Kubernetes: 1.29, 1.30, 1.31, 1.32, and 1.33
 
 ### Improvements {#improvements-1-124-17}
 * Fixes CVEs CVE-2025-22869 and CVE-2025-22870.
