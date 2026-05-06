@@ -76,6 +76,8 @@ You can edit any notifications that you created. Team Admins can also edit notif
 
 Editing a notification does not affect the notification history for past events.
 
+### Vendor Portal
+
 To edit a notification:
 
 1. In the Vendor Portal, go to **Notifications**.
@@ -94,6 +96,40 @@ To edit a notification:
    - Check or uncheck the **Enable this notification** checkbox to pause or unpause the notification
 
 1. Click **Save Changes**.
+
+### Replicated CLI
+
+To update a notification subscription with the CLI:
+
+1. Get the ID of the subscription that you want to update:
+
+   ```bash
+   replicated notification subscription ls
+   ```
+
+1. (Optional) Get the subscription details in JSON format:
+
+   ```bash
+   replicated notification subscription get ID --output json
+   ```
+   Where `ID` is the subscription's ID.
+
+1. Create a JSON file that includes only the fields you want to change.
+
+   For example, to disable a subscription:
+
+   ```json
+   { "isEnabled": false }
+   ```
+
+1. Update the subscription:
+
+   ```bash
+   replicated notification subscription update ID --file JSON_FILE
+   ```
+   Where:
+   * `ID` is the subscription's ID.
+   * `JSON_FILE` is the path to the file you created.
 
 ## Temporarily disable a notification
 
