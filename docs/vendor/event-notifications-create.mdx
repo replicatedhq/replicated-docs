@@ -1,9 +1,11 @@
 # Create event notification subscriptions
 This topic describes how to create event notification subscriptions in the Replicated Vendor Portal. For more information about the Event Notifications feature, see [About event notifications](/vendor/event-notifications).
 
-## Create an event notification
+## Create event notifications
 
-To create an event notification subscription:
+### Vendor Portal
+
+To create an event notification subscription from the Vendor Portal:
 
 1. In the Vendor Portal, go to **Notifications** and click **Create notification**.
 
@@ -79,11 +81,61 @@ To create an event notification subscription:
 
          Without a failure alert contact, Replicated notifies the subscription creator and all team admins by default.
 
-   <!-- TODO: Add screenshot of delivery method selection -->
-
 1. Click **Create Notification**.
 
 1. For email subscriptions, if you used an email address other than your Vendor Portal user account email, follow the instructions in the verification email to validate the email address.
+
+### Replicated CLI
+
+To create an event notification subscription with the Replicated CLI:
+
+1. Create a JSON file to define the subscription details in the following format:
+
+    ```json
+    {
+      "name": "Release promoted to Stable",
+      "isEnabled": true,
+      "emailAddress": "pm-team@yourcompany.com",
+      "webhookUrl": "https://yourcompany.com/webhook",
+      "webhookSecret": "whsec_BhHPJ2iLSdFHZKkaJu5SM4EWJFX+0jcP",
+      "customHeaders": [
+        { "name": "X-My-Header", "value": "example-value" }
+      ],
+      "eventConfigs": [
+        {
+          "eventType": "release.promoted",
+          "filters": {
+            "appId": "3Bo1TkaBBNrd0WlZlk4FO4MNxdj",
+            "channelId": ["3Bo1TmYAwbY65U9QHkLrrEEFARy"]
+          }
+        }
+      ]
+    }
+    ```
+    :::note
+    You can run [`replicated notification subscription get`](/reference/replicated-cli-notification-subscription-get) for an existing notification subscription to see an example of the JSON format.
+    :::
+
+    The following table describes each of the required and optional fields:
+
+    | Field | Required | Description |
+    |-------|----------|-------------|
+    | `name` | No | Display name for the subscription |
+    | `isEnabled` | Yes | Whether the subscription is active |
+    | `emailAddress` | Conditional | Destination email address. Required if `webhookUrl` is not set |
+    | `webhookUrl` | Conditional | Destination webhook URL. Required if `emailAddress` is not set |
+    | `webhookSecret` | No | Secret used to sign webhook payloads using HMAC |
+    | `customHeaders` | No | Array of `{"name": "...", "value": "..."}` objects added as HTTP headers on each webhook request |
+    | `eventConfigs` | Yes | One or more event type configurations. Each entry has an `eventType` key and a `filters` object |
+    | `eventConfigs[].eventType` | Yes | The event type key. For the complete list of available event types, see [Event types and filters](/reference/notifications-events-filters). |
+    | `eventConfigs[].filters` | Yes | Filter conditions for the event. Use `{}` to receive all events of that type |
+
+1. Run the following command:
+
+   ```bash
+   replicated notification subscription create --file JSON_FILE
+   ```
+   Where `JSON_FILE` is the path to the JSON file that you created.
 
 ## Event notification examples
 

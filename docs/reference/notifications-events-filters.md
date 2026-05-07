@@ -1,56 +1,10 @@
 # Event types and filters
-For more information about the Event Notifications feature, see [About event notifications](/vendor/event-notifications).
 
-This topic lists the types of events supported for the Event Notifications feature.
-
-## Subscription definition file
-
-When you run `replicated notification subscription create --file FILE` or `replicated notification subscription update --file FILE`, the file must be a JSON file. The following example shows the complete structure:
-
-```json
-{
-  "name": "My notification subscription",
-  "isEnabled": true,
-  "emailAddress": "alerts@example.com",
-  "webhookUrl": "https://example.com/webhook",
-  "webhookSecret": "optional-signing-secret",
-  "customHeaders": [
-    { "name": "X-My-Header", "value": "my-value" }
-  ],
-  "eventConfigs": [
-    {
-      "eventType": "release.promoted",
-      "filters": {}
-    }
-  ]
-}
-```
-
-The following table describes each field in the subscription definition file:
-
-| Field | Required | Description |
-|-------|----------|-------------|
-| `name` | No | Display name for the subscription |
-| `isEnabled` | Yes | Whether the subscription is active |
-| `emailAddress` | Conditional | Destination email address. Required if `webhookUrl` is not set |
-| `webhookUrl` | Conditional | Destination webhook URL. Required if `emailAddress` is not set |
-| `webhookSecret` | No | Secret used to sign webhook payloads using HMAC |
-| `customHeaders` | No | Array of `{"name": "...", "value": "..."}` objects added as HTTP headers on each webhook request |
-| `eventConfigs` | Yes | One or more event type configurations. Each entry has an `eventType` key and a `filters` object |
-| `eventConfigs[].eventType` | Yes | The event type key. See the event type descriptions in this topic for the key for each event |
-| `eventConfigs[].filters` | Yes | Filter conditions for the event. Use `{}` to receive all events of that type |
-
-For the `update` command, all fields are optional — include only the fields you want to change. For example, to disable a subscription:
-
-```json
-{ "isEnabled": false }
-```
+This topic lists the types of events supported for the Event Notifications feature. For more information about the Event Notifications feature, see [About event notifications](/vendor/event-notifications).
 
 ## Channel events
 
 ### Channel Created
-
-**Event type:** `channel.created`
 
 When a new channel is created for an application.
 
@@ -67,8 +21,6 @@ When a new channel is created for an application.
 ```
 
 ### Channel Archived
-
-**Event type:** `channel.archived`
 
 When a channel is archived.
 
@@ -89,8 +41,6 @@ When a channel is archived.
 
 ### Customer Created
 
-**Event type:** `customer.created`
-
 When a new customer is created.
 
 #### Filters
@@ -109,8 +59,6 @@ When a new customer is created.
 ```
 
 ### Customer Updated
-
-**Event type:** `customer.updated`
 
 When a customer's details or license is updated.
 
@@ -132,8 +80,6 @@ When a customer's details or license is updated.
 
 ### Customer Archived
 
-**Event type:** `customer.archived`
-
 When a customer is archived.
 
 #### Filters
@@ -153,8 +99,6 @@ When a customer is archived.
 
 ### Customer Unarchived (Restored)
 
-**Event type:** `customer.unarchived`
-
 When a customer is restored from archived state.
 
 #### Filters
@@ -173,8 +117,6 @@ When a customer is restored from archived state.
 ```
 
 ### Customer License Expiring
-
-**Event type:** `customer.license_expiring`
 
 Time-based warning of an upcoming license expiration.
 
@@ -196,8 +138,6 @@ Time-based warning of an upcoming license expiration.
 
 ### Pending Self-Service Signup
 
-**Event type:** `customer.pending_signup`
-
 When someone signs up via the self-service portal (if enabled).
 
 #### Filters
@@ -213,8 +153,6 @@ When someone signs up via the self-service portal (if enabled).
 ```
 
 ### Enterprise Portal Invite Sent
-
-**Event type:** `customer.ep_invite_sent`
 
 When a vendor sends an Enterprise Portal invite to a user.
 
@@ -234,55 +172,57 @@ When a vendor sends an Enterprise Portal invite to a user.
 
 ### Enterprise Portal Access Granted
 
-**Event type:** `customer.ep_access_granted`
-
 When a user accesses the Enterprise Portal.
 
-The following table describes the available filters for the Enterprise Portal Access Granted event type:
+#### Filters
 
 <table>
-    <tr>
-        <td>Filter</td>
-        <td>JSON key</td>
-        <td>Required</td>
-        <td>Options</td>
-    </tr>
-    <tr>
-        <td>Application</td>
-        <td><code>appId</code></td>
-        <td>No</td>
-        <td>Any application in your account</td>
-    </tr>
-    <tr>
-        <td>Customer</td>
-        <td><code>customerId</code></td>
-        <td>No</td>
-        <td>Any customer for the selected application</td>
-    </tr>
-    <tr>
-        <td>Access Method</td>
-        <td><code>accessMethod</code></td>
-        <td>No</td>
-        <td><code>invite</code>, <code>self_signup</code>, <code>saml_jit</code></td>
-    </tr>
-    <tr>
-        <td>License Type</td>
-        <td><code>licenseType</code></td>
-        <td>No</td>
-        <td><code>paid</code>, <code>trial</code>, <code>community</code>, <code>dev</code></td>
-    </tr>
-    <tr>
-      <td>Access Type</td>
-      <td><code>accessType</code></td>
-      <td>No</td>
-      <td>
-        <ul>
-          <li><code>any</code> (default): Triggers a notification every time a user accesses the Enterprise Portal.</li>
-          <li><code>first_for_license_type</code>: Triggers a notification the first time that a customer with a specific license type accesses the Enterprise Portal. For example, if you select "Paid" for the License Type filter, then you will receive a notification the first time that a customer with a Paid license access the Enterprise Portal, even if they previously logged in when they had a Trial license.</li>
-        </ul>
-        <p>First Access for Selected License Type only tracks Enterprise Portal access events that occur after March 27, 2026.</p>
-      </td>
-    </tr>
+    <thead>
+        <tr>
+            <th scope="col">Filter</th>
+            <th scope="col">JSON key</th>
+            <th scope="col">Required</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Application</td>
+            <td><code>appId</code></td>
+            <td>No</td>
+            <td>Any application in your account</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td><code>customerId</code></td>
+            <td>No</td>
+            <td>Any customer for the selected application</td>
+        </tr>
+        <tr>
+            <td>Access Method</td>
+            <td><code>accessMethod</code></td>
+            <td>No</td>
+            <td><code>invite</code>, <code>self_signup</code>, <code>saml_jit</code></td>
+        </tr>
+        <tr>
+            <td>License Type</td>
+            <td><code>licenseType</code></td>
+            <td>No</td>
+            <td><code>paid</code>, <code>trial</code>, <code>community</code>, <code>dev</code></td>
+        </tr>
+        <tr>
+            <td>Access Type</td>
+            <td><code>accessType</code></td>
+            <td>No</td>
+            <td>
+                <ul>
+                    <li><code>any</code> (default): Triggers a notification every time a user accesses the Enterprise Portal.</li>
+                    <li><code>first_for_license_type</code>: Triggers a notification the first time that a customer with a specific license type accesses the Enterprise Portal. For example, if you select "Paid" for the License Type filter, then you will receive a notification the first time that a customer with a Paid license access the Enterprise Portal, even if they previously logged in when they had a Trial license.</li>
+                </ul>
+                <p>First Access for Selected License Type only tracks Enterprise Portal access events that occur after March 27, 2026.</p>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 #### JSON definition
@@ -298,8 +238,6 @@ The following table describes the available filters for the Enterprise Portal Ac
 ```
 
 ### Enterprise Portal User Joined
-
-**Event type:** `customer.ep_user_joined`
 
 When a user joins an Enterprise Portal customer.
 
@@ -326,8 +264,6 @@ Instance event notifications use the **Instance Name** if set. Otherwise, they u
 
 ### Instance Created
 
-**Event type:** `instance.created`
-
 When a new instance sends its first check-in.
 
 #### Filters
@@ -346,8 +282,6 @@ When a new instance sends its first check-in.
 ```
 
 ### Instance Ready
-
-**Event type:** `instance.ready`
 
 When a new instance's application status is Ready for the first time.
 
@@ -368,8 +302,6 @@ When a new instance's application status is Ready for the first time.
 
 ### Instance Upgrade Started
 
-**Event type:** `instance.upgrade_started`
-
 When an instance begins upgrading to a new release version. This event fires when the Vendor Portal receives the first telemetry with a new release version, whether or not the application status is Ready.
 
 #### Filters
@@ -388,8 +320,6 @@ When an instance begins upgrading to a new release version. This event fires whe
 ```
 
 ### Instance Upgrade Completed
-
-**Event type:** `instance.upgrade_completed`
 
 When an instance's application status is Ready after upgrading to a new release version.
 
@@ -410,8 +340,6 @@ When an instance's application status is Ready after upgrading to a new release 
 
 ### Instance Version Behind
 
-**Event type:** `instance.version_behind`
-
 When an instance falls behind by a specified number of versions.
 
 #### Filters
@@ -431,8 +359,6 @@ When an instance falls behind by a specified number of versions.
 
 ### Instance Inactive
 
-**Event type:** `instance.inactive`
-
 When an instance has not checked-in for 24 hours (declared "Inactive"). Air-gapped instances are excluded from this event type.
 
 #### Filters
@@ -451,8 +377,6 @@ When an instance has not checked-in for 24 hours (declared "Inactive"). Air-gapp
 ```
 
 ### Instance State Duration
-
-**Event type:** `instance.state.duration`
 
 When an instance has been in a specific state (such as Unavailable or Degraded) for a specified duration.
 
@@ -482,8 +406,6 @@ The `state` filter accepts one or more values as an array. The `durationMinutes`
 ```
 
 ### Instance State Flapping
-
-**Event type:** `instance.state.flapping`
 
 When an instance is changing states frequently within a configured time window.
 
@@ -516,13 +438,11 @@ The numeric filter values (`minStateChanges`, `windowMinutes`, `cooldownMinutes`
 
 ### Custom Metric Threshold Reached
 
-**Event type:** `instance.custom_metric_threshold_reached`
-
 When a custom metric value reported by an instance meets a configured threshold condition.
 
 The Custom Metric Threshold Reached event type requires a metric name, comparison operator, and notification frequency. You can include only one Custom Metric Threshold Reached event per subscription.
 
-The following table describes each of the filters for the Custom Metric Threshold Reached event type:
+#### Filters
 
 | Filter | JSON key | Required | Description |
 |--------|----------|----------|-------------|
@@ -571,8 +491,6 @@ The following frequency options control how often the notification triggers:
 
 ### Release Created
 
-**Event type:** `release.created`
-
 When a new release is created.
 
 #### Filters
@@ -588,8 +506,6 @@ When a new release is created.
 ```
 
 ### Release Promoted
-
-**Event type:** `release.promoted`
 
 When a release is promoted to a channel.
 
@@ -608,8 +524,6 @@ When a release is promoted to a channel.
 
 ### Release Demoted (Unpublished)
 
-**Event type:** `release.unpublished`
-
 When a release is demoted from a channel.
 
 #### Filters
@@ -627,11 +541,9 @@ When a release is demoted from a channel.
 
 ### Release Build Failed
 
-**Event type:** `release.build_failed`
-
 When a release build fails for a release on a channel.
 
-The following table describes the available filters for the Release Build Failed event type:
+#### Filters
 
 | Filter | JSON key | Required | Options |
 |--------|----------|----------|---------|
@@ -646,62 +558,64 @@ The following table describes the available filters for the Release Build Failed
 
 ### Release Assets Downloaded {#release-assets-downloaded}
 
-**Event type:** `release.asset_downloaded`
-
 When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or proxy registry image). Each individual asset pull triggers one Release Assets Downloaded event.
 
-The following table describes the available filters for the Release Assets Downloaded event type:
+#### Filters
 
 <table>
-    <tr>
-        <td>Filter</td>
-        <td>JSON key</td>
-        <td>Required</td>
-        <td>Options</td>
-    </tr>
-    <tr>
-        <td>Application</td>
-        <td><code>appId</code></td>
-        <td>No</td>
-        <td>Any application in your account</td>
-    </tr>
-    <tr>
-        <td>Channel</td>
-        <td><code>channelId</code></td>
-        <td>No</td>
-        <td>Any channel for the selected application</td>
-    </tr>
-    <tr>
-        <td>Customer</td>
-        <td><code>customerId</code></td>
-        <td>No</td>
-        <td>Any customer for the selected application</td>
-    </tr>
-    <tr>
-        <td>License Type</td>
-        <td><code>licenseType</code></td>
-        <td>No</td>
-        <td><code>paid</code>, <code>trial</code>, <code>community</code>, <code>dev</code></td>
-    </tr>
-    <tr>
-        <td>Asset Type</td>
-        <td><code>assetType</code></td>
-        <td>No</td>
-        <td><code>helm_chart</code>, <code>embedded_cluster_bundle</code>, <code>proxy_image</code></td>
-    </tr>
-    <tr>
-        <td>Pull Type</td>
-        <td><code>pullType</code></td>
-        <td>No</td>
-        <td>
-          <ul>
-            <li><code>any</code> (default): Triggers a notification on every asset pull.</li>
-            <li><code>first</code>: Triggers a notification only the first time that a customer pulls a release asset.</li>
-            <li><code>first_for_license_type</code>: Triggers a notification the first time that a customer pulls a release asset with the selected license type. For example, if you select "Paid" for the License Type filter, you will receive a notification the first time that a customer pulls a release asset using a Paid license, even if the customer had previously pulled assets using a Trial license.</li>
-          </ul>
-          <p>For customers who pulled software before March 18, 2026, the Vendor Portal applies <code>is_first_customer_pull: false</code> on all subsequent pulls. Also, First Pull for Selected License Type only tracks asset pulls that occur after March 27, 2026.</p>
-        </td>
-    </tr>
+    <thead>
+        <tr>
+            <th scope="col">Filter</th>
+            <th scope="col">JSON key</th>
+            <th scope="col">Required</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Application</td>
+            <td><code>appId</code></td>
+            <td>No</td>
+            <td>Any application in your account</td>
+        </tr>
+        <tr>
+            <td>Channel</td>
+            <td><code>channelId</code></td>
+            <td>No</td>
+            <td>Any channel for the selected application</td>
+        </tr>
+        <tr>
+            <td>Customer</td>
+            <td><code>customerId</code></td>
+            <td>No</td>
+            <td>Any customer for the selected application</td>
+        </tr>
+        <tr>
+            <td>License Type</td>
+            <td><code>licenseType</code></td>
+            <td>No</td>
+            <td><code>paid</code>, <code>trial</code>, <code>community</code>, <code>dev</code></td>
+        </tr>
+        <tr>
+            <td>Asset Type</td>
+            <td><code>assetType</code></td>
+            <td>No</td>
+            <td><code>helm_chart</code>, <code>embedded_cluster_bundle</code>, <code>proxy_image</code></td>
+        </tr>
+        <tr>
+            <td>Pull Type</td>
+            <td><code>pullType</code></td>
+            <td>No</td>
+            <td>
+                <ul>
+                    <li><code>any</code> (default): Triggers a notification on every asset pull.</li>
+                    <li><code>first</code>: Triggers a notification only the first time that a customer pulls a release asset.</li>
+                    <li><code>first_for_license_type</code>: Triggers a notification the first time that a customer pulls a release asset with the selected license type. For example, if you select "Paid" for the License Type filter, you will receive a notification the first time that a customer pulls a release asset using a Paid license, even if the customer had previously pulled assets using a Trial license.</li>
+                </ul>
+                <p>For customers who pulled software before March 18, 2026, the Vendor Portal applies <code>is_first_customer_pull: false</code> on all subsequent pulls. Also, First Pull for Selected License Type only tracks asset pulls that occur after March 27, 2026.</p>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 #### JSON definition
@@ -721,8 +635,6 @@ The following table describes the available filters for the Release Assets Downl
 
 ### Support Bundle Uploaded
 
-**Event type:** `support.bundle.uploaded`
-
 When a support bundle is uploaded.
 
 #### Filters
@@ -741,8 +653,6 @@ When a support bundle is uploaded.
 ```
 
 ### Support Bundle Analyzed
-
-**Event type:** `support.bundle.analyzed`
 
 When a support bundle analysis is completed.
 
