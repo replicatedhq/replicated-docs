@@ -1,8 +1,3 @@
-The  attribute is a value for making optional charts. The `exclude` attribute can be parsed by template functions. 
+When the installer processes your release, it excludes any Helm chart if the output of the `exclude` field is `true`.
 
-When Replicated KOTS processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
-
-For more information about optional charts, template functions, and how KOTS processes Helm charts, see:
-
-* [About Template Function Contexts](template-functions-about)
-* [About Distributing Helm Charts with KOTS](/vendor/helm-native-about)
+The `exclude` attribute can be parsed by template functions. See [About Replicated template functions](template-functions-about).

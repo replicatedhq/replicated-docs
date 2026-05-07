@@ -177,11 +177,47 @@ To customize the pre- and post-install instructions for your application:
 
 1. Click **Save changes**.
 
-### Exclude certain images from Helm CLI install instructions
+### Exclude certain images from Helm CLI install instructions {#installer-only}
 
 You can use the `kots.io/installer-only` annotation to exclude the images for an entire Helm chart or for one or more resoures in a Helm chart's templates from the Helm CLI installation instructions displayed in the Enterprise Portal. This annotation is useful for charts or resources that are required for deployments with a Replicated installer (KOTS, Embedded Cluster, kURL) but should not be visible or deployed when customers install with the Helm CLI.
 
-For more information, see [`kots.io/installer-only` Annotation](/vendor/packaging-include-resources#installer-only) in _Conditionally Include or Exclude Resources_.
+#### Exclude an entire Helm chart from Helm CLI installations
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: installers-only-chart
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  chart:
+    name: installers-only-chart
+    chartVersion: 1.0.0
+```
+#### Exclude resources inside a chart's templates from Helm CLI installations
+
+The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
+
+```yaml
+# example-chart/templates/preflight-job.yaml
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-preflight
+  annotations:
+    kots.io/installer-only: "true"
+spec:
+  template:
+    spec:
+      containers:
+      - name: preflight-checks
+        image: replicated/preflight:latest
+        command: ["/bin/sh"]
+        args: ["-c", "echo Running installer-specific preflight checks"]
+      restartPolicy: Never
+```
 
 ### Customize channel-specific install instructions (Alpha) {#customize-channel-install-instructions}
 

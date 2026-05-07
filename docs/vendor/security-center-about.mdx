@@ -148,6 +148,6 @@ To enable the **Security Center** tab for all customers using the Enterprise Por
 
 You can explicitly include or exclude images from being scanned by the Security Center:
 
-* To exclude images from being scanned in Helm CLI installations, use the [installer-only annotation](/vendor/packaging-include-resources#installer-only). This is useful if your application has any charts and resources that are only relevant to Embedded Cluster installations and should not be shown to customers that install with the Helm CLI.
+* To exclude images from being scanned in Helm CLI installations, use the [installer-only annotation](/vendor/enterprise-portal-configure#installer-only). This is useful if your application has any charts and resources that are only relevant to Embedded Cluster installations and should not be shown to customers that install with the Helm CLI.
 
 * If there are any images that are _not_ referenced in the PodSpecs for your application but should be included in Security Center image scans, list those images in the Application custom resource [additionalImages](/vendor/operator-defining-additional-images#define-additional-images-for-air-gap-bundles) field.

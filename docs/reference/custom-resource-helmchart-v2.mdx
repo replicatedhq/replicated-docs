@@ -18,7 +18,7 @@ import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements
 
 # HelmChart v2
 
-This topic describes the KOTS HelmChart v2 custom resource.
+This topic describes the Replicated HelmChart v2 custom resource.
 
 <KotsHelmCrDescription/>
 
@@ -60,13 +60,9 @@ The following is an example manifest file for the HelmChart v2 custom resource:
 
 <Values/>
 
-For more information about using `values`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
-
 ## optionalValues {#optionalvalues}
 
 <OptionalValues/>
-
-For more information about using `optionalValues`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
 
 ### optionalValues.when
 
@@ -77,8 +73,6 @@ For more information about using `optionalValues`, see [Setting Helm Chart Value
 <OptionalValuesRecursiveMerge/>
 
 By default, `optionalValues.recursiveMerge` is false.
-
-For an example of recursive and non-recursive merging, see [About Recursive Merge](/vendor/helm-optional-value-keys#recursive-merge).
 
 ### optionalValues.values
 
