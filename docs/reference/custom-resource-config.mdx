@@ -248,7 +248,7 @@ The `bool` input type should use a "0" or "1" to set the value
         default: "0"
 ```
 
-<img width="650px" alt="Boolean selector on the configuration screen" src="/images/config-screen-bool.png"/>
+<img width="500px" alt="Boolean selector on the configuration screen" src="/images/config-screen-bool.png"/>
 
 [View a larger version of this image](/images/config-screen-bool.png)
 
@@ -281,11 +281,11 @@ spec:
         title: 1.2.5    
 ```
 
-<img width="650px" alt="Dropdown item type on config screen" src="/images/config-screen-dropdown.png"/>
+<img width="500px" alt="Dropdown item type on config screen" src="/images/config-screen-dropdown.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown.png)
 
-<img width="650px" alt="Dropdown item type expanded" src="/images/config-screen-dropdown-open.png"/>
+<img width="500px" alt="Dropdown item type expanded" src="/images/config-screen-dropdown-open.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown-open.png)
 
@@ -306,7 +306,7 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-<img width="650px" alt="File input field on the configuration screen" src="/images/config-screen-file.png"/>
+<img width="500px" alt="File input field on the configuration screen" src="/images/config-screen-file.png"/>
 
 [View a larger version of this image](/images/config-screen-file.png)
 
@@ -325,7 +325,7 @@ This is useful when you would like to use a config group to group items together
       ...
 ```
 
-<img width="650px" alt="Heading on the configuration screen" src="/images/config-screen-heading.png"/>
+<img width="500px" alt="Heading on the configuration screen" src="/images/config-screen-heading.png"/>
 
 [View a larger versio of this image](/images/config-screen-heading.png)
 
@@ -342,7 +342,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-<img width="650px" alt="Email address label on the configuration screen" src="/images/config-screen-label.png"/>
+<img width="500px" alt="Email address label on the configuration screen" src="/images/config-screen-label.png"/>
 
 [View a larger version of this image](/images/config-screen-label.png)
 
@@ -356,7 +356,7 @@ The `password` type is a text field that hides the character input.
       value: '{{repl RandomString 10}}'
 ```
 
-<img width="650px" alt="Password text field on the configuration screen" src="/images/config-screen-password.png"/>
+<img width="500px" alt="Password text field on the configuration screen" src="/images/config-screen-password.png"/>
 
 [View a larger version of this image](/images/config-screen-password.png)
 
@@ -415,7 +415,7 @@ spec:
         title: Password  
 ```
 
-<img width="650px" alt="Select one field on the configuration screen" src="/images/config-screen-selectone.png"/>
+<img width="500px" alt="Select one field on the configuration screen" src="/images/config-screen-selectone.png"/>
 
 ### `text`
 A `text` input field allows users to enter a string value.
@@ -427,7 +427,7 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-<img width="650px" alt="Text field on the configuration screen" src="/images/config-screen-text.png"/>
+<img width="500px" alt="Text field on the configuration screen" src="/images/config-screen-text.png"/>
 
 :::important
 Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
@@ -448,15 +448,11 @@ A `textarea` items creates a multi-line text input for when users have to enter 
         title: Hostname
         type: text
 ```
-<img width="650px" alt="Text area field on the configuration screen" src="/images/config-screen-textarea.png"/>
+<img width="500px" alt="Text area field on the configuration screen" src="/images/config-screen-textarea.png"/>
 
 ## Item Properties
 
 Items have a `name`, `title`, `type`, and other optional properties.
-
-You can use Go templates in the following item properties: `affix`, `default`, `help_text`, `name`, `title`, `value`, and `when`.
-
-The following item properties do not support Go templates: `hidden`, `readonly`, `recommended`, `required`, `type`, and `validation`.
 
 ### `affix`
 
@@ -532,9 +528,10 @@ The `readonly` property doesn't support Go templating.
 
 Displays a Recommended tag for the config item on the config screen.
 
-#### Limitation
+#### Limitations
 
-The `recommended` property doesn't support Go templating.
+* The `recommended` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `recommended` property
 
 #### Example
 
@@ -632,11 +629,11 @@ The `jwt_token` file content is only validated if the file is uploaded since it 
 
 <RegexValidationExample/>
 
-<img width="750px" alt="Password validation error" src="/images/regex_password_validation_error.png"/>
+<img width="500px" alt="Password validation error" src="/images/regex_password_validation_error.png"/>
 
 [View a larger version of this image](/images/regex_password_validation_error.png)
 
-<img width="750px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/>
+<img width="500px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/>
 
 [View a larger version of this image](/images/regex_file_validation_error.png)
 
