@@ -4,17 +4,15 @@ import GetConfigValues from "../partials/configValues/_config-values-procedure.m
 
 # ConfigValues
 
-This topic describes the Replicated KOTS ConfigValues resource. ConfigValues is used to set application configuration values during automated or headless installations from the command line.
+This topic describes the Replicated ConfigValues resource. ConfigValues is used to set application configuration values during automated or headless installations from the command line.
 
 For information about the Replicated Config custom resource, which is used to customize the application-specific configuration fields on the Admin Console config screen, see [Config](custom-resource-config).
 
 ## Overview
 
-The ConfigValues resource lists the values and defaults for each application configuration item defined in the Replicated KOTS [Config](custom-resource-config) resource in the release.
+The ConfigValues resource lists the values and defaults for each application configuration item defined in the Replicated [Config](custom-resource-config) resource in the release.
 
-In automated or headless installations, end users provide a ConfigValues resource with the install command to set the application configuration values from the command line rather than through the Admin Console UI. For more information about performing headless installations with Replicated Embedded Cluster, see [Online installation with Embedded Cluster](/embedded-cluster/v3/installing-embedded). For information about performing headless installations with KOTS in an existing cluster, see [Install with the KOTS CLI](/enterprise/installing-existing-cluster-automation).
-
-Additionally, for each installation, the Admin Console automatically generates a ConfigValues resource and makes it available for download in the Admin Console **View files** tab or with the [`kots get config`](/reference/kots-cli-get-config) command. For more information, see [Download the ConfigValues for an Installation](#download) below.
+In automated or headless installations, end users provide a ConfigValues resource with the install command to set the application configuration values from the command line rather than through the UI.
 
 The following image shows how application configuration items defined a Config resource map to a ConfigValues resource:
 
@@ -119,7 +117,7 @@ spec:
       valuePlaintext: exampleusertoken
 ```
 
-## Download the ConfigValues for an Installation {#download}
+## (KOTS Existing Cluster Only) Download the ConfigValues for an installation {#download}
 
 For each installation, the Admin Console automatically generates a ConfigValues resource and makes it available for download in the Admin Console **View files** tab or with the [`kots get config`](/reference/kots-cli-get-config) command.
 

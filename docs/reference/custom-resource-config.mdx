@@ -18,13 +18,13 @@ import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
-The Config custom resource can be provided by a vendor to specify a Config page in the Replicated Admin Console for collecting customer supplied values and template function rendering.
+The Replicated Config custom resource defines the application-specific configuration fields that you want to expose to your end customers. For example, if you let your customers bring their own external database for your application, you could expose config fields for the database host, port, and username, and password.
 
-The settings that appear on the Admin Console Config page are specified as an array configuration _groups_ and _items_.
+During application installation or upgrade, your end customers provide values for each config field either through the UI or with the [ConfigValues](/reference/custom-resource-configvalues) custom resource (for headless installations).
 
-The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the Admin Console Config page.
+## Example
 
-For more information about the properties of groups and items, see [Group Properties](#group-properties) and [Item Properties](#item-properties) below.
+The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the config screen.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -70,7 +70,7 @@ Groups have a `name`, `title`, `description` and an array of `items`.
 
 ### `description`
 
-Descriptive help text for the group that displays on the Admin Console Config page. Supports markdown formatting.
+Descriptive help text for the group that displays on the config screen. Supports markdown formatting.
 
 To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text) below.
 
@@ -107,7 +107,7 @@ spec:
 
 ### `title`
 
-The title of the group that displays on the Admin Console Config page.
+The title of the group that displays on the config screen.
 
 ```yaml
 spec:
@@ -124,7 +124,7 @@ spec:
 
 ### `when`
 
-The `when` property denotes groups that are displayed on the Admin Console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+The `when` property denotes groups that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
 
 <PropertyWhen/>
 
@@ -140,7 +140,7 @@ The `when` group property has the following requirements and limitations:
 
 #### Example
 
-In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
+In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
 
 ```yaml
 spec:
@@ -180,7 +180,7 @@ spec:
 
 ### `items`
 
-Each group contains an array of items that map to input fields on the Admin Console Config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
+Each group contains an array of items that map to input fields on the config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
 
 For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
 
@@ -198,7 +198,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the Admin Console on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
+      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear on the config screen on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
     </td>
   </tr>
   <tr>
@@ -222,7 +222,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
     <th>Description</th>
     <td>
       <p>Defines the default value for the config item. If the user does not provide a value for the item, then the <code>default</code> value is applied.</p>
-      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the Admin Console.</p>
+      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text on the config screen.</p>
     </td>
   </tr>
   <tr>
@@ -245,7 +245,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Displays a helpful message below the <code>title</code> for the config item in the Admin Console.</p>
+      <p>Displays a helpful message below the <code>title</code> for the config item on the config screen.</p>
       <p>Markdown syntax is supported. For more information about markdown syntax, see <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
     </td>
   </tr>
@@ -269,7 +269,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-       <p>Hidden items are not visible in the Admin Console.</p>
+       <p>Hidden items are not visible on the config screen.</p>
        <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -292,7 +292,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the Admin Console.</p><p> The item <code>name</code> can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
+    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed on the config screen.</p><p> The item <code>name</code> can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -314,7 +314,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Readonly items are displayed in the Admin Console and users cannot edit their value.</p>
+      <p>Readonly items are displayed on the config screen and users cannot edit their value.</p>
       <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -337,7 +337,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Recommended tag for the config item in the Admin Console.</p></td>
+    <td><p>Displays a Recommended tag for the config item on the config screen.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -360,7 +360,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Displays a Required tag for the config item in the Admin Console. A required item prevents the application from starting until it has a value.</p></td>
+    <td><p>Displays a Required tag for the config item on the config screen. A required item prevents the application from starting until it has a value.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -381,7 +381,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The title of the config item that displays in the Admin Console.</p></td>
+    <td><p>The title of the config item that displays on the config screen.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -428,7 +428,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item in the Admin Console.</p>
+      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item on the config screen.</p>
       <p>If the config item is not readonly, then the data that you add to <code>value</code> is overwritten by any user input for the item. If the item is readonly, then the data that you add to <code>value</code> cannot be overwritten.</p>
     </td>
   </tr>
@@ -451,7 +451,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>when</code> property denotes items that are displayed on the Admin Console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>radio</code>, <code>dropdown</code> or <code>select_one</code> item. To conditionally show or hide <code>radio</code>, <code>dropdown</code> or <code>select_one</code> items, apply the <code>when</code> property to the item itself.</li></ul><WhenNote/></td>
+    <td><p>The <code>when</code> property denotes items that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>radio</code>, <code>dropdown</code> or <code>select_one</code> item. To conditionally show or hide <code>radio</code>, <code>dropdown</code> or <code>select_one</code> items, apply the <code>when</code> property to the item itself.</li></ul><WhenNote/></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -520,7 +520,7 @@ The `bool` input type should use a "0" or "1" to set the value
 
 > Introduced in KOTS v1.114.0
 
-The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the Admin Console config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
+The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
 
 To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
 
@@ -628,7 +628,7 @@ The `password` type is a text field that hides the character input.
 
 > Introduced in KOTS v1.114.0
 
-The `radio` item type includes one or more nested items that are displayed as radio buttons on the Admin Console config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
+The `radio` item type includes one or more nested items that are displayed as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
 
 To set a default value for `radio` items, set the `default` field to the name of the target nested item.
 
@@ -655,7 +655,7 @@ spec:
 The `select_one` item type is deprecated and is replaced by [`radio`](#radio).
 :::
 
-`select_one` items must contain nested items. The nested items are displayed as radio buttons in the Admin Console.
+`select_one` items must contain nested items. The nested items are displayed as radio buttons on the config screen.
 
 You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
 
@@ -666,7 +666,7 @@ spec:
   groups:
   - name: example_settings
     title: My Example Config
-    description: Configuration to serve as an example for creating your own. See [https://kots.io/reference/v1beta1/config/](https://kots.io/reference/v1beta1/config/) for configuration docs. In this case, we provide example fields for configuring an Nginx welcome page.
+    description: Configuration to serve as an example for creating your own.
     items:
     - name: authentication_type
       title: Authentication Type
@@ -728,7 +728,7 @@ The validation rules are as follows:
 - If a group `when` condition is set to `false`, the items in the group are not validated.
 
 ### `regex`
-For applications installed with KOTS v1.98.0 or later, a `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
+You can use a `regex` field to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
  The default validation message is `Value does not match regex`.
 
@@ -855,7 +855,7 @@ Repeatable items are processed in order of the template targets in the Config Sp
 
 ## Repeatable Examples
 
-In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the Admin Console configuration page, which is stored in the ConfigValues file.
+In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the config screen, which is stored in the ConfigValues file.
 
 ### Repeatable Item Example for a yamlPath
 
