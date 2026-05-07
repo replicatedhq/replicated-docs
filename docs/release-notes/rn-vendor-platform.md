@@ -290,7 +290,7 @@ Released on August 4, 2025
 Released on July 25, 2025
 
 ### Improvements {#improvements-v2025-07-25-5}
-* Sorts Helm charts across different parts of the Vendor Portal, Enterprise Portal, and Vendor API using their `weight` property from the corresponding KOTS HelmChart custom resource in the release. This addresses inconsistencies in how Helm charts were displayed in these interfaces.
+* Sorts Helm charts across different parts of the Vendor Portal, Enterprise Portal, and Vendor API using their `weight` property from the corresponding Replicated HelmChart custom resource in the release. This addresses inconsistencies in how Helm charts were displayed in these interfaces.
 
 ## V2025.07.25-0
 
