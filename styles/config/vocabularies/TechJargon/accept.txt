@@ -98,3 +98,4 @@ Unmute
 subchart
 subcharts
 namespaces
+textarea

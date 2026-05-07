@@ -18,7 +18,7 @@ import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
-The Replicated Config custom resource defines the application-specific configuration fields that you want to expose to your end customers. For example, if you let your customers bring their own external database for your application, you could expose config fields for the database host, port, and username, and password.
+The Replicated Config custom resource defines the application-specific configuration fields that you want to expose to your end customers. For example, if you let your customers bring their own external database, you could expose config fields for the database host, port, username, and password.
 
 During application installation or upgrade, your end customers provide values for each config field either through the UI or with the [ConfigValues](/reference/custom-resource-configvalues) custom resource (for headless installations).
 
@@ -86,7 +86,7 @@ spec:
           when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
           required: true
 ```
-The following images show this Config custom resource is rendered in the Embedded Cluster v3 installation wizard:
+The following images show how this Config custom resource renders in the Embedded Cluster v3 installation wizard:
 
 ![Config screen example](/images/config-screen-example.png)
 
@@ -96,13 +96,13 @@ The following images show this Config custom resource is rendered in the Embedde
 
 [View a larger version of this image](/images/config-screen-example-embedded-postgres.png)
 
-## Group Properties
+## Group properties
 
 Groups have a `name`, `title`, `description` and an array of `items`.
 
 ### `description`
 
-Descriptive help text for the group that displays on the config screen. Supports markdown formatting. To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text) below.
+Descriptive help text for the group that displays on the config screen. Supports markdown formatting. To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text).
 
 ```yaml
 spec:
@@ -154,15 +154,15 @@ spec:
 
 ### `when`
 
-The `when` property denotes groups that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+The `when` property denotes groups that display on the config screen only when a condition evaluates to true. When the condition evaluates to false, the group does not display.
 
 <PropertyWhen/>
 
 :::note
-`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item) below.
+`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item).
 :::
 
-#### Requirements and Limitations
+#### Requirements and limitations
 
 <WhenRequirements/>
 
@@ -225,13 +225,13 @@ spec:
 
 Each group contains an array of items that map to input fields on the config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
 
-For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
+For more information, see [Item Properties](#item-properties) and [Item Types](#item-types).
 
 :::note
-If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden.
+If all items in a group hide because their `when` conditions evaluate to false, the group also hides, including its `title` and `description`. To ensure the group remains visible and shows messaging to the user, include a `label` item in the group without a `when` condition.
 :::
 
-## Item Types
+## Item types
 
 The section describes each of the item types:
 <ItemTypes/>
@@ -256,7 +256,7 @@ The `bool` input type should use a "0" or "1" to set the value
 
 > Introduced in KOTS v1.114.0
 
-The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
+The `dropdown` item type includes one or more nested items that display in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
 
 To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
 
@@ -291,7 +291,7 @@ spec:
 
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured.
+The form field captures only the file contents, not the filename.
 See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
 
 ```yaml
@@ -364,7 +364,7 @@ The `password` type is a text field that hides the character input.
 
 > Introduced in KOTS v1.114.0
 
-The `radio` item type includes one or more nested items that are displayed as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
+The `radio` item type includes one or more nested items that display as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
 
 To set a default value for `radio` items, set the `default` field to the name of the target nested item.
 
@@ -388,14 +388,14 @@ spec:
 ### `select_one` (Deprecated)
 
 :::important
-The `select_one` item type is deprecated and is replaced by [`radio`](#radio).
+The `select_one` item type is deprecated. Use [`radio`](#radio) instead.
 :::
 
-`select_one` items must contain nested items. The nested items are displayed as radio buttons on the config screen.
+`select_one` items must contain nested items. The nested items display as radio buttons on the config screen.
 
-You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
+Use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the user-selected option.
 
-For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
+For example, if the user selects the **Password** option for the `select_one` item in the following example, then the template function `'{{repl ConfigOption "authentication_type"}}'` returns `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
 
 ```yaml
 spec:
@@ -430,7 +430,7 @@ Optionally, all additional properties are available for this input type.
 <img width="500px" alt="Text field on the configuration screen" src="/images/config-screen-text.png"/>
 
 :::important
-Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
+Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be accessed. Instead, use [`password`](#password) items.
 :::
 
 ### `textarea`
@@ -450,13 +450,13 @@ A `textarea` items creates a multi-line text input for when users have to enter 
 ```
 <img width="500px" alt="Text area field on the configuration screen" src="/images/config-screen-textarea.png"/>
 
-## Item Properties
+## Item properties
 
 Items have a `name`, `title`, `type`, and other optional properties.
 
 ### `affix`
 
-Items can be affixed `left` or `right`. Affixing items allows them to appear on the config screen on the same line.
+Affix items `left` or `right` to display them on the same line on the config screen.
 
 Specify the `affix` field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.
 
@@ -466,11 +466,11 @@ Specify the `affix` field to all of the items in a particular group to preserve 
 
 ### `default`
 
-Defines the default value for the config item. If the user does not provide a value for the item, then the `default` value is applied.
+Defines the default value for the config item. If the user does not provide a value for the item, the `default` value takes effect.
 
 If the `default` value is not associated with a `password` type config item, then it appears as placeholder text on the config screen.
 
-Any Go template functions that you use in the `default` property are reevaluated every time the user makes a change to their configuration settings for the application.
+The installer reevaluates Go template functions in the `default` property each time the user changes their configuration settings.
 
 #### Example
 
@@ -478,9 +478,9 @@ Any Go template functions that you use in the `default` property are reevaluated
 
 ### `help_text`
 
-Displays a helpful message below the `title` for the config item on the config screen.
+Displays a helpful message under the `title` for the config item on the config screen.
 
-Markdown syntax is supported. For more information about markdown syntax, see [Basic writing and formatting syntax](https://guides.github.com/features/mastering-markdown/) in the GitHub Docs.
+The property supports markdown syntax. For more information, see [Basic writing and formatting syntax](https://guides.github.com/features/mastering-markdown/) in the GitHub Docs.
 
 #### Example
 
@@ -504,7 +504,7 @@ The `hidden` property doesn't support Go templating.
 
 A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item `name` is not displayed on the config screen.
 
-The item `name` can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see [Config Context](/reference/template-functions-config-context).
+Use the item `name` with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see [Config Context](/reference/template-functions-config-context).
 
 #### Example
 
@@ -512,7 +512,7 @@ The item `name` can be used with Replicated template functions in the Config con
 
 ### `readonly`
 
-Readonly items are displayed on the config screen and users cannot edit their value.
+Readonly items display on the config screen and users cannot edit their value.
 
 <RandomStringNote/>
 
@@ -587,7 +587,7 @@ If the config item is not readonly, then the data that you add to `value` is ove
 
 ### `when` {#when-item}
 
-The `when` property denotes items that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.
+The `when` property denotes items that display on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item does not display.
 
 <PropertyWhen/>
 <WhenNote/>
@@ -595,7 +595,7 @@ The `when` property denotes items that are displayed on the config screen only w
 #### Requirements
 
 <WhenRequirements/>
-- `when` cannot be applied to the items nested under a `radio`, `dropdown` or `select_one` item. To conditionally show or hide `radio`, `dropdown` or `select_one` items, apply the `when` property to the item itself.
+- Do not apply `when` to items nested under a `radio`, `dropdown`, or `select_one` item. To conditionally show or hide `radio`, `dropdown`, or `select_one` items, apply the `when` property to the item itself.
 
 #### Example
 
@@ -605,7 +605,7 @@ Display the `database_host` and `database_password` items only when the user sel
 
 ### `validation`
 
-The `validation` property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.
+Use the `validation` property to validate an item's value and specify custom validation rules that determine whether the value is valid.
 
 You can use regex to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
@@ -653,7 +653,7 @@ To make an item repeatable, set `repeatable` to true:
 ```
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
-`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item:
+`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. The repeatable item requires at least one default entry:
 
 ```yaml
     valuesByGroup:
@@ -667,17 +667,17 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 * Repeatable item names must only consist of lower case alphanumeric characters.
 * Repeatable items are only supported for Kubernetes manifests, not Helm charts.
 
-### Template Targets
+### Template targets
 
 Repeatable items require that you provide at least one `template`. The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
 
 Required fields for a template target are `apiVersion`, `kind`, and `name`.
 
-`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename is used across multiple namespaces.
+`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename appears in multiple namespaces.
 
-The entire YAML node at the target is duplicated, including nested fields.
+The installer duplicates the entire YAML node at the target, including nested fields.
 
-The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. All duplicate YAML is appended to the final array in the `yamlPath`.
+The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. The installer appends all duplicate YAML to the final array in the `yamlPath`.
 
 `yamlPath` must end with an array.
 
@@ -692,23 +692,23 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
       yamlPath: 'spec.ports[0]'
 ```
 
-If the `yamlPath` field is not present, the entire YAML document matching the `template` is replaced with a copy for each of the repeatable item entries. The `metadata.name` field of the new document reflects the repeatable item `key`.
+If the `yamlPath` field is not present, the installer replaces the entire YAML document matching the `template` with a copy for each repeatable item entry. The `metadata.name` field of the new document reflects the repeatable item `key`.
 
 ### Templating
 
-The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node:
+Use the delimiters `repl[[ .itemName ]]` or `[[repl .itemName ]]` for repeat items. Place these delimiters anywhere inside the `yamlPath` target node:
 
 ```yaml
     - port: repl{{ ConfigOption "[[repl .serviceport ]]" | ParseInt }}
       name: '[[repl .serviceport ]]'
 ```
-This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating can be placed inside of Replicated config templating.
+This repeatable templating is not compatible with sprig templating functions. Use it to insert repeatable `keys` into the manifest. You can nest repeatable templating inside Replicated config templating.
 
 ### Ordering
 
-Repeatable templates are processed before config template rendering.
+The installer processes repeatable templates before config template rendering.
 
-Repeatable items are processed in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
+The installer processes repeatable items in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
 
 ```yaml
     - name: ports_group
@@ -752,11 +752,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
         {other item properties ...}
 ```
 
-### Repeatable Examples
+### Repeatable examples
 
-In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the config screen, which is stored in the ConfigValues file.
+In these examples, the release includes the default service port "80". When you add port 443 as an additional port on the config screen, The installer stores it in the ConfigValues file.
 
-#### Repeatable Item Example for a yamlPath
+#### Repeatable item example for a yamlPath
 
 **Config custom resource manifest file:**
 
