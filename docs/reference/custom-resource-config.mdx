@@ -24,45 +24,76 @@ During application installation or upgrade, your end customers provide values fo
 
 ## Example
 
-The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the config screen.
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
-  name: my-application
+  name: outline-wiki-config
 spec:
   groups:
-    - name: example_group
-      title: First Group
+    - name: general
+      title: General
       items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-    - name: example_group_2
-      title: Second Group
-      when: false
+        - name: hostname
+          title: Hostname
+          help_text: |
+            The hostname customers will use to access Outline (e.g. outline.example.com).
+          type: text
+          required: true
+
+    - name: database
+      title: Database
       items:
-      - name: key
-        title: Key
-        type: textarea
-      - name: hostname
-        title: Hostname
-        type: text  
-    - name: example_group_3
-      title: Third Group
-      items:
-      - name: email-address
-        title: Email Address
-        type: text  
-      - name: password_text
-        title: Password
-        type: password
-        value: '{{repl RandomString 10}}'     
+        - name: postgres_type
+          title: PostgreSQL
+          type: select_one
+          default: embedded_postgres
+          items:
+            - name: embedded_postgres
+              title: Embedded PostgreSQL
+            - name: external_postgres
+              title: External PostgreSQL
+        - name: embedded_postgres_password
+          title: Embedded PostgreSQL Password
+          type: password
+          value: 'repl{{ RandomString 32 }}'
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+          help_text: |
+            Auto-generated on first install. Leave as-is unless you need a specific password.
+        - name: external_postgres_host
+          title: Host
+          type: text
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
+        - name: external_postgres_port
+          title: Port
+          type: text
+          default: "5432"
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_database
+          title: Database Name
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_username
+          title: Username
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_password
+          title: Password
+          type: password
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
 ```
-![Three groups of items on the config page](/images/config-screen-groups.png)
-[View a larger version of this image](/images/config-screen-groups.png)
+
+![Config screen example](/images/config-screen-example.png)
+
+[View a larger version of this image](/images/config-screen-example.png)
+
+![Config screen example](/images/config-screen-example-embedded-postgres.png)
+
+[View a larger version of this image](/images/config-screen-example-embedded-postgres.png)
 
 ## Group Properties
 
@@ -140,43 +171,58 @@ The `when` group property has the following requirements and limitations:
 
 #### Example
 
-In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
-
 ```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: outline-wiki-config
 spec:
   groups:
-    - name: example_group
-      title: First Group
+    - name: database
+      title: Database
       items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-    - name: example_group_2
-      title: Second Group
-      # This group is displayed only when the `http_enabled` field is selected 
-      when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
-      items:
-      - name: key
-        title: Key
-        type: textarea
-      - name: hostname
-        title: Hostname
-        type: text  
-    - name: example_group_3
-      title: Third Group
-      items:
-      - name: email-address
-        title: Email Address
-        type: text  
-      - name: password_text
-        title: Password
-        type: password
-        value: '{{repl RandomString 10}}'     
+        - name: postgres_type
+          title: PostgreSQL
+          type: select_one
+          default: embedded_postgres
+          items:
+            - name: embedded_postgres
+              title: Embedded PostgreSQL
+            - name: external_postgres
+              title: External PostgreSQL
+        - name: embedded_postgres_password
+          title: Embedded PostgreSQL Password
+          type: password
+          value: 'repl{{ RandomString 32 }}'
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+          help_text: |
+            Auto-generated on first install. Leave as-is unless you need a specific password.
+        - name: external_postgres_host
+          title: Host
+          type: text
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
+        - name: external_postgres_port
+          title: Port
+          type: text
+          default: "5432"
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_database
+          title: Database Name
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_username
+          title: Username
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_password
+          title: Password
+          type: password
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
 ```
-
-![Only the first and third groups on the config screen](/images/config-screen-group-when-false.png)
-[View a larger version of this image](/images/config-screen-group-when-false.png)
 
 ### `items`
 
@@ -187,6 +233,225 @@ For more information, see [Item Properties](#item-properties) and [Item Types](#
 :::note
 If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden.
 :::
+
+## Item Types
+
+The section describes each of the item types:
+<ItemTypes/>
+
+### `bool`
+The `bool` input type should use a "0" or "1" to set the value
+```yaml
+    - name: group_title
+      title: Group Title
+      items:
+      - name: http_enabled
+        title: HTTP Enabled
+        type: bool
+        default: "0"
+```
+
+![Boolean selector on the configuration screen](/images/config-screen-bool.png)
+
+[View a larger version of this image](/images/config-screen-bool.png)
+
+### `dropdown`
+
+> Introduced in KOTS v1.114.0
+
+The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
+
+To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    title: My Example Config
+    items:
+    - name: version
+      title: Version
+      default: version_latest
+      type: dropdown
+      items:
+      - name: version_latest
+        title: latest
+      - name: version_123
+        title: 1.2.3
+      - name: version_124
+        title: 1.2.4
+      - name: version_125
+        title: 1.2.5    
+```
+
+![Dropdown item type on config screen](/images/config-screen-dropdown.png)
+
+[View a larger version of this image](/images/config-screen-dropdown.png)
+
+![Dropdown item type expanded](/images/config-screen-dropdown-open.png)
+
+[View a larger version of this image](/images/config-screen-dropdown-open.png)
+
+### `file`
+A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
+Only the contents of the file, not the name, are captured.
+See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
+
+```yaml
+    - name: certs
+      title: TLS Configuration
+      items:
+      - name: tls_private_key_file
+        title: Private Key
+        type: file
+      - name: tls_certificate_file
+        title: Certificate
+        type: file
+```
+
+![File input field on the configuration screen](/images/config-screen-file.png)
+
+[View a larger version of this image](/images/config-screen-file.png)
+
+### `heading`
+The `heading` type allows you to display a group heading as a sub-element within a group.
+This is useful when you would like to use a config group to group items together, but still separate the items visually.
+
+```yaml
+    - name: ldap_settings
+      title: LDAP Server Settings
+      items:
+      ...
+      - name: ldap_schema
+        type: heading
+        title: LDAP schema
+      ...
+```
+
+![Heading on the configuration screen](/images/config-screen-heading.png)
+
+[View a larger versio of this image](/images/config-screen-heading.png)
+
+### `label`
+The `label` type allows you to display an input label.
+```yaml
+    - name: email
+      title: Email
+      items:
+      - name: email-address
+        title: Email Address
+        type: text
+      - name: description
+        type: label
+        title: "Note: The system will send you an email every hour."
+```
+![Email address label on the configuration screen](/images/config-screen-label.png)
+
+[View a larger version of this image](/images/config-screen-label.png)
+
+### `password`
+The `password` type is a text field that hides the character input.
+
+```yaml
+    - name: password_text
+      title: Password Text
+      type: password
+      value: '{{repl RandomString 10}}'
+```
+
+![Password text field on the configuration screen](/images/config-screen-password.png)
+
+[View a larger version of this image](/images/config-screen-password.png)
+
+### `radio`
+
+> Introduced in KOTS v1.114.0
+
+The `radio` item type includes one or more nested items that are displayed as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
+
+To set a default value for `radio` items, set the `default` field to the name of the target nested item.
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    title: My Example Config
+    items:
+    - name: authentication_type
+      title: Authentication Type
+      default: authentication_type_anonymous
+      type: radio
+      items:
+      - name: authentication_type_anonymous
+        title: Anonymous
+      - name: authentication_type_password
+        title: Password
+```
+
+### `select_one` (Deprecated)
+
+:::important
+The `select_one` item type is deprecated and is replaced by [`radio`](#radio).
+:::
+
+`select_one` items must contain nested items. The nested items are displayed as radio buttons on the config screen.
+
+You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
+
+For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    title: My Example Config
+    description: Configuration to serve as an example for creating your own.
+    items:
+    - name: authentication_type
+      title: Authentication Type
+      default: authentication_type_anonymous
+      type: select_one
+      items:
+      - name: authentication_type_anonymous
+        title: Anonymous
+      - name: authentication_type_password
+        title: Password  
+```
+
+![Select one field on the configuration screen](/images/config-screen-selectone.png)
+
+### `text`
+A `text` input field allows users to enter a string value.
+Optionally, all additional properties are available for this input type.
+
+```yaml
+    - name: example_text_input
+      title: Example Text Input
+      type: text
+```
+
+![Text field on the configuration screen](/images/config-screen-text.png)
+
+:::important
+Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
+:::
+
+### `textarea`
+A `textarea` items creates a multi-line text input for when users have to enter a sizeable amount of text.
+
+```yaml
+    - name: custom_key
+      title: Set your secret key for your app
+      description: Paste in your Custom Key
+      items:
+      - name: key
+        title: Key
+        type: textarea
+      - name: hostname
+        title: Hostname
+        type: text
+```
+![Text area field on the configuration screen](/images/config-screen-textarea.png)
 
 ## Item Properties
 
@@ -474,7 +739,19 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>validation</code> property can be used to validate an item's value, <br/>allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
+    <td>
+      <p>The <code>validation</code> property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.</p>
+      <p>You can use regex to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.</p>
+      <p>Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.</p>
+
+      <p>The validation rules are as follows:</p>
+        <ul>
+          <li>An item is validated only when its value is not empty.</li>
+          <li>Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.</li>
+          <li>If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.</li>
+          <li>If a group `when` condition is set to `false`, the items in the group are not validated.</li>
+        </ul>
+    </td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -485,6 +762,8 @@ Items have a `name`, `title`, `type`, and other optional properties.
     <td>
       <p>Validates and returns if <code>password</code> value is not matching the regex. <br/>The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
       <RegexValidationExample/>
+      <p><img width="700px" alt="Password validation error" src="/images/regex_password_validation_error.png"/></p>
+      <p><img width="700px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/></p>
     </td>
   </tr>
   <tr>
@@ -494,249 +773,6 @@ Items have a `name`, `title`, `type`, and other optional properties.
 </table>
 
 For information about supported validation types, see [Item Validation](#item-validation).
-
-## Item Types
-
-The section describes each of the item types:
-<ItemTypes/>
-
-### `bool`
-The `bool` input type should use a "0" or "1" to set the value
-```yaml
-    - name: group_title
-      title: Group Title
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-```
-
-![Boolean selector on the configuration screen](/images/config-screen-bool.png)
-
-[View a larger version of this image](/images/config-screen-bool.png)
-
-### `dropdown`
-
-> Introduced in KOTS v1.114.0
-
-The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
-
-To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
-
-```yaml
-spec:
-  groups:
-  - name: example_settings
-    title: My Example Config
-    items:
-    - name: version
-      title: Version
-      default: version_latest
-      type: dropdown
-      items:
-      - name: version_latest
-        title: latest
-      - name: version_123
-        title: 1.2.3
-      - name: version_124
-        title: 1.2.4
-      - name: version_125
-        title: 1.2.5    
-```
-
-![Dropdown item type on config screen](/images/config-screen-dropdown.png)
-
-[View a larger version of this image](/images/config-screen-dropdown.png)
-
-![Dropdown item type expanded](/images/config-screen-dropdown-open.png)
-
-[View a larger version of this image](/images/config-screen-dropdown-open.png)
-
-### `file`
-A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured.
-See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
-
-```yaml
-    - name: certs
-      title: TLS Configuration
-      items:
-      - name: tls_private_key_file
-        title: Private Key
-        type: file
-      - name: tls_certificate_file
-        title: Certificate
-        type: file
-```
-
-![File input field on the configuration screen](/images/config-screen-file.png)
-
-[View a larger version of this image](/images/config-screen-file.png)
-
-### `heading`
-The `heading` type allows you to display a group heading as a sub-element within a group.
-This is useful when you would like to use a config group to group items together, but still separate the items visually.
-
-```yaml
-    - name: ldap_settings
-      title: LDAP Server Settings
-      items:
-      ...
-      - name: ldap_schema
-        type: heading
-        title: LDAP schema
-      ...
-```
-
-![Heading on the configuration screen](/images/config-screen-heading.png)
-
-[View a larger versio of this image](/images/config-screen-heading.png)
-
-### `label`
-The `label` type allows you to display an input label.
-```yaml
-    - name: email
-      title: Email
-      items:
-      - name: email-address
-        title: Email Address
-        type: text
-      - name: description
-        type: label
-        title: "Note: The system will send you an email every hour."
-```
-![Email address label on the configuration screen](/images/config-screen-label.png)
-
-[View a larger version of this image](/images/config-screen-label.png)
-
-### `password`
-The `password` type is a text field that hides the character input.
-
-```yaml
-    - name: password_text
-      title: Password Text
-      type: password
-      value: '{{repl RandomString 10}}'
-```
-
-![Password text field on the configuration screen](/images/config-screen-password.png)
-
-[View a larger version of this image](/images/config-screen-password.png)
-
-### `radio`
-
-> Introduced in KOTS v1.114.0
-
-The `radio` item type includes one or more nested items that are displayed as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
-
-To set a default value for `radio` items, set the `default` field to the name of the target nested item.
-
-```yaml
-spec:
-  groups:
-  - name: example_settings
-    title: My Example Config
-    items:
-    - name: authentication_type
-      title: Authentication Type
-      default: authentication_type_anonymous
-      type: radio
-      items:
-      - name: authentication_type_anonymous
-        title: Anonymous
-      - name: authentication_type_password
-        title: Password
-```
-
-### `select_one` (Deprecated)
-
-:::important
-The `select_one` item type is deprecated and is replaced by [`radio`](#radio).
-:::
-
-`select_one` items must contain nested items. The nested items are displayed as radio buttons on the config screen.
-
-You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
-
-For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
-
-```yaml
-spec:
-  groups:
-  - name: example_settings
-    title: My Example Config
-    description: Configuration to serve as an example for creating your own.
-    items:
-    - name: authentication_type
-      title: Authentication Type
-      default: authentication_type_anonymous
-      type: select_one
-      items:
-      - name: authentication_type_anonymous
-        title: Anonymous
-      - name: authentication_type_password
-        title: Password  
-```
-
-![Select one field on the configuration screen](/images/config-screen-selectone.png)
-
-### `text`
-A `text` input field allows users to enter a string value.
-Optionally, all additional properties are available for this input type.
-
-```yaml
-    - name: example_text_input
-      title: Example Text Input
-      type: text
-```
-
-![Text field on the configuration screen](/images/config-screen-text.png)
-
-:::important
-Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
-:::
-
-### `textarea`
-A `textarea` items creates a multi-line text input for when users have to enter a sizeable amount of text.
-
-```yaml
-    - name: custom_key
-      title: Set your secret key for your app
-      description: Paste in your Custom Key
-      items:
-      - name: key
-        title: Key
-        type: textarea
-      - name: hostname
-        title: Hostname
-        type: text
-```
-![Text area field on the configuration screen](/images/config-screen-textarea.png)
-
-## Item Validation
-
-A `validation` can be specified to validate the value of an item. `regex` is the supported validation type.
-
-Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
-
-The validation rules are as follows:
-
-- An item is validated only when its value is not empty.
-- Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
-- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
-- If a group `when` condition is set to `false`, the items in the group are not validated.
-
-### `regex`
-You can use a `regex` field to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
-
- The default validation message is `Value does not match regex`.
-
-<RegexValidationExample/>
-
-![Password validation error](/images/regex_password_validation_error.png)
-
-![File validation error only when uploaded](/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
