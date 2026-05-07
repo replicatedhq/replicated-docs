@@ -18,61 +18,91 @@ import WhenNote from "../partials/config/_when-note.mdx"
 
 # Config
 
-The Config custom resource can be provided by a vendor to specify a Config page in the Replicated Admin Console for collecting customer supplied values and template function rendering.
+The Replicated Config custom resource defines the application-specific configuration fields that you want to expose to your end customers. For example, if you let your customers bring their own external database, you could expose config fields for the database host, port, username, and password.
 
-The settings that appear on the Admin Console Config page are specified as an array configuration _groups_ and _items_.
+During application installation or upgrade, your end customers provide values for each config field either through the UI or with the [ConfigValues](/reference/custom-resource-configvalues) custom resource (for headless installations).
 
-The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the Admin Console Config page.
-
-For more information about the properties of groups and items, see [Group Properties](#group-properties) and [Item Properties](#item-properties) below.
+## Example
 
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
-  name: my-application
+  name: outline-wiki-config
 spec:
   groups:
-    - name: example_group
-      title: First Group
+    - name: general
+      title: General
       items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-    - name: example_group_2
-      title: Second Group
-      when: false
-      items:
-      - name: key
-        title: Key
-        type: textarea
-      - name: hostname
-        title: Hostname
-        type: text  
-    - name: example_group_3
-      title: Third Group
-      items:
-      - name: email-address
-        title: Email Address
-        type: text  
-      - name: password_text
-        title: Password
-        type: password
-        value: '{{repl RandomString 10}}'     
-```
-![Three groups of items on the config page](/images/config-screen-groups.png)
-[View a larger version of this image](/images/config-screen-groups.png)
+        - name: hostname
+          title: Hostname
+          help_text: |
+            The hostname customers will use to access Outline (e.g. outline.example.com).
+          type: text
+          required: true
 
-## Group Properties
+    - name: database
+      title: Database
+      items:
+        - name: postgres_type
+          title: PostgreSQL
+          type: select_one
+          default: embedded_postgres
+          items:
+            - name: embedded_postgres
+              title: Embedded PostgreSQL
+            - name: external_postgres
+              title: External PostgreSQL
+        - name: embedded_postgres_password
+          title: Embedded PostgreSQL Password
+          type: password
+          value: 'repl{{ RandomString 32 }}'
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+          help_text: |
+            Auto-generated on first install. Leave as-is unless you need a specific password.
+        - name: external_postgres_host
+          title: Host
+          type: text
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
+        - name: external_postgres_port
+          title: Port
+          type: text
+          default: "5432"
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_database
+          title: Database Name
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_username
+          title: Username
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_password
+          title: Password
+          type: password
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
+```
+The following images show how this Config custom resource renders in the Embedded Cluster v3 installation wizard:
+
+![Config screen example](/images/config-screen-example.png)
+
+[View a larger version of this image](/images/config-screen-example.png)
+
+![Config screen example](/images/config-screen-example-embedded-postgres.png)
+
+[View a larger version of this image](/images/config-screen-example-embedded-postgres.png)
+
+## Group properties
 
 Groups have a `name`, `title`, `description` and an array of `items`.
 
 ### `description`
 
-Descriptive help text for the group that displays on the Admin Console Config page. Supports markdown formatting.
-
-To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text) below.
+Descriptive help text for the group that displays on the config screen. Supports markdown formatting. To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text).
 
 ```yaml
 spec:
@@ -107,7 +137,7 @@ spec:
 
 ### `title`
 
-The title of the group that displays on the Admin Console Config page.
+The title of the group that displays on the config screen.
 
 ```yaml
 spec:
@@ -124,378 +154,84 @@ spec:
 
 ### `when`
 
-The `when` property denotes groups that are displayed on the Admin Console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the group is not displayed.
+The `when` property denotes groups that display on the config screen only when a condition evaluates to true. When the condition evaluates to false, the group does not display.
 
 <PropertyWhen/>
 
 :::note
-`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item) below.
+`when` is a property of both groups and items. See [Item Properties > `when`](/reference/custom-resource-config#when-item).
 :::
 
-#### Requirements and Limitations
-
-The `when` group property has the following requirements and limitations:
+#### Requirements and limitations
 
 <WhenRequirements/>
 
 #### Example
 
-In the following example, the `example_group_2` group of items will be displayed on the **Config** page only when the user enables the `http_enabled` configuration field. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the value of the `http_enabled` configuration field.
-
 ```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: outline-wiki-config
 spec:
   groups:
-    - name: example_group
-      title: First Group
+    - name: database
+      title: Database
       items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-    - name: example_group_2
-      title: Second Group
-      # This group is displayed only when the `http_enabled` field is selected 
-      when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
-      items:
-      - name: key
-        title: Key
-        type: textarea
-      - name: hostname
-        title: Hostname
-        type: text  
-    - name: example_group_3
-      title: Third Group
-      items:
-      - name: email-address
-        title: Email Address
-        type: text  
-      - name: password_text
-        title: Password
-        type: password
-        value: '{{repl RandomString 10}}'     
+        - name: postgres_type
+          title: PostgreSQL
+          type: select_one
+          default: embedded_postgres
+          items:
+            - name: embedded_postgres
+              title: Embedded PostgreSQL
+            - name: external_postgres
+              title: External PostgreSQL
+        - name: embedded_postgres_password
+          title: Embedded PostgreSQL Password
+          type: password
+          value: 'repl{{ RandomString 32 }}'
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+          help_text: |
+            Auto-generated on first install. Leave as-is unless you need a specific password.
+        - name: external_postgres_host
+          title: Host
+          type: text
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
+        - name: external_postgres_port
+          title: Port
+          type: text
+          default: "5432"
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_database
+          title: Database Name
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_username
+          title: Username
+          type: text
+          default: outline
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+        - name: external_postgres_password
+          title: Password
+          type: password
+          when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
+          required: true
 ```
-
-![Only the first and third groups on the config screen](/images/config-screen-group-when-false.png)
-[View a larger version of this image](/images/config-screen-group-when-false.png)
 
 ### `items`
 
-Each group contains an array of items that map to input fields on the Admin Console Config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
+Each group contains an array of items that map to input fields on the config screen. All items have `name`, `title`, and `type` properties and belong to a single group.
 
-For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
+For more information, see [Item Properties](#item-properties) and [Item Types](#item-types).
 
 :::note
-If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden.
+If all items in a group hide because their `when` conditions evaluate to false, the group also hides, including its `title` and `description`. To ensure the group remains visible and shows messaging to the user, include a `label` item in the group without a `when` condition.
 :::
 
-## Item Properties
-
-Items have a `name`, `title`, `type`, and other optional properties.
-
-### `affix`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the Admin Console on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><AffixExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
-
-### `default`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Defines the default value for the config item. If the user does not provide a value for the item, then the <code>default</code> value is applied.</p>
-      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the Admin Console.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><DefaultExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td><p>Yes. Every time the user makes a change to their configuration settings for the application, any template functions used in the <code>default</code> property are reevaluated.</p></td>
-  </tr>    
-</table>
-
-### `help_text`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Displays a helpful message below the <code>title</code> for the config item in the Admin Console.</p>
-      <p>Markdown syntax is supported. For more information about markdown syntax, see <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HelpTextExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table> 
-
-### `hidden`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-       <p>Hidden items are not visible in the Admin Console.</p>
-       <p><RandomStringNote/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HiddenExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
-
-### `name`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed in the Admin Console.</p><p> The item <code>name</code> can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><NameExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
-
-### `readonly`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Readonly items are displayed in the Admin Console and users cannot edit their value.</p>
-      <p><RandomStringNote/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ReadonlyExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
-
-### `recommended`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Displays a Recommended tag for the config item in the Admin Console.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <RecommendedExample/>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
-
-### `required`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Displays a Required tag for the config item in the Admin Console. A required item prevents the application from starting until it has a value.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><RequiredExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
-
-### `title`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The title of the config item that displays in the Admin Console.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HelpTextExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
-
-### `type`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Each item has a <code>type</code> property that defines the type of user input accepted by the field.</p>
-      <p>The <code>type</code> property supports the following values: <ItemTypes/></p>
-      <p>For information about each type, see <a href="#item-types">Item Types</a>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><TypeExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table>
-
-### `value`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item in the Admin Console.</p>
-      <p>If the config item is not readonly, then the data that you add to <code>value</code> is overwritten by any user input for the item. If the item is readonly, then the data that you add to <code>value</code> cannot be overwritten.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ValueExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td><p>Yes</p><RandomStringNote/></td>
-  </tr>    
-</table>
-
-### `when` {#when-item}
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The <code>when</code> property denotes items that are displayed on the Admin Console <strong>Config</strong> page only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>radio</code>, <code>dropdown</code> or <code>select_one</code> item. To conditionally show or hide <code>radio</code>, <code>dropdown</code> or <code>select_one</code> items, apply the <code>when</code> property to the item itself.</li></ul><WhenNote/></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
-
-### `validation`
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The <code>validation</code> property can be used to validate an item's value, <br/>allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <p>Validates and returns if <code>password</code> value is not matching the regex. <br/>The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
-      <RegexValidationExample/>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table>
-
-For information about supported validation types, see [Item Validation](#item-validation).
-
-## Item Types
+## Item types
 
 The section describes each of the item types:
 <ItemTypes/>
@@ -512,7 +248,7 @@ The `bool` input type should use a "0" or "1" to set the value
         default: "0"
 ```
 
-![Boolean selector on the configuration screen](/images/config-screen-bool.png)
+<img width="500px" alt="Boolean selector on the configuration screen" src="/images/config-screen-bool.png"/>
 
 [View a larger version of this image](/images/config-screen-bool.png)
 
@@ -520,7 +256,7 @@ The `bool` input type should use a "0" or "1" to set the value
 
 > Introduced in KOTS v1.114.0
 
-The `dropdown` item type includes one or more nested items that are displayed in a dropdown on the Admin Console config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
+The `dropdown` item type includes one or more nested items that display in a dropdown on the config screen. Dropdowns are especially useful for displaying long lists of options. You can also use the [`radio`](#radio) item type to display radio buttons for items with shorter lists of options.
 
 To set a default value for `dropdown` items, set the `default` field to the name of the target nested item.
 
@@ -545,17 +281,17 @@ spec:
         title: 1.2.5    
 ```
 
-![Dropdown item type on config screen](/images/config-screen-dropdown.png)
+<img width="500px" alt="Dropdown item type on config screen" src="/images/config-screen-dropdown.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown.png)
 
-![Dropdown item type expanded](/images/config-screen-dropdown-open.png)
+<img width="500px" alt="Dropdown item type expanded" src="/images/config-screen-dropdown-open.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown-open.png)
 
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured.
+The form field captures only the file contents, not the filename.
 See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
 
 ```yaml
@@ -570,7 +306,7 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-![File input field on the configuration screen](/images/config-screen-file.png)
+<img width="500px" alt="File input field on the configuration screen" src="/images/config-screen-file.png"/>
 
 [View a larger version of this image](/images/config-screen-file.png)
 
@@ -589,7 +325,7 @@ This is useful when you would like to use a config group to group items together
       ...
 ```
 
-![Heading on the configuration screen](/images/config-screen-heading.png)
+<img width="500px" alt="Heading on the configuration screen" src="/images/config-screen-heading.png"/>
 
 [View a larger versio of this image](/images/config-screen-heading.png)
 
@@ -606,7 +342,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](/images/config-screen-label.png)
+<img width="500px" alt="Email address label on the configuration screen" src="/images/config-screen-label.png"/>
 
 [View a larger version of this image](/images/config-screen-label.png)
 
@@ -620,7 +356,7 @@ The `password` type is a text field that hides the character input.
       value: '{{repl RandomString 10}}'
 ```
 
-![Password text field on the configuration screen](/images/config-screen-password.png)
+<img width="500px" alt="Password text field on the configuration screen" src="/images/config-screen-password.png"/>
 
 [View a larger version of this image](/images/config-screen-password.png)
 
@@ -628,7 +364,7 @@ The `password` type is a text field that hides the character input.
 
 > Introduced in KOTS v1.114.0
 
-The `radio` item type includes one or more nested items that are displayed as radio buttons on the Admin Console config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
+The `radio` item type includes one or more nested items that display as radio buttons on the config screen. Radio buttons are especially useful for displaying short lists of options. You can also use the [`dropdown`](#dropdown) item type for items with longer lists of options.
 
 To set a default value for `radio` items, set the `default` field to the name of the target nested item.
 
@@ -652,21 +388,21 @@ spec:
 ### `select_one` (Deprecated)
 
 :::important
-The `select_one` item type is deprecated and is replaced by [`radio`](#radio).
+The `select_one` item type is deprecated. Use [`radio`](#radio) instead.
 :::
 
-`select_one` items must contain nested items. The nested items are displayed as radio buttons in the Admin Console.
+`select_one` items must contain nested items. The nested items display as radio buttons on the config screen.
 
-You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
+Use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the user-selected option.
 
-For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
+For example, if the user selects the **Password** option for the `select_one` item in the following example, then the template function `'{{repl ConfigOption "authentication_type"}}'` returns `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
 
 ```yaml
 spec:
   groups:
   - name: example_settings
     title: My Example Config
-    description: Configuration to serve as an example for creating your own. See [https://kots.io/reference/v1beta1/config/](https://kots.io/reference/v1beta1/config/) for configuration docs. In this case, we provide example fields for configuring an Nginx welcome page.
+    description: Configuration to serve as an example for creating your own.
     items:
     - name: authentication_type
       title: Authentication Type
@@ -679,7 +415,7 @@ spec:
         title: Password  
 ```
 
-![Select one field on the configuration screen](/images/config-screen-selectone.png)
+<img width="500px" alt="Select one field on the configuration screen" src="/images/config-screen-selectone.png"/>
 
 ### `text`
 A `text` input field allows users to enter a string value.
@@ -691,10 +427,10 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-![Text field on the configuration screen](/images/config-screen-text.png)
+<img width="500px" alt="Text field on the configuration screen" src="/images/config-screen-text.png"/>
 
 :::important
-Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
+Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be accessed. Instead, use [`password`](#password) items.
 :::
 
 ### `textarea`
@@ -712,11 +448,166 @@ A `textarea` items creates a multi-line text input for when users have to enter 
         title: Hostname
         type: text
 ```
-![Text area field on the configuration screen](/images/config-screen-textarea.png)
+<img width="500px" alt="Text area field on the configuration screen" src="/images/config-screen-textarea.png"/>
 
-## Item Validation
+## Item properties
 
-A `validation` can be specified to validate the value of an item. `regex` is the supported validation type.
+Items have a `name`, `title`, `type`, and other optional properties.
+
+### `affix`
+
+Affix items `left` or `right` to display them on the same line on the config screen.
+
+Specify the `affix` field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.
+
+#### Example
+
+<AffixExample/>
+
+### `default`
+
+Defines the default value for the config item. If the user does not provide a value for the item, the `default` value takes effect.
+
+If the `default` value is not associated with a `password` type config item, then it appears as placeholder text on the config screen.
+
+The installer reevaluates Go template functions in the `default` property each time the user changes their configuration settings.
+
+#### Example
+
+<DefaultExample/>
+
+### `help_text`
+
+Displays a helpful message under the `title` for the config item on the config screen.
+
+The property supports markdown syntax. For more information, see [Basic writing and formatting syntax](https://guides.github.com/features/mastering-markdown/) in the GitHub Docs.
+
+#### Example
+
+<HelpTextExample/>
+
+### `hidden`
+
+Hidden items are not visible on the config screen.
+
+<RandomStringNote/>
+
+#### Limitation
+
+The `hidden` property doesn't support Go templating.
+
+#### Example
+
+<HiddenExample/>
+
+### `name` (Required)
+
+A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item `name` is not displayed on the config screen.
+
+Use the item `name` with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see [Config Context](/reference/template-functions-config-context).
+
+#### Example
+
+<NameExample/>
+
+### `readonly`
+
+Readonly items display on the config screen and users cannot edit their value.
+
+<RandomStringNote/>
+
+#### Limitation
+
+The `readonly` property doesn't support Go templating.
+
+#### Example
+
+<ReadonlyExample/>
+
+### `recommended`
+
+Displays a Recommended tag for the config item on the config screen.
+
+#### Limitations
+
+* The `recommended` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `recommended` property
+
+#### Example
+
+<RecommendedExample/>
+
+### `required`
+
+Displays a Required tag for the config item on the config screen. A required item prevents the application from starting until it has a value.
+
+#### Limitation
+
+The `required` property doesn't support Go templating.
+
+#### Example
+
+<RequiredExample/>
+
+### `title` (Required)
+
+The title of the config item that displays on the config screen.
+
+#### Example
+
+<HelpTextExample/>
+
+### `type` (Required)
+
+Each item has a `type` property that defines the type of user input accepted by the field.
+
+The `type` property supports the following values: <ItemTypes/>
+
+For information about each type, see [Item Types](#item-types).
+
+#### Limitation
+
+The `type` property doesn't support Go templating.
+
+#### Example
+
+<TypeExample/>
+
+### `value`
+
+Defines the value of the config item. Data that you add to `value` appears as the HTML input value for the config item on the config screen.
+
+If the config item is not readonly, then the data that you add to `value` is overwritten by any user input for the item. If the item is readonly, then the data that you add to `value` cannot be overwritten.
+
+<RandomStringNote/>
+
+#### Example
+
+<ValueExample/>
+
+### `when` {#when-item}
+
+The `when` property denotes items that display on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item does not display.
+
+<PropertyWhen/>
+<WhenNote/>
+
+#### Requirements
+
+<WhenRequirements/>
+- Do not apply `when` to items nested under a `radio`, `dropdown`, or `select_one` item. To conditionally show or hide `radio`, `dropdown`, or `select_one` items, apply the `when` property to the item itself.
+
+#### Example
+
+Display the `database_host` and `database_password` items only when the user selects `external` for the `db_type` item:
+
+<WhenExample/>
+
+### `validation`
+
+Use the `validation` property to validate an item's value and specify custom validation rules that determine whether the value is valid.
+
+You can use regex to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
 Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
 
@@ -727,16 +618,24 @@ The validation rules are as follows:
 - If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
 - If a group `when` condition is set to `false`, the items in the group are not validated.
 
-### `regex`
-For applications installed with KOTS v1.98.0 or later, a `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
+#### Limitation
 
- The default validation message is `Value does not match regex`.
+The `validation` property doesn't support Go templating.
+
+#### Example
+
+Validates and returns if `password` value is not matching the regex.  
+The `jwt_token` file content is only validated if the file is uploaded since it is optional.
 
 <RegexValidationExample/>
 
-![Password validation error](/images/regex_password_validation_error.png)
+<img width="500px" alt="Password validation error" src="/images/regex_password_validation_error.png"/>
 
-![File validation error only when uploaded](/images/regex_file_validation_error.png)
+[View a larger version of this image](/images/regex_password_validation_error.png)
+
+<img width="500px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/>
+
+[View a larger version of this image](/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
@@ -754,7 +653,7 @@ To make an item repeatable, set `repeatable` to true:
 ```
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
-`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item:
+`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. The repeatable item requires at least one default entry:
 
 ```yaml
     valuesByGroup:
@@ -768,17 +667,17 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 * Repeatable item names must only consist of lower case alphanumeric characters.
 * Repeatable items are only supported for Kubernetes manifests, not Helm charts.
 
-### Template Targets
+### Template targets
 
 Repeatable items require that you provide at least one `template`. The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
 
 Required fields for a template target are `apiVersion`, `kind`, and `name`.
 
-`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename is used across multiple namespaces.
+`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename appears in multiple namespaces.
 
-The entire YAML node at the target is duplicated, including nested fields.
+The installer duplicates the entire YAML node at the target, including nested fields.
 
-The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. All duplicate YAML is appended to the final array in the `yamlPath`.
+The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. The installer appends all duplicate YAML to the final array in the `yamlPath`.
 
 `yamlPath` must end with an array.
 
@@ -793,23 +692,23 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
       yamlPath: 'spec.ports[0]'
 ```
 
-If the `yamlPath` field is not present, the entire YAML document matching the `template` is replaced with a copy for each of the repeatable item entries. The `metadata.name` field of the new document reflects the repeatable item `key`.
+If the `yamlPath` field is not present, the installer replaces the entire YAML document matching the `template` with a copy for each repeatable item entry. The `metadata.name` field of the new document reflects the repeatable item `key`.
 
 ### Templating
 
-The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node:
+Use the delimiters `repl[[ .itemName ]]` or `[[repl .itemName ]]` for repeat items. Place these delimiters anywhere inside the `yamlPath` target node:
 
 ```yaml
     - port: repl{{ ConfigOption "[[repl .serviceport ]]" | ParseInt }}
       name: '[[repl .serviceport ]]'
 ```
-This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating can be placed inside of Replicated config templating.
+This repeatable templating is not compatible with sprig templating functions. Use it to insert repeatable `keys` into the manifest. You can nest repeatable templating inside Replicated config templating.
 
 ### Ordering
 
-Repeatable templates are processed before config template rendering.
+The installer processes repeatable templates before config template rendering.
 
-Repeatable items are processed in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
+The installer processes repeatable items in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
 
 ```yaml
     - name: ports_group
@@ -853,11 +752,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
         {other item properties ...}
 ```
 
-## Repeatable Examples
+### Repeatable examples
 
-In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the Admin Console configuration page, which is stored in the ConfigValues file.
+In these examples, the release includes the default service port "80". When you add port 443 as an additional port on the config screen, The installer stores it in the ConfigValues file.
 
-### Repeatable Item Example for a yamlPath
+#### Repeatable item example for a yamlPath
 
 **Config custom resource manifest file:**
 
@@ -953,7 +852,7 @@ spec:
     component: my-deployment
 ```
 
-### Repeatable Item Example for an Entire Document
+#### Repeatable Item Example for an Entire Document
 **Config spec:**
 ```yaml
     - name: ports_group
