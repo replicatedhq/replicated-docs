@@ -395,7 +395,7 @@ Support for Kubernetes: 1.29, 1.30, 1.31, and 1.32
 
    This flag allows Helm to take ownership of existing resources that were installed without Helm, like resources deployed with HelmChart v1beta1 and `useHelmInstall: false`.
 
-   For information about how to migrate an existing installation to KOTS HelmChart `v1beta2`, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
+   For information about how to migrate an existing installation to Replicated HelmChart `v1beta2`, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
 
 ## 1.123.1
 
@@ -431,7 +431,7 @@ Released on December 12, 2024
 Support for Kubernetes: 1.29, 1.30, and 1.31
 
 ### New features {#new-features-1-122-0}
-* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This annotation is useful when migrating existing KOTS installations to the KOTS HelmChart v2 installation method. For more information, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
+* Adds support for the `kots.io/keep` annotation, which prevents KOTS from deleting resources during an upgrade if the resource is no longer present in the new release. This annotation is useful when migrating existing KOTS installations to the Replicated HelmChart v2 installation method. For more information, see [Migrating Existing Installations to HelmChart v2](/vendor/helm-v2-migrate). 
 
 ## 1.121.2
 
@@ -1122,7 +1122,7 @@ Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 * Adds support for running KOTS on ARM64 nodes. For air gap installations, the KOTS air gap bundle has an updated format and also now includes images for both AMD64 and ARM64 architectures. When updating KOTS in air gap environments, ensure the CLI version you use matches the version of the KOTS air gap bundle because earlier KOTS versions are not compatible with the new air gap bundle format. For more information about KOTS installation requirements, see [Installation Requirements](/enterprise/installing-general-requirements). 
 
 ### Improvements {#improvements-1-107-0}
-* Removes support `kubectlVersion` and `kustomizeVersion` in the KOTS Application custom resource. One version of kubectl and one version of kustomize are now included in KOTS and will always be used.
+* Removes support `kubectlVersion` and `kustomizeVersion` in the Replicated Application custom resource. One version of kubectl and one version of kustomize are now included in KOTS and will always be used.
 
 ## 1.106.0
 
@@ -1168,7 +1168,7 @@ Released on January 9, 2024
 Support for Kubernetes: 1.26, 1.27, 1.28, and 1.29
 
 ### Bug fixes {#bug-fixes-1-105-2}
-* Fixes an issue where rendering KOTS custom resources could fail if there are required configuration items that don't have defaults.
+* Fixes an issue where rendering Replicated custom resources could fail if there are required configuration items that don't have defaults.
 * Fixes an issue where the `kotsadm-rqlite` and `kotsadm-minio` Pods could be incorrectly scheduled on Arm nodes.
 
 ## 1.105.1
@@ -1559,7 +1559,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New features {#new-features-1-98-0}
 * Adds support for validating config items with type `text`, `textarea`, `password`, or `file` by matching the item's values against a regex pattern. For more information, see [validation](/reference/custom-resource-config#validation) in _Config_.
-* Adds a new `kotsKinds` directory to the application archive that includes the rendered KOTS custom resources.
+* Adds a new `kotsKinds` directory to the application archive that includes the rendered Replicated custom resources.
 
 ### Improvements {#improvements-1-98-0}
 * Sorts multi-application installations in the admin console by their creation date with the most recently installed application at the top.
@@ -1936,7 +1936,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 ### Bug fixes {#bug-fixes-1-89-0}
 * Fixes an issue that causes the Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/install-with-helm).
 * Allows kots CLI commands to use the kubeconfig namespace by default if a flag is not provided.
-* Fixes an issue where installing, updating, or configuring applications that have many images defined in KOTS custom resources (such as collectors, preflights, and analyzers) hangs or takes a long time.
+* Fixes an issue where installing, updating, or configuring applications that have many images defined in Replicated custom resources (such as collectors, preflights, and analyzers) hangs or takes a long time.
 * Fixes an issue that could cause the preflight progress bar to be stuck at nearly 100% but never complete.
 * Fixes an issue where unused Host Path and NFS volumes were not being cleaned up when changing snapshot storage locations in clusters without MinIO.
 * Fixes the issue that caused [`Sequence`](/reference/template-functions-license-context#sequence) template function to return 1 instead of 0 during initial configuration.

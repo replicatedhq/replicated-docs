@@ -26,10 +26,10 @@ Boolean values can be used in comparisons to evaluate if a given statement is tr
 
 One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS Admin Console **Config** page only when the customer's license has a certain entitlement.
 
-The following example creates a conditional statement in the KOTS Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the Admin Console **Config** page. 
+The following example creates a conditional statement in the Replicated Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the Admin Console **Config** page. 
 
 ```yaml
-# KOTS Config custom resource
+# Replicated Config custom resource
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
@@ -92,7 +92,7 @@ Logical comparisons such as AND, OR, and NOT can be used with Replicated templat
 The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the Admin Console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
-# KOTS Config custom resource
+# Replicated Config custom resource
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
@@ -150,15 +150,15 @@ This section includes examples of both single line and multi-line if-else statem
 Multi-line if-else statements can be constructed using YAML block scalars and block chomping characters to ensure the rendered result is valid YAML. A _folded_ block scalar style is denoted using the greater than (`>`) character. With the folded style, single line breaks in the string are treated as a space. Additionally, the block chomping minus (`-`) character is used to remove all the line breaks at the end of a string. For more information about working with these characters, see [Block Style Productions](https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions) in the YAML documentation.
 
 :::note
-For Helm-based applications that need to use more complex or nested if-else statements, you can alternatively use templating within your Helm chart `templates` rather than in the KOTS HelmChart custom resource. For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
+For Helm-based applications that need to use more complex or nested if-else statements, you can alternatively use templating within your Helm chart `templates` rather than in the Replicated HelmChart custom resource. For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
 :::
 
 #### Single line
 
-The following example shows if-else statements used in the KOTS HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+The following example shows if-else statements used in the Replicated HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -185,9 +185,9 @@ spec:
             targetPort: 8081
 ```
 
-#### Multi-line in KOTS HelmChart values
+#### Multi-line in Replicated HelmChart values
 
-The following example uses a multi-line if-else statement in the KOTS HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
+The following example uses a multi-line if-else statement in the Replicated HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
 
 This example uses the following Replicated template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
@@ -199,7 +199,7 @@ This example uses the `{{repl ...}}` syntax rather than the `repl{{ ... }}` synt
 :::
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -283,7 +283,7 @@ The following example uses ternary operators to render the registry and reposito
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -317,7 +317,7 @@ The [nindent](https://masterminds.github.io/sprig/strings.html) function can be 
 The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
@@ -377,7 +377,7 @@ You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) a
 
 The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and Replicated template functions to provide the necessary parameters when calling these functions.
 
-The following example shows how to use variables and Replicated template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the KOTS Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
+The following example shows how to use variables and Replicated template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the Replicated Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
 
 This example uses the following:
 * KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to render the user-supplied value for the ingress hostname. This is passed as a parameter to the [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions 

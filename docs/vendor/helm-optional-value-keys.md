@@ -187,7 +187,7 @@ A common use case for deleting default value keys is when you include a communit
 For example, the following HelmChart custom resource sets an `exampleKey` value to `"null"` when the chart is deployed with KOTS:
 
 ```yaml
-# KOTS HelmChart custom resource
+# Replicated HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart

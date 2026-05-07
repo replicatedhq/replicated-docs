@@ -190,13 +190,13 @@ After successfully installing the initial release on a VM with Embedded Cluster 
 
 ### Task 5: Customize the KOTS Admin Console {#admin-console}
 
-Configure the KOTS Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console. The status informers will be used to display the application status on the Admin Console dashboard.
+Configure the Replicated Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console. The status informers will be used to display the application status on the Admin Console dashboard.
 
-To configure the KOTS Application custom resource:
+To configure the Replicated Application custom resource:
 
 1. In your `manifests` directory, create a new `kots-app.yaml` file.
 
-1. In the `kots-app.yaml` file, add the [KOTS Application](/reference/custom-resource-application) custom resource YAML and set the `title`, `icon`, and `statusInformers` fields.
+1. In the `kots-app.yaml` file, add the [Replicated Application](/reference/custom-resource-application) custom resource YAML and set the `title`, `icon`, and `statusInformers` fields.
 
    **Example:**
 
@@ -244,7 +244,7 @@ To set up the Admin Console Config screen for your application:
 
 1. In your `manifests` directory, create a new file named `kots-config.yaml`.
 
-1. In `kots-config.yaml`, add the KOTS Config custom resource. Configure the KOTS Config custom resource based on the values that you need to collect from users.
+1. In `kots-config.yaml`, add the Replicated Config custom resource. Configure the Replicated Config custom resource based on the values that you need to collect from users.
 
     **Example:**
 
@@ -284,7 +284,7 @@ To set up the Admin Console Config screen for your application:
 
 1. <TestYourChanges/>
 
-1. In `manifests`, open the HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values. For more information, see [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
+1. In `manifests`, open the HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the Replicated Config custom resource to your Helm values. For more information, see [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
 1. <CreateRelease/>
 

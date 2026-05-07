@@ -95,7 +95,7 @@ Embedded Cluster v3 is Beta. For information about the limitations and known iss
 
 To support air gap installations with Embedded Cluster v2:
 
-1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the KOTS Application custom resource. This ensures the air gap bundle for the release includes these images. One common use case for this is applications that use Kubernetes Operators. See [Define Additional Images](/vendor/operator-defining-additional-images).
+1. If there are any images for your application that are not listed in your Helm chart, list these images in the `additionalImages` attribute of the Replicated Application custom resource. This ensures the air gap bundle for the release includes these images. One common use case for this is applications that use Kubernetes Operators. See [Define Additional Images](/vendor/operator-defining-additional-images).
 
 1. Configure each HelmChart custom resource's `builder` key. This ensures that all the required and optional images for your application are available in environments without internet access. See [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 

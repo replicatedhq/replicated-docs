@@ -1,4 +1,4 @@
-# Check entitlements in preflights with KOTS template functions
+# Check entitlements in preflights with Replicated template functions
 
 This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with KOTS.
 
