@@ -42,28 +42,24 @@ To install the SDK as a subchart:
 
 1. Add the chart archive to a new release. For more information, see [Manage Releases with the CLI](/vendor/releases-creating-cli) or [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-1. (Optional) Add a KOTS HelmChart custom resource to the release to support installation with Embedded Cluster, KOTS, or kURL. For more information, see [Configure the HelmChart Custom Resource v2](/vendor/helm-native-v2-using).
+1. Save and promote the release to an internal-only channel used for testing.
 
-1. Save and promote the release to an internal-only channel used for testing, such as the default Unstable channel.
-
-1. Install the release using Helm or a Replicated installer. For more information, see:
+1. Install the release in a development environment. For more information, see:
      * [Online Installation with Embedded Cluster](/embedded-cluster/v3/installing-embedded)
-     * [Installing with Helm](/vendor/install-with-helm)
-     * [Online Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster)
-     * [Online Installation with kURL](/enterprise/installing-kurl)
+     * [Install with Helm](/vendor/install-with-helm)
 
-1. Confirm that the SDK was installed by seeing that the `replicated` Deployment was created:
+1. In the installation environment, verify that you see the `replicated` Deployment:
 
     ```
     kubectl get deploy --namespace NAMESPACE
     ```
-    Where `NAMESPACE` is the namespace in the cluster where the application and the SDK are installed.
+    Where `NAMESPACE` is the namespace in the cluster where you installed the SDK.
 
     **Example output**:
 
     ```
     NAME         READY   UP-TO-DATE   AVAILABLE   AGE
-    my-app       1/1     1            1           35s
+    your-app     1/1     1            1           35s
     replicated   1/1     1            1           35s
     ```
 

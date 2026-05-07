@@ -175,10 +175,8 @@ spec:
         value: '{{repl RandomString 10}}'     
 ```
 
-![Only the first and third groups appear on the config screen](/images/config-screen-group-when-false.png)
+![Only the first and third groups on the config screen](/images/config-screen-group-when-false.png)
 [View a larger version of this image](/images/config-screen-group-when-false.png)
-
-For additional examples, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional).
 
 ### `items`
 
@@ -187,7 +185,7 @@ Each group contains an array of items that map to input fields on the Admin Cons
 For more information, see [Item Properties](#item-properties) and [Item Types](#item-types) below.
 
 :::note
-If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden. For more information, see [Show messaging for unavailable features](/vendor/config-screen-conditional#show-messaging-for-unavailable-features) in _Using Conditional Statements in Configuration Fields_.
+If all items in a group are hidden because their `when` conditions evaluate to false, the entire group is hidden, including its `title` and `description`. To ensure that the group remains visible and shows messaging to the user, include a `label` item in the group that is not hidden.
 :::
 
 ## Item Properties
@@ -462,7 +460,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Example</th>
     <td>
-      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p><p>For additional examples, see <a href="/vendor/config-screen-conditional">Using Conditional Statements in Configuration Fields</a>.</p>
+      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p>
     </td>
   </tr>
   <tr>

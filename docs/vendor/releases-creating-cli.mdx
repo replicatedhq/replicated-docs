@@ -22,34 +22,13 @@ Before you create a release using the Replicated CLI, complete the following pre
   export REPLICATED_APP=my-app-slug
   ```
 
-## Create a release from a local directory {#dir}
+## Create and promote a release {#dir}
 
 You can use the Replicated CLI to create a release from a local directory that contains the release files.
 
 To create and promote a release:
 
-1. (Helm Charts Only) If your release contains any Helm charts:
-
-   1. Package each Helm chart as a `.tgz` file. See [Package a Helm Chart for a Release](/vendor/helm-install-release).
-
-   1. Move the `.tgz` file or files to the local directory that contains the release files:
-
-       ```bash
-       mv CHART_TGZ PATH_TO_RELEASE_DIR
-       ```
-       Where:
-       * `CHART_TGZ` is the `.tgz` Helm chart archive.
-       * `PATH_TO_RELEASE_DIR` is path to the directory that contains the release files.
-
-       **Example**
-
-       ```bash
-       mv wordpress-1.3.5.tgz manifests
-       ```
-
-   1. In the same directory that contains the release files, add a HelmChart custom resource for each Helm chart in the release. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
-
-1. Lint the application manifest files and ensure that there are no errors in the YAML:
+1. Lint your release files:
  
     ```bash
     replicated release lint --yaml-dir=PATH_TO_RELEASE_DIR
@@ -107,9 +86,3 @@ To create and promote a release:
           -  `CHANNEL` is the channel ID or the case sensitive name of the channel.
 
           For more information, see [release promote](/reference/replicated-cli-release-promote).
-
-1. Verify that the release was promoted to the target channel:
-
-    ```
-    replicated release ls
-    ```

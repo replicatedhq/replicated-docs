@@ -166,13 +166,13 @@ To create the first release for your application:
    
    1. If your application is deployed as multiple Helm charts, repeat the previous steps to add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
    
-      This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.  
+      This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task. If your default Helm values are sufficient for installation, you can skip this step.
 
    1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/embedded-cluster/v2/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
 
-      For more information, see [extensions](/embedded-cluster/v2/embedded-config#extensions) in _Embedded Cluster Config_.   
+      For more information, see [extensions](/embedded-cluster/v2/embedded-config#extensions) in _Embedded Cluster Config_.
 
 1. From the `manifests` directory, create a release and promote it to the Unstable channel. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
@@ -264,10 +264,7 @@ To set up the Admin Console Config screen for your application:
               default: "Hello World"
     ```
 
-    For more information, see:
-    * [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen) 
-    * [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional)  
-    * [Config](/reference/custom-resource-config)
+    For more information, see [Config](/reference/custom-resource-config).
 
     <br/>
 
@@ -287,12 +284,7 @@ To set up the Admin Console Config screen for your application:
 
 1. <TestYourChanges/>
 
-1. In `manifests`, open the HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values.
-
-   For more information, see:
-   * [Mapping User-Supplied Values](/vendor/config-screen-map-inputs)
-   * [Setting Helm Values with KOTS](/vendor/helm-optional-value-keys)
-   * [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
+1. In `manifests`, open the HelmChart custom resource that you configured in a previous step. Configure the `values` key of the HelmChart custom resource to map the fields in the KOTS Config custom resource to your Helm values. For more information, see [`values`](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_
 
 1. <CreateRelease/>
 
@@ -403,7 +395,7 @@ For more information about how to create and assign custom entitlements in the V
 
 #### Map entitlements to Helm values
 
-You can map license entitlements to your Helm values using Replicated template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [Use KOTS Template Functions](/vendor/helm-optional-value-keys#using-kots-template-functions) in _Setting Helm Values with KOTS_.
+You can map license entitlements to your Helm values using Replicated template functions. This can be useful when you need to set certain values based on the user's license information. For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 #### Query entitlements before installation and at runtime
 

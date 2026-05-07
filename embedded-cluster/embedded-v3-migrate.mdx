@@ -62,7 +62,7 @@ To update a release from Embedded Cluster v2 to v3:
 
 1. Update your application Preflight specs to API version `troubleshoot.sh/v1beta3`. For more information, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
-1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. For information about how to migrate from HelmChart v1 or Kubernetes manifests to HelmChart v2, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
+1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
 
