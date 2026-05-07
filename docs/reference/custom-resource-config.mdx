@@ -86,6 +86,7 @@ spec:
           when: 'repl{{ ConfigOptionEquals "postgres_type" "external_postgres" }}'
           required: true
 ```
+The following images show this Config custom resource is rendered in the Embedded Cluster v3 installation wizard:
 
 ![Config screen example](/images/config-screen-example.png)
 
@@ -101,9 +102,7 @@ Groups have a `name`, `title`, `description` and an array of `items`.
 
 ### `description`
 
-Descriptive help text for the group that displays on the config screen. Supports markdown formatting.
-
-To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text) below.
+Descriptive help text for the group that displays on the config screen. Supports markdown formatting. To provide help text for individual items on the Config page, use the item `help_text` property. See [help_text](#help_text) below.
 
 ```yaml
 spec:
@@ -164,8 +163,6 @@ The `when` property denotes groups that are displayed on the config screen only 
 :::
 
 #### Requirements and Limitations
-
-The `when` group property has the following requirements and limitations:
 
 <WhenRequirements/>
 
@@ -591,19 +588,17 @@ If the config item is not readonly, then the data that you add to `value` is ove
 
 <ValueExample/>
 
-<h3 id="when-item"><code>when</code></h3>
+### `when` {#when-item}
 
 The `when` property denotes items that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.
 
 <PropertyWhen/>
+<WhenNote/>
 
-The `when` item property has the following requirements and limitations:
+#### Requirements
 
 <WhenRequirements/>
-
 - `when` cannot be applied to the items nested under a `radio`, `dropdown` or `select_one` item. To conditionally show or hide `radio`, `dropdown` or `select_one` items, apply the `when` property to the item itself.
-
-<WhenNote/>
 
 #### Example
 

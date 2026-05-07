@@ -1,7 +1,3 @@
-It can be useful to conditionally show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application. Conditional statements in the `when` property can be used to evaluate things like the user's environment, license entitlements, and configuration choices. For example:
-* The Kubernetes distribution of the cluster
-* If the license includes a specific feature entitlement
-* The number of users that the license permits
-* If the user chooses to bring their own external database, rather than using an embedded database offered with the application
+This lets you conditionally show or hide fields so your end customers only see the options that are relevant to them.
 
-You can construct conditional statements in the `when` property using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
+You can use Go template functions to create conditional statements. Replicated provides a set of Go template functions that you can use to evaluate conditions like the user's environment, their license entitlements, and their previous configuration choices. For more information, see [About Replicated Template Functions](/reference/template-functions-about).
