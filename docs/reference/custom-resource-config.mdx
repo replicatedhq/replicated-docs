@@ -251,7 +251,7 @@ The `bool` input type should use a "0" or "1" to set the value
         default: "0"
 ```
 
-![Boolean selector on the configuration screen](/images/config-screen-bool.png)
+<img width="650px" alt="Boolean selector on the configuration screen" src="/images/config-screen-bool.png"/>
 
 [View a larger version of this image](/images/config-screen-bool.png)
 
@@ -284,11 +284,11 @@ spec:
         title: 1.2.5    
 ```
 
-![Dropdown item type on config screen](/images/config-screen-dropdown.png)
+<img width="650px" alt="Dropdown item type on config screen" src="/images/config-screen-dropdown.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown.png)
 
-![Dropdown item type expanded](/images/config-screen-dropdown-open.png)
+<img width="650px" alt="Dropdown item type expanded" src="/images/config-screen-dropdown-open.png"/>
 
 [View a larger version of this image](/images/config-screen-dropdown-open.png)
 
@@ -309,7 +309,7 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-![File input field on the configuration screen](/images/config-screen-file.png)
+<img width="650px" alt="File input field on the configuration screen" src="/images/config-screen-file.png"/>
 
 [View a larger version of this image](/images/config-screen-file.png)
 
@@ -328,7 +328,7 @@ This is useful when you would like to use a config group to group items together
       ...
 ```
 
-![Heading on the configuration screen](/images/config-screen-heading.png)
+<img width="650px" alt="Heading on the configuration screen" src="/images/config-screen-heading.png"/>
 
 [View a larger versio of this image](/images/config-screen-heading.png)
 
@@ -345,7 +345,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](/images/config-screen-label.png)
+<img width="650px" alt="Email address label on the configuration screen" src="/images/config-screen-label.png"/>
 
 [View a larger version of this image](/images/config-screen-label.png)
 
@@ -359,7 +359,7 @@ The `password` type is a text field that hides the character input.
       value: '{{repl RandomString 10}}'
 ```
 
-![Password text field on the configuration screen](/images/config-screen-password.png)
+<img width="650px" alt="Password text field on the configuration screen" src="/images/config-screen-password.png"/>
 
 [View a larger version of this image](/images/config-screen-password.png)
 
@@ -418,7 +418,7 @@ spec:
         title: Password  
 ```
 
-![Select one field on the configuration screen](/images/config-screen-selectone.png)
+<img width="650px" alt="Select one field on the configuration screen" src="/images/config-screen-selectone.png"/>
 
 ### `text`
 A `text` input field allows users to enter a string value.
@@ -430,7 +430,7 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-![Text field on the configuration screen](/images/config-screen-text.png)
+<img width="650px" alt="Text field on the configuration screen" src="/images/config-screen-text.png"/>
 
 :::important
 Do not store secrets or passwords in `text` items because they are not encrypted or masked and can be easily accessed. Instead, use [`password`](#password) items.
@@ -451,328 +451,199 @@ A `textarea` items creates a multi-line text input for when users have to enter 
         title: Hostname
         type: text
 ```
-![Text area field on the configuration screen](/images/config-screen-textarea.png)
+<img width="650px" alt="Text area field on the configuration screen" src="/images/config-screen-textarea.png"/>
 
 ## Item Properties
 
 Items have a `name`, `title`, `type`, and other optional properties.
 
+You can use Go templates in the following item properties: `affix`, `default`, `help_text`, `name`, `title`, `value`, and `when`.
+
+The following item properties do not support Go templates: `hidden`, `readonly`, `recommended`, `required`, `type`, and `validation`.
+
 ### `affix`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear on the config screen on the same line.</p><p>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><AffixExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+Items can be affixed `left` or `right`. Affixing items allows them to appear on the config screen on the same line.
+
+Specify the `affix` field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text.
+
+#### Example
+
+<AffixExample/>
 
 ### `default`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Defines the default value for the config item. If the user does not provide a value for the item, then the <code>default</code> value is applied.</p>
-      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text on the config screen.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><DefaultExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td><p>Yes. Every time the user makes a change to their configuration settings for the application, any template functions used in the <code>default</code> property are reevaluated.</p></td>
-  </tr>    
-</table>
+Defines the default value for the config item. If the user does not provide a value for the item, then the `default` value is applied.
+
+If the `default` value is not associated with a `password` type config item, then it appears as placeholder text on the config screen.
+
+Any Go template functions that you use in the `default` property are reevaluated every time the user makes a change to their configuration settings for the application.
+
+#### Example
+
+<DefaultExample/>
 
 ### `help_text`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Displays a helpful message below the <code>title</code> for the config item on the config screen.</p>
-      <p>Markdown syntax is supported. For more information about markdown syntax, see <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HelpTextExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table> 
+Displays a helpful message below the `title` for the config item on the config screen.
+
+Markdown syntax is supported. For more information about markdown syntax, see [Basic writing and formatting syntax](https://guides.github.com/features/mastering-markdown/) in the GitHub Docs.
+
+#### Example
+
+<HelpTextExample/>
 
 ### `hidden`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-       <p>Hidden items are not visible on the config screen.</p>
-       <p><RandomStringNote/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HiddenExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
+Hidden items are not visible on the config screen.
 
-### `name`
+<RandomStringNote/>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item <code>name</code> is not displayed on the config screen.</p><p> The item <code>name</code> can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see <a href="/reference/template-functions-config-context">Config Context</a>.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><NameExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+#### Limitation
+
+The `hidden` property doesn't support Go templating.
+
+#### Example
+
+<HiddenExample/>
+
+### `name` (Required)
+
+A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item `name` is not displayed on the config screen.
+
+The item `name` can be used with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the value of the item. For more information, see [Config Context](/reference/template-functions-config-context).
+
+#### Example
+
+<NameExample/>
 
 ### `readonly`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Readonly items are displayed on the config screen and users cannot edit their value.</p>
-      <p><RandomStringNote/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ReadonlyExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
+Readonly items are displayed on the config screen and users cannot edit their value.
+
+<RandomStringNote/>
+
+#### Limitation
+
+The `readonly` property doesn't support Go templating.
+
+#### Example
+
+<ReadonlyExample/>
 
 ### `recommended`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Displays a Recommended tag for the config item on the config screen.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <RecommendedExample/>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
+Displays a Recommended tag for the config item on the config screen.
+
+#### Limitation
+
+The `recommended` property doesn't support Go templating.
+
+#### Example
+
+<RecommendedExample/>
 
 ### `required`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Displays a Required tag for the config item on the config screen. A required item prevents the application from starting until it has a value.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><RequiredExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table> 
+Displays a Required tag for the config item on the config screen. A required item prevents the application from starting until it has a value.
 
-### `title`
+#### Limitation
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The title of the config item that displays on the config screen.</p></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><HelpTextExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+The `required` property doesn't support Go templating.
 
-### `type`
+#### Example
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Each item has a <code>type</code> property that defines the type of user input accepted by the field.</p>
-      <p>The <code>type</code> property supports the following values: <ItemTypes/></p>
-      <p>For information about each type, see <a href="#item-types">Item Types</a>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><TypeExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table>
+<RequiredExample/>
+
+### `title` (Required)
+
+The title of the config item that displays on the config screen.
+
+#### Example
+
+<HelpTextExample/>
+
+### `type` (Required)
+
+Each item has a `type` property that defines the type of user input accepted by the field.
+
+The `type` property supports the following values: <ItemTypes/>
+
+For information about each type, see [Item Types](#item-types).
+
+#### Limitation
+
+The `type` property doesn't support Go templating.
+
+#### Example
+
+<TypeExample/>
 
 ### `value`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item on the config screen.</p>
-      <p>If the config item is not readonly, then the data that you add to <code>value</code> is overwritten by any user input for the item. If the item is readonly, then the data that you add to <code>value</code> cannot be overwritten.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ValueExample/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td><p>Yes</p><RandomStringNote/></td>
-  </tr>    
-</table>
+Defines the value of the config item. Data that you add to `value` appears as the HTML input value for the config item on the config screen.
 
-### `when` {#when-item}
+If the config item is not readonly, then the data that you add to `value` is overwritten by any user input for the item. If the item is readonly, then the data that you add to `value` cannot be overwritten.
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The <code>when</code> property denotes items that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.</p><PropertyWhen/><p>The `when` item property has the following requirements and limitations:</p><WhenRequirements/><ul><li><code>when</code> cannot be applied to the items nested under a <code>radio</code>, <code>dropdown</code> or <code>select_one</code> item. To conditionally show or hide <code>radio</code>, <code>dropdown</code> or <code>select_one</code> items, apply the <code>when</code> property to the item itself.</li></ul><WhenNote/></td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user selects <code>external</code> for the <code>db_type</code> item:</p><p><WhenExample/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+<RandomStringNote/>
+
+#### Example
+
+<ValueExample/>
+
+<h3 id="when-item"><code>when</code></h3>
+
+The `when` property denotes items that are displayed on the config screen only when a condition evaluates to true. When the condition evaluates to false, the item is not displayed.
+
+<PropertyWhen/>
+
+The `when` item property has the following requirements and limitations:
+
+<WhenRequirements/>
+
+- `when` cannot be applied to the items nested under a `radio`, `dropdown` or `select_one` item. To conditionally show or hide `radio`, `dropdown` or `select_one` items, apply the `when` property to the item itself.
+
+<WhenNote/>
+
+#### Example
+
+Display the `database_host` and `database_password` items only when the user selects `external` for the `db_type` item:
+
+<WhenExample/>
 
 ### `validation`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>The <code>validation</code> property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.</p>
-      <p>You can use regex to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.</p>
-      <p>Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.</p>
+The `validation` property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.
 
-      <p>The validation rules are as follows:</p>
-        <ul>
-          <li>An item is validated only when its value is not empty.</li>
-          <li>Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.</li>
-          <li>If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.</li>
-          <li>If a group `when` condition is set to `false`, the items in the group are not validated.</li>
-        </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>Required?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td>
-      <p>Validates and returns if <code>password</code> value is not matching the regex. <br/>The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
-      <RegexValidationExample/>
-      <p><img width="700px" alt="Password validation error" src="/images/regex_password_validation_error.png"/></p>
-      <p><img width="700px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-</table>
+You can use regex to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
-For information about supported validation types, see [Item Validation](#item-validation).
+Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
+
+The validation rules are as follows:
+
+- An item is validated only when its value is not empty.
+- Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
+- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
+- If a group `when` condition is set to `false`, the items in the group are not validated.
+
+#### Limitation
+
+The `validation` property doesn't support Go templating.
+
+#### Example
+
+Validates and returns if `password` value is not matching the regex.  
+The `jwt_token` file content is only validated if the file is uploaded since it is optional.
+
+<RegexValidationExample/>
+
+<img width="750px" alt="Password validation error" src="/images/regex_password_validation_error.png"/>
+
+[View a larger version of this image](/images/regex_password_validation_error.png)
+
+<img width="750px" alt="File validation error only when uploaded" src="/images/regex_file_validation_error.png"/>
+
+[View a larger version of this image](/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
@@ -889,11 +760,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
         {other item properties ...}
 ```
 
-## Repeatable Examples
+### Repeatable Examples
 
 In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the config screen, which is stored in the ConfigValues file.
 
-### Repeatable Item Example for a yamlPath
+#### Repeatable Item Example for a yamlPath
 
 **Config custom resource manifest file:**
 
@@ -989,7 +860,7 @@ spec:
     component: my-deployment
 ```
 
-### Repeatable Item Example for an Entire Document
+#### Repeatable Item Example for an Entire Document
 **Config spec:**
 ```yaml
     - name: ports_group
