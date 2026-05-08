@@ -7,7 +7,11 @@ import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.m
 
 # Application
 
-The Application custom resource enables branding in the customer-facing UI. For installations with KOTS in an existing cluster, it also enables other features in the Admin Console UI such as port fowarding, custom graphs, and more.
+The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
+Depending on which Replicated installer the customer uses, this UI is either the Embedded Cluster v3 install and upgrade wizard or the Replicated Admin Console.
+
+For Replicated installers that enable the Admin Console, the Application custom resource also lets you configure other aspects the Admin Console user experience,
+such as setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
 
 ## Example
 
@@ -17,15 +21,15 @@ The following is an example manifest file for the Application custom resource:
 apiVersion: kots.io/v1beta1
 kind: Application
 metadata:
-  name: my-application
+  name: your-application
 spec:
-  title: My Application
+  title: Your Application
   icon: https://support.io/img/logo.png
-  releaseNotes: These are our release notes
-  allowRollback: false
-  targetKotsVersion: "1.60.0"
-  minKotsVersion: "1.40.0"
-  requireMinimalRBACPrivileges: false
+  releaseNotes: ""
+  allowRollback: true
+  targetKotsVersion: "1.130.2"
+  minKotsVersion: "1.124.5"
+  requireMinimalRBACPrivileges: true
   additionalImages:
     - jenkins/jenkins:lts
   excludedImages:
@@ -63,10 +67,13 @@ The `title` property doesn't support Go templating.
 apiVersion: kots.io/v1beta1
 kind: Application
 metadata:
-  name: your-application
+  name: outline-app
 spec:
-  title: Your Application
+  title: Outline
 ```
+<img width="650px" alt="install wizard login screen" src="/images/embedded-cluster-v3-install-wizard-login.png"/>
+
+[View a larger version of this image](/images/embedded-cluster-v3-install-wizard-login.png)
 
 ### `icon`
 
@@ -398,8 +405,6 @@ spec:
 :::
 
 The custom domain used for registry.replicated.com. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
-
-Introduced in KOTS v1.91.1.
 
 #### Limitation
 
