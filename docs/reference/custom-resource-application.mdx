@@ -10,8 +10,8 @@ import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.m
 The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
 Depending on which Replicated installer the customer uses, this UI is either the Embedded Cluster v3 install and upgrade wizard or the Replicated Admin Console.
 
-For Replicated installers that enable the Admin Console, the Application custom resource also lets you configure other aspects the Admin Console user experience,
-such as setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
+For Replicated installers that enable the Admin Console, the Application custom resource also lets you configure other aspects of the Admin Console user experience.
+This includes setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
 
 ## Example
 
@@ -55,7 +55,7 @@ spec:
 
 The title to use in the customer-facing UI. Typically, this is the application name.
 
-For installations with Embedded Cluster v3, the `title` is displayed in the install and upgrade wizards. For installations with Embedded Cluster v2, KOTS existing cluster, and kURL, the `title` is displayed in the Admin Console.
+For installations with Embedded Cluster v3, the install and upgrade wizards display the `title`. For installations with Embedded Cluster v2, KOTS existing cluster, and kURL, the Admin Console displays the `title`.
 
 #### Limitation
 
@@ -79,9 +79,9 @@ spec:
 
 A file with the icon to use in the customer-facing UI. Typically, this is the application's logo.
 
-For installations with Embedded Cluster v3, the `icon` is displayed in the install and upgrade wizards. For installations with Embedded Cluster v2, KOTS existing cluster, and kURL, the `icon` is displayed in the Admin Console.
+For installations with Embedded Cluster v3, the install and upgrade wizards display the `icon`. For installations with Embedded Cluster v2, KOTS existing cluster, and kURL, the Admin Console displays the `icon`.
 
-The icon can be a remote URL or a Base64 encoded image. Base64 encoded images are required for air gap installations.
+The icon can be a remote URL or a Base64 encoded image. Air gap installations require Base64 encoded images.
 
 #### Limitation
 
@@ -131,9 +131,9 @@ spec:
 
 Enable this flag to create a **Rollback** button on the Admin Console **Version History** page. By default, `allowRollback` is false.
 
-If an application is guaranteed not to introduce backwards-incompatible versions, such as through database migrations, then the `allowRollback` flag lets end users roll back to previous versions from the Admin Console.
+If your application does not introduce backwards-incompatible versions, such as through database migrations, you can use `allowRollback`. This flag lets end users roll back to previous versions from the Admin Console.
 
-Rollback does not revert any state. Rather, it recovers the YAML manifests that are applied to the cluster.
+Rollback does not revert any state. Rather, it recovers the YAML manifests applied to the cluster.
 
 #### Limitations
 
@@ -157,7 +157,7 @@ spec:
 An array of additional namespaces as strings for KOTS to create in the cluster. For more information, see [Defining Additional Namespaces](/vendor/operator-defining-additional-namespaces).
 
 In each additional namespace, KOTS creates the application secret.
-KOTS ensures that the application secret has access to pull the application images, including both images that are used and any images that you add in the [`additionalImages`](#additionalimages) property.
+KOTS ensures that the application secret can pull all application images. This includes images in use and any images that you add in the [`additionalImages`](#additionalimages) property.
 This pull secret is automatically added to all manifest files that use private images.
 
 For dynamically created namespaces, specify `"*"`.
@@ -181,7 +181,7 @@ spec:
 
 ### `additionalImages`
 
-An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.
+An array of strings that reference images to include in air gap bundles and push to the local registry during installation.
 
 KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see [Defining Additional Images](/vendor/operator-defining-additional-images).
 
@@ -249,7 +249,7 @@ spec:
 
 Allows minimal role-based access control (RBAC) for all customer installations. When set to `true`, KOTS supports creating a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `supportMinimalRBACPrivileges` is false.
 
-Minimal RBAC is not used by default. It is only used when the `--use-minimal-rbac` flag is passed to the `kots install` command.
+Minimal RBAC is not used by default. KOTS uses minimal RBAC only when you pass the `--use-minimal-rbac` flag to the `kots install` command.
 
 For additional requirements and limitations related to using namespace-scoped RBAC, see [About Namespace-scoped RBAC](/vendor/packaging-rbac#min-rbac) in _Configuring KOTS RBAC_.
 
@@ -271,7 +271,7 @@ spec:
 
 ### `ports`
 
-Extra ports, in addition to the `8800` Admin Console port, that are port-forwarded when running the `kubectl kots admin-console` command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the KOTS CLI prints a message in the terminal with the URL where the port-forwarded service can be accessed. For more information, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
+Extra ports, in addition to the `8800` Admin Console port, that are port-forwarded when running the `kubectl kots admin-console` command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the KOTS CLI prints the URL to access the port-forwarded service. For more information, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
 <KurlNote/>
 
@@ -289,7 +289,7 @@ For more information about adding links to port-forwarded services, see [Add a L
 
 #### Limitations
 
-* Go templates are supported in the `ports.serviceName` and `ports.applicationUrl` fields only. Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
+* KOTS supports Go templates in the `ports.serviceName` and `ports.applicationUrl` fields only. Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
 * Embedded Cluster v3 doesn't support the `ports` property or  port-forwarding services with KOTS.
 
 #### Example
@@ -443,7 +443,7 @@ spec:
 
 ### `minKotsVersion` (Beta)
 
-For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS version required to deloy the given release. KOTS blocks an installation or update if the currently-deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS version required to deploy the given release. KOTS blocks an installation or update if the deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Limitations
 
