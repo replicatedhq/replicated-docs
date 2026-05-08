@@ -29,10 +29,11 @@ replicated release image ls --channel Stable --keep-proxy
 ### Options
 
 ```
-      --channel string   The channel name, slug, or ID (required)
-  -h, --help             help for ls
-      --keep-proxy       Keep proxy registry domain in image names instead of stripping it
-      --version string   The specific semver version to get images for (optional, defaults to current release)
+      --channel string                    The channel name, slug, or ID (required)
+  -h, --help                              help for ls
+      --include-installer-images string   Include installer images in the output (valid values: online, airgap)
+      --keep-proxy                        Keep proxy registry domain in image names instead of stripping it
+      --version string                    The specific semver version to get images for (optional, defaults to current release)
 ```
 
 ### Options inherited from parent commands
