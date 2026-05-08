@@ -1,4 +1,3 @@
-import GraphsTemplates from "../partials/custom-resource-application/_graphs-templates.mdx"
 import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
 import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
 import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
@@ -132,8 +131,8 @@ Rollback does not revert any state. Rather, it recovers the YAML manifests that 
 #### Limitations
 
 * The `allowRollback` property doesn't support Go templating.
-* Embedded Cluster v2 supports partial rollbacks of the application version. Partial rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) compared to the currently installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config.
-* Embedded Cluster v3 doesn't support the `allowRollback` key
+* Embedded Cluster v3 doesn't support the `allowRollback` property.
+* Embedded Cluster v2 supports rolling back the application version only. It doesn't support rolling back the Embedded Cluster version. Users can roll back to an earlier application version only when the Embedded Cluster version stays the same. For example, after upgrading to 1.1.0, users can roll back to version 1.0.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster version.
 
 #### Example
 
@@ -148,15 +147,18 @@ spec:
 
 ### `additionalNamespaces`
 
-An array of additional namespaces as strings that Replicated KOTS creates on the cluster. For more information, see [Defining Additional Namespaces](/vendor/operator-defining-additional-namespaces).
+An array of additional namespaces as strings for KOTS to create in the cluster. For more information, see [Defining Additional Namespaces](/vendor/operator-defining-additional-namespaces).
 
-In addition to creating the additional namespaces, KOTS ensures that the application secret exists in the namespaces. KOTS also ensures that this application secret has access to pull the application images, including both images that are used and any images that you add in the `additionalImages` field. This pull secret is automatically added to all manifest files that use private images.
+In each additional namespace, KOTS creates the application secret.
+KOTS ensures that the application secret has access to pull the application images, including both images that are used and any images that you add in the [`additionalImages`](#additionalimages) property.
+This pull secret is automatically added to all manifest files that use private images.
 
 For dynamically created namespaces, specify `"*"`.
 
-#### Limitation
+#### Limitations
 
-The `additionalNamespaces` property doesn't support Go templating.
+* The `additionalNamespaces` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `additionalNamespaces` property.
 
 #### Example
 
@@ -176,9 +178,10 @@ An array of strings that reference images to be included in air gap bundles and 
 
 KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see [Defining Additional Images](/vendor/operator-defining-additional-images).
 
-#### Limitation
+#### Limitations
 
-The `additionalImages` property doesn't support Go templating.
+* The `additionalImages` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `additionalImages` property.
 
 #### Example
 
@@ -196,9 +199,10 @@ spec:
 
 An array of strings that reference images to exclude from air gap bundles.
 
-#### Limitation
+#### Limitations
 
-The `excludedImages` property doesn't support Go templating.
+* The `excludedImages` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `excludedImages` property.
 
 #### Example
 
@@ -214,7 +218,7 @@ spec:
 
 ### `requireMinimalRBACPrivileges`
 
-Requires minimal role-based access control (RBAC) for all customer installations. When set to `true`, KOTS creates a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `requireMinimalRBACPrivileges` is false.
+When true, `requireMinimalRBACPrivileges` requires minimal role-based access control (RBAC) for KOTS. When set to `true`, KOTS creates a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `requireMinimalRBACPrivileges` is false.
 
 For additional requirements and limitations related to using namespace-scoped RBAC, see [About Namespace-scoped RBAC](/vendor/packaging-rbac#min-rbac) in _Configuring KOTS RBAC_.
 
@@ -279,7 +283,7 @@ For more information about adding links to port-forwarded services, see [Add a L
 #### Limitations
 
 * Go templates are supported in the `ports.serviceName` and `ports.applicationUrl` fields only. Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
-* Not supported for Embedded Cluster v3 installations.
+* Embedded Cluster v3 doesn't support the `ports` property or  port-forwarding services with KOTS.
 
 #### Example
 
@@ -304,6 +308,10 @@ Resources to watch and report application status back to the user. When you incl
 
 For more information about including statusInformers, see [Enable and understand application status](/vendor/insights-app-status).
 
+#### Limitation
+
+Embedded Cluster v3 doesn't support the `statusInformers` property. For Embedded Cluster v3 installations, the Replicated SDK automatically detects and reports the status of resources in your application Helm charts. You can also override the list of resources that get reported on using the SDK's `statusInformers` value. See [Enable application status insights](/vendor/insights-app-status#enable-application-status-insights).
+
 #### Examples
 ##### Plain text
 ```yaml
@@ -316,7 +324,7 @@ spec:
     - deployment/my-web-svc
     - deployment/my-worker
 ```
-##### Template functions
+##### Go templating
 The following example shows excluding a specific status informer based on a user-supplied value from the Admin Console Configuration screen:
 
 ```yaml
@@ -332,16 +340,13 @@ spec:
 
 ### `graphs`
 
-Custom graphs to include on the Admin Console application dashboard. For more information about how to create custom graphs, see [Adding Custom Graphs](/vendor/admin-console-prometheus-monitoring).
+For installations with KOTS in existing cluster, `graphs` defines custom graphs to include on the Admin Console dashboard. For more information about how to create custom graphs, see [Adding Custom Graphs](/vendor/admin-console-prometheus-monitoring).
 
 The `graphs` key has the following fields:
 
 * `graphs.title`: The graph title.
 * `graphs.query`: The Prometheus query.
-* `graphs.legend`: The legend to use for the query line. You can use Prometheus templating in the `legend` fields with each element returned from the Prometheus query.
-
-  <GraphsTemplates/>
-
+* `graphs.legend`: The legend to use for the query line. You can use Prometheus templating in the `legend` fields with each element returned from the Prometheus query. The template escape sequence is `{{}}`. Use `{{ value }}`. For more information, see [Template Reference](https://prometheus.io/docs/prometheus/latest/configuration/template_reference/) in the Prometheus documentation.
 * `graphs.queries`: A list of queries containing a `query` and `legend`.
 * `graphs.yAxisFormat`: The format of the Y axis labels with support for all Grafana units. For more information, see [Visualizations](https://grafana.com/docs/features/panels/graph/#left-y-right-y) in the Grafana documentation.
 * `graphs.yAxisTemplate`: Y axis labels template.
@@ -363,15 +368,13 @@ spec:
       query: 'sum(user_signup_events_total)'
 ```
 
-### `proxyRegistryDomain`
+### `proxyRegistryDomain` (Deprecated)
 
 :::important
 `proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy registry, see [Use Custom Domains](/vendor/custom-domains-using).
 :::
 
 The custom domain used for proxy.replicated.com. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
-
-Introduced in KOTS v1.91.1.
 
 #### Limitation
 
@@ -388,7 +391,7 @@ spec:
   proxyRegistryDomain: "proxy.yourcompany.com"
 ```
 
-### `replicatedRegistryDomain`
+### `replicatedRegistryDomain` (Deprecated)
 
 :::important
 `replicatedRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated registry, see [Use Custom Domains](/vendor/custom-domains-using).
@@ -415,12 +418,12 @@ spec:
 
 ### `targetKotsVersion`
 
-The KOTS version that is targeted by the release. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+For KOTS existing cluster installations, `targetKotsVersion` specifies the version of KOTS to use. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Limitations
 
 * The `targetKotsVersion` property doesn't support Go templating.
-* Embedded Cluster doesn't support the `targetKotsVersion` property. Setting `targetKotsVersion` to a version earlier than the KOTS version included in the specified version of Embedded Cluster causes Embedded Cluster installations to fail with an error message similar to: `Error: This version of App Name requires a different version of KOTS from what you currently have installed.` To avoid installation failures, do not use `targetKotsVersion` in releases that support installation with Embedded Cluster.
+* Embedded Cluster doesn't support the `targetKotsVersion` property. To avoid installation failures, do not use `targetKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Example
 
@@ -430,17 +433,17 @@ kind: Application
 metadata:
   name: your-application
 spec:
-  targetKotsVersion: "1.85.0"
+  targetKotsVersion: "1.130.2"
 ```
 
 ### `minKotsVersion` (Beta)
 
-The minimum KOTS version that is required by the release. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS version required to deloy the given release. KOTS blocks an installation or update if the currently-deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Limitations
 
 * The `minKotsVersion` property doesn't support Go templating.
-* Embedded Cluster doesn't support the `minKotsVersion` property. Setting `minKotsVersion` to a version later than the KOTS version included in the specified version of Embedded Cluster causes Embedded Cluster installations to fail with an error message similar to: `Error: This version of App Name requires a different version of KOTS from what you currently have installed.` To avoid installation failures, do not use `minKotsVersion` in releases that support installation with Embedded Cluster.
+* Embedded Cluster doesn't support the `minKotsVersion` property. To avoid installation failures, do not use `minKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Example
 
@@ -450,5 +453,5 @@ kind: Application
 metadata:
   name: your-application
 spec:
-  minKotsVersion: "1.71.0"
+  minKotsVersion: "1.124.5"
 ```
