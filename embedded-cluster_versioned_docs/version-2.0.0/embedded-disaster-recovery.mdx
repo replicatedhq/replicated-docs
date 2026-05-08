@@ -24,13 +24,13 @@ Embedded Cluster disaster recovery has the following requirements:
 
 * The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to your Replicated account team.
 * Embedded Cluster version 1.22.0 or later
-* Backups must be stored in S3-compatible storage
+* Backups must be stored in AWS S3
 
 ## Limitations and known issues
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
 
-* Embedded Cluster supports only AWS S3 as a storage location for backups.
+* Embedded Cluster supports only AWS S3 as a storage location for backups. Other S3-compatible storage providers (such as MinIO) are not tested or officially supported. Because AWS S3 requires internet access, disaster recovery is not supported for air gap installations.
 
 * During a restore, the version of the Embedded Cluster installation assets must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster installation assets for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the installation assets, where `APP_SLUG` is the unique application slug. For example:
 
