@@ -600,6 +600,29 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
+### helm-schema-violation
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Runs <code>helm lint</code> against each Helm chart archive in the release that is referenced by a HelmChart custom resource. Uses the chart's default values merged with <code>spec.builder</code> values from the HelmChart custom resource. Surfaces any violations reported by Helm, including JSON schema validation errors from the chart's <code>values.schema.json</code>.</p>
+      <p>Each top-level violation is reported as a separate finding so that individual schema errors are easier to read and address.</p>
+      <p>For more information about <code>spec.builder</code>, see <a href="/reference/custom-resource-helmchart-v2#builder">builder</a> in <em>HelmChart v2</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Helm v3 and later chart archives (<code>*.tar.gz</code>) that have a matching HelmChart custom resource. HelmChart custom resources with <code>helmVersion: v2</code> are skipped.
+    </td>
+  </tr>
+</table>
+
 ### invalid-helm-release-name
 
 <table>
