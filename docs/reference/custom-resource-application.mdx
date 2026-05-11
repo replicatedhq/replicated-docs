@@ -10,7 +10,7 @@ import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.m
 The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
 Depending on which Replicated installer the customer uses, this UI is either the Embedded Cluster v3 install and upgrade wizard or the Replicated Admin Console.
 
-For Replicated installers that enable the Admin Console, the Application custom resource also lets you configure other aspects of the Admin Console user experience.
+For installations that include the Admin Console (Embedded Cluster v2, KOTS existing cluster, kURL), the Application custom resource also lets you configure other aspects of the Admin Console user experience.
 This includes setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
 
 ## Example
@@ -108,6 +108,10 @@ spec:
 
 The release notes for this application version. You can also set the release notes from the Vendor Portal or Replicated CLI when you promote a release.
 
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, customers can access release notes from the Admin Console.
+
+For Embedded Cluster v3, you can optionally include these release notes in your application using the Replicated [ReleaseNotes](/reference/template-functions-license-context#releasenotes) template function.
+
 #### Limitation
 
 The `releaseNotes` property doesn't support Go templating.
@@ -150,21 +154,32 @@ spec:
 
 ### `additionalNamespaces`
 
-An array of additional namespaces as strings for KOTS to create in the cluster. For more information, see [Defining Additional Namespaces](/vendor/operator-defining-additional-namespaces).
+An array of additional namespaces as strings that the installer creates in the cluster. One common use case for `additionalNamespaces` is Operators, which often need to be able to manage resources in multiple namespaces in the cluster. 
 
-In each additional namespace, KOTS creates the application secret.
-KOTS ensures that the application secret can pull all application images. This includes images in use and any images that you add in the [`additionalImages`](#additionalimages) property.
-This pull secret is automatically added to all manifest files that use private images.
+For Embedded Cluster v3 installations, Embedded Cluster ensures that the private CA ConfigMap exists in each additional namespace. This allows Embedded Cluster to manage resources in the namespace. For more information about the ConfigMap, see [PrivatCACert](/reference/template-functions-static-context#privatecacert).
 
-For dynamically created namespaces, specify `"*"`.
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace to ensure that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images. For more information, see [Define additional namespaces](/vendor/operator-defining-additional-namespaces).
 
 #### Limitations
 
 * The `additionalNamespaces` property doesn't support Go templating.
-* Embedded Cluster v3 doesn't support the `additionalNamespaces` property.
+* If the current user account does not have access to create the additional namespaces, the installer will show an error and fail.
 
-#### Example
+#### Examples
+##### Array of multiple additional namespaces
 
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-operator
+spec:
+  additionalNamespaces:
+    - namespace1
+    - namespace2
+```
+##### Dynamically-created namespaces
+For dynamically-created namespaces, specify `"*"`.
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -177,14 +192,14 @@ spec:
 
 ### `additionalImages`
 
-An array of strings that reference images to include in air gap bundles and push to the local registry during installation.
+An array of strings that reference images to include in air gap bundles and push to the local registry during installation. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
 
-KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see [Defining Additional Images](/vendor/operator-defining-additional-images).
+For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, or kURL installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
 
 #### Limitations
 
 * The `additionalImages` property doesn't support Go templating.
-* Embedded Cluster v3 doesn't support the `additionalImages` property.
+* Support for For Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `additionalImages` property.
 
 #### Example
 
@@ -192,10 +207,12 @@ KOTS detects images from the PodSpecs in the application. Some applications, suc
 apiVersion: kots.io/v1beta1
 kind: Application
 metadata:
-  name: your-application
+  name: my-app
 spec:
   additionalImages:
-    - jenkins/jenkins:lts
+    - elasticsearch:7.6.0
+    - quay.io/orgname/private-image:v1.2.3
+    - registry.replicated.com/my-operator/my-private-image:abd123f
 ```
 
 ### `excludedImages`
@@ -205,7 +222,7 @@ An array of strings that reference images to exclude from air gap bundles.
 #### Limitations
 
 * The `excludedImages` property doesn't support Go templating.
-* Embedded Cluster v3 doesn't support the `excludedImages` property.
+* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `excludedImages` property.
 
 #### Example
 
@@ -252,7 +269,7 @@ For additional requirements and limitations related to using namespace-scoped RB
 #### Limitations
 
 * The `supportMinimalRBACPrivileges` property doesn't support Go templating.
-* Supported for KOTS existing cluster installations only.  Embedded Cluster doesn't support the `supportMinimalRBACPrivileges` property.
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `supportMinimalRBACPrivileges` property.
 
 #### Example
 
@@ -309,11 +326,11 @@ Resources to watch and report application status back to the user. When you incl
 
 `statusInformers` use the format `[namespace/]type/name`, where namespace is optional.
 
-For more information about including statusInformers, see [Enable and understand application status](/vendor/insights-app-status).
+For more information about including `statusInformers`, see [Enable and understand application status](/vendor/insights-app-status).
 
-#### Limitation
-
-Embedded Cluster v3 doesn't support the `statusInformers` property. For Embedded Cluster v3 installations, the Replicated SDK automatically detects and reports the status of resources in your application Helm charts. You can also override the list of resources that get reported on using the SDK's `statusInformers` value. See [Enable application status insights](/vendor/insights-app-status#enable-application-status-insights).
+:::note
+For Embedded Cluster v3 installations, you can define custom status informers using the Replicated SDK instead of listing them in the Application custom resource `statusInformers` field. For more information, see [Enable application status insights](/vendor/insights-app-status#enable-application-status-insights).
+:::
 
 #### Examples
 ##### Plain text
@@ -424,7 +441,7 @@ For KOTS existing cluster installations, `targetKotsVersion` specifies the versi
 #### Limitations
 
 * The `targetKotsVersion` property doesn't support Go templating.
-* Embedded Cluster doesn't support the `targetKotsVersion` property. To avoid installation failures, do not use `targetKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `targetKotsVersion` property. To avoid installation failures, do not use `targetKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Example
 
@@ -444,7 +461,7 @@ For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS 
 #### Limitations
 
 * The `minKotsVersion` property doesn't support Go templating.
-* Embedded Cluster doesn't support the `minKotsVersion` property. To avoid installation failures, do not use `minKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `minKotsVersion` property. To avoid installation failures, do not use `minKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Example
 
