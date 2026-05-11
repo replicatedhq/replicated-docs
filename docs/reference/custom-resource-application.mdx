@@ -1,10 +1,3 @@
-import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
-import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
-import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
-import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
-import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.mdx"
-
 # Application
 
 The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
@@ -69,6 +62,8 @@ metadata:
 spec:
   title: Outline
 ```
+The following shows an example of how the title appears in the Embedded Cluster v3 install wizard:
+
 <img width="650px" alt="install wizard login screen" src="/images/embedded-cluster-v3-install-wizard-login.png"/>
 
 [View a larger version of this image](/images/embedded-cluster-v3-install-wizard-login.png)
@@ -106,7 +101,7 @@ spec:
 ```
 ### `releaseNotes`
 
-The release notes for this application version. You can also set the release notes from the Vendor Portal or Replicated CLI when you promote a release.
+The release notes for this application version. You can also set the release notes from the Vendor Portal or Replicated CLI when you promote a release. For more information, see [Managing releases with the Vendor Portal](/vendor/releases-creating-releases) or [Managing releases with the CLI](/vendor/releases-creating-cli).
 
 For Embedded Cluster v2, KOTS existing cluster, and kURL installations, customers can access release notes from the Admin Console.
 
@@ -260,9 +255,9 @@ spec:
 
 ### `supportMinimalRBACPrivileges`
 
-Allows minimal role-based access control (RBAC) for all customer installations. When set to `true`, KOTS supports creating a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `supportMinimalRBACPrivileges` is false.
+Allows your end customers to enable minimal role-based access control (RBAC). When set to `true`, KOTS supports creating a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `supportMinimalRBACPrivileges` is false.
 
-Minimal RBAC is not used by default. KOTS uses minimal RBAC only when you pass the `--use-minimal-rbac` flag to the `kots install` command.
+KOTS uses minimal RBAC only when you pass the `--use-minimal-rbac` flag with the `kots install` command.
 
 For additional requirements and limitations related to using namespace-scoped RBAC, see [About Namespace-scoped RBAC](/vendor/packaging-rbac#min-rbac) in _Configuring KOTS RBAC_.
 
@@ -286,24 +281,27 @@ spec:
 
 Extra ports, in addition to the `8800` Admin Console port, that are port-forwarded when running the `kubectl kots admin-console` command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the KOTS CLI prints the URL to access the port-forwarded service. For more information, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
 
-<KurlNote/>
+#### About port forwarding in VM-based installations
 
-The `ports` key has the following fields:
+For installations on VMs or bare metal servers with Embedded Cluster v2 or kURL, KOTS does not automatically create port forwards. This is because it cannot be verified that the ports are secure and authenticated. Instead, Embedded Cluster v2 or kURL creates a NodePort service to make the Admin Console accessible on a port on the node (port `8800` for kURL or port `30000` for Embedded Cluster v2).
 
-<ul>
-  <PortsServiceName/>
-  <PortsServicePort/>
-  <ServicePortNote/>
-  <PortsLocalPort/>
-  <PortsApplicationURL/>
-</ul>
+You can expose additional ports on the node for Embedded Cluster v2 or kURL installations by creating NodePort services. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
 
-For more information about adding links to port-forwarded services, see [Add a Link to a Port-Forwarded Service in the Admin Console](/vendor/admin-console-port-forward#add-link).
+#### Properties
+
+| Property | Description |
+| --- | --- |
+| `ports.serviceName` | The name of the service that receives the traffic. |
+| `ports.servicePort` | The `containerPort` of the Pod where the service is running. Ensure that you use the `containerPort` and not the `servicePort`. The `containerPort` and `servicePort` are often the same port, though it is possible that they are different. |
+| `ports.localPort` | The port to map on the local workstation. |
+| `ports.applicationUrl` | Optional. When set to the same URL that is specified in the `descriptor.links.url` field of the Kubernetes SIG Application custom resource, KOTS adds a link on the Admin Console dashboard where the given service can be accessed. This process automatically links to the hostname in the browser where the Admin Console is being accessed and appends the specified `localPort`. If not set, then the URL defined in the `descriptor.links.url` field of the Kubernetes SIG Application is linked on the Admin Console dashboard. |
 
 #### Limitations
 
-* KOTS supports Go templates in the `ports.serviceName` and `ports.applicationUrl` fields only. Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
-* Embedded Cluster v3 doesn't support the `ports` property or  port-forwarding services with KOTS.
+* `ports` supports Go templates in the `ports.serviceName` and `ports.applicationUrl` fields only.
+
+   Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
+* Supported only for Embedded Cluster v2, KOTS existing cluster, and kURL installations. Embedded Cluster v3 doesn't support the `ports` property or port-forwarding services with KOTS.
 
 #### Example
 
