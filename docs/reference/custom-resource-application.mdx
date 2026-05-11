@@ -3,7 +3,7 @@
 The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
 Depending on which Replicated installer the customer uses, this UI is either the Embedded Cluster v3 install and upgrade wizard or the Replicated Admin Console.
 
-For installations that include the Admin Console (Embedded Cluster v2, KOTS existing cluster, kURL), the Application custom resource also lets you configure other aspects of the Admin Console user experience.
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, the Application custom resource also lets you configure other aspects of the Admin Console user experience.
 This includes setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
 
 ## Example
@@ -153,7 +153,7 @@ An array of additional namespaces as strings that the installer creates in the c
 
 For Embedded Cluster v3 installations, Embedded Cluster ensures that the private CA ConfigMap exists in each additional namespace. This allows Embedded Cluster to manage resources in the namespace. For more information about the ConfigMap, see [PrivatCACert](/reference/template-functions-static-context#privatecacert).
 
-For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace to ensure that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images. For more information, see [Define additional namespaces](/vendor/operator-defining-additional-namespaces).
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace. This ensures that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images. For more information, see [Define additional namespaces](/vendor/operator-defining-additional-namespaces).
 
 #### Limitations
 
@@ -194,7 +194,7 @@ For more information about setting `additionalImages` for Embedded Cluster v2, K
 #### Limitations
 
 * The `additionalImages` property doesn't support Go templating.
-* Support for For Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `additionalImages` property.
+* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `additionalImages` property.
 
 #### Example
 
@@ -283,7 +283,7 @@ Extra ports, in addition to the `8800` Admin Console port, that are port-forward
 
 #### About port forwarding in VM-based installations
 
-For installations on VMs or bare metal servers with Embedded Cluster v2 or kURL, KOTS does not automatically create port forwards. This is because it cannot be verified that the ports are secure and authenticated. Instead, Embedded Cluster v2 or kURL creates a NodePort service to make the Admin Console accessible on a port on the node (port `8800` for kURL or port `30000` for Embedded Cluster v2).
+For installations on VMs or bare metal servers with Embedded Cluster v2 or kURL, KOTS does not automatically create port forwards. This is because KOTS cannot verify that the ports are secure and authenticated. Instead, Embedded Cluster v2 or kURL creates a NodePort service. This makes the Admin Console accessible on a port on the node (port `8800` for kURL or port `30000` for Embedded Cluster v2).
 
 You can expose additional ports on the node for Embedded Cluster v2 or kURL installations by creating NodePort services. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
 
@@ -294,7 +294,7 @@ You can expose additional ports on the node for Embedded Cluster v2 or kURL inst
 | `ports.serviceName` | The name of the service that receives the traffic. |
 | `ports.servicePort` | The `containerPort` of the Pod where the service is running. Ensure that you use the `containerPort` and not the `servicePort`. The `containerPort` and `servicePort` are often the same port, though it is possible that they are different. |
 | `ports.localPort` | The port to map on the local workstation. |
-| `ports.applicationUrl` | Optional. When set to the same URL that is specified in the `descriptor.links.url` field of the Kubernetes SIG Application custom resource, KOTS adds a link on the Admin Console dashboard where the given service can be accessed. This process automatically links to the hostname in the browser where the Admin Console is being accessed and appends the specified `localPort`. If not set, then the URL defined in the `descriptor.links.url` field of the Kubernetes SIG Application is linked on the Admin Console dashboard. |
+| `ports.applicationUrl` | Optional. When set to the same URL as the one in the `descriptor.links.url` field of the Kubernetes SIG Application custom resource, KOTS adds a link on the Admin Console dashboard where users can access the given service. This process automatically links to the hostname in the browser where users access the Admin Console and appends the specified `localPort`. If not set, KOTS links the URL defined in the `descriptor.links.url` field of the Kubernetes SIG Application on the Admin Console dashboard. |
 
 #### Limitations
 
