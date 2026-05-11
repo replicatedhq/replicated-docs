@@ -371,3 +371,17 @@ For more information about configuring custom metrics, see [Configure Custom Met
     </td>
   </tr>
 </table>
+
+## Archive and unarchive instances
+
+You can archive application instances that are inactive, air gap, or installed with a development license. Archiving an instance hides it from all views in the Vendor Portal. You can unarchive an instance at any time to restore it to the active instances list.
+
+To archive or unarchive an instance:
+
+1. From the **Instance details** page for the target instance, click **Archive instance** or **Unarchive instance**.
+
+1. In the confirmation dialog, click **Archive** or **Unarchive**.
+
+:::note
+The **Archive instance** button is visible on the **Instance details** page for all instances, but the backend enforces the eligibility criteria. If the instance is active, online, and installed with a production or trial license, the archive request returns an error.
+:::

@@ -112,10 +112,29 @@ The **Instances** section displays the following details about each active insta
    * (KOTS Only) The KOTS version running in the cluster.
    * The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
-* Instance uptime data, including:
-   * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
-   * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
-   * The uptime ratio in the previous two weeks.
+ * Instance uptime data, including:
+    * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
+    * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
+    * The uptime ratio in the previous two weeks.
+
+#### Show archived instances
+
+Archived instances are hidden from the **Instances** section by default. To include archived instances in the list, enable the **Show Archived Instances** toggle on the **Customers > Instances** tab.
+
+For more information about archiving and unarchiving individual instances, see [Archive and Unarchive Instances](instance-insights-details#archive-and-unarchive-instances) in _Instance Details_.
+
+#### Bulk archive instances
+
+You can archive multiple instances at once from the **Customers > Instances** tab.
+
+To bulk archive instances:
+
+1. On the **Customers > Instances** tab, click the archive icon in the table toolbar to enable bulk selection mode.
+1. Select the instances that you want to archive by using the checkboxes in each row.
+1. Click **Archive instances**.
+1. In the confirmation dialog, click **Archive**.
+
+The Vendor Portal archives all eligible instances and skips any instances that do not meet the archiving criteria (for example, active production instances). A summary shows how many instances were archived and lists any skipped instances with the reason they were skipped. You can archive up to 100 instances in a single bulk operation.
 
 ### Install attempts (Beta)
 
