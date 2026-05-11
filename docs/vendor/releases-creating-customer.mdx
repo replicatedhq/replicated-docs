@@ -92,9 +92,9 @@ To edit a locked field:
 
 ## Archive a customer
 
-When you archive a customer in the Vendor Portal, the customer is hidden from search by default and becomes read-only. Archival does not affect the utility of license files downloaded before the customer was archived.
+When you archive a customer in the Vendor Portal, the customer is hidden from search by default and becomes read-only.
 
-To expire a license, set an expiration date and policy in the **Expiration policy** field before you archive the customer.
+Archiving a customer does not change the functionality or utility of licenses downloaded before the customer was archived. To expire a license, set an expiration date and policy in the **Expiration policy** field before you archive the customer.
 
 To archive a customer:
 
@@ -104,26 +104,64 @@ To archive a customer:
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Manage customer** page.
 
+## Manage customer instances
+
+### Archive or unarchive an instance {#archive-instance}
+
+You can archive application instances that are inactive, air gap, or installed with a Development license. Archiving an instance hides it from all views in the Vendor Portal. You can unarchive an instance at any time to restore it to the active instances list.
+
+To archive or unarchive an instance:
+
+1. From the **Instance details** page for the target instance, click **Archive instance** or **Unarchive instance**.
+   
+   :::note
+   The **Archive instance** button is visible on the **Instance details** page for all instances, but if the instance is active, online, and installed with a production or trial license, the archive request returns an error.
+   :::
+
+1. In the confirmation dialog, click **Archive** or **Unarchive**.
+
+### Bulk archive instances
+
+You can archive up to 100 instances in a single bulk operation.
+
+When you bulk archive, the Vendor Portal archives all eligible instances and skips any instances that do not meet the archiving criteria (for example, active production instances).
+
+To bulk archive instances:
+
+1. On the **Customers > Instances** tab, click the archive icon in the table toolbar to enable bulk selection mode.
+1. Select the instances that you want to archive by using the checkboxes in each row.
+1. Click **Archive instances**.
+1. In the confirmation dialog, click **Archive**.
+
+   A summary shows how many instances were archived and lists any skipped instances with the reason they were skipped.
+
+## Search customers
+
+You can search your customers using filters in the Vendor Portal. If you want to filter using multiple license types or channels, you can download a CSV file instead. For more information, see [Export customer and instance data](#export) on this page.
+
+To filter and search your list of customers:
+
+* On the **Customers** page, use the search box and filters to find customer records. For example, you can filter by active or inactive customer records, license type, release channel, and more.
+
+   To filter customers by custom ID or email, use the search box and prepend your search term with "customId:" (ex: `customId:1234`) or "email:" (ex: `email:bob@replicated.com`).
+
+   <img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
+
+   [View a larger version of this image](/images/customers-filter.png)
+
+## View archived and inactive instances
+
+By default, the Vendor Portal hides archived and inactive instances from each customer's **Instances** list.
+
+To view archived and inactive instances:
+
+* Go to the **Customers** page, select the customer, and go to the **Reporting** tab. Scroll to the **Instances** section and enable the **Show archived instances** or **Show inactive instances** checkboxes.
+
 ## Export customer and instance data {#export}
 
 <Download/>
 
-For more information about the data fields in the CSV downloads, see [Data Dictionary](/vendor/instance-data-export#data-dictionary) in _Export Customers and Instance Data_.
-## Filter and search customers
-
-The **Customers** page provides a search box and filters that help you find customers:
-
-<img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
-
-[View a larger version of this image](/images/customers-filter.png)
-
-You can filter customers based on whether they are active, by license type, and by channel name. You can filter using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time.
-
-If there is adoption rate data available for the channel that you are filtering by, you can also filter by current version, previous version, and older versions.
-
-You can also filter customers by custom ID or email address. To filter customers by custom ID or email, use the search box and prepend your search term with "customId:" (ex: `customId:1234`) or "email:" (ex: `email:bob@replicated.com`).
-
-If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
+For more information about the data fields in the CSV downloads, see [Data Dictionary](/vendor/instance-data-export#data-dictionary) in _Export customer and instance data_.
 
 ## Replace a license in an existing installation
 

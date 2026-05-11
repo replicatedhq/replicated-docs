@@ -91,50 +91,22 @@ For more information about the Enterprise Portal, see [About the Enterprise Port
 
 ### Instances
 
-The **Instances** section displays details about the active application instances associated with the customer.
+The **Instances** section displays details about the active application instances associated with the customer. You can also enable the **Show archived instances** and **Show inactive instances** checkboxes to view archived and inactive instances.
 
-You can click any of the rows in the **Instances** section to open the **Instance details** page. The **Instance details** page displays additional event data and computed metrics to help you understand the performance and status of each active application instance. For more information, see [Instance Details](instance-insights-details).
+From the **Instances** section, you can:
+* Click any of the instances to open its **Instance details** page. For more information, see [Instance Details](instance-insights-details).
+* Bulk archive instances. For more information, see [Bulk archive instances](/vendor/releases-creating-customers#bulk-archive-instances) in _Create and manage customers_.
+* View instances details, including:
+  * The first seven characters of the instance ID
+  * The instance's status. See [Enabling and Understanding Application Status](insights-app-status).
+  * The application version
+  * Details about the cluster where the instance is installed
+  * Instance uptime data. For more information, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
 
 The following shows an example of a row for an active instance in the **Instances** section:
 
 ![Row in the Instances section](/images/instance-row.png)
 [View a larger version of this image](/images/instance-row.png)
-
-The **Instances** section displays the following details about each active instance:
-* The first seven characters of the instance ID.
-* The status of the instance. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating. For more information, see [Enabling and Understanding Application Status](insights-app-status).
-* The application version.
-* Details about the cluster where the instance is installed, including:
-   * The Kubernetes distribution for the cluster, if applicable.
-   * The Kubernetes version running in the cluster.
-   * Whether the instance is installed in a Replicated kURL cluster.
-   * (kURL Clusters Only) The number of nodes ready in the cluster.
-   * (KOTS Only) The KOTS version running in the cluster.
-   * The Replicated SDK version running in the cluster.
-   * The cloud provider and region, if applicable.
- * Instance uptime data, including:
-    * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
-    * An uptime graph of the previous two weeks. For more information about how the Vendor Portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
-    * The uptime ratio in the previous two weeks.
-
-#### Show archived instances
-
-Archived instances are hidden from the **Instances** section by default. To include archived instances in the list, enable the **Show Archived Instances** toggle on the **Customers > Instances** tab.
-
-For more information about archiving and unarchiving individual instances, see [Archive and Unarchive Instances](instance-insights-details#archive-and-unarchive-instances) in _Instance Details_.
-
-#### Bulk archive instances
-
-You can archive multiple instances at once from the **Customers > Instances** tab.
-
-To bulk archive instances:
-
-1. On the **Customers > Instances** tab, click the archive icon in the table toolbar to enable bulk selection mode.
-1. Select the instances that you want to archive by using the checkboxes in each row.
-1. Click **Archive instances**.
-1. In the confirmation dialog, click **Archive**.
-
-The Vendor Portal archives all eligible instances and skips any instances that do not meet the archiving criteria (for example, active production instances). A summary shows how many instances were archived and lists any skipped instances with the reason they were skipped. You can archive up to 100 instances in a single bulk operation.
 
 ### Install attempts (Beta)
 
