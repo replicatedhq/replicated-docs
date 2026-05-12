@@ -293,7 +293,6 @@ const sidebars = {
               items: [
                 "vendor/helm-native-about",
                 "vendor/helm-native-v2-using",
-                "vendor/helm-optional-value-keys",
                 "vendor/helm-v2-migrate",
               ],
             },
