@@ -92,18 +92,26 @@ spec:
     postgresql:
       enabled: true
 ```
-## Properties
-### chart
+
+## chart
 
 <Chart/>
 
-| Property | Description |
-| --- | --- |
-| `chart.name` | The name of the chart. This value must exactly match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. If the names do not match, then the installation can error or fail. |
-| `chart.chartVersion` | The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. |
-| `chart.releaseName` | <ChartReleaseName/> |
+### chart.name
 
-### helmVersion
+<ChartName/>
+
+### chart.chartVersion
+
+<ChartVersion/>
+
+### chart.releaseName
+
+> Introduced in Replicated KOTS v1.73.0
+
+<ChartReleaseName/>
+
+## helmVersion
 
 Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
 
@@ -111,7 +119,7 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 <VersionLimitation/>
 :::
 
-### useHelmInstall
+## useHelmInstall
 
 Identifies the method that KOTS uses to install the Helm chart:
 * `useHelmInstall: true`: KOTS uses Kustomize to modify the chart then repackages the resulting manifests to install. This was previously referred to as the _native Helm_ installation method.
@@ -124,42 +132,54 @@ Identifies the method that KOTS uses to install the Helm chart:
 
 For more information about how KOTS deploys Helm charts when `useHelmInstall` is `true` or `false`, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-### weight
+## weight
 
 <WeightLimitation/>
 
 <Weight/>
 
-### helmUpgradeFlags
+## helmUpgradeFlags
 
 The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources with `useHelmInstall: false`.
 
 <HelmUpgradeFlags/>
 
-### values
+## values
 
 <Values/>
 
-### exclude
+## exclude
 
 <Exclude/>
 
-### optionalValues
+## optionalValues
 
 <OptionalValues/>
 
-### namespace
+### optionalValues.when
+
+<OptionalValuesWhen/>
+
+### optionalValues.recursiveMerge
+
+:::note
+`recursiveMerge` is available in KOTS v1.38.0 and later.
+:::
+
+<OptionalValuesRecursiveMerge/>
+
+**Default**: False
+
+## namespace
 
 <Namespace/>
 
-### builder
+## builder
 
 <BuilderAirgapIntro/>
 
-#### Requirements
-
 <HelmBuilderRequirements/>
 
-#### Example
+**Example:**
 
 <BuilderExample/>

@@ -2,7 +2,7 @@ Specifies additional flags to pass to the `helm upgrade` command for charts. The
 
 KOTS uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array.
 
-#### Example
+**Example:**
 
 ```yaml
 helmUpgradeFlags:
