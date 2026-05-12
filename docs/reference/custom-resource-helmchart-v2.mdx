@@ -229,7 +229,7 @@ spec:
 
 During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, the Replicated installer sets the matching `newFeature.enabled` value in the Helm chart `values.yaml` file accordingly.
 
-#### Delete a default value key
+##### Delete a default value key
 
 A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior. For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
