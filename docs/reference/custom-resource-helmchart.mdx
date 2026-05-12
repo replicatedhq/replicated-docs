@@ -14,7 +14,7 @@ import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
-
+import RecursiveMergeExample from "../partials/helm/_helm-cr-recursivemerge-example.mdx"
 
 # HelmChart v1 (Deprecated)
 
@@ -136,6 +136,21 @@ The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources w
 
 <Values/>
 
+#### Example
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+
 ### exclude
 
 <Exclude/>
@@ -143,6 +158,34 @@ The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources w
 ### optionalValues
 
 <OptionalValues/>
+
+#### Examples
+
+##### Set optional values with Replicated template functions
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+spec:
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
+      recursiveMerge: false
+      values:
+        externalDatabase:
+          host: "repl{{ ConfigOption `external_db_host`}}"
+          user: "repl{{ ConfigOption `external_db_user`}}"
+          password: "repl{{ ConfigOption `external_db_password`}}"
+          database: "repl{{ ConfigOption `external_db_database`}}"
+          port: "repl{{ ConfigOption `external_ db_port`}}"
+```
+
+During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
+
+##### Recursive merge
+
+<RecursiveMergeExample/>
 
 ### namespace
 
