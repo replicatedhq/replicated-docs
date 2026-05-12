@@ -1,4 +1,4 @@
-The `builder` key contains the minimum Helm values that `helm template` needs to expose all container images required for air-gapped installation.
+The `builder` key contains the minimum Helm values required so that the output of `helm template` exposes all container images needed to install the chart in an air-gapped environment.
 
 The Replicated Vendor Portal uses the Helm values in the `builder` key to run `helm template` on the chart. It then parses the output to generate a list of required images. 
 
