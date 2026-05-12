@@ -1,3 +1,5 @@
-You cannot migrate existing Helm charts in existing installations from the `useHelmInstall: false` installation method to a different method. If KOTS previously installed the Helm chart using `apiVersion: kots.io/v1beta1` and `useHelmInstall: false`, KOTS does not attempt to use a different installation method. It displays the following error: `Deployment method for chart <chart_name> has changed`.
+You cannot migrate Helm charts in existing installations from the `useHelmInstall: false` installation method to a different method.
+If a user previously installed the Helm chart using `apiVersion: kots.io/v1beta1` and `useHelmInstall: false`, the installer won't attempt to use a different installation method.
+Instead, it displays the following error: `Deployment method for chart <chart_name> has changed`.
 
 To change the installation method from `useHelmInstall: false` to a different method, the user must reinstall your application in a new environment.

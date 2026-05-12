@@ -1,4 +1,5 @@
-The `namespace` key specifies an alternative namespace where Replicated KOTS installs the Helm chart. **Default:** KOTS installs the Helm chart in the same namespace as the Admin Console. Template functions can parse the `namespace` attribute. For more information about template functions, see [About template function contexts](template-functions-about).
+The `namespace` key specifies an alternative namespace to install the Helm chart. By default, for Embedded Cluster v2 and KOTS existing cluster installations, KOTS installs the Helm chart in the same namespace as the Admin Console.
 
+Template functions can parse the `namespace` attribute. For more information about template functions, see [About Replicated template functions](/reference/template-functions-about).
 
-If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. KOTS creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.
+If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the [additionalNamespaces](custom-resource-application#additionalnamespaces) field of the Application custom resource.

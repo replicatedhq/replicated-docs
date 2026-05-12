@@ -1,7 +1,3 @@
-Specifies the order in which KOTS installs Helm charts within the application. KOTS installs charts by weight in ascending order, with lower weights first. **Supported values:** Positive or negative integers. **Default:** `0`
+Specifies the installation order of the Helm charts in the release. Charts are installed by weight in ascending order with lower weights first. Also determines the uninstall order, where charts are uninstalled by weight in descending order with higher weights first. **Supported values:** Positive or negative integers. **Default:** `0`
 
-For installations with Helm, the Replicated Enterprise Portal uses the `weight` property to order the list of charts in the Helm installation and update instructions. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Access and Use the Enterprise Portal_.
-
-For installations with Replicated Embedded Cluster or with KOTS in an existing cluster, `weight` determines the order in which KOTS applies the Helm chart. In KOTS v1.99.0 and later, `weight` also determines the uninstall order. KOTS uninstalls charts by weight in descending order, with higher weights first. For more information about uninstalling applications, see [remove](kots-cli-remove) in _KOTS CLI_.
-
-For more information, see [Orchestrate Resource Deployment](/vendor/orchestrating-resource-deployment).
+For installations with the Helm CLI, the Replicated Enterprise Portal uses the `weight` property to order the list of charts in the installation and update instructions. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Access and Use the Enterprise Portal_.
