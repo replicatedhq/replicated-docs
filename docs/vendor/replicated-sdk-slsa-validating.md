@@ -152,3 +152,5 @@ The script performs the following checks:
    - Validates that the SecureBuild keyless identity signed the SPDX SBOM attestation
 
 For more information about the SDK release process, see [Manage releases with the Vendor Portal](/vendor/releases-creating-releases).
+
+For information about validating SBOM signatures for other Replicated components such as KOTS, kURL, and Troubleshoot, see [Validate SBOM signatures](/enterprise/sbom-validating).
