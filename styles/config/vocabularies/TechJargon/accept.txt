@@ -6,6 +6,7 @@ API
 APIs
 allowlist
 boolean
+CAs
 CIDR
 cidr
 CLI
@@ -97,5 +98,6 @@ Unmute
 
 subchart
 subcharts
+subpath
 namespaces
 textarea
