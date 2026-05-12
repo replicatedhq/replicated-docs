@@ -13,7 +13,6 @@ This topic describes Replicated template functions, including information about 
 ## Overview
 
 Replicated provides a set of custom template functions based on the Go text/template library.
-You can use the Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer (Embedded Cluster, KOTS, kURL).
 
 <UseCases/>
 
@@ -22,7 +21,7 @@ For more information about the Go library, see [text/template](https://golang.or
 
 ## Supported file types
 
-You can use Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer, such as:
+You can use Replicated template functions in Kubernetes manifest files, such as:
 * Custom resources in the `kots.io` API group like Application, Config, or HelmChart
 * Custom resources in other API groups like Preflight or SupportBundle
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
@@ -36,10 +35,12 @@ For information about how to map values from the HelmChart custom resource to He
 
 ## Template function rendering
 
-During application installation and upgrade, Replicated templates all Kubernetes manifest files in a release at the same time during a single process. The Config custom resource is an exception.
+During application installation and upgrade, Replicated templates all Kubernetes manifest files in a release at the same time during a single process.
 
+The Config custom resource is an exception.
 For the [Config](/reference/custom-resource-config) custom resource,
-Replicated templates each item separately so that templates for other items can reference config items.
+Replicated templates each item separately.
+This allows you to use template functions in fields in the Config custom resource that render user-supplied values from other fields.
 For examples of this, see [Template function examples](/reference/template-functions-examples).
 
 ## Limitations
