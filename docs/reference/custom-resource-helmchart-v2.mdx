@@ -1,26 +1,29 @@
-import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
+import HelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
 import Chart from "../partials/helm/_helm-cr-chart.mdx"
-import ChartName from "../partials/helm/_helm-cr-chart-name.mdx"
-import ChartVersion from "../partials/helm/_helm-cr-chart-version.mdx"
 import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import Weight from "../partials/helm/_helm-cr-weight.mdx"
 import Exclude from "../partials/helm/_helm-cr-exclude.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
-import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
-import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
+import RecursiveMergeExample from "../partials/helm/_helm-cr-recursivemerge-example.mdx"
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
+import ConfigExample from "../partials/helm/_set-values-config-example.mdx"
+import LicenseExample from "../partials/helm/_set-values-license-example.mdx"
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # HelmChart v2
 
 This topic describes the Replicated HelmChart v2 custom resource.
 
-<KotsHelmCrDescription/>
+## Overview
+
+<HelmCrDescription/>
 
 ## Example
 
@@ -28,59 +31,141 @@ The following is an example manifest file for the HelmChart v2 custom resource:
 
 <V2Example/>
 
-## chart
+## Properties
+
+### chart
 
 <Chart/>
 
-### chart.name
+`chart` has the following properties:
 
-<ChartName/>
+| Property | Description |
+| --- | --- |
+| `chart.name` | The name of the chart. This value must exactly match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. If the names do not match, then the installation can error or fail. |
+| `chart.chartVersion` | The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. |
 
-### chart.chartVersion
+#### Example
 
-<ChartVersion/>
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+```
 
-## releaseName
+### releaseName
 
 <ChartReleaseName/>
 
-## weight
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  releaseName: samplechart-release-1
+```
+
+### weight
 
 <Weight/>
 
-## helmUpgradeFlags
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  weight: 42
+```
+
+### helmUpgradeFlags
 
 <HelmUpgradeFlags/>
 
-## exclude
+### exclude
 
 <Exclude/>
 
-## values
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  exclude: "repl{{ ConfigOptionEquals `include_chart` false }}"
+```
+
+### values
 
 <Values/>
 
-## optionalValues {#optionalvalues}
+#### Examples
+
+##### Set static values
+
+```yaml
+# Helm chart values.yaml
+replicatedOnlyValue:
+  enabled: false
+```
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    replicatedInstallationOnlyValue:
+      enabled: true
+```
+
+##### Set values with Replicated Config template functions
+
+<ConfigExample/>
+
+##### Set values with Replicated License template functions
+
+<LicenseExample/>
+
+#### Delete a default value key
+
+A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior. For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    exampleKey: "null"
+```
+
+### optionalValues
 
 <OptionalValues/>
 
-### optionalValues.when
+#### Examples
 
-<OptionalValuesWhen/>
-
-### optionalValues.recursiveMerge
-
-<OptionalValuesRecursiveMerge/>
-
-By default, `optionalValues.recursiveMerge` is false.
-
-### optionalValues.values
-
-In the `optionalValues.values` key, include the values to set if the specified condition is met. The `optionalValues.values` key supports static values and Replicated template functions.
-
-For example:
+##### Set optional values with Replicated template functions
 
 ```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
   optionalValues:
     - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
       recursiveMerge: false
@@ -93,22 +178,24 @@ For example:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-In this example, the Replicated installer renders the template functions and sets the `externalDatabase` values _only_ when the user selects the `external` option for the `mariadb_type` config option.
+During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
-## namespace
+##### Recursive merge
+
+<RecursiveMergeExample/>
+
+### namespace
 
 <Namespace/>
 
-## builder
+### builder
 
 <BuilderAirgapIntro/>
 
-### Requirements
+#### Requirements
 
 <HelmBuilderRequirements/>
 
-### Examples
-
-#### Include conditional images
+#### Example
 
 <BuilderExample/>

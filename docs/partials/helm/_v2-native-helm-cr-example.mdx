@@ -40,17 +40,6 @@ spec:
         postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
         postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
         postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
-  # adds backup labels to postgresql if the license supports snapshots
-  - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
-    recursiveMerge: true
-    values:
-      postgresql:
-        commonLabels:
-          kots.io/backup: velero
-          kots.io/app-slug: my-app
-        podLabels:
-          kots.io/backup: velero
-          kots.io/app-slug: my-app  
 
   # namespace allows for a chart to be installed in an alternate namespace to
   # the default

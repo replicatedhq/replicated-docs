@@ -1,4 +1,4 @@
-For installations with a Replicated installer (Embedded Cluster, KOTS, kURL), a unique HelmChart custom resource is required for each Helm chart `.tgz` archive in a release. The primary purpose of the HelmChart custom resource is to provide the necessary instructions to the Replicated installer for processing and preparing the given Helm chart for deployment.
+A unique HelmChart custom resource is required for each Helm chart `.tgz` archive in a release. The primary purpose of the HelmChart custom resource is to provide the necessary instructions to the Replicated installer for processing and preparing the given Helm chart for deployment.
 
 The HelmChart custom resource is also used to generate a list of required images for the chart, which is required for the following use cases:
 * Air gap installations with the Helm CLI or with a Replicated installer

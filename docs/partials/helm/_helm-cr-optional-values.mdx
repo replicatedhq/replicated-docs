@@ -2,8 +2,8 @@ The `optionalValues` key can be used to set values in the Helm chart `values.yam
 
 `optionalValues` includes the following properties:
 
-* `optionalValues.when`: Defines a conditional statement using Replicated template functions. If `optionalValues.when` evaluates to true, then the values specified in `optionalValues` are set.
-
-* `optionalValues.recursiveMerge`: Defines how `optionalValues` is merged with `values`.
-
-* `optionalValues.values`: An array of key-value pairs.
+| Property | Description |
+| --- | --- |
+| `optionalValues.when` | Defines a conditional statement that must evaluate to true for the values in `optionalValues.values` to be set in the Helm chart. Evaluation of the conditional in the `optionalValues.when` field is deferred until render time in the customer environment. |
+| `optionalValues.recursiveMerge` | The `optionalValues.recursiveMerge` boolean defines how the Replicated installer merges `values` and `optionalValues`. When `optionalValues.recursiveMerge` is false, the top level keys in `optionalValues` override the top level keys in `values`. When `optionalValues.recursiveMerge` is true, all keys from `values` and `optionalValues` are included. In the case of a conflict where there is a matching key in `optionalValues` and `values`, the Replicated installer uses the value of the key from `optionalValues`. By default, `optionalValues.recursiveMerge` is false. For an example, see [Recursive merge](#recursive-merge) on this page.|
+| `optionalValues.values` | Array of key value pairs to set in the Helm chart if the specified condition is met. Supports static values and Replicated template functions. |
