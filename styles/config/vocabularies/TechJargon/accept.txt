@@ -20,6 +20,7 @@ favicon
 GiB
 GPU
 HA
+hardcoded
 Helm
 hostname
 hostnames
