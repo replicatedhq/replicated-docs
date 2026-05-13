@@ -141,8 +141,13 @@ const config = {
             items: [
               {
                 type: 'doc',
+                docId: 'release-notes/rn-embedded-cluster-v3',
+                label: 'Embedded Cluster v3',
+              },
+              {
+                type: 'doc',
                 docId: 'release-notes/rn-embedded-cluster',
-                label: 'Embedded Cluster',
+                label: 'Embedded Cluster v2',
               },
               {
                 type: 'doc',

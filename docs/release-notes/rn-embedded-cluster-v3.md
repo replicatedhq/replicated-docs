@@ -11,3 +11,95 @@ This topic contains release notes for the [Replicated Embedded Cluster v3](/embe
 Additionally, these release notes list the versions of Kubernetes that are available with each version of Embedded Cluster.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## 3.0.0-beta.4
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.0.0-beta.4+k8s-1.34</td>
+    <td id="center">3.0.0-beta.4+k8s-1.33</td>
+    <td id="center">3.0.0-beta.4+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-0-0-beta-4}
+
+* Adds SELinux analyzer to host support bundle.
+
+### Improvements {#improvements-3-0-0-beta-4}
+
+* Runs app preflights during upgrades.
+* Validates client-side regex on the config screen of the install and upgrade wizards.
+
+### Bug fixes {#bug-fixes-3-0-0-beta-4}
+
+* Builds and publishes CLI-only Darwin and Windows release binaries.
+* Makes CLI cross-compile for Windows AMD64.
+* Uses Tailwind v4 opacity syntax for modal overlays.
+* Respects readonly config fields in the UI.
+* Removes quotes from SELinux regex groups `when` conditions.
+* Replaces `which` with `Executor.LookPath` to support AlmaLinux 9.
+* Redirects embedded web server output to `/var/log//web.log`.
+* Fixes missing version on the Embedded Cluster upgrade completion screen.
+* Clears install and upgrade errors when retrying.
+* Sets default Kubernetes CLI namespace for the `shell` command.
+* Supports Helm `alias` field for Replicated SDK dependency renaming.
+* Resolves air gap image reference mismatch bugs.
+
+
+## 3.0.0-beta.2
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.0.0-beta.2+k8s-1.34</td>
+    <td id="center">3.0.0-beta.2+k8s-1.33</td>
+    <td id="center">3.0.0-beta.2+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-0-0-beta-2}
+
+* Adds lint subcommand and darwin S3 publishing.
+
+### Improvements {#improvements-3-0-0-beta-2}
+
+* Restricts release tag patterns to 3.x.x with Semantic Versioning pre-release suffixes.
+
+### Bug fixes {#bug-fixes-3-0-0-beta-2}
+
+* Persists config values on headless install without `--config-values`.
+
+## 3.0.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.0.0-beta.1+k8s-1.34</td>
+    <td id="center">3.0.0-beta.1+k8s-1.33</td>
+    <td id="center">3.0.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.6</td>
+    <td id="center">1.33.10</td>
+    <td id="center">1.32.13</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-0-0-beta-1}
+
+* Simplifies image template functions. See [Embedded Cluster template functions](/embedded-cluster/v3/template-functions).
