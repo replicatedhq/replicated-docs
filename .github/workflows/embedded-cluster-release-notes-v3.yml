@@ -24,7 +24,7 @@ jobs:
           title: ${EC_VERSION#v}
           description: ''
           include-pr-links: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.EC_READ_PAT }}
 
       - name: Update Release Notes
         env:
