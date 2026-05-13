@@ -37,7 +37,7 @@ spec:
   
   releaseName: samplechart-release-1
 
-  exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
+  exclude: "repl{{ ConfigOptionEquals 'include_chart' 'include_chart_no'}}"
 
   # weight determines the order that charts are applied, with lower weights first.
   weight: 42
@@ -54,18 +54,18 @@ spec:
   # these values are supplied to helm template
   values:
     postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+      enabled: repl{{ ConfigOptionEquals 'postgres_type' 'embedded_postgres'}}
 
   optionalValues:
-  - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+  - when: "repl{{ ConfigOptionEquals 'postgres_type' 'external_postgres'}}"
     recursiveMerge: false
     values:
       postgresql:
-        postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
-        postgresqlUsername: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_username`}}repl{{ end}}"
-        postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
-        postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
-        postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
+        postgresqlDatabase: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_database'}}repl{{ end}}"
+        postgresqlUsername: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_username'}}repl{{ end}}"
+        postgresqlHost: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_host'}}repl{{ end}}"
+        postgresqlPassword: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_password'}}repl{{ end}}"
+        postgresqlPort: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_port'}}repl{{ end}}"
 
   # namespace allows for a chart to be installed in an alternate namespace to
   # the default
