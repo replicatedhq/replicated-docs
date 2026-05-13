@@ -20,9 +20,11 @@ import WriteYourDocs from "../partials/getting-started/_write-your-docs.mdx"
 
 # Onboard to the Replicated Platform (Embedded Cluster v2)
 
-This topic describes how to onboard applications to the Replicated Platform to support installations with Replicated Embedded Cluster v2. For more information, see [Embedded Cluster Overview](/embedded-cluster/v2/embedded-overview).
+This topic describes how to onboard applications to the Replicated Platform to support installations with Replicated Embedded Cluster v2.
+For more information, see [Embedded Cluster Overview](/embedded-cluster/v2/embedded-overview).
 
-If you will support only Helm CLI installations for your application, see [Onboard to the Replicated Platform (Helm CLI installs only)](replicated-onboarding-helm-only).
+If you will support only Helm CLI installations for your application,
+see [Onboard to the Replicated Platform (Helm CLI installs only)](replicated-onboarding-helm-only) instead.
 
 ## Before you begin
 
@@ -64,7 +66,8 @@ Complete the tasks in this section to onboard your application to the Replicated
 
 ### Task 2: Modify image references in Helm values to point to the proxy registry {#task-2}
 
-Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy registry allows you to grant proxy access to application images without exposing registry credentials to your customers.
+Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry.
+The proxy registry allows you to grant proxy access to application images without exposing registry credentials to your customers.
 
 To modify image references to point to the proxy registry:
 
@@ -82,7 +85,10 @@ To modify image references to point to the proxy registry:
 
 Next, add the Replicated SDK as a dependency of your Helm chart and package the chart as a `.tgz` archive.
 
-You can install the Replicated SDK as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+You can install the Replicated SDK as a small service alongside your application.
+The SDK provides access to key Replicated functionality, including an in-cluster API.
+It also provides automatic access to insights and operational telemetry for instances running in customer environments.
+For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 To package your Helm chart with the Replicated SDK:
 
@@ -104,7 +110,8 @@ To package your Helm chart with the Replicated SDK:
 
 ### Task 4: Create the initial release with HelmChart and Embedded Cluster Config {#first-release}
 
-After packaging your Helm chart, you can create a release. The initial release for your application will include the minimum files required to install a Helm chart with the Embedded Cluster v2 installer:
+After packaging your Helm chart, you can create a release.
+The initial release for your application will include the minimum files required to install a Helm chart with the Embedded Cluster v2 installer:
 * The Helm chart `.tgz` archive
 * [HelmChart custom resource](/reference/custom-resource-helmchart-v2)
 * [Embedded Cluster Config](/embedded-cluster/v2/embedded-config)
@@ -112,7 +119,8 @@ After packaging your Helm chart, you can create a release. The initial release f
 If you have multiple charts, you will add each chart archive to the release, plus a corresponding HelmChart custom resource for each archive.
 
 :::note
-Configuring the HelmChart custom resource includes several tasks and involves Replicated template functions. Depending on how many Helm charts your application uses, allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
+Configuring the HelmChart custom resource includes several tasks and involves Replicated template functions.
+Depending on how many Helm charts your application uses, allow about two to three hours for this work.
 :::
 
 To create the first release for your application:
@@ -162,7 +170,7 @@ To create the first release for your application:
    
    1. If you deploy your application as multiple Helm charts, repeat the previous steps to add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If any Helm chart values must be set for a successful installation, you can set them using the `values` key in the corresponding HelmChart custom resource. See [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_. If your default Helm values are sufficient for installation, you can skip this step.
+   1. If a successful installation requires specific Helm chart values, you can set them using the `values` key in the corresponding HelmChart custom resource. See [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_. If your default Helm values are sufficient for installation, you can skip this step.
    
       :::note
       This is a temporary measure to ensure the values get passed to the Helm chart during installation. You can undo this change after you configure the Admin Console Config screen in a later onboarding task.
@@ -180,11 +188,13 @@ To create the first release for your application:
 
 1. Install the release in your development environment to test. See [Online installation with Embedded Cluster](/embedded-cluster/v2/installing-embedded).
 
-After successfully installing the initial release on a VM with Embedded Cluster, go to the next task. You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then upgrading to the new version in your development environment.
+After successfully installing the initial release on a VM with Embedded Cluster, go to the next task.
+You will continue to iterate throughout the rest of the onboarding process by creating and promoting new releases, then upgrading to the new version in your development environment.
 
 ### Task 5: Customize the Admin Console {#admin-console}
 
-Configure the Replicated Application custom resource to add an application name, icon, and status informers. The name and icon will be displayed in the Admin Console. The status informers will be used to display the application status on the Admin Console dashboard.
+Configure the Replicated Application custom resource to add an application name, icon, and status informers.
+The Admin Console displays the name and icon. The status informers display the application status on the Admin Console dashboard.
 
 To configure the Replicated Application custom resource:
 
@@ -227,10 +237,12 @@ To configure the Replicated Application custom resource:
 
 ### Task 6: Set up the Admin Console Config screen and map to Helm values
 
-The Admin Console Config screen is used to collect required and optional application configuration values from your users. User-supplied values provided on the Config screen can be mapped to your Helm values.
+Use the Admin Console Config screen to collect required and optional application configuration values from your users.
+You can map user-supplied values from the Config screen to your Helm values.
 
 :::note
-Setting up the Admin Console config screen can include the use of various types of input fields, conditional statements, and Replicated template functions. Depending on your application's configuration options, Replicated recommends that you allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
+Setting up the Admin Console config screen can include various types of input fields, conditional statements, and Replicated template functions.
+Depending on your application's configuration options, allow about two to three hours for configuring the Config custom resource and testing the Admin Console config screen.
 :::
 
 To set up the Admin Console Config screen for your application:
@@ -293,7 +305,7 @@ To define preflight checks for your application:
 
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Define preflight checks](/vendor/preflight-defining). For examples, see [Example preflight specs](/vendor/preflight-examples).
 
-     If your application is deployed as multiple Helm charts, add the Secret to the `templates` directory for the chart that is installed first.
+     If you deploy your application as multiple Helm charts, add the Secret to the `templates` directory for the chart you install first.
 
 1. Update dependencies and package the chart as a `.tgz`:
 
@@ -341,15 +353,22 @@ To add the default support bundle spec to your application:
 
 ## Next steps
 
-After completing the main onboarding tasks, Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application. You can complete these next recommended tasks in any order and at your own pace.
+After completing the main onboarding tasks,
+Replicated recommends that you also complete the following additional tasks to integrate other Replicated features with your application.
+You can complete these next recommended tasks in any order and at your own pace.
 
 ### Add support for Helm installations
 
-Existing releases that include one or more Helm charts can be installed with the Helm CLI; it is not necessary to create and manage separate releases or channels for each installation method.
+You can install existing releases that include one or more Helm charts with the Helm CLI.
+You do not need to create and manage separate releases or channels for each installation method.
 
-To enable Helm installations for Helm charts distributed with Replicated, the only extra step is to add a Secret to your chart to authenticate with the Replicated proxy registry.  
+To enable Helm installations for Helm charts distributed with Replicated,
+add a Secret to your chart to authenticate with the Replicated proxy registry.
 
-This is the same secret that is passed to Embedded Cluster in the HelmChart custom resource using `'{{repl ImagePullSecretName }}'`, which you did as part of [Task 4: Create and install the initial release](#first-release). So, whereas this Secret is created automatically for Embedded Cluster installations, you need to create it and add it to your Helm chart for Helm installations.
+This is the same secret that passed to Embedded Cluster in the HelmChart custom resource using `'{{repl ImagePullSecretName }}'`,
+which you did as part of [Task 4: Create and install the initial release](#first-release).
+Whereas Embedded Cluster installations create this Secret automatically,
+you need to create it and add it to your Helm chart for Helm installations.
 
 To support and test Helm installations:
 
@@ -363,36 +382,47 @@ To support and test Helm installations:
 
 1. Test the installation in a cluster where you have kubectl access. See [Create a cluster](/vendor/environment-setup#about-creating-a-cluster) in _Set Up Your Environment_.
 
-1. In the cluster, istall the release with Helm to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
+1. In the cluster, install the release with Helm to test your changes. For more information, see [Install with Helm](/vendor/install-with-helm).
 
 ### Add support for air gap installations
 
-Replicated supports installations in _air-gapped_ environments with little or no outbound internet access. For Embedded Cluster, users install with an air gap bundle that contains the required images for the Replicated installer and your application. For Helm installations, users log in to the Enterprise Portal and follow automatically-generated instructions to pull all images and push them to their local image registry.
+Replicated supports installations in _air-gapped_ environments with little or no outbound internet access.
+For Embedded Cluster, users install with an air gap bundle that contains the required images for the Replicated installer and your application.
+For Helm installations, users log in to the Enterprise Portal. They then follow automatically-generated instructions to pull all images and push them to their local image registry.
 
-There are additional steps to configure your releases to support installations in air-gapped environments. For more information, see [Add support for air gap installations](replicated-onboarding-air-gap).
+There are additional steps to configure your releases to support installations in air-gapped environments.
+For more information, see [Add support for air gap installations](replicated-onboarding-air-gap).
 
 ### Add roles for multi-node clusters in Embedded Cluster installations
 
-The Embedded Cluster Config supports roles for multi-node clusters. One or more roles can be selected and assigned to a node when it is joined to the cluster. Node roles can be used to determine which nodes run the Kubernetes control plane, and to assign application workloads to particular nodes.
+The Embedded Cluster Config supports roles for multi-node clusters.
+You can select and assign one or more roles to a node when it joins the cluster.
+Use node roles to determine which nodes run the Kubernetes control plane and to assign application workloads to particular nodes.
 
 For more information, see [roles](/embedded-cluster/v2/embedded-config#roles) in _Embedded Cluster Config_.
 
 ### Add and map license entitlements
 
-You can add custom license entitlements for your application in the Vendor Portal. Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
-* Limit the number of active users permitted
-* Limit the number of nodes a customer is permitted on their cluster
+You can add custom license entitlements for your application in the Vendor Portal.
+Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can use entitlements to:
+* Limit the number of active users
+* Limit the number of nodes a customer can have in their cluster
 * Identify a customer on a "Premium" plan that has access to additional features or functionality not available with your base plan
 
-For more information about how to create and assign custom entitlements in the Vendor Portal, see [Manage customer license fields](/vendor/licenses-adding-custom-fields) and [Creating and managing customers](/vendor/releases-creating-customer).
+For more information about how to create and assign custom entitlements in the Vendor Portal,
+see [Manage customer license fields](/vendor/licenses-adding-custom-fields) and [Creating and managing customers](/vendor/releases-creating-customer).
 
 #### Map entitlements to Helm values
 
-You can map license entitlements to your Helm values using Replicated template functions. This is useful when you need to set certain values based on the user's license information. For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
+You can map license entitlements to your Helm values using Replicated template functions.
+This is useful when you need to set certain values based on the user's license information.
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 #### Query entitlements before installation and at runtime
 
-You can add logic to your application to query license entitlements both before deployment and at runtime. For example, you might want to add preflight checks that verify a user's entitlements before installing. Or, you can expose additional product functionality dynamically at runtime based on a customer's entitlements.
+You can add logic to your application to query license entitlements both before deployment and at runtime.
+For example, you might want to add preflight checks that verify a user's entitlements before installing.
+Or, you can expose additional product functionality dynamically at runtime based on a customer's entitlements.
 
 For more information, see:
 * [Querying entitlements with the Replicated SDK API](/vendor/licenses-reference-sdk)
@@ -400,7 +430,8 @@ For more information, see:
 
 ### Add application links to the Admin Console dashboard
 
-You can add the Kubernetes SIG Application custom resource to your release to add a link to your application from the Admin Console dashboard. This makes it easier for users to access your application after installation.
+You can add the Kubernetes SIG Application custom resource to your release to add a link to your application from the Admin Console dashboard.
+This makes it easier for users to access your application after installation.
 
 You can also configure the Kubernetes SIG Application resource add links to other resources like documentation or dashboards.
 
@@ -418,9 +449,9 @@ Consider the following recommendations and best practices:
 
 * Your support bundles will most likely need to include other collectors and analyzers that are not in your preflight checks. This is because some of the information used for troubleshooting (such as logs) is not necessary when running preflight checks before installation.
 
-* If your application is installed as multiple Helm charts, you can optionally add separate support bundle specs in each chart. This can make it easier to keep the specs up-to-date and to avoid merge conflicts that can be caused when multiple team members contribute to a single, large support bundle spec. When an application has multiple support bundle specs, the specs are automatically merged when generating a support bundle so that only a single support bundle is provided to the user.
+* If you install your application as multiple Helm charts, you can optionally add separate support bundle specs in each chart. This can make it easier to keep the specs up-to-date and to avoid merge conflicts when multiple team members contribute to a single, large support bundle spec. When an application has multiple support bundle specs, the support bundle generation process automatically merges the specs so that users receive only a single bundle.
 
-The documentation for the open-source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
+The documentation for the open source Troubleshoot project includes the full list of available collectors and analyzers that you can use. See [All collectors](https://troubleshoot.sh/docs/collect/all/) and the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
 You can also view common examples of collectors and analyzers used in preflight checks and support bundles in [Preflight spec examples](preflight-examples) and [Support bundle spec examples](support-bundle-examples).
 
@@ -432,7 +463,7 @@ For more information, see configure the disaster recovery feature for Embedded C
 
 ### Add custom metrics
 
-In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. Custom metrics can be collected for application instances running in online or air gap environments using the Replicated SDK.
+The Vendor Portal displays built-in insights by default, such as uptime and time to install. You can also configure custom metrics to measure instances of your application running in customer environments. You can collect custom metrics for application instances running in online or air gap environments using the Replicated SDK.
 
 For more information, see [Configure custom metrics](/vendor/custom-metrics).
 
