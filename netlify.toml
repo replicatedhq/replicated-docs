@@ -542,7 +542,11 @@
 
 [[redirects]]
   from="/reference/replicated-cli-channel-delete"
-  to="/reference/replicated-cli-channel-rm"     
+  to="/reference/replicated-cli-channel-rm"  
+
+[[redirects]]
+  from="/vendor/helm-optional-value-keys"
+  to="/reference/custom-resource-helmchart-v2"       
 
 ###################################################
 # Redirects To the Release Notes Section
