@@ -32,7 +32,7 @@ This section includes guidance and prerequisites to review before you begin onbo
 
 The following are some best practices and recommendations for successfully onboarding with Replicated:
 
-* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot. This onboarding workflow will guide you through the process of integrating features in small iterations.
+* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you identify issues and troubleshoot. This onboarding workflow will guide you through the process of integrating features in small iterations.
 
 * Use the Replicated CLI to create and manage your application and releases. Getting familiar with the Replicated CLI will also help later on when integrating Replicated workflows into your CI/CD pipelines.
 
@@ -56,7 +56,7 @@ The following are some best practices and recommendations for successfully onboa
 
 ## Onboard
 
-Complete the tasks in this section to onboard your application to the Replicated Platform. When you are done, you can continue to [Next steps](#next-steps) to integrate other Replicated features with your application.
+Complete the tasks in this section to onboard your application to the Replicated Platform. When you finish, you can continue to [Next steps](#next-steps) to integrate other Replicated features with your application.
 
 ### Task 1: Create an application
 
@@ -64,7 +64,7 @@ Complete the tasks in this section to onboard your application to the Replicated
 
 ### Task 2: Modify image references in Helm values to point to the proxy registry {#task-2}
 
-Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy regsitry allows you to grant proxy access to application images without exposing registry credentials to your customers.
+Update your Helm values so that image references point to the Replicated proxy registry rather than to your default registry. The proxy registry allows you to grant proxy access to application images without exposing registry credentials to your customers.
 
 To modify image references to point to the proxy registry:
 
@@ -72,25 +72,25 @@ To modify image references to point to the proxy registry:
 
 1. <RewriteHelmValues/>
 
-1. If your application is deployed as multiple Helm charts, repeat the previous step to modify image references in the Helm values for each of your charts.
+1. If you deploy your application as multiple Helm charts, repeat the previous step to modify image references in the Helm values for each of your charts.
 
 1. Continue to the next task.
 
-   As part of [Task 4: Create the initial release with HelmChart and Embedded Cluster Config](#first-release), you will inject a Replicated-generated pull secret into your Helm values that grants authentication to pull your private images through the proxy registry.
+   As part of [Task 4: Create the initial release with HelmChart and Embedded Cluster Config](#first-release), you will inject a Replicated-generated pull secret into your Helm values. This pull secret grants authentication to pull your private images through the proxy registry.
 
 ### Task 3: Add the Replicated SDK and package your chart
 
 Next, add the Replicated SDK as a dependency of your Helm chart and package the chart as a `.tgz` archive.
 
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+You can install the Replicated SDK as a small service alongside your application. The SDK provides access to key Replicated functionality, including an in-cluster API and automatic access to insights and operational telemetry for instances running in customer environments. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 To package your Helm chart with the Replicated SDK:
 
 1. Go to the local directory where your Helm chart is.
 
-1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency.
+1. In your application Helm chart `Chart.yaml` file, add the following YAML to declare the SDK as a dependency.
    
-   If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Package a Helm chart for a release](helm-install-release).
+   If you install your application as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Package a Helm chart for a release](helm-install-release).
 
    <DependencyYaml/>   
 
@@ -100,7 +100,7 @@ To package your Helm chart with the Replicated SDK:
 
     <UnauthorizedError/>
 
-1. If your application is deployed as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command. Do not declare the SDK in more than one chart.
+1. If you deploy your application as multiple Helm charts, package each chart as a separate `.tgz` archive using the `helm package -u PATH_TO_CHART` command. Do not declare the SDK in more than one chart.
 
 ### Task 4: Create the initial release with HelmChart and Embedded Cluster Config {#first-release}
 
@@ -112,7 +112,7 @@ After packaging your Helm chart, you can create a release. The initial release f
 If you have multiple charts, you will add each chart archive to the release, plus a corresponding HelmChart custom resource for each archive.
 
 :::note
-Configuring the HelmChart custom resource includes several tasks, and involves the use of Replicated template functions. Depending on how many Helm charts your application uses, Replicated recommends that you allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
+Configuring the HelmChart custom resource includes several tasks and involves Replicated template functions. Depending on how many Helm charts your application uses, allow about two to three hours for configuring the HelmChart custom resource and creating and testing your initial release.
 :::
 
 To create the first release for your application:
@@ -121,7 +121,7 @@ To create the first release for your application:
 
 1. In the `manifests` directory:
 
-   1. Move the `.tgz` chart archive that you packaged. If your application is deployed as multiple Helm charts, move each `.tgz` archive to `manifests`.
+   1. Move the `.tgz` chart archive that you packaged. If you deploy your application as multiple Helm charts, move each `.tgz` archive to `manifests`.
 
    1. Create an `embedded-cluster.yaml` file with the following default Embedded Cluster Config:
 
@@ -130,7 +130,7 @@ To create the first release for your application:
       <details>
       <summary>What is the Embedded Cluster Config?</summary>
       
-      An Embedded Cluster Config must be included in the release to install with Embedded Cluster. The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that is created.
+      You must include an Embedded Cluster Config in the release to install with Embedded Cluster. The Embedded Cluster Config lets you define several aspects of the Kubernetes cluster that Embedded Cluster creates.
       </details>
     
       For more information, see [Use Embedded Cluster](/embedded-cluster/v2/embedded-overview).
@@ -160,15 +160,15 @@ To create the first release for your application:
 
    1. <InjectPullSecret/>
    
-   1. If your application is deployed as multiple Helm charts, repeat the previous steps to add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
+   1. If you deploy your application as multiple Helm charts, repeat the previous steps to add and configure a separate HelmChart custom resource for each Helm chart archive in the release.
 
-   1. If there are values in any of your Helm charts that need to be set for the installation to succeed, you can set those values using the `values` key in the corresponding HelmChart custom resource. See [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_. If your default Helm values are sufficient for installation, you can skip this step.
+   1. If any Helm chart values must be set for a successful installation, you can set them using the `values` key in the corresponding HelmChart custom resource. See [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_. If your default Helm values are sufficient for installation, you can skip this step.
    
       :::note
-      This is a temporary measure to ensure the values get passed to the Helm chart during installation until you configure the Admin Console Config screen in a later onboarding task.
+      This is a temporary measure to ensure the values get passed to the Helm chart during installation. You can undo this change after you configure the Admin Console Config screen in a later onboarding task.
       :::
 
-   1. If your application requires that certain components are deployed before the application and as part of the Embedded Cluster itself, then update the Embedded Cluster Config to add [extensions](/embedded-cluster/v2/embedded-config#extensions). Extensions allow you to provide Helm charts that are deployed before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
+   1. If your application requires that certain components deploy before the application and as part of the Embedded Cluster itself, update the Embedded Cluster Config to add [extensions](/embedded-cluster/v2/embedded-config#extensions). Extensions allow you to provide Helm charts that deploy before your application. For example, one situation where this is useful is if you want to ship an ingress controller because Embedded Cluster does not include one.
 
       For more information, see [extensions](/embedded-cluster/v2/embedded-config#extensions) in _Embedded Cluster Config_.
 
