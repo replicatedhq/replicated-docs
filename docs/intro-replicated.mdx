@@ -11,7 +11,7 @@ This topic provides an introduction to the Replicated Platform, including a plat
 ## About the Replicated Platform
 
 Replicated is a commercial software distribution platform.
-Independent software vendors (ISVs) can use features of the Replicated Platform to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
+ISVs can use Replicated Platform features to distribute modern commercial software into complex, customer-controlled environments, including on-prem and air gap.
 
 The Replicated Platform features support ISVs during each phase of the Commercial Software Distribution Lifecycle.
 For more information, see [Commercial Software Distribution Lifecycle](#csdl) on this page.
@@ -34,13 +34,13 @@ They also download the installation assets for the [Replicated Embedded Cluster]
 Customers can access the Enterprise Portal at any time to get installation and update instructions, upload [support bundles](/vendor/preflight-support-bundle-about#support-bundles), view security information from the [Security Center](/vendor/security-center-about), and more.
 
 During installation, Embedded Cluster runs [preflight checks](/vendor/preflight-support-bundle-about) on the host to verify that the environment meets the installation requirements.
-Then, it creates a Kubernetes cluster in the VM and deploys a UI where the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and then deploys the application.
+Then, it creates a Kubernetes cluster in the VM and deploys a UI. From the UI, the customer enters application-specific configurations, runs application preflight checks, optionally joins nodes to the cluster, and deploys the application.
 
 Embedded Cluster also deploys the [Replicated SDK](/vendor/replicated-sdk-overview) in the cluster, if the vendor included the SDK as a dependency of their application.
 The SDK's in-cluster API sends [instance data](/vendor/instance-insights-event-data) and custom metrics from the customer environment to the Vendor Portal.
 
 Vendors can configure [event notifications](/vendor/event-notifications) to email or webhook destinations.
-These notifications alert vendors when a customer uploads a support bundle, when an instance is unhealthy for an extended period, or when a trial license is about to expire.
+These notifications alert vendors to key events: customer support bundle uploads, instances unhealthy for an extended period, or trial licenses about to expire.
 
 ## Replicated Platform features
 
@@ -116,12 +116,12 @@ Replicated Platform features support ISVs in each phase of the Commercial Softwa
 
 [View a larger version of this image](/images/software-dev-lifecycle.png)
 
-Commercial software distribution is the business process that ISVs use to enable enterprise customers to self-host a fully private instance of their application in an environment controlled by the customer.
+Commercial software distribution is the business process that ISVs use to enable enterprise customers to self-host a private application instance in their own environment.
 
-Replicated has developed the Commercial Software Distribution Lifecycle to represents the stages that are essential for every company that wants to deliver their software securely and reliably to customer controlled environments.
+Replicated developed the Commercial Software Distribution Lifecycle to represent the stages essential for delivering software securely and reliably to customer-controlled environments.
 
-This lifecycle was inspired by the DevOps lifecycle and the Software Development Lifecycle (SDLC),
-but it focuses on the unique things that must be done to successfully distribute third party, commercial software to tens, hundreds, or thousands of enterprise customers.
+Replicated based this lifecycle on the DevOps lifecycle and the Software Development Lifecycle (SDLC),
+but it focuses on what ISVs must do to distribute third-party commercial software to tens, hundreds, or thousands of enterprise customers.
 
 For more information about to download a copy of The Commercial Software Distribution Handbook,
 see [The Commercial Software Distribution Handbook](https://www.replicated.com/the-commercial-software-distribution-handbook).
@@ -141,7 +141,7 @@ For more information about the Replicated features that support each phase, see 
 ### Develop
 
 The Replicated SDK exposes an in-cluster API that you can develop against to quickly integrate and test core functionality with an application.
-For example, after installing the SDK in a customer environment alongside your application, use the in-cluster API to send custom metrics to the Replicated vendor platform.
+For example, use the in-cluster API to send custom metrics to the Replicated Vendor Portal after installing the SDK alongside your application.
 
 For more information about using the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
@@ -179,14 +179,14 @@ For more information about using the proxy registry, see [About the Replicated p
 
 Applications distributed with the Replicated Platform can support different installation methods from the same application release, helping you to meet your customers where they are.
 
-Customers who are not experienced with Kubernetes or who prefer to deploy to a dedicated cluster in their environment can install on a VM or bare metal server with the Embedded Cluster installer.
+Customers new to Kubernetes, or who prefer a dedicated cluster, can install on a VM or bare metal server with the Embedded Cluster installer.
 For more information, see [Embedded Cluster overview](/embedded-cluster/v2/embedded-overview).
 
 Customers familiar with Kubernetes and Helm can install in their own existing cluster using the Helm CLI.
 For more information, see [Installing with Helm](/vendor/install-with-helm).
 
-Customers installing into environments with limited or no outbound internet access (often referred to as _air-gapped_ environments) can securely access and push images to their own internal registry,
-then install using the CLI Helm or a Replicated installer.
+Customers in environments with limited or no outbound internet access can securely push images to their own internal registry,
+then install using the Helm CLI or a Replicated installer.
 
 Additionally, the Enterprise Portal provides a customizable, web-based portal where customers can view install and update instructions, upload support bundles, view instance insights, and more.
 For more information, see [About the Enteprise Portal](/vendor/enterprise-portal-about).
