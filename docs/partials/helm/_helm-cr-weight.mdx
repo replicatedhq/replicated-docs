@@ -1,3 +1,10 @@
-Specifies the installation order of the Helm charts in the release. Charts are installed by weight in ascending order with lower weights first. Also determines the uninstall order, where charts are uninstalled by weight in descending order with higher weights first. **Supported values:** Positive or negative integers. **Default:** `0`
+For installations with a Replicated installer,
+`weight` specifies the installation order of the Helm charts in the release.
+Charts are installed by weight in ascending order with lower weights first.
+`weight` also determines the uninstall order,
+where charts are uninstalled by weight in descending order with higher weights first.
 
-For installations with the Helm CLI, the Replicated Enterprise Portal uses the `weight` property to order the list of charts in the installation and update instructions. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Access and Use the Enterprise Portal_.
+For installations with the Helm CLI, the Replicated Enterprise Portal uses the `weight` property to order the list of charts in the installation and update instructions.
+For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Access and Use the Enterprise Portal_.
+
+**Supported values:** Positive or negative integers. **Default:** `0`

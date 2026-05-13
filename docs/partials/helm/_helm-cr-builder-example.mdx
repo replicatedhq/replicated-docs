@@ -1,6 +1,7 @@
 Many applications include or exclude images based on a given condition.
 
-For example, a Helm chart might include a conditional PostgreSQL Deployment, as shown in the following Helm template:
+For example, a Helm chart might include a conditional PostgreSQL Deployment,
+as shown in the following Helm template:
 
 ```yaml
 {{- if .Values.postgresql.enabled }}
@@ -29,7 +30,8 @@ spec:
 {{- end }}
 ```
 
-To include the `postgresql` image in the air gap bundle, add `postgresql.enabled` to the `builder` key of the HelmChart custom resource and set it to `true`:
+To include the `postgresql` image in the air gap bundle,
+add `postgresql.enabled` to the `builder` key of the HelmChart custom resource and set it to `true`:
 
 ```yaml
 apiVersion: kots.io/v1beta2

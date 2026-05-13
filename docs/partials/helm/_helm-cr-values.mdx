@@ -1,3 +1,7 @@
-Use the `values` key to set or delete existing values in the Helm chart `values.yaml` file. Any values that you include in the `values` key must match values in the Helm chart `values.yaml`. For example, `spec.values.images.pullSecret` in the HelmChart custom resource matches `images.pullSecret` in the Helm chart `values.yaml`.
+Use the `values` key to set or delete values in the corresponding Helm chart's `values.yaml` file.
+Any values that you include in the `values` key must match values in the Helm chart `values.yaml`.
+For example, `spec.values.images.pullSecret` in the HelmChart custom resource matches `images.pullSecret` in the Helm chart `values.yaml`.
 
-During installation or upgrade with KOTS, KOTS merges `values` with the Helm chart `values.yaml` in the chart archive. Only include values in the `values` key that you want to set or delete.
+During installation or upgrade with a Replicated installer, the installer merges `values` with the Helm chart `values.yaml` in the chart archive.
+
+Only include values in the `values` key that you want to set or delete.

@@ -4,7 +4,8 @@ The Replicated installer runs `helm upgrade` for _all_ deployments, not just upg
 The Replicated installer passes these flags in addition to the flags it passes by default.
 The values specified in this field take precedence if the installer already passes the same flag.
 
-Template functions can parse the `helmUpgradeFlags` attribute. For more information, see [About Replicated template functions](/reference/template-functions-about).
+Template functions can parse the `helmUpgradeFlags` attribute.
+For more information, see [About Replicated template functions](/reference/template-functions-about).
 
 For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array.
 
