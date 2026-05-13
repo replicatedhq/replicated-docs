@@ -1,20 +1,25 @@
 # Check entitlements in preflights with Replicated template functions
 
-This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with KOTS.
+This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
 
 ## Overview
 
-KOTS includes default logic to control access to features in the Replicated Admin Console and KOTS CLI based on the values for the built-in fields in the customer's license. For example, by default, KOTS uses the built-in `expires_at` field to prevent an instance from receiving updates when the customer license expires. You can add custom logic to your application to control the behavior of your application based on the built-in fields or any of the custom fields that you create.
+The Replicated installers include default logic to control the user experience based on the customer's built-in license fields.
+For example, by default, the Replicated installers use the built-in `expires_at` field to prevent an instance from receiving updates when the customer license expires.
+You can also add custom logic to your application to control the behavior of your application based on the built-in fields or any of the custom fields that you create.
 
-For more information, see [Manage Customer License Fields](licenses-adding-custom-fields). For the list of built-in fields in customer licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
+For more information, see [Manage Customer License Fields](licenses-adding-custom-fields).
+For the list of built-in fields in customer licenses, see [Built-In License Fields](/vendor/licenses-using-builtin-fields).
 
 ## Add preflights to check entitlements before installation or upgrade {#install}
 
 To enforce entitlements when your customer installs or updates your application,
-you can use the Replicated LicenseFieldValue template function in your application to read the value of license fields. The LicenseFieldValue template function accepts the built-in license fields and any custom fields that you configure. For more information, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.
+you can use the Replicated LicenseFieldValue template function in your application to read the value of license fields.
+The LicenseFieldValue template function accepts the built-in license fields and any custom fields that you configure.
+For more information, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.
 
-For example, a license might limit how many nodes are permitted in a customer's
-cluster. You could define this limit by creating a `node_count` custom license field:
+For example, a license might limit how many nodes are permitted in a customer's cluster.
+You could define this limit by creating a `node_count` custom license field:
 
 | Name | Key | Type | Description |
 |------|-----|------|-------------|
@@ -40,7 +45,8 @@ spec:
               message: The number of nodes matches your license ({{repl LicenseFieldValue "node_count"}})
 ```
 
-In the example above, the preflight check uses the `nodeResources` analyzer and the value of the custom `node_count` field to determine if the customer has exceeded the maximum number of nodes permitted by their license. If the preflight checks fails, a failure message is displayed to the user and KOTS prevents the installation or upgrade from continuing.
+In the example above, the preflight check uses the `nodeResources` analyzer and the value of the custom `node_count` field to determine if the customer has exceeded the maximum number of nodes permitted by their license.
+If the preflight checks fails, a failure message is displayed to the user and KOTS prevents the installation or upgrade from continuing.
 
 For more information about this example, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
 
