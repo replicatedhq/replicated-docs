@@ -10,7 +10,7 @@ This topic describes how to define additional images to be included in the `.air
 
 When building the `.airgap` bundle for a release, the Replicated Vendor Portal finds and includes all images defined in the Pod specs for the release. During installation or upgrade, KOTS retags images from the `.airgap` bundle and pushes them to the registry configured in KOTS.
 
-Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the KOTS Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
+Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the Replicated Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
 
 ## Define additional images for air gap bundles
 

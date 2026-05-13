@@ -170,3 +170,19 @@ To use the proxy registry with applications packaged as Kubernetes Operators:
 1. Create a new release with your changes. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
 
 1. Install in a development environment to test your changes.
+
+## Migrate from the Replicated registry to the proxy registry {#migrate-replicated-registry}
+
+Replicated has deprecated the ability to push images to the Replicated registry. Images that are already hosted on the Replicated registry will continue to be available for pull access.
+
+If you already host any Docker images on the Replicated registry, Replicated recommends that you move your images to an external registry and use the Replicated proxy registry.
+
+To migrate from the Replicated registry to the proxy registry:
+
+1. Push your images to your own external registry. For the full list of supported image registries, see [Supported registries](/vendor/packaging-private-images#supported-registries) in _Add and manage external registries_.
+
+1. In the Vendor Portal, go to **Image Registries > Add External Registry** and add the credentials for your registry. For more information, see [Add and manage external registries](/vendor/packaging-private-images).
+
+1. Configure your application to pull images through the proxy registry. See the instructions for your target install type on this page:
+   * [Embedded Cluster v3 (Beta)](#configure-v3)
+   * [Embedded Cluster v2, KOTS, or kURL](#embedded-cluster-v2-kots-or-kurl)

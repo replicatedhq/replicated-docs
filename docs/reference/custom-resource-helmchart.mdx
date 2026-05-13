@@ -1,8 +1,6 @@
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
 import Chart from "../partials/helm/_helm-cr-chart.mdx"
-import ChartName from "../partials/helm/_helm-cr-chart-name.mdx"
-import ChartVersion from "../partials/helm/_helm-cr-chart-version.mdx"
 import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
@@ -10,15 +8,13 @@ import Weight from "../partials/helm/_helm-cr-weight.mdx"
 import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
 import Exclude from "../partials/helm/_helm-cr-exclude.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
-import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
-import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
-
+import RecursiveMergeExample from "../partials/helm/_helm-cr-recursivemerge-example.mdx"
 
 # HelmChart v1 (Deprecated)
 
@@ -92,26 +88,18 @@ spec:
     postgresql:
       enabled: true
 ```
-
-## chart
+## Properties
+### chart
 
 <Chart/>
 
-### chart.name
+| Property | Description |
+| --- | --- |
+| `chart.name` | The name of the chart. This value must exactly match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. If the names do not match, then the installation can error or fail. |
+| `chart.chartVersion` | The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. |
+| `chart.releaseName` | <ChartReleaseName/> |
 
-<ChartName/>
-
-### chart.chartVersion
-
-<ChartVersion/>
-
-### chart.releaseName
-
-> Introduced in Replicated KOTS v1.73.0
-
-<ChartReleaseName/>
-
-## helmVersion
+### helmVersion
 
 Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
 
@@ -119,7 +107,7 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 <VersionLimitation/>
 :::
 
-## useHelmInstall
+### useHelmInstall
 
 Identifies the method that KOTS uses to install the Helm chart:
 * `useHelmInstall: true`: KOTS uses Kustomize to modify the chart then repackages the resulting manifests to install. This was previously referred to as the _native Helm_ installation method.
@@ -132,54 +120,85 @@ Identifies the method that KOTS uses to install the Helm chart:
 
 For more information about how KOTS deploys Helm charts when `useHelmInstall` is `true` or `false`, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-## weight
+### weight
 
 <WeightLimitation/>
 
 <Weight/>
 
-## helmUpgradeFlags
+### helmUpgradeFlags
 
 The `helmUpgradeFlags` field is _not_ supported for HelmChart custom resources with `useHelmInstall: false`.
 
 <HelmUpgradeFlags/>
 
-## values
+### values
 
 <Values/>
 
-## exclude
+#### Example
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+
+### exclude
 
 <Exclude/>
 
-## optionalValues
+### optionalValues
 
 <OptionalValues/>
 
-### optionalValues.when
+#### Examples
 
-<OptionalValuesWhen/>
+##### Set optional values with Replicated template functions
 
-### optionalValues.recursiveMerge
+```yaml
+# HelmChart custom resource
 
-:::note
-`recursiveMerge` is available in KOTS v1.38.0 and later.
-:::
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+spec:
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
+      recursiveMerge: false
+      values:
+        externalDatabase:
+          host: "repl{{ ConfigOption `external_db_host`}}"
+          user: "repl{{ ConfigOption `external_db_user`}}"
+          password: "repl{{ ConfigOption `external_db_password`}}"
+          database: "repl{{ ConfigOption `external_db_database`}}"
+          port: "repl{{ ConfigOption `external_ db_port`}}"
+```
 
-<OptionalValuesRecursiveMerge/>
+During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
-**Default**: False
+##### Recursive merge
 
-## namespace
+<RecursiveMergeExample/>
+
+### namespace
 
 <Namespace/>
 
-## builder
+### builder
 
 <BuilderAirgapIntro/>
 
+#### Requirements
+
 <HelmBuilderRequirements/>
 
-**Example:**
+#### Example
 
 <BuilderExample/>

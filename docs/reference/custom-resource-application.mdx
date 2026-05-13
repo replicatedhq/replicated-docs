@@ -1,32 +1,12 @@
-import Title from "../partials/custom-resource-application/_title.mdx"
-import Icon from "../partials/custom-resource-application/_icon.mdx"
-import ReleaseNotes from "../partials/custom-resource-application/_releaseNotes.mdx"
-import AllowRollback from "../partials/custom-resource-application/_allowRollback.mdx"
-import AdditionalNamespaces from "../partials/custom-resource-application/_additionalNamespaces.mdx"
-import AdditionalImages from "../partials/custom-resource-application/_additionalImages.mdx"
-import ExcludedImages from "../partials/custom-resource-application/_excludedImages.mdx"
-import RequireMinimalRBACPrivileges from "../partials/custom-resource-application/_requireMinimalRBACPrivileges.mdx"
-import SupportMinimalRBACPrivileges from "../partials/custom-resource-application/_supportMinimalRBACPrivileges.mdx"
-import Ports from "../partials/custom-resource-application/_ports.mdx"
-import StatusInformers from "../partials/custom-resource-application/_statusInformers.mdx"
-import Graphs from "../partials/custom-resource-application/_graphs.mdx"
-import GraphsTemplates from "../partials/custom-resource-application/_graphs-templates.mdx"
-import TargetKotsVersion from "../partials/custom-resource-application/_targetKotsVersion.mdx"
-import MinKotsVersion from "../partials/custom-resource-application/_minKotsVersion.mdx"
-import ProxyRegistryDomain from "../partials/custom-resource-application/_proxyRegistryDomain.mdx"
-import ReplicatedRegistryDomain from "../partials/custom-resource-application/_replicatedRegistryDomain.mdx"
-import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
-import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
-import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
-import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
-import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.mdx"
-
 # Application
 
-The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
+The Application custom resource lets you add your company or application branding to the customer-facing UI, including a custom title and icon.
+Depending on which Replicated installer the customer uses, this UI is either the Embedded Cluster v3 install and upgrade wizard or the Replicated Admin Console.
 
-There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application custom resource](https://github.com/kubernetes-sigs/application/blob/master/docs/api.md). For example, enabling features such as [adding a button to the dashboard](/vendor/admin-console-adding-buttons-links) requires the use of both the Application and SIG Application custom resources.
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, the Application custom resource also lets you configure other aspects of the Admin Console user experience.
+This includes setting a minimum required KOTS version, adding custom graphs with Prometheus to the dashboard, and more.
+
+## Example
 
 The following is an example manifest file for the Application custom resource:
 
@@ -34,15 +14,15 @@ The following is an example manifest file for the Application custom resource:
 apiVersion: kots.io/v1beta1
 kind: Application
 metadata:
-  name: my-application
+  name: your-application
 spec:
-  title: My Application
+  title: Your Application
   icon: https://support.io/img/logo.png
-  releaseNotes: These are our release notes
-  allowRollback: false
-  targetKotsVersion: "1.60.0"
-  minKotsVersion: "1.40.0"
-  requireMinimalRBACPrivileges: false
+  releaseNotes: ""
+  allowRollback: true
+  targetKotsVersion: "1.130.2"
+  minKotsVersion: "1.124.5"
+  requireMinimalRBACPrivileges: true
   additionalImages:
     - jenkins/jenkins:lts
   excludedImages:
@@ -62,382 +42,432 @@ spec:
       query: 'sum(user_signup_events_total)'
 ```
 
-## title
+## Spec
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>The application title. Used on the license upload and in various places in the Replicated Admin Console.</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><Title/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>     
-</table>
+### `title`
 
-## icon
+The title to use in the customer-facing UI. Typically, this is the application name.
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>The icon file for the application. Used on the license upload, in various places in the Admin Console, and in the Download Portal. The icon can be a remote URL or a Base64 encoded image. Base64 encoded images are required to display the image in air gap installations with no outbound internet access.</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><Icon/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+#### Limitation
 
+The `title` property doesn't support Go templating.
 
-## releaseNotes
+#### Example
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>The release notes for this version. These can also be set when promoting a release.</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ReleaseNotes/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>    
-</table>
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: outline-app
+spec:
+  title: Outline
+```
+The following shows an example of how the title appears in the Embedded Cluster v3 install wizard:
 
-## allowRollback
+<img width="650px" alt="install wizard login screen" src="/images/embedded-cluster-v3-install-wizard-login.png"/>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enable this flag to create a <strong>Rollback</strong> button on the Admin Console Version History page.</p>
-      <p>If an application is guaranteed not to introduce backwards-incompatible versions, such as through database migrations, then the <code>allowRollback</code> flag can allow end users to easily roll back to previous versions from the Admin Console.</p>
-      <p>Rollback does not revert any state. Rather, it recovers the YAML manifests that are applied to the cluster.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><AllowRollback/></td>
-  </tr>
-  <tr>
-    <th>Default</th>
-    <td><code>false</code></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Embedded Cluster 1.17.0 and later supports partial rollbacks of the application version. Partial rollbacks are supported only when rolling back to a version where there is no change to the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) compared to the currently-installed version. For example, users can roll back to release version 1.0.0 after upgrading to 1.1.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster Config.</td>
-  </tr>    
-</table>
+[View a larger version of this image](/images/embedded-cluster-v3-install-wizard-login.png)
 
+### `icon`
 
-## additionalNamespaces
+A file with the icon to use in the customer-facing UI. Typically, this is the application's logo.
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>An array of additional namespaces as strings that Replicated KOTS creates on the cluster. For more information, see <a href="/vendor/operator-defining-additional-namespaces">Defining Additional Namespaces</a>.</p>
-      <p>In addition to creating the additional namespaces, KOTS ensures that the application secret exists in the namespaces. KOTS also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the <code>additionalImages</code> field. This pull secret is automatically added to all manifest files that use private images.</p>
-      <p>For dynamically created namespaces, specify <code>"*"</code>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><AdditionalNamespaces/></td>
-  </tr>  
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>
-</table>
+The icon can be a remote URL or a Base64 encoded image. Air gap installations require Base64 encoded images.
 
-## additionalImages
+#### Limitation
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p><p>KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><AdditionalImages/></td>
-  </tr>  
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>   
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr> 
-</table>
+The `icon` property doesn't support Go templating.
 
-## excludedImages
+#### Examples
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>An array of strings that reference images to not be included in air gap bundles.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ExcludedImages/></td>
-  </tr>  
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>   
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr> 
-</table>
+##### Remote URL
 
-## requireMinimalRBACPrivileges
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  icon: https://support.io/img/logo.png
+```
+##### Base64-encoded image
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  icon: data:image/svg+xml;base64,PHNy4xMDwM...# based64-encoded image
+```
+### `releaseNotes`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p><p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p><p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><RequireMinimalRBACPrivileges/></td>
-  </tr>
-  <tr>
-    <th>Default</th>
-    <td><code>false</code></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
-  </tr>
-</table>
+The release notes for this application version. You can also set the release notes from the Vendor Portal or Replicated CLI when you promote a release. For more information, see [Managing releases with the Vendor Portal](/vendor/releases-creating-releases) or [Managing releases with the CLI](/vendor/releases-creating-cli).
 
-## supportMinimalRBACPrivileges
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, customers can access release notes from the Admin Console.
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p><p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p><p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command.</p><p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><SupportMinimalRBACPrivileges/></td>
-  </tr>
-  <tr>
-    <th>Default</th>
-    <td><code>false</code></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
-  </tr>
-</table>
+For Embedded Cluster v3, you can optionally include these release notes in your application using the Replicated [ReleaseNotes](/reference/template-functions-license-context#releasenotes) template function.
 
-## ports
+#### Limitation
 
-<table>
-<tr>
-    <th>Description</th>
-    <td>
-      <p>Extra ports (additional to the <code>8800</code> Admin Console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the KOTS CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed. For more information, see <a href="/vendor/admin-console-port-forward">Port Forwarding Services with KOTS</a>.</p>
-      <KurlNote/>
-      <p>The <code>ports</code> key has the following fields:</p>
-      <ul>
-        <PortsServiceName/>
-        <PortsServicePort/>
-        <ServicePortNote/>
-        <PortsLocalPort/>
-        <PortsApplicationURL/>
-        For more information about adding links to port forwarded services, see <a href="/vendor/admin-console-port-forward#add-link">Add a Link to a Port-Forwarded Service in the Admin Console</a>.
-      </ul> 
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><Ports/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td><p>Go templates are supported in the `serviceName` and `applicationUrl` fields only.</p><p>Using Go templates in the `localPort` or `servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.</p></td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>
-</table>
+The `releaseNotes` property doesn't support Go templating.
 
-## statusInformers
+#### Example
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Resources to watch and report application status back to the user. When you include <code>statusInformers</code>, the dashboard can indicate when the application deployment is complete and the application is ready for use.</p>
-      <p><code>statusInformers</code> use the format <code>[namespace/]type/name</code>, where namespace is optional.</p>
-      <p>For more information about including statusInformers, see <a href="/vendor/admin-console-display-app-status">Adding Resource Status Informers</a>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><StatusInformers/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>Yes</td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>
-</table>
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  releaseNotes: Fixes a bug and adds a new feature.
+```
 
-## graphs
+### `allowRollback`
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Custom graphs to include on the Admin Console application dashboard.For more information about how to create custom graphs, see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p><p><code>graphs</code> has the following fields:</p><ul><li><code>graphs.title</code>: The graph title.</li><li><code>graphs.query</code>: The Prometheus query.</li><li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li><li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.</li>  <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li><li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li></ul></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><Graphs/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>
-      <p>Yes</p>
-    </td>
-  </tr>   
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No</td>
-  </tr> 
-</table>
+Enable this flag to create a **Rollback** button on the Admin Console **Version History** page. By default, `allowRollback` is false.
 
-## proxyRegistryDomain
+If your application does not introduce backwards-incompatible versions, such as through database migrations, you can use `allowRollback`. This flag lets end users roll back to previous versions from the Admin Console.
+
+Rollback does not revert any state. Rather, it recovers the YAML manifests applied to the cluster.
+
+#### Limitations
+
+* The `allowRollback` property doesn't support Go templating.
+* Embedded Cluster v3 doesn't support the `allowRollback` property.
+* Embedded Cluster v2 supports rolling back the application version only. It doesn't support rolling back the Embedded Cluster version. Users can roll back to an earlier application version only when the Embedded Cluster version stays the same. For example, after upgrading to 1.1.0, users can roll back to version 1.0.0 only if both 1.0.0 and 1.1.0 use the same Embedded Cluster version.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  allowRollback: true
+```
+
+### `additionalNamespaces`
+
+An array of additional namespaces as strings that the installer creates in the cluster. One common use case for `additionalNamespaces` is Operators, which often need to be able to manage resources in multiple namespaces in the cluster. 
+
+For Embedded Cluster v3 installations, Embedded Cluster ensures that the private CA ConfigMap exists in each additional namespace. This allows Embedded Cluster to manage resources in the namespace. For more information about the ConfigMap, see [PrivatCACert](/reference/template-functions-static-context#privatecacert).
+
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace. This ensures that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images. For more information, see [Define additional namespaces](/vendor/operator-defining-additional-namespaces).
+
+#### Limitations
+
+* The `additionalNamespaces` property doesn't support Go templating.
+* If the current user account does not have access to create the additional namespaces, the installer will show an error and fail.
+
+#### Examples
+##### Array of multiple additional namespaces
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-operator
+spec:
+  additionalNamespaces:
+    - namespace1
+    - namespace2
+```
+##### Dynamically-created namespaces
+For dynamically-created namespaces, specify `"*"`.
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  additionalNamespaces:
+    - "*"
+```
+
+### `additionalImages`
+
+An array of strings that reference images to include in air gap bundles and push to the local registry during installation. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
+
+For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, or kURL installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
+
+#### Limitations
+
+* The `additionalImages` property doesn't support Go templating.
+* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `additionalImages` property.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-app
+spec:
+  additionalImages:
+    - elasticsearch:7.6.0
+    - quay.io/orgname/private-image:v1.2.3
+    - registry.replicated.com/my-operator/my-private-image:abd123f
+```
+
+### `excludedImages`
+
+An array of strings that reference images to exclude from air gap bundles.
+
+#### Limitations
+
+* The `excludedImages` property doesn't support Go templating.
+* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `excludedImages` property.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  excludedImages:
+    - auto # This image does not exist but is imported by the Istio Gateway chart
+```
+
+### `requireMinimalRBACPrivileges`
+
+When true, `requireMinimalRBACPrivileges` requires minimal role-based access control (RBAC) for KOTS. When set to `true`, KOTS creates a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `requireMinimalRBACPrivileges` is false.
+
+For additional requirements and limitations related to using namespace-scoped RBAC, see [About Namespace-scoped RBAC](/vendor/packaging-rbac#min-rbac) in _Configuring KOTS RBAC_.
+
+#### Limitations
+
+* The `requireMinimalRBACPrivileges` property doesn't support Go templating. 
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `requireMinimalRBACPrivileges` property.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  requireMinimalRBACPrivileges: true
+```
+
+### `supportMinimalRBACPrivileges`
+
+Allows your end customers to enable minimal role-based access control (RBAC). When set to `true`, KOTS supports creating a namespace-scoped Role and RoleBinding instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. By default, `supportMinimalRBACPrivileges` is false.
+
+KOTS uses minimal RBAC only when you pass the `--use-minimal-rbac` flag with the `kots install` command.
+
+For additional requirements and limitations related to using namespace-scoped RBAC, see [About Namespace-scoped RBAC](/vendor/packaging-rbac#min-rbac) in _Configuring KOTS RBAC_.
+
+#### Limitations
+
+* The `supportMinimalRBACPrivileges` property doesn't support Go templating.
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `supportMinimalRBACPrivileges` property.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  supportMinimalRBACPrivileges: true
+```
+
+### `ports`
+
+Extra ports, in addition to the `8800` Admin Console port, that are port-forwarded when running the `kubectl kots admin-console` command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the KOTS CLI prints the URL to access the port-forwarded service. For more information, see [Port Forwarding Services with KOTS](/vendor/admin-console-port-forward).
+
+#### About port forwarding in VM-based installations
+
+For installations on VMs or bare metal servers with Embedded Cluster v2 or kURL, KOTS does not automatically create port forwards. This is because KOTS cannot verify that the ports are secure and authenticated. Instead, Embedded Cluster v2 or kURL creates a NodePort service. This makes the Admin Console accessible on a port on the node (port `8800` for kURL or port `30000` for Embedded Cluster v2).
+
+You can expose additional ports on the node for Embedded Cluster v2 or kURL installations by creating NodePort services. For more information, see [Exposing Services Using NodePorts](/vendor/kurl-nodeport-services).
+
+#### Properties
+
+| Property | Description |
+| --- | --- |
+| `ports.serviceName` | The name of the service that receives the traffic. |
+| `ports.servicePort` | The `containerPort` of the Pod where the service is running. Ensure that you use the `containerPort` and not the `servicePort`. The `containerPort` and `servicePort` are often the same port, though it is possible that they are different. |
+| `ports.localPort` | The port to map on the local workstation. |
+| `ports.applicationUrl` | Optional. When set to the same URL as the one in the `descriptor.links.url` field of the Kubernetes SIG Application custom resource, KOTS adds a link on the Admin Console dashboard where users can access the given service. This process automatically links to the hostname in the browser where users access the Admin Console and appends the specified `localPort`. If not set, KOTS links the URL defined in the `descriptor.links.url` field of the Kubernetes SIG Application on the Admin Console dashboard. |
+
+#### Limitations
+
+* `ports` supports Go templates in the `ports.serviceName` and `ports.applicationUrl` fields only.
+
+   Using Go templates in the `ports.localPort` or `ports.servicePort` fields results in an installation error similar to the following: `json: cannot unmarshal string into Go struct field ApplicationPort.spec.ports.servicePort of type int`.
+* Supported only for Embedded Cluster v2, KOTS existing cluster, and kURL installations. Embedded Cluster v3 doesn't support the `ports` property or port-forwarding services with KOTS.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  ports:
+    - serviceName: web
+      servicePort: 9000
+      localPort: 9000
+      applicationUrl: "http://web"
+```
+
+### `statusInformers`
+
+Resources to watch and report application status back to the user. When you include `statusInformers`, the dashboard can indicate when the application deployment is complete and the application is ready for use.
+
+`statusInformers` use the format `[namespace/]type/name`, where namespace is optional.
+
+For more information about including `statusInformers`, see [Enable and understand application status](/vendor/insights-app-status).
+
+:::note
+For Embedded Cluster v3 installations, you can define custom status informers using the Replicated SDK instead of listing them in the Application custom resource `statusInformers` field. For more information, see [Enable application status insights](/vendor/insights-app-status#enable-application-status-insights).
+:::
+
+#### Examples
+##### Plain text
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  statusInformers:
+    - deployment/my-web-svc
+    - deployment/my-worker
+```
+##### Go templating
+The following example shows excluding a specific status informer based on a user-supplied value from the Admin Console Configuration screen:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  statusInformers:
+    - deployment/my-web-svc
+    - '{{repl if ConfigOptionEquals "option" "value"}}deployment/my-worker{{repl else}}{{repl end}}'
+```
+
+### `graphs`
+
+For installations with KOTS in existing cluster, `graphs` defines custom graphs to include on the Admin Console dashboard. For more information about how to create custom graphs, see [Adding Custom Graphs](/vendor/admin-console-prometheus-monitoring).
+
+The `graphs` key has the following fields:
+
+* `graphs.title`: The graph title.
+* `graphs.query`: The Prometheus query.
+* `graphs.legend`: The legend to use for the query line. You can use Prometheus templating in the `legend` fields with each element returned from the Prometheus query. The template escape sequence is `{{}}`. Use `{{ value }}`. For more information, see [Template Reference](https://prometheus.io/docs/prometheus/latest/configuration/template_reference/) in the Prometheus documentation.
+* `graphs.queries`: A list of queries containing a `query` and `legend`.
+* `graphs.yAxisFormat`: The format of the Y axis labels with support for all Grafana units. For more information, see [Visualizations](https://grafana.com/docs/features/panels/graph/#left-y-right-y) in the Grafana documentation.
+* `graphs.yAxisTemplate`: Y axis labels template.
+
+#### Limitation
+
+Embedded Cluster doesn't support the `graphs` property.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  graphs:
+    - title: User Signups
+      query: 'sum(user_signup_events_total)'
+```
+
+### `proxyRegistryDomain` (Deprecated)
 
 :::important
 `proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy registry, see [Use Custom Domains](/vendor/custom-domains-using).
 :::
 
-<table>	
-  <tr>	
-    <th>Description</th>	
-    <td><p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	<p>Introduced in KOTS v1.91.1.</p>	</td>	
-  </tr>	
-  <tr>	
-    <th>Example</th>	
-    <td><ProxyRegistryDomain/></td>	
-  </tr>	
-  <tr>	
-    <th>Supports Go templates?</th>	
-    <td>No</td>	
-  </tr>
-</table>
+The custom domain used for proxy.replicated.com. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
-## replicatedRegistryDomain
+#### Limitation
+
+The `proxyRegistryDomain` property doesn't support Go templating.
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  proxyRegistryDomain: "proxy.yourcompany.com"
+```
+
+### `replicatedRegistryDomain` (Deprecated)
 
 :::important
 `replicatedRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated registry, see [Use Custom Domains](/vendor/custom-domains-using).
 :::
 
-<table>	
-  <tr>	
-    <th>Description</th>	
-    <td><p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p><p>Introduced in KOTS v1.91.1.</p>	</td>	
-  </tr>	
-  <tr>	
-    <th>Example</th>	
-    <td><ReplicatedRegistryDomain/></td>	
-  </tr>	
-  <tr>	
-    <th>Supports Go templates?</th>	
-    <td>No</td>	
-  </tr>
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>Yes</td>
-  </tr>	
-</table>
+The custom domain used for registry.replicated.com. For more information, see [Using Custom Domains](/vendor/custom-domains-using).
 
-## targetKotsVersion
+#### Limitation
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><TargetKotsVersion/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>    
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No. Setting <code>targetKotsVersion</code> to a version earlier than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: <code>Error: This version of App Name requires a different version of KOTS from what you currently have installed.</code>. To avoid installation failures, do not use <code>targetKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
-  </tr>
-</table>
+The `replicatedRegistryDomain` property doesn't support Go templating.
 
-## minKotsVersion (Beta)
+#### Example
 
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p></td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><MinKotsVersion/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>  
-  <tr>
-    <th>Supported for <a href="/embedded-cluster/v3/embedded-overview">Embedded Cluster</a>?</th>
-    <td>No. Setting <code>minKotsVersion</code> to a version later than the KOTS version included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: <code>Error: This version of App Name requires a different version of KOTS from what you currently have installed.</code>. To avoid installation failures, do not use <code>minKotsVersion</code> in releases that support installation with Embedded Cluster.</td>
-  </tr>  
-</table>
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  replicatedRegistryDomain: "registry.yourcompany.com"
+```
+
+### `targetKotsVersion`
+
+For KOTS existing cluster installations, `targetKotsVersion` specifies the version of KOTS to use. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+
+#### Limitations
+
+* The `targetKotsVersion` property doesn't support Go templating.
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `targetKotsVersion` property. To avoid installation failures, do not use `targetKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  targetKotsVersion: "1.130.2"
+```
+
+### `minKotsVersion` (Beta)
+
+For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS version required to deploy the given release. KOTS blocks an installation or update if the deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+
+#### Limitations
+
+* The `minKotsVersion` property doesn't support Go templating.
+* Supported for KOTS existing cluster installations only. Embedded Cluster doesn't support the `minKotsVersion` property. To avoid installation failures, do not use `minKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: your-application
+spec:
+  minKotsVersion: "1.124.5"
+```

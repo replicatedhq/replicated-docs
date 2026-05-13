@@ -4,7 +4,7 @@ A Replicated installation connects to a Replicated-hosted endpoint periodically 
 
 - The IP address of the primary Replicated instance.
 - The ID of the installation.
-- [Resource statuses](/enterprise/status-viewing-details#resource-statuses)
+- [Resource statuses](/vendor/insights-app-status#understanding-application-status)
 - Information about the installation including data needed for [instance details](/vendor/instance-insights-details).
 - [Custom metrics](/vendor/custom-metrics) which the vendor may configure as part of the installation.
 - Date and timestamps of the data transmission.

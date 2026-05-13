@@ -1,0 +1,44 @@
+# replicated notification event ls
+
+List notification delivery events
+
+```
+replicated notification event ls [flags]
+```
+
+### Aliases
+
+```
+ls, list
+```
+
+### Options
+
+```
+      --current-page int           Pagination page index
+      --end-time string            Filter events before this time (RFC3339)
+      --event-type stringArray     Filter by event type key (repeatable)
+  -h, --help                       help for ls
+  -o, --output string              The output format to use. One of: json|table (default "table")
+      --page-size int              Pagination page size (default 20)
+      --search string              Search event content
+      --start-time string          Filter events after this time (RFC3339)
+      --status string              Filter by status: success|pending|failed
+      --subscription-id string     Filter by subscription ID
+      --subscription-type string   Filter by subscription type: personal|team
+      --type string                Filter by category prefix: all|instance|release|customer|channel|support|support_bundle
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated notification event](replicated-cli-notification-event)	 - Manage notification delivery events
+

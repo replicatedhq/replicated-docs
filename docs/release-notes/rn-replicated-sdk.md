@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.4
+
+Released on May 12, 2026
+
+### Improvements {#improvements-1-19-4}
+* Updates Kubernetes libraries from v0.35.4 to v0.36.0.
+
 ## 1.19.3
 
 Released on April 20, 2026

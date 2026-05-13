@@ -1,16 +1,12 @@
-import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
-import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
+import HelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 import Chart from "../partials/helm/_helm-cr-chart.mdx"
-import ChartName from "../partials/helm/_helm-cr-chart-name.mdx"
-import ChartVersion from "../partials/helm/_helm-cr-chart-version.mdx"
 import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import Weight from "../partials/helm/_helm-cr-weight.mdx"
 import Exclude from "../partials/helm/_helm-cr-exclude.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
-import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
-import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
+import RecursiveMergeExample from "../partials/helm/_helm-cr-recursivemerge-example.mdx"
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
@@ -18,75 +14,249 @@ import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements
 
 # HelmChart v2
 
-This topic describes the KOTS HelmChart v2 custom resource.
+This topic describes the Replicated HelmChart v2 custom resource.
 
-<KotsHelmCrDescription/>
+## Overview
+
+<HelmCrDescription/>
 
 ## Example
 
 The following is an example manifest file for the HelmChart v2 custom resource:
 
-<V2Example/>
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  
+  releaseName: samplechart-release-1
 
-## chart
+  exclude: "repl{{ ConfigOptionEquals 'include_chart' 'include_chart_no'}}"
+
+  # weight determines the order that charts are applied, with lower weights first.
+  weight: 42
+
+  # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
+  helmUpgradeFlags:
+    - --skip-crds
+    - --no-hooks
+    - --timeout
+    - 1200s
+    - --history-max=15
+
+  # values are used in the customer environment as a pre-render step
+  # these values are supplied to helm template
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals 'postgres_type' 'embedded_postgres'}}
+
+  optionalValues:
+  - when: "repl{{ ConfigOptionEquals 'postgres_type' 'external_postgres'}}"
+    recursiveMerge: false
+    values:
+      postgresql:
+        postgresqlDatabase: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_database'}}repl{{ end}}"
+        postgresqlUsername: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_username'}}repl{{ end}}"
+        postgresqlHost: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_host'}}repl{{ end}}"
+        postgresqlPassword: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_password'}}repl{{ end}}"
+        postgresqlPort: "repl{{ if ConfigOptionEquals 'postgres_type' 'external_postgres'}}repl{{ ConfigOption 'external_postgres_port'}}repl{{ end}}"
+
+  # namespace allows for a chart to be installed in an alternate namespace to
+  # the default
+  namespace: samplechart-namespace
+
+  # builder values render the chart with all images and manifests.
+  # builder is used to create `.airgap` packages and to support end users
+  # who use private registries
+  builder:
+    postgresql:
+      enabled: true
+```
+
+## Properties
+
+### chart
 
 <Chart/>
 
-### chart.name
+`chart` has the following properties:
 
-<ChartName/>
+| Property | Description |
+| --- | --- |
+| `chart.name` | The name of the chart. This value must exactly match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. If the names do not match, then the installation can error or fail. |
+| `chart.chartVersion` | The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release. |
 
-### chart.chartVersion
+#### Example
 
-<ChartVersion/>
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+```
 
-## releaseName
+### releaseName
 
 <ChartReleaseName/>
 
-## weight
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  releaseName: samplechart-release-1
+```
+
+### weight
 
 <Weight/>
 
-## helmUpgradeFlags
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  weight: 42
+```
+
+### helmUpgradeFlags
 
 <HelmUpgradeFlags/>
 
-## exclude
+### exclude
 
 <Exclude/>
 
-## values
+#### Example
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  exclude: '{{repl ConfigOptionEquals "postgres_type" "external_postgres" }}'
+```
+
+### values
 
 <Values/>
 
-For more information about using `values`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+#### Examples
 
-## optionalValues {#optionalvalues}
+##### Set static values
+
+```yaml
+# Helm chart values.yaml
+replicatedOnlyValue:
+  enabled: false
+```
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    replicatedOnlyValue:
+      enabled: true
+```
+
+##### Set values with Replicated Config template functions
+
+Using Replicated template functions in the [Config](/reference/template-functions-config-context) context allows you to set Helm values based on user-supplied values from the Admin Console configuration page.
+
+The following Helm chart `values.yaml` file contains `postgresql.enabled`, which is set to `false`: 
+
+```yaml
+# Helm chart values.yaml
+postgresql:
+  enabled: false
+```
+The following HelmChart custom resource contains a mapping to `postgresql.enabled` in its `values` key:
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+
+The `values.postgresql.enabled` field in the HelmChart custom resource above uses the Replicated [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to evaluate the user's selection for a `postgres_type` configuration option.
+
+During installation or upgrade, the template function is rendered to true or false based on the user's selction. Then, the Replicated installer sets the matching `postgresql.enabled` value in the Helm chart `values.yaml` file accordingly.
+
+##### Set values with Replicated License template functions
+
+Using Replicated template functions in the [License](/reference/template-functions-license-context) context allows you to set Helm values based on the unique license file used for installation or upgrade.
+
+For example, the following HelmChart custom resource uses the Replicated [LiencseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function to evaluate if the license has the boolean `newFeatureEntitlement` field set to `true`:
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    newFeature:
+      enabled: repl{{ LicenseFieldValue "newFeatureEntitlement" }}
+```
+
+During installation or upgrade, the LicenseFieldValue template function is rendered based on the user's license. Then, the Replicated installer sets the matching `newFeature.enabled` value in the Helm chart `values.yaml` file accordingly.
+
+##### Delete a default value key
+
+A common use case for deleting default value keys is when you include a community Helm chart as a dependency. Because you cannot control how the community chart is built and structured, you might want to change some of the default behavior. For more information about using a `null` value to delete a key, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    exampleKey: "null"
+```
+
+### optionalValues
 
 <OptionalValues/>
 
-For more information about using `optionalValues`, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+#### Examples
 
-### optionalValues.when
-
-<OptionalValuesWhen/>
-
-### optionalValues.recursiveMerge
-
-<OptionalValuesRecursiveMerge/>
-
-By default, `optionalValues.recursiveMerge` is false.
-
-For an example of recursive and non-recursive merging, see [About Recursive Merge](/vendor/helm-optional-value-keys#recursive-merge).
-
-### optionalValues.values
-
-In the `optionalValues.values` key, include the values to set if the specified condition is met. The `optionalValues.values` key supports static values and Replicated template functions.
-
-For example:
+##### Set optional values with Replicated template functions
 
 ```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
   optionalValues:
     - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
       recursiveMerge: false
@@ -99,22 +269,24 @@ For example:
           port: "repl{{ ConfigOption `external_ db_port`}}"
 ```
 
-In this example, the Replicated installer renders the template functions and sets the `externalDatabase` values _only_ when the user selects the `external` option for the `mariadb_type` config option.
+During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
-## namespace
+##### Recursive merge
+
+<RecursiveMergeExample/>
+
+### namespace
 
 <Namespace/>
 
-## builder
+### builder
 
 <BuilderAirgapIntro/>
 
-### Requirements
+#### Requirements
 
 <HelmBuilderRequirements/>
 
-### Examples
-
-#### Include conditional images
+#### Example
 
 <BuilderExample/>

@@ -600,6 +600,29 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
+### helm-schema-violation
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Runs <code>helm lint</code> against each Helm chart archive in the release that is referenced by a HelmChart custom resource. Uses the chart's default values merged with <code>spec.builder</code> values from the HelmChart custom resource. Surfaces any violations reported by Helm, including JSON schema validation errors from the chart's <code>values.schema.json</code>.</p>
+      <p>Each top-level violation is reported as a separate finding so that individual schema errors are easier to read and address.</p>
+      <p>For more information about <code>spec.builder</code>, see <a href="/reference/custom-resource-helmchart-v2#builder">builder</a> in <em>HelmChart v2</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Helm v3 and later chart archives (<code>*.tar.gz</code>) that have a matching HelmChart custom resource. HelmChart custom resources with <code>helmVersion: v2</code> are skipped.
+    </td>
+  </tr>
+</table>
+
 ### invalid-helm-release-name
 
 <table>
@@ -1120,6 +1143,26 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Example</th>
     <td><p>Example of matching YAML for this rule:</p><TroubleshootSpec/></td>
+  </tr>
+</table>
+
+### troubleshoot-spec-in-chart-without-crd
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Notifies if a Helm chart contains a top-level <code>kind: Preflight</code> or <code>kind: SupportBundle</code> custom resource.</p>
+      <p>Preflight and SupportBundle custom resources cannot be applied directly from a Helm chart — they require cluster-side CRDs that are not available in most shared clusters and that need cluster-admin permissions to install. Embed the spec in a Kubernetes Secret with the <code>troubleshoot.sh/kind</code> label instead. See <a href="/vendor/preflight-defining">Define preflight checks</a> and <a href="/vendor/support-bundle-customizing">Add and customize support bundles</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>Helm chart archives in the release</td>
   </tr>
 </table>
 

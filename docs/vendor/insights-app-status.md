@@ -59,10 +59,10 @@ To get instance status data for installations with the Helm CLI:
 
 ### Replicated installers
 
-To get instance insights from installations with a Replicated installer (Embedded Cluster, existing cluster KOTS, kURL), configure one or more status informers in the KOTS Application custom resource. For more information, see [Adding Resource Status Informers](admin-console-display-app-status).
+To get instance insights from installations with a Replicated installer (Embedded Cluster, existing cluster KOTS, kURL), configure one or more status informers in the Replicated Application custom resource. For more information, see [Enable and understand application status](/vendor/insights-app-status).
 
 :::note
-When Helm-based applications that include the Replicated SDK and are deployed by a Replicated installer, the SDK inherits the status informers configured in the KOTS Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
+When Helm-based applications that include the Replicated SDK and are deployed by a Replicated installer, the SDK inherits the status informers configured in the Replicated Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the vendor platform.
 :::
 
 ## View resource status insights {#resource-status}

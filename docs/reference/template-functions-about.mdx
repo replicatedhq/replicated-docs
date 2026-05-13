@@ -12,46 +12,54 @@ This topic describes Replicated template functions, including information about 
 
 ## Overview
 
-Replicated provides a set of custom template functions based on the Go text/template library. You can use the Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer (Embedded Cluster, KOTS, kURL).
+Replicated provides a set of custom template functions based on the Go text/template library.
 
 <UseCases/>
 
-All functionality of the Go templating language, including if statements, loops, and variables, is supported with Replicated template functions. For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
+Replicated template functions support all functionality of the Go templating language, including if statements, loops, and variables.
+For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
-### Supported file types
+## Supported file types
 
-You can use Replicated template functions in Kubernetes manifest files for applications deployed by a Replicated installer, such as:
+You can use Replicated template functions in Kubernetes manifest files, such as:
 * Custom resources in the `kots.io` API group like Application, Config, or HelmChart
-* Custom resources in other API groups like Preflight, SupportBundle, or Backup
+* Custom resources in other API groups like Preflight or SupportBundle
 * Kubernetes objects like Deployments, Services, Secrets, or ConfigMaps
 * Kubernetes Operators
 
-Replicated template functions are _not_ directly supported in Helm charts. However, the HelmChart custom resource provides a way to map values rendered by Replicated template functions to Helm chart values. This allows you to use Replicated template functions with Helm charts without making changes to those Helm charts.
+Replicated template functions are _not_ directly supported in Helm charts.
+However, the HelmChart custom resource provides a way to map values rendered by Replicated template functions to Helm chart values.
+This allows you to use Replicated template functions with Helm charts without making changes to those Helm charts.
 
-For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [Setting Helm Chart Values with KOTS](/vendor/helm-optional-value-keys).
+For information about how to map values from the HelmChart custom resource to Helm chart `values.yaml` files, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
-### Template function rendering
+## Template function rendering
 
-During application installation and upgrade, KOTS templates all Kubernetes manifest files in a release (except for the Config custom resource) at the same time during a single process.
+During application installation and upgrade, Replicated templates all Kubernetes manifest files in a release at the same time during a single process.
 
-For the [Config](/reference/custom-resource-config) custom resource, KOTS templates each item separately so that config items can be used in templates for other items. For examples of this, see [Using Conditional Statements in Configuration Fields](/vendor/config-screen-conditional) and [Template Function Examples](/reference/template-functions-examples).
+The Config custom resource is an exception.
+For the [Config](/reference/custom-resource-config) custom resource,
+Replicated templates each item separately.
+This allows you to use template functions in fields in the Config custom resource that render user-supplied values from other fields.
+For examples of this, see [Template function examples](/reference/template-functions-examples).
 
-### Limitations
+## Limitations
 
-* Not all fields in the Config and Application custom resources support templating. For more information, see [Application](/reference/custom-resource-application) and [Item Properties](/reference/custom-resource-config#item-properties) in _Config_.
+* Not all fields in the Config and Application custom resources support templating. For more information, see [Application](/reference/custom-resource-application) and [Config](/reference/custom-resource-config).
 
-* Templating is not supported in the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) resource.
+* The [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) resource doesn't support Go templating in any fields.
 
-* Replicated template functions are not directly supported in Helm charts. For more information, see [Helm Charts](#helm-charts) on this page.
+* Replicated template functions are not directly supported in Helm charts. For more information, see [Supported file types](#supported-file-types) on this page.
 
-* Embedded Cluster v3 does not support the following template functions:
+* For installations with Embedded Cluster v3, the following template functions aren't supported:
   * HasLocalRegistry
   * LocalRegistryAddress
   * LocalRegistryHost
   * LocalRegistryNamespace
   * LocalImageName
 
-  These template functions are typically used to conditionally rewrite image references in air gap installations to reference the local image registry. For Embedded Cluster v3 installations, use the ReplicatedImageName and ReplicatedImageRegistry template functions instead. For more information, see [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).
+  These template functions are typically used to conditionally rewrite image references in air gap installations to reference the local image registry.
+  For Embedded Cluster v3 installations, use the ReplicatedImageName and ReplicatedImageRegistry template functions instead. For more information, see [Template Functions for Embedded Cluster](/embedded-cluster/v3/template-functions).
 
 ## Syntax {#syntax}
 
@@ -62,14 +70,14 @@ The Replicated template function syntax supports the following functionally equi
 ### Syntax requirements
 
 Replicated template function syntax has the following requirements:
-* In both the `repl{{ ... }}` and `{{repl ... }}` syntaxes, there must be no whitespace between `repl` and the `{{` delimiter.
-* The manifests where Replicated template functions are used must be valid YAML. This is because the YAML manifests are linted before Replicated template functions are rendered.
+* For both syntax options, `repl{{ ... }}` and `{{repl ... }}`, there must be no whitespace between `repl` and the `{{` delimiter.
+* The manifests where you use Replicated template functions must be valid YAML, because Replicated lints the YAML manifests before rendering the template functions.
 
 ### `repl{{ ... }}` {#syntax-integer}
 
-This syntax is recommended for most use cases.
+Replicated recommends this syntax for most use cases.
 
-Any quotation marks wrapped around this syntax are stripped during rendering. If you need the rendered value to be quoted, you can pipe into quote (`| quote`) or use the [`{{repl ... }}`](#syntax-string) syntax instead.
+Replicated strips any quotation marks wrapped around this syntax during rendering. If you need the rendered value in quotes, pipe into quote (`| quote`) or use the [`{{repl ... }}`](#syntax-string) syntax instead.
 
 #### Integer example
 
@@ -102,17 +110,18 @@ http:
   port: 8081
 ```
 
-For more examples, see [Template Function Examples](/reference/template-functions-examples).
+For more examples, see [Template function examples](/reference/template-functions-examples).
 
 ### `{{repl ... }}` {#syntax-string}
 
-This syntax can be useful when having the delimiters outside the template function improves readability of the YAML, such as in multi-line statements or if-else statements.
+Use this syntax when placing delimiters outside the template function improves YAML readability, such as in multi-line or if-else statements.
 
-To use this syntax at the beginning of a value in YAML, it _must_ be wrapped in quotes because you cannot start a YAML value with the `{` character and manifests consumed by KOTS must be valid YAML. When this syntax is wrapped in quotes, the rendered value is also wrapped in quotes.
+To use this syntax at the beginning of a YAML value, you must wrap it in quotes. YAML values cannot start with `{`, and KOTS requires valid YAML manifests.
+When you wrap this syntax in quotes, the rendered value is also wrapped in quotes.
 
 #### Example with quotes
 
-The following example is wrapped in quotes because it is used at the beginning of a statement in YAML:
+The following example includes quotes because it appears at the beginning of a YAML value:
 
 ```yaml
 customTag: '{{repl ConfigOption "tag" }}'
@@ -135,7 +144,7 @@ For more examples, see [Template Function Examples](/reference/template-function
 
 ## Contexts {#contexts}
 
-Replicated template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context of the data that is provided.
+Replicated groups template functions into different contexts based on the lifecycle phase when the function is available and the data provided.
 
 ### Static context
 

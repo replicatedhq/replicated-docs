@@ -50,7 +50,7 @@ When the application is deployed, the "About Wordpress" link is displayed on the
 
 For an additional example of a Kubernetes SIG Application custom resource, see [application.yaml](https://github.com/kubernetes-sigs/application/blob/master/docs/examples/wordpress/application.yaml) in the kubernetes-sigs GitHub repository.
 
-### Create URLs with user-supplied values using KOTS template functions {#url-template}
+### Create URLs with user-supplied values using Replicated template functions {#url-template}
 
 You can use Replicated template functions to template URLs in the Kubernetes SIG Application custom resource. This can be useful when all or some of the URL is a user-supplied value. For example, an application might allow users to provide their own ingress controller or load balancer. In this case, the URL can be templated to render the hostname that the user provides on the Admin Console Config screen.
 

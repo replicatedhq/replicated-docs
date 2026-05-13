@@ -1,0 +1,50 @@
+# replicated policy rm
+
+Remove an RBAC policy
+
+### Synopsis
+
+Remove an RBAC policy.
+
+The Admin, Read Only, Sales, and Support policies cannot be removed.
+Vendors not on an enterprise plan cannot remove policies.
+
+```
+replicated policy rm NAME_OR_ID [flags]
+```
+
+### Aliases
+
+```
+rm, delete
+```
+
+### Examples
+
+```
+  # Remove a policy by name
+  replicated policy rm "My Policy"
+
+  # Remove a policy by ID
+  replicated policy rm pol_abc123
+```
+
+### Options
+
+```
+  -h, --help   help for rm
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated policy](replicated-cli-policy)	 - Manage RBAC policies
+

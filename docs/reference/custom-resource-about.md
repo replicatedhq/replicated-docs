@@ -17,7 +17,7 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>app.k8s.io/v1beta1</td>
         <td>[SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications)</td>
-        <td>Defines metadata about the application for installations with a Replicated installer (Embedded Cluster, KOTS, kURL)</td>
+        <td>Defines metadata about the application</td>
     </tr>
     <tr>
         <td>embeddedcluster.replicated.com/v1beta1</td>
@@ -32,17 +32,17 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>kots.io/v1beta1</td>
         <td>[Application](custom-resource-application)</td>
-        <td>Adds metadata (such as branding, release notes and more) to the Admin Console for installations with a Replicated installer</td>
+        <td>Adds metadata to the user-facing UI for installations with a Replicated installer</td>
     </tr>
     <tr>
         <td>kots.io/v1beta1</td>
         <td>[Config](custom-resource-config)</td>
-        <td>Defines a user-facing configuration screen in the Admin Console for installations with a Replicated installer</td>
+        <td>Defines a user-facing configuration screen for installations with a Replicated installer</td>
     </tr>
     <tr>
         <td>kots.io/v1beta2</td>
         <td>[HelmChart](custom-resource-helmchart-v2)</td>
-        <td>Identifies an instantiation of a Helm Chart. Used for installations with a Replicated installer and for air gap installations with the Helm CLI</td>
+        <td>Identifies an instantiation of a Helm chart</td>
     </tr>
     <tr>
         <td>kots.io/v1beta1</td>
@@ -57,7 +57,7 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>troubleshoot.sh/v1beta2</td>
         <td>[Redactor](https://troubleshoot.sh/docs/redact/)</td>
-        <td>Defines custom redactors for support bundles and preflight checks. Supported for installations with a Replicated installer</td>
+        <td>Defines custom redactors for support bundles and preflight checks</td>
     </tr>
     <tr>
         <td>troubleshoot.sh/v1beta2</td>
@@ -67,6 +67,6 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>velero.io/v1</td>
         <td>[Backup](https://velero.io/docs/v1.17/api-types/backup/)</td>
-        <td>Defines a Velero backup request. Velero provides backup and restore functionality for installations with a Replicated installer. For more information about Velero, see the [Velero](https://velero.io/docs/v1.17/) documentation.</td>
+        <td>Defines a Velero backup request</td>
     </tr>
 </table>

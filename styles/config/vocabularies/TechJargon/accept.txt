@@ -8,6 +8,7 @@ ISVs
 APIs
 allowlist
 boolean
+CAs
 CIDR
 cidr
 CLI
@@ -21,6 +22,7 @@ favicon
 GiB
 GPU
 HA
+hardcoded
 Helm
 hostname
 hostnames
@@ -94,3 +96,11 @@ SSO
 TOTP
 ttl
 keyless
+liveness
+Unmute
+
+subchart
+subcharts
+subpath
+namespaces
+textarea

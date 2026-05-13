@@ -13,7 +13,7 @@ This topic describes how to customize the graphs that are displayed on the Repli
 
 If your application exposes Prometheus metrics, you can add custom graphs to the Admin Console dashboard to expose these metrics to your users. You can also modify or remove the default graphs.
 
-To customize the graphs that are displayed on the Admin Console, edit the [`graphs`](/reference/custom-resource-application#graphs) property in the KOTS Application custom resource manifest file. At a minimum, each graph in the `graphs` property must include the following fields:
+To customize the graphs that are displayed on the Admin Console, edit the [`graphs`](/reference/custom-resource-application#graphs) property in the Replicated Application custom resource manifest file. At a minimum, each graph in the `graphs` property must include the following fields:
 * `title`: Defines the graph title that is displayed on the Admin Console.
 * `query`: A valid PromQL Prometheus query. You can also include a list of multiple queries by using the `queries` property. For more information about querying Prometheus with PromQL, see [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
 
@@ -31,7 +31,7 @@ To customize graphs on the Admin Console dashboard:
 
 1. In the [Vendor Portal](https://vendor.replicated.com/), click **Releases**. Then, either click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 
-1. Create or open the [KOTS Application](/reference/custom-resource-application) custom resource manifest file.
+1. Create or open the [Replicated Application](/reference/custom-resource-application) custom resource manifest file.
 
 1. In the Application manifest file, under `spec`, add a `graphs` property. Edit the `graphs` property to modify or remove existing graphs or add a new custom graph. For more information, see [graphs](/reference/custom-resource-application#graphs) in _Application_.
 

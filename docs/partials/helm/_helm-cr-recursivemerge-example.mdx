@@ -1,0 +1,72 @@
+The following HelmChart custom resource has both `values` and `optionalValues`:
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    favorite:
+      drink:
+        hot: tea
+        cold: soda
+      dessert: ice cream
+      day: saturday
+  optionalValues:
+    - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
+      recursiveMerge: false
+      values:
+        example_config_option:
+          enabled: true
+        favorite:
+          drink:
+            cold: lemonade
+```
+
+The associated Helm chart `values.yaml` file defines these key value pairs:
+
+```yaml
+# Helm chart values.yaml
+favorite:
+  drink:
+    hot: coffee
+    cold: soda
+  dessert: pie
+```
+The associated Helm chart has the following `templates/configmap.yaml` file:
+
+```yaml
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+data:
+  favorite_day: {{ .Values.favorite.day }}
+  favorite_dessert: {{ .Values.favorite.dessert }}
+  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
+  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
+```
+
+When `recursiveMerge` is `false`, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+data:
+  favorite_day: null
+  favorite_dessert: pie
+  favorite_drink_cold: lemonade
+  favorite_drink_hot: coffee
+```
+When `recursiveMerge` is `true`, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+data:
+  favorite_day: saturday
+  favorite_dessert: ice cream
+  favorite_drink_cold: lemonade
+  favorite_drink_hot: tea
+```

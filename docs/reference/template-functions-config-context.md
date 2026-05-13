@@ -12,7 +12,7 @@ This topic provides a list of the Replicated template functions in the Config co
 func ConfigOption(optionName string) string
 ```
 
-Returns the value of the specified option from the KOTS Config custom resource as a string.
+Returns the value of the specified option from the Replicated Config custom resource as a string.
 
 For the `file` config option type, `ConfigOption` returns the base64 encoded file. To return the decoded contents of a file, use [ConfigOptionData](#configoptiondata) instead.
 
@@ -22,10 +22,10 @@ For the `file` config option type, `ConfigOption` returns the base64 encoded fil
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOption template function to set the port, node port, and annotations for a LoadBalancer service using the values supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOption template function to set the port, node port, and annotations for a LoadBalancer service using the values supplied by the user on the config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -42,7 +42,7 @@ spec:
         nodePort: repl{{ ConfigOption "myapp_load_balancer_node_port"}}
         annotations: repl{{ ConfigOption `myapp_load_balancer_annotations` | nindent 14 }}
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ## ConfigOptionData
 
@@ -58,10 +58,10 @@ For the `file` config option type,  `ConfigOptionData` returns the base64 decode
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionData template function to set the TLS cert and key using the files supplied by the user on the KOTS Admin Console config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionData template function to set the TLS cert and key using the files supplied by the user on the config screen. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -78,7 +78,7 @@ spec:
         cert: repl{{ print `|`}}repl{{ ConfigOptionData `tls_certificate_file` | nindent 12 }}
         key: repl{{ print `|`}}repl{{ ConfigOptionData `tls_private_key_file` | nindent 12 }}
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ## ConfigOptionFilename
 
@@ -95,7 +95,7 @@ It will return an empty string if used erroneously with other types.
 
 #### Example
 
-For example, if you have the following KOTS Config defined:
+For example, if you have the following Config defined:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -162,10 +162,10 @@ Returns true if the configuration option value is equal to the supplied value.
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionEquals template function to set the `postgres.enabled` value depending on if the user selected the `embedded_postgres` option on the KOTS Admin Console config screen. This value is then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the ConfigOptionEquals template function to set the `postgres.enabled` value depending on if the user selected the `embedded_postgres` option on the config screen. This value is then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -178,7 +178,7 @@ spec:
     postgresql:
       enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ## ConfigOptionNotEquals
 
@@ -221,10 +221,10 @@ Includes the port if one is specified.
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -240,7 +240,7 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ## LocalRegistryNamespace
 
@@ -256,10 +256,10 @@ Returns the namespace of the local registry that the user configured. Alternativ
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -275,7 +275,7 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ## LocalImageName
 
@@ -308,7 +308,7 @@ func LocalRegistryImagePullSecret() string
 ```
 
 Returns the base64 encoded local registry image pull secret value.
-This is often needed when an operator is deploying images to a namespace that is not managed by Replicated KOTS.
+This is often needed when an operator is deploying images to a namespace that is not managed by the Replicated installer.
 Image pull secrets must be present in the namespace of the pod.
 
 #### Example
@@ -375,10 +375,10 @@ HasLocalRegistry is always true for air gap installations. HasLocalRegistry is t
 
 #### Example
 
-The following KOTS [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
+The following [HelmChart](/reference/custom-resource-helmchart-v2) custom resource uses the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace template functions to conditionally rewrite an image registry and repository depending on if a local registry is used. These values are then mapped to the `values.yaml` file for the associated Helm chart during deployment.
 
 ```yaml
-# KOTS HelmChart custom resource
+# HelmChart custom resource
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -394,4 +394,4 @@ spec:
         repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/myapp/quay.io/my-org" }}/nginx'
         tag: v1.0.1
 ```
-For more information, see [Set Helm Values with KOTS](/vendor/helm-optional-value-keys).
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.

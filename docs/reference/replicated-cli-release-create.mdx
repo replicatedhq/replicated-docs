@@ -38,7 +38,9 @@ replicated release create [flags]
       --fail-on string         The minimum severity to cause the command to exit with a non-zero exit code. Supported values are [info, warn, error, none]. (default "error")
   -h, --help                   help for create
       --lint                   Lint a manifests directory prior to creation of the KOTS Release.
+      --no-upload              Build the release locally but do not upload it. Use with --output-dir to inspect or reuse the staged artifacts. Cannot be used with --promote.
   -o, --output string          The output format to use. One of: json|table (default "table")
+      --output-dir string      Stage the release artifacts (packaged charts and manifests) to this directory. Existing contents of the directory are removed before each run. The directory is preserved after the command completes.
       --promote string         Channel name (case sensitive) or id to promote this release to
       --release-notes string   When used with --promote <channel>, sets the **markdown** release notes
       --required               When used with --promote <channel>, marks this release as required during upgrades.

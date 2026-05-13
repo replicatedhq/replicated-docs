@@ -16,6 +16,8 @@ excludedImages
 helmUpgradeFlags
 HelmChart
 help_text
+ISV
+ISVs
 KOTS
 kURL
 LintConfig
@@ -41,3 +43,4 @@ Unarchived
 collab
 Reinvite
 Replicated's
+yamlPath

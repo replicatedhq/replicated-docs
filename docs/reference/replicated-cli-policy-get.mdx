@@ -1,0 +1,46 @@
+# replicated policy get
+
+Get an RBAC policy
+
+### Synopsis
+
+Display details for an RBAC policy. Use --output-file to save the policy definition to a JSON file.
+
+```
+replicated policy get NAME_OR_ID [flags]
+```
+
+### Examples
+
+```
+  # Get a policy by name
+  replicated policy get "My Policy"
+
+  # Get a policy and save its definition to a file
+  replicated policy get "My Policy" --output-file policy.json
+
+  # Get a policy in JSON format
+  replicated policy get "My Policy" --output json
+```
+
+### Options
+
+```
+  -h, --help                 help for get
+  -o, --output string        The output format to use. One of: json|table (default "table")
+      --output-file string   If set, saves the policy definition to the specified file
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated policy](replicated-cli-policy)	 - Manage RBAC policies
+

@@ -1,24 +1,12 @@
 # Instance details
 
 This topic describes using the Replicated Vendor Portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
+
 ## About the instance details page {#about-page}
 
-The Vendor Portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use the insights on the **Instance details** page to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden. 
+The Vendor Portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use these insights to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden.
 
-For example, you can use the **Instance details** page to track the following events for each instance:
-
-* Recent performance degradation or downtime
-* Length of instance downtime
-* Recent changes to the cluster or infrastructure
-* Changes in the number of nodes, such as nodes lost or added
-* Changes in the cluster's Kubernetes version
-* Changes in the application version that the instance is running
-
-To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view:
-
-![Customer reporting button on the Customers page](/images/customer-reporting-button.png)
-
-From the **Reporting** page for the selected customer, click the **View details** button for the desired application instance.
+From the **Instance details** page, you can also archive and unarchive instances. For more information, see [Archive or unarchive an instance](/vendor/releases-creating-customer#archive-instance) in _Create and manage customers_.
 
 The following shows an example of the **Instance details** page:
 

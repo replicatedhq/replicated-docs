@@ -3,7 +3,7 @@
 This topic describes the disaster recovery feature for Replicated Embedded Cluster, including how to enable disaster recovery for your application. It also describes how end users can configure disaster recovery in the Replicated KOTS Admin Console and restore from a backup.
 
 :::important
-Embedded Cluster disaster recovery is an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+Embedded Cluster disaster recovery is an Alpha feature. This feature is subject to change, including breaking changes. To get access to this feature, reach out to your Replicated account team.
 :::
 
 :::note
@@ -22,15 +22,15 @@ The Embedded Cluster infrastructure that is backed up includes components such a
 
 Embedded Cluster disaster recovery has the following requirements:
 
-* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to Alex Parker at [alexp@replicated.com](mailto:alexp@replicated.com).
+* The disaster recovery feature flag must be enabled for your account. To get access to disaster recovery, reach out to your Replicated account team.
 * Embedded Cluster version 1.22.0 or later
-* Backups must be stored in S3-compatible storage
+* Backups must be stored in AWS S3
 
 ## Limitations and known issues
 
 Embedded Cluster disaster recovery has the following limitations and known issues:
 
-* Embedded Cluster supports only AWS S3 as a storage location for backups.
+* Embedded Cluster supports only AWS S3 as a storage location for backups. Other S3-compatible storage providers (such as MinIO) are not tested or officially supported. Because AWS S3 requires internet access, disaster recovery is not supported for air gap installations.
 
 * During a restore, the version of the Embedded Cluster installation assets must match the version of the application in the backup. So if version 0.1.97 of your application was backed up, the Embedded Cluster installation assets for 0.1.97 must be used to perform the restore. Use `./APP_SLUG version` to check the version of the installation assets, where `APP_SLUG` is the unique application slug. For example:
 
@@ -128,7 +128,7 @@ To configure Velero Backup and Restore custom resources for Embedded Cluster dis
       ``` 
       For more information about how to rewrite image names using the KOTS [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions, including additional examples, see [Support Installations with HelmChart v2](/vendor/helm-native-v2-using).
 
-1. If you support air gap installations, add any images that are referenced in your Backup and Restore resources to the `additionalImages` field of the KOTS Application custom resource. This ensures that the images are included in the air gap bundle for the release so they can be used during the backup and restore process in environments with limited or no outbound internet access. For more information, see [additionalImages](/reference/custom-resource-application#additionalimages) in _Application_.
+1. If you support air gap installations, add any images that are referenced in your Backup and Restore resources to the `additionalImages` field of the Replicated Application custom resource. This ensures that the images are included in the air gap bundle for the release so they can be used during the backup and restore process in environments with limited or no outbound internet access. For more information, see [additionalImages](/reference/custom-resource-application#additionalimages) in _Application_.
 
      **Example:**
 
