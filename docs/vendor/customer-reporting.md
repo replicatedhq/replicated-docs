@@ -86,6 +86,7 @@ From the **Enterprise Portal** section, you can:
 * View the number of install attempts made by the customer. The **Customer Reporting > Install Attempts** section includes additional details about install attempts. For more information, see [Install Attempts](#install-attempts-beta) below.
 * View the number of service accounts created in the Enterprise Portal
 * View the number of support bundles uploaded to the Enterprise Portal
+* View **Delivery** information, including when the customer first accessed the Enterprise Portal and the timestamps of their first and most recent software pulls. Click the **Delivery** row to expand it for additional detail.
 
 For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-about).
 
