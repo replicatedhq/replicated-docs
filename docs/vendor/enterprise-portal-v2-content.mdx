@@ -354,7 +354,7 @@ Props can be combined to define a version range (AND logic). If the customer has
 
 **Example:**
 
-```markdown
+````markdown
 <UpgradePath fromBelow="2.0.0">
 ## Upgrading from 1.x
 
@@ -370,7 +370,7 @@ Before upgrading to 2.x, you must migrate your database schema. Run:
 
 No manual migration needed. The upgrade is automatic.
 </UpgradePath>
-```
+````
 
 In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" instructions, while a customer on 2.1.0 would see the "Upgrading from 2.x" block.
 
@@ -406,32 +406,32 @@ These components require Security Center to be enabled for the customer. See [Se
 
 ## Template variables
 
-Enterprise Portal content supports Mustache-style templating with `{{ }}` syntax for dynamic rendering. Template variables and MDX components can be used together in the same page.
+Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` syntax for dynamic rendering. Template variables and MDX components can be used together in the same page.
 
 ### Available variables
 
 | Variable | Description |
 | :--- | :--- |
-| `{{ app.name }}` | Your application name |
-| `{{ app.slug }}` | URL-friendly app identifier |
-| `{{ customer.name }}` | Customer's name |
-| `{{ customer.email }}` | Customer's email |
-| `{{ customer.id }}` | Customer ID |
-| `{{ channel.name }}` | Release channel (Stable, Beta, etc.) |
-| `{{ channel.slug }}` | URL-friendly channel identifier |
-| `{{ release.version }}` | Current release version |
-| `{{ license.* }}` | Any field from the license object (e.g. `{{ license.id }}`, `{{ license.expiresAt }}`) |
-| `{{ entitlements.* }}` | Any entitlement value, built-in or custom (see below) |
+| `\{\{ app.name \}\}` | Your application name |
+| `\{\{ app.slug \}\}` | URL-friendly app identifier |
+| `\{\{ customer.name \}\}` | Customer's name |
+| `\{\{ customer.email \}\}` | Customer's email |
+| `\{\{ customer.id \}\}` | Customer ID |
+| `\{\{ channel.name \}\}` | Release channel (Stable, Beta, etc.) |
+| `\{\{ channel.slug \}\}` | URL-friendly channel identifier |
+| `\{\{ release.version \}\}` | Current release version |
+| `\{\{ license.* \}\}` | Any field from the license object (e.g. `\{\{ license.id \}\}`, `\{\{ license.expiresAt \}\}`) |
+| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see below) |
 
 :::note
-`{{ release.version }}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `{{ channel.name }}` as a more reliable alternative for version-dependent content.
+`\{\{ release.version \}\}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `\{\{ channel.name \}\}` as a more reliable alternative for version-dependent content.
 :::
 
 ### Conditionals
 
-**`{{#if}}`**: Show content when a value is truthy. Supports nesting.
+**`\{\{#if\}\}`**: Show content when a value is truthy. Supports nesting.
 
-```
+```text
 {{#if entitlements.isHAEnabled}}
 ## High Availability Setup
 For production deployments, enable HA mode...
@@ -440,9 +440,9 @@ For production deployments, enable HA mode...
 
 Values are considered falsy if they are null, empty string, `false`, `"false"`, `"0"`, or `0`. Everything else is truthy.
 
-**`{{#ifEquals}}`**: Show content when a value equals a specific string. Useful for per-customer or per-channel content.
+**`\{\{#ifEquals\}\}`**: Show content when a value equals a specific string. Useful for per-customer or per-channel content.
 
-```
+```text
 {{#ifEquals channel.name "Stable"}}
 You are on the Stable channel. Updates are less frequent but thoroughly tested.
 {{/ifEquals}}
@@ -457,14 +457,14 @@ The comparison value must be quoted (double or single quotes). Supports nesting.
 
 ### Entitlements
 
-Entitlements are accessible as `{{ entitlements.<name> }}` for interpolation and `{{#if entitlements.<name>}}` for conditionals. There are two kinds:
+Entitlements are accessible as `\{\{ entitlements.<name> \}\}` for interpolation and `\{\{#if entitlements.<name>\}\}` for conditionals. There are two kinds:
 
 - **Built-in flags**: Set on the license via Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isHelmAirgapEnabled`
 - **Custom entitlements**: Any that you define (e.g. `isHAEnabled`, `isEnterpriseEnabled`)
 
 Example:
 
-```
+```text
 {{#if entitlements.isHelmInstallEnabled}}
 ## Helm Installation
 Follow these steps to install using Helm...
@@ -538,9 +538,9 @@ Any file committed to the `assets/` directory is available for download. There a
 
 ### Linking to assets
 
-Use the `{{asset "path"}}` template tag in your markdown to generate a download link:
+Use the `\{\{asset "path"\}\}` template tag in your markdown to generate a download link:
 
-```
+```text
 ## Resources
 - [Deployment Script]({{asset "assets/deploy.sh"}})
 - [Onboarding Checklist]({{asset "assets/onboarding-checklist.pdf"}})
@@ -552,9 +552,9 @@ The path inside the tag is relative to the repo root and must start with `assets
 
 ### Per-customer asset delivery
 
-Combine `{{asset}}` with template conditionals to show different downloads to different customers:
+Combine `\{\{asset\}\}` with template conditionals to show different downloads to different customers:
 
-```
+```text
 ## Resources
 
 {{#ifEquals customer.name "Acme Corp"}}
