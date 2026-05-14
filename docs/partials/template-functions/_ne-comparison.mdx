@@ -1,7 +1,7 @@
-In the example below, the `ingress_type` field is displayed on the **Config** page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview). This ensures that only users deploying to their own existing cluster are able to select the method for ingress.
+In the following example, the `ingress_type` field appears on the configuration page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview). This ensures that only users deploying to their own existing cluster are able to select the method for ingress.
 
 The following example uses:
-* KOTS [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where KOTS is running
+* Replicated [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster
 * [ne](https://pkg.go.dev/text/template#hdr-Functions) (_not equal_) Go binary operator to compare the rendered value of the Distribution template function to a string, then return `true` if the values are not equal to one another
 
 ```yaml
@@ -45,13 +45,13 @@ spec:
         title: External Postgres  
 ```
 
-The following image shows how the `ingress_type` field is hidden when the distribution of the cluster is `embedded-cluster`. Only the `postgres_type` item is displayed:
+The following image shows how the `ingress_type` field does not appear when the distribution of the cluster is `embedded-cluster`. Only the `postgres_type` item appears:
 
 <img alt="Config page with a Postgres field" src="/images/config-example-distribution-not-ec.png" width="550px"/>
 
 [View a larger version of this image](/images/config-example-distribution-not-ec.png)
 
-Conversely, when the distribution of the cluster is not `embedded-cluster`, both fields are displayed:
+Conversely, when the distribution of the cluster is not `embedded-cluster`, both fields appear:
 
 <img alt="Config page with Ingress and Postgres fields" src="/images/config-example-distribution-not-ec-2.png" width="550px"/>
 
