@@ -1,7 +1,7 @@
-In the example below, the `ingress_type` field is displayed on the **Config** page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview). This ensures that only users deploying to their own existing cluster are able to select the method for ingress.
+In the example below, the `ingress_type` field is displayed on the configuration page only when the distribution of the cluster is _not_ [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview). This ensures that only users deploying to their own existing cluster are able to select the method for ingress.
 
 The following example uses:
-* KOTS [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster where KOTS is running
+* Replicated [Distribution](/reference/template-functions-static-context#distribution) template function to return the Kubernetes distribution of the cluster
 * [ne](https://pkg.go.dev/text/template#hdr-Functions) (_not equal_) Go binary operator to compare the rendered value of the Distribution template function to a string, then return `true` if the values are not equal to one another
 
 ```yaml
