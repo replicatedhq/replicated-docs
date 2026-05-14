@@ -128,11 +128,13 @@ Do NOT apply sentence case to headings that are the exact name of a CLI command,
 
 ### Parentheticals reset sentence case
 
-A parenthetical like `(Beta)` or `(Preview)` opens a new "sentence" within the heading. Capitalize the first word inside the parenthetical.
+A parenthetical like `(Beta)` or `(Preview)` opens a new "sentence" within the heading. **Always capitalize the first word inside the parenthetical — do NOT lowercase it when applying sentence case to the rest of the heading.**
 
-- `(Beta)` is correct — **not** `(beta)`
-- `(Preview)` is correct — **not** `(preview)`
-- `(Deprecated)` is correct — **not** `(deprecated)`
+- `(Beta)` is correct — **never** `(beta)`
+- `(Alpha)` is correct — **never** `(alpha)`
+- `(Deprecated)` is correct — **never** `(deprecated)`
+
+> **Common mistake:** When applying `Replicated.Headings` sentence-case fixes, do not treat parenthetical words as mid-sentence words subject to lowercasing. `## This is a heading (Beta)` stays `## This is a heading (Beta)` — the `B` in `Beta` must remain uppercase.
 
 ### Kubernetes custom resource kinds — always capitalize
 
