@@ -4,9 +4,9 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Embedded Cluster release notes
+# Embedded Cluster v2 release notes
 
-This topic contains release notes for the [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
+This topic contains release notes for the [Replicated Embedded Cluster v2](/embedded-cluster/v2/embedded-overview) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 Additionally, these release notes list the versions of Kubernetes and Replicated KOTS that are available with each version of Embedded Cluster.
 
