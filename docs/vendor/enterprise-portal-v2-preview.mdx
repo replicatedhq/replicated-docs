@@ -1,0 +1,39 @@
+# Preview the Enterprise Portal (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+Before inviting any real customers, use Local Preview to see exactly what they'll experience.
+
+## Local Preview
+
+Run the Enterprise Portal locally using the Replicated CLI. This is the fastest way to iterate on content because you see changes on browser refresh without committing or pushing.
+
+**Prerequisites:** Docker running, the `replicated` CLI installed, and your content repo checked out locally.
+
+From anywhere on your machine:
+
+```shell
+replicated enterprise-portal preview /path/to/your-content-repo --app <your-app-slug>
+```
+
+The CLI pulls a preview container (first run only), starts a local server, and opens the full Enterprise Portal experience at `http://localhost:3000` (auto-increments if the port is busy).
+
+If you are authenticated with the CLI (`replicated login`, `REPLICATED_API_TOKEN`, or `--token`), a customer switcher dropdown appears in the preview toolbar. Switching customers re-renders the page with that customer's entitlements, channel, and license data applied. Without a token, the preview runs with mock customer data.
+
+**Editing content:** The preview reads from your local repo on every request. Edit any file (`theme.yaml`, a markdown page, `toc.yaml`, etc.), save, then refresh the browser. No restart needed.
+
+**Version / branch selector:** The preview lists your local git branches (minus `main`) in the version dropdown. Switching versions renders content from that branch. If your repo isn't a git checkout, you get a single synthetic "local" version that reads the working tree.
+
+## Common Options
+
+```shell
+--port 4000        # choose a specific host port
+--app <slug>       # app to resolve customers + branding against
+--token <token>    # override token (else: REPLICATED_API_TOKEN / stored profile)
+```
+
+:::note
+The local preview mocks market-api endpoints locally. Install flows, instance dashboards, and anything outside of docs content will render mostly empty or log benign errors. This is expected. Content changes must still be committed and pushed through your normal release flow to be visible to real customers.
+:::

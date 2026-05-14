@@ -1,0 +1,163 @@
+# Log in to and Use the Enterprise Portal (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes the new Enterprise Portal experience from the customer's perspective, including how to log in and use the portal features.
+
+## Logging In
+
+Customers can access the Enterprise Portal through several methods:
+
+**Invitation email:** When a vendor invites a customer user, they receive an email with an activation link. Clicking the link opens the portal and activates their account.
+
+**Magic link:** On the login page, customers enter their work email and click "Continue with email." A one-time sign-in link is sent to their inbox. No password is needed.
+
+**Pending invite detection:** If a customer visits the login page and has a pending team invite they haven't accepted yet, the portal informs them about the invite and gives them the option to enter their invite code directly, rather than only showing the magic link flow. After logging in, if a user has accepted one team but has pending invites to other teams, they also see a pending invites section prompting them to accept.
+
+**Self-service signup:** When enabled by the vendor, customers can create their own account by visiting the signup URL, entering their information, and verifying their email with a code.
+
+**SAML SSO (Alpha):** When SAML is configured by the vendor and the customer's team admin, customers can log in using their corporate identity provider credentials. Accounts are provisioned automatically on first SAML login if the email matches a pending invitation.
+
+## Portal Navigation
+
+Once logged in, customers see a sidebar with the navigation defined by the vendor's `toc.yaml`. The default template organizes content into:
+
+- **Installation**: Requirements, release history, and step-by-step install instructions for Linux and Helm
+- **Operations**: Security reports and support bundle management
+- **Updates**: Check for updates and follow upgrade instructions
+- **Support**: FAQ and contact support information
+
+The vendor controls which sections and pages appear for each customer through entitlements and `visible_when` rules. Customers only see content relevant to their license.
+
+A **version dropdown** in the header lets customers switch between documentation versions when multiple are available on their channel.
+
+**Search** is available via the search button in the header or **Cmd+K** (Mac) / **Ctrl+K** (Windows).
+
+## Installing and Upgrading
+
+Install pages show interactive, personalized instructions:
+
+1. The customer selects or starts a new installation from the pending installations list
+1. Configuration options (network availability, version, Kubernetes distribution) update the commands dynamically
+1. The customer copies and runs the commands in their environment
+1. After installation, they can name the instance for easy identification
+
+The install commands are personalized to the selected installation and include the customer's specific credentials. If the customer switches installations or renames their instance, the commands update automatically.
+
+For upgrades, customers use the **Instances & Updates** page to view available updates and follow inline upgrade instructions. Each instance card shows the current version, install method, and update status. Clicking an instance with an available update expands inline upgrade instructions. Instructions remain expanded until the instance reports back with the upgraded version, at which point the card updates in place and collapses.
+
+If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
+
+The **New Installation** button lets customers start new installations, with a dropdown showing the install methods their license allows (Helm, Helm Air Gap, Linux/Embedded Cluster).
+
+Air gap customers can create new instance records manually or by extracting details from an uploaded support bundle.
+
+## Team Management
+
+Customer team admins can manage their portal team from the Team Settings page:
+
+- **Invite users**: Send email invitations to colleagues
+- **Remove users**: Remove team members from the portal
+- **Service accounts**: Create and manage service accounts for programmatic access (CI/CD, automation)
+- **SAML configuration**: When SAML is enabled by the vendor, admins can configure their identity provider by uploading IdP metadata and certificates
+
+## Support Bundles
+
+Customers can generate and upload support bundles from the portal:
+
+- **Generate bundles**: Follow the instructions on the Support Bundles page to generate a diagnostic bundle from their Linux or Helm installation
+- **Upload bundles**: Upload an existing bundle file for vendor analysis
+- **View history**: See previously uploaded bundles and their status
+
+## License Information
+
+Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. This information is accessible from the portal but is read-only for customers.
+
+## Troubleshooting
+
+### Repository Not Showing in Dropdown
+
+If a repository doesn't appear when linking content or Terraform repos, the Replicated GitHub App likely doesn't have access to it. Update permissions in GitHub: Settings > Integrations > Applications > Replicated > Configure > Repository access. After updating, return to the Content tab and the repository should appear.
+
+### Changes Not Appearing
+
+GitHub integration automatically syncs on push. If changes aren't appearing:
+
+- Check the sync status in the Content tab
+- Trigger manual sync from the Content tab (click "Sync")
+
+API manual sync (see [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo) for how to get your `REPO_ID`):
+
+```
+replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/sync
+```
+
+### Pages Not Showing in Navigation
+
+- Check `toc.yaml` includes the page
+- Ensure file path matches `toc.yaml` reference
+- Verify visibility rules (entitlements, channels)
+- Check frontmatter `visible_when` conditions
+- Confirm customer has required entitlements enabled
+
+### Version Branch Not Working
+
+- Check branch exists: `git branch -r`
+- Any branch other than `main` becomes a version
+- For version gating to work, branch names must match release `version_label` values (see [Naming Your Branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches))
+
+### Helm Chart Reference Docs Not Generating
+
+- Confirm the `name` in `toc.yaml` matches a chart name in the promoted release (not the release name, the Helm chart name from `Chart.yaml`)
+- Reference docs generate asynchronously after promotion. Allow a few minutes
+- If the chart hasn't changed since the last promotion (same `values.yaml` and `Chart.yaml`), regeneration is skipped
+- Values annotated with `# @docs:skip` or `# @docs:internal` are intentionally excluded
+
+### Terraform Module Docs Not Loading
+
+- Verify the Terraform module repo is accessible by your GitHub App installation
+- Check the `ref` (tag/branch) exists in the Terraform repo
+- Confirm the module path is correct (subdirectory after `//`)
+- Allow a few minutes for AI-generated content to process
+
+### Terraform Proxy Registry Not Working
+
+- Verify the GitHub App is installed and has access to the Terraform repo (**Enterprise Portal > Terraform**)
+- Confirm the Terraform repo is linked (this is a separate repo from the content repo)
+- Check the customer's license is active, not expired or archived
+- Ensure `version_label` on the channel release matches the git tag (with `v` prefix: version `1.0.0` requires tag `v1.0.0`)
+- Confirm `~/.terraformrc` has credentials for `proxy.replicated.com`
+- Only `github` is supported as the provider suffix in the module source
+
+### Security Center Not Showing
+
+- Confirm the `Enable Security Center in Enterprise Portal` feature flag is enabled for your team
+- Check the per-customer toggle: on the customer's **Enterprise Portal access** tab, **Enable Security Center for this customer** must be on
+- Verify the Security page is included in your `toc.yaml`
+- Security data is generated from release scans. If no releases have been promoted, there is no data to display
+
+### Customer Not Seeing New Portal
+
+- Confirm the customer's **Portal Version** is set to the new portal on their **Enterprise Portal access** tab
+- Verify the Enterprise Portal site is deployed (check that the Content tab shows a linked repo and synced branches)
+- If using a custom domain, confirm DNS is pointed at the new portal domain (`{appSlug}.enterpriseportal.app`), not the Classic domain (`get.replicated.com`)
+
+### Customer Invitation Not Received
+
+- Check the **Email History** on the customer's EP access tab for delivery status
+- Verify the customer's email domain is not blocked by **Domain Restrictions** (if enabled)
+- Check spam/junk folders. If using a custom email sender domain, confirm DKIM and Return-Path DNS records are verified
+- If the customer has a pending invite and goes to the login page, they will be prompted to enter their invite code directly
+
+### Self-Service Signup Not Working
+
+- Confirm self-service sign-ups are enabled in **Enterprise Portal > Self-Service Sign-Ups**
+- The signup URL is unique to your application. Verify the URL being shared is correct
+
+### Login Footer Showing Replicated Branding
+
+- Customize the login page footer by setting `loginFooterText` and `loginFooterLinks` in your `theme.yaml`
+- On `*.enterpriseportal.app` domains (no custom domain), keeping a footer is recommended to avoid Google Safe Browsing flagging
+- On custom domains, you can remove the footer entirely by omitting the fields or setting `loginFooterText` to an empty string

@@ -1,0 +1,57 @@
+# Helm Reference Docs (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+If your releases contain Helm charts, Enterprise Portal can automatically generate reference documentation when you promote a release. No manual authoring is required.
+
+Any Helm charts in a promoted release will generate reference docs. Add a `helm_chart` entry to `toc.yaml`:
+
+```yaml
+- title: Reference
+  icon: book
+  items:
+    - title: My App Chart
+      helm_chart:
+        name: my-app
+    - title: Operator Chart
+      helm_chart:
+        name: my-app-operator
+```
+
+The `name` must match a chart name in your promoted release (the Helm chart name from `Chart.yaml`, not the release name).
+
+## Process
+
+When you promote a release to a channel, Enterprise Portal automatically:
+
+1. Extracts `values.yaml` and `Chart.yaml` from the release's chart archives
+1. Parses all configurable values with types, defaults, and inline comments
+1. Groups values into sections (Container Images, Service, Ingress, Resources, Persistence, Authentication, etc.)
+1. AI improves descriptions for any values lacking comments
+1. Generates deployment scenarios with example YAML
+
+:::note
+Steps 4 and 5 run asynchronously. You may see "Generating..." placeholders for a few minutes after promotion. Refresh the page. AI-generated content appears once processing completes.
+:::
+
+A content hash ensures regeneration only runs when chart content actually changes.
+
+## Generated Content
+
+The generated reference page shows:
+
+- **Chart header**: Name, version, description
+- **Notes**: Warnings, security defaults, and important configuration callouts
+- **Values table**: For each section: key path, type, default, description, valid options, and security notes
+- **Deployment scenarios**: Example `values.yaml` snippets for common configurations (e.g., production, dev, HA)
+- **Version comparison**: Select two versions to see a diff of values that were added, removed, or changed between releases
+
+## Controlling Values Visibility
+
+You can control comments and visibility in your `values.yaml`:
+
+- Inline comments (`# ...`) become value descriptions
+- Add `# @docs:skip` or `# @docs:internal` to exclude values from the reference
+- Fields with names like `password`, `secret`, `token`, or `apiKey` are automatically flagged with security notes

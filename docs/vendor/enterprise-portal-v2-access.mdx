@@ -1,0 +1,27 @@
+# View a Customer's Enterprise Portal (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes how you can view the new Enterprise Portal as a specific customer from the Vendor Portal. This is useful when testing your application installation and upgrade instructions, previewing customizations, or managing Enterprise Portal users on behalf of one of your customers.
+
+For information about how end users can sign up for an account and log in to the Enterprise Portal, see [Log in to and Use the Enterprise Portal (New)](/vendor/enterprise-portal-v2-use).
+
+## Login as Customer
+
+On the customer's **Enterprise Portal access** tab (or the EP card on the customer's Reporting page), click **Login as customer**. This generates a one-time login link and opens the portal in a new tab.
+
+This is useful for quick checks without creating a permanent user account in the customer's portal. The system creates a temporary system user scoped to that customer and generates a magic link nonce that expires after 10 minutes.
+
+The login routes to the correct portal version automatically. If the customer is on the new Enterprise Portal, the link opens `{appSlug}.enterpriseportal.app` (or your custom domain). If the customer is on Classic, the link opens `get.replicated.com`.
+
+## Local CLI Preview
+
+For iterating on content without affecting any customer, use the local CLI preview:
+
+```shell
+replicated enterprise-portal preview /path/to/your-content-repo --app <your-app-slug>
+```
+
+The customer switcher in the preview toolbar lets you simulate any customer's entitlements and channel. See [Preview the Enterprise Portal (New)](/vendor/enterprise-portal-v2-preview) for details.

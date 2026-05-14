@@ -1,0 +1,80 @@
+# Customize Portal Branding (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+Branding for the new Enterprise Portal is configured entirely through your content repo. There is no branding UI in the Vendor Portal. Include a `theme.yaml` file in your repo to override branding for any version of your docs.
+
+For content customization (pages, navigation, MDX components), see [Customize Portal Content (New)](/vendor/enterprise-portal-v2-content).
+
+## theme.yaml Reference
+
+:::note
+All branding fields must be nested under the `branding:` key. Placing fields like `primaryColor` at the root level will cause a sync error. Only `customCSS` and `customCSSFile` go at the root level.
+:::
+
+**Example:**
+
+```yaml
+# theme.yaml
+branding:
+  title: "Acme Portal"
+  primaryColor: "#4f46e5"
+  secondaryColor: "#6366f1"
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  contact: "support@acme.com"
+  supportPortalLink: "https://support.acme.com"
+  background: minimal
+
+  # Login page footer. Customize or remove these to brand your login page.
+  # Warning: removing the login footer without a custom domain may cause
+  # your portal to be flagged by Google Safe Browsing.
+  loginFooterText: "Secured by Acme Corp"
+  loginFooterLinks:
+    - label: Privacy
+      url: https://acme.com/privacy
+    - label: Terms
+      url: https://acme.com/terms
+
+# Optional: custom CSS (inline or file reference)
+customCSS: |
+  .portal-header { border-bottom: 2px solid #4f46e5; }
+# customCSSFile: assets/custom.css
+```
+
+## Branding Fields
+
+| Field | Type | Notes |
+| :--- | :--- | :--- |
+| `title` | string | Portal title override, max 255 chars |
+| `overview` | string | Portal description, max 2000 chars |
+| `logo` | file path | Logo image, max 2MB (resolved to data URI) |
+| `favicon` | file path | Favicon, max 500KB |
+| `primaryColor` | hex | Primary brand color (`#RGB` or `#RRGGBB`) |
+| `secondaryColor` | hex | Secondary brand color |
+| `linkColor` | hex | Link color |
+| `linkHoverColor` | hex | Link hover color |
+| `background` | enum | `minimal`, `custom`, or `image` |
+| `backgroundImage` | file path | Background image, max 5MB (requires `background: image`) |
+| `customColor1` / `customColor2` | hex | Custom gradient colors (required when `background: custom`) |
+| `headerColor` / `headerGradientEnd` | hex | Header gradient |
+| `sidebarColor` / `sidebarGradientEnd` | hex | Sidebar gradient |
+| `contentBackgroundColor` / `contentBackgroundGradientEnd` | hex | Content area gradient |
+| `customCSS` | inline string | Inline CSS overrides, max 50KB |
+| `customCSSFile` | file path | Path to external CSS file, max 50KB |
+| `contact` | string | Support contact info, max 255 chars |
+| `supportPortalLink` | URL | External support link, max 2048 chars (http/https only) |
+| `loginFooterText` | string | Login page footer text, max 255 chars. Omit to use defaults. Set to empty string to hide. |
+| `loginFooterLinks` | list | Login page footer links. Each item has `label` (string, max 255 chars) and `url` (http/https, max 2048 chars). Omit to use defaults. Set to empty list to hide. |
+
+## Login Page Footer
+
+By default, the login page shows a footer with "Secured by Enterprise Portal" and links to Privacy, Terms, and Contact pages on `enterpriseportal.app`. You can customize the text and links via `loginFooterText` and `loginFooterLinks` to point to your own pages.
+
+On a custom domain, you can remove the footer entirely by omitting these fields or setting `loginFooterText` to an empty string.
+
+:::caution
+On `*.enterpriseportal.app` domains (no custom domain), keeping the footer is recommended to avoid Google Safe Browsing flagging.
+:::

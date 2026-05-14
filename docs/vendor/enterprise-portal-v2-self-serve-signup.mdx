@@ -1,0 +1,48 @@
+# Enable Self-Service Sign-Ups (New)
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+Allow potential customers to sign up for a trial or community license directly from the Enterprise Portal, without a vendor-initiated invitation.
+
+## Configuring Self-Service Sign-Ups
+
+1. Go to **Enterprise Portal > Self-Service Sign-Ups** in the Vendor Portal
+1. Configure the default license settings for auto-generated licenses:
+   - **Channel**: Which channel the trial customer is assigned to
+   - **Expiration**: How long the trial license is valid (e.g., 30 days)
+   - **License type**: Trial or Community
+   - **Install methods**: Which installation methods are enabled (Helm, Embedded Cluster, air gap)
+1. Optionally add a **Terms & Conditions URL** that users must acknowledge during signup
+1. Enable the signup flow
+
+Once enabled, a unique signup URL is generated for your application. Share this URL on your website, in marketing materials, or anywhere you want to offer self-service access.
+
+## Custom Signup Fields
+
+Extend the registration form with custom data collection fields to capture information about the prospect:
+
+1. In the Self-Service Sign-Ups configuration, add custom fields
+1. For each field, configure:
+   - **Label**: What the user sees (e.g., "Job Title", "Company Size", "Use Case")
+   - **Placeholder text**: Optional hint text in the input field
+   - **Required/Optional**: Whether the field must be filled out to complete signup
+
+Each field is assigned a stable identifier that persists even if you rename the label. This is useful for webhook integrations and event tracking (e.g., routing signups to different Slack channels based on company size).
+
+## Signup Flow (Customer Experience)
+
+When a customer visits the signup URL:
+
+1. They enter their company name and work email
+1. If custom fields are configured, they fill those in
+1. If Terms & Conditions are configured, they must acknowledge them
+1. They receive an email with a verification code
+1. After entering the verification code, their account is activated and they can access the portal
+
+## Managing Signups
+
+- **Pending Trials:** New signups appear in the **Pending Trials** section of the Vendor Portal until they complete email verification and become active customers
+- **Custom field responses:** View the data collected from custom signup fields in the Pending Trials section
+- **Notifications:** Use `customer.created` event notifications to get alerted when a new trial customer signs up
