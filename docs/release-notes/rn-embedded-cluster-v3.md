@@ -23,9 +23,9 @@ Additionally, these release notes list the versions of Kubernetes that are avail
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.34.6</td>
-    <td id="center">1.33.10</td>
-    <td id="center">1.32.13</td>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
   </tr>
 </table>
 
@@ -61,9 +61,9 @@ Additionally, these release notes list the versions of Kubernetes that are avail
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.34.6</td>
-    <td id="center">1.33.10</td>
-    <td id="center">1.32.13</td>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
   </tr>
 </table>
 
@@ -82,9 +82,9 @@ Additionally, these release notes list the versions of Kubernetes that are avail
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.34.6</td>
-    <td id="center">1.33.10</td>
-    <td id="center">1.32.13</td>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
   </tr>
 </table>
 
