@@ -252,24 +252,37 @@ spec:
 ##### Set optional values with Replicated template functions
 
 ```yaml
-# HelmChart custom resource
+# Replicated HelmChart custom resource
 
 apiVersion: kots.io/v1beta2
 kind: HelmChart
+metadata:
+  name: outline
 spec:
+  chart:
+    name: outline
+    chartVersion: 0.7.3
+  releaseName: outline
+  namespace: outline
+spec:  
   optionalValues:
-    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
-      recursiveMerge: false
+    - when: "repl{{ ConfigOptionEquals 'postgres_type' 'external_postgres' }}"
+      recursiveMerge: true
       values:
-        externalDatabase:
-          host: "repl{{ ConfigOption `external_db_host`}}"
-          user: "repl{{ ConfigOption `external_db_user`}}"
-          password: "repl{{ ConfigOption `external_db_password`}}"
-          database: "repl{{ ConfigOption `external_db_database`}}"
-          port: "repl{{ ConfigOption `external_ db_port`}}"
+        externalPostgresql:
+          host: "repl{{ ConfigOption 'external_postgres_host' }}"
+          port: "repl{{ ConfigOption 'external_postgres_port' }}"
+          database: "repl{{ ConfigOption 'external_postgres_database' }}"
+          username: "repl{{ ConfigOption 'external_postgres_username' }}"
+          password: "repl{{ ConfigOption 'external_postgres_password' }}"
+    - when: "repl{{ ConfigOptionEquals 'redis_type' 'external_redis' }}"
+      recursiveMerge: true
+      values:
+        externalRedis:
+          host: "repl{{ ConfigOption 'external_redis_host' }}"
+          port: "repl{{ ConfigOption 'external_redis_port' }}"
+          password: "repl{{ ConfigOption 'external_redis_password' }}"
 ```
-
-During installation, the Replicated installer renders the template functions and sets the `externalDatabase` values in the HelmChart `values.yaml` file _only_ when the user selects the `external` option for `mariadb_type`.
 
 ##### Recursive merge
 

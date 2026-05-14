@@ -22,11 +22,11 @@ This section includes examples of how to use Replicated template functions to co
 
 ### Boolean comparison
 
-Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many Replicated template functions return string values, comparing boolean values often requires using the KOTS [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
+Boolean values can be used in comparisons to evaluate if a given statement is true or false. Because many Replicated template functions return string values, comparing boolean values often requires using the Replicated [ParseBool](/reference/template-functions-static-context#parsebool) template function to return the boolean represented by the string.
 
-One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the KOTS Admin Console **Config** page only when the customer's license has a certain entitlement.
+One common use case for working with boolean values is to check that a given field is present in the customer's license. For example, you might need to show a configuration option on the Replicated Admin Console **Config** page only when the customer's license has a certain entitlement.
 
-The following example creates a conditional statement in the Replicated Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option on the Admin Console **Config** page. 
+The following example creates a conditional statement in the Replicated Config custom resource that evaluates to true when a specified license field is present in the customer's license _and_ the customer enables a specified configuration option. 
 
 ```yaml
 # Replicated Config custom resource
@@ -66,22 +66,22 @@ This example uses the following Replicated template functions:
 ### Integer comparison
 
 Integer values can be compared using operators such as greater than, less than, equal to, and so on. Because many Replicated template functions return string values, working with integer values often requires using another function to return the integer represented by the string, such as:
-* KOTS [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
+* Replicated [ParseInt](/reference/template-functions-static-context#parseint), which returns the integer value represented by the string with the option to provide a `base` other than 10
 * Sprig [atoi](https://masterminds.github.io/sprig/conversion.html), which is equivalent to ParseInt(s, 10, 0), converted to type integer
 
-A common use case for comparing integer values with Replicated template functions is to display different configuration options on the KOTS Admin Console **Config** page depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the **Config** page depending on the customer's team size.
+A common use case for comparing integer values with Replicated template functions is to display different configuration options on the configuration screen in the Replicated installer UI depending on integer values from the customer's license. For example, licenses might include an entitlement that defines the number of seats the customer is entitled to. In this case, it can be useful to conditionally display or hide certain fields on the configuation screen depending on the customer's team size.
 
 <IntegerComparison/>
 
 ### String comparison
 
-A common use case for string comparison is to compare the rendered value of a Replicated template function against a string to conditionally show or hide fields on the KOTS Admin Console **Config** page depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
+A common use case for string comparison is to compare the rendered value of a Replicated template function against a string to conditionally show or hide fields on the configuration screen in the Replicated installer UI depending on details about the customer's environment. For example, a string comparison can be used to check the Kubernetes distribution of the cluster where an application is deployed.
 
 <StringComparison/>
 
 ### Not equal to comparison
 
-It can be useful to compare the rendered value of a Replicated template function against another value to check if the two values are different. For example, you can conditionally show fields on the KOTS Admin Console **Config** page only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated embedded cluster](/embedded-cluster/v3/embedded-overview).
+It can be useful to compare the rendered value of a Replicated template function against another value to check if the two values are different. For example, you can conditionally show certain fields on the configuration screen in the Replicated installer UI only when the Kubernetes distribution of the cluster where the application is deployed is _not_ [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview).
 
 <NeComparison/>
 
@@ -89,7 +89,7 @@ It can be useful to compare the rendered value of a Replicated template function
 
 Logical comparisons such as AND, OR, and NOT can be used with Replicated template functions. A common use case for logical AND comparisons is to construct more complex conditional statements where it is necessary that two different conditions are both true.
 
-The following example shows how to use an `and` operator that evaluates to true when two different configuration options on the Admin Console **Config** page are both enabled. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+The following example shows how to use an `and` operator that evaluates to true when two different configuration options are both enabled. This example uses the Replicated [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
 # Replicated Config custom resource
@@ -143,19 +143,25 @@ This section includes examples of using Replicated template functions to constru
 
 ### If-else statements
 
-A common use case for if-else statements with Replicated template functions is to set values for resources or objects deployed by your application, such as custom annotations or service types, based on user-specific data.
-
-This section includes examples of both single line and multi-line if-else statements. Using multi-line formatting can be useful to improve the readability of YAML files when longer or more complex if-else statements are needed.
-
-Multi-line if-else statements can be constructed using YAML block scalars and block chomping characters to ensure the rendered result is valid YAML. A _folded_ block scalar style is denoted using the greater than (`>`) character. With the folded style, single line breaks in the string are treated as a space. Additionally, the block chomping minus (`-`) character is used to remove all the line breaks at the end of a string. For more information about working with these characters, see [Block Style Productions](https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions) in the YAML documentation.
+A common use case for if-else statements with Replicated template functions is to set values for resources or objects deployed by your application,
+such as custom annotations or service types, based on user-specific data.
 
 :::note
-For Helm-based applications that need to use more complex or nested if-else statements, you can alternatively use templating within your Helm chart `templates` rather than in the Replicated HelmChart custom resource. For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
+For applications that need to use more complex or nested if-else statements, you can alternatively use templating within your Helm chart `templates` rather than in the Replicated HelmChart custom resource.
+For more information, see [If/Else](https://helm.sh/docs/chart_template_guide/control_structures/#ifelse) in the Helm documentation.
 :::
 
-#### Single line
+For most use cases, use single-line formatting for if-else statements.
+Multi-line formatting can be useful to improve the readability of YAML files for longer or more complex if-else statements.
 
-The following example shows if-else statements used in the Replicated HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application. This example uses the KOTS [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
+You can construct multi-line if-else statements using YAML block scalars and block chomping characters to ensure the rendered result is valid YAML:
+* Use the greater than (`>`) character for a _folded_ block scalar style. With the folded style, single line breaks in the string are treated as a space.
+* Use the block chomping minus (`-`) character to remove all the line breaks at the end of a string.
+
+For more information about working with these characters, see [Block Style Productions](https://yaml.org/spec/1.2.2/#chapter-8-block-style-productions) in the YAML documentation.
+
+The following example shows if-else statements used in the Replicated HelmChart custom resource `values` field to render different values depending on if the user selects a load balancer or an ingress controller as the ingress type for the application.
+This example uses the Replicated [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) template function to return a boolean that evaluates to true if the configuration option value is equal to the supplied value.
 
 ```yaml
 # Replicated HelmChart custom resource
@@ -185,99 +191,13 @@ spec:
             targetPort: 8081
 ```
 
-#### Multi-line in Replicated HelmChart values
-
-The following example uses a multi-line if-else statement in the Replicated HelmChart custom resource to render the path to the Replicated SDK image depending on if the user pushed images to a local private registry.
-
-This example uses the following Replicated template functions:
-* [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
-* [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
-* [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
-
-:::note
-This example uses the `{{repl ...}}` syntax rather than the `repl{{ ... }}` syntax to improve readability in the YAML file. However, both syntaxes are supported for this use case. For more information, see [Syntax](/reference/template-functions-about#syntax) in _About Template Functions_.
-:::
-
-```yaml
-# Replicated HelmChart custom resource
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  values:
-    images:
-      replicated-sdk: >-
-        {{repl if HasLocalRegistry -}}
-          {{repl LocalRegistryHost }}/{{repl LocalRegistryNamespace }}/replicated-sdk:1.0.0-beta.29
-        {{repl else -}}
-          docker.io/replicated/replicated-sdk:1.0.0-beta.29
-        {{repl end}}
-```
-
-Given the example above, if the user is _not_ using a local registry, then the `replicated-sdk` value in the Helm chart is set to the location of the image on the default docker registry, as shown below:
-
-```yaml
-# Helm chart values file
-
-images:
-  replicated-sdk: 'docker.io/replicated/replicated-sdk:1.0.0-beta.29'
-```
-
-#### Multi-line in Secret object
-
-The following example uses multi-line if-else statements in a Secret object deployed by KOTS to conditionally set the database hostname, port, username, and password depending on if the customer uses the database embedded with the application or brings their own external database.
-
-This example uses the following Replicated template functions:
-* [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) to return a boolean that evaluates to true if the configuration option value is equal to the supplied value
-* [ConfigOption](/reference/template-functions-config-context#configoption) to return the user-supplied value for the specified configuration option 
-* [Base64Encode](/reference/template-functions-static-context#base64encode) to encode the string with base64
-
-:::note
-This example uses the `{{repl ...}}` syntax rather than the `repl{{ ... }}` syntax to improve readability in the YAML file. However, both syntaxes are supported for this use case. For more information, see [Syntax](/reference/template-functions-about#syntax) in _About Template Functions_.
-:::
-
-```yaml
-# Postgres Secret
-apiVersion: v1
-kind: Secret
-metadata:
-  name: postgres
-data:
-  # Render the value for the database hostname depending on if an embedded or
-  # external db is used.
-  # Also, base64 encode the rendered value.
-  DB_HOST: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
-      {{repl Base64Encode "postgres" }}
-    {{repl else -}}
-      {{repl ConfigOption "external_postgres_host" | Base64Encode }}
-    {{repl end}}
-  DB_PORT: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
-      {{repl Base64Encode "5432" }}
-    {{repl else -}}
-      {{repl ConfigOption "external_postgres_port" | Base64Encode }}
-    {{repl end}}
-  DB_USER: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
-      {{repl Base64Encode "postgres" }}
-    {{repl else -}}
-      {{repl ConfigOption "external_postgres_user" | Base64Encode }}
-    {{repl end}}
-  DB_PASSWORD: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" -}}
-      {{repl ConfigOption "embedded_postgres_password" | Base64Encode }}
-    {{repl else -}}
-      {{repl ConfigOption "external_postgres_password" | Base64Encode }}
-    {{repl end}}
-```
-
 ### Ternary operators
 
-Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if-else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement. For example, a common use case for ternary operators is to template the path to an image repository based on user-supplied values.
+Ternary operators are useful for templating strings where certain values within the string must be rendered differently depending on a given condition. Compared to if-else statements, ternary operators are useful when a small portion of a string needs to be conditionally rendered, as opposed to rendering different values based on a conditional statement.
+For example, you could use ternary operators to template the path to an image repository based on user-supplied values.
 
-The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used. This example uses the following Replicated template functions:
+The following example uses ternary operators to render the registry and repository for a private nginx image depending on if a local image regsitry is used.
+This example uses the following Replicated template functions:
 * [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) to return true if the environment is configured to rewrite images to a local registry
 * [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) to return the local registry host configured by the user
 * [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) to return the local registry namespace configured by the user
@@ -312,13 +232,10 @@ When using template functions within nested YAML, it is important that the rende
 
 The [nindent](https://masterminds.github.io/sprig/strings.html) function can be used to prepend a new line to the beginning of the string and indent the string by a specified number of spaces.
 
-#### Indent templated Helm chart values
-
-The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
+The following example shows templating a Helm chart value that sets annotations for an Ingress object. This example uses the Replicated [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the configuration screen in the Replicated installer UI. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value ten spaces.
 
 ```yaml
 # Replicated HelmChart custom resource
-
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -328,20 +245,6 @@ spec:
     services:
       myservice:
         annotations: repl{{ ConfigOption "additional_annotations" | nindent 10 }}
-```
-
-#### Indent templated annotations in manifest files
-
-The following example shows templating annotations for an Ingress object. This example uses the KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to return user-supplied annotations from the Admin Console **Config** page. It also uses [nindent](https://masterminds.github.io/sprig/strings.html) to indent the rendered value four spaces.
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-ingress
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
 ```
 
 ### Render quoted values
@@ -373,17 +276,18 @@ This section includes an example of using variables with Replicated template fun
 
 ### Using variables to generate TLS certificates in JSON
 
-You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with Replicated template functions to generate certificate authorities (CAs) and signed certificates in JSON. One use case for this is to generate default CAs, certificates, and keys that users can override with their own values on the Admin Console **Config** page.
+You can use the Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions with Replicated template functions to generate certificate authorities (CAs) and signed certificates in JSON.
+One use case for this is to generate default CAs, certificates, and keys that users can override with their own values.
 
 The Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions require the subject's common name and the certificate's validity duration in days. The `genSignedCert` function also requires the CA that will sign the certificate. You can use variables and Replicated template functions to provide the necessary parameters when calling these functions.
 
-The following example shows how to use variables and Replicated template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the **Config** page) to generate the certificate chain because variables used in the Replicated Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
+The following example shows how to use variables and Replicated template functions in the `default` property of a [`hidden`](/reference/custom-resource-config#hidden) item to pass parameters to the `genCA` and `genSignedCert` functions and generate a CA, certificate, and key. This example uses a `hidden` item (which is an item that is not displayed on the configuration screen) to generate the certificate chain because variables used in the Replicated Config custom resource can only be accessed from the same item where they were declared. For this reason, `hidden` items can be useful for evaluating complex templates.
 
 This example uses the following:
-* KOTS [ConfigOption](/reference/template-functions-config-context#configoption) template function to render the user-supplied value for the ingress hostname. This is passed as a parameter to the [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions 
+* Replicated [ConfigOption](/reference/template-functions-config-context#configoption) template function to render the user-supplied value for the ingress hostname. This is passed as a parameter to the [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions 
 * Sprig [genCA](https://masterminds.github.io/sprig/crypto.html) and [genSignedCert](https://masterminds.github.io/sprig/crypto.html) functions to generate a CA and a certificate signed by the CA
 * Sprig [dict](https://masterminds.github.io/sprig/dicts.html), [set](https://masterminds.github.io/sprig/dicts.html), and [dig](https://masterminds.github.io/sprig/dicts.html) dictionary functions to create a dictionary with entries for both the CA and the certificate, then traverse the dictionary to return the values of the CA, certificate, and key.
-* [toJson](https://masterminds.github.io/sprig/defaults.html) and [fromJson](https://masterminds.github.io/sprig/defaults.html) Sprig functions to encode the CA and certificate into a JSON string, then decode the JSON for the purpose of displaying the values on the **Config** page as defaults
+* [toJson](https://masterminds.github.io/sprig/defaults.html) and [fromJson](https://masterminds.github.io/sprig/defaults.html) Sprig functions to encode the CA and certificate into a JSON string, then decode the JSON for the purpose of displaying the values on the configuration screen as defaults
 
 :::important
 Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Before using this example with your application, be sure that your application can handle updating these parameters dynamically.
@@ -427,7 +331,7 @@ spec:
           default: repl{{ fromJson (ConfigOption "tls_json") | dig "cert" "Key" "" }}
 ```
 
-The following image shows how the default values for the CA, certificate, and key are displayed on the **Config** page:
+The following image shows how the default values for the CA, certificate, and key are displayed on the configuration screen:
 
 <img alt="Default values for CA, certificate, and key on the Config page" src="/images/certificate-chain-default-values.png" width="550px"/>
 
