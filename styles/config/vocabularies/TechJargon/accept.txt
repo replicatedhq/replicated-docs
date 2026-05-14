@@ -104,3 +104,15 @@ subcharts
 subpath
 namespaces
 textarea
+repo
+repos
+repo's
+semver
+frontmatter
+callout
+callouts
+signups
+enum
+unpublish
+PDFs
+URIs

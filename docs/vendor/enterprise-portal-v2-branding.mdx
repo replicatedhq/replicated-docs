@@ -8,7 +8,7 @@ Branding for the new Enterprise Portal is configured entirely through your conte
 
 For content customization (pages, navigation, MDX components), see [Customize Portal Content (New)](/vendor/enterprise-portal-v2-content).
 
-## theme.yaml Reference
+## theme.yaml reference
 
 :::note
 All branding fields must be nested under the `branding:` key. Placing fields like `primaryColor` at the root level will cause a sync error. Only `customCSS` and `customCSSFile` go at the root level.
@@ -44,7 +44,7 @@ customCSS: |
 # customCSSFile: assets/custom.css
 ```
 
-## Branding Fields
+## Branding fields
 
 | Field | Type | Notes |
 | :--- | :--- | :--- |
@@ -69,7 +69,7 @@ customCSS: |
 | `loginFooterText` | string | Login page footer text, max 255 chars. Omit to use defaults. Set to empty string to hide. |
 | `loginFooterLinks` | list | Login page footer links. Each item has `label` (string, max 255 chars) and `url` (http/https, max 2048 chars). Omit to use defaults. Set to empty list to hide. |
 
-## Login Page Footer
+## Login page footer
 
 By default, the login page shows a footer with "Secured by Enterprise Portal" and links to Privacy, Terms, and Contact pages on `enterpriseportal.app`. You can customize the text and links via `loginFooterText` and `loginFooterLinks` to point to your own pages.
 

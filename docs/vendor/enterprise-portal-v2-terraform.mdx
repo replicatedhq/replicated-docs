@@ -17,14 +17,14 @@ Enterprise Portal provides two complementary capabilities for distributing Terra
 Terraform module features require the `Terraform Modules in Enterprise Portal` feature flag to be enabled for your team. If you don't see the **Terraform** tab in Enterprise Portal, contact Replicated support to enable it.
 :::
 
-## Enabling Terraform for Your App
+## Enabling Terraform for your app
 
 Terraform features require two setup steps on the vendor side before customers see anything:
 
 1. **Feature flag enablement**: A Replicated admin enables the `Terraform Modules in Enterprise Portal` flag for your team. Contact Replicated support to request this.
 1. **Link a Terraform repository**: In the **Terraform** tab, link the GitHub repo containing your Terraform modules (see [Proxy Registry Vendor Setup](#vendor-setup) below).
 
-## Controlling Which Customers See Terraform Content
+## Controlling which customers see Terraform content
 
 There is no built-in Terraform-specific license field. Customer visibility is controlled through your content repo's `visible_when` entitlements in `toc.yaml`. To gate Terraform content per customer:
 
@@ -48,7 +48,7 @@ Customers without the entitlement won't see the navigation items or be able to a
 
 For the proxy registry (module downloads via `terraform init`), access is gated by the customer's license being active and on a channel with promoted releases containing matching version labels. There is no additional per-customer toggle needed for download access. If a customer has a valid license, they can pull any module version available on their channel.
 
-## Module Reference Docs
+## Module reference docs
 
 Reference Terraform modules in your content repo's `toc.yaml`:
 
@@ -84,11 +84,11 @@ For each module, Enterprise Portal parses `variables.tf`, `outputs.tf`, `version
 AI-generated usage examples and descriptions are produced asynchronously. You may see "Generating..." placeholders for a few minutes after sync. Refresh the page once processing completes.
 :::
 
-## Proxy Registry
+## Proxy registry
 
 Enterprise Portal acts as a **Terraform module proxy registry**, allowing customers to pull modules directly via `terraform init` using their existing license ID.
 
-### Vendor Setup (One-Time) {#vendor-setup}
+### Vendor setup (one-time) {#vendor-setup}
 
 **Step 1: Install Replicated GitHub App**
 
@@ -116,7 +116,7 @@ Create releases and promote them to channels. The `version_label` on each channe
 Version labels must match git tags with a `v` prefix. For example, a release with `version_label: 1.0.0` requires git tag `v1.0.0` in the Terraform repo. If the tag doesn't exist, customers will get a 404 when trying to download the module.
 :::
 
-### Customer Setup (One-Time)
+### Customer setup (one-time)
 
 1. Get their **license ID** from Enterprise Portal (same one used for Docker image pulls)
 1. Add credentials to `~/.terraformrc`:
@@ -138,7 +138,7 @@ module "your-app" {
 
 Where `<app-slug>` is your app's slug, `<repo-name>` is the linked Terraform repo name, and `github` is the required provider suffix.
 
-### How It Works
+### How it works
 
 When the customer runs `terraform init`, Terraform makes four sequential requests to `proxy.replicated.com`:
 
@@ -149,7 +149,7 @@ When the customer runs `terraform init`, Terraform makes four sequential request
 
 The customer **never sees** the GitHub token, repo URL, or any internal infrastructure. They only ever send their license ID and only ever talk to `proxy.replicated.com`.
 
-### Version Gating
+### Version gating
 
 Versions are gated by the existing release/channel system:
 
@@ -158,7 +158,7 @@ Versions are gated by the existing release/channel system:
 - The proxy only returns versions from releases on the customer's channel
 - Licenses pinned to a specific channel sequence see only versions up to that sequence
 
-### Current Limitations
+### Current limitations
 
 - No `terraform login` support: customers manually configure `~/.terraformrc`
 - No tarball caching: all requests go through to GitHub

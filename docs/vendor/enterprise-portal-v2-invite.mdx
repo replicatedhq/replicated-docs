@@ -6,7 +6,7 @@ Features described on this page are in alpha and subject to change. For access, 
 
 This topic describes how to control which customers can access the new Enterprise Portal and how to manage their portal users from the Vendor Portal.
 
-## Enabling Enterprise Portal for Customers
+## Enabling Enterprise Portal for customers
 
 For vendors using both Classic and New Enterprise Portal (mixed mode), customer access is controlled per-customer:
 
@@ -16,7 +16,7 @@ For vendors using both Classic and New Enterprise Portal (mixed mode), customer 
 
 For vendors on the New Enterprise Portal only, Enterprise Portal is always enabled for all customers. No per-customer enable toggle is needed.
 
-## Inviting Users
+## Inviting users
 
 To invite a customer's end user to the portal:
 
@@ -27,7 +27,7 @@ To invite a customer's end user to the portal:
 
 You can also enable **Automatically invite customer email to Enterprise Portal on creation** so that every new customer with an email address receives an invite automatically.
 
-## Removing Users
+## Removing users
 
 To remove a user from a customer's portal team:
 
@@ -35,7 +35,7 @@ To remove a user from a customer's portal team:
 1. In the **Customer Users** table, click the menu icon (**...**) next to the user
 1. Select **Remove user**
 
-## Domain Restrictions
+## Domain restrictions
 
 Restrict which email domains can be invited to a customer's portal:
 
@@ -45,7 +45,7 @@ Restrict which email domains can be invited to a customer's portal:
 
 Only users with email addresses matching an allowed domain can be invited. This prevents accidental invitations to personal email addresses or unauthorized domains.
 
-## SAML Authentication (Alpha)
+## SAML authentication (Alpha)
 
 Allow customers to use their corporate identity provider for portal login:
 
@@ -55,7 +55,7 @@ Allow customers to use their corporate identity provider for portal login:
 
 SAML supports just-in-time user provisioning. When a user logs in via SAML for the first time and their email matches a pending invitation, their account is automatically activated.
 
-## Service Accounts
+## Service accounts
 
 Service accounts provide programmatic access to the Enterprise Portal (e.g., for CI/CD pipelines pulling install commands or registry credentials).
 
@@ -63,7 +63,7 @@ Service accounts provide programmatic access to the Enterprise Portal (e.g., for
 - Service accounts are created automatically when a customer starts a new installation from the portal
 - Vendors can revoke service accounts from the Vendor Portal
 
-## Email History
+## Email history
 
 Track all emails sent to a customer through the Enterprise Portal:
 

@@ -8,7 +8,7 @@ This topic describes how to customize the content in the new Enterprise Portal, 
 
 For branding and theme customization, see [Customize Portal Branding (New)](/vendor/enterprise-portal-v2-branding).
 
-## Content Template Structure {#content-template-structure}
+## Content template structure {#content-template-structure}
 
 The default content template ([replicatedhq/enterprise-portal-content](https://github.com/replicatedhq/enterprise-portal-content)) provides a working portal out of the box with the following structure:
 
@@ -91,7 +91,7 @@ overrides:
 
 The template pages use built-in MDX components (see [MDX Components](#mdx-components)) to render interactive installation instructions, version selectors, support bundle uploads, and more. You can customize any page by editing the markdown and MDX, or replace the entire structure with your own.
 
-## Table of Contents
+## Table of contents
 
 The `toc.yaml` file at the root of your repo defines the sidebar navigation. Each navigation item has a `title` and one of the following content types:
 
@@ -106,7 +106,7 @@ Every item also supports `icon` and `visible_when` (see [Visibility](#visibility
 
 Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
 
-### Complete Example
+### Complete example
 
 Here's a `toc.yaml` showing all content types together:
 
@@ -152,11 +152,11 @@ overrides:
   home: pages/getting-started.md
 ```
 
-## MDX Components {#mdx-components}
+## MDX components {#mdx-components}
 
 Enterprise Portal content supports MDX, which is markdown with embedded React components. These components render interactive UI elements that adapt to each customer's license, entitlements, and instance state.
 
-### Layout and Callouts
+### Layout and callouts
 
 **`<Note>`**: Informational callout box.
 
@@ -250,7 +250,7 @@ Props: `command`, `label`, `encoded`.
 
 **`<ContentLink>`**: Internal navigation links. Standard markdown links (`[text](path)`) are automatically converted to use client-side navigation, so you don't need to use this component directly.
 
-### Installation Components
+### Installation components
 
 These components render dynamic, customer-specific installation instructions based on the customer's license entitlements, selected install method, and instance state.
 
@@ -331,7 +331,7 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 </Prerequisites>
 ```
 
-### Update Components
+### Update components
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. Props: `stepNumber`.
 
@@ -378,7 +378,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<ReleaseNotes />`**: Displays release notes for the target update version. No props.
 
-### Portal Components
+### Portal components
 
 **`<ReleaseHistory />`**: Renders a browsable release history timeline with version details and release notes. Props: `limit` (optional, max number of releases to show).
 
@@ -394,7 +394,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. No props.
 
-### Security Components
+### Security components
 
 These components require Security Center to be enabled for the customer. See [Security Center](/vendor/security-center-about) for more information.
 
@@ -404,11 +404,11 @@ These components require Security Center to be enabled for the customer. See [Se
 
 **`<SecurityVersionSelector />`**: Version picker for security reports. No props.
 
-## Template Variables
+## Template variables
 
 Enterprise Portal content supports Mustache-style templating with `{{ }}` syntax for dynamic rendering. Template variables and MDX components can be used together in the same page.
 
-### Available Variables
+### Available variables
 
 | Variable | Description |
 | :--- | :--- |
@@ -480,7 +480,7 @@ For production deployments, enable HA mode...
 
 Use `visible_when` to control which customers see which content. All conditions must be satisfied (AND logic).
 
-### Navigation Visibility (toc.yaml)
+### Navigation visibility (toc.yaml)
 
 Apply `visible_when` on any navigation item in `toc.yaml`:
 
@@ -499,7 +499,7 @@ Apply `visible_when` on any navigation item in `toc.yaml`:
 
 All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated on both the server and the client.
 
-### Page-Level Visibility (Frontmatter)
+### Page-level visibility (frontmatter)
 
 You can also apply `visible_when` in a page's YAML frontmatter. This controls whether the page is accessible to a customer, independent of whether it appears in the navigation.
 
@@ -518,11 +518,11 @@ Ensure your environment meets these requirements...
 
 The same `entitlements` conditions available in `toc.yaml` work in frontmatter. Use this when you want a page gated by entitlements even if the `toc.yaml` entry doesn't have its own `visible_when` (for example, a page reachable via internal links but not navigation).
 
-## Downloadable Assets
+## Downloadable assets
 
 You can distribute files (scripts, checklists, configuration templates, etc.) through Enterprise Portal by committing them to an `assets/` directory in your content repo.
 
-### Repo Structure
+### Repo structure
 
 ```
 your-content-repo/
@@ -536,7 +536,7 @@ your-content-repo/
 
 Any file committed to the `assets/` directory is available for download. There are no restrictions on file type or size beyond what your git hosting provider allows (GitHub supports files up to ~100MB via raw content). Assets are fetched directly from your git repo when a customer clicks a download link, so changes are available as soon as you push.
 
-### Linking to Assets
+### Linking to assets
 
 Use the `{{asset "path"}}` template tag in your markdown to generate a download link:
 
@@ -550,7 +550,7 @@ The tag expands to a URL that authenticates the customer via their session and s
 
 The path inside the tag is relative to the repo root and must start with `assets/`.
 
-### Per-Customer Asset Delivery
+### Per-customer asset delivery
 
 Combine `{{asset}}` with template conditionals to show different downloads to different customers:
 

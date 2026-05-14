@@ -15,7 +15,7 @@ Each Git branch in your content repo (other than `main`) becomes a selectable ve
 - **`main` is synced but hidden**: The `main` branch content is stored in the database but never shown to customers directly. You can use `main` as a draft/working branch.
 - **`main` as fallback**: The `main` branch serves as the last-resort fallback. If no branch matches the selected version and no lower semver branch exists, `main` content is shown. This ensures customers always see content.
 
-## Version Dropdown
+## Version dropdown
 
 Customers viewing Enterprise Portal see a version dropdown in the header when there are two or more versions available on their channel.
 
@@ -27,7 +27,7 @@ When a customer visits the portal:
 1. Otherwise, the **first version** in the sorted list (highest branch name) is the default
 1. If no versions match the customer's channel releases, content is resolved using the version resolution chain (nearest lower branch, then `main` as fallback)
 
-## Version Resolution
+## Version resolution
 
 When a customer selects a version from the dropdown, Enterprise Portal resolves which content to show using this order:
 
@@ -38,7 +38,7 @@ When a customer selects a version from the dropdown, Enterprise Portal resolves 
 
 This means you only need to create content branches when your documentation actually changes. Patch releases that don't change docs are handled automatically.
 
-## Pinning Releases to Branches
+## Pinning releases to branches
 
 By default, the version resolution logic described above handles most cases automatically. You only need to create a content branch when docs change between releases, and patch releases resolve to the nearest lower branch.
 
@@ -50,7 +50,7 @@ Pins are snapshots, not aliases. If the source branch content changes after pinn
 
 To remove a pin, click the delete icon next to the version in the Content Repository card and confirm.
 
-## Naming Your Branches {#naming-your-branches}
+## Naming your branches {#naming-your-branches}
 
 **Required for version gating:** Name branches to match your release `version_label` values (e.g., branch `1.0.0` for release version `1.0.0`). If branch names don't match version labels, all branches are shown to all customers with no filtering.
 
@@ -65,7 +65,7 @@ Your naming convention also controls the dropdown order. Versions are sorted in 
 If your branch names don't match any version labels (e.g., `release-1`, `release-2`), version gating is skipped and all branches are shown to all customers.
 :::
 
-## Adding Versions
+## Adding versions
 
 1. Create a new branch matching your release version label: `git checkout -b 2.0.0`
 1. Update the docs content for the new version
@@ -73,7 +73,7 @@ If your branch names don't match any version labels (e.g., `release-1`, `release
 
 The system does not create branches for you. You must manually create branches that correspond to your releases.
 
-## Version Gating by Channel
+## Version gating by channel
 
 The version dropdown is filtered by the customer's assigned channel. Customers only see branches whose names match a `version_label` on a release promoted to their channel. For example, if a customer is on the Stable channel with releases `1.0.0` and `2.0.0`, they will only see branches named `1.0.0` and `2.0.0` (or `v1.0.0` / `v2.0.0`).
 
@@ -90,7 +90,7 @@ Versioned pages use the pattern `/{version}/path/to/page`:
 
 When a customer switches versions via the dropdown, the portal swaps the version segment in the URL and navigates to the same page path in the new version.
 
-## Removing Versions
+## Removing versions
 
 To unpublish a version from the dropdown, delete the branch. The version disappears after the next sync.
 
