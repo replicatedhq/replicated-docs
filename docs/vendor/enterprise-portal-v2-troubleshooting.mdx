@@ -1,0 +1,92 @@
+# Troubleshoot the Enterprise Portal
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic provides solutions for common issues when setting up and using the new Enterprise Portal.
+
+## Repository not showing in dropdown
+
+If a repository doesn't appear when linking content or Terraform repos, the Replicated GitHub App likely doesn't have access to it. Update permissions in GitHub: Settings > Integrations > Applications > Replicated > Configure > Repository access. After updating, return to the Content tab and the repository should appear.
+
+## Changes not appearing
+
+GitHub integration automatically syncs on push. If changes aren't appearing:
+
+- Check the sync status in the Content tab
+- Trigger manual sync from the Content tab (click "Sync")
+
+API manual sync (see [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo) for how to get your `REPO_ID`):
+
+```
+replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/sync
+```
+
+## Pages not showing in navigation
+
+- Check `toc.yaml` includes the page
+- Ensure file path matches `toc.yaml` reference
+- Verify visibility rules (entitlements, channels)
+- Check frontmatter `visible_when` conditions
+- Confirm customer has required entitlements enabled
+
+## Version branch not working
+
+- Check branch exists: `git branch -r`
+- Any branch other than `main` becomes a version
+- For version gating to work, branch names must match release `version_label` values (see [Naming your branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches))
+
+## Helm chart reference docs not generating
+
+- Confirm the `name` in `toc.yaml` matches a chart name in the promoted release (not the release name, the Helm chart name from `Chart.yaml`)
+- Reference docs generate asynchronously after promotion. Allow a few minutes
+- If the chart hasn't changed since the last promotion (same `values.yaml` and `Chart.yaml`), regeneration is skipped
+- Values annotated with `# @docs:skip` or `# @docs:internal` are intentionally excluded
+
+## Terraform module docs not loading
+
+- Verify the Terraform module repo is accessible by your GitHub App installation
+- Check the `ref` (tag/branch) exists in the Terraform repo
+- Confirm the module path is correct (subdirectory after `//`)
+- Allow a few minutes for AI-generated content to process
+
+## Terraform proxy registry not working
+
+- Verify the GitHub App is installed and has access to the Terraform repo (**Enterprise Portal > Terraform**)
+- Confirm the Terraform repo is linked (this is a separate repo from the content repo)
+- Check the customer's license is active, not expired or archived
+- Ensure `version_label` on the channel release matches the git tag (with `v` prefix: version `1.0.0` requires tag `v1.0.0`)
+- Confirm `~/.terraformrc` has credentials for `proxy.replicated.com`
+- Only `github` is supported as the provider suffix in the module source
+
+## Security Center not showing
+
+- Confirm the `Enable Security Center in Enterprise Portal` feature flag is enabled for your team
+- Check the per-customer toggle: on the customer's **Enterprise Portal access** tab, **Enable Security Center for this customer** must be on
+- Verify the Security page is included in your `toc.yaml`
+- Security data is generated from release scans. If no releases have been promoted, there is no data to display
+
+## Customer not seeing new portal
+
+- Confirm the customer's **Portal Version** is set to the new portal on their **Enterprise Portal access** tab
+- Verify the Enterprise Portal site is deployed (check that the Content tab shows a linked repo and synced branches)
+- If using a custom domain, confirm DNS is pointed at the new portal domain (`\{appSlug\}.enterpriseportal.app`), not the Classic domain (`get.replicated.com`)
+
+## Customer invitation not received
+
+- Check the **Email History** on the customer's EP access tab for delivery status
+- Verify the customer's email domain is not blocked by **Domain Restrictions** (if enabled)
+- Check spam/junk folders. If using a custom email sender domain, confirm DKIM and Return-Path DNS records are verified
+- If the customer has a pending invite and goes to the login page, they will be prompted to enter their invite code directly
+
+## Self-service signup not working
+
+- Confirm self-service sign-ups are enabled in **Enterprise Portal > Self-Service Sign-Ups**
+- The signup URL is unique to your application. Verify the URL being shared is correct
+
+## Login footer showing Replicated branding
+
+- Customize the login page footer by setting `loginFooterText` and `loginFooterLinks` in your `theme.yaml`
+- On `*.enterpriseportal.app` domains (no custom domain), keeping a footer is recommended to avoid Google Safe Browsing flagging
+- On custom domains, you can remove the footer entirely by omitting the fields or setting `loginFooterText` to an empty string

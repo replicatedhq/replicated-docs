@@ -248,6 +248,7 @@ const sidebars = {
         "vendor/enterprise-portal-v2-self-serve-signup",
         "vendor/enterprise-portal-v2-access",
         "vendor/enterprise-portal-v2-use",
+        "vendor/enterprise-portal-v2-troubleshooting",
       ],
     },
     {
