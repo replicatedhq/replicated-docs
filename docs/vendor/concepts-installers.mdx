@@ -1,0 +1,41 @@
+import Helm from "../partials/helm/_helm-definition.mdx"
+
+# About the Replicated-supported installation options
+
+Installing refers to the steps that enterprise customers take to securely deploy software in their environment. For modern on-prem software, the installation process varies depending on the release delivery method and the installation environment (such as internet-connected versus air-gapped, if the installation environment uses a proxy, or Kubernetes clusters versus VMs).
+
+Ultimately, the challenge with installation is that the vendor has to be prepared to meet a spectrum of customer requirements and sophistication. This increases the complexity for vendors who need to consider each installation path in all future releases, testing, updates, support, and so on.
+
+## Installations with the Helm CLI in an existing cluster
+
+<Helm/>
+
+The following diagram shows how Helm charts distributed with Replicated are installed with Helm in online (internet-connected) customer environments:
+
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="700px"/> 
+
+[View a larger version of this image](/images/helm-install-diagram.png)
+
+As shown in the diagram above, customers can install your Helm chart by authenticating to the Replicated registry with their unique license ID. This step ensures that any customer who installs your chart from the registry has a valid, unexpired license. After the customer logs in to the Replicated registry, they can run `helm install` to install the chart from the registry.
+
+For applications installed with the Helm CLI, your users can optionally run preflight checks using the open source preflight kubectl plugin before they run `helm install`.
+
+The preflight plugin requires a preflight check specification as input. For Helm chart-based applications, the specification is defined in a Secret in the Helm chart `templates` directory. For information about how to configure preflight checks for your application, see [Define Preflight Checks](preflight-defining).
+
+To run preflight checks that are defined in your application Helm chart templates, your users run `helm template` to render the Helm chart templates and then provide the result to the preflight plugin as stdin. The preflight plugin automatically filters the stream of stdout from the `helm template` command to find and run any preflight specifications.
+
+![Save output dialog](/images/helm-preflight-save-output.png)
+
+[View a larger version of this image](/images/helm-preflight-save-output.png)
+
+## Installations with Replicated Embedded Cluster on a VM
+
+Replicated Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance, making it easy for enterprise users to install, update, and manage the application and the cluster in tandem. Embedded Cluster is based on the open source Kubernetes distribution k0s. For more information, see the k0s documentation.
+
+Software vendors can configure the Embedded Cluster Config manifest to define characteristics of the cluster and the installation. For example, you can add optional Helm extensions to deploy components in the cluster before Embedded Cluster installs your application.
+
+For enterprise users, Embedded Cluster provides a built-in UI that guides users through installation and upgrades. Additionally, Embedded Cluster automatically updates the cluster infrastructure at the same time as application updates, allowing users to more easily keep the cluster up-to-date without needing to use kubectl.
+
+## Supporting both installation types from the same release
+
+With Replicated, 

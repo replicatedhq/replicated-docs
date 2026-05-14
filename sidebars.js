@@ -35,9 +35,21 @@ const sidebars = {
 
     //GET STARTED
     { type: "html", value: "<h5>Get started</h5>", defaultStyle: true },
-    "intro-replicated",
-    "vendor/kots-faq",
     "vendor/quick-start",
+    {
+      type: "category",
+      label: "Concepts",
+      items: [
+        "intro-replicated",
+        "vendor/concepts-installers",
+        "vendor/concepts-license",
+        "vendor/concepts-delivery",
+        "vendor/concepts-release",
+        "vendor/concepts-report",
+        "vendor/concepts-support",
+      ],
+    },
+    // "vendor/kots-faq",
     {
       type: "category",
       label: "Onboard",
@@ -48,14 +60,6 @@ const sidebars = {
         "vendor/replicated-onboarding-air-gap",
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Planning',
-    //   items: [
-    //     'vendor/planning-questionnaire',
-    //     'vendor/namespaces',
-    //   ],
-    // },
     {
       type: "category",
       label: "Tutorials",
@@ -74,37 +78,6 @@ const sidebars = {
         "vendor/ci-workflows-github-actions",
       ],
     },
-    // {
-    //   type: "category",
-    //   label: "Labs",
-    //   items: [
-    //     {
-    //       type: "link",
-    //       href: "https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN",
-    //       label: "Distributing Your Application with Replicated",
-    //     },
-    //     {
-    //       type: "link",
-    //       href: "https://play.instruqt.com/embed/replicated/tracks/delivering-as-an-appliance?token=em_lUZdcv0LrF6alIa3",
-    //       label: "Delivering Your Application as a Kubernetes Appliance",
-    //     },
-    //     {
-    //       type: "link",
-    //       href: "https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG",
-    //       label: "Avoiding Installation Pitfalls",
-    //     },
-    //     {
-    //       type: "link",
-    //       href: "https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca",
-    //       label: "Closing the Support Information Gap",
-    //     },
-    //     {
-    //       type: "link",
-    //       href: "https://play.instruqt.com/embed/replicated/tracks/protecting-your-assets?token=em_7QjY34G_UHKoREBd",
-    //       label: "Protecting Your Assets",
-    //     },
-    //   ],
-    // },
     // PRODUCT DOCS
     { type: "html", value: "<h5>Product docs</h5>", defaultStyle: true },
     {
