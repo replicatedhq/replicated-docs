@@ -40,12 +40,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### Bug fixes {#bug-fixes-3-0-0-beta-4}
 
-* Builds and publishes CLI-only Darwin and Windows release binaries.
-* Makes CLI cross-compile for Windows AMD64.
-* Uses Tailwind v4 opacity syntax for modal overlays.
+* Fixes an issue where the "continue" modal on the "Add Nodes" page had a black overlay.
 * Respects readonly config fields in the UI.
-* Removes quotes from SELinux regex groups `when` conditions.
-* Replaces `which` with `Executor.LookPath` to support AlmaLinux 9.
 * Redirects embedded web server output to `/var/log//web.log`.
 * Fixes missing version on the Embedded Cluster upgrade completion screen.
 * Clears install and upgrade errors when retrying.
@@ -70,14 +66,6 @@ Additionally, these release notes list the versions of Kubernetes that are avail
     <td id="center">1.32.13</td>
   </tr>
 </table>
-
-### New features {#new-features-3-0-0-beta-2}
-
-* Adds lint subcommand and darwin S3 publishing.
-
-### Improvements {#improvements-3-0-0-beta-2}
-
-* Restricts release tag patterns to 3.x.x with Semantic Versioning pre-release suffixes.
 
 ### Bug fixes {#bug-fixes-3-0-0-beta-2}
 
