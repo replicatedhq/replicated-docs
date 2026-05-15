@@ -1,0 +1,66 @@
+# About the Enterprise Portal
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+The Enterprise Portal gives your customers one central place to view their install and upgrade instructions for each version of your software, set up their environment, manage their team, and get troubleshooting support by uploading support bundles.
+
+By connecting your own GitHub repo, you control the content your customers see. You can serve versioned documentation tied to your releases, auto-generate Helm chart reference docs, customize branding, and distribute Terraform modules through a license-gated proxy registry.
+
+Content is driven by entitlements and channel assignment, so each customer sees only what applies to them.
+
+## What your customers can do
+
+- **Install and upgrade**: Step-by-step installation instructions for Helm and Embedded Cluster (Linux), with per-instance commands personalized to each customer's license and environment
+- **Manage instances**: View all deployed instances, check for available updates, and follow inline upgrade instructions
+- **Access security data**: Review CVE reports (fixable only) and download SBOMs for each release (when Security Center is enabled)
+- **View release history**: Browse release notes and track what's changed between versions
+- **Upload support bundles**: Generate and upload diagnostic bundles for faster troubleshooting
+- **Manage their team**: Invite users, create service accounts, and configure SAML SSO
+- **Download assets**: Access vendor-provided files (scripts, checklists, configuration templates) gated by entitlements
+
+## What's new
+
+The new Enterprise Portal is a complete rebuild of the customer portal experience. Key differences from the Classic Enterprise Portal:
+
+- **Content repo driven**: All portal content (pages, navigation, branding) is managed through a GitHub repo you control, not through Vendor Portal UI forms
+- **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
+- **Versioned docs**: Each Git branch becomes a version in the customer's portal, with smart resolution that automatically finds the right content for any release
+- **Local preview**: `replicated enterprise-portal preview` lets you preview the full portal locally with live reload
+- **Helm chart reference**: Auto-generated from your promoted releases with AI-enhanced descriptions
+- **Terraform module distribution**: License-gated module registry with native `terraform init` integration (premium feature)
+
+## Current limitations {#current-limitations}
+
+- Installation and upgrade instructions are available only for Embedded Cluster and Helm CLI installations. The Enterprise Portal does not provide instructions for KOTS or kURL.
+- Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle.
+- If you have many version branches and need to make a change across all versions, you must update each branch individually.
+
+## Requirements
+
+The following feature flags must be enabled by Replicated for your team:
+
+* GitHub App Integration in Vendor Portal
+* Enable Customer Emails in Enterprise Portal
+* Enterprise Portal Customization
+* Enable Security Center in Enterprise Portal
+* Terraform Modules in Enterprise Portal
+
+## For vendors already using the Classic Enterprise Portal
+
+If your team is already using the Classic Enterprise Portal with customers, you can adopt the new Enterprise Portal incrementally without disrupting any existing customer experience.
+
+The new Enterprise Portal runs at a different domain (`{appSlug}.enterpriseportal.app`) than Classic (`get.replicated.com/{appSlug}/...`). Both portals share the same backend, so customer data, licenses, and instance information are consistent across both.
+
+### How to get started
+
+1. **Request the feature flags.** Contact Replicated to enable the new Enterprise Portal flags for your team. This has no effect on any customer's portal.
+1. **Connect a content repo.** Follow the setup steps in [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo). Connecting a repo has zero effect on any customer's portal version. No customer sees the new portal until you explicitly switch them.
+1. **Test it yourself.** Use the local CLI preview (`replicated enterprise-portal preview`) or open the new portal URL directly to see how your content renders. The Vendor Portal also has a "Login as customer" button on each customer's EP access tab.
+1. **Move individual customers.** On the customer's **Enterprise Portal access** tab in Vendor Portal, set the **Portal Version** toggle to use the new Enterprise Portal. Only that customer is affected.
+1. **Move customers back if needed.** Set the Portal Version toggle back to Classic at any time. The customer immediately returns to the Classic experience.
+
+### Vendor Portal view vs. customer portal version
+
+The **New Portal** / **Classic Portal** toggle at the top of the Enterprise Portal page in Vendor Portal controls which view *you* see as a vendor. It does not change which portal your customers see. Customer portal versions are controlled individually via the Portal Version toggle on each customer's EP access tab.

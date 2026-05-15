@@ -1,0 +1,162 @@
+# Terraform Modules
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+:::note
+Terraform module distribution is a premium feature that requires a separate entitlement and the `Terraform Modules in Enterprise Portal` feature flag enabled for your team. If you don't see the **Terraform** tab in Enterprise Portal, contact your Replicated account representative.
+:::
+
+Enterprise Portal provides two complementary capabilities for distributing Terraform modules:
+
+- **Module Reference Docs**: Generated from `terraform_module` entries in your content repo's `toc.yaml`. These display inputs, outputs, requirements, and AI-generated usage examples on the portal.
+- **Proxy Registry**: Lets customers pull modules directly via `terraform init` using their license ID. Requires linking a separate Terraform repo and promoting releases with matching version labels.
+
+## Enabling Terraform for your app
+
+Terraform features require two setup steps on the vendor side before customers see anything:
+
+1. **Feature flag enablement**: A Replicated admin enables the `Terraform Modules in Enterprise Portal` flag for your team. Contact Replicated support to request this.
+1. **Link a Terraform repository**: In the **Terraform** tab, link the GitHub repo containing your Terraform modules (see [Proxy Registry Vendor Setup](#vendor-setup) below).
+
+## Controlling which customers see Terraform content
+
+There is no built-in Terraform-specific license field. Customer visibility is controlled through your content repo's `visible_when` entitlements in `toc.yaml`. To gate Terraform content per customer:
+
+1. Create a custom license entitlement (e.g., `isTerraformEnabled`) in **License Fields**
+1. Enable that entitlement on specific customer licenses
+1. Reference it in your `toc.yaml`:
+
+```yaml
+- title: Infrastructure
+  icon: database
+  items:
+    - title: AWS Module
+      terraform_module: github.com/your-org/your-terraform//aws?ref=main
+      visible_when:
+        entitlements:
+          - isTerraformEnabled
+          - isAWSEnabled
+```
+
+Customers without the entitlement won't see the navigation items or be able to access the module reference docs. You can combine multiple entitlements for more granular control (e.g., per-cloud-provider gating).
+
+For the proxy registry (module downloads via `terraform init`), access is gated by the customer's license being active and on a channel with promoted releases containing matching version labels. There is no additional per-customer toggle needed for download access. If a customer has a valid license, they can pull any module version available on their channel.
+
+## Module reference docs
+
+Reference Terraform modules in your content repo's `toc.yaml`:
+
+```yaml
+- title: Infrastructure
+  icon: database
+  items:
+    - title: AWS
+      terraform_module: github.com/your-org/your-terraform//aws?ref=main
+      visible_when:
+        entitlements:
+          - isAWSEnabled
+    - title: Azure
+      terraform_module: github.com/your-org/your-terraform//azure?ref=main
+      visible_when:
+        entitlements:
+          - isAzureEnabled
+    - title: GCP
+      terraform_module: github.com/your-org/your-terraform//gcp?ref=main
+      visible_when:
+        entitlements:
+          - isGCPEnabled
+```
+
+- Uses standard Terraform module source syntax (double slash `//` for subdirectories)
+- `ref` specifies the Git ref (tag, branch, or commit)
+- Control visibility per customer using `visible_when` entitlements
+- The GitHub App installation used for your content repo must also have access to the Terraform module repo
+
+For each module, Enterprise Portal parses `variables.tf`, `outputs.tf`, `versions.tf`, and `README.md`, then generates reference documentation for requirements, inputs, outputs, and AI-generated usage examples.
+
+:::note
+AI-generated usage examples and descriptions are produced asynchronously. You may see "Generating..." placeholders for a few minutes after sync. Refresh the page once processing completes.
+:::
+
+## Proxy registry
+
+Enterprise Portal acts as a **Terraform module proxy registry**, allowing customers to pull modules directly via `terraform init` using their existing license ID.
+
+### Vendor setup (one-time) {#vendor-setup}
+
+**Step 1: Install Replicated GitHub App**
+
+If you've already connected a content repo, your GitHub App installation may already cover the Terraform repo. Confirm that the Terraform repo is included in the app's repo access list. If not, go to **Enterprise Portal > Terraform** and click **Install GitHub App** to add or update access.
+
+**Step 2: Link the Terraform repo**
+
+In the **Terraform** tab (next to Content in the Vendor Portal), use the **Terraform Repository** card to link your repo:
+
+1. Click **Link Terraform Repository**
+1. Select your GitHub org and the repo containing your Terraform modules
+1. Save
+
+This is a **separate** repo from your content repo. Unlike the content repo, Enterprise Portal doesn't clone or parse the Terraform repo for content syncing. The link is used to generate short-lived GitHub tokens at runtime when customers fetch modules via the proxy registry.
+
+:::note
+Module **reference documentation** on the portal is driven by `terraform_module` URIs in your content repo's `toc.yaml` (see above), not by this linked repo.
+:::
+
+**Step 3: Promote releases**
+
+Create releases and promote them to channels. The `version_label` on each channel release (e.g. `1.0.0`) becomes the Terraform module version available to customers on that channel.
+
+:::important
+Version labels must match git tags with a `v` prefix. For example, a release with `version_label: 1.0.0` requires git tag `v1.0.0` in the Terraform repo. If the tag doesn't exist, customers will get a 404 when trying to download the module.
+:::
+
+### Customer setup (one-time)
+
+1. Get their **license ID** from Enterprise Portal (same one used for Docker image pulls)
+1. Add credentials to `~/.terraformrc`:
+
+```
+credentials "proxy.replicated.com" {
+  token = "<license-id>"
+}
+```
+
+3. Reference the module in their Terraform config:
+
+```hcl
+module "your-app" {
+  source  = "proxy.replicated.com/<app-slug>/<repo-name>/github"
+  version = "1.0.0"
+}
+```
+
+Where `<app-slug>` is your app's slug, `<repo-name>` is the linked Terraform repo name, and `github` is the required provider suffix.
+
+### How it works
+
+When the customer runs `terraform init`, Terraform makes four sequential requests to `proxy.replicated.com`:
+
+1. **Discovery**: Worker returns a static registry manifest pointing to the modules API. No auth required.
+1. **List versions**: Worker calls the Replicated API, which validates the license, checks the customer's channel, and returns the allowed `version_label` values. Only version numbers are returned to the customer.
+1. **Download pointer**: Worker calls the Replicated API to create a short-lived server-side session backed by a JWT. The response includes an `X-Terraform-Get` header with the archive URL containing the JWT as a query parameter. The JWT is an opaque, short-lived token. The GitHub credential is stored server-side and never exposed to the customer.
+1. **Tarball download**: Worker validates the JWT, retrieves the GitHub installation credentials from the server-side session, regenerates a fresh GitHub token, fetches the tarball from GitHub, and streams it back. GitHub redirects to a temporary `codeload.github.com` URL; the worker follows this redirect internally so the customer never sees it.
+
+The customer **never sees** the GitHub token, repo URL, or any internal infrastructure. They only ever send their license ID and only ever talk to `proxy.replicated.com`.
+
+### Version gating
+
+Versions are gated by the existing release/channel system:
+
+- Vendor promotes releases to channels with `version_label` values
+- Customer's license is assigned to a channel
+- The proxy only returns versions from releases on the customer's channel
+- Licenses pinned to a specific channel sequence see only versions up to that sequence
+
+### Current limitations
+
+- No `terraform login` support: customers manually configure `~/.terraformrc`
+- No tarball caching: all requests go through to GitHub
+- Release version labels must match git tags in the Terraform repo with a `v` prefix (`1.0.0` -> tag `v1.0.0`)
+- Only `github` is supported as the provider suffix

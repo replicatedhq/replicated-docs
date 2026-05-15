@@ -1,0 +1,578 @@
+# Customize Portal Content
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes how to customize the content in the new Enterprise Portal, including the content template structure, table of contents configuration, MDX components, template variables, visibility rules, and downloadable assets.
+
+For branding and theme customization, see [Customize Portal Branding](/vendor/enterprise-portal-v2-branding).
+
+## Content template structure {#content-template-structure}
+
+The default content template ([replicatedhq/enterprise-portal-content](https://github.com/replicatedhq/enterprise-portal-content)) provides a working portal out of the box with the following structure:
+
+```
+your-content-repo/
+├── pages/
+│   ├── home.md
+│   ├── installation/
+│   │   ├── requirements.md
+│   │   ├── release-history.md
+│   │   ├── linux.md
+│   │   └── helm.md
+│   ├── operations/
+│   │   ├── security.md
+│   │   └── bundles/
+│   │       ├── bundles.md
+│   │       ├── helm.md
+│   │       ├── linux.md
+│   │       └── uploaded.md
+│   ├── updates/
+│   │   └── checking.md
+│   └── support/
+│       ├── faq.md
+│       └── contact.md
+└── toc.yaml
+```
+
+The template's `toc.yaml` organizes content into four sections:
+
+```yaml
+navigation:
+  - title: Installation
+    icon: rocket
+    items:
+      - title: Requirements
+        page: pages/installation/requirements.md
+        visible_when:
+          entitlements:
+            - isEmbeddedClusterDownloadEnabled
+      - title: Release History
+        page: pages/installation/release-history.md
+      - title: Linux
+        page: pages/installation/linux.md
+        visible_when:
+          entitlements:
+            - isEmbeddedClusterDownloadEnabled
+      - title: Helm
+        page: pages/installation/helm.md
+        visible_when:
+          entitlements:
+            - isHelmInstallEnabled
+
+  - title: Operations
+    icon: wrench
+    items:
+      - title: Security
+        page: pages/operations/security.md
+      - title: Support Bundles
+        page: pages/operations/bundles/bundles.md
+      - title: Upload Bundles
+        page: pages/operations/bundles/uploaded.md
+
+  - title: Updates
+    icon: refresh-cw
+    items:
+      - title: Checking for Updates
+        page: pages/updates/checking.md
+
+  - title: Support
+    icon: life-buoy
+    items:
+      - title: FAQ
+        page: pages/support/faq.md
+      - title: Contact Support
+        page: pages/support/contact.md
+
+overrides:
+  home: pages/home.md
+```
+
+The template pages use built-in MDX components (see [MDX Components](#mdx-components)) to render interactive installation instructions, version selectors, support bundle uploads, and more. You can customize any page by editing the markdown and MDX, or replace the entire structure with your own.
+
+## Table of contents
+
+The `toc.yaml` file at the root of your repo defines the sidebar navigation. Each navigation item has a `title` and one of the following content types:
+
+| Key | What it does |
+| :--- | :--- |
+| `page` | Renders a markdown file from your repo (e.g. `pages/getting-started.md`) |
+| `terraform_module` | Generates docs from a Terraform module source URI (see [Terraform Modules](/vendor/enterprise-portal-v2-terraform)) |
+| `helm_chart` | Generates reference docs from a Helm chart in your promoted release (see [Helm Reference Docs](/vendor/enterprise-portal-v2-helm-reference)) |
+| `items` | Nests child navigation items to create expandable sections |
+
+Every item also supports `icon` and `visible_when` (see [Visibility](#visibility) below).
+
+Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
+
+### Complete example
+
+Here's a `toc.yaml` showing all content types together:
+
+```yaml
+navigation:
+  - title: Getting Started
+    icon: rocket
+    page: pages/getting-started.md
+
+  - title: Installation
+    icon: download
+    items:
+      - title: Requirements
+        page: pages/installation/requirements.md
+      - title: Helm Installation
+        page: pages/installation/helm.md
+        visible_when:
+          entitlements:
+            - isHelmInstallEnabled
+      - title: Air Gap Installation
+        page: pages/installation/airgap.md
+        visible_when:
+          entitlements:
+            - isAirgapSupported
+
+  - title: Infrastructure
+    icon: database
+    items:
+      - title: AWS Module
+        terraform_module: github.com/your-org/your-terraform//modules/aws?ref=v1.0.0
+        visible_when:
+          entitlements:
+            - isAWSEnabled
+
+  - title: Reference
+    icon: book
+    items:
+      - title: My App Chart
+        helm_chart:
+          name: my-app
+
+overrides:
+  home: pages/getting-started.md
+```
+
+## MDX components {#mdx-components}
+
+Enterprise Portal content supports MDX, which is markdown with embedded React components. These components render interactive UI elements that adapt to each customer's license, entitlements, and instance state.
+
+### Layout and callouts
+
+**`<Note>`**: Informational callout box.
+
+```markdown
+<Note title="Before You Begin">
+Run `kubectl get sc` to confirm a default StorageClass is available.
+</Note>
+```
+
+**`<Tip>`**: Highlighted tip or best practice.
+
+```markdown
+<Tip title="New to this portal?">
+Start with the Installation Guide for your deployment method.
+</Tip>
+```
+
+**`<Warning>`**: Warning callout for important caveats.
+
+```markdown
+<Warning title="Back Up Before Updating">
+Always create a backup before applying updates.
+</Warning>
+```
+
+**`<Tabs>` / `<Tab>`**: Tabbed content sections.
+
+```markdown
+<Tabs>
+<Tab title="Linux">
+Linux-specific instructions here...
+</Tab>
+<Tab title="Helm">
+Helm-specific instructions here...
+</Tab>
+</Tabs>
+```
+
+Props: `<Tabs>` accepts `defaultActiveTab`. `<Tab>` requires `title`.
+
+**`<Accordion>`**: Collapsible content section.
+
+```markdown
+<Accordion title="Advanced Configuration" defaultOpen={false}>
+Detailed configuration options...
+</Accordion>
+```
+
+Props: `title` (required), `defaultOpen` (optional, defaults to false).
+
+**`<OptionSelector>` / `<Option>`**: Persistent option picker that remembers the customer's selection across page loads.
+
+```markdown
+<OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
+<Option value="Linux">
+- [Linux Installation](installation/linux)
+- [Linux Support Bundles](operations/bundles/linux)
+</Option>
+<Option value="Helm">
+- [Helm Installation](installation/helm)
+- [Helm Support Bundles](operations/bundles/helm)
+</Option>
+</OptionSelector>
+```
+
+Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting selection in browser storage).
+
+### Display
+
+**`<CodeBlock>`**: Syntax-highlighted code block.
+
+```markdown
+<CodeBlock language="yaml" title="values.yaml">
+replicaCount: 3
+image:
+  repository: myapp
+</CodeBlock>
+```
+
+Props: `language`, `title`.
+
+**`<CommandBlock>`**: Styled terminal command with copy button.
+
+```markdown
+<CommandBlock>
+kubectl get pods -A
+</CommandBlock>
+```
+
+Props: `command`, `label`, `encoded`.
+
+**`<ContentLink>`**: Internal navigation links. Standard markdown links (`[text](path)`) are automatically converted to use client-side navigation, so you don't need to use this component directly.
+
+### Installation components
+
+These components render dynamic, customer-specific installation instructions based on the customer's license entitlements, selected install method, and instance state.
+
+**`<PendingInstallSelector>`**: Shows a list of in-progress installations scoped to a specific install method. Customers select an installation to populate the commands below with that installation's credentials.
+
+```markdown
+<PendingInstallSelector method="linux" />
+```
+
+Props: `method` (`"linux"` or `"helm"`, required), `network` (`"online"` or `"airgap"`, optional filter), `title` (optional, defaults to "Installations in progress"), `emptyText` (optional), `initialVisible` (optional, number of items to show before "Show all").
+
+**`<NewInstall>`**: Button to start a new installation. Creates a service account and generates credentials, which populate the install commands on the page.
+
+```markdown
+<NewInstall method="helm" />
+```
+
+Props: `method` (`"linux"` or `"helm"`, required), `network` (`"online"` or `"airgap"`, optional, defaults to `"online"`), `label` (optional, defaults to "New installation").
+
+:::note
+The install commands on the page are personalized to the selected installation. If you switch installations or rename your instance, the commands update automatically.
+:::
+
+**`<NetworkAvailability>`**: Selector for online vs. air gap installation mode.
+
+```markdown
+<NetworkAvailability installType="linux" />
+```
+
+Props: `installType` (`"linux"` or `"helm"`).
+
+**`<VersionSelector>`**: Dropdown for selecting which release version to install.
+
+```markdown
+<VersionSelector installType="helm" />
+```
+
+Props: `installType` (`"linux"` or `"helm"`).
+
+**`<KubernetesDistribution />`**: Selector for the target Kubernetes distribution (EKS, GKE, AKS, etc.). No props.
+
+**`<RegistryAccess />`**: Displays registry credentials and pull secret configuration. No props.
+
+**`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. Props: `stepNumber` (optional, starting step number).
+
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional).
+
+**`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Props: `stepNumber`.
+
+**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`.
+
+**`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
+
+```markdown
+<InstanceName />
+```
+
+Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional).
+
+**`<AdminConsoleUrl />`**: Displays the admin console URL for Embedded Cluster installations. No props.
+
+**`<InstallStep>`**: Wraps content in a numbered step container.
+
+```markdown
+<InstallStep stepNumber={1} title="Download the installer">
+Run the following command to download...
+</InstallStep>
+```
+
+Props: `stepNumber`, `title`, `optional` (boolean).
+
+**`<Prerequisites>`**: Styled prerequisites section.
+
+```markdown
+<Prerequisites title="Before You Begin">
+- Kubernetes 1.26+
+- Helm 3.x
+</Prerequisites>
+```
+
+### Update components
+
+**`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. Props: `stepNumber`.
+
+**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`.
+
+**`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
+
+**Props:**
+
+| Prop | Description |
+| :--- | :--- |
+| `fromBelow` | Show content only when the customer's current version is *below* this version |
+| `fromAbove` | Show content only when the customer's current version is *above* this version |
+| `fromBelowOrEqual` | Show content only when the current version is at or below this version |
+| `fromAtLeast` | Show content only when the current version is at least this version |
+
+All version values must be strict `major.minor.patch` format (e.g. `2.0.0`). A `v` prefix is stripped automatically. Pre-release suffixes (e.g. `2.0.0-rc.1`) are not supported.
+
+Props can be combined to define a version range (AND logic). If the customer has no selected instance or the version can't be parsed, the content is hidden.
+
+**Example:**
+
+````markdown
+<UpgradePath fromBelow="2.0.0">
+## Upgrading from 1.x
+
+Before upgrading to 2.x, you must migrate your database schema. Run:
+
+```shell
+./migrate-schema.sh
+```
+</UpgradePath>
+
+<UpgradePath fromAtLeast="2.0.0">
+## Upgrading from 2.x
+
+No manual migration needed. The upgrade is automatic.
+</UpgradePath>
+````
+
+In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" instructions, while a customer on 2.1.0 would see the "Upgrading from 2.x" block.
+
+**`<MarkUpdateComplete />`**: Button for the customer to confirm an upgrade is complete. No props.
+
+**`<ReleaseNotes />`**: Displays release notes for the target update version. No props.
+
+### Portal components
+
+**`<ReleaseHistory />`**: Renders a browsable release history timeline with version details and release notes. Props: `limit` (optional, max number of releases to show).
+
+**`<SupportBundleUpload />`**: Upload interface for support bundles. No props.
+
+**`<SupportBundleUploadHistory />`**: Lists previously uploaded support bundles. Props: `limit`.
+
+**`<LinuxBundles />`**: Linux-specific support bundle generation instructions. No props.
+
+**`<HelmBundles />`**: Helm-specific support bundle generation instructions. No props.
+
+**`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
+
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. No props.
+
+### Security components
+
+These components require Security Center to be enabled for the customer. See [Security Center](/vendor/security-center-about) for more information.
+
+**`<CVEReport />`**: Displays CVE vulnerability report for the selected release. No props.
+
+**`<SBOMReport />`**: Displays the Software Bill of Materials for the selected release. No props.
+
+**`<SecurityVersionSelector />`**: Version picker for security reports. No props.
+
+## Template variables
+
+Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` syntax for dynamic rendering. Template variables and MDX components can be used together in the same page.
+
+### Available variables
+
+| Variable | Description |
+| :--- | :--- |
+| `\{\{ app.name \}\}` | Your application name |
+| `\{\{ app.slug \}\}` | URL-friendly app identifier |
+| `\{\{ customer.name \}\}` | Customer's name |
+| `\{\{ customer.email \}\}` | Customer's email |
+| `\{\{ customer.id \}\}` | Customer ID |
+| `\{\{ channel.name \}\}` | Release channel (Stable, Beta, etc.) |
+| `\{\{ channel.slug \}\}` | URL-friendly channel identifier |
+| `\{\{ release.version \}\}` | Current release version |
+| `\{\{ license.* \}\}` | Any field from the license object (e.g. `\{\{ license.id \}\}`, `\{\{ license.expiresAt \}\}`) |
+| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see below) |
+
+:::note
+`\{\{ release.version \}\}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `\{\{ channel.name \}\}` as a more reliable alternative for version-dependent content.
+:::
+
+### Conditionals
+
+**`\{\{#if\}\}`**: Show content when a value is truthy. Supports nesting.
+
+```text
+{{#if entitlements.isHAEnabled}}
+## High Availability Setup
+For production deployments, enable HA mode...
+{{/if}}
+```
+
+Values are considered falsy if they are null, empty string, `false`, `"false"`, `"0"`, or `0`. Everything else is truthy.
+
+**`\{\{#ifEquals\}\}`**: Show content when a value equals a specific string. Useful for per-customer or per-channel content.
+
+```text
+{{#ifEquals channel.name "Stable"}}
+You are on the Stable channel. Updates are less frequent but thoroughly tested.
+{{/ifEquals}}
+
+{{#ifEquals customer.name "Acme Corp"}}
+## Acme-Specific Configuration
+Your dedicated endpoint is acme.example.com
+{{/ifEquals}}
+```
+
+The comparison value must be quoted (double or single quotes). Supports nesting.
+
+### Entitlements
+
+Entitlements are accessible as `\{\{ entitlements.<name> \}\}` for interpolation and `\{\{#if entitlements.<name>\}\}` for conditionals. There are two kinds:
+
+- **Built-in flags**: Set on the license via Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isHelmAirgapEnabled`
+- **Custom entitlements**: Any that you define (e.g. `isHAEnabled`, `isEnterpriseEnabled`)
+
+Example:
+
+```text
+{{#if entitlements.isHelmInstallEnabled}}
+## Helm Installation
+Follow these steps to install using Helm...
+{{/if}}
+
+{{#if entitlements.isHAEnabled}}
+## High Availability Setup
+For production deployments, enable HA mode...
+{{/if}}
+```
+
+## Visibility {#visibility}
+
+Use `visible_when` to control which customers see which content. All conditions must be satisfied (AND logic).
+
+### Navigation visibility (toc.yaml)
+
+Apply `visible_when` on any navigation item in `toc.yaml`:
+
+```yaml
+- title: Enterprise Features
+  page: pages/enterprise.md
+  visible_when:
+    entitlements:
+      - isEnterpriseEnabled
+    channel:
+      include: [Stable, Beta]
+      exclude: [Internal]
+    customer_type:
+      include: [paid]
+```
+
+All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated on both the server and the client.
+
+### Page-level visibility (frontmatter)
+
+You can also apply `visible_when` in a page's YAML frontmatter. This controls whether the page is accessible to a customer, independent of whether it appears in the navigation.
+
+```markdown
+---
+title: Embedded Cluster Installation Requirements
+visible_when:
+  entitlements:
+    - isEmbeddedClusterDownloadEnabled
+---
+
+# Embedded Cluster Installation Requirements
+
+Ensure your environment meets these requirements...
+```
+
+The same `entitlements` conditions available in `toc.yaml` work in frontmatter. Use this when you want a page gated by entitlements even if the `toc.yaml` entry doesn't have its own `visible_when` (for example, a page reachable via internal links but not navigation).
+
+## Downloadable assets
+
+You can distribute files (scripts, checklists, configuration templates, etc.) through Enterprise Portal by committing them to an `assets/` directory in your content repo.
+
+### Repo structure
+
+```
+your-content-repo/
+├── assets/
+│   ├── deploy.sh
+│   └── onboarding-checklist.pdf
+├── pages/
+│   └── resources.md
+└── toc.yaml
+```
+
+Any file committed to the `assets/` directory is available for download. There are no restrictions on file type or size beyond what your git hosting provider allows (GitHub supports files up to ~100MB via raw content). Assets are fetched directly from your git repo when a customer clicks a download link, so changes are available as soon as you push.
+
+### Linking to assets
+
+Use the `\{\{asset "path"\}\}` template tag in your markdown to generate a download link:
+
+```text
+## Resources
+- [Deployment Script]({{asset "assets/deploy.sh"}})
+- [Onboarding Checklist]({{asset "assets/onboarding-checklist.pdf"}})
+```
+
+The tag expands to a URL that authenticates the customer via their session and serves the file directly. Assets are version-aware, so each content branch can have its own set of files.
+
+The path inside the tag is relative to the repo root and must start with `assets/`.
+
+### Per-customer asset delivery
+
+Combine `\{\{asset\}\}` with template conditionals to show different downloads to different customers:
+
+```text
+## Resources
+
+{{#ifEquals customer.name "Acme Corp"}}
+- [Acme Deployment Guide]({{asset "assets/acme-deploy-guide.pdf"}})
+- [Acme ArgoCD Values]({{asset "assets/acme-argocd-values.yaml"}})
+{{/ifEquals}}
+
+{{#ifEquals customer.name "Globex"}}
+- [Globex CloudFormation Template]({{asset "assets/globex-cloudformation.yaml"}})
+{{/ifEquals}}
+
+{{#if entitlements.isAWSEnabled}}
+- [AWS Deployment Script]({{asset "assets/deploy-aws.sh"}})
+{{/if}}
+
+- [Onboarding Checklist]({{asset "assets/onboarding-checklist.pdf"}})
+```
+
+This lets you maintain one content repo with assets for all customers. Each customer only sees the downloads that apply to them. Unconditioned assets (like the onboarding checklist) appear for everyone.
+
+This pattern works for any file type: Terraform modules, Argo manifests, Bicep templates, CloudFormation stacks, bash scripts, PDFs, or configuration templates.

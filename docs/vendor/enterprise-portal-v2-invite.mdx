@@ -1,0 +1,77 @@
+# Manage Customer Access
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes how to control which customers can access the new Enterprise Portal and how to manage their portal users from the Vendor Portal.
+
+## Enabling Enterprise Portal for customers
+
+For vendors using both Classic and New Enterprise Portal (mixed mode), customer access is controlled per-customer:
+
+- On the customer's **Enterprise Portal access** tab, toggle **Enable Enterprise Portal for this customer** to grant access
+- Use the **Portal Version** toggle to choose whether the customer sees Classic or New
+- Customers on the New portal access it at `{appSlug}.enterpriseportal.app` (or your custom domain)
+
+For vendors on the New Enterprise Portal only, Enterprise Portal is always enabled for all customers. No per-customer enable toggle is needed.
+
+## Inviting users
+
+To invite a customer's end user to the portal:
+
+1. Go to **Customers > [Customer Name] > Enterprise Portal access**
+1. In the **Customer Users** section, click **+ Invite user**
+1. Enter the user's email address and click **Send invite**
+1. The user receives an email with an invitation link to activate their account
+
+You can also enable **Automatically invite customer email to Enterprise Portal on creation** so that every new customer with an email address receives an invite automatically.
+
+## Removing users
+
+To remove a user from a customer's portal team:
+
+1. Go to **Customers > [Customer Name] > Enterprise Portal access**
+1. In the **Customer Users** table, click the menu icon (**...**) next to the user
+1. Select **Remove user**
+
+## Domain restrictions
+
+Restrict which email domains can be invited to a customer's portal:
+
+1. Go to **Customers > [Customer Name] > Enterprise Portal access**
+1. In the **Authentication** section, enable **Domain Restrictions**
+1. Add one or more allowed email domains (e.g., `acme.com`)
+
+Only users with email addresses matching an allowed domain can be invited. This prevents accidental invitations to personal email addresses or unauthorized domains.
+
+## SAML authentication (Alpha)
+
+Allow customers to use their corporate identity provider for portal login:
+
+1. Go to **Customers > [Customer Name] > Enterprise Portal access**
+1. In the **Authentication** section, enable **SAML Authentication**
+1. The customer can then configure their IdP details (metadata URL, certificates) from within the Enterprise Portal's team settings
+
+SAML supports just-in-time user provisioning. When a user logs in via SAML for the first time and their email matches a pending invitation, their account is automatically activated.
+
+## Service accounts
+
+Service accounts provide programmatic access to the Enterprise Portal (e.g., for CI/CD pipelines pulling install commands or registry credentials).
+
+- View and manage service accounts on the customer's **Enterprise Portal access** tab under **Customer Service Accounts**
+- Service accounts are created automatically when a customer starts a new installation from the portal
+- Vendors can revoke service accounts from the Vendor Portal
+
+## Email history
+
+Track all emails sent to a customer through the Enterprise Portal:
+
+- Per-customer: **Customers > [Customer Name] > Enterprise Portal access > Email History**
+- Org-wide: **Enterprise Portal > Customer Emails**
+
+:::note
+The Customer Emails tab is always visible in the Vendor Portal, even when the feature flag is not yet enabled for your team. When disabled, the tab shows a message explaining how to request access.
+:::
+
+Email history shows the recipient, subject, type (invite, magic link, etc.), delivery status, and timestamp.

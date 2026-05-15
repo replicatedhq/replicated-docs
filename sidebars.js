@@ -223,7 +223,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Enterprise Portal",
+      label: "Enterprise Portal (Classic)",
       items: [
         "vendor/enterprise-portal-about",
         "vendor/enterprise-portal-configure",
@@ -231,6 +231,25 @@ const sidebars = {
         "vendor/enterprise-portal-self-serve-signup",
         "vendor/enterprise-portal-access",
         "vendor/enterprise-portal-use",
+      ],
+    },
+    {
+      type: "category",
+      label: "Enterprise Portal (New) (Alpha)",
+      items: [
+        "vendor/enterprise-portal-v2-about",
+        "vendor/enterprise-portal-v2-connect-repo",
+        "vendor/enterprise-portal-v2-content",
+        "vendor/enterprise-portal-v2-branding",
+        "vendor/enterprise-portal-v2-versioned-docs",
+        "vendor/enterprise-portal-v2-helm-reference",
+        "vendor/enterprise-portal-v2-terraform",
+        "vendor/enterprise-portal-v2-preview",
+        "vendor/enterprise-portal-v2-invite",
+        "vendor/enterprise-portal-v2-self-serve-signup",
+        "vendor/enterprise-portal-v2-access",
+        "vendor/enterprise-portal-v2-use",
+        "vendor/enterprise-portal-v2-troubleshooting",
       ],
     },
     {

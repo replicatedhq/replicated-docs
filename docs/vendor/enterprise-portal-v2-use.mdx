@@ -1,0 +1,77 @@
+# Log in to and Use the Enterprise Portal
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes the new Enterprise Portal experience from the customer's perspective, including how to log in and use the portal features.
+
+## Logging in
+
+Customers can access the Enterprise Portal through several methods:
+
+**Invitation email:** When a vendor invites a customer user, they receive an email with an activation link. Clicking the link opens the portal and activates their account.
+
+**Magic link:** On the login page, customers enter their work email and click "Continue with email." A one-time sign-in link is sent to their inbox. No password is needed.
+
+**Pending invite detection:** If a customer visits the login page and has a pending team invite they haven't accepted yet, the portal informs them about the invite and gives them the option to enter their invite code directly, rather than only showing the magic link flow. After logging in, if a user has accepted one team but has pending invites to other teams, they also see a pending invites section prompting them to accept.
+
+**Self-service signup:** When enabled by the vendor, customers can create their own account by visiting the signup URL, entering their information, and verifying their email with a code.
+
+**SAML SSO (Alpha):** When SAML is configured by the vendor and the customer's team admin, customers can log in using their corporate identity provider credentials. Accounts are provisioned automatically on first SAML login if the email matches a pending invitation.
+
+## Portal navigation
+
+Once logged in, customers see a sidebar with the navigation defined by the vendor's `toc.yaml`. The default template organizes content into:
+
+- **Installation**: Requirements, release history, and step-by-step install instructions for Linux and Helm
+- **Operations**: Security reports and support bundle management
+- **Updates**: Check for updates and follow upgrade instructions
+- **Support**: FAQ and contact support information
+
+The vendor controls which sections and pages appear for each customer through entitlements and `visible_when` rules. Customers only see content relevant to their license.
+
+A **version dropdown** in the header lets customers switch between documentation versions when multiple are available on their channel.
+
+**Search** is available via the search button in the header or **Cmd+K** (Mac) / **Ctrl+K** (Windows).
+
+## Installing and upgrading
+
+Install pages show interactive, personalized instructions:
+
+1. The customer selects or starts a new installation from the pending installations list
+1. Configuration options (network availability, version, Kubernetes distribution) update the commands dynamically
+1. The customer copies and runs the commands in their environment
+1. After installation, they can name the instance for easy identification
+
+The install commands are personalized to the selected installation and include the customer's specific credentials. If the customer switches installations or renames their instance, the commands update automatically.
+
+For upgrades, customers use the **Instances & Updates** page to view available updates and follow inline upgrade instructions. Each instance card shows the current version, install method, and update status. Clicking an instance with an available update expands inline upgrade instructions. Instructions remain expanded until the instance reports back with the upgraded version, at which point the card updates in place and collapses.
+
+If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
+
+The **New Installation** button lets customers start new installations, with a dropdown showing the install methods their license allows (Helm, Helm Air Gap, Linux/Embedded Cluster).
+
+Air gap customers can create new instance records manually or by extracting details from an uploaded support bundle.
+
+## Team management
+
+Customer team admins can manage their portal team from the Team Settings page:
+
+- **Invite users**: Send email invitations to colleagues
+- **Remove users**: Remove team members from the portal
+- **Service accounts**: Create and manage service accounts for programmatic access (CI/CD, automation)
+- **SAML configuration**: When SAML is enabled by the vendor, admins can configure their identity provider by uploading IdP metadata and certificates
+
+## Support bundles
+
+Customers can generate and upload support bundles from the portal:
+
+- **Generate bundles**: Follow the instructions on the Support Bundles page to generate a diagnostic bundle from their Linux or Helm installation
+- **Upload bundles**: Upload an existing bundle file for vendor analysis
+- **View history**: See previously uploaded bundles and their status
+
+## License information
+
+Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. This information is accessible from the portal but is read-only for customers.
+
