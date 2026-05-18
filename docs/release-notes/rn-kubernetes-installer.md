@@ -10,6 +10,16 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.05.18-0
+
+Released on May 18, 2026
+
+### New Features {#new-features-v2026-05-18-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.35.4 1.34.7 1.33.11 1.32.13.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.90.1-84.5.0.
+* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 3.1.1.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.14.
+
 ## v2026.05.05-0
 
 Released on May 5, 2026
