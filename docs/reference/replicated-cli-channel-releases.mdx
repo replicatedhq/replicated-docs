@@ -1,0 +1,49 @@
+# replicated channel releases
+
+List all releases in a channel
+
+### Synopsis
+
+List all releases promoted to a channel, including demoted releases. Accepts a channel ID or name.
+
+```
+replicated channel releases CHANNEL_ID_OR_NAME [flags]
+```
+
+### Examples
+
+```
+# List releases for a channel by name
+replicated channel releases Stable
+
+# List releases for a channel by ID
+replicated channel releases 2abc123
+
+# JSON output for scripting or AI agents
+replicated channel releases Stable --output json
+
+# Paginate (second page of 50)
+replicated channel releases Stable --page 1 --page-size 50
+```
+
+### Options
+
+```
+  -h, --help            help for releases
+  -o, --output string   The output format to use. One of: json|table (default "table")
+      --page int        The page to fetch (KOTS apps only).
+      --page-size int   The number of releases per page (KOTS apps only).
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated channel](replicated-cli-channel)	 - List channels
