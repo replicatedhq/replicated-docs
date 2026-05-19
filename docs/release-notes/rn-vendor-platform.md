@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.05.19-2
+
+Released on May 19, 2026
+
+### New Features {#new-features-v2026-05-19-2}
+* Updated the New Enterprise Portal guided setup to be more clear and made the ordering more natural.
+
 ## v2026.05.18-1
 
 Released on May 18, 2026
