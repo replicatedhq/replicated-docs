@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.05.18-1
+
+Released on May 18, 2026
+
+### New Features {#new-features-v2026-05-18-1}
+* Terraform module ingestion errors in the Vendor Portal now include a direct link to configure GitHub App repository access.
+
 ## v2026.05.15-3
 
 Released on May 15, 2026
