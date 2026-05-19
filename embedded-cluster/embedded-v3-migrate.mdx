@@ -36,6 +36,14 @@ To use Embedded Cluster v3, package your application as one or more Helm charts.
 
 Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`). It does not support HelmChart v1.
 
+### Config value defaults are persisted at install time
+
+In Embedded Cluster v2 (KOTS), only config values explicitly set by the end customer were persisted. Default values from the Config spec were re-evaluated on each release, so changing a `default` field in a new release would take effect for any field the customer hadn't explicitly set.
+
+In Embedded Cluster v3, all config values, including those using spec defaults, are resolved and persisted at install time. On upgrade, previously persisted values take precedence over new defaults in the release. This means changing a `default` field in a new release will **not** take effect on existing installations.
+
+If you have config fields that need to be vendor-controlled and updateable across releases, use the `value` field on readonly or disabled items instead of `default`. The `value` field is re-evaluated from the Config spec on each release.
+
 ### Automatic authentication to the Replicated proxy registry
 
 If your application uses the Replicated proxy registry, Embedded Cluster v2 configures the cluster to automatically authenticate to the proxy registry for all pods. This means that it's no longer necessary to manually inject a Replicated pull secret using the ImagePullSecretName template function.
