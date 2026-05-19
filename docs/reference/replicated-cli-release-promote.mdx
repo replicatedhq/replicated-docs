@@ -19,11 +19,13 @@ replicated release promote 15 fe4901690971757689f022f7a460f9b2
 ### Options
 
 ```
-  -h, --help                   help for promote
-      --optional               If set, this release can be skipped
-      --release-notes string   The **markdown** release notes
-      --required               If set, this release can't be skipped
-      --version string         A version label for the release in this channel
+  -h, --help                               help for promote
+      --optional                           If set, this release can be skipped
+      --release-notes string               The **markdown** release notes
+      --required                           If set, this release can't be skipped
+      --version string                     A version label for the release in this channel
+      --wait-for-airgap                    Wait for airgap bundle builds to complete (KOTS apps only)
+      --wait-for-airgap-timeout duration   Timeout for waiting on airgap bundle builds (default 30m0s)
 ```
 
 ### Options inherited from parent commands
@@ -38,4 +40,3 @@ replicated release promote 15 fe4901690971757689f022f7a460f9b2
 ### SEE ALSO
 
 * [replicated release](replicated-cli-release)	 - Manage app releases
-
