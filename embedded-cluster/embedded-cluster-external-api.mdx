@@ -161,41 +161,7 @@ Typically you do not call this endpoint directly — the curl command returned b
 
 The request requires a multi-node-enabled license.
 
-## Headless and automated node joins
+## See also
 
-This is the recommended flow for joining a node without going through the web UI:
-
-1. On the joining host, fetch a JWT token from a controller:
-
-   ```bash
-   TOKEN=$(curl -X POST https://<controller-ip>:30081/v1/auth/token \
-     -H 'Content-Type: application/json' \
-     -d '{"password":"<installer-password>"}' | jq -r .token)
-   ```
-
-2. Poll [`GET /v1/nodes`](#get-v1nodes) until the controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
-
-   ```bash
-   until curl -s https://<controller-ip>:30081/v1/nodes \
-     -H "Authorization: Bearer $TOKEN" \
-     | jq -e '.nodes | map(select(.ready)) | length > 0' >/dev/null; do
-     sleep 5
-   done
-   ```
-
-3. Request the join commands. Pass the desired role names as defined in your EC config:
-
-   ```bash
-   RESPONSE=$(curl -X POST https://<controller-ip>:30081/v1/create-join-command \
-     -H "Authorization: Bearer $TOKEN" \
-     -H 'Content-Type: application/json' \
-     -d '{"roles":["controller"]}')
-   ```
-
-4. Execute each step in the returned `joinSteps` array. The simplest approach evaluates them in order in the same shell:
-
-   ```bash
-   echo "$RESPONSE" | jq -r '.joinSteps[].command' | while IFS= read -r cmd; do
-     eval "$cmd"
-   done
-   ```
+* [Headless joins](embedded-manage-nodes#headless-joins) in _Access and manage embedded clusters_ — end-to-end walkthrough that composes these endpoints to join a node without the web UI.
+* [roles](embedded-config#roles) in _Embedded Cluster Config_ — declare the role names used in `POST /v1/create-join-command` and `GET /v1/join-bundle`.

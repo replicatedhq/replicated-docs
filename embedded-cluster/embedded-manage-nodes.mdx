@@ -59,6 +59,47 @@ To join a node:
 
 1. Repeat these steps for each node you want to add.
 
+### Headless joins {#headless-joins}
+
+For automation and orchestrated deployments, you can join nodes without going through the web UI by calling the Embedded Cluster [external API](embedded-cluster-external-api) from any host in the cluster network. The flow is:
+
+1. Fetch a JWT token from a controller using the installer password:
+
+   ```bash
+   TOKEN=$(curl -X POST https://<controller-ip>:30081/v1/auth/token \
+     -H 'Content-Type: application/json' \
+     -d '{"password":"<installer-password>"}' | jq -r .token)
+   ```
+
+2. Poll [`GET /v1/nodes`](embedded-cluster-external-api#get-v1nodes) until at least one controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
+
+   ```bash
+   until curl -s https://<controller-ip>:30081/v1/nodes \
+     -H "Authorization: Bearer $TOKEN" \
+     | jq -e '.nodes | any(.ready)' >/dev/null; do
+     sleep 5
+   done
+   ```
+
+3. Request the join commands. Pass the desired role names from the [`roles`](embedded-config#roles) key in the Embedded Cluster Config:
+
+   ```bash
+   RESPONSE=$(curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+     -H "Authorization: Bearer $TOKEN" \
+     -H 'Content-Type: application/json' \
+     -d '{"roles":["controller"]}')
+   ```
+
+4. Execute each command in the returned `joinSteps` array on the joining node:
+
+   ```bash
+   echo "$RESPONSE" | jq -r '.joinSteps[].command' | while IFS= read -r cmd; do
+     eval "$cmd"
+   done
+   ```
+
+For the full set of endpoints and response schemas, see [External API](embedded-cluster-external-api).
+
 ## High availability for multi-node clusters {#ha}
 
 Embedded Cluster automatically enables high availability (HA) when at least three `controller` nodes are present in the cluster.
