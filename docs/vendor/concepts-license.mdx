@@ -1,16 +1,11 @@
-# About customer licensing with Replicated
+# About customer licensing
 
-## About licensing
+Licensing codifies the agreements defined in the software contract between the vendor and the enterprise customer, and makes those agreements available to the application through a license server at installation and runtime.
 
-Licensing refers to securely granting access to software. Licensing codifies the agreements defined in the software contract between the vendor and the enterprise customer, and makes those agreements available to the underlying application through a license server during startup or runtime.
-
-Licensing also provides another important data point for enterprise customers to be able to verify the integrity of the software that they are installing. For example, if the license enables the expected set of features (entitlements), then the customer can be more confident that the software is legitimate and came from the intended source. In contrast, with unlicensed software, the customer does not have access to this important data point when attempting to confirm the legitimacy of downloaded software.
-
-
-Licensing is a cross-functional concern as it is important to many different teams that licenses are easy to create, update and sync to customer instances:
-For Sales teams, the license server that keeps track of users and entitlements should be integrated with internal CRM tools, such as Salesforce. This allows customer entitlements to be easily turned on and off based on changes to the software contract. 
-Support teams should be able to use the license as a unique customer identifier to get visibility into insights such as the customer’s entitlements and product usage.
-For Engineering teams, it is important that application logic can be used to control access to code and images so that engineers do not need to update code each time a license agreement changes.
+Licensing is a cross-functional concern:
+* **Sales teams** need license entitlements integrated with CRM tools like Salesforce so that entitlements can be updated when contracts change.
+* **Support teams** need the license as a unique customer identifier to get visibility into entitlements and product usage.
+* **Engineering teams** need application logic that controls access to features based on entitlements, without requiring code changes each time a license agreement changes.
 
 ## About customer records
 
@@ -18,19 +13,25 @@ In the Replicated Vendor Portal, each licensed end customer is represented by a 
 
 For more information, see [Create and Manage Customers](releases-creating-customer).
 
-## About managing custom license entitlements
+## About custom license entitlements
 
-License agreements for enterprise software often include entitlements that address the following common concerns: 
-Enforcing expirations of licenses, such as trial or Proof-of-Concept licenses
-Controlling feature-based and usage-based entitlements to facilitate product assortment. For example, license entitlements can determine a customer’s access to a feature that is available only under a certain product plan 
-Limiting the number of instances of an application that can be run by a single customer
-Other application- or customer-specific entitlements. For example, many AI applications require granular restrictions for model images to control access to sensitive data, and so it is necessary to define which images users can access. Other entitlements might include the number of users permitted, the number of nodes permitted, and so on.
+License agreements for enterprise software often include entitlements such as:
+* **Expiration dates** for trial or Proof-of-Concept licenses
+* **Feature-based entitlements** to control access to features available only under certain product plans
+* **Usage-based entitlements** to limit the number of instances, users, or nodes permitted
+* **Application-specific entitlements**, such as controlling which AI model images a customer can access
+
+Vendors define custom license fields in the Vendor Portal to represent these entitlements. The Replicated SDK provides an in-cluster API that your application can query at runtime to retrieve the current license entitlements for the customer.
+
+For more information, see [About Customers and Licensing](licenses-about).
 
 ## Use license fields in custom metrics
 
-In most cases, software vendors can confidently rely on the license agreement or contract to enforce entitlements, as enterprise customers will be wary of violating a software contract. Because of this, it is likely unnecessary to write application code that prevents certain actions or blocking usage. Instead, most software vendors will track or communicate usage that exceeds the contract and "true up" customers at renewal. One exception to this strategy is enforcing expiration dates, which can be easily extended by the vendor as needed to ensure that the enterprise customer can continue using the software.
+In most cases, vendors can rely on the license agreement to enforce entitlements, as enterprise customers will be cautious about violating a software contract. Rather than blocking usage in application code, most vendors track usage that exceeds the contract and reconcile at renewal. The exception is expiration dates, which can be enforced directly and extended by the vendor as needed.
 
-Measuring usage surfaces relevant data to both the vendor and the customer without the negative consequence of reducing or preventing usage of the software. For vendors, it is helpful to know how customers are using the software to identify opportunities to extend or expand the agreement. For customers, understanding their own usage is valuable for avoiding violations of the contract.
+Measuring usage surfaces data to both the vendor and the customer. For vendors, it helps identify opportunities to expand the agreement. For customers, understanding their own usage helps them stay within contractual limits.
+
+For more information about custom metrics, see [Configure Custom Metrics](custom-metrics).
 
 ## Use license fields in preflight checks
 

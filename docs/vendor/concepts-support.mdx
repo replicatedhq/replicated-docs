@@ -1,20 +1,42 @@
 # About supporting your application
 
+Support refers to the services, tools, and documentation offered by a software vendor that help customers troubleshoot and resolve issues with their deployed instances.
 
+For enterprise software, support expectations are typically defined in a Service Level Agreement (SLA), covering response times, standard support hours, and emergency support. For example, 24/7 support hours and a response time of less than three hours for critical issues are common expectations.
 
-Support refers to the services, tools, and documentation offered by a software vendor that help customers troubleshoot and resolve issues with their instance of the vendor’s software.
-Providing robust support ensures that issues are resolved quickly, reducing interruptions to usage.
+Support teams aim to reduce the mean time to resolution (MTTR) while meeting SLA commitments. To do this, they need:
+* The training and expertise to address customer issues
+* Access to diagnostic information from the customer environment, such as logs, the Kubernetes distribution and version, and usage data
 
-For enterprise software, the scope and breadth of support services provided by the vendor are often defined in a Service Level Agreement (SLA).
-For self-hosted software, SLAs typically define service agreements for support,
-such as maximum wait time for addressing issues, maximum response time for support requests, standard support hours, and emergency support.
-For example, 24/7 support hours and a response time of less than three hours for the most critical support issues are both common expectations for enterprise customers.
+## The challenge of on-prem support
 
-Support teams for modern enterprise software aim to reduce the mean time to resolution (MTTR) for support issues while also meeting the agreements defined in the SLA. To be successful, support teams need:
-* Global coverage that enables 24/7 standard support hours
-* The necessary training and expertise to address customer issues 
-* Access to the right diagnostic information from the customer environment, such as support logs, the Kubernetes distribution and version, and usage data
+Accessing diagnostic information is especially challenging for on-prem software because customer environments are often disconnected. Support engineers cannot SSH into machines or view a stream of observability data. Instead, vendors need tools that securely collect redacted information from the customer environment and run diagnostics.
 
-Accessing diagnostic information from the customer environment is challenging for on-prem software because the environments are often disconnected. This means that support engineers cannot simply SSH into machines or view a stream of observability data. Instead, software vendors can provide tools that securely collect redacted information from the customer environment and run diagnostics. This type of tooling can not only be used to generate troubleshooting suggestions for the customer, but can also provide the option for the customer to send the diagnostic information back to the vendor for additional support. Similar to collecting reporting data from customer environments, it is important that any such support tools redact sensitive data, and that vendors are transparent about the types of data collected. 
+Replicated provides two tools for this: **preflight checks** and **support bundles**.
 
-Apart from support tools and services, high-quality documentation and community-based help articles are also critical for providing customers with the information they need to self-resolve issues. Keeping the product documentation and help articles up-to-date with troubleshooting information for common support issues helps to avoid multiple different customers running into the same issue, saving time and frustration.
+## Preflight checks
+
+Preflight checks run before or during installation to validate that the customer's environment meets the requirements for the application. They catch issues like insufficient resources, missing dependencies, or incompatible Kubernetes versions before they cause installation failures.
+
+For more information, see [Define Preflight Checks](preflight-defining).
+
+## Support bundles
+
+Support bundles collect diagnostic information from a running instance, including logs, cluster state, and application-specific data. Customers can generate a support bundle and upload it through the Enterprise Portal or share it directly with your support team. Uploaded bundles are automatically available for analysis in the Vendor Portal.
+
+For more information, see [Add and Customize Support Bundles](support-bundle-customizing).
+
+## Treating specs as living documents
+
+Preflight and support bundle specs should not be static. As your application ships and customers deploy it across diverse environments, you will learn which checks matter most and what diagnostic information is most useful during escalations.
+
+Treat your preflight and support bundle specs as living documents that evolve over time:
+* **After support escalations**, add new collectors or analyzers to capture the diagnostic information that would have helped resolve the issue faster. If a support ticket required manual investigation to find the root cause, that investigation can often be codified as a new analyzer.
+* **After installation failures**, add preflight checks that would have caught the issue. If a customer's install failed because of a missing storage class or insufficient memory, add a check so the next customer gets a clear warning before they start.
+* **As your application evolves**, update specs to reflect new components, dependencies, or configuration options. A feature that adds a database dependency should come with a preflight check that validates connectivity and a support bundle collector that captures database logs.
+
+The most effective vendors review their specs regularly alongside their support metrics, using patterns in support tickets to identify gaps in what they check for and what they collect.
+
+## Documentation and self-service support
+
+High-quality documentation and community-based help articles are also critical for helping customers self-resolve issues. Keeping documentation up to date with troubleshooting information for common support issues reduces the number of repeat tickets and helps customers get back to productive use faster.

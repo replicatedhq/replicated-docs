@@ -59,7 +59,7 @@ Testing self-hosted software presents a unique challenge in that both the applic
 
 Vendors can increase confidence that their application will run in any environment by testing on a variety of distributions or operating systems that are representative of their current (and future) customer’s environments. For example, depending on the customer base, vendors might want to test on vanilla Kubernetes, at least one cloud-based provider (like GKE or AKS), and a more complex Kubernetes distribution like OpenShift.
 
-## Provide Secure Access to Images with the proxy registry
+## Provide secure access to images with the proxy registry
 
 A single release for an application contains all the artifacts required to install and run the application, such as container images or executables.
 When publishing a release for distribution to self-hosted environments, software vendors need to make images available to customers securely.
@@ -70,9 +70,9 @@ With a proxy, customers can access images using credentials determined by the so
 
 For air gap environments, customers must have access to downloadable archives that contain the release images so they can push images to their own registry.
 
-As discussed later in the License and Report phases, all of this activity can be tracked for auditing and reporting.
+All image pull activity can be tracked for auditing and reporting. For more information, see [About Telemetry and Reporting](concepts-report).
 
-## Release Versioning
+## Release versioning
 Software vendors should assign and increment version numbers for releases using a consistent pattern, such as Semantic Versioning (SemVer).
 SemVer is a commonly-used and recommended versioning strategy that provides implicit information about the backwards compatibility of each version, using the format `MAJOR.MINOR.PATCH.`
 
@@ -85,4 +85,6 @@ SemVer enables this because enterprise customers can easily understand that a ne
 ## Automate releases with CI/CD
 
 To minimize the need for manual intervention when releasing new versions, continuous integration and continuous delivery (CI/CD) pipelines should include workflows that automate release management and publishing.
-For example, vendors could create Github workflows that run tests, publish releases to the right channel, and notify customers subscribed to the channel that a new version is available.
+For example, vendors can create workflows that run tests, publish releases to the right channel, and notify customers subscribed to the channel that a new version is available.
+
+For more information, see [About Integrating with CI/CD](ci-overview).
