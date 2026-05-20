@@ -1,0 +1,39 @@
+# About customer licensing with Replicated
+
+## About licensing
+
+Licensing refers to securely granting access to software. Licensing codifies the agreements defined in the software contract between the vendor and the enterprise customer, and makes those agreements available to the underlying application through a license server during startup or runtime.
+
+Licensing also provides another important data point for enterprise customers to be able to verify the integrity of the software that they are installing. For example, if the license enables the expected set of features (entitlements), then the customer can be more confident that the software is legitimate and came from the intended source. In contrast, with unlicensed software, the customer does not have access to this important data point when attempting to confirm the legitimacy of downloaded software.
+
+
+Licensing is a cross-functional concern as it is important to many different teams that licenses are easy to create, update and sync to customer instances:
+For Sales teams, the license server that keeps track of users and entitlements should be integrated with internal CRM tools, such as Salesforce. This allows customer entitlements to be easily turned on and off based on changes to the software contract. 
+Support teams should be able to use the license as a unique customer identifier to get visibility into insights such as the customer’s entitlements and product usage.
+For Engineering teams, it is important that application logic can be used to control access to code and images so that engineers do not need to update code each time a license agreement changes.
+
+## About customer records
+
+In the Replicated Vendor Portal, each licensed end customer is represented by a customer record. Customer records include the customer's license, which defines their entitlements, expiration date, release channel, and the installation methods available to them. Vendors can create and manage customer records in the Vendor Portal or programmatically using the Replicated CLI and Vendor API.
+
+For more information, see [Create and Manage Customers](releases-creating-customer).
+
+## About managing custom license entitlements
+
+License agreements for enterprise software often include entitlements that address the following common concerns: 
+Enforcing expirations of licenses, such as trial or Proof-of-Concept licenses
+Controlling feature-based and usage-based entitlements to facilitate product assortment. For example, license entitlements can determine a customer’s access to a feature that is available only under a certain product plan 
+Limiting the number of instances of an application that can be run by a single customer
+Other application- or customer-specific entitlements. For example, many AI applications require granular restrictions for model images to control access to sensitive data, and so it is necessary to define which images users can access. Other entitlements might include the number of users permitted, the number of nodes permitted, and so on.
+
+## Use license fields in custom metrics
+
+In most cases, software vendors can confidently rely on the license agreement or contract to enforce entitlements, as enterprise customers will be wary of violating a software contract. Because of this, it is likely unnecessary to write application code that prevents certain actions or blocking usage. Instead, most software vendors will track or communicate usage that exceeds the contract and "true up" customers at renewal. One exception to this strategy is enforcing expiration dates, which can be easily extended by the vendor as needed to ensure that the enterprise customer can continue using the software.
+
+Measuring usage surfaces relevant data to both the vendor and the customer without the negative consequence of reducing or preventing usage of the software. For vendors, it is helpful to know how customers are using the software to identify opportunities to extend or expand the agreement. For customers, understanding their own usage is valuable for avoiding violations of the contract.
+
+## Use license fields in preflight checks
+
+You can reference license field values in preflight check specifications to validate that the customer's environment meets the requirements defined in their license. For example, you can write a preflight check that verifies the number of nodes in the cluster does not exceed the node count allowed by the customer's license.
+
+For more information, see [Define Preflight Checks](preflight-defining).

@@ -1,0 +1,20 @@
+# About supporting your application
+
+
+
+Support refers to the services, tools, and documentation offered by a software vendor that help customers troubleshoot and resolve issues with their instance of the vendor’s software.
+Providing robust support ensures that issues are resolved quickly, reducing interruptions to usage.
+
+For enterprise software, the scope and breadth of support services provided by the vendor are often defined in a Service Level Agreement (SLA).
+For self-hosted software, SLAs typically define service agreements for support,
+such as maximum wait time for addressing issues, maximum response time for support requests, standard support hours, and emergency support.
+For example, 24/7 support hours and a response time of less than three hours for the most critical support issues are both common expectations for enterprise customers.
+
+Support teams for modern enterprise software aim to reduce the mean time to resolution (MTTR) for support issues while also meeting the agreements defined in the SLA. To be successful, support teams need:
+* Global coverage that enables 24/7 standard support hours
+* The necessary training and expertise to address customer issues 
+* Access to the right diagnostic information from the customer environment, such as support logs, the Kubernetes distribution and version, and usage data
+
+Accessing diagnostic information from the customer environment is challenging for on-prem software because the environments are often disconnected. This means that support engineers cannot simply SSH into machines or view a stream of observability data. Instead, software vendors can provide tools that securely collect redacted information from the customer environment and run diagnostics. This type of tooling can not only be used to generate troubleshooting suggestions for the customer, but can also provide the option for the customer to send the diagnostic information back to the vendor for additional support. Similar to collecting reporting data from customer environments, it is important that any such support tools redact sensitive data, and that vendors are transparent about the types of data collected. 
+
+Apart from support tools and services, high-quality documentation and community-based help articles are also critical for providing customers with the information they need to self-resolve issues. Keeping the product documentation and help articles up-to-date with troubleshooting information for common support issues helps to avoid multiple different customers running into the same issue, saving time and frustration.
