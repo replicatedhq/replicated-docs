@@ -12,6 +12,33 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.18.1
+
+Released on May 19, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.18.1+k8s-1.35</td>
+    <td id="center">2.18.1+k8s-1.34</td>
+    <td id="center">2.18.1+k8s-1.33</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.35.4</td>
+    <td id="center">1.34.7</td>
+    <td id="center">1.33.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.4</td>
+  </tr>
+</table>
+
+### New features {#new-features-2-18-1}
+* Adds support for Kubernetes 1.35 and removes support for Kubernetes 1.32. If you are using a version of Embedded Cluster with Kubernetes 1.32, upgrade your Embedded Cluster Config to 2.18.1+k8s-1.33 or 2.18.1+k8s-1.34 before upgrading to 2.18.1+k8s-1.35. Kubernetes does not support upgrading by more than one minor version at a time.
+* Adds nftables support for Linux kernel 6.17+.
+
 ## 2.17.1
 
 Released on May 5, 2026
