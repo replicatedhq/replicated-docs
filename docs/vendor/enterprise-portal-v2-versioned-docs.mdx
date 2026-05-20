@@ -92,7 +92,9 @@ When a customer switches versions via the dropdown, the portal swaps the version
 
 ## Removing versions
 
-To unpublish a version from the dropdown, delete the branch. The version disappears after the next sync.
+To remove a version's dedicated content branch, delete the branch from your git repo. The branch disappears from the Content tab after the next sync.
+
+However, if a release with that version label still exists on a customer's channel, the version still appears in the customer's version dropdown. The portal resolves it using the version resolution chain (nearest lower semver branch, then `main` as fallback). To fully remove a version from the customer's dropdown, the release must also be removed from the channel.
 
 ## Overrides
 
