@@ -8,21 +8,21 @@ Enterprise Portal content is driven by a GitHub repo you control. Connecting a r
 
 The Vendor Portal walks you through setup in three steps:
 
-## Step 1: Connect GitHub
+## Step 1: Create from template
 
-Go to **Enterprise Portal** in Vendor Portal. The **Content** tab is the default landing page. Click **Connect GitHub** and authorize the Replicated GitHub App on your GitHub organization.
-
-:::note
-When installing the Replicated GitHub App, grant access to all repositories you plan to use with Enterprise Portal (content repos AND Terraform module repos). If you need to add access to additional repos later, update the GitHub App's repository permissions in your GitHub org settings (Settings > Integrations > Applications > Replicated > Configure > Repository access).
-:::
-
-## Step 2: Create from template
-
-Click **Create Repo from Template** to generate a new content repository from Replicated's template. This opens GitHub's "Create a new repository" flow, pre-configured with the `replicatedhq/enterprise-portal-content` template. The repository name is pre-filled as `<your-app-slug>-enterprise-portal-content` and visibility defaults to **private**. Choose an owner, adjust the name if needed, and click **Create repository** on GitHub.
+Go to **Enterprise Portal** in Vendor Portal. The **Content** tab is the default landing page. Click **Create Repo from Template** to generate a new content repository from Replicated's template. This opens GitHub's "Create a new repository" flow, pre-configured with the `replicatedhq/enterprise-portal-content` template. The repository name is pre-filled as `<your-app-slug>-enterprise-portal-content` and visibility defaults to **private**. Choose an owner, adjust the name if needed, and click **Create repository** on GitHub.
 
 The template includes a working `toc.yaml`, example pages for installation (Linux and Helm), operations, updates, and support, along with built-in MDX components for interactive install instructions. See [Content Template Structure](/vendor/enterprise-portal-v2-content#content-template-structure) for what's included out of the box.
 
 If you already have a content repository (or prefer to create one from scratch), click **Continue** to skip this step.
+
+## Step 2: Connect GitHub
+
+Click **Connect GitHub** and authorize the Replicated GitHub App on your GitHub organization. Creating the repo first (Step 1) ensures it's available to grant access to during this step.
+
+:::note
+When installing the Replicated GitHub App, grant access to all repositories you plan to use with Enterprise Portal (content repos AND Terraform module repos). If you need to add access to additional repos later, update the GitHub App's repository permissions in your GitHub org settings (Settings > Integrations > Applications > Replicated > Configure > Repository access).
+:::
 
 ## Step 3: Link repository
 
