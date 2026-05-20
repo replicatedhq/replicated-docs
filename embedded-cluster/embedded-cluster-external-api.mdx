@@ -5,7 +5,7 @@ Embedded Cluster exposes a small, stable HTTP API on every controller node for c
 ## Overview
 
 * The API listens on the controller's internal IP on TCP port **30081** by default. Override at install with `--api-port`.
-* All traffic is TLS-encrypted. The certificate is generated at install and is served by the daemon.
+* All traffic is TLS-encrypted using the certificates configured at install time and is served by the daemon.
 * All non-health endpoints require a JWT bearer token obtained from `POST /v1/auth/token`.
 * The API is reachable from any host in the cluster network — not from outside the cluster unless you explicitly expose it.
 
