@@ -12,6 +12,41 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.1.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.1.0-beta.1+k8s-1.34</td>
+    <td id="center">3.1.0-beta.1+k8s-1.33</td>
+    <td id="center">3.1.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-1-0-beta-1}
+
+* Adds support for vendor-defined custom node roles. Roles are declared in the EC config with associated labels, and one or more roles can be assigned to a node at install or join time. See [roles](/embedded-cluster/v3/embedded-config#roles) in _Embedded Cluster Config_.
+* Adds an external HTTP API on port 30081 (configurable with `--api-port`) for headless installs, programmatic node joins, and cluster-state polling. See [External API](/embedded-cluster/v3/embedded-cluster-external-api).
+* Adds Bring Your Own (BYO) registry support during install.
+* Allows joining new nodes to the cluster during an upgrade.
+* Adds nftables support for Linux kernel 6.17+.
+
+### Improvements {#improvements-3-1-0-beta-1}
+
+* Unifies runtime suppression of when-gated and readonly config items.
+* Applies templating to status informers.
+
+### Bug fixes {#bug-fixes-3-1-0-beta-1}
+
+* Adds detection of orphaned containerd tmpmounts to upgrade preflights.
+* Verifies the installer UI port is free before prompting on install or upgrade.
+
 ## 3.0.0-beta.4
 
 <table>

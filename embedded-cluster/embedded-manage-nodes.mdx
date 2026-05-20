@@ -22,7 +22,7 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * You should not join more than one controller node at the same time. When joining a controller node, Embedded Cluster prints a warning explaining that you should not attempt to join another node until the controller node joins successfully.
 
-* You cannot change a node's role (`controller` or `worker`) after you join the node. If you need to change a node’s role, reset the node and add it again with the new role.
+* You cannot change a node's role assignment after you join the node. To change a node's roles, reset the node and add it again with the new role selection. For more information about customizing node roles, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
 
 ### Requirement
 
@@ -37,14 +37,14 @@ To join a node:
 1. Run the following command to generate the `.tar.gz` bundle for joining a node:
 
    ```bash
-   sudo ./APP_SLUG create-join-bundle --role [controller | worker]
+   sudo ./APP_SLUG create-join-bundle --roles ROLE[,ROLE...]
    ```
    Where:
    * `APP_SLUG` is the unique slug for the application.
-   * `--role` is the role to assign the node (`controller` or `worker`).
-     
+   * `--roles` is one or more role names to assign the node, comma-separated. Valid role names are the default controller role and any custom roles declared in the Embedded Cluster Config under [roles](embedded-config#roles).
+
      :::note
-     You cannot change the role after you add a node. If you need to change a node’s role, reset the node and add it again with the new role.
+     You cannot change role assignments after a node is joined. To change them, reset the node and add it again with the new role selection.
      :::
 
 1. Use `scp` to copy the `.tar.gz` bundle to the node that you want to join.
@@ -58,6 +58,47 @@ To join a node:
    ```
 
 1. Repeat these steps for each node you want to add.
+
+### Headless joins {#headless-joins}
+
+For automation and orchestrated deployments, you can join nodes without going through the web UI by calling the Embedded Cluster [external API](embedded-cluster-external-api) from any host in the cluster network. The flow is:
+
+1. Fetch a JWT token from a controller using the installer password:
+
+   ```bash
+   TOKEN=$(curl -X POST https://<controller-ip>:30081/v1/auth/token \
+     -H 'Content-Type: application/json' \
+     -d '{"password":"<installer-password>"}' | jq -r .token)
+   ```
+
+2. Poll [`GET /v1/nodes`](embedded-cluster-external-api#get-v1nodes) until at least one controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
+
+   ```bash
+   until curl -s https://<controller-ip>:30081/v1/nodes \
+     -H "Authorization: Bearer $TOKEN" \
+     | jq -e '.nodes | any(.ready)' >/dev/null; do
+     sleep 5
+   done
+   ```
+
+3. Request the join commands. Pass the desired role names from the [`roles`](embedded-config#roles) key in the Embedded Cluster Config:
+
+   ```bash
+   RESPONSE=$(curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+     -H "Authorization: Bearer $TOKEN" \
+     -H 'Content-Type: application/json' \
+     -d '{"roles":["controller"]}')
+   ```
+
+4. Execute each command in the returned `joinSteps` array on the joining node:
+
+   ```bash
+   echo "$RESPONSE" | jq -r '.joinSteps[].command' | while IFS= read -r cmd; do
+     eval "$cmd"
+   done
+   ```
+
+For the full set of endpoints and response schemas, see [External API](embedded-cluster-external-api).
 
 ## High availability for multi-node clusters {#ha}
 

@@ -19,6 +19,7 @@ module.exports = {
     //REFERENCE DOCS
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
     "embedded-config",
+    "embedded-cluster-external-api",
     "template-functions",
     {
       type: "category",

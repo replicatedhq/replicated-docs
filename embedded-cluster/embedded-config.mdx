@@ -84,6 +84,68 @@ Replicated recommends that you update the version frequently to ensure that you 
 
 <DoNotDowngrade/>
 
+## roles (Beta) {#roles}
+
+You can customize node roles in the Embedded Cluster Config using the `roles` key.
+
+A common use case for customizing node roles is to assign workloads to specific nodes. For example, if your application has graphics processing unit (GPU) workloads, you could declare a custom role that applies a `gpu=true` label to any node assigned that role. You can then schedule GPU workloads on nodes labeled `gpu=true`.
+
+When the `roles` key is configured, users select one or more roles to assign to a node when it is installed or joined to the cluster. For more information about assigning roles when joining a node, see [Join nodes](embedded-manage-nodes#add-nodes) in _Access and manage embedded clusters_.
+
+If the `roles` key is _not_ configured, all nodes joined to the cluster are assigned the default `controller` role. The `controller` role designates nodes that run the Kubernetes control plane. Controller nodes can also run other workloads, such as application workloads.
+
+### Example
+
+```yaml
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
+  roles:
+    controller:
+      # Optionally change the display name for the default controller role
+      name: app
+      labels:
+        app: "true" # Label applied to nodes assigned the controller role
+    # Custom roles
+    custom:
+      - name: db
+        labels:
+          db: "true" # Label applied to "db" nodes
+      - name: gpu
+        labels:
+          gpu: "true" # Label applied to "gpu" nodes
+```
+
+### Limitations
+
+* Defining node roles with the `roles` key is Beta.
+
+* The first node added to the cluster must include the controller role. It may additionally be assigned any custom roles.
+
+* A node's role assignment cannot be changed after the node is joined to the cluster. To change a node's roles, reset the node and add it again with the new role selection.
+
+### roles.controller
+
+In the `roles.controller` key, you can customize the default controller role:
+
+* `name`: Sets the display name for the controller role. By default, the controller role is named `controller`.
+
+   :::note
+   If you plan to declare any custom roles, Replicated recommends that you change the default name for the controller role to a term that is easy to understand (such as `app`). When custom roles are present, both the controller role name and any custom role names are displayed to the user when they install or join a node.
+   :::
+
+* `labels`: Kubernetes labels that Embedded Cluster applies to every node assigned the controller role.
+
+### roles.custom
+
+In the `roles.custom` key, you can declare additional roles. Each custom role includes the following fields:
+
+* `name`: (Required) The name of the custom role.
+
+* `labels`: Kubernetes labels that Embedded Cluster applies to every node assigned the role.
+
+Multiple roles may be assigned to the same node — the joined node carries the union of each role's labels. If two roles define the same label key, the role that appears later in the user's selection wins.
+
 ## domains
 
 Configure the `domains` key so that Embedded Cluster uses your custom domains for the Replicated proxy registry and Replicated app service.
