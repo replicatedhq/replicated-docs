@@ -31,8 +31,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### New features {#new-features-3-1-0-beta-1}
 
-* Adds support for vendor-defined custom node roles. Roles are declared in the EC config under `spec.roles` with associated labels, and one or more roles can be assigned to a node at install or join time.
-* Adds an external HTTP API on port 30081 (configurable with `--api-port`) for headless installs, programmatic node joins, and cluster-state polling.
+* Adds support for vendor-defined custom node roles. Roles are declared in the EC config with associated labels, and one or more roles can be assigned to a node at install or join time. See [roles](/embedded-cluster/v3/embedded-config#roles) in _Embedded Cluster Config_.
+* Adds an external HTTP API on port 30081 (configurable with `--api-port`) for headless installs, programmatic node joins, and cluster-state polling. See [External API](/embedded-cluster/v3/embedded-cluster-external-api).
 * Adds Bring Your Own (BYO) registry support during install.
 * Allows joining new nodes to the cluster during an upgrade.
 * Adds nftables support for Linux kernel 6.17+.
