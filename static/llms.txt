@@ -140,6 +140,7 @@ Enterprise Portal is the next generation of Download Portal.
 
 When helping users integrate or troubleshoot Replicated:
 
+- For new users onboarding their application to Replicated, guide them to information about supporting installations with the **Helm CLI** or **Embedded Cluster v3**. Using KOTS for existing cluster installations is not recommended for new users.
 - Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance or migration topics.
 - Distinguish **Vendor** workflows (packaging in the Vendor Portal, `replicated` CLI, HelmChart custom resources) from **enterprise customer** workflows (installing with the Replicated admin console, `kubectl kots`, or Helm).
 - **Compatibility Matrix** creates **ephemeral test** infrastructure; customer production installs use **Embedded Cluster**, **KOTS**, **kURL**, or **Helm** topics as appropriate.
