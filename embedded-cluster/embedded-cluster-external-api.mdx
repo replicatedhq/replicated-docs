@@ -1,0 +1,201 @@
+# External API (Beta)
+
+Embedded Cluster exposes a small, stable HTTP API on every controller node for cross-node automation. This API is intended for headless installs, programmatic node joins, and external orchestration.
+
+## Overview
+
+* The API listens on the controller's internal IP on TCP port **30081** by default. Override at install with `--api-port`.
+* All traffic is TLS-encrypted. The certificate is generated at install and is served by the daemon.
+* All non-health endpoints require a JWT bearer token obtained from `POST /v1/auth/token`.
+* The API is reachable from any host in the cluster network — not from outside the cluster unless you explicitly expose it.
+
+The full Embedded Cluster API (used by the local web UI) is served on a Unix socket and is not exposed on the network. Only the endpoints documented below are reachable on port 30081.
+
+## Authentication
+
+Obtain a token using the installer password:
+
+```bash
+curl -X POST https://<controller-ip>:30081/v1/auth/token \
+  -H 'Content-Type: application/json' \
+  -d '{"password":"<installer-password>"}'
+```
+
+Response:
+
+```json
+{ "token": "eyJhbGciOi..." }
+```
+
+The token is a JWT valid for 24 hours. Pass it as `Authorization: Bearer <token>` on subsequent requests.
+
+## Endpoints
+
+### `GET /v1/health`
+
+Liveness probe. No authentication required.
+
+```bash
+curl https://<controller-ip>:30081/v1/health
+```
+
+Response:
+
+```json
+{ "status": "ok" }
+```
+
+### `GET /v1/version`
+
+Returns the running daemon version. No authentication required.
+
+```bash
+curl https://<controller-ip>:30081/v1/version
+```
+
+Response:
+
+```json
+{
+  "version":   "3.0.0",
+  "commit":    "abcdef0",
+  "buildDate": "2026-01-15_12:00:00"
+}
+```
+
+### `POST /v1/auth/token`
+
+See [Authentication](#authentication).
+
+### `GET /v1/nodes`
+
+Returns the list of nodes in the cluster.
+
+Request:
+
+```bash
+curl https://<controller-ip>:30081/v1/nodes \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Response:
+
+```json
+{
+  "nodes": [
+    {
+      "name": "controller-0",
+      "labels": {
+        "node-role.kubernetes.io/control-plane": "",
+        "kots.io/embedded-cluster-role-0": "controller"
+      },
+      "annotations": { ... },
+      "roles": ["controller"],
+      "internalIP": "10.0.0.11",
+      "ready": true
+    }
+  ]
+}
+```
+
+Field reference:
+
+| Field | Description |
+|-------|-------------|
+| `name` | Kubernetes node name. |
+| `labels` | All labels on the node. |
+| `annotations` | All annotations on the node. |
+| `roles` | The vendor-defined role names assigned at join time (from the EC config `spec.roles`). |
+| `internalIP` | The node's internal IP address. |
+| `ready` | `true` when the node's `Ready` condition is `True`. |
+
+Automation should poll this endpoint to verify the cluster is ready to issue join commands. After the k0s install completes, the controller takes a short time to report `Ready` in the cluster. Calls to `POST /v1/create-join-command` fail until at least one controller has `ready: true`, so automation should poll `GET /v1/nodes` first and only request join commands once a `Ready` controller is present.
+
+### `POST /v1/create-join-command`
+
+Returns the shell commands a remote host must run to join the cluster: download a join bundle, extract it, and run `node join`. The download command embeds a short-lived bearer token (1 hour TTL).
+
+Request:
+
+```bash
+curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+  -H "Authorization: Bearer $TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"roles":["controller"]}'
+```
+
+The `roles` array must contain one or more role names defined in the application's EC config (`spec.roles.controller.name` and `spec.roles.custom[].name`). Multiple roles can be assigned to the same node; the joined node will carry the union of each role's labels.
+
+Response:
+
+```json
+{
+  "joinSteps": [
+    {
+      "description": "Download the join bundle",
+      "command": "curl -H \"Authorization: Bearer ...\" https://10.0.0.11:30081/v1/join-bundle?roles=controller -o APP_SLUG-join-controller-20260115-120000.tar.gz"
+    },
+    {
+      "description": "Extract the bundle",
+      "command": "tar xzf APP_SLUG-join-controller-20260115-120000.tar.gz"
+    },
+    {
+      "description": "Run the join command",
+      "command": "sudo ./APP_SLUG node join"
+    }
+  ]
+}
+```
+
+### `GET /v1/join-bundle?roles=<role1,role2,...>`
+
+Streams a gzip tarball containing everything a new node needs to join the cluster: binaries, EC bundle, license, signed cluster seed, and a k0s join token. The `roles` query parameter accepts a comma-separated list of role names.
+
+```bash
+curl https://<controller-ip>:30081/v1/join-bundle?roles=controller \
+  -H "Authorization: Bearer $TOKEN" \
+  -o APP_SLUG-join-controller.tar.gz
+```
+
+Typically you do not call this endpoint directly — the curl command returned by `POST /v1/create-join-command` calls it for you with a short-lived, audience-scoped token.
+
+The request requires a multi-node-enabled license.
+
+## Headless and automated node joins
+
+This is the recommended flow for joining a node without going through the web UI:
+
+1. On the joining host, fetch a JWT token from a controller:
+
+   ```bash
+   TOKEN=$(curl -X POST https://<controller-ip>:30081/v1/auth/token \
+     -H 'Content-Type: application/json' \
+     -d '{"password":"<installer-password>"}' | jq -r .token)
+   ```
+
+2. Poll [`GET /v1/nodes`](#get-v1nodes) until the controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
+
+   ```bash
+   until curl -s https://<controller-ip>:30081/v1/nodes \
+     -H "Authorization: Bearer $TOKEN" \
+     | jq -e '.nodes | map(select(.ready)) | length > 0' >/dev/null; do
+     sleep 5
+   done
+   ```
+
+3. Request the join commands. Pass the desired role names as defined in your EC config:
+
+   ```bash
+   RESPONSE=$(curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+     -H "Authorization: Bearer $TOKEN" \
+     -H 'Content-Type: application/json' \
+     -d '{"roles":["controller"]}')
+   ```
+
+4. Execute each step in the returned `joinSteps` array. The simplest approach evaluates them in order in the same shell:
+
+   ```bash
+   echo "$RESPONSE" | jq -r '.joinSteps[].command' | while IFS= read -r cmd; do
+     eval "$cmd"
+   done
+   ```
