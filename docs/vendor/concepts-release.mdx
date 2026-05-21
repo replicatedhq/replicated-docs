@@ -34,6 +34,8 @@ Channels provide a way to progress releases through the software development lif
 Channels also control which customers are able to install a release.
 You assign each customer to a channel to define the releases that the customer can access.
 
+For more information, see [About Channels and Releases](releases-about).
+
 Channels create a logical separation between different types of releases. You can isolate releases intended for internal testing without manually granting or restricting access. Channels also provide flexibility in release frequency, letting you publish updates to internal channels more often while maintaining a different pace for GA releases.
 
 For example, vendors might keep separate channels for internal-only, experimental, beta, and generally available (GA) releases.
@@ -57,6 +59,8 @@ Testing self-hosted software presents a unique challenge: both the application a
 
 Test on a variety of distributions representative of your customer base. For example, you might test on vanilla Kubernetes, a cloud provider (like GKE or AKS), and a more complex distribution like OpenShift.
 
+For more information, see [About Compatibility Matrix](testing-about).
+
 ## Provide secure access to images with the proxy registry
 
 A single release for an application contains all the artifacts required to install and run the application, such as container images or executables.
@@ -65,6 +69,8 @@ When publishing a release for distribution to self-hosted environments, software
 For online (internet-connected) environments, proxy servers grant pull-through access to images. A proxy acts as an intermediary between your private image registry and the customer, so users access images without exposing registry credentials. Customers authenticate with credentials you determine, such as their unique license ID.
 
 For air gap environments, customers must have access to downloadable archives that contain the release images so they can push images to their own registry.
+
+For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
 
 All image pull activity can be tracked for auditing and reporting. For more information, see [About Telemetry and Reporting](concepts-report).
 
