@@ -15,8 +15,6 @@ Access to reporting data empowers vendors to take more informed action:
 * **Churn and growth signals**: Decreased usage for a customer can indicate churn risk, while increased usage can indicate expansion opportunities.
 * **Performance monitoring**: Uptime data helps troubleshoot issues and understand the resiliency of your software.
 
-Enterprise customers also often expect access to this data through dashboards, exports, or notifications to track their own usage against contractual limits.
-
 ## Custom metrics with the SDK
 
 In addition to built-in insights like uptime and time to install, you can configure custom metrics to measure application instances in customer environments. Collect custom metrics from instances in both online and air gap environments.
@@ -29,14 +27,10 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 For more information, see [Configure Custom Metrics](custom-metrics).
 
+{/* TODO: Rework air gap telemetry section - current content needs improvement */}
 ## Air gap telemetry
 
-When collecting data from customer environments, vendors should adhere to principles of transparency, privacy, and customer choice:
-* Publicly disclose what data elements are transmitted by providing clear documentation
-* Redact sensitive data (such as database connection strings, passwords, or API tokens) from being sent back to the vendor
-* Give customers the opportunity to opt in or out of sending different types of data
-
-Air gap environments present unique challenges due to the lack of outbound internet access. Collect reporting data from air gap instances by providing customers opportunities to send redacted data with support requests or through regular surveys.
+_This section is under development._
 
 ## Event notifications
 
