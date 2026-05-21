@@ -1,0 +1,50 @@
+# About supporting your application
+
+Support refers to the services, tools, and documentation offered by a software vendor that help customers troubleshoot and resolve issues with their deployed instances.
+
+For enterprise software, a Service Level Agreement (SLA) typically defines support expectations: response times, standard support hours, and emergency support. Common expectations include 24/7 support hours and a response time under three hours for critical issues.
+
+Support teams aim to reduce the mean time to resolution (MTTR) while meeting SLA commitments. To do this, they need:
+* The training and expertise to address customer issues
+* Access to diagnostic information from the customer environment, such as logs, the Kubernetes distribution and version, and usage data
+
+## The challenge of on-prem support
+
+Accessing diagnostic information is challenging for on-prem software because customer environments are often disconnected. Support engineers cannot SSH into machines or view observability data directly. Instead, vendors need tools that securely collect redacted information and run diagnostics.
+
+Replicated provides two tools for this: **preflight checks** and **support bundles**.
+
+## Preflight checks
+
+Preflight checks run before or during installation to validate that the customer's environment meets application requirements. They catch issues like insufficient resources, missing dependencies, or incompatible Kubernetes versions before installation.
+
+For more information, see [Define Preflight Checks](preflight-defining). For example specs, see [Example Preflight Specs](preflight-examples).
+
+## Support bundles
+
+Support bundles collect diagnostic information from a running instance: logs, cluster state, and application-specific data. Customers generate a bundle and upload it through the [Enterprise Portal](/vendor/enterprise-portal-v2-about) or share it with your support team. Uploaded bundles become available for analysis in the Vendor Portal.
+
+Support bundles are valuable beyond just your own troubleshooting. When you open a support request with Replicated, including a support bundle dramatically improves resolution time. Based on historical data, Severity 1 issues with an attached support bundle have been resolved up to three times faster. The Vendor Portal can also pre-populate support request details from the bundle, reducing the back-and-forth needed to get to a resolution.
+
+For more information, see [Add and Customize Support Bundles](support-bundle-customizing). For example specs, see [Example Support Bundle Specs](support-bundle-examples).
+
+## Treating specs as living documents
+
+Preflight and support bundle specs should not be static. As customers deploy across diverse environments, you learn which checks matter and what diagnostic information helps most during escalations.
+
+Treat your specs as living documents that evolve over time:
+* **After support escalations**, add collectors or analyzers that capture what would have helped resolve the issue faster. If a ticket required manual root cause analysis, codify that investigation as a new analyzer.
+* **After installation failures**, add preflight checks that would have caught the issue. For example, if an install failed due to a missing storage class, add a check so the next customer gets a warning.
+* **As your application evolves**, update specs for new components and dependencies. A feature that adds a database dependency should include a preflight check for connectivity and a collector for database logs.
+
+The most effective vendors review specs regularly alongside support metrics, using ticket patterns to identify gaps in what they check and collect.
+
+## Getting support from Replicated
+
+Replicated provides support to help you troubleshoot issues with the Replicated Platform and your application deployments. You can submit support requests and attach support bundles directly from the Vendor Portal.
+
+For more information, see [Submit a Support Request](support-submit-request).
+
+## Documentation and self-service support
+
+High-quality documentation and community help articles help customers self-resolve issues. Keep documentation up to date with troubleshooting information for common issues to reduce repeat tickets.

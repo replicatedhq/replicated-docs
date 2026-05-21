@@ -1,0 +1,89 @@
+# About releasing your application
+
+Releasing refers to the process of delivering software to licensed users, ensuring that new features, improvements, and bug fixes get into the hands of the right customers at the right frequency.
+
+Key considerations for vendors when releasing modern enterprise software include:
+* Making application images available for customers to access securely
+* Packaging and publishing cryptographically signed release artifacts for different installation methods
+* Demonstrating the integrity of each release with supply chain metadata like SBOMs and provenance attestations
+* Managing release streams for different customers, including production (GA) and pre-release (alpha, beta) versions
+* Versioning releases with a consistent pattern so that customers understand backward compatibility
+
+## About creating your application releases
+
+### Packaging with Helm
+
+Replicated releases are built around Helm charts. You package your application as one or more Helm charts, which Replicated distributes through the proxy registry. Use standard Helm packaging practices and your existing CI/CD pipelines to build charts, then promote them as Replicated releases.
+
+For more information, see [Manage Releases with the CLI](releases-creating-cli).
+
+### Release files for installers
+
+A release contains your application Helm charts and any additional manifests required for installation. For Embedded Cluster installations, releases also include an Embedded Cluster Config that defines the cluster, Helm extensions, and node roles. Replicated generates the appropriate installation assets for each method, including air gap bundles for disconnected environments.
+
+### About iterating on releases with the Replicated platform
+
+Replicated supports a rapid iteration workflow where you create and test releases frequently. Use the Replicated CLI to create releases from your local environment or automate release creation in CI/CD. Promote releases to development channels and install them in test environments provisioned with Compatibility Matrix for fast feedback before promoting to customer-facing channels.
+
+## About managing releases with channels
+
+Release management is important for ensuring that each release is made available to the right subset of users (including internal teams and customers).
+
+With Replicated, each release is promoted to one or more _channels_.
+Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available.
+Channels also control which customers are able to install a release.
+You assign each customer to a channel to define the releases that the customer can access.
+
+For more information, see [About Channels and Releases](releases-about).
+
+Channels create a logical separation between different types of releases. You can isolate releases intended for internal testing without manually granting or restricting access. Channels also provide flexibility in release frequency, letting you publish updates to internal channels more often while maintaining a different pace for GA releases.
+
+For example, vendors might keep separate channels for internal-only, experimental, beta, and generally available (GA) releases.
+Enterprise customers and internal users can then access the releases published to the channel where they are subscribed.
+
+### Default unstable, beta, and stable channels
+
+Replicated includes the following channels by default:
+
+* **Unstable**: The Unstable channel is designed for internal testing and development. You can create and assign an internal test customer to the Unstable channel to install in a development environment. Replicated recommends that you do not license any of your external users against the Unstable channel.
+* **Beta**: The Beta channel is designed for release candidates and early-adopting customers. Replicated recommends that you promote a release to the Beta channel after it has passed automated testing in the Unstable channel. You can also choose to license early-adopting customers against this channel.
+* **Stable**: The Stable channel is designed for releases that are generally available. Replicated recommends that you assign most of your customers to the Stable channel. Customers licensed against the Stable channel only receive application updates when you promote a new release to the Stable channel.
+
+## About testing your releases
+
+Testing ensures that enterprise software can be reliably distributed to current and future customer environments. Catching issues before the application reaches customers improves the customer experience and manages costs. Discovering and fixing a bug after the fact is more expensive than investing in testing up front.
+
+### Customer-representative environments with compatibility matrix
+
+Testing self-hosted software presents a unique challenge: both the application and the customer’s environment can cause a failed deployment. The same application that installs successfully in one environment might fail in the next. Testing must go beyond unit and integration tests to verify functionality across different environments.
+
+Test on a variety of distributions representative of your customer base. For example, you might test on vanilla Kubernetes, a cloud provider (like GKE or AKS), and a more complex distribution like OpenShift.
+
+For more information, see [About Compatibility Matrix](testing-about).
+
+## Provide secure access to images with the proxy registry
+
+A single release for an application contains all the artifacts required to install and run the application, such as container images or executables.
+When publishing a release for distribution to self-hosted environments, software vendors need to make images available to customers securely.
+
+For online (internet-connected) environments, proxy servers grant pull-through access to images. A proxy acts as an intermediary between your private image registry and the customer, so users access images without exposing registry credentials. Customers authenticate with credentials you determine, such as their unique license ID.
+
+For air gap environments, customers must have access to downloadable archives that contain the release images so they can push images to their own registry.
+
+For more information, see [About the Replicated Proxy Registry](/vendor/private-images-about).
+
+All image pull activity can be tracked for auditing and reporting. For more information, see [About Telemetry and Reporting](concepts-report).
+
+## Release versioning
+Assign and increment version numbers using a consistent pattern, such as Semantic Versioning (SemVer). SemVer communicates backward compatibility using the format `MAJOR.MINOR.PATCH`.
+
+The versioning pattern should also dictate how you indicate pre-release versions. With SemVer, alpha or beta versions append a hyphen and label, such as `1.0.0-alpha` or `1.2.3-0.0.2`.
+
+A consistent pattern like SemVer is important because vendors often support multiple versions concurrently. Enterprise customers can understand that a patch release is backward compatible with the corresponding minor version.
+
+## Automate releases with CI/CD
+
+Minimize manual intervention by automating release management and publishing in your CI/CD pipelines.
+For example, vendors can create workflows that run tests, publish releases to the right channel, and notify customers subscribed to the channel that a new version is available.
+
+For more information, see [About Integrating with CI/CD](ci-overview).
