@@ -116,3 +116,5 @@ enum
 unpublish
 PDFs
 URIs
+stdin
+stdout
