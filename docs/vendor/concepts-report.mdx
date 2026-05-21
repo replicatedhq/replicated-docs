@@ -27,10 +27,15 @@ The following diagram demonstrates how a custom `activeUsers` metric is sent to 
 
 For more information, see [Configure Custom Metrics](custom-metrics).
 
-{/* TODO: Rework air gap telemetry section - current content needs improvement */}
 ## Air gap telemetry
 
-_This section is under development._
+Air gap instances run in environments without outbound internet access, so they cannot send telemetry to the Vendor Portal directly. Instead, the Replicated SDK collects and stores instance telemetry, including custom metrics, in a Kubernetes Secret in the customer environment.
+
+When a customer generates a support bundle, the stored telemetry is included automatically. When the bundle is uploaded to the Vendor Portal, the telemetry is associated with the correct customer and instance, and the Vendor Portal updates insights and event data accordingly.
+
+Replicated recommends collecting support bundles from air gap customers regularly (monthly or quarterly) to maintain complete telemetry data. The Vendor Portal handles overlapping event archives idempotently.
+
+For more information, see [Collect Telemetry for Air Gap Instances](telemetry-air-gap).
 
 ## Event notifications
 
