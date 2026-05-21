@@ -2,7 +2,7 @@
 
 Support refers to the services, tools, and documentation offered by a software vendor that help customers troubleshoot and resolve issues with their deployed instances.
 
-For enterprise software, support expectations are typically defined in a Service Level Agreement (SLA), covering response times, standard support hours, and emergency support. For example, 24/7 support hours and a response time of less than three hours for critical issues are common expectations.
+For enterprise software, a Service Level Agreement (SLA) typically defines support expectations: response times, standard support hours, and emergency support. Common expectations include 24/7 support hours and a response time under three hours for critical issues.
 
 Support teams aim to reduce the mean time to resolution (MTTR) while meeting SLA commitments. To do this, they need:
 * The training and expertise to address customer issues
@@ -10,33 +10,33 @@ Support teams aim to reduce the mean time to resolution (MTTR) while meeting SLA
 
 ## The challenge of on-prem support
 
-Accessing diagnostic information is especially challenging for on-prem software because customer environments are often disconnected. Support engineers cannot SSH into machines or view a stream of observability data. Instead, vendors need tools that securely collect redacted information from the customer environment and run diagnostics.
+Accessing diagnostic information is challenging for on-prem software because customer environments are often disconnected. Support engineers cannot SSH into machines or view observability data directly. Instead, vendors need tools that securely collect redacted information and run diagnostics.
 
 Replicated provides two tools for this: **preflight checks** and **support bundles**.
 
 ## Preflight checks
 
-Preflight checks run before or during installation to validate that the customer's environment meets the requirements for the application. They catch issues like insufficient resources, missing dependencies, or incompatible Kubernetes versions before they cause installation failures.
+Preflight checks run before or during installation to validate that the customer's environment meets application requirements. They catch issues like insufficient resources, missing dependencies, or incompatible Kubernetes versions before installation.
 
 For more information, see [Define Preflight Checks](preflight-defining).
 
 ## Support bundles
 
-Support bundles collect diagnostic information from a running instance, including logs, cluster state, and application-specific data. Customers can generate a support bundle and upload it through the Enterprise Portal or share it directly with your support team. Uploaded bundles are automatically available for analysis in the Vendor Portal.
+Support bundles collect diagnostic information from a running instance: logs, cluster state, and application-specific data. Customers generate a bundle and upload it through the Enterprise Portal or share it with your support team. Uploaded bundles become available for analysis in the Vendor Portal.
 
 For more information, see [Add and Customize Support Bundles](support-bundle-customizing).
 
 ## Treating specs as living documents
 
-Preflight and support bundle specs should not be static. As your application ships and customers deploy it across diverse environments, you will learn which checks matter most and what diagnostic information is most useful during escalations.
+Preflight and support bundle specs should not be static. As customers deploy across diverse environments, you learn which checks matter and what diagnostic information helps most during escalations.
 
-Treat your preflight and support bundle specs as living documents that evolve over time:
-* **After support escalations**, add new collectors or analyzers to capture the diagnostic information that would have helped resolve the issue faster. If a support ticket required manual investigation to find the root cause, that investigation can often be codified as a new analyzer.
-* **After installation failures**, add preflight checks that would have caught the issue. If a customer's install failed because of a missing storage class or insufficient memory, add a check so the next customer gets a clear warning before they start.
-* **As your application evolves**, update specs to reflect new components, dependencies, or configuration options. A feature that adds a database dependency should come with a preflight check that validates connectivity and a support bundle collector that captures database logs.
+Treat your specs as living documents that evolve over time:
+* **After support escalations**, add collectors or analyzers that capture what would have helped resolve the issue faster. If a ticket required manual root cause analysis, codify that investigation as a new analyzer.
+* **After installation failures**, add preflight checks that would have caught the issue. For example, if an install failed due to a missing storage class, add a check so the next customer gets a warning.
+* **As your application evolves**, update specs for new components and dependencies. A feature that adds a database dependency should include a preflight check for connectivity and a collector for database logs.
 
-The most effective vendors review their specs regularly alongside their support metrics, using patterns in support tickets to identify gaps in what they check for and what they collect.
+The most effective vendors review specs regularly alongside support metrics, using ticket patterns to identify gaps in what they check and collect.
 
 ## Documentation and self-service support
 
-High-quality documentation and community-based help articles are also critical for helping customers self-resolve issues. Keeping documentation up to date with troubleshooting information for common support issues reduces the number of repeat tickets and helps customers get back to productive use faster.
+High-quality documentation and community help articles help customers self-resolve issues. Keep documentation up to date with troubleshooting information for common issues to reduce repeat tickets.

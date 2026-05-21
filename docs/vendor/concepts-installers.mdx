@@ -2,7 +2,7 @@ import Helm from "../partials/helm/_helm-definition.mdx"
 
 # About installation options
 
-Enterprise customers deploy software in a wide range of environments, from managed Kubernetes clusters to VMs and bare metal servers, in both online and air-gapped networks. The challenge for vendors is supporting this spectrum of environments and customer sophistication without multiplying the number of release artifacts and install paths they need to maintain.
+Enterprise customers deploy software in a wide range of environments, from managed Kubernetes clusters to VMs and bare metal servers. These environments can be online or air-gapped. Vendors must support this spectrum without multiplying the release artifacts and install paths they maintain.
 
 Replicated supports two installation methods: the Helm CLI for existing Kubernetes clusters, and Embedded Cluster for VMs and bare metal servers.
 
@@ -10,28 +10,28 @@ Replicated supports two installation methods: the Helm CLI for existing Kubernet
 
 <Helm/>
 
-The following diagram shows how Helm charts distributed with Replicated are installed with Helm in online (internet-connected) customer environments:
+The following diagram shows how customers install Helm charts distributed with Replicated in online (internet-connected) environments:
 
 <img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="700px"/> 
 
 [View a larger version of this image](/images/helm-install-diagram.png)
 
-As shown in the diagram above, customers install your Helm chart by authenticating to the Replicated proxy registry with their unique license ID. This ensures that any customer who installs your chart has a valid, unexpired license. After logging in, they run `helm install` to install the chart from the registry.
+As shown in the diagram, customers install your Helm chart by authenticating to the Replicated proxy registry with their unique license ID. This ensures that every customer who installs your chart has a valid, unexpired license. After logging in, they run `helm install` to install the chart.
 
 For Helm CLI installations, customers can optionally run preflight checks before installing to verify that their cluster meets your application's requirements. For more information, see [Define Preflight Checks](preflight-defining).
 
 ## Installations with Embedded Cluster on a VM
 
-Replicated Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance. Enterprise users can install, update, and manage the application and the cluster in tandem on a VM or bare metal server. Embedded Cluster is based on the open source Kubernetes distribution [k0s](https://k0sproject.io/).
+Replicated Embedded Cluster allows you to distribute a Kubernetes cluster and your application together as a single appliance. Enterprise users install, update, and manage the application and the cluster in tandem on a VM or bare metal server. Embedded Cluster uses the open source Kubernetes distribution [k0s](https://k0sproject.io/).
 
-Embedded Cluster provides a built-in UI that guides users through installation and upgrades, including license validation, preflight checks, and application configuration. The cluster infrastructure is updated alongside application updates, so users do not need to manage Kubernetes separately.
+Embedded Cluster provides a built-in UI that guides users through installation and upgrades. This includes license validation, preflight checks, and application configuration. Cluster infrastructure updates alongside application updates, so users do not need to manage Kubernetes separately.
 
-Vendors configure the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) to define the cluster and installation, including optional Helm extensions that deploy additional components before the application is installed.
+Vendors configure the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) to define the cluster and installation. This includes optional Helm extensions that deploy additional components before your application.
 
 For more information, see [Embedded Cluster Overview](/embedded-cluster/v3/embedded-overview).
 
 ## Supporting both installation methods from the same release
 
-With Replicated, you support both Helm CLI and Embedded Cluster installations from a single release. Your application is packaged as Helm charts, and each release can include an Embedded Cluster Config for VM-based installations. You maintain one set of application artifacts while giving customers the flexibility to choose the installation method that fits their environment.
+With Replicated, you support both Helm CLI and Embedded Cluster installations from a single release. You package your application as Helm charts, and each release can include an Embedded Cluster Config for VM-based installations. You maintain one set of artifacts while giving customers the flexibility to choose the method that fits their environment.
 
 For more information about creating releases, see [About releasing your application](concepts-release).

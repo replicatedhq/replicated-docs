@@ -1,6 +1,6 @@
 # About customer licensing
 
-Licensing codifies the agreements defined in the software contract between the vendor and the enterprise customer, and makes those agreements available to the application through a license server at installation and runtime.
+Licensing codifies the agreements in the software contract between the vendor and the enterprise customer. It makes those agreements available to the application through a license server at installation and runtime.
 
 Licensing is a cross-functional concern:
 * **Sales teams** need license entitlements integrated with CRM tools like Salesforce so that entitlements can be updated when contracts change.
@@ -9,7 +9,7 @@ Licensing is a cross-functional concern:
 
 ## About customer records
 
-In the Replicated Vendor Portal, each licensed end customer is represented by a customer record. Customer records include the customer's license, which defines their entitlements, expiration date, release channel, and the installation methods available to them. Vendors can create and manage customer records in the Vendor Portal or programmatically using the Replicated CLI and Vendor API.
+In the Replicated Vendor Portal, each licensed end customer has a customer record. The record includes the customer's license, which defines their entitlements, expiration date, release channel, and available installation methods. You can create and manage customer records in the Vendor Portal or with the Replicated CLI and Vendor API.
 
 For more information, see [Create and Manage Customers](releases-creating-customer).
 
@@ -21,13 +21,13 @@ License agreements for enterprise software often include entitlements such as:
 * **Usage-based entitlements** to limit the number of instances, users, or nodes permitted
 * **Application-specific entitlements**, such as controlling which AI model images a customer can access
 
-Vendors define custom license fields in the Vendor Portal to represent these entitlements. The Replicated SDK provides an in-cluster API that your application can query at runtime to retrieve the current license entitlements for the customer.
+Define custom license fields in the Vendor Portal to represent these entitlements. The Replicated SDK provides an in-cluster API that your application queries at runtime to retrieve the customer's current entitlements.
 
 For more information, see [About Customers and Licensing](licenses-about).
 
 ## Use license fields in custom metrics
 
-In most cases, vendors can rely on the license agreement to enforce entitlements, as enterprise customers will be cautious about violating a software contract. Rather than blocking usage in application code, most vendors track usage that exceeds the contract and reconcile at renewal. The exception is expiration dates, which can be enforced directly and extended by the vendor as needed.
+In most cases, vendors rely on the license agreement to enforce entitlements, as enterprise customers avoid violating a software contract. Rather than blocking usage in code, most vendors track usage that exceeds the contract and reconcile at renewal. The exception is expiration dates, which you can enforce directly and extend as needed.
 
 Measuring usage surfaces data to both the vendor and the customer. For vendors, it helps identify opportunities to expand the agreement. For customers, understanding their own usage helps them stay within contractual limits.
 
@@ -35,6 +35,6 @@ For more information about custom metrics, see [Configure Custom Metrics](custom
 
 ## Use license fields in preflight checks
 
-You can reference license field values in preflight check specifications to validate that the customer's environment meets the requirements defined in their license. For example, you can write a preflight check that verifies the number of nodes in the cluster does not exceed the node count allowed by the customer's license.
+Reference license field values in preflight check specifications to validate that the customer's environment meets their license requirements. For example, write a preflight check that verifies the node count does not exceed the customer's licensed limit.
 
 For more information, see [Define Preflight Checks](preflight-defining).

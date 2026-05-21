@@ -7,7 +7,7 @@ With Replicated, you get out-of-the-box visibility into your application instanc
 
 Replicated also supports collecting custom metrics for reporting on usage data such as daily or weekly active users.
 
-In contrast to traditional observability, which often includes a firehose of logs or key-value pairs, the goal of reporting with the Replicated Platform is to provide insight on application usage and functionality at a customer level.
+Unlike traditional observability with its firehose of logs, Replicated reporting focuses on application usage and functionality at a customer level.
 
 Access to reporting data empowers vendors to take more informed action:
 * **Feature prioritization**: Low feature usage can indicate the need to invest in usability, discoverability, or documentation.
@@ -19,7 +19,7 @@ Enterprise customers also often expect access to this data through dashboards, e
 
 ## Custom metrics with the SDK
 
-In addition to the built-in insights displayed in the Vendor Portal by default (such as uptime and time to install), you can configure custom metrics to measure application instances running in customer environments. Custom metrics can be collected for instances in both online and air gap environments.
+In addition to built-in insights like uptime and time to install, you can configure custom metrics to measure application instances in customer environments. Collect custom metrics from instances in both online and air gap environments.
 
 The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and displayed in the Vendor Portal:
 
@@ -36,11 +36,11 @@ When collecting data from customer environments, vendors should adhere to princi
 * Redact sensitive data (such as database connection strings, passwords, or API tokens) from being sent back to the vendor
 * Give customers the opportunity to opt in or out of sending different types of data
 
-Air gap environments present unique challenges due to the lack of outbound internet access. Vendors can collect reporting data from air gap instances by providing opportunities for customers to send redacted data when opening a support request, or through regular surveys.
+Air gap environments present unique challenges due to the lack of outbound internet access. Collect reporting data from air gap instances by providing customers opportunities to send redacted data with support requests or through regular surveys.
 
 ## Event notifications
 
-You can define and subscribe to notifications in the Vendor Portal to receive alerts when specific events occur. Built-in event types and filters allow you to create targeted notifications for the events that matter most to your workflow. For example:
+Define and subscribe to notifications in the Vendor Portal to receive alerts when specific events occur. Built-in event types and filters let you target the events that matter most. For example:
 * Customer Success Managers could get an email when a key customer uploads a support bundle
 * Support Engineers could get a Slack notification when a customer instance has been unhealthy for an extended period
 

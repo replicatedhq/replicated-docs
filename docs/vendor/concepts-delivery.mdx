@@ -2,20 +2,20 @@
 
 ## Publish release artifacts
 
-Releases should be available in multiple formats to support different installation methods and customer environments. While some enterprise customers with Kubernetes expertise will install in their own cluster, others will install on a VM or bare metal server. Enterprises with strict security requirements might need to deploy software in air gap environments with no outbound internet access.
+Publish releases in multiple formats to support different installation methods and customer environments. Some enterprise customers with Kubernetes expertise will install in their own cluster. Others will install on a VM or bare metal server. Enterprises with strict security requirements might deploy software in air gap environments with no outbound internet access.
 
 A vendor might need to publish all of the following for a single release:
 * Helm charts and container images
 * Downloadable archives containing release images for air gap installations
 * Installation scripts for Kubernetes clusters or VMs
 
-All release artifacts should be cryptographically signed so that enterprise customers can verify the authenticity and integrity of the software before installing.
+Cryptographically sign all release artifacts so that enterprise customers can verify the authenticity and integrity of the software before installing.
 
 ### Supply chain metadata
 
-With the Enterprise Portal Security Center, you can include supply chain metadata for each release, providing proof that your software supply chain is secure, compliant, and traceable. For example:
+With the Enterprise Portal Security Center, you can include supply chain metadata for each release. This provides proof that your software supply chain is secure, compliant, and traceable. For example:
 * SBOMs (Software Bill of Materials)
-* Provenance attestations with verifiable information about where, when, and how the software was produced
+* Provenance attestations with verifiable build information
 * The Supply-chain Levels for Software Artifacts (SLSA) security level
 * Results of vulnerability scans
 
@@ -43,17 +43,17 @@ The following diagram shows how customers use the Enterprise Portal to access re
 
 [View a larger version of this image](/images/enterprise-portal-overview.png)
 
-As shown in the diagram above, licensed customers log in to the Enterprise Portal to access installation and update instructions. The Enterprise Portal tracks installation attempts and progress, and shares those insights back to the Vendor Portal. Customers can also upload support bundles, which are automatically available to you in the Vendor Portal.
+As shown in the diagram, licensed customers log in to the Enterprise Portal to access installation and update instructions. The Enterprise Portal tracks installation attempts and progress, then shares those insights to the Vendor Portal. Customers can also upload support bundles, which become available to you in the Vendor Portal.
 
 For more information, see [About the Enterprise Portal](enterprise-portal-about).
 
 ## Preflight checks
 
-Vendors can define preflight checks that customers run before installing to validate that their environment meets the hardware, network, and other requirements for the software. Preflight checks increase the success rate of installations and upgrades by catching issues before they cause failures.
+Define preflight checks that customers run before installing to validate that their environment meets your application's requirements. Preflight checks increase the success rate of installations and upgrades by catching issues before they cause failures.
 
 For more information, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 {/* TODO: Decide whether the GUI-Based Experience section should specifically name EC v3's wizard or stay generic */}
 ## Guided installation experience
 
-Providing an installation UI makes it easier for less technical customers to complete installation tasks, such as providing their license or configuring the deployment, without editing YAML files directly. This reduces installation errors and the number of support issues related to installation.
+An installation UI helps less technical customers complete tasks like providing their license or configuring the deployment without editing YAML files directly. This reduces installation errors and support issues.

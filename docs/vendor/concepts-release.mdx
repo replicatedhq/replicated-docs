@@ -4,26 +4,26 @@ Releasing refers to the process of delivering software to licensed users, ensuri
 
 Key considerations for vendors when releasing modern enterprise software include:
 * Making application images available for customers to access securely
-* Packaging and publishing cryptographically signed release artifacts in multiple formats to support different installation methods and customer environments
-* Demonstrating the integrity of each release by providing software supply chain metadata like a Software Bill of Materials (SBOM) and provenance attestation, as well as publishing results of vulnerability and compliance scans
-* Managing release streams for different customers, including automating workflows for production (GA) and pre-release (alpha, beta) versions
-* Versioning releases with a consistent pattern so that it is easy for customers to understand backward compatibility
+* Packaging and publishing cryptographically signed release artifacts for different installation methods
+* Demonstrating the integrity of each release with supply chain metadata like SBOMs and provenance attestations
+* Managing release streams for different customers, including production (GA) and pre-release (alpha, beta) versions
+* Versioning releases with a consistent pattern so that customers understand backward compatibility
 
 ## About creating your application releases
 
 ### Packaging with Helm
 
-Replicated releases are built around Helm charts. Your application is packaged as one or more Helm charts, which Replicated distributes through the Replicated proxy registry. This means you can use standard Helm packaging practices and your existing CI/CD pipelines to build charts, then promote them as Replicated releases.
+Replicated releases are built around Helm charts. You package your application as one or more Helm charts, which Replicated distributes through the proxy registry. Use standard Helm packaging practices and your existing CI/CD pipelines to build charts, then promote them as Replicated releases.
 
 For more information, see [Manage Releases with the CLI](releases-creating-cli).
 
 ### Release files for installers
 
-A release contains your application Helm charts as well as any additional manifests required for installation. For Embedded Cluster installations, releases also include an Embedded Cluster Config that defines the cluster configuration, optional Helm extensions, and node roles. Replicated uses the release contents to generate the appropriate installation assets for each installation method, including air gap bundles for disconnected environments.
+A release contains your application Helm charts and any additional manifests required for installation. For Embedded Cluster installations, releases also include an Embedded Cluster Config that defines the cluster, Helm extensions, and node roles. Replicated generates the appropriate installation assets for each method, including air gap bundles for disconnected environments.
 
 ### About iterating on releases with the Replicated platform
 
-Replicated supports a rapid iteration workflow where vendors can create and test releases frequently. You can use the Replicated CLI to create releases from your local development environment or automate release creation in CI/CD. Releases promoted to development channels can be installed immediately in test environments provisioned with Compatibility Matrix, giving you fast feedback on changes before promoting to customer-facing channels.
+Replicated supports a rapid iteration workflow where you create and test releases frequently. Use the Replicated CLI to create releases from your local environment or automate release creation in CI/CD. Promote releases to development channels and install them in test environments provisioned with Compatibility Matrix for fast feedback before promoting to customer-facing channels.
 
 ## About managing releases with channels
 
@@ -34,9 +34,7 @@ Channels provide a way to progress releases through the software development lif
 Channels also control which customers are able to install a release.
 You assign each customer to a channel to define the releases that the customer can access.
 
-Channels can be useful as a release management tool because they allow vendors to create a logical separation between different types of releases,
-including those releases intended only for internal development and testing, without having to manually grant and restrict access to features or risk accidentally releasing code that could include security vulnerabilities, bugs, or sensitive information.
-Channels also provide flexibility in release frequency, allowing vendors to more quickly publish updates to internal or pre-release channels while maintaining a different pace for GA releases. 
+Channels create a logical separation between different types of releases. You can isolate releases intended for internal testing without manually granting or restricting access. Channels also provide flexibility in release frequency, letting you publish updates to internal channels more often while maintaining a different pace for GA releases.
 
 For example, vendors might keep separate channels for internal-only, experimental, beta, and generally available (GA) releases.
 Enterprise customers and internal users can then access the releases published to the channel where they are subscribed.
@@ -51,40 +49,35 @@ Replicated includes the following channels by default:
 
 ## About testing your releases
 
-Testing refers to ensuring that enterprise software can be successfully, reliably, and securely distributed to current and future customer-managed environments. Importantly, testing needs to happen before the application ever gets into the hands of customers. Not only does catching issues ahead of time help ensure the best possible experience for customers, but it’s also a good way for vendors to manage costs: discovering and fixing a bug after the fact is more expensive than investing in the proper testing stack up front.
+Testing ensures that enterprise software can be reliably distributed to current and future customer environments. Catching issues before the application reaches customers improves the customer experience and manages costs. Discovering and fixing a bug after the fact is more expensive than investing in testing up front.
 
 ### Customer-representative environments with compatibility matrix
 
-Testing self-hosted software presents a unique challenge in that both the application and the customers’ environments could be the cause for a failed deployment. Different customer environments act differently, and the same application successfully installed in one customer environment could present challenges in the next. For this reason, testing self-hosted software needs to go beyond unit and integration tests to verify that the software is functional and secure regardless of the environment where it’s deployed.  
+Testing self-hosted software presents a unique challenge: both the application and the customer’s environment can cause a failed deployment. The same application that installs successfully in one environment might fail in the next. Testing must go beyond unit and integration tests to verify functionality across different environments.
 
-Vendors can increase confidence that their application will run in any environment by testing on a variety of distributions or operating systems that are representative of their current (and future) customer’s environments. For example, depending on the customer base, vendors might want to test on vanilla Kubernetes, at least one cloud-based provider (like GKE or AKS), and a more complex Kubernetes distribution like OpenShift.
+Test on a variety of distributions representative of your customer base. For example, you might test on vanilla Kubernetes, a cloud provider (like GKE or AKS), and a more complex distribution like OpenShift.
 
 ## Provide secure access to images with the proxy registry
 
 A single release for an application contains all the artifacts required to install and run the application, such as container images or executables.
 When publishing a release for distribution to self-hosted environments, software vendors need to make images available to customers securely.
 
-For online (internet-connected) environments, proxy servers can be used to grant proxy, or pull-through, access to images.
-Proxies work as an intermediary between the software vendor’s private image registry and the enterprise customer, allowing users to access images on the vendor’s private registry without exposing registry credentials.
-With a proxy, customers can access images using credentials determined by the software vendor, such as providing their unique license or customer ID.
+For online (internet-connected) environments, proxy servers grant pull-through access to images. A proxy acts as an intermediary between your private image registry and the customer, so users access images without exposing registry credentials. Customers authenticate with credentials you determine, such as their unique license ID.
 
 For air gap environments, customers must have access to downloadable archives that contain the release images so they can push images to their own registry.
 
 All image pull activity can be tracked for auditing and reporting. For more information, see [About Telemetry and Reporting](concepts-report).
 
 ## Release versioning
-Software vendors should assign and increment version numbers for releases using a consistent pattern, such as Semantic Versioning (SemVer).
-SemVer is a commonly-used and recommended versioning strategy that provides implicit information about the backwards compatibility of each version, using the format `MAJOR.MINOR.PATCH.`
+Assign and increment version numbers using a consistent pattern, such as Semantic Versioning (SemVer). SemVer communicates backward compatibility using the format `MAJOR.MINOR.PATCH`.
 
-The release versioning pattern used should also dictate how build metadata and pre-release versions are indicated.
-For example, with SemVer, alpha or beta versions are denoted by appending a hyphen followed by the pre-release label or version number, such as 1.0.0-alpha or 1.2.3-0.0.2.
+The versioning pattern should also dictate how you indicate pre-release versions. With SemVer, alpha or beta versions append a hyphen and label, such as `1.0.0-alpha` or `1.2.3-0.0.2`.
 
-A consistent versioning pattern such as SemVer is important for modern commercial software distribution because it is common for vendors to support (and continue to release patches on) multiple different versions of their software concurrently.
-SemVer enables this because enterprise customers can easily understand that a new patch release is backwards compatible with the corresponding minor version, without needing to worry about breaking changes.
+A consistent pattern like SemVer is important because vendors often support multiple versions concurrently. Enterprise customers can understand that a patch release is backward compatible with the corresponding minor version.
 
 ## Automate releases with CI/CD
 
-To minimize the need for manual intervention when releasing new versions, continuous integration and continuous delivery (CI/CD) pipelines should include workflows that automate release management and publishing.
+Minimize manual intervention by automating release management and publishing in your CI/CD pipelines.
 For example, vendors can create workflows that run tests, publish releases to the right channel, and notify customers subscribed to the channel that a new version is available.
 
 For more information, see [About Integrating with CI/CD](ci-overview).
