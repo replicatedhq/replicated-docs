@@ -92,6 +92,36 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
     <td>Comma-separated list of hosts that should not use the proxy.</td>
   </tr>
   <tr>
+    <td>`--registry`</td>
+    <td>string</td>
+    <td>Address of a customer-managed (BYO) OCI registry to pull all application and infrastructure images from, in the form `host[:port][/namespace]`. For more information, see [Install with a customer-managed registry](installing-embedded-byo-registry).</td>
+  </tr>
+  <tr>
+    <td>`--registry-username`</td>
+    <td>string</td>
+    <td>Username for the BYO registry specified by `--registry`. Optional for anonymous registries.</td>
+  </tr>
+  <tr>
+    <td>`--registry-password`</td>
+    <td>string</td>
+    <td>Password for the BYO registry specified by `--registry`. Optional for anonymous registries.</td>
+  </tr>
+  <tr>
+    <td>`--registry-ca-cert`</td>
+    <td>string</td>
+    <td>Path to a PEM-encoded CA certificate used to verify the BYO registry's TLS certificate. Only required when the registry uses a private CA that is not in the host's system trust store.</td>
+  </tr>
+  <tr>
+    <td>`--registry-tls-cert`</td>
+    <td>string</td>
+    <td>Path to a PEM-encoded client certificate presented to the BYO registry for mTLS authentication. Use with `--registry-tls-key`.</td>
+  </tr>
+  <tr>
+    <td>`--registry-tls-key`</td>
+    <td>string</td>
+    <td>Path to the PEM-encoded private key that pairs with `--registry-tls-cert`.</td>
+  </tr>
+  <tr>
     <td>`--tls-cert`</td>
     <td>string</td>
     <td>Path to a TLS certificate file for the installer.</td>
