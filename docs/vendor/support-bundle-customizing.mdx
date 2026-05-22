@@ -51,6 +51,24 @@ To add the default support bundle spec to a release for your application:
 
 1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
 
+## RBAC requirements for exec collectors {#exec-rbac}
+
+The Replicated SDK includes a built-in support bundle spec that uses `exec` collectors to call internal SDK API endpoints (such as `/api/v1/app/info` and `/api/v1/license/info`). These collectors retrieve application and license information that appears as `app-info.json` and `license.yaml` in the generated bundle.
+
+For these `exec` collectors to work, the service account running the support bundle must have `pods/exec` with the `create` verb in its RBAC Role or ClusterRole. For example:
+
+```yaml
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create"]
+```
+
+Without this permission, the `exec` collectors fail silently. The support bundle is still generated and can be uploaded to the Vendor Portal, but `app-info.json` and `license.yaml` will be missing. The Vendor Portal displays warnings such as "No app-info file found" and "No license file found" when these files are absent.
+
+:::note
+KOTS installations include `pods/exec` permissions in the default kotsadm Role. For Helm CLI installations, you must ensure the service account used to run `kubectl support-bundle` has this permission.
+:::
+
 ## (Recommended) Customize the default support bundle spec {#customize-the-spec}
 
 You can customize the support bundle spec by:
