@@ -24,3 +24,27 @@ Run the following command:
 ```bash
 kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
 ```
+
+## Troubleshoot
+
+### Support bundle is missing app-info or license data
+
+#### Symptom
+
+After uploading a support bundle to the Vendor Portal, you see warnings: "No app-info file found" or "No license file found."
+
+#### Cause
+
+The Replicated SDK's built-in support bundle spec uses `exec` collectors to retrieve application and license information from the SDK pod. If the service account running the support bundle does not have `pods/exec` permissions with the `create` verb, these collectors fail silently and the data is not included in the bundle.
+
+#### Solution
+
+Add `pods/exec` permissions to the RBAC Role or ClusterRole for the service account running the support bundle:
+
+```yaml
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create"]
+```
+
+For more information, see [RBAC requirements for exec collectors](/vendor/support-bundle-customizing#exec-rbac).
