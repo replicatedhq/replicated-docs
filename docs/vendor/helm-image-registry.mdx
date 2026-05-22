@@ -34,6 +34,10 @@ To configure your application to use the proxy registry with Helm CLI installati
 
 1. <RewriteHelmValues/>
 
+   :::note
+   Bitnami charts may display the error "Original containers have been substituted for unrecognized ones" when images are pulled from the Replicated proxy registry instead of the default Bitnami registry. To resolve this, set `global.security.allowInsecureImages=true` in your Helm values. Despite the name, this flag permits images from non-Bitnami registries. Your images are still pulled over HTTPS with authentication.
+   :::
+
 1. <Helper/>
 
 1. <UseHelper/>
