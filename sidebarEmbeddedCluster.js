@@ -11,6 +11,7 @@ module.exports = {
         "installing-embedded-requirements",
         "installing-embedded",
         "installing-embedded-air-gap",
+        "installing-embedded-byo-registry",
       ]
     },
     "embedded-manage-nodes",

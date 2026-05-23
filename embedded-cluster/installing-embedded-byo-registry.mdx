@@ -1,0 +1,198 @@
+# Install with a customer-managed registry (Beta)
+
+This topic describes how to install with Replicated Embedded Cluster using a customer-managed OCI registry (also known as a _bring-your-own_, or BYO, registry) instead of the Replicated proxy registry or the internal air gap registry.
+
+## Overview
+
+By default, Embedded Cluster pulls application images from the [Replicated proxy registry](/vendor/private-images-about) for online installations, and from an internal Docker registry that Embedded Cluster deploys to the cluster for air gap installations.
+
+When BYO registry is enabled, Embedded Cluster pulls _all_ images from a single OCI registry that the customer controls. This includes:
+
+* Vendor application images
+* Embedded Cluster infrastructure images (k0s, OpenEBS, and any images for Helm [extensions](embedded-config#extensions) declared in the Embedded Cluster Config)
+
+BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS to the cluster, because all images are served from the customer's registry.
+
+### When to use a customer-managed registry
+
+A customer-managed registry is useful for customers with strict network or compliance policies that require all container images to come from a registry they control. Use cases include:
+
+* Customers that block outbound traffic to `proxy.replicated.com` and cannot run the internal air gap registry that Embedded Cluster deploys.
+* Customers that scan and sign images in their own registry before they reach the cluster.
+* Customers that already mirror third-party images to a central registry and want application images to follow the same path.
+
+### Limitations
+
+* The BYO registry must use a single flat namespace rooted at the registry address that you provide. See [Registry layout requirements](#registry-layout) below.
+* The `noProxy` hint that chart authors can pass to the `ReplicatedImageName` and `ReplicatedImageRegistry` template functions is ignored in BYO mode. This hint normally tells the function to leave a public image pointing at its upstream registry instead of routing it through the Replicated proxy registry. In BYO mode every image must come from the customer's registry, so the image is rewritten regardless of the hint. This is separate from HTTP proxy configuration: if the BYO registry is reachable only through an HTTP or HTTPS proxy, use the standard [`--http-proxy`, `--https-proxy`, and `--no-proxy`](embedded-cluster-install) install flags.
+
+## Prerequisites
+
+Before a customer can install with BYO registry, the following must be in place:
+
+* An OCI-compliant registry that is reachable from every Embedded Cluster host. Authentication can be anonymous, username and password, or mTLS (`--registry-tls-cert` and `--registry-tls-key`). If the registry's TLS certificate is signed by a private CA, pass it with `--registry-ca-cert`; otherwise the host's system root CAs are used.
+
+* All images required for the release are pushed to the registry using the layout described in [Registry layout requirements](#registry-layout) below.
+
+* Application Helm charts use the `ReplicatedImageName` and `ReplicatedImageRegistry` template functions to render image references, so that images are rewritten to the BYO registry at install time. See [Author charts for a BYO registry](#chart-authoring) below.
+
+## Get the list of images to mirror
+
+Customers get the complete list of images for the release, including Embedded Cluster infrastructure images, from the [Replicated Enterprise Portal](/vendor/enterprise-portal-about). The image list separates online-install images from the additional images needed for air gap installs (which include images that are normally preloaded onto each node by the air gap bundle). Each entry includes the full image reference (tag or digest) that must be pushed to the BYO registry.
+
+{/* TODO: screenshots of the Enterprise Portal image list view */}
+
+## Registry layout requirements {#registry-layout}
+
+Embedded Cluster rewrites every image reference so that it is served from the address you pass with `--registry`. The address is treated as a literal prefix. It must be in the form `host[:port][/namespace]` and must not include a scheme or a trailing slash.
+
+When an image is rewritten, the upstream registry **host** is dropped and the BYO registry address is substituted in its place. The repository path under the upstream host is preserved exactly as written. Any Replicated proxy prefix on the input (for example, `proxy.replicated.com/proxy/<app-slug>/`) is also stripped first.
+
+For example, with `--registry registry.example.com/acme`:
+
+| Original image | Rewritten image |
+|---|---|
+| `nginx:latest` | `registry.example.com/acme/nginx:latest` |
+| `ghcr.io/myorg/myimage:v1` | `registry.example.com/acme/myorg/myimage:v1` |
+| `proxy.replicated.com/proxy/my-app/docker.io/library/nginx:latest` | `registry.example.com/acme/library/nginx:latest` |
+| `ghcr.io/myorg/myimage@sha256:abc…` | `registry.example.com/acme/myorg/myimage@sha256:abc…` |
+
+Push each image to the rewritten path so that the reference resolves at install time. The image list in the Enterprise Portal already uses this layout.
+
+If `--registry` is set to a bare host (for example, `registry.example.com`), the rewritten paths have no namespace prefix: `registry.example.com/myorg/myimage:v1`.
+
+## Install with a BYO registry
+
+The procedures below apply to Embedded Cluster v3 (Beta). The Embedded Cluster CLI exposes the following install flags for BYO registry:
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>`--registry`</td>
+    <td>OCI registry address in the form `host[:port][/namespace]`. When set, Embedded Cluster pulls all application and infrastructure images from this registry.</td>
+  </tr>
+  <tr>
+    <td>`--registry-username`</td>
+    <td>Username for the BYO registry. Optional for anonymous registries.</td>
+  </tr>
+  <tr>
+    <td>`--registry-password`</td>
+    <td>Password for the BYO registry. Optional for anonymous registries.</td>
+  </tr>
+  <tr>
+    <td>`--registry-ca-cert`</td>
+    <td>Path to a PEM-encoded CA certificate file used to verify the registry's TLS certificate. Required only when the registry uses a private CA that is not in the host's system trust store.</td>
+  </tr>
+  <tr>
+    <td>`--registry-tls-cert`</td>
+    <td>Path to a PEM-encoded client certificate that Embedded Cluster presents to the registry for mTLS authentication.</td>
+  </tr>
+  <tr>
+    <td>`--registry-tls-key`</td>
+    <td>Path to a PEM-encoded private key that pairs with `--registry-tls-cert`.</td>
+  </tr>
+</table>
+
+These flags can be combined with `--airgap`, `--headless`, and the other [`install` flags](embedded-cluster-install).
+
+### Online install
+
+To install with a BYO registry in an online environment:
+
+1. Push all images for the release to your registry. See [Get the list of images to mirror](#get-the-list-of-images-to-mirror) above.
+
+1. On a Linux host, download and extract the Embedded Cluster installation assets using the commands from the [Enterprise Portal](/vendor/enterprise-portal-about). For more detail, see [Online installation with Embedded Cluster](installing-embedded).
+
+1. Run the `install` command with the BYO registry flags. For example:
+
+    ```bash
+    sudo ./APP_SLUG install \
+      --license license.yaml \
+      --registry registry.example.com/acme \
+      --registry-username USERNAME \
+      --registry-password PASSWORD
+    ```
+
+    For a registry that uses a private CA:
+
+    ```bash
+    sudo ./APP_SLUG install \
+      --license license.yaml \
+      --registry registry.example.com/acme \
+      --registry-ca-cert /path/to/ca.pem
+    ```
+
+1. Complete the install in the UI, or pass `--headless` and `--config-values` for a non-interactive install.
+
+### Air gap install
+
+To install with a BYO registry in an air-gapped environment:
+
+1. Push all images for the release, including the air gap infrastructure images, to your registry. See [Get the list of images to mirror](#get-the-list-of-images-to-mirror) above and use the air gap image list.
+
+1. On a host with internet access, download the Embedded Cluster air gap assets and copy them to the air-gapped host. The air gap bundle files (`ec-<version>.airgap` and `<app-slug>.airgap`) are still required when using BYO registry, because they contain the Embedded Cluster binaries, addon Helm charts, application charts, and manifests. The bundles also remove the need to host the internal image registry in the cluster: the application and addons pull their images from the BYO registry instead. For more detail, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
+
+1. On the air-gapped host, run `install` with both `--airgap` and the BYO registry flags. The `--airgap` flag expects `ec-<version>.airgap` and `<app-slug>.airgap` to be in the current working directory. For example:
+
+    ```bash
+    sudo ./APP_SLUG install \
+      --license license.yaml \
+      --airgap \
+      --registry registry.example.com/acme \
+      --registry-username USERNAME \
+      --registry-password PASSWORD
+    ```
+
+In air gap installs with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS. The cluster pulls all images directly from the customer registry.
+
+### Add nodes to a BYO registry cluster
+
+Nodes that join a cluster installed with BYO registry automatically inherit the registry address, credentials, and CA certificate from the cluster. Customers do not pass the `--registry*` flags when running `join`.
+
+Join-time host preflights skip the BYO registry image checks, because the initial `install` already validated that the images are reachable from the registry.
+
+## Author charts for a BYO registry {#chart-authoring}
+
+To work with BYO registry, application Helm charts must produce image references through Replicated template functions rather than hardcoding registry hosts. Embedded Cluster rewrites the output of these functions at install time based on the install mode (`proxy`, `airgap`, or `byo`).
+
+### `ReplicatedImageName`
+
+`ReplicatedImageName` returns a fully-qualified image reference. In BYO mode, it drops the upstream registry host from the input image, preserves the repository path, and prepends the value of `--registry`.
+
+```yaml
+image: '{{ ReplicatedImageName "ghcr.io/myorg/myimage:v1" }}'
+# BYO with --registry registry.example.com/acme renders to:
+#   registry.example.com/acme/myorg/myimage:v1
+```
+
+Use `ReplicatedImageName` when you want Embedded Cluster to fully control the image path. This is the default and recommended pattern.
+
+### `ReplicatedImageRegistry`
+
+`ReplicatedImageRegistry` returns the bare registry address with no rewriting of the input. In BYO mode, it returns the literal value of `--registry`. Use it when you need to compose your own path under the BYO registry, for example with split `registry`, `repository`, and `tag` fields:
+
+```yaml
+image:
+  registry: '{{ ReplicatedImageRegistry "ghcr.io" }}'
+  repository: subchart/myimage
+  tag: v1
+# BYO renders to:
+#   registry.example.com/acme/subchart/myimage:v1
+```
+
+### Image pull secrets
+
+In BYO mode, Embedded Cluster configures containerd on every node with the credentials passed to `--registry-username`/`--registry-password` (or the mTLS material from `--registry-tls-cert`/`--registry-tls-key`). Containerd authenticates pulls from the BYO registry on the cluster's behalf, so pods do not need an `imagePullSecrets` entry that targets the BYO registry.
+
+### Patterns that do not work
+
+* Hardcoding `proxy.replicated.com/...` strings in non-templated chart values. Only template-function output is rewritten. Raw strings pass through unchanged and fail to pull in BYO mode.
+
+## Preflight checks
+
+When `--registry` is set, Embedded Cluster runs an additional host preflight that pulls each image in the release manifest from the BYO registry. This validates connectivity, authentication, and that all required images have been mirrored to the registry before the install proceeds.
+
+The image references checked by the preflight are the same references that the charts will resolve at runtime, so a successful preflight confirms that the registry layout matches the chart-authoring contract.
