@@ -29,7 +29,7 @@ Additionally, these release notes list the versions of Kubernetes that are avail
   </tr>
 </table>
 
-### Bug fixes {#bug-fixes-3-2-1-beta-1}
+### Improvements {#improvements-3-2-1-beta-1}
 
 * Pins the cluster TLS certificate's public key in the node-join `curl` command so the join bundle download cannot be intercepted by an attacker on the network path.
 
