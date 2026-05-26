@@ -12,6 +12,49 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.2.1-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.2.1-beta.1+k8s-1.34</td>
+    <td id="center">3.2.1-beta.1+k8s-1.33</td>
+    <td id="center">3.2.1-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### Bug fixes {#bug-fixes-3-2-1-beta-1}
+
+* Pins the cluster TLS certificate's public key in the node-join `curl` command so the join bundle download cannot be intercepted by an attacker on the network path.
+
+## 3.2.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.2.0-beta.1+k8s-1.34</td>
+    <td id="center">3.2.0-beta.1+k8s-1.33</td>
+    <td id="center">3.2.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-2-0-beta-1}
+
+* Automates multi-node upgrades. All remote nodes are upgraded as part of a single cluster upgrade, removing the per-node CLI commands required in earlier versions. Clusters with any node older than 3.2.0-beta.1 fall back to the manual upgrade flow automatically.
+* Adds TLS client certificate (mTLS) authentication for Bring Your Own (BYO) registries with the `--registry-tls-cert` and `--registry-tls-key` install flags.
+
 ## 3.1.0-beta.1
 
 <table>
