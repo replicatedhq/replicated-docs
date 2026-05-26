@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.5
+
+Released on May 26, 2026
+
+### Improvements {#improvements-1-19-5}
+* Updates `github.com/containerd/containerd` from v1.7.30 to v1.7.32, which addresses [CVE-2026-46680](https://github.com/containerd/containerd/security/advisories).
+
 ## 1.19.4
 
 Released on May 12, 2026
