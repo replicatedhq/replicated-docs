@@ -16,7 +16,7 @@ Released on May 27, 2026
 
 ### New Features {#new-features-v2026-05-27-0}
 * Improved new Enterprise Portal repo relinking with easier template access and clearer repo selectors.
-* Adds a checklist to add new customers to the new Enterprise Portal for auto invites.
+* Adds a portal version checkbox to the customer creation screen so vendors in mixed mode can enroll new customers in the New Enterprise Portal at creation time.
 * Redirects licenses to enabled enterprise portal version.
 
 ### Improvements {#improvements-v2026-05-27-0}
