@@ -51,6 +51,91 @@ To create an application release that supports installation with Embedded Cluste
 
 1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
 
+## Set up the wizard's Configure screen {#configure-screen}
+
+During installation and upgrades, the Embedded Cluster wizard includes a **Configure** step where end customers provide configuration values for your application. This screen is defined by the [Config custom resource](/reference/custom-resource-config) in your release.
+
+The Config custom resource lets you define groups of configuration fields that appear in the wizard. Each group becomes a section in the sidebar, and customers navigate between groups to complete the configuration.
+
+### How it works
+
+The Config custom resource defines one or more groups, each containing one or more items. During installation, the wizard renders these as form fields. The values that customers provide are available to your Helm chart through [Replicated template functions](/reference/template-functions-about).
+
+For example, the following Config custom resource defines two groups:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: database
+      title: Database Configuration
+      description: Choose 'Embedded' to deploy PostgreSQL within the cluster, or 'External' to connect to your own PostgreSQL instance.
+      items:
+        - name: database_type
+          title: PostgreSQL Type
+          type: select_one
+          default: embedded
+          items:
+            - name: embedded
+              title: Embedded PostgreSQL
+            - name: external
+              title: External PostgreSQL
+        - name: external_host
+          title: PostgreSQL Host
+          type: text
+          when: '{{repl ConfigOptionEquals "database_type" "external"}}'
+    - name: features
+      title: Features
+      items:
+        - name: enable_feature_x
+          title: Enable Feature X
+          type: bool
+          default: "0"
+```
+
+In the wizard, this renders as two groups in the sidebar ("Database Configuration" and "Features"). Customers select their database type, and if they choose "External PostgreSQL", additional fields appear for the database connection details.
+
+### Key concepts
+
+- **Groups** define the sidebar sections. Each group has a `title` that appears in the sidebar and a list of `items`.
+- **Items** define individual form fields. Supported types include `text`, `password`, `bool`, `select_one`, `textarea`, and more. See the [Config custom resource reference](/reference/custom-resource-config) for all available types.
+- **Conditional fields** use the `when` property with template functions to show or hide fields based on other values. This lets you create dynamic forms that adapt to customer choices.
+- **Default values** and **generated values** (such as auto-generated passwords) reduce the number of fields customers need to fill in manually.
+- **Validation** can be added using the `validation` property to check field values against regex patterns before the customer proceeds.
+
+During upgrades, the wizard pre-populates the Configure screen with the customer's existing values, allowing them to review and update their configuration before proceeding.
+
+For the complete field reference, see [Config custom resource](/reference/custom-resource-config).
+
+## Customize the wizard branding {#branding}
+
+You can customize the appearance of the Embedded Cluster install and upgrade wizard using the [Application custom resource](/reference/custom-resource-application) in your release. The Application custom resource lets you set a custom title and icon that appear throughout the wizard.
+
+### Set the title and icon
+
+Add an Application custom resource to your release with the `title` and `icon` fields:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-app
+spec:
+  title: My Application
+  icon: https://example.com/icon.png
+```
+
+The `title` appears in the wizard header on every screen, along with "Installation Wizard" or "Upgrade Wizard" as the subtitle. The `icon` appears next to the title. If no icon is provided, a default letter avatar is generated from the first character of the title.
+
+:::note
+For air gap installations, use a Base64 encoded image for the `icon` field because remote URLs are not accessible in air gap environments.
+:::
+
+For more information about the Application custom resource fields, see [Application custom resource](/reference/custom-resource-application).
+
 ## Add support for air gap installations {#local-image-registry}
 
 This section describes how to support air gap installations with Embedded Cluster v3. It includes information about how to configure your release and lists the limitations and known issues of air gap installations with Embedded Cluster v3.
