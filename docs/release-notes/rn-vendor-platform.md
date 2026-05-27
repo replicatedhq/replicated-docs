@@ -10,6 +10,16 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.05.27-0
+
+Released on May 27, 2026
+
+### New Features {#new-features-v2026-05-27-0}
+* Informs user they are already logged in when visiting the new Enterprise Portal /signup page instead of immediately redirecting.
+* Adds a checklist to add new customers to the new enterprise portal for auto invites.
+* Redirects licenses to enabled enterprise portal version.
+* Improved Enterprise Portal v2 repo relinking with easier template access and clearer repo selectors.
+
 ## v2026.05.19-2
 
 Released on May 19, 2026
