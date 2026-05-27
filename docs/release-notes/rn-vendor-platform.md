@@ -15,10 +15,9 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on May 27, 2026
 
 ### New Features {#new-features-v2026-05-27-0}
-* Informs user they are already logged in when visiting the new Enterprise Portal /signup page instead of immediately redirecting.
-* Adds a checklist to add new customers to the new enterprise portal for auto invites.
+* Improved new Enterprise Portal repo relinking with easier template access and clearer repo selectors.
+* Adds a checklist to add new customers to the new Enterprise Portal for auto invites.
 * Redirects licenses to enabled enterprise portal version.
-* Improved Enterprise Portal v2 repo relinking with easier template access and clearer repo selectors.
 
 ### Improvements {#improvements-v2026-05-27-0}
 * Increases the maximum support bundle upload size in the New Enterprise Portal from 500 MB to 2 GB. Uploads now go directly to S3 for better performance and reliability. The Classic Enterprise Portal retains the 500 MB limit.
@@ -26,6 +25,7 @@ Released on May 27, 2026
 ### Bug Fixes {#bug-fixes-v2026-05-27-0}
 * Fixed an issue where New Enterprise Portal instance updates showed permanently up-to-date after a customer's channel was changed.
 * Fixed New Enterprise Portal Embedded Cluster install and update push commands to use the correct private registry image paths.
+* Informs user they are already logged in when visiting the new Enterprise Portal /signup page instead of immediately redirecting.
 
 ## v2026.05.19-2
 
