@@ -25,7 +25,7 @@
     "@docusaurus/preset-classic": "3.10.0",
     "@mdx-js/react": "^3.1.1",
     "@types/node": "25.9.1",
-    "@types/react": "19.2.14",
+    "@types/react": "19.2.15",
     "clsx": "^2.1.1",
     "immer": "^11.1.8",
     "loader-utils": "3.3.1",
