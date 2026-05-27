@@ -20,6 +20,13 @@ Released on May 27, 2026
 * Redirects licenses to enabled enterprise portal version.
 * Improved Enterprise Portal v2 repo relinking with easier template access and clearer repo selectors.
 
+### Improvements {#improvements-v2026-05-27-0}
+* Increases the maximum support bundle upload size in the New Enterprise Portal from 500 MB to 2 GB. Uploads now go directly to S3 for better performance and reliability. The Classic Enterprise Portal retains the 500 MB limit.
+
+### Bug Fixes {#bug-fixes-v2026-05-27-0}
+* Fixed an issue where New Enterprise Portal instance updates showed permanently up-to-date after a customer's channel was changed.
+* Fixed New Enterprise Portal Embedded Cluster install and update push commands to use the correct private registry image paths.
+
 ## v2026.05.19-2
 
 Released on May 19, 2026
