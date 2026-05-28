@@ -56,6 +56,7 @@ SSL
 subnet
 subnets
 TLS
+UUID
 VCPU
 VCPUs
 VM
@@ -121,3 +122,5 @@ stdout
 firehose
 discoverability
 idempotently
+monorepo
+Monorepo
