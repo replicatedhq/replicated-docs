@@ -1,0 +1,272 @@
+# .replicated Configuration File
+
+The `.replicated` file is a per-project configuration file used by the Replicated CLI. It is located at the root of your project repository and tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
+
+When you run commands like `replicated release create` or `replicated release lint` without explicit flags, the CLI searches for this file in the current directory and continues searching upward through parent directories until it finds one.
+
+## File Location and Name
+
+Place the file at the root of your project. The CLI searches from the current working directory up through parent directories and accepts either of these names:
+
+- `.replicated`
+- `.replicated.yaml`
+
+## What It Configures
+
+The `.replicated` file configures the following:
+
+* **Application identity:** which Replicated app this project belongs to
+* **Charts:** Helm charts to package as part of a release
+* **Manifests:** raw Kubernetes YAML files to include in a release
+* **Preflights:** preflight check specs to validate before install
+* **Linting:** local lint tool configuration and version pinning
+
+## Field Reference
+
+### `appSlug` (string, optional)
+
+The slug of your Replicated application. Commands that need to know which app to operate on, such as `replicated release create`, use this field. You can also provide this via the `--app` flag or the `REPLICATED_APP` environment variable.
+
+```yaml
+appSlug: "my-application"
+```
+
+### `appId` (string, optional)
+
+The UUID of your Replicated application. Alternative to `appSlug`. If both are present, the CLI prefers `appSlug`.
+
+```yaml
+appId: "12345678-1234-1234-1234-123456789abc"
+```
+
+### `charts` (list, optional)
+
+Helm charts to package when creating a release. Each entry is a chart with the following fields:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `path` | string | Yes | Path to the chart directory. Can be a glob pattern. Resolved relative to the `.replicated` file. |
+| `chartVersion` | string | No | Override the chart version. |
+| `appVersion` | string | No | Override the application version. |
+
+```yaml
+charts:
+  - path: ./chart
+  - path: ./charts/backend
+    chartVersion: "1.2.3"
+    appVersion: "v2.0.0"
+```
+
+### `manifests` (list of strings, optional)
+
+Glob patterns that match Kubernetes manifest YAML files to include in the release. Resolve these patterns relative to the `.replicated` file.
+
+```yaml
+manifests:
+  - ./manifests/*.yaml
+  - ./crds/**/*.yaml
+```
+
+### `preflights` (list, optional)
+
+Preflight check specifications to lint and validate. Each entry has the following fields:
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `path` | string | Yes | Path to the preflight spec file. |
+| `chartName` | string | No | Explicit chart name to associate with this preflight. |
+| `chartVersion` | string | No | Explicit chart version. Must be provided together with `chartName`. |
+
+```yaml
+preflights:
+  - path: ./preflight.yaml
+  - path: ./preflights/ha-checks.yaml
+    chartName: my-app
+    chartVersion: "1.0.0"
+```
+
+### `promoteToChannelIds` (list of strings, optional)
+
+Channel IDs to automatically promote a release to after creation.
+
+```yaml
+promoteToChannelIds:
+  - "abc123"
+```
+
+### `promoteToChannelNames` (list of strings, optional)
+
+Channel names to automatically promote a release to after creation.
+
+```yaml
+promoteToChannelNames:
+  - "Unstable"
+  - "Beta"
+```
+
+### `releaseLabel` (string, optional)
+
+A label to attach to the release.
+
+```yaml
+releaseLabel: "v1.0.0-beta"
+```
+
+### `repl-lint` (object, optional)
+
+Configuration for the local linting engine. This controls which linters run and which tool versions are used.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `version` | integer | Lint config schema version. Defaults to `1`. |
+| `linters` | object | Toggle individual linters on or off. |
+| `tools` | map | Pin tool versions (e.g. `helm: "3.14.4"`). Defaults to `"latest"`. |
+
+#### Linter configuration
+
+Each linter under `linters` supports a `disabled` boolean:
+
+```yaml
+repl-lint:
+  version: 1
+  linters:
+    helm:
+      disabled: false        # on by default
+    preflight:
+      disabled: false        # on by default
+    support-bundle:
+      disabled: false        # on by default
+    embedded-cluster:
+      disabled: true         # off by default (opt-in)
+    kots:
+      disabled: true         # off by default (opt-in)
+```
+
+The `embedded-cluster` linter also supports:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `disable-checks` | list of strings | Checker IDs to skip. Defaults to `["helmchart-archive", "ecconfig-helmchart-archive"]`. |
+| `binary-path` | string | Path to a custom embedded-cluster binary. |
+
+#### Tool version pinning
+
+You can pin the versions of external tools that the linters use:
+
+```yaml
+repl-lint:
+  tools:
+    helm: "3.14.4"
+    preflight: "latest"
+    support-bundle: "latest"
+    embedded-cluster: "latest"
+```
+
+Versions must be either a semantic version (`1.2.3` or `v1.2.3`) or the string `latest`.
+
+## App Resolution Precedence
+
+When a command needs to know which app to target, the value is resolved in this order:
+
+1. `--app` flag
+2. `REPLICATED_APP` environment variable
+3. `.replicated` file (`appSlug` or `appId`)
+4. Cached default app from `replicated default app <slug>`
+
+## Monorepo Support
+
+If you have a monorepo with multiple apps, you can place a `.replicated` file in each app subdirectory. The CLI searches upward from the current working directory and merges all found configs:
+
+- Scalar fields (`appSlug`, `appId`, `releaseLabel`): child overrides parent.
+- Channel arrays (`promoteToChannelIds`, `promoteToChannelNames`): child replaces parent if non-empty.
+- Resource arrays (`charts`, `preflights`, `manifests`): accumulate from all levels.
+- `repl-lint`: child overrides parent settings.
+
+This lets you define common settings at the repo root and app-specific settings in subdirectories.
+
+## Examples
+
+### Minimal Helm-Only Project
+
+```yaml
+appSlug: "my-helm-app"
+charts:
+  - path: ./chart
+```
+
+### KOTS Manifests Project
+
+```yaml
+appSlug: "my-kots-app"
+manifests:
+  - ./manifests/*.yaml
+  - ./crds/**/*.yaml
+```
+
+### Multi-Chart Project with Linting
+
+```yaml
+appSlug: "my-platform"
+charts:
+  - path: ./charts/api
+  - path: ./charts/worker
+manifests:
+  - ./manifests/*.yaml
+  - ./configmaps/*.yaml
+preflights:
+  - path: ./preflights/cluster-checks.yaml
+    chartName: api
+    chartVersion: "1.0.0"
+repl-lint:
+  version: 1
+  linters:
+    helm:
+      disabled: false
+    preflight:
+      disabled: false
+    support-bundle:
+      disabled: true
+```
+
+### Monorepo Root Config
+
+```yaml
+# At repo root: .replicated
+repl-lint:
+  version: 1
+  linters:
+    helm:
+      disabled: false
+```
+
+```yaml
+# At apps/frontend/.replicated
+appSlug: "frontend-app"
+charts:
+  - path: ./chart
+manifests:
+  - ./manifests/*.yaml
+```
+
+```yaml
+# At apps/backend/.replicated
+appSlug: "backend-app"
+charts:
+  - path: ./chart
+manifests:
+  - ./manifests/*.yaml
+```
+
+## Create a config file
+
+Run the interactive initializer to generate a `.replicated` file for your project:
+
+```bash
+replicated config init
+```
+
+For non-interactive environments (e.g., CI):
+
+```bash
+replicated config init --non-interactive
+```
