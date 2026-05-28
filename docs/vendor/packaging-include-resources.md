@@ -13,7 +13,7 @@ For applications distributed with Replicated, there are options for explicitly i
 | Method | Applies to |
 |--------|-----------|
 | [Helm optional dependencies](#helm-optional-dependencies) | All install methods |
-| [HelmChart `exclude` field](#helmchart-exclude-field) | Embedded Cluster, KOTS existing cluster |
+| [HelmChart `exclude` field](#helmchart-exclude-field) | Embedded Cluster v2, KOTS existing cluster |
 | [`kots.io/installer-only` annotation](#installer-only) | All install methods (controls Helm CLI vs. installer behavior) |
 | [`kots.io/exclude` and `kots.io/when` annotations](#include-or-exclude-kubernetes-manifests) | KOTS existing cluster only |
 
