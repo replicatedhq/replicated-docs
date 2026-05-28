@@ -345,7 +345,6 @@ const sidebars = {
                 "vendor/operator-packaging-about",
                 "vendor/operator-defining-additional-images",
                 "vendor/operator-referencing-images",
-                "vendor/operator-defining-additional-namespaces",
               ],
             },
           ],

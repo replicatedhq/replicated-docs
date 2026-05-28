@@ -153,7 +153,7 @@ An array of additional namespaces as strings that the installer creates in the c
 
 For Embedded Cluster v3 installations, Embedded Cluster ensures that the private CA ConfigMap exists in each additional namespace. This allows Embedded Cluster to manage resources in the namespace. For more information about the ConfigMap, see [PrivatCACert](/reference/template-functions-static-context#privatecacert).
 
-For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace. This ensures that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images. For more information, see [Define additional namespaces](/vendor/operator-defining-additional-namespaces).
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace. This ensures that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images.
 
 #### Limitations
 
