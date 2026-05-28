@@ -37,6 +37,8 @@ To create an application release that supports installation with Embedded Cluste
        chartVersion: 3.1.7
    ```    
 
+1. (Optional) To conditionally include or exclude Helm charts or resources based on the install method or user configuration, see [Conditionally include or exclude resources](/vendor/packaging-include-resources).
+
 1. If you support air gap installations, update all image references so they resolve correctly in both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
 
 1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
