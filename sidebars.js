@@ -886,7 +886,7 @@ const sidebars = {
     {
       type: "category",
       label: "Replicated data storage",
-      items: ["vendor/data-availability", "vendor/offsite-backup"],
+      items: ["vendor/data-availability"],
     },
     {
       type: "category",

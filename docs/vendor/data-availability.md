@@ -30,6 +30,3 @@ For more information, see the [Replicated Security White Paper](https://www.repl
 
 Replicated availability is continuously monitored. For availability reports, see https://status.replicated.com.
 
-## Offsite data backup add-on
-
-For additional data redundancy, an offsite data backup add-on is available to copy customers data to a separate cloud provider. This add-on mitigates against potential data loss by our primary service provider. For more information, see [Offsite Data Backup](offsite-backup).
