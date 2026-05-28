@@ -24,7 +24,7 @@ The diagram also shows how enterprise customers access air gap build data from t
 
 Our service provider's platform automatically restores customer applications and databases in the case of an outage. The provider's platform is designed to dynamically deploy applications within its cloud, monitor for failures, and recover failed platform components including customer applications and databases.
 
-For more information, see the [Replicated Security White Paper](https://www.replicated.com/downloads/Replicated-Security-Whitepaper.pdf).
+For more information, see the [Replicated Trust Center](https://trust.replicated.com/).
 
 ## Data availability
 
