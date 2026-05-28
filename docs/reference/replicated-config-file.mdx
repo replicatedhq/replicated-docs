@@ -1,4 +1,4 @@
-# .replicated configuration file
+# The .replicated configuration file
 
 The `.replicated` file is a per-project configuration file that the Replicated CLI uses. Place this file at the root of your project repository. It tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
 
@@ -75,7 +75,7 @@ Preflight check specifications to lint and validate. Each entry has the followin
 |-------|------|----------|-------------|
 | `path` | string | Yes | Path to the preflight spec file. |
 | `chartName` | string | No | Explicit chart name to associate with this preflight. |
-| `chartVersion` | string | No | Explicit chart version. You must provide this together with `chartName`. |
+| `chartVersion` | string | No | Explicit chart version. Provide this together with `chartName`. |
 
 ```yaml
 preflights:
@@ -166,7 +166,7 @@ Versions must be either a semantic version (`1.2.3` or `v1.2.3`) or the string `
 
 ## App resolution precedence
 
-When a command needs to know which app to target, resolve the value in this order:
+When a command needs to know which app to target, it resolves the value in this order:
 
 1. `--app` flag
 2. `REPLICATED_APP` environment variable
