@@ -1,17 +1,17 @@
-# .replicated Configuration File
+# .replicated configuration file
 
-The `.replicated` file is a per-project configuration file used by the Replicated CLI. It is located at the root of your project repository and tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
+The `.replicated` file is a per-project configuration file that the Replicated CLI uses. Place this file at the root of your project repository. It tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
 
-When you run commands like `replicated release create` or `replicated release lint` without explicit flags, the CLI searches for this file in the current directory and continues searching upward through parent directories until it finds one.
+When you run commands like `replicated release create` or `replicated release lint` without explicit flags, the CLI searches for this file in the current directory. It continues searching upward through parent directories.
 
-## File Location and Name
+## File location and name
 
-Place the file at the root of your project. The CLI searches from the current working directory up through parent directories and accepts either of these names:
+Place the file at the root of your project. The CLI searches from the current working directory up through parent directories. It accepts either of these names:
 
 - `.replicated`
 - `.replicated.yaml`
 
-## What It Configures
+## What it configures
 
 The `.replicated` file configures the following:
 
@@ -21,11 +21,11 @@ The `.replicated` file configures the following:
 * **Preflights:** preflight check specs to validate before install
 * **Linting:** local lint tool configuration and version pinning
 
-## Field Reference
+## Field reference
 
 ### `appSlug` (string, optional)
 
-The slug of your Replicated application. Commands that need to know which app to operate on, such as `replicated release create`, use this field. You can also provide this via the `--app` flag or the `REPLICATED_APP` environment variable.
+The slug of your Replicated application. Commands that need to know which app to operate on, such as `replicated release create`, use this field. You can also provide this with the `--app` flag or the `REPLICATED_APP` environment variable.
 
 ```yaml
 appSlug: "my-application"
@@ -33,7 +33,7 @@ appSlug: "my-application"
 
 ### `appId` (string, optional)
 
-The UUID of your Replicated application. Alternative to `appSlug`. If both are present, the CLI prefers `appSlug`.
+The universally unique identifier (UUID) of your Replicated application. Alternative to `appSlug`. If both are present, the CLI prefers `appSlug`.
 
 ```yaml
 appId: "12345678-1234-1234-1234-123456789abc"
@@ -75,7 +75,7 @@ Preflight check specifications to lint and validate. Each entry has the followin
 |-------|------|----------|-------------|
 | `path` | string | Yes | Path to the preflight spec file. |
 | `chartName` | string | No | Explicit chart name to associate with this preflight. |
-| `chartVersion` | string | No | Explicit chart version. Must be provided together with `chartName`. |
+| `chartVersion` | string | No | Explicit chart version. You must provide this together with `chartName`. |
 
 ```yaml
 preflights:
@@ -114,7 +114,7 @@ releaseLabel: "v1.0.0-beta"
 
 ### `repl-lint` (object, optional)
 
-Configuration for the local linting engine. This controls which linters run and which tool versions are used.
+Configuration for the local linting engine. This controls which linters run and which tool versions to use.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -124,7 +124,7 @@ Configuration for the local linting engine. This controls which linters run and 
 
 #### Linter configuration
 
-Each linter under `linters` supports a `disabled` boolean:
+Each linter in `linters` supports a `disabled` boolean:
 
 ```yaml
 repl-lint:
@@ -164,18 +164,18 @@ repl-lint:
 
 Versions must be either a semantic version (`1.2.3` or `v1.2.3`) or the string `latest`.
 
-## App Resolution Precedence
+## App resolution precedence
 
-When a command needs to know which app to target, the value is resolved in this order:
+When a command needs to know which app to target, resolve the value in this order:
 
 1. `--app` flag
 2. `REPLICATED_APP` environment variable
 3. `.replicated` file (`appSlug` or `appId`)
 4. Cached default app from `replicated default app <slug>`
 
-## Monorepo Support
+## Monorepo support
 
-If you have a monorepo with multiple apps, you can place a `.replicated` file in each app subdirectory. The CLI searches upward from the current working directory and merges all found configs:
+If you have a monorepo with multiple apps, you can place a `.replicated` file in each app subdirectory. The CLI searches upward from the current working directory and merges all found configuration files:
 
 - Scalar fields (`appSlug`, `appId`, `releaseLabel`): child overrides parent.
 - Channel arrays (`promoteToChannelIds`, `promoteToChannelNames`): child replaces parent if non-empty.
@@ -186,7 +186,7 @@ This lets you define common settings at the repo root and app-specific settings 
 
 ## Examples
 
-### Minimal Helm-Only Project
+### Minimal Helm-only project
 
 ```yaml
 appSlug: "my-helm-app"
@@ -194,7 +194,7 @@ charts:
   - path: ./chart
 ```
 
-### KOTS Manifests Project
+### KOTS manifests project
 
 ```yaml
 appSlug: "my-kots-app"
@@ -203,7 +203,7 @@ manifests:
   - ./crds/**/*.yaml
 ```
 
-### Multi-Chart Project with Linting
+### Multi-chart project with linting
 
 ```yaml
 appSlug: "my-platform"
@@ -228,7 +228,7 @@ repl-lint:
       disabled: true
 ```
 
-### Monorepo Root Config
+### Monorepo root config
 
 ```yaml
 # At repo root: .replicated
@@ -259,7 +259,7 @@ manifests:
 
 ## Create a config file
 
-Run the interactive initializer to generate a `.replicated` file for your project:
+Run the interactive initialization command to generate a `.replicated` file for your project:
 
 ```bash
 replicated config init
