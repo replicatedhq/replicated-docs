@@ -1,6 +1,6 @@
 # Conditionally include or exclude resources
 
-This topic describes how to use Replicated `kots.io` annotations to explicitly include or exclude application resources from deployments based on one or more conditions.
+This topic describes how to conditionally include or exclude application resources from deployments based on one or more conditions.
 
 ## Overview
 
@@ -9,6 +9,13 @@ Software vendors often need a way to conditionally deploy one or more applicatio
 Another common use case is needing to explicitly include or exclude a resource from a customer deployment depending on if they install with the Helm CLI or with a Replicated installer. For example, some vendors provide additional services when the user deploys with a Replicated installer like Embedded Cluster, but do not want those services included when users deploy with the Helm CLI.
 
 For applications distributed with Replicated, there are options for explicitly including and excluding entire Helm charts, resources within a Helm chart's templates, and resources defined by standalone Kubernetes manifests.
+
+| Method | Applies to |
+|--------|-----------|
+| [Helm optional dependencies](#helm-optional-dependencies) | All install methods |
+| [HelmChart `exclude` field](#helmchart-exclude-field) | Embedded Cluster v2, KOTS existing cluster |
+| [`kots.io/installer-only` annotation](#installer-only) | All install methods (controls Helm CLI vs. installer behavior) |
+| [`kots.io/exclude` and `kots.io/when` annotations](#include-or-exclude-kubernetes-manifests) | KOTS existing cluster only |
 
 ## Include or exclude Helm charts
 
