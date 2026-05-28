@@ -91,8 +91,6 @@ To create and promote a release:
 
 Release notes are associated with a release when it is promoted to a channel. There are two ways to include release notes:
 
-### Pass release notes with the CLI {#release-notes-cli}
-
 Use the `--release-notes` flag when creating or promoting a release. This works for all release types, including KOTS, Helm, Embedded Cluster v2, and Embedded Cluster v3.
 
 ```bash
@@ -113,38 +111,4 @@ replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --rel
 
 For more information, see [release create](/reference/replicated-cli-release-create) and [release promote](/reference/replicated-cli-release-promote).
 
-### Include release notes in the Application manifest {#release-notes-manifest}
-
-If your release includes a `kots.io/v1beta1` Application custom resource, you can add a `releaseNotes` field to the spec. This applies to KOTS, kURL, and Embedded Cluster v2 releases.
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-app
-spec:
-  title: My App
-  releaseNotes: |
-    ## 1.2.0
-    ### Features
-    * Added new dashboard widget
-    ### Fixes
-    * Resolved timeout issue on large imports
-```
-
 When a release is promoted without explicit release notes (no `--release-notes` flag and no notes entered in the Vendor Portal), the release notes are automatically populated from this field.
-
-For more information about the Application custom resource, see [Application](/reference/custom-resource-application).
-
-:::note
-The `releaseNotes` field in the Application manifest is only available for releases that include a `kots.io/v1beta1` Application custom resource. For Helm-only and Embedded Cluster v3 releases, release notes must be provided using the `--release-notes` CLI flag or entered in the Vendor Portal UI.
-:::
-
-### Priority order
-
-When release notes are provided through multiple methods, the following priority applies:
-
-1. Notes passed with the `--release-notes` CLI flag or entered in the Vendor Portal UI (highest priority)
-1. Notes from the `releaseNotes` field in the Application custom resource (automatic fallback)
-
-This means you can set default notes in the Application manifest and override them at promote time when needed.
