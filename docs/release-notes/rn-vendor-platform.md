@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.05.27-3
+
+Released on May 27, 2026
+
+### New Features {#new-features-v2026-05-27-3}
+* Adds new Enterprise Portal component to list images in a Helm release.
+
 ## v2026.05.27-0
 
 Released on May 27, 2026
