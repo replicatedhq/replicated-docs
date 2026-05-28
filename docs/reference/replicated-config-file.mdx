@@ -2,7 +2,9 @@
 
 The `.replicated` file is a per-project configuration file that the Replicated CLI uses. Place this file at the root of your project repository. It tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
 
-When you run commands like `replicated release create` or `replicated release lint` without explicit flags, the CLI searches for this file in the current directory. It continues searching upward through parent directories.
+When you run commands like `replicated release create` without explicit flags, the CLI searches for this file in the current directory. It continues searching upward through parent directories.
+
+`replicated release lint` uses `.replicated` only when the release validation v2 feature flag is active or when the `REPLICATED_RELEASE_VALIDATION_V2` environment variable is set to `1`.
 
 ## File location and name
 
@@ -85,33 +87,6 @@ preflights:
     chartVersion: "1.0.0"
 ```
 
-### `promoteToChannelIds` (list of strings, optional)
-
-Channel IDs to automatically promote a release to after creation.
-
-```yaml
-promoteToChannelIds:
-  - "abc123"
-```
-
-### `promoteToChannelNames` (list of strings, optional)
-
-Channel names to automatically promote a release to after creation.
-
-```yaml
-promoteToChannelNames:
-  - "Unstable"
-  - "Beta"
-```
-
-### `releaseLabel` (string, optional)
-
-A label to attach to the release.
-
-```yaml
-releaseLabel: "v1.0.0-beta"
-```
-
 ### `repl-lint` (object, optional)
 
 Configuration for the local linting engine. This controls which linters run and which tool versions to use.
@@ -138,9 +113,9 @@ repl-lint:
       disabled: false        # on by default
     embedded-cluster:
       disabled: true         # off by default (opt-in)
-    kots:
-      disabled: true         # off by default (opt-in)
 ```
+
+The `kots` linter is parsed by the config but is not currently implemented. Enabling it has no effect.
 
 The `embedded-cluster` linter also supports:
 
@@ -159,10 +134,11 @@ repl-lint:
     helm: "3.14.4"
     preflight: "latest"
     support-bundle: "latest"
-    embedded-cluster: "latest"
 ```
 
 Versions must be either a semantic version (`1.2.3` or `v1.2.3`) or the string `latest`.
+
+The `embedded-cluster` linter discovers its version from the manifests instead of the `tools` map. Setting it in `.replicated` has no effect.
 
 ## App resolution precedence
 
@@ -177,8 +153,7 @@ When a command needs to know which app to target, it resolves the value in this 
 
 If you have a monorepo with multiple apps, you can place a `.replicated` file in each app subdirectory. The CLI searches upward from the current working directory and merges all found configuration files:
 
-- Scalar fields (`appSlug`, `appId`, `releaseLabel`): child overrides parent.
-- Channel arrays (`promoteToChannelIds`, `promoteToChannelNames`): child replaces parent if non-empty.
+- Scalar fields (`appSlug`, `appId`): child overrides parent.
 - Resource arrays (`charts`, `preflights`, `manifests`): accumulate from all levels.
 - `repl-lint`: child overrides parent settings.
 
