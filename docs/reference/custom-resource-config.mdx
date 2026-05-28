@@ -96,6 +96,67 @@ The following images show how this Config custom resource renders in the Embedde
 
 [View a larger version of this image](/images/config-screen-example-embedded-postgres.png)
 
+## Use config values in your Helm chart {#use-config-values}
+
+After defining config fields, you map the user-supplied values to your Helm chart using the [HelmChart v2 custom resource](/reference/custom-resource-helmchart-v2). In the HelmChart CR's `values` key, use the `ConfigOption` template function to reference config field values by name.
+
+### Example: Map config values to Helm chart values
+
+Given the Config example on this page, the following HelmChart CR maps the database configuration to Helm values:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: my-app
+spec:
+  chart:
+    name: my-app
+    chartVersion: 1.0.0
+  values:
+    postgresql:
+      type: 'repl{{ ConfigOption "postgres_type" }}'
+      host: 'repl{{ ConfigOption "external_postgres_host" }}'
+      port: 'repl{{ ConfigOption "external_postgres_port" }}'
+      database: 'repl{{ ConfigOption "external_postgres_database" }}'
+      username: 'repl{{ ConfigOption "external_postgres_username" }}'
+      password: 'repl{{ ConfigOption "external_postgres_password" }}'
+      embeddedPassword: 'repl{{ ConfigOption "embedded_postgres_password" }}'
+    hostname: 'repl{{ ConfigOption "hostname" }}'
+```
+
+The template functions are evaluated at install and upgrade time. The resulting values are passed to your Helm chart as if they were set in `values.yaml`.
+
+### Common patterns
+
+The following are common patterns for using config values:
+
+- **Conditional Helm values**: Use `ConfigOptionEquals` to set values based on a selection:
+  ```yaml
+  values:
+    postgresql:
+      enabled: 'repl{{ ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+  ```
+
+- **Generated secrets**: Config fields with a `value` using `RandomString` generate a value on first install and persist it across upgrades:
+  ```yaml
+  # In the Config CR
+  - name: session_secret
+    title: Session Secret
+    type: password
+    hidden: true
+    value: 'repl{{ RandomString 32 }}'
+  ```
+
+- **Boolean fields**: Use `ConfigOptionEquals` to convert a bool field to a Helm value:
+  ```yaml
+  values:
+    features:
+      enableFeatureX: 'repl{{ ConfigOptionEquals "enable_feature_x" "1" }}'
+  ```
+
+For more information about template functions for config values, see [Config Context](/reference/template-functions-config-context).
+
 ## Group properties
 
 Groups have a `name`, `title`, `description` and an array of `items`.
