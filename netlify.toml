@@ -25,6 +25,10 @@
 # High-Level Redirects
 ###################################################
 
+# Consolidated pages
+[[redirects]]
+  from = "/vendor/operator-defining-additional-namespaces"
+  to = "/reference/custom-resource-application#additionalnamespaces"
 
 # Redirects from the root of the directories
 [[redirects]]
