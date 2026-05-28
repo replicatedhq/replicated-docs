@@ -86,3 +86,29 @@ To create and promote a release:
           -  `CHANNEL` is the channel ID or the case sensitive name of the channel.
 
           For more information, see [release promote](/reference/replicated-cli-release-promote).
+
+## Include release notes {#release-notes}
+
+Release notes are associated with a release when it is promoted to a channel. There are two ways to include release notes:
+
+Use the `--release-notes` flag when creating or promoting a release. This works for all release types, including KOTS, Helm, Embedded Cluster v2, and Embedded Cluster v3.
+
+```bash
+replicated release promote SEQUENCE CHANNEL --release-notes "Bug fixes and performance improvements"
+```
+
+To pass multiline notes from a file:
+
+```bash
+replicated release promote SEQUENCE CHANNEL --release-notes "$(cat release-notes.md)"
+```
+
+The `--release-notes` flag is also available on `release create` when creating and promoting in a single step:
+
+```bash
+replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --release-notes "$(cat release-notes.md)"
+```
+
+For more information, see [release create](/reference/replicated-cli-release-create) and [release promote](/reference/replicated-cli-release-promote).
+
+When a release is promoted without explicit release notes (no `--release-notes` flag and no notes entered in the Vendor Portal), the release notes are automatically populated from this field.
