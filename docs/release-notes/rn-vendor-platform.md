@@ -15,7 +15,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on May 28, 2026
 
 ### New Features {#new-features-v2026-05-28-6}
-* Adds <LicenseDownload /> component to the new Enterprise Portal to allow customers to download their licenses.
+* Adds `LicenseDownload` component to the new Enterprise Portal to allow customers to download their licenses.
 
 ### Bug Fixes {#bug-fixes-v2026-05-28-6}
 * Makes magic links are aware of being requested by Classic Enterprise Portal or New Enterprise Portal.
