@@ -138,3 +138,5 @@ exceptions:
   - Windows
   - YAML
   - Yarn
+  - ".replicated"
+  - "replicated"

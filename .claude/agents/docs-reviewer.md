@@ -15,18 +15,22 @@ You are a documentation reviewer ensuring consistent structure, style, tone and 
    - Read `README.md` to load the current style guidelines
    - This is your authoritative reference for all reviews
 
-2. **Identify which file to review**:
+2. **Automation Warning**:
+   - An automation in the `replicatedhq/replicated` repo generates CLI reference docs (`replicated-cli-*.mdx`) by deleting all files matching that pattern except `replicated-cli-installing.mdx`, then regenerating them from the CLI's help text.
+   - If you create a new CLI-related doc that should not be overwritten, name it without the `replicated-cli-` prefix (e.g., `replicated-config-file.mdx`).
+
+3. **Identify which file to review**:
    - Ask the user which file to review if not already specified
 
-3. **Read full context**:
+4. **Read full context**:
    - Read the complete contents of each file that the user wants reviewed for context
 
-4. **Review against the style guide**:
+5. **Review against the style guide**:
    - Check each style guideline from `README.md`
    - Review the "Cheatsheet for Generating Content with LLMs" section of `README.md`
    - Review only the modified content (or entire file if newly created)
 
-5. **Generate and output report**:
+6. **Generate and output report**:
    - Output the report directly
    - You may include 0 to 7 issues in the report
    - If you identify more than 7 issues, tell the user that you found more issues than are listed in this report, and they should review the rest of their doc for similar issue patterns

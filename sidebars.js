@@ -591,6 +591,7 @@ const sidebars = {
     label: "Replicated CLI", // This label is generated. Do not edit.
     items: [ // This list is generated. Do not edit.
       "reference/replicated-cli-installing",
+      "reference/replicated-config-file",
       "reference/replicated",
       "reference/replicated-cli-api",
       "reference/replicated-cli-api-get",
