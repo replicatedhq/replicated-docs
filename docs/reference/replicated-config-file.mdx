@@ -1,4 +1,4 @@
-# The .replicated configuration file
+# Replicated CLI project configuration
 
 The `.replicated` file is a per-project configuration file that the Replicated CLI uses. Place this file at the root of your project repository. It tells the CLI which application, Helm charts, Kubernetes manifests, and preflight checks belong to this project.
 
@@ -203,7 +203,7 @@ repl-lint:
       disabled: true
 ```
 
-### Monorepo root config
+### Monorepo root configuration
 
 ```yaml
 # At repo root: .replicated
@@ -232,7 +232,7 @@ manifests:
   - ./manifests/*.yaml
 ```
 
-## Create a config file
+## Create a configuration file
 
 Run the interactive initialization command to generate a `.replicated` file for your project:
 
