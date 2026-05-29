@@ -312,6 +312,8 @@ Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional)
 
 **`<AdminConsoleUrl />`**: Displays the admin console URL for Embedded Cluster installations. No props.
 
+**`<HelmReleaseImages />`**: Lists all container images included in a Helm release for the selected version. Includes a copy button for the full image list. Props: `title` (optional, defaults to "Helm images"), `emptyText` (optional, message when no images are found).
+
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
 ```markdown
@@ -391,6 +393,8 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 **`<HelmBundles />`**: Helm-specific support bundle generation instructions. No props.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
+
+**`<LicenseDownload />`**: Renders a button that lets customers download their license file. No props.
 
 **`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. No props.
 
