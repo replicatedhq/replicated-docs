@@ -236,3 +236,46 @@ values:
     image:
       registry: '{{repl ReplicatedImageRegistry (HelmValue ".my-subchart.image.registry") }}'
 ```
+
+## Lookup
+
+```go
+func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
+```
+
+Lookup searches resources in a running cluster and returns a resource or resource list.
+
+Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
+
+```yaml
+repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
+```
+
+Both `NAME` and `NAMESPACE` are optional and can be passed as an empty string ("").
+
+The following combination of parameters are possible:
+
+| Behavior | Lookup function |
+|---|---|
+| `kubectl get pod mypod -n mynamespace` | `repl{{ Lookup "v1" "Pod" "mynamespace" "mypod" }}` |
+| `kubectl get pods -n mynamespace` | `repl{{ Lookup "v1" "Pod" "mynamespace" "" }}` |
+| `kubectl get pods --all-namespaces` | `repl{{ Lookup "v1" "Pod" "" "" }}` |
+| `kubectl get namespace mynamespace` | `repl{{ Lookup "v1" "Namespace" "" "mynamespace" }}` |
+| `kubectl get namespaces` | `repl{{ Lookup "v1" "Namespace" "" "" }}` |
+
+The following describes working with values returned by the Lookup function:
+
+* When Lookup finds an object, it returns a dictionary with the key value pairs from the object. This dictionary can be navigated to extract specific values. For example, the following returns the annotations for the `mynamespace` object:
+
+    ```
+    repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
+    ```
+
+* When Lookup returns a list of objects, it is possible to access the object list through the `items` field. For example:
+
+    ```yaml
+    services: |
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
