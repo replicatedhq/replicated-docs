@@ -58,7 +58,6 @@ The following Application spec fields are not used in Embedded Cluster v3:
 |---|---|
 | `allowRollback` | Enabled the rollback button in the Admin Console |
 | `graphs` | Displayed Prometheus metric graphs in the Admin Console |
-| `ports` | Configured port-forward shortcuts in the Admin Console |
 | `minKotsVersion` / `targetKotsVersion` | Gated installations to specific KOTS versions |
 | `requireMinimalRBACPrivileges` / `supportMinimalRBACPrivileges` | Controlled KOTS operator RBAC mode |
 | `proxyPublicImages` | Routed public image pulls through the Replicated proxy registry via KOTS |
@@ -71,6 +70,10 @@ The following Application spec fields **are still used** in Embedded Cluster v3:
 |---|---|
 | `title` | Displayed in the Embedded Cluster install and upgrade wizard header. See [Customize the wizard branding](embedded-using#branding). |
 | `icon` | Displayed next to the title in the wizard. For air gap installations, use a Base64 encoded image since remote URLs are not accessible. See [Customize the wizard branding](embedded-using#branding). |
+| `releaseNotes` | Used as the default release notes for the channel release when no notes are provided at promote time. See [Include release notes](/vendor/releases-creating-cli#release-notes). |
+| `additionalImages` | Images listed here are included in air gap bundles, even if not directly referenced in Helm chart templates. |
+| `excludedImages` | Images listed here are excluded from air gap bundles. |
+| `ports` | Configures port-forward shortcuts in the Embedded Cluster install and upgrade wizard. |
 | `statusInformers` | Injected into the Replicated SDK Helm values for instance reporting in the Vendor Portal. Requires the [Replicated SDK](/vendor/replicated-sdk-overview). |
 
 ## Update your release to Embedded Cluster v3
