@@ -12,6 +12,27 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.2.3-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.2.3-beta.1+k8s-1.34</td>
+    <td id="center">3.2.3-beta.1+k8s-1.33</td>
+    <td id="center">3.2.3-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### Bug fixes {#bug-fixes-3-2-3-beta-1}
+
+* Fixes a failure in the `Lookup` template function when the kubeconfig has not yet been created on the node. `Lookup` now returns an empty map in that case instead of erroring.
+
 ## 3.2.2-beta.1
 
 <table>
