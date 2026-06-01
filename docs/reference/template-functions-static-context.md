@@ -197,6 +197,8 @@ repl{{ NodeCount }}
 func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
 ```
 
+Lookup is also supported for installations with Embedded Cluster v3. For more information, see [Lookup](/embedded-cluster/v3/template-functions#lookup) in _Template Functions for Embedded Cluster (Beta)_.
+
 Lookup searches resources in a running cluster and returns a resource or resource list.
 
 Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
