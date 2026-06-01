@@ -31,6 +31,19 @@ Extend the registration form with custom data collection fields to capture infor
 
 Each field is assigned a stable identifier that persists even if you rename the label. This is useful for webhook integrations and event tracking (e.g., routing signups to different Slack channels based on company size).
 
+## Email domain filtering
+
+Restrict which email domains are allowed to sign up to ensure only users with work email addresses can create trial accounts.
+
+1. In the Self-Service Sign-Ups configuration, select a filtering mode in the **Email Domain Filtering** section:
+   - **No filtering**: Any email address can sign up (default)
+   - **Block specific domains**: Block signups from specific email domains. Optionally select **Block common consumer email domains** to automatically block popular consumer providers (gmail.com, yahoo.com, hotmail.com, outlook.com, and others). You can also add additional domains to block.
+   - **Allow only specific domains**: Only allow signups from explicitly listed domains. At least one domain is required.
+
+1. Click **Save**.
+
+When a user tries to sign up with a blocked email domain, they receive an error message asking them to use a work email address. Domain filtering is applied at signup time only and does not affect existing customers.
+
 ## Signup flow (customer experience)
 
 When a customer visits the signup URL:

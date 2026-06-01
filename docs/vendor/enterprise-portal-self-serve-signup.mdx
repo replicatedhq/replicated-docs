@@ -52,6 +52,26 @@ To add custom signup fields:
 
 When users sign up through the Enterprise Portal, you can view both the built-in and custom field values in the **Pending Trials** list in the Vendor Portal.
 
+## Configure email domain filtering {#email-domain-filtering}
+
+You can restrict which email domains are allowed to sign up through the Enterprise Portal. This helps ensure that only users with work email addresses can create trial accounts.
+
+To configure email domain filtering:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Self Serve Signup**.
+
+1. In the **Email Domain Filtering** section, select one of the following modes:
+
+   - **No filtering**: Any email address can sign up (default).
+   - **Block specific domains**: Block signups from specific email domains. When this option is selected:
+     - (Optional) Select **Block common consumer email domains** to automatically block signups from popular consumer email providers such as gmail.com, yahoo.com, hotmail.com, outlook.com, and others.
+     - (Optional) Enter additional domains to block in the **Additional domains to block** field. Use the format `example.com` (no `https://` or paths). Press Enter or comma to add each domain.
+   - **Allow only specific domains**: Only allow signups from the domains you specify. Enter at least one domain in the **Allowed domains** field.
+
+1. Click **Save**.
+
+When a user tries to sign up with a blocked email domain, they receive an error message asking them to use a work email address. Domain filtering is applied during signup only and does not affect existing customers.
+
 ## Share your sign-up URL {#share-trial-url}
 
 Each application has a dedicated sign-up URL where users can access the self-servive sign up. When a new user naviagtes to the sign-up page and clicks **Create account**, they receive an email with a 12-digit verification code. The following shows an example of a self-service sign-up page for an application:
