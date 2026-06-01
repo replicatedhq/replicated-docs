@@ -12,6 +12,31 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.2.2-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.2.2-beta.1+k8s-1.34</td>
+    <td id="center">3.2.2-beta.1+k8s-1.33</td>
+    <td id="center">3.2.2-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-2-2-beta-1}
+
+* Adds support for the KOTS `Lookup` template function, which queries resources in the running cluster from templates.
+
+### Improvements {#improvements-3-2-2-beta-1}
+
+* Skips the airgap `images.tar` preload when a Bring Your Own (BYO) registry is configured.
+
 ## 3.2.1-beta.1
 
 <table>
