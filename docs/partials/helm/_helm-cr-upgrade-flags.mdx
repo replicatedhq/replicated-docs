@@ -9,11 +9,23 @@ For more information, see [About Replicated template functions](/reference/templ
 
 For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array.
 
-#### Example
+:::note
+KOTS passes `--wait` to Helm by default, which means Helm waits for all non-hook resources to reach a Ready state before running post-install or post-upgrade hooks. If a non-hook resource depends on a resource created by a hook (for example, a Deployment with an init container that waits for a database custom resource created by a post-install hook), this creates a circular deadlock. To avoid this, add `--wait=false` and `--wait-for-jobs=false` to `helmUpgradeFlags`. These flags are appended after the defaults and override them.
+:::
+
+#### Examples
 
 ```yaml
 helmUpgradeFlags:
   - --timeout
   - 1200s
   - --history-max=15
+```
+
+Disable the default `--wait` behavior to prevent deadlocks with post-install hooks:
+
+```yaml
+helmUpgradeFlags:
+  - --wait=false
+  - --wait-for-jobs=false
 ```

@@ -92,6 +92,8 @@ The following limitations apply to using hooks with Helm charts deployed by KOTS
 
 * <HookWeightsLimitation/>
 
+* KOTS passes `--wait` to Helm by default, which means all non-hook resources must reach a Ready state before post-install or post-upgrade hooks run. If a non-hook resource depends on a resource created by a hook (for example, a Deployment with an init container that waits for a database custom resource created by a post-install hook), this creates a circular deadlock. To work around this, set `--wait=false` and `--wait-for-jobs=false` in [`helmUpgradeFlags`](/reference/custom-resource-helmchart-v2#helmupgradeflags).
+
 For more information about Helm hooks, see [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.
 
 ## Air gap installations
