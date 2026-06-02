@@ -37,7 +37,6 @@ replicated customer inspect --app myapp --customer "Acme Inc"
 ```
       --customer string   The Customer Name or ID
   -h, --help              help for inspect
-  -o, --output string     The output format to use. One of: json|table (default "table")
 ```
 
 ### Options inherited from parent commands
@@ -45,6 +44,7 @@ replicated customer inspect --app myapp --customer "Acme Inc"
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```

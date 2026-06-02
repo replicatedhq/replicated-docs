@@ -57,7 +57,6 @@ ssh -i /tmp/ci_key $(replicated vm ssh-endpoint my-vm --username ci)
       --name string                  VM name (defaults to random name)
       --network string               The network to use for the VM(s). If not supplied, create a new network
       --network-policy string        The network policy to use for the VM(s)
-  -o, --output string                The output format to use. One of: json|table|wide (default "table")
       --ssh-public-key stringArray   Path to SSH public key file to add to the VM (can be specified multiple times). The Linux user that receives the key is derived from the key's comment: the portion before the first '@'. For example, a comment of 'runner@host' creates a user named 'runner'; pass that name via 'replicated vm ssh-endpoint --username runner' to connect.
       --tag stringArray              Tag to apply to the VM (key=value format, can be specified multiple times)
       --ttl string                   VM TTL (duration, max 48h)
@@ -70,6 +69,7 @@ ssh -i /tmp/ci_key $(replicated vm ssh-endpoint my-vm --username ci)
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```

@@ -47,7 +47,6 @@ replicated cluster ls --output wide
 ```
       --end-time string     end time for the query (Format: 2006-01-02T15:04:05Z)
   -h, --help                help for ls
-  -o, --output string       The output format to use. One of: json|table|wide (default "table")
       --show-terminated     when set, only show terminated clusters
       --start-time string   start time for the query (Format: 2006-01-02T15:04:05Z)
   -w, --watch               watch clusters
@@ -58,6 +57,7 @@ replicated cluster ls --output wide
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```

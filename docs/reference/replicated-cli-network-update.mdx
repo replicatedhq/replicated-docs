@@ -43,7 +43,6 @@ replicated network update NETWORK_ID --policy airgap --collect-report
   -h, --help             help for update
       --id string        id of the network to update (when name is not provided)
       --name string      Name of the network to update
-      --output string    The output format to use. One of: json|table|wide (default "table")
   -p, --policy string    Update network policy setting
 ```
 
@@ -52,6 +51,7 @@ replicated network update NETWORK_ID --policy airgap --collect-report
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```
