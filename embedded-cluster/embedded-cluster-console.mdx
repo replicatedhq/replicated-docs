@@ -1,0 +1,60 @@
+# console (Beta)
+
+This topic describes the options available with the Embedded Cluster `console` command, which manages the optional persistent admin console for browser-driven upgrades and operations. For procedural steps, see [Persistent admin console](embedded-persistent-console).
+
+The `console` command has two subcommands: `install` and `uninstall`.
+
+## console install
+
+Installs the persistent admin console on the controller node where the command is run.
+
+### Usage
+
+```bash
+sudo ./<app-slug> console install [flags]
+```
+
+### Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>`--port`</td>
+    <td>int</td>
+    <td>Port the persistent console web service listens on. **Default:** `30080`</td>
+  </tr>
+  <tr>
+    <td>`-h`, `--help`</td>
+    <td></td>
+    <td>Help for `console install`.</td>
+  </tr>
+</table>
+
+## console uninstall
+
+Uninstalls the persistent admin console from the controller node where the command is run. Stops and removes the `<app-slug>-console-web.service` systemd unit. The cluster and application are not otherwise affected.
+
+### Usage
+
+```bash
+sudo ./<app-slug> console uninstall [flags]
+```
+
+### Flags
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>`-h`, `--help`</td>
+    <td></td>
+    <td>Help for `console uninstall`.</td>
+  </tr>
+</table>

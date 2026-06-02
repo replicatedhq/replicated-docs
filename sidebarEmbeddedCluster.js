@@ -16,6 +16,7 @@ module.exports = {
     },
     "embedded-manage-nodes",
     "updating-embedded",
+    "embedded-persistent-console",
     "embedded-troubleshooting",
     //REFERENCE DOCS
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
@@ -27,6 +28,7 @@ module.exports = {
       label: "Embedded Cluster Commands",
       items: [
         "embedded-cluster-completion",
+        "embedded-cluster-console",
         "embedded-cluster-create-join-bundle",
         "embedded-cluster-create-upgrade-bundle",
         "embedded-cluster-enable-ha",

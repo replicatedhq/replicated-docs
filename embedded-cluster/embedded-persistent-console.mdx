@@ -1,0 +1,75 @@
+# Persistent admin console (Beta)
+
+This topic describes the persistent admin console for Embedded Cluster 3.x — an optional, always-on web UI for browser-driven upgrades and operations.
+
+## Overview
+
+The persistent admin console is an opt-in web service that runs on a controller node and exposes a dashboard at `https://<controller-hostname>:30080/console`. From the dashboard, end users can view the currently installed application version, see any newer versions available on the channel, view release notes, and trigger an upgrade with a single click — without SSH access to the controller.
+
+The persistent admin console is **not enabled by default**.
+
+## Install the console
+
+The persistent admin console is installed on a single controller node and exposes its web UI on that controller's hostname.
+
+1. On a controller node, run the install command:
+
+   ```bash
+   sudo ./<app-slug> console install
+   ```
+
+   Replace `<app-slug>` with your application slug.
+
+1. (Optional) Use the `--port` flag to override the default port (`30080`):
+
+   ```bash
+   sudo ./<app-slug> console install --port 30443
+   ```
+
+1. Verify the service is running:
+
+   ```bash
+   sudo systemctl is-active <app-slug>-console-web.service
+   ```
+
+   The output should be `active`.
+
+1. Open the console in your browser at `https://<controller-hostname>:30080/console`.
+
+For the full set of flags, see [console](embedded-cluster-console).
+
+### Choose a controller
+
+The console can be installed on any controller node in the cluster. Replicated recommends running it on the primary controller — the first controller node installed in the cluster — because that node is typically the one users already access for cluster operations.
+
+## Recover or move the console
+
+The console is hosted by a single controller. If the controller hosting the console is lost or the `<app-slug>-console-web.service` becomes unhealthy, rerun the install command on any controller node to bring it back up:
+
+```bash
+sudo ./<app-slug> console install
+```
+
+If the original controller is still healthy and you are recovering an unhealthy service, run the command on the original controller. If the original controller is lost, run the command on any other controller node. The console is stateless — the dashboard reads live data from the daemon, so moving it to a different controller is safe at any time.
+
+## Uninstall the console
+
+To uninstall the console from a controller:
+
+```bash
+sudo ./<app-slug> console uninstall
+```
+
+This stops and removes the `<app-slug>-console-web.service` systemd unit and frees the port. The cluster is not otherwise affected — the application continues running, and users can still upgrade with the `upgrade` command from the CLI. See [Perform updates in embedded clusters](updating-embedded).
+
+## Limitations
+
+The persistent admin console has the following limitations:
+
+* Air gap installations are not supported.
+
+* The console can only be installed on a single controller node at a time. Reinstall on a different controller to move it.
+
+* The console must be installed on a controller node; it cannot run on a worker node.
+
+* The cluster must have TLS configured at install time. The console reuses the cluster's TLS certificate to serve HTTPS on its port.

@@ -8,6 +8,20 @@ Each Embedded Cluster binary that you download targets a particular application 
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
+## Upgrade using the persistent admin console
+
+If the [persistent admin console](embedded-persistent-console) is installed on a controller, end users can upgrade from the browser without SSH access to the controller:
+
+1. Open the console at `https://<controller-hostname>:30080/console` and log in with the installer password.
+
+1. In the **Available updates** section, locate the target version and click **Upgrade**.
+
+   The dashboard handles the fetch, prepare, restart, and binary swap, then redirects into the upgrade configure wizard.
+
+1. Complete the configure and upgrade flow as usual.
+
+The persistent admin console is not enabled by default. For setup instructions, see [Persistent admin console](embedded-persistent-console).
+
 ## Upgrade using the Embedded Cluster UI
 
 ### Use the Enterprise Portal for a guided upgrade
