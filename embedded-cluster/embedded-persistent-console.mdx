@@ -8,6 +8,12 @@ The persistent admin console is an opt-in web service that runs on a controller 
 
 The persistent admin console is **not enabled by default**.
 
+The initial application install and console setup require command-line access to a controller node. Once the console is running, end users can perform upgrades and configuration changes from the browser without command-line access.
+
+:::note
+For automated deployments (such as cloud marketplace offerings using cloud-init or user-data scripts), include `console install` in your provisioning script after the initial install completes. This gives end users browser-based access from first boot without any manual setup.
+:::
+
 ## Install the console
 
 Once the application is installed and running, install the persistent admin console on a controller node. The console serves its web UI from that controller's hostname.
