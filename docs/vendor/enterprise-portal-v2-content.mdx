@@ -296,11 +296,11 @@ Props: `installType` (`"linux"` or `"helm"`).
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. Props: `stepNumber` (optional, starting step number).
 
-**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional).
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
 
-**`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Props: `stepNumber`.
+**`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
-**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`.
+**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
 
 **`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
 
@@ -313,6 +313,24 @@ Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional)
 **`<AdminConsoleUrl />`**: Displays the admin console URL for Embedded Cluster installations. No props.
 
 **`<HelmReleaseImages />`**: Lists all container images included in a Helm release for the selected version. Includes a copy button for the full image list. Props: `title` (optional, defaults to "Helm images"), `emptyText` (optional, message when no images are found).
+
+#### Filtering charts in install instructions
+
+For applications with multiple Helm charts, you can control which charts appear in generated install and update instructions using the `charts` and `exclude` props. This lets you create separate install pages or sections for different charts, or hide optional addon charts from the default instructions.
+
+```markdown
+\{/* Only show instructions for specific charts */\}
+<HelmInstallAssets charts="core-app, worker" />
+
+\{/* Show all charts except optional addons */\}
+<HelmInstallAssets exclude="optional-addon" />
+
+\{/* Chart filtering also works on air gap and update components */\}
+<HelmAirgapInstallAssets charts="core-app" />
+<HelmUpdateAssets exclude="optional-addon" />
+```
+
+The `charts` and `exclude` props accept comma-separated chart names. Use `charts` to include only the listed charts, or `exclude` to show all charts except the listed ones.
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
@@ -337,7 +355,7 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. Props: `stepNumber`.
 
-**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`.
+**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
@@ -382,7 +400,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 ### Portal components
 
-**`<ReleaseHistory />`**: Renders a browsable release history timeline with version details and release notes. Props: `limit` (optional, max number of releases to show).
+**`<ReleaseHistory />`**: Renders a browsable release history timeline with version details and release notes. For air gap releases, each entry shows a build status badge (Ready, Building, Failed, or Not built). Props: `limit` (optional, max number of releases to show).
 
 **`<SupportBundleUpload />`**: Upload interface for support bundles. No props.
 
