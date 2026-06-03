@@ -130,6 +130,10 @@ To change an application's configuration without upgrading the application versi
 1. Update the ConfigValues to make the application configuration changes.
 1. Run the `upgrade` command using the binary for the application version that you already have installed. For example, if you installed version 1.2.3, download and run `upgrade` with the assets for version 1.2.3. Pass the updated configuration values with `--config-values`.
 
+## Change the customer-managed (BYO) registry configuration
+
+The `upgrade` command can also enable a [customer-managed (BYO) registry](installing-embedded-byo-registry) on an existing cluster, rotate the registry credentials or certificates, switch to a different BYO registry, or revert to the default registry. See [Change BYO registry configuration on upgrade](installing-embedded-byo-registry#upgrade-byo).
+
 ## Upgrade in air-gapped environments
 
 To perform an upgrade with Embedded Cluster in air-gapped environments:
