@@ -44,7 +44,11 @@ The console can be installed on any controller node in the cluster. Replicated r
 
 ## Application links
 
-If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec.descriptor.links`, those links appear automatically on the console dashboard under **Open &lt;app-name&gt;**. This is the same Application resource used to configure links in the KOTS admin console — no additional configuration is needed for them to surface in the persistent admin console. For more information about defining links, see [Add Buttons and Links to the Admin Console](/vendor/admin-console-adding-buttons-links).
+If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec.descriptor.links`, those links appear automatically on the console dashboard under **Open &lt;app-name&gt;**. No additional configuration is needed.
+
+:::note
+If you are migrating from Embedded Cluster v2, any existing Application links carry over automatically.
+:::
 
 ## Recover or move the console
 
