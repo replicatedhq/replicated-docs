@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.52.1",
-    "@babel/traverse": "^7.28.6",
+    "@babel/traverse": "^7.29.7",
     "@docsearch/docusaurus-adapter": "^4.6.3",
     "@docusaurus/core": "3.10.0",
     "@docusaurus/preset-classic": "3.10.0",
