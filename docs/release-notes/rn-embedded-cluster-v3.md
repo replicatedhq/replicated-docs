@@ -12,6 +12,27 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.3.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.3.0-beta.1+k8s-1.34</td>
+    <td id="center">3.3.0-beta.1+k8s-1.33</td>
+    <td id="center">3.3.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-3-0-beta-1}
+
+* Adds the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console), an opt-in, always-on web UI for browser-driven upgrades and operations. Enable it by running `console install` on a controller after installation.
+
 ## 3.2.3-beta.1
 
 <table>
