@@ -42,6 +42,10 @@ For the full set of flags, see [console](embedded-cluster-console).
 
 The console can be installed on any controller node in the cluster. Replicated recommends running it on the primary controller — the first controller node installed in the cluster — because that node is typically the one users already access for cluster operations.
 
+## Application links
+
+If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec.descriptor.links`, those links appear automatically on the console dashboard under **Open &lt;app-name&gt;**. This is the same Application resource used to configure links in the KOTS admin console — no additional configuration is needed for them to surface in the persistent admin console. For more information about defining links, see [Add Buttons and Links to the Admin Console](/vendor/admin-console-adding-buttons-links).
+
 ## Recover or move the console
 
 The console is hosted by a single controller. If the controller hosting the console is lost or the `<app-slug>-console-web.service` becomes unhealthy, rerun the install command on any controller node to bring it back up:
