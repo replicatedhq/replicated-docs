@@ -50,6 +50,24 @@ To upgrade more directly from the Vendor Portal:
 
 1. On the **Finish** page, confirm completion. Use the provided links to open your application if needed.
 
+### From the persistent admin console
+
+If the [persistent admin console](embedded-persistent-console) is installed on a controller, end users can upgrade from the browser without SSH access to the controller:
+
+1. Open the console at `https://<controller-hostname>:30080/console` and log in with the installer password.
+
+1. In the **Available updates** section, locate the target version and click **Upgrade**.
+
+   The dashboard handles the fetch, prepare, restart, and binary swap, then redirects into the upgrade wizard.
+
+1. On the **Configure** page, change any application configuration you need.
+
+1. On the **Upgrade** page, start the upgrade and wait for it to finish.
+
+1. On the **Finish** page, confirm completion. This redirects back to the dashboard page.
+
+The persistent admin console is not enabled by default. For setup instructions, see [Persistent admin console](embedded-persistent-console).
+
 ## Upgrade using the CLI (headless)
 
 To perform a headless upgrade from the CLI:
@@ -83,9 +101,27 @@ To redeploy or reconfigure an instance without upgrading, include the installati
 
 ### UI-based upgrade
 
-To change an application's configuration without upgrading the application version:
+To change an application's configuration without upgrading the application version, follow the path that matches your setup:
 
-* In the Embedded Cluster UI, change the target values on the **Configure** page. Then, follow the interactive upgrade process in the UI. 
+#### If the persistent admin console is **not** installed
+
+1. Run `upgrade` using the binary for the application version that you already have installed (not a newer version). For example, if you installed 1.2.3, download and run `upgrade` with the 1.2.3 assets:
+
+   ```bash
+   sudo ./APP_SLUG upgrade --license LICENSE_FILE
+   ```
+
+1. When prompted, log in with the installer password.
+
+1. On the **Configure** page, change the target values, then follow the interactive upgrade process to apply the new configuration.
+
+#### If the persistent admin console is installed
+
+1. Open the console at `https://<controller-hostname>:30080/console`.
+
+1. On the dashboard, click **Redeploy** next to the current version.
+
+1. Follow the interactive upgrade process to apply the new configuration.
 
 ### Headless upgrade
 
