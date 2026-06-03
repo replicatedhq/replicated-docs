@@ -11,7 +11,7 @@ When BYO registry is enabled, Embedded Cluster pulls _all_ images from a single 
 * Vendor application images
 * Embedded Cluster infrastructure images (k0s, OpenEBS, and any images for Helm [extensions](embedded-config#extensions) declared in the Embedded Cluster Config)
 
-BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS to the cluster, because all images are served from the customer's registry.
+BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry to the cluster, because all images are served from the customer's registry.
 
 ### When to use a customer-managed registry
 
@@ -146,7 +146,7 @@ To install with a BYO registry in an air-gapped environment:
       --registry-password PASSWORD
     ```
 
-In air gap installs with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS. The cluster pulls all images directly from the customer registry.
+In air gap installs with BYO registry, Embedded Cluster does not deploy its internal image registry. The cluster pulls all images directly from the customer registry.
 
 ### Add nodes to a BYO registry cluster
 
@@ -158,18 +158,16 @@ Join-time host preflights skip the BYO registry image checks, because the initia
 
 The `upgrade` command accepts the same `--registry*` flags as `install`. This lets a customer switch from the default registry to a BYO registry, rotate credentials or certificates, move to a different BYO registry, or revert to the default registry — without reinstalling.
 
-The BYO flags follow patch semantics on `upgrade`:
+On `upgrade`, each `--registry*` flag behaves as follows:
 
 * Omit a flag to leave its current value unchanged.
 * Pass a new value to update it.
 * Pass an empty string (for example, `--registry-ca-cert=""`) to clear it.
-* Pass `--registry=""` to disable BYO entirely and revert the cluster to the default registry mode. For online installs, this restores the Replicated proxy registry (or the configured [custom domain](/vendor/custom-domains-using)). For air gap installs, Embedded Cluster redeploys its internal image registry.
-
-When the address changes, Embedded Cluster restarts containerd on each node so the new registry endpoint takes effect. When only credentials, the CA certificate, or the mTLS material change, the containerd registry configuration is hot-reloaded without a restart.
+* Pass `--registry=""` to disable BYO and revert the cluster to the default registry.
 
 ### Enable BYO registry on an existing cluster
 
-To switch a cluster that was installed without BYO registry over to a BYO registry, run `upgrade` with the full set of BYO flags that you would have passed at install time. For example:
+To switch a cluster that was installed without BYO registry over to a BYO registry, push all images for the installed release to the BYO registry using the [Registry layout requirements](#registry-layout), then run `upgrade` with the full set of BYO flags that you would have passed at install time. For example:
 
 ```bash
 sudo ./APP_SLUG upgrade \
@@ -179,10 +177,6 @@ sudo ./APP_SLUG upgrade \
   --registry-password PASSWORD \
   --registry-ca-cert /path/to/ca.pem
 ```
-
-Before running this command, push all images for the installed release to the BYO registry using the [Registry layout requirements](#registry-layout). The upgrade runs the same BYO image preflight as `install`.
-
-In air gap clusters, switching to BYO does not remove the internal image registry or SeaweedFS from the cluster. They remain in place but are unused while BYO is active.
 
 ### Rotate credentials, CA, or mTLS material
 
@@ -195,11 +189,11 @@ sudo ./APP_SLUG upgrade \
   --registry-password NEW_PASSWORD
 ```
 
-The same pattern applies to `--registry-ca-cert`, `--registry-tls-cert`, and `--registry-tls-key`. Containerd reloads the new material without restarting.
+The same pattern applies to `--registry-ca-cert`, `--registry-tls-cert`, and `--registry-tls-key`.
 
 ### Switch to a different BYO registry
 
-To move the cluster to a different BYO registry, pass the new address and any credentials or certificates the new registry requires. Any flag you omit keeps its previous value, so explicitly clear fields that no longer apply. For example, if the previous registry used a private CA and the new one does not:
+To move the cluster to a different BYO registry, push the release images to the new registry, then pass the new address and any credentials or certificates the new registry requires. Explicitly clear any fields that no longer apply. For example, if the previous registry used a private CA and the new one does not:
 
 ```bash
 sudo ./APP_SLUG upgrade \
@@ -210,8 +204,6 @@ sudo ./APP_SLUG upgrade \
   --registry-ca-cert=""
 ```
 
-Push the release images to the new registry before running the upgrade.
-
 ### Revert to the default registry
 
 To disable BYO and have Embedded Cluster pull from the default registry, pass `--registry=""`:
@@ -221,8 +213,6 @@ sudo ./APP_SLUG upgrade \
   --license license.yaml \
   --registry=""
 ```
-
-Embedded Cluster removes the BYO containerd configuration from each node, along with any CA or mTLS files written for BYO. For online clusters, image pulls return to the Replicated proxy registry (or the configured custom domain). For air gap clusters, the internal image registry is used again; the original internal registry credentials are preserved across the BYO lifecycle, so the revert does not trigger a registry restart or a credentials-mismatch window.
 
 ## Author charts for a BYO registry {#chart-authoring}
 
