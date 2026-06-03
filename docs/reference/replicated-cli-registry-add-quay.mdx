@@ -16,7 +16,6 @@ replicated registry add quay [flags]
       --app-ids string    Comma-separated list of app IDs to scope this registry to
   -h, --help              help for quay
       --name string       Name for the registry
-  -o, --output string     The output format to use. One of: json|table (default "table")
       --password string   The password to authenticate to the registry with
       --password-stdin    Take the password from stdin
       --username string   The userame to authenticate to the registry with
@@ -27,6 +26,7 @@ replicated registry add quay [flags]
 ```
       --app string        The app slug or app id to use in all calls
       --debug             Enable debug output
+  -o, --output string     The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string    The authentication profile to use for this command
       --skip-validation   Skip validation of the registry (not recommended)
       --token string      The API token to use to access your app in the Vendor API

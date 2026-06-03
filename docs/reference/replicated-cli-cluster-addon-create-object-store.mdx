@@ -35,7 +35,6 @@ replicated cluster addon create object-store CLUSTER_ID_OR_NAME --bucket-prefix 
       --bucket-prefix string   A prefix for the bucket name to be created (required)
       --dry-run                Simulate creation to verify that your inputs are valid without actually creating an add-on
   -h, --help                   help for object-store
-  -o, --output string          The output format to use. One of: json|table|wide (default "table")
       --wait duration          Wait duration for add-on to be ready before exiting (leave empty to not wait)
 ```
 
@@ -44,6 +43,7 @@ replicated cluster addon create object-store CLUSTER_ID_OR_NAME --bucket-prefix 
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```

@@ -42,7 +42,6 @@ replicated policy create [flags]
       --description string   Description of the policy
   -h, --help                 help for create
       --name string          Name of the policy
-  -o, --output string        The output format to use. One of: json|table (default "table")
 ```
 
 ### Options inherited from parent commands
@@ -50,6 +49,7 @@ replicated policy create [flags]
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```

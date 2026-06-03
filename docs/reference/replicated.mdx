@@ -12,6 +12,7 @@ The 'replicated' CLI allows Replicated customers (vendors) to manage their Comme
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
   -h, --help             help for replicated
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```
@@ -20,7 +21,7 @@ The 'replicated' CLI allows Replicated customers (vendors) to manage their Comme
 
 * [replicated api](replicated-cli-api)	 - Make ad-hoc API calls to the Replicated API
 * [replicated app](replicated-cli-app)	 - Manage applications
-* [replicated channel](replicated-cli-channel)	 - List channels
+* [replicated channel](replicated-cli-channel)	 - Manage channels
 * [replicated cluster](replicated-cli-cluster)	 - Manage test Kubernetes clusters.
 * [replicated completion](replicated-cli-completion)	 - Generate completion script
 * [replicated config](replicated-cli-config)	 - Manage .replicated configuration

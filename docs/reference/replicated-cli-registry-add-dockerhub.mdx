@@ -17,7 +17,6 @@ replicated registry add dockerhub [flags]
       --authtype string   Auth type for the registry (default "password")
   -h, --help              help for dockerhub
       --name string       Name for the registry
-  -o, --output string     The output format to use. One of: json|table (default "table")
       --password string   The password to authenticate to the registry with
       --password-stdin    Take the password from stdin
       --token string      The token to authenticate to the registry with
@@ -30,6 +29,7 @@ replicated registry add dockerhub [flags]
 ```
       --app string        The app slug or app id to use in all calls
       --debug             Enable debug output
+  -o, --output string     The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string    The authentication profile to use for this command
       --skip-validation   Skip validation of the registry (not recommended)
 ```

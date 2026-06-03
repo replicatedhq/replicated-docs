@@ -18,7 +18,6 @@ replicated registry add gar [flags]
       --endpoint string            The GAR endpoint
   -h, --help                       help for gar
       --name string                Name for the registry
-  -o, --output string              The output format to use. One of: json|table (default "table")
       --serviceaccountkey string   The service account key to authenticate to the registry with
       --serviceaccountkey-stdin    Take the service account key from stdin
       --token string               The token to use to auth to the registry with
@@ -30,6 +29,7 @@ replicated registry add gar [flags]
 ```
       --app string        The app slug or app id to use in all calls
       --debug             Enable debug output
+  -o, --output string     The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string    The authentication profile to use for this command
       --skip-validation   Skip validation of the registry (not recommended)
 ```

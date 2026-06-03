@@ -49,7 +49,7 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
       --expires-in duration          If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
       --geo-axis                     If set, the license will allow Geo Axis usage.
       --gitops                       If set, the license will allow the GitOps usage.
-      --helm-install                 If set, the license will allow Helm installs.
+      --helm-install                 If set, the license will allow Helm installs. Requires --email.
       --helmvm-cluster-download      If set, the license will allow helmvm cluster downloads.
   -h, --help                         help for create
       --identity-service             If set, the license will allow Identity Service usage.
@@ -57,7 +57,6 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
       --kots-install                 If set, the license will allow KOTS install. Otherwise license will allow Helm CLI installs only. (default true)
       --kurl-install                 If set, the license will allow kURL installs.
       --name string                  Name of the customer
-  -o, --output string                The output format to use. One of: json|table (default "table")
       --snapshot                     If set, the license will allow Snapshots.
       --support-bundle-upload        If set, the license will allow uploading support bundles.
       --type string                  The license type to create. One of: dev|trial|paid|community|test (default: dev) (default "dev")
@@ -68,6 +67,7 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
 ```
       --app string       The app slug or app id to use in all calls
       --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
       --profile string   The authentication profile to use for this command
       --token string     The API token to use to access your app in the Vendor API
 ```
