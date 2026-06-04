@@ -10,6 +10,17 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.06.04-0
+
+Released on June 4, 2026
+
+### New Features {#new-features-v2026-06-04-0}
+* New Enterprise Portal Helm install components now support showing or hiding specific charts in generated install and update instructions.
+* Displays airgap bundle build status in Release History component in New Enterprise Portal.
+
+### Bug Fixes {#bug-fixes-v2026-06-04-0}
+* Helm reference generations are chart version and release specific on New Enterprise Portal.
+
 ## v2026.05.28-6
 
 Released on May 28, 2026
