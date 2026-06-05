@@ -25,6 +25,20 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.130.5
+
+Released on June 5, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Bug fixes {#bug-fixes-1-130-5}
+* Fixes an issue where KOTS Config fields containing both `repl{{ }}` template expressions and non-BMP unicode characters (codepoints above U+FFFF, such as emoji) failed to render with an `unexpected "\" in operand` error.
+* Fixes a race condition where pods deployed by the application Helm release could start before the `kotsadm-authstring` secret was created, causing intermittent failures with `secrets "kotsadm-authstring" not found`.
+* Fixes a race condition during Embedded Cluster upgrades where the `schemahero-plan` init container could enter `CrashLoopBackOff` while waiting for rqlite to become ready.
+
+### Improvements {#improvements-1-130-5}
+* Updates Go module and GitHub Action dependencies.
+
 ## 1.130.4
 
 Released on May 15, 2026
