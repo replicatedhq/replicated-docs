@@ -11,7 +11,7 @@ When BYO registry is enabled, Embedded Cluster pulls _all_ images from a single 
 * Vendor application images
 * Embedded Cluster infrastructure images (k0s, OpenEBS, and any images for Helm [extensions](embedded-config#extensions) declared in the Embedded Cluster Config)
 
-BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS to the cluster, because all images are served from the customer's registry.
+BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry to the cluster, because all images are served from the customer's registry.
 
 ### When to use a customer-managed registry
 
@@ -146,13 +146,73 @@ To install with a BYO registry in an air-gapped environment:
       --registry-password PASSWORD
     ```
 
-In air gap installs with BYO registry, Embedded Cluster does not deploy its internal image registry or SeaweedFS. The cluster pulls all images directly from the customer registry.
+In air gap installs with BYO registry, Embedded Cluster does not deploy its internal image registry. The cluster pulls all images directly from the customer registry.
 
 ### Add nodes to a BYO registry cluster
 
 Nodes that join a cluster installed with BYO registry automatically inherit the registry address, credentials, and CA certificate from the cluster. Customers do not pass the `--registry*` flags when running `join`.
 
 Join-time host preflights skip the BYO registry image checks, because the initial `install` already validated that the images are reachable from the registry.
+
+## Change BYO registry configuration on upgrade {#upgrade-byo}
+
+The `upgrade` command accepts the same `--registry*` flags as `install`. This lets a customer switch from the default registry to a BYO registry, rotate credentials or certificates, move to a different BYO registry, or revert to the default registry — without reinstalling.
+
+On `upgrade`, each `--registry*` flag behaves as follows:
+
+* Omit a flag to leave its current value unchanged.
+* Pass a new value to update it.
+* Pass an empty string (for example, `--registry-ca-cert=""`) to clear it.
+* Pass `--registry=""` to disable BYO and revert the cluster to the default registry.
+
+### Enable BYO registry on an existing cluster
+
+To switch a cluster that was installed without BYO registry over to a BYO registry, push all images for the installed release to the BYO registry using the [Registry layout requirements](#registry-layout), then run `upgrade` with the full set of BYO flags that you would have passed at install time. For example:
+
+```bash
+sudo ./APP_SLUG upgrade \
+  --license license.yaml \
+  --registry registry.example.com/acme \
+  --registry-username USERNAME \
+  --registry-password PASSWORD \
+  --registry-ca-cert /path/to/ca.pem
+```
+
+### Rotate credentials, CA, or mTLS material
+
+To rotate registry credentials without changing the registry address, pass only the credential flags you want to update:
+
+```bash
+sudo ./APP_SLUG upgrade \
+  --license license.yaml \
+  --registry-username NEW_USERNAME \
+  --registry-password NEW_PASSWORD
+```
+
+The same pattern applies to `--registry-ca-cert`, `--registry-tls-cert`, and `--registry-tls-key`.
+
+### Switch to a different BYO registry
+
+To move the cluster to a different BYO registry, push the release images to the new registry, then pass the new address and any credentials or certificates the new registry requires. Explicitly clear any fields that no longer apply. For example, if the previous registry used a private CA and the new one does not:
+
+```bash
+sudo ./APP_SLUG upgrade \
+  --license license.yaml \
+  --registry new-registry.example.com/acme \
+  --registry-username NEW_USERNAME \
+  --registry-password NEW_PASSWORD \
+  --registry-ca-cert=""
+```
+
+### Revert to the default registry
+
+To disable BYO and have Embedded Cluster pull from the default registry, pass `--registry=""`:
+
+```bash
+sudo ./APP_SLUG upgrade \
+  --license license.yaml \
+  --registry=""
+```
 
 ## Author charts for a BYO registry {#chart-authoring}
 
