@@ -527,6 +527,8 @@ Apply `visible_when` on any navigation item in `toc.yaml`:
 
 All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated server-side. Unrecognized filter dimensions are rejected (fail closed).
 
+To hide a page entirely, you can also omit it from `toc.yaml`. Pages not listed in the TOC are not reachable through navigation or direct URL (see [Table of contents](#table-of-contents) above).
+
 #### Per-user permissions in visible_when
 
 In addition to license entitlements, you can gate content on per-user permissions by referencing them in the `entitlements` list:
@@ -602,9 +604,13 @@ The tag expands to a URL that authenticates the customer via their session and s
 
 The path inside the tag is relative to the repo root and must start with `assets/`.
 
+:::note
+Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. Asset access is controlled by the visibility of the page that references them, not by the file path or directory structure. If you need to restrict an asset to specific customers, use template conditionals (like `\{\{#ifEquals customer.name\}\}`) around the asset reference, or place the asset reference on a page gated with `visible_when`. See the example below.
+:::
+
 ### Per-customer asset delivery
 
-Combine `\{\{asset\}\}` with template conditionals to show different downloads to different customers:
+To deliver different assets to different customers, combine `\{\{asset\}\}` with template conditionals. The conditional controls which customers see the download link, and only customers who can see the link can download the file:
 
 ```text
 ## Resources
@@ -624,6 +630,8 @@ Combine `\{\{asset\}\}` with template conditionals to show different downloads t
 
 - [Onboarding Checklist]({{asset "assets/onboarding-checklist.pdf"}})
 ```
+
+In this example, only Acme Corp can download their deployment guide, and only customers with the `isAWSEnabled` entitlement can download the AWS script. The onboarding checklist is available to all customers because it is not wrapped in a conditional.
 
 This lets you maintain one content repo with assets for all customers. Each customer only sees the downloads that apply to them. Unconditioned assets (like the onboarding checklist) appear for everyone.
 
