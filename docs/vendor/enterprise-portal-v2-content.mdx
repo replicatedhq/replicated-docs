@@ -545,13 +545,13 @@ The following permissions are available:
 
 | Permission | Description |
 | :--- | :--- |
-| `canViewSecurity` | Can view Security Center (CVE reports, SBOMs). Resolves based on the customer's Security Center entitlement and the user's role. |
+| `canViewSecurity` | Can view Security Center (CVE reports, SBOMs). Resolves based on the customer's Security Center entitlement. |
 | `canInviteUser` | Can invite users to the portal team |
 | `canRemoveUser` | Can remove users from the portal team |
 | `canManageServiceAccts` | Can create or revoke service accounts |
 | `canUploadBundles` | Can upload support bundles |
 
-Permissions are folded into the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. They resolve to the authenticated user's actual role-based permissions, so the same page can show for an admin but hide for a viewer if the permission differs by role.
+Permissions are folded into the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. Currently, `canViewSecurity` is the most useful permission for content gating because it resolves based on whether Security Center is enabled for the customer. The other four permissions resolve to `true` for all portal users.
 
 ### Page-level visibility (frontmatter)
 
