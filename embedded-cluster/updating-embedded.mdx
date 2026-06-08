@@ -152,6 +152,26 @@ To perform an upgrade with Embedded Cluster in air-gapped environments:
 
     Embedded Cluster automatically detects the air gap installation, and performs an air gap upgrade.
 
+### From the persistent admin console
+
+If the [persistent admin console](embedded-persistent-console) is installed on a controller, you can perform air gap upgrades from the browser without SSH access:
+
+1. Open the console at `https://<controller-hostname>:30080/console` and log in with the installer password.
+
+1. In the **Available updates** section, upload the release archive (`.tgz`). The console validates the archive against the installed license, uploads it, and adds the new release to the list.
+
+   Uploads are resumable across browser sessions. If you close or refresh the browser mid-upload, the dashboard prompts you to resume the next time you open it — re-picking the same file continues from where the upload left off.
+
+1. Click **Upgrade** on the new release row to run through the standard upgrade wizard.
+
+#### Re-upload the current release
+
+The currently-installed release can also be updated from the dashboard. Two common reasons to do this:
+
+* **To update the license.** Re-upload the release archive containing the new license, then click **Redeploy** to apply it.
+
+* **To enable redeploy.** Redeploy requires a local copy of the release archive. If that copy is missing, re-upload to restore it.
+
 ### Headless air-gapped upgrade
 
 To perform a headless upgrade in an air-gapped environment, pass `--headless` along with the upgrade command:
