@@ -633,6 +633,10 @@ When a customer pulls a release asset (Helm chart, Embedded Cluster bundle, or p
 
 ## Support events
 
+:::tip Choosing between Uploaded and Analyzed
+Use **Support Bundle Uploaded** when you need an immediate notification that a bundle has arrived. Use **Support Bundle Analyzed** when you need to filter or route based on instance tags, bundle metadata, or bundle name. The Analyzed event fires after the bundle is extracted and the instance is identified, so it has richer context and supports instance tag filtering. If you are unsure which to use, start with Support Bundle Analyzed.
+:::
+
 ### Support Bundle Uploaded
 
 When a support bundle is uploaded.
