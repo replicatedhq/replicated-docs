@@ -104,6 +104,12 @@ The `toc.yaml` file at the root of your repo defines the sidebar navigation. Eac
 
 Every item also supports `icon` and `visible_when` (see [Visibility](#visibility) below).
 
+The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. This means you can hide a page by simply omitting it from `toc.yaml`.
+
+:::note
+Pages configured as `overrides` targets (such as `overrides.home`) bypass the TOC allowlist and remain accessible even if they are not listed in `toc.yaml`. If you need to hide an override page, use `visible_when` in the page's frontmatter instead.
+:::
+
 Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
 
 ### Complete example
@@ -519,7 +525,31 @@ Apply `visible_when` on any navigation item in `toc.yaml`:
       include: [paid]
 ```
 
-All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated on both the server and the client.
+All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated server-side. Unrecognized filter dimensions are rejected (fail closed).
+
+#### Per-user permissions in visible_when
+
+In addition to license entitlements, you can gate content on per-user permissions by referencing them in the `entitlements` list:
+
+```yaml
+- title: Security Reports
+  page: pages/security.md
+  visible_when:
+    entitlements:
+      - canViewSecurity
+```
+
+The following permissions are available:
+
+| Permission | Description |
+| :--- | :--- |
+| `canViewSecurity` | Can view Security Center (CVE reports, SBOMs). Resolves based on the customer's Security Center entitlement and the user's role. |
+| `canInviteUser` | Can invite users to the portal team |
+| `canRemoveUser` | Can remove users from the portal team |
+| `canManageServiceAccts` | Can create or revoke service accounts |
+| `canUploadBundles` | Can upload support bundles |
+
+Permissions are folded into the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. They resolve to the authenticated user's actual role-based permissions, so the same page can show for an admin but hide for a viewer if the permission differs by role.
 
 ### Page-level visibility (frontmatter)
 
