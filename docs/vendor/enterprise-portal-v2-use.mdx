@@ -56,6 +56,8 @@ The install commands are personalized to the selected installation and include t
 
 For upgrades, customers use the **Instances & Updates** page to view available updates and follow inline upgrade instructions. Each instance card shows the current version, install method, and update status. Clicking an instance with an available update expands inline upgrade instructions. Instructions remain expanded until the instance reports back with the upgraded version, at which point the card updates in place and collapses.
 
+Instances that are already on the latest version show an **Up to date** badge. Customers can still expand these cards to view the install/upgrade commands for their current version. This is useful for re-running a partially failed upgrade, copying commands to another node, or referencing what was deployed.
+
 If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
 
 The **New Installation** button lets customers start new installations, with a dropdown showing the install methods their license allows (Helm, Helm Air Gap, Linux/Embedded Cluster).
