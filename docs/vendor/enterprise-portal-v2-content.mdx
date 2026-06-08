@@ -107,7 +107,7 @@ Every item also supports `icon` and `visible_when` (see [Visibility](#visibility
 The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. This means you can hide a page by simply omitting it from `toc.yaml`.
 
 :::note
-Pages configured as `overrides` targets (such as `overrides.home`) bypass the TOC allowlist and remain accessible even if they are not listed in `toc.yaml`. If you need to hide an override page, use `visible_when` in the page's frontmatter instead.
+The `overrides.home` page bypasses the TOC allowlist and remains accessible even if it is not listed in `toc.yaml`. If you need to hide the home page, use `visible_when` in its frontmatter instead.
 :::
 
 Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
