@@ -43,6 +43,7 @@ replicated release create --version 1.0.0 --promote Unstable --required
   -h, --help                               help for create
       --lint                               Lint a manifests directory prior to creation of the KOTS Release.
       --no-upload                          Build the release locally but do not upload it. Use with --output-dir to inspect or reuse the staged artifacts. Cannot be used with --promote.
+      --notify-users                       When used with --promote <channel>, notify Enterprise Portal users of this release promotion
       --output-dir string                  Stage the release artifacts (packaged charts and manifests) to this directory. Existing contents of the directory are removed before each run. The directory is preserved after the command completes.
       --promote string                     Channel name (case sensitive) or id to promote this release to
       --release-notes string               When used with --promote <channel>, sets the **markdown** release notes
