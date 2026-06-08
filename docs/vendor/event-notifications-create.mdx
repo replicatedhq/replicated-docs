@@ -141,16 +141,20 @@ To create an event notification subscription with the Replicated CLI:
 
 The following are example event notifications based on common use cases.
 
-### Customer success manager: Support bundle uploaded
+### Customer success manager: Support bundle analyzed
 
-As a Customer Success Manager, I want to be notified if one of my key customers uploads a support bundle.
+As a Customer Success Manager, I want to be notified when a support bundle from one of my key customers is analyzed, so I can review the results and follow up.
 
-- **Event Type:** Support Bundle Uploaded
+- **Event Type:** Support Bundle Analyzed
 - **Configuration:**
   - Filter - Application: Select your production application
   - Filter - Customer: Select your key enterprise customer (for example, "Acme Corp", "GlobalTech Inc")
   - License Field Condition: `tier` equals "Enterprise" AND `seats` greater than or equal to 100
 - **Delivery Method:** Email to your work email (or team email alias)
+
+:::note
+Support Bundle Analyzed provides more context than Support Bundle Uploaded, including bundle metadata and bundle name. It also supports instance tag filtering, which lets you scope alerts to specific environments (for example, production only). Use Support Bundle Uploaded only if you need the earliest possible notification that a bundle arrived, without filtering by instance.
+:::
 
 ### Sales manager: Trial license expiration
 
