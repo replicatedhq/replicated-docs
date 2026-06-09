@@ -31,11 +31,11 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### New features {#new-features-3-3-2-beta-1}
 
-* Allow switching to BYO registry on upgrade.
+* Adds support for changing the Bring Your Own (BYO) registry configuration on upgrade. The `upgrade` command now accepts the `--registry`, `--registry-username`, `--registry-password`, `--registry-ca-cert`, `--registry-tls-cert`, and `--registry-tls-key` flags. Flags use patch semantics: omit to keep the existing value, pass a new value to update, or pass an empty string (for example, `--registry=""`) to clear. Passing `--registry=""` reverts the cluster to the default registry mode.
 
 ### Bug fixes {#bug-fixes-3-3-2-beta-1}
 
-* Make login button text match the mode.
+* Updates the installer landing page login button text to match the operation mode: **Continue** for the persistent admin console and **Continue to Upgrade** for upgrades. Install mode is unchanged.
 
 ## 3.3.1-beta.1
 
@@ -56,7 +56,9 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### Bug fixes {#bug-fixes-3-3-1-beta-1}
 
-* Console login page + retry-current-version + simpler warning.
+* Fixes the persistent admin console landing page, which was incorrectly framed as the "Upgrade Wizard." When the console is enabled, the page now reads "Admin Console" with console-appropriate "What's Next" steps.
+* Allows retrying an upgrade when the target version is itself listed as a required release and matches the currently-incomplete revision. The previous behavior incorrectly blocked the retry with a "must install X before X" error.
+* Removes an invalid `journalctl` troubleshooting tip from the host-unreachable warning on the upgrade preparation screen. The tip was rendering the application's display name instead of its slug, producing an unusable command.
 
 ## 3.3.0-beta.1
 
