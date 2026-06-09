@@ -112,3 +112,25 @@ replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --rel
 For more information, see [release create](/reference/replicated-cli-release-create) and [release promote](/reference/replicated-cli-release-promote).
 
 When a release is promoted without explicit release notes (no `--release-notes` flag and no notes entered in the Vendor Portal), the release notes are automatically populated from this field.
+
+## Notify Enterprise Portal users {#notify-users}
+
+When promoting a release, you can send an email notification to customers who have access to the Enterprise Portal. This is useful for letting end customers know that a new version is available for upgrade.
+
+To notify users, pass the `--notify-users` flag when promoting or creating a release:
+
+```bash
+replicated release promote SEQUENCE CHANNEL --notify-users
+```
+
+Or when creating and promoting in a single step:
+
+```bash
+replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --notify-users
+```
+
+The `--notify-users` flag is also available as a `notify-users` parameter in the [Replicated GitHub Actions](https://github.com/replicatedhq/replicated-actions) for `create-release`.
+
+:::note
+Notifications are off by default and must be explicitly opted into per release. Only customers with Enterprise Portal access receive the email. Customers using the Download Portal only are not notified.
+:::
