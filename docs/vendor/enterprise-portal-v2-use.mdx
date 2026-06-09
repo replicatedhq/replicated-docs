@@ -58,8 +58,6 @@ For upgrades, customers use the **Instances & Updates** page to view available u
 
 Instances that are already on the latest version show an **Up to date** badge. Customers can still expand these cards to view the install/upgrade commands for their current version. This is useful for re-running a partially failed upgrade, copying commands to another node, or referencing what was deployed.
 
-Vendors can optionally send an email notification to Enterprise Portal users when a new release is promoted, letting customers know an update is available. This is opt-in per release via the `--notify-users` CLI flag or the `notify-users` GitHub Actions parameter. For more information, see [Notify Enterprise Portal users](/vendor/releases-creating-cli#notify-users).
-
 If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
 
 The **New Installation** button lets customers start new installations, with a dropdown showing the install methods their license allows (Helm, Helm Air Gap, Linux/Embedded Cluster).
