@@ -8,6 +8,13 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.6
+
+Released on June 8, 2026
+
+### Improvements {#improvements-1-19-6}
+* Updates dependencies to address several CVEs.
+
 ## 1.19.5
 
 Released on May 26, 2026
