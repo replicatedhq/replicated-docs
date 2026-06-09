@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.4.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.4.0-beta.1+k8s-1.34</td>
+    <td id="center">3.4.0-beta.1+k8s-1.33</td>
+    <td id="center">3.4.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-4-0-beta-1}
+
+* Adds air gap support to the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console). Release archives can be uploaded directly through the dashboard and applied without SSH access to the controller. Uploads are resumable across browser sessions, and the currently-installed release can be re-uploaded to update its bundled license or restore a missing copy needed for redeploy.
+
+### Improvements {#improvements-3-4-0-beta-1}
+
+* Aligns the Replicated SDK's `dockerconfigjson` with the active registry mode. When a Bring Your Own (BYO) registry is configured, the secret now carries credentials keyed by the BYO registry host instead of the unused `proxy.replicated.com` and `registry.replicated.com` defaults.
+
+### Bug fixes {#bug-fixes-3-4-0-beta-1}
+
+* Forwards the host CA bundle ConfigMap and native proxy values to the Replicated SDK chart so the SDK can communicate with `replicated.app` through a MITM proxy. Previously only proxy environment variables were passed, causing TLS verification failures when the SDK contacted `replicated.app`.
+
 ## 3.3.2-beta.1
 
 <table>
