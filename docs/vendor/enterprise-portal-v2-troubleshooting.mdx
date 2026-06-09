@@ -31,6 +31,12 @@ replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/s
 - Check frontmatter `visible_when` conditions
 - Confirm customer has required entitlements enabled
 
+## Local preview "Page not found"
+
+- Branch names with `/` (like `feature/foo` or `austin/initial-customization`) are treated as nested URL path segments in the preview. Use flat branch names (like `feature-foo`) to avoid this.
+- The `main` branch is hidden from the version list when other branches exist. If you only have `main`, it shows as the sole version. If you have other branches, navigating to a URL with `/main/` in the path returns a 404.
+- Uncommitted changes only appear on your currently checked-out branch. Other branches serve their last committed state.
+
 ## Version branch not working
 
 - Check branch exists: `git branch -r`
