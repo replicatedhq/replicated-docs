@@ -1,0 +1,98 @@
+# Customize Customer Emails
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+This topic describes how to configure and customize the emails sent to your customers through the Enterprise Portal, including setting up a verified sender address, customizing email templates, and viewing email delivery history.
+
+## Configure email sender {#configure-email-sender}
+
+By default, Enterprise Portal emails are sent from a Replicated-branded address. Adding your own sender address helps ensure that emails are delivered and not marked as spam, and gives your customers a consistent branding experience.
+
+To configure a custom email sender:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Customer Emails**.
+
+1. For **Email Sender Verification**, in **From email address**, add the email address that you want to use as the sender for all system notifications sent to your customers, then click **Continue**.
+
+1. Follow the steps in the wizard to verify the domain by adding the DKIM and Return-Path DNS records to your domain registrar.
+
+    After the domain is verified automatically, the email address is displayed under **Verified Sender Address**.
+
+:::note
+If customers report that emails are going to spam or not arriving, check that the DKIM and Return-Path DNS records are still correctly configured. See [Emails not delivered or going to spam](/vendor/enterprise-portal-v2-troubleshooting) in Troubleshooting.
+:::
+
+## Customize email templates {#customize-email-templates}
+
+You can customize the subject line, content, and styling of the emails that are sent to your customers. Email categories include Access and Authentication (invitations, magic links, verification codes) and Update Notifications (new release alerts).
+
+To customize email templates:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Customer Emails**.
+
+1. For **Customer Emails**, select the email category (such as **Access & Authentication** or **Update Notifications**). Then, select the name of the email template that you want to customize.
+
+   The template editor opens.
+
+1. In the editor, modify the subject line and body as desired:
+
+   * You can customize the default style component to change things like color and font.
+
+   * You can use template variables to insert dynamic content in the subject or body. For example, `Welcome to {{app_name}}!` or `Click here to join {{team_name}}: {{invite_url}}`. Template variables are automatically populated with relevant data when emails are sent.
+
+     :::note
+     The specific template variables that are available depend on the type of email template you are editing. You can see all available variables in the **Available Variables** section of the editor.
+     :::
+
+1. Click the **Preview** tab to see how your email will look with sample data.
+
+1. Click **Save changes** when finished.
+
+### Common template variables
+
+The following template variables are available across multiple email types:
+
+| Variable | Description | Example Output |
+|----------|-------------|----------------|
+| `{{app_name}}` | Your application name | "Acme Application" |
+| `{{team_name}}` | Customer team name | "Acme Corp" |
+| `{{customer_name}}` | Customer organization name | "Acme Corporation" |
+| `{{login_url}}` | Link to login page | `https://acme.enterpriseportal.app/login` |
+| `{{invite_url}}` | Link to accept invitation | `https://acme.enterpriseportal.app/invite#token` |
+| `{{verification_code}}` | Temporary verification code | "ABC123" |
+| `{{version_label}}` | Software version number | "1.2.3" |
+| `{{release_notes}}` | Release notes content | "New features and bug fixes" |
+| `{{update_url}}` | Link to update/release page | `https://acme.enterpriseportal.app/updates` |
+
+## Release notifications {#release-notifications}
+
+You can send an email notification to Enterprise Portal users when a new release is promoted, letting customers know an update is available. Notifications are off by default and must be explicitly opted into per release.
+
+To notify users when promoting a release, pass the `--notify-users` flag:
+
+```bash
+replicated release promote SEQUENCE CHANNEL --notify-users
+```
+
+Or when creating and promoting in a single step:
+
+```bash
+replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --notify-users
+```
+
+The `--notify-users` flag is also available as a `notify-users` parameter in the [Replicated GitHub Actions](https://github.com/replicatedhq/replicated-actions) for `create-release`.
+
+Only customers with Enterprise Portal access receive the notification email. The email content can be customized in the **Update Notifications** category of the email template editor (see [Customize email templates](#customize-email-templates) above).
+
+For more information, see [Notify Enterprise Portal users](/vendor/releases-creating-cli#notify-users).
+
+## View email history {#email-history}
+
+Track all emails sent to customers through the Enterprise Portal:
+
+- Per-customer: **Customers > [Customer Name] > Enterprise Portal access > Email History**
+- Org-wide: **Enterprise Portal > Customer Emails**
+
+Email history shows the recipient, subject, type (invite, magic link, etc.), delivery status, and timestamp.
