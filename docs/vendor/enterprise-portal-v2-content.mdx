@@ -553,6 +553,24 @@ The following permissions are available:
 
 Permissions are folded into the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. Currently, `canViewSecurity` is the most useful permission for content gating because it resolves based on whether Security Center is enabled for the customer. The other four permissions resolve to `true` for all portal users.
 
+#### Custom license fields in visible_when
+
+In addition to built-in entitlements, you can use your own custom license fields in `visible_when` conditions. Any custom license field you create in the Vendor Portal is automatically available in the `entitlements` list. This lets you gate content on a per-customer basis using fields you define.
+
+For example, if you create a boolean custom license field called `hasAdvancedReporting`:
+
+```yaml
+- title: Advanced Reporting
+  page: pages/advanced-reporting.md
+  visible_when:
+    entitlements:
+      - hasAdvancedReporting
+```
+
+Only customers whose license has `hasAdvancedReporting` set to `true` will see this page. Custom license fields also work in template expressions (`\{\{ entitlements.hasAdvancedReporting \}\}`).
+
+For information about creating custom license fields, see [Manage custom license fields](/vendor/licenses-adding-custom-fields#manage-custom-license-fields).
+
 ### Page-level visibility (frontmatter)
 
 You can also apply `visible_when` in a page's YAML frontmatter. This controls whether the page is accessible to a customer, independent of whether it appears in the navigation.
@@ -570,7 +588,7 @@ visible_when:
 Ensure your environment meets these requirements...
 ```
 
-The same `entitlements` conditions available in `toc.yaml` work in frontmatter. Use this when you want a page gated by entitlements even if the `toc.yaml` entry doesn't have its own `visible_when` (for example, a page reachable via internal links but not navigation).
+The same `entitlements` conditions available in `toc.yaml` work in frontmatter, including built-in entitlements, custom license fields, and per-user permissions. Use this when you want a page gated even if the `toc.yaml` entry doesn't have its own `visible_when` (for example, a page reachable via internal links but not navigation).
 
 ## Downloadable assets
 
