@@ -24,9 +24,22 @@ To configure a custom email sender:
 If customers report that emails are going to spam or not arriving, check that the DKIM and Return-Path DNS records are still correctly configured. See [Emails not delivered or going to spam](/vendor/enterprise-portal-v2-troubleshooting) in Troubleshooting.
 :::
 
+## Email types
+
+The Enterprise Portal sends several types of emails to your customers. You may want to customize these templates before they reach your customers:
+
+**Access & Authentication:**
+- **Invitation** - sent when you invite a user to the portal
+- **Temporary Login Link** - magic link for passwordless login
+- **Signup Verification** - verification code for self-service signup
+- **Invite Code** - sent when a user has a pending invite from the login page
+
+**Update Notifications:**
+- **New Release Available** - sent when you promote a release with notifications enabled (see [Release notifications](#release-notifications) below)
+
 ## Customize email templates {#customize-email-templates}
 
-You can customize the subject line, content, and styling of the emails that are sent to your customers. Email categories include Access and Authentication (invitations, magic links, verification codes) and Update Notifications (new release alerts).
+You can customize the subject line, content, and styling of any of the emails listed above.
 
 To customize email templates:
 
@@ -70,7 +83,10 @@ The following template variables are available across multiple email types:
 
 You can send an email notification to Enterprise Portal users when a new release is promoted, letting customers know an update is available. Notifications are off by default and must be explicitly opted into per release.
 
-To notify users when promoting a release, pass the `--notify-users` flag:
+To notify users when promoting a release:
+
+- **Vendor Portal:** When promoting a release to a channel, check the **Notify users** checkbox in the promote dialog.
+- **CLI:** Pass the `--notify-users` flag:
 
 ```bash
 replicated release promote SEQUENCE CHANNEL --notify-users
@@ -82,7 +98,7 @@ Or when creating and promoting in a single step:
 replicated release create --yaml-dir PATH_TO_RELEASE_DIR --promote CHANNEL --notify-users
 ```
 
-The `--notify-users` flag is also available as a `notify-users` parameter in the [Replicated GitHub Actions](https://github.com/replicatedhq/replicated-actions) for `create-release`.
+- **GitHub Actions:** Use the `notify-users` parameter in the [Replicated GitHub Actions](https://github.com/replicatedhq/replicated-actions) for `create-release`.
 
 Only customers with Enterprise Portal access receive the notification email. The email content can be customized in the **Update Notifications** category of the email template editor (see [Customize email templates](#customize-email-templates) above).
 

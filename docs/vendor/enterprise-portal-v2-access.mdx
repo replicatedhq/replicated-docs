@@ -1,27 +1,47 @@
-# View a Customer's Enterprise Portal
+# Test and Preview the Enterprise Portal
 
 :::important Alpha Feature
 Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
 :::
 
-This topic describes how you can view the new Enterprise Portal as a specific customer from the Vendor Portal. This is useful when testing your application installation and upgrade instructions, previewing customizations, or managing Enterprise Portal users on behalf of one of your customers.
+This topic describes how to preview and test the Enterprise Portal before and after inviting customers, including local preview for content development and logging in as a specific customer for production checks.
 
-For information about how end users can sign up for an account and log in to the Enterprise Portal, see [Log in to and use the Enterprise Portal](/vendor/enterprise-portal-v2-use).
+## Local preview
 
-## Login as customer
+Run the Enterprise Portal locally using the Replicated CLI. This is the fastest way to iterate on content because you see changes on browser refresh without committing or pushing.
 
-On the customer's **Enterprise Portal access** tab (or the EP card on the customer's Reporting page), click **Login as customer**. This generates a one-time login link and opens the portal in a new tab.
+**Prerequisites:** Docker running, the `replicated` CLI installed, and your content repo checked out locally.
 
-This is useful for quick checks without creating a permanent user account in the customer's portal. The system creates a temporary system user scoped to that customer and generates a magic link nonce that expires after 10 minutes.
-
-The login routes to the correct portal version automatically. If the customer is on the new Enterprise Portal, the link opens `{appSlug}.enterpriseportal.app` (or your custom domain). If the customer is on Classic, the link opens `get.replicated.com`.
-
-## Local CLI preview
-
-For iterating on content without affecting any customer, use the local CLI preview:
+From anywhere on your machine:
 
 ```shell
 replicated enterprise-portal preview /path/to/your-content-repo --app <your-app-slug>
 ```
 
-The customer switcher in the preview toolbar lets you simulate any customer's entitlements and channel. See [Preview the Enterprise Portal](/vendor/enterprise-portal-v2-preview) for details.
+The CLI pulls a preview container (first run only), starts a local server, and opens the full Enterprise Portal experience at `http://localhost:3000` (auto-increments if the port is busy).
+
+If you are authenticated with the CLI (`replicated login`, `REPLICATED_API_TOKEN`, or `--token`), a customer switcher dropdown appears in the preview toolbar. Switching customers re-renders the page with that customer's entitlements, channel, and license data applied. Without a token, the preview runs with mock customer data.
+
+**Editing content:** The preview reads from your local repo on every request. Edit any file (`theme.yaml`, a markdown page, `toc.yaml`, etc.), save, then refresh the browser. No restart needed.
+
+**Version / branch selector:** The preview lists your local git branches (minus `main`) in the version dropdown. Switching versions renders content from that branch. If your repo isn't a git checkout, you get a single synthetic "local" version that reads the working tree.
+
+### Common options
+
+```shell
+--port 4000        # choose a specific host port
+--app <slug>       # app to resolve customers + branding against
+--token <token>    # override token (else: REPLICATED_API_TOKEN / stored profile)
+```
+
+:::note
+The local preview mocks some backend endpoints locally. Install flows, instance dashboards, and anything outside of docs content will render mostly empty or log benign errors. This is expected. Content changes must still be committed and pushed through your normal release flow to be visible to real customers.
+:::
+
+## Login as customer
+
+To view the production Enterprise Portal as a specific customer, use the **Login as customer** button on the customer's **Enterprise Portal access** tab (or the EP card on the customer's Reporting page). This generates a one-time login link and opens the portal in a new tab.
+
+This is useful for verifying that a customer sees the correct content, entitlements, and branding without creating a permanent user account in their portal team. The system creates a temporary system user scoped to that customer and generates a magic link nonce that expires after 10 minutes.
+
+The login routes to the correct portal version automatically. If the customer is on the new Enterprise Portal, the link opens `{appSlug}.enterpriseportal.app` (or your custom domain). If the customer is on Classic, the link opens `get.replicated.com`.
