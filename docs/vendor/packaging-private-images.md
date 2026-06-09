@@ -42,25 +42,39 @@ To add an external registry using the Vendor Portal:
    Replicated stores your credentials encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.
    :::
 
-   * **Amazon ECR**
-      <table>
-        <tr>
-          <th width="30%">Field</th>
-          <th width="70%">Instructions</th>
-        </tr>
-        <tr>
-          <td>Hostname</td>
-          <td>Enter the host name for the registry, such as 123456689.dkr.ecr.us-east-1.amazonaws.com</td>
-        </tr>
-        <tr>
-          <td>Access Key ID</td>
-          <td>Enter the Access Key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
-        </tr>
-        <tr>
-          <td>Secret Access Key</td>
-          <td>Enter the Secret Access Key for the Service Account User.</td>
-        </tr>
-      </table>  
+    * **Amazon ECR**
+       <table>
+         <tr>
+           <th width="30%">Field</th>
+           <th width="70%">Instructions</th>
+         </tr>
+         <tr>
+           <td>Hostname</td>
+           <td>Enter the host name for the registry, such as 123456689.dkr.ecr.us-east-1.amazonaws.com</td>
+         </tr>
+         <tr>
+           <td>Auth Type</td>
+           <td>
+             <p>Select the authentication type for the registry:</p>
+             <ul>
+               <li><strong>Access Key</strong>: Enter an Access Key ID and Secret Access Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</li>
+                <li><strong>IAM Authentication</strong>: Enter an AWS Identity and Access Management (IAM) role Amazon Resource Name (ARN). You must also configure an OpenID Connect (OIDC) identity provider and trust policy in AWS Identity and Access Management (IAM). For more information, see <a href="packaging-private-images-ecr-iam">Configure OpenID Connect authentication with Amazon ECR</a>.</li>
+             </ul>
+           </td>
+         </tr>
+         <tr>
+           <td>Access Key ID</td>
+           <td>(Access Key only) Enter the Access Key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+         </tr>
+         <tr>
+           <td>Secret Access Key</td>
+           <td>(Access Key only) Enter the Secret Access Key for the Service Account User.</td>
+         </tr>
+          <tr>
+            <td>AWS Role ARN</td>
+            <td>(IAM Authentication only) Enter the Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that the Replicated proxy registry assumes to pull images. For example, <code>arn:aws:iam::123456789012:role/ReplicatedECRPullRole</code>. For more information, see <a href="packaging-private-images-ecr-iam">Configure OpenID Connect authentication with Amazon ECR</a>.</td>
+          </tr>
+       </table>  
 
     * **DockerHub**
 
