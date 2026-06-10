@@ -20,6 +20,14 @@ To create and promote a release in the Vendor Portal:
 
 1. Add your files to the release. You can do this by dragging and dropping files to the file directory in the YAML editor or clicking the plus icon to add a new, untitled YAML file.
 
+   :::note
+   New applications include example Kubernetes manifests (such as a ConfigMap, Deployment, and Service) and Replicated custom resource scaffolding (Application, Config, preflight, and support bundle specs) in the draft release.
+
+   To package your application for distribution, replace the example manifests with your Helm chart `.tgz` archive and the Replicated SDK as a subchart dependency. Keep and customize the Replicated custom resources to configure the Admin Console experience for your customers.
+
+   If this is your first release, see [Onboard to the Replicated Platform (Embedded Cluster v2)](/vendor/replicated-onboarding) for step-by-step instructions on packaging your Helm chart with the Replicated SDK and creating your first release.
+   :::
+
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
    
 1. Click **Promote**. In the **Promote Release** dialog, edit the fields:
