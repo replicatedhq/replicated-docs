@@ -4,7 +4,14 @@ This topic describes the persistent admin console for Embedded Cluster 3.x — a
 
 ## Overview
 
-The persistent admin console is an opt-in web service that runs on a controller node and exposes a dashboard at `https://<controller-hostname>:30080/console`. From the dashboard, end users can view the currently installed application version, open configured application links, see any newer versions available on the channel, view release notes, and trigger an upgrade with a single click — without SSH access to the controller.
+The persistent admin console is an opt-in web service that runs on a controller node and exposes a dashboard at `https://<controller-hostname>:30080/console`. From the dashboard, end users can:
+
+- View the currently installed application version and open configured application links
+- See available updates, view release notes, and trigger an upgrade with a single click
+- Upload air gap release archives directly through the browser (no SSH required)
+- Generate a support bundle and download it for sharing with the vendor's support team
+
+All of this works without SSH access to the controller.
 
 The persistent admin console is **not enabled by default**.
 
@@ -56,6 +63,14 @@ If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec
 If you are migrating from Embedded Cluster v2, any existing Application links carry over automatically.
 :::
 
+## Support bundles
+
+The console dashboard includes a **Generate support bundle** button that creates a support bundle directly on the host. Because the console runs as a systemd service on the host (not as a pod in the cluster), support bundle generation works even when the cluster is unhealthy or down.
+
+The generated bundle is stored in the Embedded Cluster data directory. Ensure the filesystem hosting the data directory has sufficient free space for bundle generation. The data directory is also used for application images and persistent volume data, so large bundles on a constrained filesystem could impact available disk space.
+
+After generation, the bundle can be downloaded from the console for sharing with your vendor's support team.
+
 ## Recover or move the console
 
 The console is hosted by a single controller. If the controller hosting the console is lost or the `<app-slug>-console-web.service` becomes unhealthy, rerun the install command on any controller node to bring it back up:
@@ -85,3 +100,5 @@ The persistent admin console has the following limitations:
 * The console must be installed on a controller node; it cannot run on a worker node.
 
 * The cluster must have TLS configured at install time. The console reuses the cluster's TLS certificate to serve HTTPS on its port.
+
+* Support bundle upload to the vendor portal is not yet supported from the console. Bundles can be generated and downloaded, then shared manually.
