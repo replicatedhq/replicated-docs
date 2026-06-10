@@ -114,6 +114,11 @@ spec:
       - name: gpu
         labels:
           gpu: "true" # Label applied to "gpu" nodes
+        taints:
+          # Taint applied to "gpu" nodes so that only pods that tolerate it can be scheduled there.
+          - key: workload
+            value: gpu
+            effect: NoSchedule
 ```
 
 ### Limitations
@@ -123,6 +128,8 @@ spec:
 * The first node added to the cluster must include the controller role. It may additionally be assigned any custom roles.
 
 * A node's role assignment cannot be changed after the node is joined to the cluster. To change a node's roles, reset the node and add it again with the new role selection.
+
+* Labels and taints declared on a role are applied only when a node is installed or joined. Changing the `labels` or `taints` for a role in a new release does not update existing nodes on upgrade — only nodes joined after the upgrade use the new values.
 
 ### roles.controller
 
@@ -136,6 +143,8 @@ In the `roles.controller` key, you can customize the default controller role:
 
 * `labels`: Kubernetes labels that Embedded Cluster applies to every node assigned the controller role.
 
+* `taints`: A list of Kubernetes node taints that Embedded Cluster applies to every node assigned the controller role. Each taint requires `key` and `effect`, with optional `value`. Valid `effect` values are `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.
+
 ### roles.custom
 
 In the `roles.custom` key, you can declare additional roles. Each custom role includes the following fields:
@@ -144,7 +153,9 @@ In the `roles.custom` key, you can declare additional roles. Each custom role in
 
 * `labels`: Kubernetes labels that Embedded Cluster applies to every node assigned the role.
 
-Multiple roles may be assigned to the same node — the joined node carries the union of each role's labels. If two roles define the same label key, the role that appears later in the user's selection wins.
+* `taints`: A list of Kubernetes node taints that Embedded Cluster applies to every node assigned the role. Each taint requires `key` and `effect`, with optional `value`. Valid `effect` values are `NoSchedule`, `PreferNoSchedule`, and `NoExecute`.
+
+Multiple roles may be assigned to the same node — the joined node carries the union of each role's labels and taints. If two roles define the same label key or taint key, the role listed later in the user's `--roles` selection wins.
 
 ## domains
 
