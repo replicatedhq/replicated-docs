@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.5.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.5.0-beta.1+k8s-1.34</td>
+    <td id="center">3.5.0-beta.1+k8s-1.33</td>
+    <td id="center">3.5.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-5-0-beta-1}
+
+* Adds the ability to generate and download a support bundle from the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console), without SSH access to the controller.
+
+### Improvements {#improvements-3-5-0-beta-1}
+
+* Reduces dashboard clutter when many releases are available: the **Available updates** panel now shows only the 3 most recent, with a **Show all** toggle for the rest.
+
+### Bug fixes {#bug-fixes-3-5-0-beta-1}
+
+* Fixes a gateway timeout that could occur when uploading large airgap releases through the persistent admin console.
+
 ## 3.4.0-beta.1
 
 <table>
