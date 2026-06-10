@@ -12,6 +12,27 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.6.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.6.0-beta.1+k8s-1.34</td>
+    <td id="center">3.6.0-beta.1+k8s-1.33</td>
+    <td id="center">3.6.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-6-0-beta-1}
+
+* Adds the ability to declare Kubernetes node taints on a custom role. Every node that carries the role receives the taints automatically at install or join time. For more information, see [roles](/embedded-cluster/v3/embedded-config#roles) in _Embedded Cluster Config_.
+
 ## 3.5.0-beta.1
 
 <table>
