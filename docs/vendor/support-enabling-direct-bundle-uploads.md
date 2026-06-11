@@ -12,7 +12,7 @@ When enabled, your customers can use the **Send bundle to vendor button** in the
 
 After clicking this button, the bundle will be immediately available under the Troubleshoot tab in the Vendor Portal team account associated with this customer.
 
-For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app) (KOTS) or [Persistent admin console](/embedded-cluster/embedded-persistent-console#upload-to-the-vendor-portal-beta) (Embedded Cluster).
+For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app) (KOTS or Embedded Cluster v2) or [Persistent admin console](/embedded-cluster/embedded-persistent-console#upload-to-the-vendor-portal-beta) (Embedded Cluster v3).
 
 ### How to enable direct bundle uploads
 
@@ -29,4 +29,4 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 
 - You will not receive a notification when a customer sends a support bundle to the Vendor Portal. To avoid overlooking these uploads, activate this feature only if there is a reliable escalation process already in place for the customer license.
 - The upload button does not appear in air gap installations.
-- For KOTS and Embedded Cluster v2 installations, there is a 500 MB limit for support bundles uploaded directly through the Admin Console. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.
+- For KOTS and Embedded Cluster v2 installations, there is a 500 MB limit for support bundles uploaded directly through the Admin Console. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction. Embedded Cluster v3 installations leverage the SDK upload endpoint.
