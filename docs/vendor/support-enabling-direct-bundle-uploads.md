@@ -27,6 +27,6 @@ Direct bundle uploads are disabled by default. To enable this feature for your c
 
 ### Limitations
 
-- You will not receive a notification when a customer sends a support bundle to the Vendor Portal. To avoid overlooking these uploads, activate this feature only if there is a reliable escalation process already in place for the customer license.
+- By default, you will not receive a notification when a customer sends a support bundle to the Vendor Portal. To get notified of uploads, configure a **Support Bundle Uploaded** notification event. See [Support Events](/reference/notifications-events-filters#support-events).
 - The upload button does not appear in air gap installations.
 - For KOTS and Embedded Cluster v2 installations, there is a 500 MB limit for support bundles uploaded directly through the Admin Console. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction. Embedded Cluster v3 installations leverage the SDK upload endpoint.
