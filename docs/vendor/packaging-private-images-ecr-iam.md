@@ -14,7 +14,6 @@ The Replicated platform does not store long-lived AWS credentials. The proxy reg
 
 * An ECR repository with the images that you want to proxy.
 * Access to the AWS IAM console in the account that owns the ECR repository.
-* If you do not see the **IAM Authentication** option in the Vendor Portal, contact your Replicated account representative.
 
 ## Step 1: Register Replicated as an OIDC Provider in AWS
 
