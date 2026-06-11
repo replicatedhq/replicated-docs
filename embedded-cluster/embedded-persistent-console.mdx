@@ -69,7 +69,19 @@ The console dashboard includes a **Generate support bundle** button that creates
 
 The generated bundle is stored in the Embedded Cluster data directory. Ensure the filesystem hosting the data directory has sufficient free space for bundle generation. The data directory is also used for application images and persistent volume data, so large bundles on a constrained filesystem could impact available disk space.
 
-After generation, the bundle can be downloaded from the console for sharing with your vendor's support team.
+After generation, the bundle can be downloaded from the console for sharing with the vendor's support team, or uploaded directly to the Vendor Portal from the console. See [Upload to the vendor portal](#upload-to-the-vendor-portal-beta) below.
+
+### Upload to the vendor portal (Beta)
+
+The console dashboard includes a **Share** button that sends a generated support bundle directly to the Vendor Portal, eliminating the need to download and share the bundle manually. After upload, the bundle is immediately available under the Troubleshoot tab in the Vendor Portal team account associated with the customer.
+
+The **Share** button appears in the console only when all of the following are true:
+
+* The customer's license has **Support Bundle Upload Enabled (Beta)** turned on. For instructions, see [Enable support bundle uploads](/vendor/support-enabling-direct-bundle-uploads).
+* The installation is online. The button does not appear in air gap installations.
+* The application includes the [Replicated SDK](/vendor/replicated-sdk-overview) version 1.17.0 or later as a chart dependency, and the SDK pod is running and reachable in the cluster. The console uploads bundles through the in-cluster SDK service, which exposes the upload endpoint starting in 1.17.0. If the SDK pod is unhealthy or unreachable, the **Share** button is hidden until the SDK becomes available again.
+
+If any of these requirements are not met, the **Share** button is hidden and the bundle can still be downloaded from the console for manual sharing.
 
 ## Recover or move the console
 
@@ -100,5 +112,3 @@ The persistent admin console has the following limitations:
 * The console must be installed on a controller node; it cannot run on a worker node.
 
 * The cluster must have TLS configured at install time. The console reuses the cluster's TLS certificate to serve HTTPS on its port.
-
-* Support bundle upload to the vendor portal is not yet supported from the console. Bundles can be generated and downloaded, then shared manually.

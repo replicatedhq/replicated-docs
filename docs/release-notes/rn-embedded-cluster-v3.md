@@ -12,6 +12,27 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.7.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.7.0-beta.1+k8s-1.34</td>
+    <td id="center">3.7.0-beta.1+k8s-1.33</td>
+    <td id="center">3.7.0-beta.1+k8s-1.32</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.34.4</td>
+    <td id="center">1.33.8</td>
+    <td id="center">1.32.12</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-7-0-beta-1}
+
+* Adds the ability to upload a generated support bundle directly to the Vendor Portal from the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console), eliminating the need to download and share the bundle manually. For more information, see [Upload to the vendor portal](/embedded-cluster/v3/embedded-persistent-console#upload-to-the-vendor-portal-beta).
+
 ## 3.6.0-beta.1
 
 <table>
