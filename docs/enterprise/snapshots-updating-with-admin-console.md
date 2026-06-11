@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Update storage settings
 
 This topic describes how to update existing storage destination settings using the Replicated Admin Console.
+
+<KotsAvailability/>
 
 ## Prerequisite
 If you are changing from one provider to another provider, make sure that you meet the prerequisites for the storage destination. For information about prerequisites, see:

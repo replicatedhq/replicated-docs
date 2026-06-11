@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Example: Adding database configuration options
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
@@ -24,6 +26,8 @@ This guide assumes you have:
 A full example of the code for this guide can be found in the [kotsapps repository](https://github.com/replicatedhq/kotsapps/tree/master/postgres-snapshots).
 
 * * *
+
+<KotsAvailability/>
 
 ## The example application
 

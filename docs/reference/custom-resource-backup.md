@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Velero Backup resource for snapshots
 
-This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature. 
+This topic provides information about the supported fields in the Velero Backup resource for the Replicated KOTS snapshots feature.
+
+<KotsAvailability/>
 
 ## Overview
 

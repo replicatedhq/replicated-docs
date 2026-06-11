@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Customize the application icon
 
 You can add a custom application icon that displays in the Replicated Admin Console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
@@ -5,6 +7,8 @@ You can add a custom application icon that displays in the Replicated Admin Cons
 :::note
 You can also use a custom domain for the download portal. For more information, see [About Custom Domains](custom-domains).
 :::
+
+<KotsAvailability/>
 
 ## Add a custom icon
 

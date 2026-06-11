@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Install KOTS in existing clusters without object storage
 
 This topic describes how to install Replicated KOTS in existing clusters without the default object storage, including limitations of installing without object storage.
+
+<KotsAvailability/>
 
 ## Overview
 

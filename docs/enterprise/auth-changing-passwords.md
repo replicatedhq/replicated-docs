@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Change an Admin Console password
 
 When you install for the first time with Replicated kURL, the Replicated KOTS Admin Console is secured with a single shared password that is set automatically for all users. Replicated recommends that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
@@ -26,3 +28,5 @@ To change your Admin Console password:
    When the password change succeeds, the current session closes and you are redirected to the Log In page.
 
 1. Log in with the new password.
+
+<KotsAvailability/>

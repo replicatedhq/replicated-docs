@@ -1,8 +1,12 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Configure snapshots
 
 This topic provides information about how to configure the Velero Backup resource to enable Replicated KOTS snapshots for an application.
 
 For more information about snapshots, see [About Backup and Restore with snapshots](/vendor/snapshots-overview).
+
+<KotsAvailability/>
 
 ## Storage class requirement
 

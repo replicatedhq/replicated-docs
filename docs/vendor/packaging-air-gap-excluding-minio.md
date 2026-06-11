@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Exclude minio from air gap bundles (Beta)
 
 The Replicated KOTS Admin Console requires an S3-compatible object store to store application archives and support bundles. By default, KOTS deploys MinIO to satisfy the object storage requirement. For more information about the options for installing without MinIO in existing clusters, see [Installing KOTS in Existing Clusters Without Object Storage](/enterprise/installing-stateful-component-requirements).
@@ -7,6 +9,8 @@ As a software vendor, you can exclude MinIO images from all Admin Console air ga
 :::note
 You can still retrieve a bundle with MinIO images from the KOTS release page in GitHub when this feature is enabled. See [replicatedhq/kots](https://github.com/replicatedhq/kots/releases/) in GitHub.
 :::
+
+<KotsAvailability/>
 
 To exclude MinIO from the `kotsadm.tar.gz` Admin Console air gap bundle:
 

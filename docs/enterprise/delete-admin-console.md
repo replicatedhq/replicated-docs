@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Delete the Admin Console and remove applications
 
 This topic describes how to remove installed applications and delete the Replicated KOTS Admin Console. The information in this topic applies to existing cluster installations with KOTS.
+
+<KotsAvailability/>
 
 ## Remove an application
 

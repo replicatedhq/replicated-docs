@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Create and schedule backups
 
 This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated KOTS Admin Console create a schedule for automatic backups. For information about restoring, see [Restore from Backups](snapshots-restoring-full).
+
+<KotsAvailability/>
 
 ## Prerequisites
 

@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Use an identity provider for user access (Deprecated)
 
 :::note
@@ -11,6 +13,8 @@ Replicated KOTS leverages the open source project Dex as an intermediary to cont
 The identity service has the following limitations:
 * Only available for installations in a cluster created by Replicated kURL.
 * Only available through the Admin Console.
+
+<KotsAvailability/>
 
 ## Prerequisite
 

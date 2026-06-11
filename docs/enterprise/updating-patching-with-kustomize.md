@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Patch with Kustomize
 
 This topic describes how to use Kustomize to patch an application before deploying.
+
+<KotsAvailability/>
 
 ## Overview
 

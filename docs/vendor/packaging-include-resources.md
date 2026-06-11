@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Conditionally include or exclude resources
 
 This topic describes how to conditionally include or exclude application resources from deployments based on one or more conditions.
+
+<KotsAvailability/>
 
 ## Overview
 

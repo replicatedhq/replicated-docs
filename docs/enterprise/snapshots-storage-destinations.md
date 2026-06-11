@@ -1,6 +1,7 @@
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 # Configure other storage destinations
 
@@ -11,6 +12,8 @@ To configure host path or NFS as a storage destination, see [Configure a Host Pa
 :::note
 <UpdateDefaultStorage/>
 :::
+
+<KotsAvailability/>
 
 ## Prerequisites
 
