@@ -177,7 +177,7 @@ By default, the kubeconfig context uses the `kubeadmin` user. To switch to the `
   </tr>
   <tr>
     <th>Supported OpenShift Versions</th>
-    <td>{/* START_openshift_VERSIONS */}4.16.0-okd, 4.17.0-okd, 4.18.0-okd, 4.19.0-okd, 4.20.0-okd, 4.21.0-okd{/* END_openshift_VERSIONS */}</td>
+    <td>{/* START_openshift_VERSIONS */}4.16.0-okd, 4.17.0-okd, 4.18.0-okd, 4.19.0-okd, 4.20.0-okd, 4.21.0-okd, 4.22.0-okd{/* END_openshift_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
