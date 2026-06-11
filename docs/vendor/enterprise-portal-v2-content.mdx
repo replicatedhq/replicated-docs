@@ -571,6 +571,30 @@ Only customers whose license has `hasAdvancedReporting` set to `true` will see t
 
 For information about creating custom license fields, see [Manage custom license fields](/vendor/licenses-adding-custom-fields#manage-custom-license-fields).
 
+#### License type visibility (customer_type)
+
+Use `customer_type` to show or hide content based on the customer's license type. Valid values are `community`, `trial`, and `paid`.
+
+This is useful when you have different content needs for different tiers. For example, you might show upgrade prompts to trial users, or restrict advanced documentation to paid customers only.
+
+```yaml
+# Show only to paid customers
+- title: Production Deployment Guide
+  page: pages/production-deploy.md
+  visible_when:
+    customer_type:
+      include: [paid]
+
+# Show to trial and community customers
+- title: Upgrade to Paid
+  page: pages/upgrade.md
+  visible_when:
+    customer_type:
+      include: [trial, community]
+```
+
+Like `channel`, `customer_type` supports both `include` and `exclude` lists.
+
 ### Page-level visibility (frontmatter)
 
 You can also apply `visible_when` in a page's YAML frontmatter. This controls whether the page is accessible to a customer, independent of whether it appears in the navigation.
