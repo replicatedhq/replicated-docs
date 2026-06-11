@@ -8,10 +8,6 @@ The Admin Console password is salted and one-way hashed using bcrypt. The irreve
 
 For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia.
 
-:::note
-Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Use an Identity Provider for User Access (Deprecated)_.
-:::
-
 To change your Admin Console password:
 
 1. Log in to the Admin Console using your current password.
