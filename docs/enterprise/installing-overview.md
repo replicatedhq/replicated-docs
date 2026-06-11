@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Considerations before installing
 
 Before you install an application with KOTS in an existing cluster, consider the following installation options.
+
+<KotsAvailability/>
 
 ## Online (internet-connected) or air gap installations
 

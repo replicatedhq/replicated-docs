@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Clean up Kubernetes jobs
 
 This topic describes how to use the Replicated KOTS `kots.io/hook-delete-policy` annotation to remove Kubernetes job objects from the cluster after they complete.
+
+<KotsAvailability/>
 
 ## About Kubernetes jobs
 

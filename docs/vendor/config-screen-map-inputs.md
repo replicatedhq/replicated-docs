@@ -1,8 +1,12 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Map user-supplied values
 
 This topic describes how to map the values that your users provide in the Replicated Admin Console configuration screen to your application.
 
 This topic assumes that you have already added custom fields to the Admin Console configuration screen by editing the Config custom resource. For more information, see [Create and Edit Configuration Fields](admin-console-customize-config-screen).
+
+<KotsAvailability/>
 
 ## Overview of mapping values
 

@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # About packaging a Kubernetes operator application
 
 Kubernetes Operators can be packaged and delivered as an application using the same methods as other Kubernetes applications.
@@ -13,3 +15,5 @@ When an Operator creates an object that includes a `PodSpec`, the Operator shoul
 Even environments that aren't air gapped may need access to private images that are included as part of the application at runtime.
 
 An application includes a definition for the developer to list the additional images that are required for the application, and by exposing the local registry details (endpoint, namespace and secrets) to the application so that they can be referenced when creating a `PodSpec` at runtime.
+
+<KotsAvailability/>

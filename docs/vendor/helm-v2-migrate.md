@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Migrate existing installations to HelmChart v2
 
 This topic describes how to migrate existing Replicated KOTS installations to the Replicated HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
+
+<KotsAvailability/>
 
 ## Migrate to HelmChart v2
 

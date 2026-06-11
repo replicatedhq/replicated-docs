@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Template annotations
 
 This topic describes how to use Replicated template functions to template annotations for resources and objects based on user-supplied values.
+
+<KotsAvailability/>
 
 ## Overview
 

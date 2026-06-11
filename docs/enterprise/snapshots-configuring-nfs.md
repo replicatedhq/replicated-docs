@@ -3,6 +3,7 @@ import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx
 import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 # Configure an NFS storage destination
 
@@ -11,6 +12,8 @@ This topic describes how to install Velero and configure a Network File System (
 :::note
 <UpdateDefaultStorage/>
 :::
+
+<KotsAvailability/>
 
 ## Requirements
 

@@ -1,10 +1,14 @@
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 # Understand application status details in the Admin Console
 
-This topic describes how to view the status of an application on the Replicated KOTS Admin Console dashboard. It also describes how Replicated KOTS collects and aggregates the application status. 
+This topic describes how to view the status of an application on the Replicated KOTS Admin Console dashboard. It also describes how Replicated KOTS collects and aggregates the application status.
+
+<KotsAvailability/>
+
 ## View status details
 
 The application status displays on the dashboard of the Admin Console. Viewing the status details can be helpful for troubleshooting.

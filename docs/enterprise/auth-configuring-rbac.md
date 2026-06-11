@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Configure role-based access control (Beta)
 
 You can regulate access to the Replicated KOTS Admin Console resources based on the roles of individual users within your organization.
@@ -9,6 +11,8 @@ To configure role based access control (RBAC) for the Admin Console:
 1. Click **Add group**.
 
 ![Role Based Access Control](/images/identity-service-kotsadm-rbac.png)
+
+<KotsAvailability/>
 
 ## Admin Console roles
 

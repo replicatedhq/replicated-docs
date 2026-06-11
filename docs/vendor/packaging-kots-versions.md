@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Set minimum and target versions for KOTS
 
 This topic describes how to set minimum and target version for Replicated KOTS in the KOTS [Application](/reference/custom-resource-application) custom resource.
+
+<KotsAvailability/>
 
 ## Limitation
 

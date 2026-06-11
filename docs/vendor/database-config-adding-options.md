@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # About managing stateful services
 
 This topic provides recommendations for managing stateful services that you install into existing clusters.
+
+<KotsAvailability/>
 
 ## Preflight checks for stateful services
 

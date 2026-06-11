@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Create and edit configuration fields
 
 This topic describes how to use the Replicated Config custom resource manifest file to add and edit fields in the KOTS Admin Console configuration screen.
+
+<KotsAvailability/>
 
 ## About the Config custom resource
 

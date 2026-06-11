@@ -1,3 +1,5 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Install the Velero CLI
 
 You install the Velero CLI before installing Velero and configuring a storage destination for backups.
@@ -5,6 +7,8 @@ You install the Velero CLI before installing Velero and configuring a storage de
 :::note
 For embedded clusters created with Replicated kURL, if the kURL Installer spec included the Velero add-on, then Velero was automatically installed with default internal storage. Replicated recommends that you proceed to change the default internal storage because it is insufficient for disaster recovery. See [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
+
+<KotsAvailability/>
 
 ## Install the Velero CLI in an online cluster
 

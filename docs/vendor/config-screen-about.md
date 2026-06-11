@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # About the configuration screen
 
 This topic describes the configuration screen on the Config tab in the Replicated Admin Console.
+
+<KotsAvailability/>
 
 ## About collecting configuration values
 

@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Update licenses in the Admin Console
 
 This topic describes how to update a license from the KOTS Admin Console.
+
+<KotsAvailability/>
 
 ## Update online licenses
 

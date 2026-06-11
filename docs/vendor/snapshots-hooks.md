@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Configure backup and restore hooks for snapshots
 
 This topic describes the use of custom backup and restore hooks and demonstrates a common example.
+
+<KotsAvailability/>
 
 ## About backup and restore hooks
 

@@ -1,6 +1,10 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
 # Configure KOTS RBAC
 
 This topic describes role-based access control (RBAC) for Replicated KOTS in existing cluster installations. It includes information about how to change the default cluster-scoped RBAC permissions granted to KOTS.
+
+<KotsAvailability/>
 
 ## Cluster-scoped RBAC
 
