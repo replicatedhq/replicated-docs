@@ -27,6 +27,7 @@ branding:
   contact: "support@acme.com"
   supportPortalLink: "https://support.acme.com"
   background: minimal
+  defaultTheme: light
 
   # Login page footer. Customize or remove these to brand your login page.
   # Warning: removing the login footer without a custom domain may cause
@@ -68,6 +69,7 @@ customCSS: |
 | `supportPortalLink` | URL | External support link, max 2048 chars (http/https only) |
 | `loginFooterText` | string | Login page footer text, max 255 chars. Omit to use defaults. Set to empty string to hide. |
 | `loginFooterLinks` | list | Login page footer links. Each item has `label` (string, max 255 chars) and `url` (http/https, max 2048 chars). Omit to use defaults. Set to empty list to hide. |
+| `defaultTheme` | enum | Default color mode for new visitors: `light` or `dark`. When not set, defaults to `dark`. Customers can still toggle between light and dark mode; this setting controls the initial experience before they choose. |
 
 ## Login page footer
 
