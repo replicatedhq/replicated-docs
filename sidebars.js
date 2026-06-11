@@ -415,8 +415,6 @@ const sidebars = {
           label: "Manage Admin Console User Access",
           items: [
             "enterprise/auth-changing-passwords",
-            "enterprise/auth-identity-provider",
-            "enterprise/auth-configuring-rbac",
           ],
         },
         {
@@ -579,7 +577,6 @@ const sidebars = {
         "reference/template-functions-about",
         "reference/template-functions-examples",
         "reference/template-functions-config-context",
-        "reference/template-functions-identity-context",
         "reference/template-functions-kurl-context",
         "reference/template-functions-license-context",
         "reference/template-functions-static-context",
@@ -783,14 +780,6 @@ const sidebars = {
             "reference/kots-cli-get-config",
             "reference/kots-cli-get-restores",
             "reference/kots-cli-get-versions",
-          ],
-        },
-        {
-          type: "category",
-          label: "identity-service",
-          items: [
-            "reference/kots-cli-identity-service-index",
-            "reference/kots-cli-identity-service-enable-shared-password",
           ],
         },
         "reference/kots-cli-install",
