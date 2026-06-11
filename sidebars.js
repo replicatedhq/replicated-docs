@@ -486,6 +486,7 @@ const sidebars = {
       items: [
         "vendor/private-images-about",
         "vendor/packaging-private-images",
+        "vendor/packaging-private-images-ecr-iam",
         "vendor/helm-image-registry",
         "vendor/private-images-kots",
         "vendor/private-images-tags-digests",
