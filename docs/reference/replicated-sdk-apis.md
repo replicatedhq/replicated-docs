@@ -550,6 +550,78 @@ To use the SDK API to check for available application updates and provide custom
         
         * `HELM_CHART_URL`: The URL of the Helm chart at the OCI registry is available from the `/api/v1/app/info` endpoint in the `helmChartURL` field.
 
+### Automate Support Bundle Collection and Upload
+
+You can use the support bundle SDK API endpoints to build an automated support workflow directly into your application. This lets your application attach structured metadata to support bundles, upload them programmatically, and enable your team to receive and process them without requiring customers to manually transfer files.
+
+For more information about enabling direct bundle uploads, see [Enable Support Bundle Uploads](/vendor/support-enabling-direct-bundle-uploads).
+
+To automate support bundle collection and upload from your application:
+
+1. From your application, use the `PATCH /api/v1/supportbundle/metadata` endpoint to attach contextual metadata before a bundle is generated. This metadata is included in the bundle automatically when you use the `supportBundleMetadata` collector in your support bundle spec. For more information about this collector, see [Support Bundle Metadata](https://troubleshoot.sh/docs/collect/support-bundle-metadata) in the Troubleshoot documentation.
+
+   ```bash
+   curl -X PATCH replicated:3000/api/v1/supportbundle/metadata \
+     -H "Content-Type: application/json" \
+     -d '{
+       "data": {
+         "severity": "error",
+         "ticketId": "SUPPORT-1234",
+         "environment": "production",
+         "component": "ingestion-pipeline"
+       }
+     }'
+   ```
+
+   `PATCH` merges new keys with any existing metadata. Use `POST /api/v1/supportbundle/metadata` instead if you want to replace all existing metadata.
+
+   :::note
+   Your application can call this endpoint at any time to keep metadata current. For example, you might update the `severity` or `ticketId` fields when a user opens a support request from your application's UI, so that the next bundle collected includes that context.
+   :::
+
+1. After collecting a support bundle (for example, using the [support-bundle kubectl plugin](https://troubleshoot.sh/docs/support-bundle/collecting/)), use the `POST /api/v1/supportbundle` endpoint to upload it through the SDK. The bundle is streamed to Replicated and becomes available under the **Troubleshoot** tab in the Vendor Portal.
+
+   ```bash
+   curl -X POST replicated:3000/api/v1/supportbundle \
+     -H "Content-Type: application/gzip" \
+     -H "Content-Length: $(wc -c < bundle.tar.gz)" \
+     --data-binary @bundle.tar.gz
+   ```
+
+   **Example response**:
+
+   ```json
+   {
+     "bundleId": "abc123-def456",
+     "slug": "my-app-supportbundle-abc123"
+   }
+   ```
+
+   The `bundleId` in the response identifies the bundle for retrieval through the Vendor API.
+
+   :::note
+   The upload endpoint requires Replicated SDK 1.17.1 or later, outbound internet access, and the `Content-Length` header.
+   :::
+
+1. (Optional) To automate what happens after a bundle is uploaded, configure notification events for **Support Bundle Uploaded** or **Support Bundle Analyzed**. These events can trigger webhooks to route bundles to your support tools (such as Zendesk or ServiceNow) based on the metadata your application attached.
+
+   For more information about configuring these events, see [Support Events](/reference/notifications-events-filters#support-events).
+
+1. To retrieve bundle details and analysis results programmatically from the vendor side, use the Vendor API v3 support bundle endpoints with the `bundleId` from the upload response:
+
+   ```bash
+   curl -H "Authorization: $REPLICATED_API_TOKEN" \
+     "https://api.replicated.com/vendor/v3/supportbundle/$BUNDLE_ID"
+   ```
+
+   To download the bundle file:
+
+   ```bash
+   curl -L -H "Authorization: $REPLICATED_API_TOKEN" \
+     "https://api.replicated.com/vendor/v3/supportbundle/$BUNDLE_ID/download" \
+     -o bundle.tar.gz
+   ```
+
 ### Revoke Access at Runtime When a License Expires        
 
 You can use the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license expires.
