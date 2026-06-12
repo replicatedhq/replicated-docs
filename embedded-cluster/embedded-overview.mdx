@@ -15,9 +15,7 @@ This topic provides an introduction to Replicated Embedded Cluster.
 
 * Embedded Cluster v3 (Beta) does not support disaster recovery.
 
-* Some Replicated template functions are not implemented in Embedded Cluster v3 (Beta). Contact Replicated if a missing template function blocks your release.
-
-* Embedded Cluster v3 (Beta) does not support custom node roles. You can assign nodes the `controller` or `worker` role.
+* The following Replicated template functions are not supported in Embedded Cluster v3: `HasLocalRegistry`, `LocalRegistryAddress`, `LocalRegistryHost`, `LocalRegistryNamespace`, and `LocalImageName`. Use `ReplicatedImageName` and `ReplicatedImageRegistry` instead. See [Template Functions for Embedded Cluster](template-functions).
 
 ## Built-in extensions {#built-in-extensions}
 
@@ -68,7 +66,7 @@ Embedded Cluster host preflight checks have the following limitations:
 
 ## Multi-node installations
 
-Embedded Cluster supports installations in mutli-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI.
+Embedded Cluster supports installations in multi-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI, the CLI, or the [external API](embedded-cluster-external-api).
 
 Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
 
