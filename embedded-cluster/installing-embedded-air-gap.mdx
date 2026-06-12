@@ -6,7 +6,7 @@ This topic describes how to install an application with Replicated Embedded Clus
 
 ## Overview
 
-Building an air gap bundle for a release with an Embedded Cluster Config produces both an application air gap bundle and an Embedded Cluster air gap bundle. You can use the application air gap bundle for air gap installations with Replicated kURL or with Replicated KOTS in an existing cluster. Use the Embedded Cluster air gap bundle for air gap installations with Embedded Cluster.
+Building an air gap bundle for a release with an Embedded Cluster Config produces an Embedded Cluster air gap bundle that contains everything needed to install in an air-gapped environment.
 
 The Embedded Cluster air gap bundle contains the assets normally found in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory). It also includes an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [extensions](embedded-config#extensions)).
 

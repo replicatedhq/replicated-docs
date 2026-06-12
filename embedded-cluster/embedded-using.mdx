@@ -204,29 +204,28 @@ The NVIDIA GPU Operator uses the operator framework within Kubernetes to automat
 
 You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
 
-Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the containerd options in the operator as follows:
+To use the NVIDIA GPU Operator as a Helm extension, package the GPU Operator chart as a `.tgz` archive and include it in your release. Then configure the containerd options in the Embedded Cluster Config as follows:
 
 ```yaml
 # Embedded Cluster Config
-
+apiVersion: embeddedcluster.replicated.com/v1beta1
+kind: Config
+spec:
   extensions:
-    helm:
-      repositories:
-        - name: nvidia
-          url: https://nvidia.github.io/gpu-operator
-      charts:
-        - name: gpu-operator
-          chartname: nvidia/gpu-operator
-          namespace: gpu-operator
-          version: "v24.9.1"
-          values: |
-            # configure the containerd options
-            toolkit:
-             env:
-             - name: CONTAINERD_CONFIG
-               value: /etc/k0s/containerd.d/nvidia.toml
-             - name: CONTAINERD_SOCKET
-               value: /run/k0s/containerd.sock
+    helmCharts:
+      - chart:
+          name: gpu-operator
+          chartVersion: "v24.9.1"
+        releaseName: gpu-operator
+        namespace: gpu-operator
+        values: |
+          # configure the containerd options
+          toolkit:
+            env:
+            - name: CONTAINERD_CONFIG
+              value: /etc/k0s/containerd.d/nvidia.toml
+            - name: CONTAINERD_SOCKET
+              value: /run/k0s/containerd.sock
 ```
 
 ### containerd known issue
