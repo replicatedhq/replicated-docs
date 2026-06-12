@@ -25,7 +25,7 @@ All accounts with read/write access on the Vendor Portal have full access to all
 
 End customer access to the registry is read-only (pull access only). The specific credential used depends on the installation method:
 
-- **KOTS and Embedded Cluster v2 installations**: The KOTS license ID is used as both the username and password when authenticating to `registry.replicated.com` and `proxy.replicated.com`. Replicated builds the image pull secret (`dockerconfigjson`) automatically and includes it in the release payload delivered to the admin console.
+- **KOTS and Embedded Cluster v2 installations**: The KOTS license ID is used as both the username and password when authenticating to `registry.replicated.com` and `proxy.replicated.com`. Replicated builds the image pull secret (`dockerconfigjson`) automatically and includes it in the release payload delivered to the admin console. Embedded Cluster v2 installations accessed through the Enterprise Portal can also use an enterprise portal service account token.
 
 - **Helm CLI and Embedded Cluster v3 installations**: Customers authenticate using either a license ID or an enterprise portal service account token. The credentials are provided during `helm registry login` or `docker login` before installation.
 
