@@ -18,9 +18,13 @@ The following diagram demonstrates how the proxy registry pulls images from your
 
 The proxy registry requires read-only credentials to your private registry to access your application images. See [Add and Manage External Registries](/vendor/packaging-private-images).
 
-After connecting your registry, the steps the enable the proxy registry vary depending on your application deployment method. For more information, see:
-* [Use the Proxy Registry with Replicated Installers](/vendor/private-images-kots)
-* [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry)
+After connecting your registry, the steps to enable the proxy registry vary depending on your application deployment method:
+
+* **Helm CLI installations**: The Replicated SDK, included as a subchart, creates the image pull secret in the cluster at runtime. Customer credentials are provided during `helm registry login` before installation. For more information, see [Use the Proxy Registry with Helm CLI Installations](/vendor/helm-image-registry).
+
+* **KOTS and Embedded Cluster v2 installations**: Replicated automatically builds an image pull secret using the customer's license ID and includes it in the release payload. Image references in your manifests are rewritten to proxy-prefixed URLs (for example, `proxy.replicated.com/proxy/<app-slug>/gcr.io/my-org/my-app:latest`). For more information, see [Use the Proxy Registry with Replicated Installers](/vendor/private-images-kots).
+
+* **Embedded Cluster v3 installations**: The Embedded Cluster daemon handles registry authentication using an enterprise portal service account token instead of a license ID.
 
 ## About allowing pull-through access of public images
 
