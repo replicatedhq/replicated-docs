@@ -1,7 +1,7 @@
 # Manage Customer Access
 
 :::important Alpha Feature
-Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+Features described on this page are in alpha and subject to change. Some capabilities might require additional access.
 :::
 
 This topic describes how to control which customers can access the new Enterprise Portal and how to manage their portal users from the Vendor Portal.
@@ -11,10 +11,10 @@ This topic describes how to control which customers can access the new Enterpris
 For vendors using both Classic and New Enterprise Portal (mixed mode), customer access is controlled per-customer:
 
 - On the customer's **Enterprise Portal access** tab, toggle **Enable Enterprise Portal for this customer** to grant access
-- Use the **Portal Version** toggle to choose whether the customer sees Classic or New
+- Team admins can use the **Portal Version** toggle to choose whether the customer sees Classic or New
 - Customers on the New portal access it at `{appSlug}.enterpriseportal.app` (or your custom domain)
 
-For vendors on the New Enterprise Portal only, Enterprise Portal is always enabled for all customers. No per-customer enable toggle is needed.
+For vendors on the New Enterprise Portal only, all customers can access the portal. You do not need an app-level or per-customer enable toggle.
 
 ## Inviting users
 
@@ -26,6 +26,8 @@ To invite a customer's end user to the portal:
 1. The user receives an email with an invitation link to activate their account
 
 You can also enable **Automatically invite customer email to Enterprise Portal on creation** so that every new customer with an email address receives an invite automatically.
+
+For teams using only the New Enterprise Portal, go to **Enterprise Portal > Customer Access**. In the **Customer invitations** section, enable automatic invitations. In mixed mode, automatic invitations require the app-level **Enable Enterprise Portal for all customers** setting.
 
 For vendors in mixed mode (both Classic and New enabled), the customer creation screen includes a **Use new Enterprise Portal for this customer** checkbox. When checked, the customer is enrolled in the New portal and any auto-invite email points them to the New portal URL instead of Classic. This checkbox is only visible to team admins. When unchecked or not visible, new customers default to Classic.
 

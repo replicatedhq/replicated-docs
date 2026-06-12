@@ -69,6 +69,12 @@ To add and verify a custom domain:
 
 After you add one or more custom domains in the Vendor Portal, you can configure your application to use the domains. 
 
+### Configure Enterprise Portal domains {#enterprise-portal}
+
+The New Enterprise Portal has its own domain settings. To add or manage a New Enterprise Portal custom domain, go to **Enterprise Portal > Domains**.
+
+Teams that use only the New Enterprise Portal do not see Download Portal domains on the **Custom Domains** page. In mixed mode, use **Custom Domains** for Classic Enterprise Portal and Download Portal domains. Use **Enterprise Portal > Domains** for New Enterprise Portal domains.
+
 ### Configure Embedded Cluster to use custom domains {#ec}
 
 You can configure Replicated Embedded Cluster to use your custom domains for the Replicated proxy registry and Replicated app service. For more information about Embedded Cluster, see [Embedded Cluster Overview](/embedded-cluster/v3/embedded-overview).

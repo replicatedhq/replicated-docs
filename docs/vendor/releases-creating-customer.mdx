@@ -31,8 +31,10 @@ To create a customer:
 1. (Optional) Disable the **Send Enterprise Portal invite to customer email** checkbox if you don't want the Enterprise Portal to automatically send this customer an invitation. If you disable the checkbox, you can manually invite the customer to the Enterprise Portal later.
 
     :::note
-    The **Send Enterprise Portal invite to customer email** checkbox appears only when the Enterprise Portal is enabled globally for all customers. For more information, see [Automatically invite customers on creation](enterprise-portal-invite#auto-invite) in _Manage Enterprise Portal customer access_.
+    For teams using only the New Enterprise Portal, this checkbox appears for every customer. For teams using the Classic Enterprise Portal or mixed mode, this checkbox appears only after you enable Enterprise Portal globally for all customers. For more information, see [Automatically invite customers on creation](enterprise-portal-invite#auto-invite) in _Manage Enterprise Portal customer access_. See also [Inviting users](/vendor/enterprise-portal-v2-invite#inviting-users) in _Manage Customer Access_.
     :::
+
+1. (Mixed mode only) To enroll this customer in the New Enterprise Portal, enable **Use new Enterprise Portal for this customer**. Only team admins see this option.
 
 1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install.
 
@@ -165,4 +167,4 @@ For more information about the data fields in the CSV downloads, see [Data Dicti
 
 ## Replace a license in an existing installation
 
-Unless the existing customer is using a Community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the Vendor Portal, rather than issuing a new license. For more information, see [Community Licenses](licenses-about-types).
+You can replace a Community license with another license without reinstalling the application. For other license types, you must reinstall the application to replace a license. To change a customer's entitlements, edit the customer's license details in the Vendor Portal instead of issuing a new license. For more information, see [Community Licenses](licenses-about-types).
