@@ -597,7 +597,7 @@ Like `channel`, `customer_type` supports both `include` and `exclude` lists.
 
 ### Page-level visibility (frontmatter)
 
-You can also apply `visible_when` in a page's YAML frontmatter. This controls whether the page is accessible to a customer, independent of whether it appears in the navigation.
+You can also apply `visible_when` in a page's YAML frontmatter. This adds a per-page access gate on top of the navigation rules in `toc.yaml`.
 
 ```markdown
 ---
@@ -612,7 +612,9 @@ visible_when:
 Ensure your environment meets these requirements...
 ```
 
-The same `entitlements` conditions available in `toc.yaml` work in frontmatter, including built-in entitlements, custom license fields, and per-user permissions. Use this when you want a page gated even if the `toc.yaml` entry doesn't have its own `visible_when` (for example, a page reachable via internal links but not navigation).
+The same `entitlements` conditions available in `toc.yaml` work in frontmatter, including built-in entitlements, custom license fields, and per-user permissions. Use this when you want to keep the gating condition on the page itself rather than on its `toc.yaml` navigation entry.
+
+Frontmatter `visible_when` is an additional gate, not a replacement for navigation. A page must still be reachable through the navigation (or declared as an `overrides` target) for a customer to access it directly. A page that is not referenced anywhere in `toc.yaml` is not accessible, regardless of its frontmatter.
 
 ## Downloadable assets
 
