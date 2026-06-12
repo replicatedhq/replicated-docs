@@ -110,7 +110,7 @@ const sidebars = {
                 "vendor/team-management-scim-provisioning",
               ],
             },
-            "vendor/team-management-slack-config",
+
             "vendor/replicated-api-tokens",
           ],
         },
@@ -187,7 +187,7 @@ const sidebars = {
                 "vendor/event-notifications-manage",
               ],
             },
-            "vendor/instance-notifications-config",
+
             "vendor/instance-data-export",
           ],
         },
