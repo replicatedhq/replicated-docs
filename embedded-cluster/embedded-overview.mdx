@@ -46,6 +46,12 @@ Upgrades can be performed from the CLI on a controller. Alternatively, an opt-in
 
 For more information, see [Perform updates in embedded clusters](updating-embedded).
 
+## Instance telemetry
+
+Embedded Cluster installations automatically send telemetry data to the Vendor Portal. The Replicated SDK reports periodic instance data (application version, status, cluster info, and Embedded Cluster-specific data like the cluster ID, version, and node count), while the Embedded Cluster daemon sends lifecycle events in real time as installations, upgrades, and node joins occur. For air gap installations, the SDK stores telemetry locally for collection via support bundles.
+
+For more information, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
 ## Embedded Cluster host preflight checks {#about-host-preflight-checks}
 
 During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks verify that the installation environment meets the requirements for Embedded Cluster, such as:
