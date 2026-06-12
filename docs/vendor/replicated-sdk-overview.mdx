@@ -10,7 +10,19 @@ This topic provides an introduction to using the Replicated SDK with your applic
 <SDKOverview/>
 
 For more information about the Replicated SDK API, see [Replicated SDK API](/reference/replicated-sdk-apis).
- 
+
+## How the SDK works across installation methods
+
+The Replicated SDK is deployed as a standard Kubernetes Deployment and Service. Its role and behavior vary depending on the installation method:
+
+| Installation Method | SDK Role | Notable Behavior |
+|---|---|---|
+| **Helm CLI** | Only Replicated component in the cluster | Registers the instance, creates image pull secrets, and sends all telemetry to the Vendor Portal |
+| **KOTS** | Runs alongside the KOTS admin console | Both the SDK and KOTS report telemetry independently. Reports are linked by the `KotsInstallID` header |
+| **Embedded Cluster v2** | Runs alongside KOTS and the EC operator | Same as KOTS, plus reports Embedded Cluster-specific data (cluster ID, version, and node count) |
+| **Embedded Cluster v3** | Runs alongside the EC daemon | Reports Embedded Cluster-specific data. The EC daemon handles registry authentication using a service account token |
+| **Airgap (any method)** | Runs locally without internet access | Serves license and app info from cached values. Stores telemetry in a Kubernetes Secret for collection via support bundles. Update checks and instance tags are unavailable. See [Air Gap Installations with the SDK](/vendor/replicated-sdk-airgap) |
+
 ## SDK resiliency
 
 At startup and when serving requests, the SDK retrieves and caches the latest information from the upstream Replicated APIs, including customer license information.
