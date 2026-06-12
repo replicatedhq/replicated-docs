@@ -39,7 +39,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ## Requirements
 
-The New Enterprise Portal must be enabled for your team. It is enabled by default for new Replicated teams. If your team is already using the Classic Enterprise Portal and you do not see the New Enterprise Portal pages in the Vendor Portal, contact your Replicated account representative.
+Replicated enables the New Enterprise Portal by default for new teams. If your existing team uses the Classic Enterprise Portal, check the Vendor Portal for New Enterprise Portal pages. Contact your Replicated account representative if you do not see them.
 
 Some Enterprise Portal capabilities require additional access:
 
@@ -49,13 +49,13 @@ Some Enterprise Portal capabilities require additional access:
 
 ## For vendors already using the Classic Enterprise Portal
 
-If your team is already using the Classic Enterprise Portal with customers, you can adopt the new Enterprise Portal incrementally without disrupting any existing customer experience by running both portal versions in mixed mode.
+If your team already uses the Classic Enterprise Portal, you can adopt the New Enterprise Portal incrementally. To avoid disrupting existing customers, run both portal versions in mixed mode.
 
 The new Enterprise Portal runs at a different domain (`{appSlug}.enterpriseportal.app`) than Classic (`get.replicated.com/{appSlug}/...`). Both portals share the same backend, so customer data, licenses, and instance information are consistent across both.
 
 ### How to get started
 
-1. **Enable mixed mode.** Contact Replicated to enable the New Enterprise Portal alongside the Classic Enterprise Portal for your team. This has no effect on any customer's portal until you move customers to the new version.
+1. **Enable mixed mode.** Contact Replicated to run the New Enterprise Portal alongside the Classic Enterprise Portal. Customers continue using their current portal until you move them to the new version.
 1. **Connect a content repo.** Follow the setup steps in [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo). Connecting a repo has zero effect on any customer's portal version. No customer sees the new portal until you explicitly switch them.
 1. **Test it yourself.** Use the local CLI preview (`replicated enterprise-portal preview`) or open the new portal URL directly to see how your content renders. The Vendor Portal also has a "Login as customer" button on each customer's EP access tab.
 1. **Move individual customers.** On the customer's **Enterprise Portal access** tab in Vendor Portal, set the **Portal Version** toggle to use the new Enterprise Portal. Only that customer is affected.
@@ -63,4 +63,4 @@ The new Enterprise Portal runs at a different domain (`{appSlug}.enterpriseporta
 
 ### Vendor Portal view vs. customer portal version
 
-The **New Portal** / **Classic Portal** toggle at the top of the Enterprise Portal page in Vendor Portal appears only in mixed mode. It controls which view *you* see as a vendor. It does not change which portal your customers see. Customer portal versions are controlled individually via the Portal Version toggle on each customer's EP access tab.
+The **New Portal** / **Classic Portal** toggle appears only in mixed mode. It controls the Vendor Portal view that you see. It does not change which portal your customers see. Use the Portal Version toggle on each customer's EP access tab to change their portal.
