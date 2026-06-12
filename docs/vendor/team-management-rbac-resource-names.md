@@ -136,7 +136,7 @@ Grants the holder permission to create a new license in the specified applicatio
 
 ### KOTS/app/[:appid]/license/[:customerid]/read
 
-Grants the holder permission to view the license specified by ID. If you deny this permission, the licenses do not appear in search, CSV export, or the Vendor Portal. The holder also cannot subscribe to this license's instance notifications.
+Grants the holder permission to view the license specified by ID. If you deny this permission, the licenses do not appear in search, CSV export, or the Vendor Portal.
 
 ### KOTS/app/[:appid]/license/[:customerid]/update
 
@@ -555,14 +555,6 @@ Grants the holder permission to create team members.
 ### Team/members/delete
 
 Grants the holder permission to delete other team members.
-
-### Team/notifications/slack-webhook/read
-
-Grants the holder permission to view the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
-
-### Team/notifications/slack-webhook/update
-
-Grants the holder permission to edit the team's Slack webhook for classic instance notifications. For more information, see [Configure Instance Notifications (Classic)](instance-notifications-config).
 
 ### Team/notifications/\*\*
 
