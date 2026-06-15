@@ -26,6 +26,17 @@ As shown in the diagram above, application instance data, application status dat
 * Any custom metrics configured by the software vendor are sent to the Vendor Portal through the Replicated SDK API. For more information, see [Configure Custom Metrics](/vendor/custom-metrics).
 * Application status data, such as if the instance is ready or degraded, is sent by KOTS. If KOTS is not installed in the cluster, then the SDK sends the application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
 
+#### Embedded Cluster installations
+
+For Embedded Cluster installations (v2 and v3), there is an additional source of telemetry beyond the SDK and KOTS: the Embedded Cluster daemon running on the host sends lifecycle event data directly to the Vendor Portal. This includes events for installations, upgrades, node joins, and node status changes.
+
+Which components report telemetry depends on the Embedded Cluster version:
+
+* **Embedded Cluster v2**: The SDK, KOTS, and the EC daemon all report data. The SDK and KOTS send periodic instance data (version, status, cluster info), while the daemon sends lifecycle events.
+* **Embedded Cluster v3**: The SDK and the EC daemon report data. KOTS is not present. The SDK sends periodic instance data, and the daemon sends lifecycle events.
+
+In both versions, the SDK reports Embedded Cluster-specific data including the cluster ID, Embedded Cluster version, and node count.
+
 ### Air gap instances
 
 <AirGapTelemetry/>
@@ -61,6 +72,10 @@ When installed alongisde the application in an online environment, KOTS automati
 * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 * (KOTS v1.92 and later only) The instance deploys a new application version.
+
+### From the Embedded Cluster daemon
+
+For Embedded Cluster installations (v2 and v3), the EC daemon sends lifecycle events to the Vendor Portal as they occur. Unlike the periodic reporting from the SDK and KOTS, these events are sent in real time when an installation, upgrade, or node join starts, succeeds, or fails.
 
 ### From air gap instances
 
@@ -113,4 +128,4 @@ The Vendor Portal has the following limitations for reporting instance data and 
 * **Air gap instances**: There are additional limitations for air gap telemetry. For more information, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).  
 * **Instance data freshness**: The rate at which data is updated in the Vendor Portal varies depending on how often the Vendor Portal receives instance data.
 * **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the data from the instance. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
-* **Caching for kURL cluster data**: For clusters created with Replicated kURL (embedded clusters), KOTS stores the counts of total nodes and ready nodes in a cache for five minutes. If KOTS sends instance data to the Vendor Portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.
+* **Caching for kURL cluster data**: For clusters created with Replicated kURL, KOTS stores the counts of total nodes and ready nodes in a cache for five minutes. If KOTS sends instance data to the Vendor Portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields. This limitation applies only to kURL clusters and does not affect Embedded Cluster v2 or v3 installations.
