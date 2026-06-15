@@ -35,11 +35,11 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### Improvements {#improvements-3-8-0-beta-1}
 
-* Ties the app install and upgrade progress bar to per-chart status instead of a 5-minute wall-clock timer, so the bar reflects what the install is actually doing.
+* Ties the app install and upgrade progress bar to per-chart status.
 
 ### Bug fixes {#bug-fixes-3-8-0-beta-1}
 
-* Fixes an issue where resetting a node that had the persistent admin console installed left the `console-web` systemd unit behind, causing subsequent installs on that node to fail.
+* Fixes an issue where resetting a node with the persistent admin console installed could cause subsequent installs on that node to fail.
 
 ## 3.7.0-beta.1
 
