@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.8.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.8.0-beta.1+k8s-1.35</td>
+    <td id="center">3.8.0-beta.1+k8s-1.34</td>
+    <td id="center">3.8.0-beta.1+k8s-1.33</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.35.4</td>
+    <td id="center">1.34.7</td>
+    <td id="center">1.33.11</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-8-0-beta-1}
+
+* Adds support for Kubernetes 1.35 and removes support for Kubernetes 1.32.
+
+### Improvements {#improvements-3-8-0-beta-1}
+
+* Ties the app install and upgrade progress bar to per-chart status.
+
+### Bug fixes {#bug-fixes-3-8-0-beta-1}
+
+* Fixes an issue where resetting a node with the persistent admin console installed could cause subsequent installs on that node to fail.
+
 ## 3.7.0-beta.1
 
 <table>
