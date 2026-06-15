@@ -61,6 +61,17 @@ To enable semantic versioning on a channel:
     
     The next time that you promote a release to the channel, assign the release a semantic version number.
 
+## About customer channel assignment
+
+Each customer is assigned to a single channel, which controls which releases they can access. You assign a channel when you create a customer, and you can change it at any time by editing the customer.
+
+How a channel change takes effect depends on the customer's install type:
+
+- **Embedded Cluster, KOTS, kURL**: The customer syncs their license in the Admin Console to fetch the latest release on the new channel. Required releases on the new channel are skipped during channel changes.
+- **Helm CLI**: The customer's Helm commands resolve chart versions from the new channel. Helm does not detect or apply updates automatically. The customer must run `helm upgrade` or `helm rollback` to move between releases. Helm ignores pre-release versions by default, so the customer must pass the `--version` flag to install a pre-release.
+
+For more information, see [Customer Channel Assignment](/vendor/licenses-about#channel-assignment) in _About Customers and Licensing_.
+
 ## Archive a channel
 
 You can archive an existing channel to prevent any new releases from being promoted to the channel.
