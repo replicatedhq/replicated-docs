@@ -31,7 +31,7 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ### New features {#new-features-3-8-0-beta-1}
 
-* Adds support for Kubernetes 1.35 and removes support for Kubernetes 1.32. If you are using a version of Embedded Cluster with Kubernetes 1.32, upgrade your Embedded Cluster Config to 3.8.0-beta.1+k8s-1.33 before upgrading to 3.8.0-beta.1+k8s-1.34 or 3.8.0-beta.1+k8s-1.35. Kubernetes does not support upgrading by more than one minor version at a time.
+* Adds support for Kubernetes 1.35 and removes support for Kubernetes 1.32.
 
 ### Improvements {#improvements-3-8-0-beta-1}
 
