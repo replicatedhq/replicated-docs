@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.8.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.8.0-beta.1+k8s-1.35</td>
+    <td id="center">3.8.0-beta.1+k8s-1.34</td>
+    <td id="center">3.8.0-beta.1+k8s-1.33</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.35.4</td>
+    <td id="center">1.34.7</td>
+    <td id="center">1.33.11</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-8-0-beta-1}
+
+* Adds support for Kubernetes 1.35 and removes support for Kubernetes 1.32. If you are using a version of Embedded Cluster with Kubernetes 1.32, upgrade your Embedded Cluster Config to 3.8.0-beta.1+k8s-1.33 before upgrading to 3.8.0-beta.1+k8s-1.34 or 3.8.0-beta.1+k8s-1.35. Kubernetes does not support upgrading by more than one minor version at a time.
+
+### Improvements {#improvements-3-8-0-beta-1}
+
+* Ties the app install and upgrade progress bar to per-chart status instead of a 5-minute wall-clock timer, so the bar reflects what the install is actually doing.
+
+### Bug fixes {#bug-fixes-3-8-0-beta-1}
+
+* Fixes an issue where resetting a node that had the persistent admin console installed left the `console-web` systemd unit behind, causing subsequent installs on that node to fail.
+
 ## 3.7.0-beta.1
 
 <table>
