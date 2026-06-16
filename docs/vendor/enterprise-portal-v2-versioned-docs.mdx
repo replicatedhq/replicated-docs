@@ -31,8 +31,8 @@ When a customer visits the portal:
 
 When a customer selects a version from the dropdown, Enterprise Portal resolves which content to show using this order:
 
-1. **Pin override**: If the vendor has pinned this release to a specific branch, that branch's content is used. Pins count as exact matches for version-picker filtering.
-1. **Exact or normalized match**: If a branch has the same name as the selected version, that branch's content is used. For example, branch `2.0.0` matches version `2.0.0`. Enterprise Portal also handles a `v` prefix mismatch.
+1. **Pin override**: If the vendor has pinned this release to a specific branch, Enterprise Portal uses that branch's content. Pins count as exact matches for version-picker filtering.
+1. **Exact or normalized match**: If a branch has the same name as the selected version, Enterprise Portal uses that branch's content. For example, branch `2.0.0` matches version `2.0.0`. Enterprise Portal also handles a `v` prefix mismatch.
 1. **Nearest lower branch**: If no exact match exists, the system finds the highest semver branch below the selected version. For example, if the customer selects version `2.0.3` and branches `2.0.0` and `1.1.0` exist, the `2.0.0` branch is used.
 1. **Fallback to main**: If no branch is at or below the selected version, the `main` branch content is served.
 
@@ -108,7 +108,7 @@ When a customer switches versions via the dropdown, the portal swaps the version
 
 To remove a version's dedicated content branch, delete the branch from your git repo. The branch disappears from the Content tab after the next sync.
 
-However, if a release with that version label still exists on a customer's channel, the version still appears in the customer's version dropdown by default.
+If a release with that version label still exists on a customer's channel, it still appears in the version dropdown by default.
 The portal resolves it using the version resolution chain: nearest lower semver branch, then `main` as fallback.
 To hide releases without matching content branches, enable **Require matching content for release versions** in the Content Repository card.
 
