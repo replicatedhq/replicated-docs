@@ -31,12 +31,26 @@ When a customer visits the portal:
 
 When a customer selects a version from the dropdown, Enterprise Portal resolves which content to show using this order:
 
-1. **Pin override**: If the vendor has pinned this release to a specific branch, that branch's content is used. Pins always take priority.
-1. **Exact match**: If a branch exists with the same name as the selected version (e.g., branch `2.0.0` for version `2.0.0`), that branch's content is used.
+1. **Pin override**: If the vendor has pinned this release to a specific branch, Enterprise Portal uses that branch's content. Pins count as exact matches for version-picker filtering.
+1. **Exact or normalized match**: If a branch has the same name as the selected version, Enterprise Portal uses that branch's content. For example, branch `2.0.0` matches version `2.0.0`. Enterprise Portal also handles a `v` prefix mismatch.
 1. **Nearest lower branch**: If no exact match exists, the system finds the highest semver branch below the selected version. For example, if the customer selects version `2.0.3` and branches `2.0.0` and `1.1.0` exist, the `2.0.0` branch is used.
 1. **Fallback to main**: If no branch is at or below the selected version, the `main` branch content is served.
 
 This means you only need to create content branches when your documentation actually changes. Patch releases that don't change docs are handled automatically.
+
+## Require matching content for release versions
+
+By default, every installable release on the customer's channel appears in the Enterprise Portal version dropdown.
+If a release does not have a matching content branch, Enterprise Portal uses the normal version resolution flow.
+It first uses the nearest lower semver branch, then `main` as fallback.
+
+Keep this behavior off when your documentation does not change for every release.
+If patch releases `2.0.1` and `2.0.2` use the same instructions as `2.0.0`, you do not need separate content branches for each patch release.
+
+Enable **Require matching content for release versions** when customers should only see releases with explicit version-specific content.
+When enabled, the version dropdown includes only releases with a matching content branch, a normalized `v` prefix match, or a pinned version.
+
+Use this setting when fallback content could be misleading, such as when every visible release must have release-specific install steps, upgrade notes, or compatibility guidance.
 
 ## Pinning releases to branches
 
@@ -94,7 +108,9 @@ When a customer switches versions via the dropdown, the portal swaps the version
 
 To remove a version's dedicated content branch, delete the branch from your git repo. The branch disappears from the Content tab after the next sync.
 
-However, if a release with that version label still exists on a customer's channel, the version still appears in the customer's version dropdown. The portal resolves it using the version resolution chain (nearest lower semver branch, then `main` as fallback). To fully remove a version from the customer's dropdown, the release must also be removed from the channel.
+If a release with that version label still exists on a customer's channel, it still appears in the version dropdown by default.
+The portal resolves it using the version resolution chain: nearest lower semver branch, then `main` as fallback.
+To hide releases without matching content branches, enable **Require matching content for release versions** in the Content Repository card.
 
 ## Overrides
 
