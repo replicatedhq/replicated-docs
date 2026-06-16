@@ -370,7 +370,7 @@ CMX supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_gke_VERSIONS */}1.32, 1.33, 1.34, 1.35{/* END_gke_VERSIONS */}</td>
+    <td>{/* START_gke_VERSIONS */}1.32, 1.33, 1.34, 1.35, 1.36{/* END_gke_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
