@@ -304,9 +304,13 @@ Props: `installType` (`"linux"` or `"helm"`).
 
 **`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
 
+When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. No additional configuration is required.
+
 **`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
 **`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
+
+When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
 **`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
 
@@ -414,7 +418,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<LinuxBundles />`**: Linux-specific support bundle generation instructions. No props.
 
-**`<HelmBundles />`**: Helm-specific support bundle generation instructions. No props.
+**`<HelmBundles />`**: Helm-specific support bundle generation instructions. A download link for the support-bundle plugin binary is always included, regardless of registry access settings. No props.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
