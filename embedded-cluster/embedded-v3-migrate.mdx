@@ -120,6 +120,8 @@ To update a release from Embedded Cluster v2 to v3:
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
    - Support bundle specs do not need to be updated. They continue to work with `v1beta2` in Embedded Cluster v3.
 
+   If your release needs to support both KOTS and Embedded Cluster v3 installations during the transition period, include two preflight specs: a `v1beta2` spec for KOTS and a `v1beta3` spec for Embedded Cluster v3. KOTS ignores the `v1beta3` spec, and Embedded Cluster v3 ignores the `v1beta2` spec. Once you no longer need to support KOTS installations, you can remove the `v1beta2` spec.
+
    For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
 1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
