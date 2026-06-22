@@ -12,6 +12,33 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.9.0-beta.1
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.9.0-beta.1+k8s-1.36</td>
+    <td id="center">3.9.0-beta.1+k8s-1.35</td>
+    <td id="center">3.9.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.1</td>
+    <td id="center">1.35.4</td>
+    <td id="center">1.34.14</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-9-0-beta-1}
+
+* Adds support for Kubernetes 1.36 and removes support for Kubernetes 1.33.
+
+### Improvements {#improvements-3-9-0-beta-1}
+
+* Adds host support bundle collectors and analyzers that detect when endpoint security tools, such as CrowdStrike Falcon and Illumio VEN, have flushed the iptables rules that cluster networking depends on.
+* Renders app preflight specs through Helm so that chart value defaults, template helpers, and `.Chart.Name` conditionals resolve the same way they do at install time.
+* Tightens host preflights to require a 4.5 or later Linux kernel and cgroup v2 on Kubernetes 1.35 and later. Hosts that do not meet these requirements no longer pass preflight.
+
 ## 3.8.0-beta.1
 
 <table>
