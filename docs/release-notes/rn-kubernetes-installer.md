@@ -10,6 +10,14 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.06.22-0
+
+Released on June 22, 2026
+
+### New Features {#new-features-v2026-06-22-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.19.6.
+* Add support for the containerd 2.x addon, including a guarded upgrade path from containerd 1.7 to 2.x (requires Kubernetes 1.26+).
+
 ## v2026.05.18-0
 
 Released on May 18, 2026
