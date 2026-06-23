@@ -42,7 +42,7 @@ This is why v1beta3 is required: the spec must be valid Helm template YAML, not 
 - The spec is not valid YAML before rendering. Standard YAML linters will not work on it directly.
 - For releases with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. The spec is rendered once per chart in the release, each time in that chart's context.
 
-For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
+For details about the rendering pipeline and multi-chart examples, see [Add preflight checks](embedded-using#preflights). For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
 
 ### Package your application with Helm
 
