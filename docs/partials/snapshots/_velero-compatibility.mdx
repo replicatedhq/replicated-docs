@@ -1,5 +1,8 @@
 The following table lists which versions of Velero are compatible with each version of KOTS. For a list of the supported Kubernetes versions for each Velero version, see [Velero compatibility matrix](https://github.com/vmware-tanzu/velero#velero-compatibility-matrix) in the vmware-tanzu/velero repository.
 
+:::note If you're running KOTS with Velero 1.17+, pod volume backups using restic will fail because Velero 1.17 removed the --uploader-type=restic flag. Restores of existing restic backups still work. If you depend on snapshots, stay on Velero 1.16.x until a KOTS update with kopia support ships.
+:::
+
 | KOTS version | Velero version |
 |------|-------------|
 | 1.125.2 and later | 1.11.0 to 1.16.2 |
