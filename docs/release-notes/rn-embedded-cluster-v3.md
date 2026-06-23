@@ -14,6 +14,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.9.0-beta.1
 
+Released on June 22, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -40,6 +42,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Tightens host preflights to require a 4.5 or later Linux kernel and cgroup v2 on Kubernetes 1.35 and later. Hosts that do not meet these requirements no longer pass preflight.
 
 ## 3.8.0-beta.1
+
+Released on June 15, 2026
 
 <table>
   <tr>
@@ -70,6 +74,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.7.0-beta.1
 
+Released on June 11, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -91,6 +97,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.6.0-beta.1
 
+Released on June 10, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -111,6 +119,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Adds the ability to declare Kubernetes node taints on a custom role. Every node that carries the role receives the taints automatically at install or join time. For more information, see [roles](/embedded-cluster/v3/embedded-config#roles) in _Embedded Cluster Config_.
 
 ## 3.5.0-beta.1
+
+Released on June 10, 2026
 
 <table>
   <tr>
@@ -141,6 +151,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.4.0-beta.1
 
+Released on June 9, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -170,6 +182,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.3.2-beta.1
 
+Released on June 4, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -195,6 +209,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.3.1-beta.1
 
+Released on June 3, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -218,6 +234,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.3.0-beta.1
 
+Released on June 2, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -239,6 +257,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.2.3-beta.1
 
+Released on June 1, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -259,6 +279,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Fixes a failure in the `Lookup` template function when the kubeconfig has not yet been created on the node. `Lookup` now returns an empty map in that case instead of erroring.
 
 ## 3.2.2-beta.1
+
+Released on June 1, 2026
 
 <table>
   <tr>
@@ -285,6 +307,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.2.1-beta.1
 
+Released on May 23, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -305,6 +329,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Pins the cluster TLS certificate's public key in the node-join `curl` command so the join bundle download cannot be intercepted by an attacker on the network path.
 
 ## 3.2.0-beta.1
+
+Released on May 22, 2026
 
 <table>
   <tr>
@@ -327,6 +353,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Adds TLS client certificate (mTLS) authentication for Bring Your Own (BYO) registries with the `--registry-tls-cert` and `--registry-tls-key` install flags.
 
 ## 3.1.0-beta.1
+
+Released on May 19, 2026
 
 <table>
   <tr>
@@ -362,6 +390,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Verifies the installer UI port is free before prompting on install or upgrade.
 
 ## 3.0.0-beta.4
+
+Released on April 30, 2026
 
 <table>
   <tr>
@@ -401,6 +431,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.0.0-beta.2
 
+Released on April 17, 2026
+
 <table>
   <tr>
     <th>Version</th>
@@ -421,6 +453,8 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 * Persists config values on headless install without `--config-values`.
 
 ## 3.0.0-beta.1
+
+Released on April 15, 2026
 
 <table>
   <tr>
