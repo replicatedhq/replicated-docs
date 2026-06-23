@@ -23,13 +23,13 @@ Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource t
 
 Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](/vendor/replicated-sdk-overview) in your application to get instance reporting in the Vendor Portal from application status informers.
 
-### Preflight specs require `v1beta3`
+### Preflight specs must use v1beta3
 
 Application preflight checks must use API version `troubleshoot.sh/v1beta3`. Embedded Cluster v3 does not support `v1beta2` preflight specs.
 
-In v3, preflight specs are packaged outside your Helm charts as a release-level YAML file and rendered through the Helm template engine at install time. This means your preflight spec has access to the full Helm rendering context, including chart values, defaults, and helper functions. Because the spec is rendered through Helm, it uses Helm template syntax (not `repl{{ }}` Replicated template syntax).
+In v3, you package preflight specs outside your Helm charts as a release-level YAML file. Embedded Cluster renders the spec through the Helm template engine at install time, giving your preflight spec access to the full Helm rendering context, including chart values, defaults, and helper functions. Because Embedded Cluster renders the spec through Helm, the spec uses Helm template syntax (not `repl{{ }}` Replicated template syntax).
 
-This is why v1beta3 is required: the spec must be valid Helm template YAML, not a static Kubernetes resource.
+v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
 **Support bundles are not affected.** Support bundle specs continue to work with `v1beta2` in Embedded Cluster v3. The v1beta3 requirement applies only to preflight specs.
@@ -40,7 +40,7 @@ This is why v1beta3 is required: the spec must be valid Helm template YAML, not 
 - The spec lives outside your Helm chart, at the release level. You do not need to wrap it in a Secret or include it in your chart's `templates/` directory.
 - The spec uses Helm template syntax (`{{ .Values.something }}`, `{{ include "helper" . }}`) instead of `repl{{ }}` Replicated template syntax.
 - The spec is not valid YAML before rendering. Standard YAML linters will not work on it directly.
-- For releases with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. The spec is rendered once per chart in the release, each time in that chart's context.
+- For releases with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. Embedded Cluster renders the spec one time per chart in the release, each time in that chart's context.
 
 For details about the rendering pipeline and multi-chart examples, see [Add preflight checks](embedded-using#preflights). For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
 
@@ -116,9 +116,9 @@ To update a release from Embedded Cluster v2 to v3:
 
    - Change `apiVersion` from `troubleshoot.sh/v1beta2` to `troubleshoot.sh/v1beta3`.
    - Move the spec file out of your Helm chart's `templates/` directory. In v3, the preflight spec is a release-level file, not part of any chart.
-   - If your spec was wrapped in a Kubernetes Secret (the v1beta2 workaround for chart packaging), remove the Secret wrapper. The spec should be a plain `troubleshoot.sh/v1beta3 Preflight` resource.
+   - If you wrapped your spec in a Kubernetes Secret (the v1beta2 workaround for chart packaging), remove the Secret wrapper. The spec should be a plain `troubleshoot.sh/v1beta3 Preflight` resource.
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
-   - Support bundle specs do not need to be updated. They continue to work with `v1beta2` in Embedded Cluster v3.
+   - You do not need to update support bundle specs. They continue to work with `v1beta2` in Embedded Cluster v3.
 
    If your release needs to support both KOTS and Embedded Cluster v3 installations during the transition period, include two preflight specs: a `v1beta2` spec for KOTS and a `v1beta3` spec for Embedded Cluster v3. KOTS ignores the `v1beta3` spec, and Embedded Cluster v3 ignores the `v1beta2` spec. Once you no longer need to support KOTS installations, you can remove the `v1beta2` spec.
 
