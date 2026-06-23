@@ -15,7 +15,10 @@ This section describes the key differences between Embedded Cluster v2 and v3.
 
 Embedded Cluster v3 removes Replicated KOTS from the architecture. This reduces the number of dependencies that are running in the cluster, which improves reliability.
 
-The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin Console.
+The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin Console. Embedded Cluster v3 replaces it with two interfaces:
+
+- A **guided install and upgrade UI** that walks end users through configuration, preflight checks, node setup, and application deployment. This UI launches automatically during install and upgrade operations. See [Set up the wizard's Configure screen](/embedded-cluster/v3/embedded-using#configure-screen).
+- An optional **[persistent admin console](/embedded-cluster/v3/embedded-persistent-console)** that provides an always-on web dashboard for browser-driven upgrades, air gap release uploads, and support bundle generation without SSH access.
 
 Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource to process and deploy Helm charts. Embedded Cluster v3 also still uses Replicated custom resources like the Replicated Application and Replicated Config resources to define aspects of the installation experience.
 
