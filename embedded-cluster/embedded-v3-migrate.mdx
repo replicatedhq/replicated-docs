@@ -15,7 +15,10 @@ This section describes the key differences between Embedded Cluster v2 and v3.
 
 Embedded Cluster v3 removes Replicated KOTS from the architecture. This reduces the number of dependencies that are running in the cluster, which improves reliability.
 
-The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin Console.
+The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin Console. Embedded Cluster v3 replaces it with two interfaces:
+
+- A **guided install and upgrade UI** that walks end users through configuration, preflight checks, node setup, and application deployment. This UI launches automatically during install and upgrade operations. See [Set up the wizard's Configure screen](/embedded-cluster/v3/embedded-using#configure-screen).
+- An optional **[persistent admin console](/embedded-cluster/v3/embedded-persistent-console)** that provides an always-on web dashboard for browser-driven upgrades, air gap release uploads, and support bundle generation without SSH access.
 
 Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource to process and deploy Helm charts. Embedded Cluster v3 also still uses Replicated custom resources like the Replicated Application and Replicated Config resources to define aspects of the installation experience.
 
@@ -23,10 +26,26 @@ Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource t
 
 Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](/vendor/replicated-sdk-overview) in your application to get instance reporting in the Vendor Portal from application status informers.
 
-### Troubleshoot Preflight `v1beta3` required
+### Preflight specs must use v1beta3
 
-Application preflight checks must use Troubleshoot `v1beta3`. `v1beta2` preflight specs are not supported.
-For more information, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
+Application preflight checks must use API version `troubleshoot.sh/v1beta3`. Embedded Cluster v3 does not support `v1beta2` preflight specs.
+
+In v3, you package preflight specs outside your Helm charts as a release-level YAML file. Embedded Cluster renders the spec through the Helm template engine at install time, giving your preflight spec access to the full Helm rendering context, including chart values, defaults, and helper functions. Because Embedded Cluster renders the spec through Helm, the spec uses Helm template syntax (not `repl{{ }}` Replicated template syntax).
+
+v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
+
+:::note
+**Support bundles are not affected.** Support bundle specs continue to work with `v1beta2` in Embedded Cluster v3. The v1beta3 requirement applies only to preflight specs.
+:::
+
+**Key differences from v1beta2 for preflight specs:**
+
+- The spec lives outside your Helm chart, at the release level. You do not need to wrap it in a Secret or include it in your chart's `templates/` directory.
+- The spec uses Helm template syntax (`{{ .Values.something }}`, `{{ include "helper" . }}`) instead of `repl{{ }}` Replicated template syntax.
+- The spec is not valid YAML before rendering. Standard YAML linters will not work on it directly.
+- For releases with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. Embedded Cluster renders the spec one time per chart in the release, each time in that chart's context.
+
+For details about the rendering pipeline and multi-chart examples, see [Add preflight checks](embedded-using#preflights). For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
 
 ### Package your application with Helm
 
@@ -96,7 +115,17 @@ To update a release from Embedded Cluster v2 to v3:
     In Embedded Cluster v3, these template functions replace the [LocalImageName](/reference/template-functions-config-context#localimagename), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), and [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions.
     :::
 
-1. Update your application Preflight specs to API version `troubleshoot.sh/v1beta3`. For more information, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
+1. Update your application preflight specs to API version `troubleshoot.sh/v1beta3`:
+
+   - Change `apiVersion` from `troubleshoot.sh/v1beta2` to `troubleshoot.sh/v1beta3`.
+   - Move the spec file out of your Helm chart's `templates/` directory. In v3, the preflight spec is a release-level file, not part of any chart.
+   - If you wrapped your spec in a Kubernetes Secret (the v1beta2 workaround for chart packaging), remove the Secret wrapper. The spec should be a plain `troubleshoot.sh/v1beta3 Preflight` resource.
+   - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
+   - You do not need to update support bundle specs. They continue to work with `v1beta2` in Embedded Cluster v3.
+
+   If your release needs to support both KOTS and Embedded Cluster v3 installations during the transition period, include two preflight specs: a `v1beta2` spec for KOTS and a `v1beta3` spec for Embedded Cluster v3. KOTS ignores the `v1beta3` spec, and Embedded Cluster v3 ignores the `v1beta2` spec. Once you no longer need to support KOTS installations, you can remove the `v1beta2` spec.
+
+   For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
 1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 

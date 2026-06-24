@@ -53,6 +53,138 @@ To create an application release that supports installation with Embedded Cluste
 
 1. Install with Embedded Cluster in a development environment to test. See [Online installation with Embedded Cluster](installing-embedded) or [Air gap installation with Embedded Cluster](installing-embedded-air-gap).
 
+## Add preflight checks {#preflights}
+
+Embedded Cluster v3 uses Troubleshoot `v1beta3` for application preflight checks. You package preflight specs as a release-level YAML file outside your Helm charts. During installation and upgrades, Embedded Cluster renders the spec through the Helm template engine and runs the checks automatically.
+
+### How preflight rendering works in v3 {#preflight-rendering}
+
+Embedded Cluster renders your preflight spec through the same Helm engine it uses to install your charts. The rendering pipeline works as follows:
+
+1. Embedded Cluster takes the external preflight spec from your release.
+1. For each Helm chart in the release, Embedded Cluster injects the spec into the chart as a template and renders it with `helm template` using the same values that Helm uses during installation (SDK values, chart defaults from `values.yaml`, and user overrides from the HelmChart custom resource).
+1. Embedded Cluster merges the per-chart rendered outputs into a single resolved spec.
+1. Embedded Cluster runs the Troubleshoot preflight binary against the fully resolved spec. No additional flags or values are necessary because all Helm expressions are already evaluated.
+
+This per-chart rendering means your preflight spec has access to the full Helm context for each chart:
+
+- **Chart values and defaults**: `.Values.*` resolves against each chart's `values.yaml` defaults merged with any overrides from the HelmChart custom resource `values` key.
+- **Helm helpers**: `{{ include "mychart.fullname" . }}` resolves using the `_helpers.tpl` from the chart being rendered.
+- **Chart metadata**: `.Chart.Name`, `.Chart.Version`, `.Release.Name`, and `.Release.Namespace` are all available.
+
+If a conditional in your spec evaluates to false for a given chart (for example, `{{- if .Values.featureNotEnabled }}`), Embedded Cluster excludes those checks from that chart's rendered output. No error occurs.
+
+### Create a preflight spec
+
+Add a `troubleshoot.sh/v1beta3 Preflight` YAML file to your release at the top level (not inside any Helm chart):
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta3
+kind: Preflight
+metadata:
+  name: my-app-preflights
+spec:
+  collectors:
+    - clusterResources: {}
+  analyzers:
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.28.0"
+              message: "Kubernetes 1.28.0 or later is required."
+          - pass:
+              when: ">= 1.28.0"
+              message: "Kubernetes version is sufficient."
+```
+
+For releases with a single Helm chart, you do not need additional gating. The spec renders in that chart's context.
+
+### Multi-chart releases {#multi-chart-preflights}
+
+For releases with multiple Helm charts, gate each collector and analyzer to the chart it belongs to using `.Chart.Name` conditionals. Because Embedded Cluster renders the spec one time per chart, a `{{ if eq .Chart.Name "postgresql" }}` block only produces output when Embedded Cluster renders it in the context of the `postgresql` chart:
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta3
+kind: Preflight
+metadata:
+  name: my-app-preflights
+spec:
+  collectors:
+  {{- if eq .Chart.Name "my-app" }}
+    - clusterResources: {}
+  {{- end }}
+  {{- if eq .Chart.Name "postgresql" }}
+    - run:
+        name: pg-version
+        image: '{{ include "postgresql.v1.image" . }}'
+        command: ["psql", "--version"]
+  {{- end }}
+  analyzers:
+  {{- if eq .Chart.Name "my-app" }}
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.28.0"
+              message: "Kubernetes 1.28.0 or later is required."
+          - pass:
+              when: ">= 1.28.0"
+              message: "Kubernetes version is sufficient."
+  {{- end }}
+  {{- if eq .Chart.Name "postgresql" }}
+    - textAnalyze:
+        checkName: PostgreSQL Version
+        fileName: pg-version
+        outcomes:
+          - fail:
+              when: "< 14"
+              message: "PostgreSQL 14 or later is required."
+          - pass:
+              message: "PostgreSQL version is compatible."
+  {{- end }}
+```
+
+A helper like `postgresql.v1.image` is only evaluated in the context of the `postgresql` chart where it is defined, so it resolves correctly even though other charts in the release do not define that helper.
+
+### Conditional checks with chart values {#conditional-preflights}
+
+You can use chart values to conditionally include or exclude preflight checks. For example, if your chart has an optional component that can be enabled or disabled through values, you can gate the related preflight checks on that value:
+
+```yaml
+spec:
+  analyzers:
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.28.0"
+              message: "Kubernetes 1.28.0 or later is required."
+          - pass:
+              message: "Kubernetes version is sufficient."
+    {{- if .Values.gpu.enabled }}
+    - nodeResources:
+        checkName: GPU Nodes Available
+        filters:
+          allocatable:
+            nvidia.com/gpu: "1"
+        outcomes:
+          - fail:
+              when: "count() < 1"
+              message: "At least one node with an NVIDIA GPU is required when GPU support is enabled."
+          - pass:
+              message: "GPU node available."
+    {{- end }}
+```
+
+If the chart's `values.yaml` has `gpu.enabled: false` and the customer has not overridden it, the GPU node check is excluded from the rendered spec.
+
+### Limitations
+
+- A release may contain at most one external preflight spec.
+- The preflight spec uses Helm template syntax, not `repl{{ }}` Replicated template syntax.
+- The spec is not valid YAML before rendering. Standard YAML linters will not validate it directly.
+- Support bundle specs are separate from preflight specs. Support bundles continue to use `v1beta2` and are not affected by this requirement.
+
+For more information about host preflight checks that Embedded Cluster runs automatically, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks).
+
 ## Set up the wizard's Configure screen {#configure-screen}
 
 During installation and upgrades, the Embedded Cluster wizard includes a **Configure** step where end customers provide configuration values for your application. This screen is defined by the [Config custom resource](/reference/custom-resource-config) in your release.
