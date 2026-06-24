@@ -300,7 +300,7 @@ Props: `installType` (`"linux"` or `"helm"`).
 
 **`<RegistryAccess />`**: Displays registry credentials and pull secret configuration. No props.
 
-**`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. Props: `stepNumber` (optional, starting step number).
+**`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
 **`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
 
@@ -363,7 +363,7 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 
 ### Update components
 
-**`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. Props: `stepNumber`.
+**`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
@@ -428,9 +428,9 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 ### Security components
 
-These components require Security Center to be enabled for the customer. See [Security Center](/vendor/security-center-about) for more information.
+These components require Security Center to be enabled for the customer and are available for Helm and Embedded Cluster installs only. See [Security Center](/vendor/security-center-about) for more information.
 
-**`<CVEReport />`**: Displays CVE vulnerability report for the selected release. No props.
+**`<CVEReport />`**: Displays the CVE vulnerability report for the selected release. Includes a toggle to filter between all vulnerabilities and fixable-only vulnerabilities. No props.
 
 **`<SBOMReport />`**: Displays the Software Bill of Materials for the selected release. No props.
 

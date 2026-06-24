@@ -14,7 +14,8 @@ Content is driven by entitlements and channel assignment, so each customer sees 
 
 - **Install and upgrade**: Step-by-step installation instructions for Helm and Embedded Cluster (Linux), with per-instance commands personalized to each customer's license and environment
 - **Manage instances**: View all deployed instances, check for available updates, and follow inline upgrade instructions
-- **Access security data**: Review CVE reports (fixable only) and download SBOMs for each release (when Security Center is enabled)
+- **Download install artifacts**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal. Available artifacts vary by install method and license entitlements
+- **Access security data**: Review CVE reports, filter to fixable vulnerabilities, view per-instance upgrade recommendations, and download SBOMs for each release. Available for Helm and Embedded Cluster installs when Security Center is enabled
 - **View release history**: Browse release notes and track what's changed between versions
 - **Upload support bundles**: Generate and upload diagnostic bundles for faster troubleshooting
 - **Manage their team**: Invite users, create service accounts, and configure SAML SSO
@@ -35,6 +36,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 - Installation and upgrade instructions are available only for Embedded Cluster and Helm CLI installations. The Enterprise Portal does not provide instructions for KOTS or kURL.
 - Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle.
+- Security Center data (CVE reports and SBOMs) is available for Helm and Embedded Cluster installations only. Security data is not displayed for KOTS or kURL installations.
 - If you have many version branches and need to make a change across all versions, you must update each branch individually.
 
 ## Requirements
