@@ -30,7 +30,6 @@ Otherwise, to request credits, log in to the Vendor Portal and go to [**Compatib
 - Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
 - Team actions with CMX (for example, creating and deleting clusters and requesting quota increases) are not logged and displayed in the [Vendor Team Audit Log](https://vendor.replicated.com/team/audit-log). 
 - Creating VMs with CMX has the following limitations:
-  - Creating VMs with CMX is a Beta feature.
   - Installing Embedded Cluster on a VM created with CMX is supported for Embedded Cluster versions 1.21.0 or later.
   - [GitHub Actions](/vendor/testing-ci-cd#replicated-github-actions) are not supported for CMX VMs. 
   - The [cluster prepare](/reference/replicated-cli-cluster-prepare) command is not supported for CMX VMs.
