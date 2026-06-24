@@ -64,6 +64,18 @@ The **New Installation** button lets customers start new installations, with a d
 
 Air gap customers can create new instance records manually or by extracting details from an uploaded support bundle.
 
+### Downloading install artifacts
+
+Depending on the install method and license entitlements, customers can download artifacts directly from the portal:
+
+- **Air gap bundles**: Available from the Release History page and the install flow for air gap installations. Each release shows a build status (Ready, Building, Failed, or Not built) and a download link when the build is complete.
+- **Helm chart tarballs**: Available during Helm installations when the customer selects limited or no registry access. Download links appear inline in the install and update instructions.
+- **CLI tools**: The preflight plugin binary is available for download in the install flow, regardless of registry access settings.
+
+### Private registry image relocation (Embedded Cluster)
+
+For Embedded Cluster air gap installations, customers using a private registry can enter their registry hostname directly in the install flow. The instructions update to include image pull, tag, and push commands targeting that registry, along with the appropriate `--registry` flags on the install command. This is also available during Embedded Cluster upgrades when the instance was originally installed with a private registry.
+
 ## Team management
 
 Customer team admins can manage their portal team from the Team Settings page:
@@ -80,6 +92,18 @@ Customers can generate and upload support bundles from the portal:
 - **Generate bundles**: Follow the instructions on the Support Bundles page to generate a diagnostic bundle from their Linux or Helm installation
 - **Upload bundles**: Upload an existing bundle file for vendor analysis. The maximum upload size is 2 GB. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.
 - **View history**: See previously uploaded bundles and their status
+
+## Security
+
+When Security Center is enabled by the vendor, customers with Helm or Embedded Cluster installations can view security data for their releases.
+
+- **CVE reports**: Browse vulnerabilities by severity for the selected release version. A toggle filters between all vulnerabilities and fixable-only vulnerabilities, where fixable means a patched package version is available.
+- **Upgrade recommendations**: CVE entries link to upgrade recommendations for affected instances, showing customers a path to the version that resolves each vulnerability.
+- **SBOMs**: Download the Software Bill of Materials for any release version. SBOMs are accessible to all portal team members regardless of role.
+
+:::note
+Security Center data is available for Helm and Embedded Cluster installations only. Security data is not displayed for KOTS or kURL installations.
+:::
 
 ## License information
 
