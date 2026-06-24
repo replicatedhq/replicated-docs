@@ -14,7 +14,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 ## 2.19.1
 
-Released on June 23, 2026
+Released on June 24, 2026
 
 <table>
   <tr>
