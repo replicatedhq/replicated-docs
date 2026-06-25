@@ -218,55 +218,6 @@ By default, the kubeconfig context uses the `kubeadmin` user. To switch to the `
   </tr>
 </table>
 
-### Embedded Cluster (v2)
-
-CMX supports creating clusters with Replicated Embedded Cluster v2. For more information, see [Embedded Cluster Overview](/embedded-cluster/v2/embedded-overview).
-
-<table>
-  <tr>
-    <th width="35%">Type</th>
-    <th width="65%">Description</th>
-  </tr>
-  <tr>
-    <th>Supported Embedded Cluster Versions</th>
-    <td>
-      Any valid release sequence that Replicated previously promoted to the channel associated with the customer license.
-      Version is optional and defaults to the latest available release on the channel.
-    </td>
-  </tr>
-  <tr>
-    <th>Supported Instance Types</th>
-    <td>See <a href="#types">Replicated Instance Types</a></td>
-  </tr>
-  <tr>
-    <th>Node Groups</th>
-    <td>Yes</td>
-  </tr>
-  <tr>
-    <th>Nodes</th>
-    <td>Supports multiple nodes (alpha).</td>
-  </tr>
-  <tr>
-    <th>IP Family</th>
-    <td>Supports `ipv4`.</td>
-  </tr>
-  <tr>
-    <th>Limitations</th>
-    <td>
-      <ul>
-        <li>The Admin Console UI is not publicly accessible. To access it, run `kubectl -n kotsadm port-forward svc/kurl-proxy-kotsadm 38800:8800`. The password for the Admin Console is `password`.</li>
-        <li><strong>You must have a valid customer license to create an Embedded Cluster.</strong></li>
-        <li>The [cluster prepare](/vendor/testing-how-to#prepare-clusters) command is not supported.</li>
-      </ul>
-      <p>For additional limitations that apply to all distributions, see <a href="testing-about#limitations">Limitations</a>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Common Use Cases</th>
-    <td>Customer release tests</td>
-  </tr>
-</table>
-
 ### kURL
 
 CMX supports creating [kURL](https://kurl.sh) clusters.
