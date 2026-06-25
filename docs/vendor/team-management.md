@@ -22,7 +22,7 @@ You can enable System for Cross-domain Identity Management (SCIM) for automated 
 By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
 
 :::note
-Teams that have enforced SAML-only authentication do not use the email invitation flow described in this procedure. These teams and their users must log in through their SAML provider.
+Teams that have enforced SAML-only authentication do not use the email invitation flow described in this procedure. Instead, your SAML identity provider provisions new users. For more information about provisioning users with SAML, including SCIM, just-in-time (JIT) provisioning, and domain redirect, see [Provisioning users with SAML](team-management-saml-auth#provisioning-users-with-saml).
 :::
 
 To invite a new team member:
