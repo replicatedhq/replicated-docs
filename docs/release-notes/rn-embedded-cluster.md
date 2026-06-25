@@ -12,6 +12,38 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.1
+
+Released on June 24, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.1+k8s-1.36</td>
+    <td id="center">2.19.1+k8s-1.35</td>
+    <td id="center">2.19.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.1</td>
+    <td id="center">1.35.5</td>
+    <td id="center">1.34.8</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.4</td>
+  </tr>
+</table>
+
+### New features {#new-features-2-19-1}
+* Adds support for Kubernetes 1.36 and removes support for Kubernetes 1.33.
+
+### Improvements {#improvements-2-19-1}
+* Tightens host preflights to require Linux kernel 4.5 or later and cgroup v2 on Kubernetes 1.35 and later. Hosts that do not meet these requirements no longer pass preflight.
+
+### Bug fixes {#bug-fixes-2-19-1}
+* Adds a user-agent header to all API calls to the Replicated platform so that version-filtered responses, such as the list of available releases, are returned correctly.
+
 ## 2.18.1
 
 Released on May 19, 2026
