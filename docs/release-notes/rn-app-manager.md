@@ -40,7 +40,6 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 ### Improvements {#improvements-1-130-5}
 * Improves instance reporting so that installations restored from a snapshot into a different cluster report as distinct instances, with lineage linking each restored instance back to its source.
 * Adds the `X-Content-Type-Options` header to Admin Console responses.
-* Updates Go module and GitHub Action dependencies.
 
 ## 1.130.4
 
