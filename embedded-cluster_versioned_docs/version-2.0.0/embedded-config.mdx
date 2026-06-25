@@ -78,7 +78,7 @@ Replicated recommends that you update the version frequently to ensure that you 
 
 <DoNotDowngrade/>
 
-## roles (Beta) {#roles}
+## roles {#roles}
 
 You can optionally customize node roles in the Embedded Cluster Config using the `roles` key.
 
@@ -111,8 +111,6 @@ spec:
 ```
 
 ### Limitations
-
-* Defining node roles with the `roles` key is Beta.
 
 * The first node added to the cluster is always a controller and cannot be assigned any custom roles. You can add custom labels to the first node by setting the `labels` field in the `roles.controller` key.
 

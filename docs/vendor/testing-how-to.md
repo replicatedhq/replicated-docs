@@ -56,7 +56,7 @@ To create an environment with CMX from the Vendor Portal:
 
    The environment is displayed in the list on the Compatibility Matrix **Overview** page with a status of Assigned. When the environment is ready, the status is changed to Running.
 
-## Create air-gapped environments (Beta) {#air-gap}
+## Create air-gapped environments {#air-gap}
 
 :::note
 Using the `airgap` network policy to simulate an air-gapped environment is supported only for VMs and [VM-based clusters](/vendor/testing-supported-clusters#vm-clusters). Clusters that use cloud-based distributions do not support the `airgap` network policy.

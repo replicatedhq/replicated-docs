@@ -8,7 +8,7 @@ CMX network reporting helps you understand your application's network activity. 
 
 Even when the network policy is set to `airgap` and network egress is blocked, all connection attempts and DNS queries are still captured in the report. This helps you identify unexpected network calls before deploying to an air-gapped environment.
 
-For more information about working with CMX networks, see [Create Air-Gapped Environments (Beta)](testing-how-to#air-gap) and [Create Environments on the Same Network](testing-how-to#shared-networks) in _Create and Manage Environments_
+For more information about working with CMX networks, see [Create Air-Gapped Environments](testing-how-to#air-gap) and [Create Environments on the Same Network](testing-how-to#shared-networks) in _Create and Manage Environments_
 
 ## Types of network reports
 
