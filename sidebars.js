@@ -427,14 +427,6 @@ const sidebars = {
         },
         "enterprise/status-viewing-details",
         "enterprise/delete-admin-console",
-        {
-          type: "category",
-          label: "Use a GitOps Workflow",
-          items: [
-            "enterprise/gitops-workflow",
-            "enterprise/gitops-managing-secrets",
-          ],
-        },
       ],
     },
     {

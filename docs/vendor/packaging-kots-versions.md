@@ -14,7 +14,7 @@ This is because each version of Embedded Cluster includes a particular version o
 
 To avoid installation failures, do not use `targetKotsVersion` or `minKotsVersion` in releases that support installation with Embedded Cluster.
 
-## Using minimum KOTS versions (Beta)
+## Using minimum KOTS versions
 
 The `minKotsVersion` attribute in the Application custom resource defines the minimum version of Replicated KOTS that is required by the application release. This can be useful when you want to get users who are lagging behind to update to a more recent KOTS version, or if your application requires functionality that was introduced in a particular KOTS version.
 

@@ -2002,7 +2002,7 @@ Released on October 12, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, 1.25
 
 ### New features {#new-features-1-87-0}
-* Uses Ed25519 SSH keys for GitOps when integrating with Github Enterprise. See [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
+* Uses Ed25519 SSH keys for GitOps when integrating with Github Enterprise.
 
 ### Improvements {#improvements-1-87-0}
 * Adds support for template functions to the `spec.graphs` field of the Application custom resource. See [Application](/reference/custom-resource-application).
@@ -2635,7 +2635,7 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 ### New features
 * Adds [`targetKotsVersion`](../reference/custom-resource-application#targetkotsversion) as a field in the application spec. This field allows you to set a target version of KOTS for a release. The initial installation of an application will fail if the currently installed KOTS version is greater than the target version. When a target version is set, end users will receive a notification in the admin console if their currently deployed version of KOTS is less than the target version. For more informaiton, see the documentation.
 
-* Adds [`minKotsVersion`](../reference/custom-resource-application/#minkotsversion-beta) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](../reference/custom-resource-application/#minkotsversion-beta) for caveats since this is a Beta feature.
+* Adds [`minKotsVersion`](../reference/custom-resource-application/#minkotsversion) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](../reference/custom-resource-application/#minkotsversion) for caveats since this is a Beta feature.
 
 ### Improvements
 * Defaults [`kubectl kots get config --appslug`](../reference/kots-cli-get-config) to the app slug of the deployed application if there is only one in the namespace.
