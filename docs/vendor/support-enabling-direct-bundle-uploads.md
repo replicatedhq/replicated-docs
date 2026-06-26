@@ -1,8 +1,4 @@
-# Enable support bundle uploads (Beta)
-
-:::note
-Direct bundle uploads is in beta. The functionality, requirements, and limitations of direct bundle uploads are subject to change.
-:::
+# Enable support bundle uploads
 
 When this feature is enabled, customers using online KOTS or Embedded Cluster installations can upload support bundles directly through the Admin Console UI, eliminating the need to share the generated bundle with you manually.
 
@@ -12,14 +8,14 @@ When enabled, your customers can use the **Send bundle to vendor button** in the
 
 After clicking this button, the bundle will be immediately available under the Troubleshoot tab in the Vendor Portal team account associated with this customer.
 
-For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app) (KOTS or Embedded Cluster v2) or [Persistent admin console](/embedded-cluster/embedded-persistent-console#upload-to-the-vendor-portal-beta) (Embedded Cluster v3).
+For more information on how your customer can use this feature, see [Generate Support Bundles from the Admin Console](/enterprise/troubleshooting-an-app) (KOTS or Embedded Cluster v2) or [Persistent admin console](/embedded-cluster/v3/embedded-persistent-console#upload-to-the-vendor-portal-beta) (Embedded Cluster v3).
 
 ### How to enable direct bundle uploads
 
 Direct bundle uploads are disabled by default. To enable this feature for your customer:
 
 1. Log in to the Vendor Portal and navigate to your customer's **Manage Customer** page.
-1. Under the **License options** section, check the **Support Bundle Upload Enabled (Beta)** option. For KOTS installations, the customer must also have **KOTS Install Enabled** checked.
+1. Under the **License options** section, check the **Support Bundle Upload Enabled** option. For KOTS installations, the customer must also have **KOTS Install Enabled** checked.
    <img alt="Customer license options: configure direct support bundle upload" src="/images/configure-direct-support-bundle-upload.png" width="400px"/>
 
    [View a larger version of this image](/images/configure-direct-support-bundle-upload.png)
