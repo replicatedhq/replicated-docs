@@ -25,6 +25,15 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.130.6
+
+Released on June 26, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Bug fixes {#bug-fixes-1-130-6}
+* Fixes an issue where the **Skip Pushing Images That Already Exist** setting was ignored when uploading an air gap bundle, causing uploads to fail against registries that enforce tag immutability (such as Artifactory, Harbor, or Quay).
+
 ## 1.130.5
 
 Released on June 25, 2026
