@@ -4,6 +4,10 @@
 Features described on this page are in alpha and subject to change. Some capabilities might require additional access.
 :::
 
+:::note
+Enterprise Portal requires a GitHub organization. The content repo integration uses the Replicated GitHub App for syncing and webhooks. GitLab, Bitbucket, and other git providers are not supported.
+:::
+
 Enterprise Portal content is driven by a GitHub repo you control. Connecting a repo is a prerequisite to offer versioned docs, advanced theming, and Terraform module delivery.
 
 The Content tab appears when your team has the New Enterprise Portal. The same setting enables the GitHub App workflow for content repositories. Use this workflow to create, authorize, and link repos.
@@ -59,3 +63,25 @@ replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/s
 :::important
 Content branches must be named with semver versions (e.g., 1.0.0) that match your release version_label values. The main branch is synced but never shown to customers directly. See [Naming Your Branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches) for details.
 :::
+
+## Adopting template updates
+
+You create your content repo from the [replicatedhq/enterprise-portal-content](https://github.com/replicatedhq/enterprise-portal-content) template. Because you clone the template rather than fork it, your repo diverges as soon as you start customizing content, branding, and navigation.
+
+When Replicated publishes improvements to the template (new MDX components, updated default pages, navigation changes), the Vendor Portal shows a banner on the **Content** tab with the number of updates available since your last review.
+
+### Reviewing updates
+
+Click **Review** on the Content tab banner to open the template updates modal. Each update includes:
+
+- **Title and date**: What changed and when
+- **Impact level**: `required`, `recommended`, or `optional`, indicating how important the update is for your portal
+- **Summary**: A brief description of the change and its effect on your customers' portal experience
+- **Affected areas**: Tags showing which parts of the template the update touches (for example, installation instructions, navigation, troubleshooting content)
+- **Guide link**: Opens the full adoption guide on GitHub with step-by-step instructions for applying the change to your repo
+
+### Applying an update
+
+Template updates do not apply automatically. Each update's guide describes what files to copy or modify and what to verify after making the change. Because your repo has diverged from the template, each guide provides targeted adoption steps rather than a wholesale merge.
+
+After reviewing the available updates, click **Mark reviewed** to acknowledge them. The banner clears until Replicated publishes the next template update. Marking updates as reviewed is per-user, so other team members continue to see the banner until they review it themselves.
