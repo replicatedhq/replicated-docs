@@ -100,7 +100,7 @@ The `toc.yaml` file at the root of your repo defines the sidebar navigation. Eac
 | `page` | Renders a markdown file from your repo (e.g. `pages/getting-started.md`) |
 | `terraform_module` | Generates docs from a Terraform module source URI (see [Terraform Modules](/vendor/enterprise-portal-v2-terraform)) |
 | `helm_chart` | Generates reference docs from a Helm chart in your promoted release (see [Helm Reference Docs](/vendor/enterprise-portal-v2-helm-reference)) |
-| `items` | Nests child navigation items to create expandable sections |
+| `items` | Nests child navigation items to create expandable sections. Items can nest to any depth, with each child following the same structure |
 
 Every item also supports `icon` and `visible_when` (see [Visibility](#visibility) below).
 
@@ -157,6 +157,30 @@ navigation:
 overrides:
   home: pages/getting-started.md
 ```
+
+### Nested navigation
+
+Navigation items can nest to any depth. Each child item follows the same structure and can contain its own `items` array:
+
+```yaml
+navigation:
+  - title: Configuration
+    icon: settings
+    items:
+      - title: Required Values
+        page: pages/configuration/required-values.md
+        items:
+          - title: Authentication
+            page: pages/configuration/auth.md
+          - title: Networking
+            page: pages/configuration/networking.md
+      - title: Optional Values
+        page: pages/configuration/optional-values.md
+```
+
+In this example, **Configuration** expands to show **Required Values** and **Optional Values**. **Required Values** further expands to show **Authentication** and **Networking**. Each level is collapsible in the sidebar.
+
+Any item with `items` can also have its own `page`, `visible_when`, and `icon`. If all children of a parent are hidden by `visible_when`, the parent is also hidden automatically.
 
 ## MDX components {#mdx-components}
 
