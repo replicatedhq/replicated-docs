@@ -22,8 +22,6 @@ For information about security for the Replicated registry, see [Replicated Regi
 
 The Replicated registry has the following limitations:
 
-* You cannot delete images from the Replicated registry. As a workaround, you can push a new, empty image to the registry using the same tags as the target image. Replicated does not recommend removing tags from the registry because it could break older releases of your application.
-
 * When using Docker Build to build and push images to the Replicated registry, provenance attestations are not supported. To avoid a 400 error, include the `--provenance=false` flag to disable all provenance attestations. For more information, see [docker buildx build](https://docs.docker.com/engine/reference/commandline/buildx_build/#provenance) and [Provenance Attestations](https://docs.docker.com/build/attestations/slsa-provenance/) in the Docker documentation.
 
 * You might encounter a timeout error when pushing images with layers close to or exceeding 2GB in size, such as: "received unexpected HTTP status: 524." To work around this, reduce the size of the image layers and push the image again. If the 524 error persists, continue decreasing the layer sizes until the push is successful.
@@ -94,3 +92,9 @@ Docker format:
 1. In the [Vendor Portal](https://vendor.replicated.com/), go to **Images** and scroll down to the **Replicated Private Registry** section to confirm that the image was pushed.
 
 </details>
+
+## Delete images from the Replicated registry {#delete-images}
+
+You can delete images from the Replicated registry on the **Image Registries** page in the [Vendor Portal](https://vendor.replicated.com/). For API details, including examples, see the [Delete App Images](https://replicated-vendor-api.readme.io/reference/deleteappimages) API documentation.
+
+You can still pull images by digest until you delete all tags for the image across all applications.
