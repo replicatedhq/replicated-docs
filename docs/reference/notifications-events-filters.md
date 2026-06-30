@@ -487,6 +487,33 @@ The following frequency options control how often the notification triggers:
 }
 ```
 
+## Platform events
+
+Platform events are account-level events that are not scoped to a single application instance, customer, release, or channel.
+
+### Egress Threshold Reached
+
+When monthly registry egress for the team reaches a configured threshold.
+
+The Egress Threshold Reached event evaluates the current calendar month's registry egress for the team. When the total reaches or exceeds the configured threshold, Replicated sends one notification for the subscription, threshold, and month. The notification can fire again in a later month, or if the threshold configuration is changed.
+
+#### Filters
+
+| Filter | JSON key | Required | Description |
+|--------|----------|----------|-------------|
+| Threshold (TiB) | `thresholdTiB` | **Yes** | Monthly registry egress threshold in tebibytes. Provide as a string, for example `"5"` or `"5.5"`. |
+
+#### JSON definition
+
+```json
+{
+  "eventType": "platform.egress_threshold_reached",
+  "filters": {
+    "thresholdTiB": "5"
+  }
+}
+```
+
 ## Release events
 
 ### Release Created

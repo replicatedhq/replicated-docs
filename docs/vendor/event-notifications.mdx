@@ -19,7 +19,7 @@ This section describes the types of events and filters that are available for cr
 
 ### Supported event types
 
-You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, and channels. For example, you can get a notification when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, or when a customer license is expiring soon.
+You can create notifications for various types of events, including events related to application instances, customers, support bundles, releases, channels, and platform-level usage. For example, you can get a notification when an instance reaches a Ready state in the customer environment, when the customer uploads a new support bundle, when a customer license is expiring soon, or when monthly registry egress reaches a configured threshold.
 
 For the full list of available event types and event-specific filters, see [Event types and filters](/reference/notifications-events-filters).
 
@@ -95,4 +95,3 @@ Event Notifications has the following limitations:
 - Notification events generated are not included in the [Instance Bulk Data Export API](instance-data-export)
 - It is possible to create a notification for some resource types, such as customers and support bundles, but not to access the notification linked asset due to your allowed user permissions. This is most likely to impact teams with [enterprise and custom RBAC policies](team-management-rbac-configuring). For example, someone with the [Sales RBAC role](team-management-rbac-configuring) can create a notification for a customer uploading a support bundle, but does not have permission to view the linked specific customer bundle due to their RBAC role permissions.
 - The Release Assets Downloaded event might fire per chart or image if the customer pulls each separately as part of your installation instructions. Because release assets might be shared across many of your release versions, the Vendor Portal records the event at the chart/image level and does not associate the event with a specific release version. If you find this alert too noisy, reach out to us to further discuss your specific use case.
-
