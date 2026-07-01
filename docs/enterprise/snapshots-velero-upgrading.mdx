@@ -8,7 +8,7 @@ This topic describes how to upgrade Velero for Replicated snapshots.
 
 ## Overview
 
-Velero 1.17 and later uses Kopia as the default uploader for file-system backups. If you upgrade from Velero 1.16 or earlier, verify that your storage destination is compatible with Kopia before you upgrade. Some storage destinations, such as the Local Volume Provider (LVP), are not compatible with Kopia and must be migrated before the upgrade.
+Velero 1.17 and later uses Kopia as the default uploader for file-system backups. If you upgrade from Velero 1.16 or earlier, verify that your storage destination is compatible with Kopia before you upgrade. Some storage destinations, such as the Local Volume Provider (LVP), are not compatible with Kopia. Migrate these destinations before the upgrade.
 
 For more information about snapshot troubleshooting, see [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore).
 

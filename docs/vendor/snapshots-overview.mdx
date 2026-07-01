@@ -60,7 +60,7 @@ This section describes the types of backups that are supported with snapshots. F
 
 Full backups (also referred to as _instance_ backups) include the KOTS Admin Console and all application data, including application volumes and manifest files.
 
-For clusters created with Replicated kURL, full backups also back up the Docker registry, which is required for air-gapped installations.
+For clusters created with Replicated kURL, full backups also back up the Docker registry. Air-gapped installations require this registry.
 
 If you manage multiple applications with the Admin Console, data from all applications that support backups is included in a full backup. To be included in full backups, each application must include a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`, which you can check for in the Admin Console.
 
@@ -78,7 +78,7 @@ For disaster recovery, backups should be configured to use a storage destination
 
 You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.17/supported-providers/) in the Velero documentation.
 
-You initially configure backups on a supported storage provider backend using the KOTS CLI. If you want to change the storage destination after the initial configuration, you can use the **Snapshots** page in the Admin Console, which has built-in support for the following storage destinations:
+You initially configure backups on a supported storage provider backend using the KOTS CLI. To change the storage destination after the initial configuration, use the **Snapshots** page in the Admin Console. The Admin Console supports the following storage destinations:
 
 - Amazon Web Services (AWS)
 - Google Cloud Provider (GCP)
@@ -93,7 +93,7 @@ For information about how to configure backup storage destinations for snapshots
 
 ### What data is backed up?
 
-Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For Replicated kURL installations, this also backs up the Docker registry, which is required for air-gapped installations.
+Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For Replicated kURL installations, this also backs up the Docker registry. Air-gapped installations require this registry.
 
 #### Other object-stored data
 

@@ -14,7 +14,7 @@ kubectl -n velero patch daemonset node-agent -p '{"spec":{"template":{"spec":{"c
 kubectl -n velero patch daemonset restic -p '{"spec":{"template":{"spec":{"containers":[{"name":"restic","resources":{"limits":{"memory":"2Gi"}}}]}}}}'
 ```
 
-Alternatively, you can potentially avoid the node-agent Pod reaching the memory limit during snapshot creation by running the following kubectl command to lower the memory garbage collection target percentage on the node-agent DaemonSet:
+Alternatively, you can lower the memory garbage collection target percentage on the node-agent DaemonSet. This can help the node-agent Pod avoid reaching the memory limit during snapshot creation. Run the following kubectl command:
 
 **Velero 1.10 and later**:
 

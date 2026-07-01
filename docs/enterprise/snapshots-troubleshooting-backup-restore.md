@@ -220,7 +220,7 @@ Add `emptyDir` volumes for `/home/cnb/udmrepo` and `/home/cnb/.cache` to the Vel
 The Local Volume Provider (LVP) is not compatible with Kopia. If you upgrade to Velero 1.17 or later and the existing storage location uses LVP, snapshots fail because Kopia cannot write to LVP storage.
 
 :::important
-LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17 and later. Before you upgrade, migrate to a Kopia-compatible storage destination. For more information, see [Upgrade Velero for Snapshots](snapshots-velero-upgrading).
+LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17 and later. Before you upgrade, migrate to a Kopia-compatible storage destination. For more information, see [Upgrade Velero for snapshots](snapshots-velero-upgrading).
 :::
 
 #### Solution
@@ -228,9 +228,9 @@ LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17
 Before you upgrade to Velero 1.17 or later, migrate from LVP to a Kopia-compatible destination. Replicated recommends one of the following options:
 
 * Reinstall KOTS with `--with-minio=true`.
-* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Ensure that the target Velero plugin is installed before you reconfigure the storage location.
+* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Install the target Velero plugin before you reconfigure the storage location.
 
-For more information, see [Upgrade Velero for Snapshots](snapshots-velero-upgrading).
+For more information, see [Upgrade Velero for snapshots](snapshots-velero-upgrading).
 
 
 ## Snapshot restore is failing
