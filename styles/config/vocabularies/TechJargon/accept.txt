@@ -124,3 +124,9 @@ discoverability
 idempotently
 monorepo
 Monorepo
+LVP
+uploader
+CRs
+BackupRepository
+preconfigured
+crashloop

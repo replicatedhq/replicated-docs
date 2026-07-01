@@ -60,7 +60,7 @@ This section describes the types of backups that are supported with snapshots. F
 
 Full backups (also referred to as _instance_ backups) include the KOTS Admin Console and all application data, including application volumes and manifest files.
 
-For clusters created with Replicated kURL, full backups also back up the Docker registry, which is required for air gapped installations.
+For clusters created with Replicated kURL, full backups also back up the Docker registry, which is required for air-gapped installations.
 
 If you manage multiple applications with the Admin Console, data from all applications that support backups is included in a full backup. To be included in full backups, each application must include a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`, which you can check for in the Admin Console.
 
@@ -76,9 +76,9 @@ Partial backups can be useful if you need to roll back after deploying a new app
 
 For disaster recovery, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations in clusters created with Replicated kURL, because the default storage location on these clusters is internal.
 
-You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
+You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.17/supported-providers/) in the Velero documentation.
 
-You initially configure backups on a supported storage provider backend using the KOTS CLI. If you want to change the storage destination after the initial configuration, you can use the the **Snapshots** page in the Admin Console, which has built-in support for the following storage destinations:
+You initially configure backups on a supported storage provider backend using the KOTS CLI. If you want to change the storage destination after the initial configuration, you can use the **Snapshots** page in the Admin Console, which has built-in support for the following storage destinations:
 
 - Amazon Web Services (AWS)
 - Google Cloud Provider (GCP)
@@ -93,7 +93,7 @@ For information about how to configure backup storage destinations for snapshots
 
 ### What data is backed up?
 
-Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For Replicated kURL installations, this also backs up the Docker registry, which is required for air gapped installations.
+Full backups include the Admin Console and all application data, including KOTS-specific object-stored data. For Replicated kURL installations, this also backs up the Docker registry, which is required for air-gapped installations.
 
 #### Other object-stored data
 
@@ -103,7 +103,7 @@ For object-stored data that is not KOTS-specific and does not use persistentVolu
 
 #### Pod volume data
 
-Replicated supports only the restic backup program for pod volume data.
+KOTS uses Velero's file-system backup uploader to back up pod volume data. For Velero 1.16 and earlier, the uploader is Restic. For Velero 1.17 and later, the uploader is Kopia.
 
 By default, Velero requires that you opt-in to have pod volumes backed up. In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up. For more information about including and excluding pod volumes, see [Configure Snapshots](/vendor/snapshots-configuring-backups).
 

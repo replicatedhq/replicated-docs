@@ -49,3 +49,10 @@ Fulcio
 Rekor
 SecureBuild
 Sigstore
+Kopia
+Restic
+MinIO
+Minio
+Ceph
+VMware
+Tanzu

@@ -10,6 +10,10 @@ For embedded clusters created with Replicated kURL, if the kURL Installer spec i
 
 <KotsAvailability/>
 
+:::note
+Velero 1.17 and later uses Kopia as the default file-system backup uploader. For more information, see [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
+:::
+
 ## Install the Velero CLI in an online cluster
 
 To install the Velero CLI in an online cluster:
@@ -34,10 +38,10 @@ To install the Velero CLI in an online cluster:
    **Example:**
 
    ```
-   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.18.2/velero-v1.18.2-linux-amd64.tar.gz
    ```
 
-1. Run the following command to uncompress the TAR file:
+1. Run the following command to extract the TAR file:
 
    ```
    tar zxvf velero-VERSION-linuxamd64.tar.gz
@@ -55,9 +59,9 @@ To install the Velero CLI in an online cluster:
 
    You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you also see the server version.
 
-## Install the Velero CLI in an air gapped cluster
+## Install the Velero CLI in an air-gapped cluster
 
-To install the Velero CLI in an air gapped cluster:
+To install the Velero CLI in an air-gapped cluster:
 
 1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest supported version. See [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
 
@@ -74,12 +78,12 @@ To install the Velero CLI in an air gapped cluster:
    **Example:**
 
    ```
-   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+   curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.18.2/velero-v1.18.2-linux-amd64.tar.gz
    ```
 
-1. Copy the TAR file to the air gapped node.
+1. Copy the TAR file to the air-gapped node.
 
-1. Run the following command to uncompress the TAR file:
+1. Run the following command to extract the TAR file:
 
    ```
    tar zxvf velero-VERSION-linuxamd64.tar.gz

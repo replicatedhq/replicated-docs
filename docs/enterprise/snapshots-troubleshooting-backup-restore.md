@@ -99,27 +99,29 @@ timed out after 12h0m0s
 
 #### Cause
 
-This error message appears when the node-agent (restic) Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default timeout is 240 minutes.
+This error message appears when the node-agent Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default timeout is 240 minutes.
 
-Restic is an open-source backup tool. Velero integrates with Restic to provide a solution for backing up and restoring Kubernetes volumes. For more information about the Velero Restic integration, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
+For Velero 1.16 and earlier, Velero integrates with Restic to provide a solution for backing up and restoring Kubernetes volumes. For more information, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
+
+For Velero 1.17 and later, Velero uses Kopia for file-system backups by default.
 
 #### Solution
 
 Use the kubectl Kubernetes command-line tool to patch the Velero deployment to increase the timeout:
 
-**Velero version 1.10 and later**:
+**Velero 1.17 and later**:
 
 ```bash
 kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--fs-backup-timeout=TIMEOUT_LIMIT"}]'
 ```
 
-**Velero versions less than 1.10**:
+**Velero 1.16 and earlier**:
 
 ```bash
 kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--restic-timeout=TIMEOUT_LIMIT"}]'
 ```
 
-Replace `TIMEOUT_LIMIT` with a length of time for the node-agent (restic) Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
+Replace `TIMEOUT_LIMIT` with a length of time for the node-agent Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
 
 :::note
 The timeout value reverts back to the default value if you rerun the `velero install` command.
@@ -129,7 +131,7 @@ The timeout value reverts back to the default value if you rerun the `velero ins
 
 #### Symptom
 
-The node-agent (restic) Pod is killed by the Linux kernel Out Of Memory (OOM) killer or snapshots are failing with errors simlar to:
+The node-agent Pod is killed by the Linux kernel Out Of Memory (OOM) killer or snapshots are failing with errors similar to:
 
 ```
 pod volume backup failed: ... signal: killed
@@ -137,9 +139,9 @@ pod volume backup failed: ... signal: killed
 
 #### Cause
 
-Velero sets default limits for the velero Pod and the node-agent (restic) Pod during installation. There is a known issue with Restic that causes high memory usage, which can result in failures during snapshot creation when the Pod reaches the memory limit.
+Velero sets default limits for the velero Pod and the node-agent Pod during installation. For Velero 1.16 and earlier, there is a known issue with Restic that causes high memory usage, which can result in failures during snapshot creation when the Pod reaches the memory limit. For Velero 1.17 and later, Velero uses Kopia for file-system backups by default, and large volumes can also require a higher memory limit.
 
-For more information, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the restic GitHub repository.
+For more information about the Restic issue, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the Restic GitHub repository.
 
 #### Solution
 
@@ -157,7 +159,7 @@ Error backing up item...Warning: at least one source file could not be read
 
 #### Cause
 
-There are file changes between Restic's initial scan of the volume and during the backup to Restic store.
+For Velero 1.16 and earlier, there are file changes between Restic's initial scan of the volume and during the backup to the Restic store.
 
 #### Solution
 
@@ -167,9 +169,73 @@ To resolve this issue, do one of the following:
 * Freeze the file system to ensure all pending disk I/O operations have completed prior to taking a snapshot. For more information, see [Hook Example with fsfreeze](https://velero.io/docs/main/backup-hooks/#hook-example-with-fsfreeze) in the Velero documentation.
 
 
+## Kopia file-system backup issues (Velero 1.17 and later)
+
+### Data mover pods do not start or complete
+
+#### Cause
+
+For Velero 1.17 and later, Kopia spawns data mover pods from the node-agent. If a backup or restore stays in progress, the data mover pods might not start or complete.
+
+#### Solution
+
+Check the node-agent logs for errors that prevent data mover pods from starting. Verify that the data mover pod image can be pulled and that any pod security policies or security context constraints allow the pod to start.
+
+### BackupRepository is not available
+
+#### Cause
+
+For Velero 1.17 and later, Kopia uses `BackupRepository` custom resources (CRs) to manage repositories. A backup or restore can fail if the `BackupRepository` CR is not available or is in a failed state.
+
+#### Solution
+
+Check the status of the `BackupRepository` CRs:
+
+```bash
+kubectl get backuprepositories -n velero
+```
+
+Describe any CR that is not in a Ready state to view the error:
+
+```bash
+kubectl describe backuprepository BACKUP_REPOSITORY_NAME -n velero
+```
+
+Common errors include invalid credentials, network connectivity issues, or problems with the underlying storage. After you resolve the issue, Velero retries the backup repository operations.
+
+### Read-only root filesystem errors
+
+#### Cause
+
+For Velero 1.17 and later, Kopia needs writable directories for cache and configuration. The default paths are `/home/cnb/udmrepo` and `/home/cnb/.cache`. If `ReadOnlyRootFilesystem` is set for the Velero or node-agent pods, Kopia cannot write to these directories and the backup or restore fails.
+
+#### Solution
+
+Add `emptyDir` volumes for `/home/cnb/udmrepo` and `/home/cnb/.cache` to the Velero deployment and the node-agent daemon set. Mount the volumes at the required paths so Kopia can write cache and configuration data.
+
+### LVP storage location is unavailable after upgrade
+
+#### Cause
+
+The Local Volume Provider (LVP) is not compatible with Kopia. If you upgrade to Velero 1.17 or later and the existing storage location uses LVP, snapshots fail because Kopia cannot write to LVP storage.
+
+:::important
+LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17 and later. Before you upgrade, migrate to a Kopia-compatible storage destination. For more information, see [Upgrade Velero for Snapshots](snapshots-velero-upgrading).
+:::
+
+#### Solution
+
+Before you upgrade to Velero 1.17 or later, migrate from LVP to a Kopia-compatible destination. Replicated recommends one of the following options:
+
+* Reinstall KOTS with `--with-minio=true`.
+* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Ensure that the target Velero plugin is installed before you reconfigure the storage location.
+
+For more information, see [Upgrade Velero for Snapshots](snapshots-velero-upgrading).
+
+
 ## Snapshot restore is failing
 
-### Service nodeport is already allocated
+### Service NodePort is already allocated
 
 #### Symptom
 
@@ -187,7 +253,7 @@ There is a known issue in Kubernetes versions earlier than version 1.19 where us
 
 This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
 
-For more infromation about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
+For more information about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
 
 ### Partial snapshot restore is stuck in progress
 
