@@ -2,6 +2,10 @@
 
 This topic describes the options available with the Embedded Cluster `node upgrade` command.
 
+In most clusters, you do not need to run this command directly. When you run `upgrade` on the primary controller, the daemon automatically streams the upgrade bundle to each remote node. See [Multi-node clusters](updating-embedded#multi-node-clusters).
+
+Use `node upgrade` when you need to upgrade a node manually, for example when a node is running an Embedded Cluster version earlier than 3.2 and cannot receive streamed upgrades. To produce the bundle for manual upgrades, run `create-upgrade-bundle` on the primary controller and copy the output to the target node.
+
 ## Usage
 
 ```bash
