@@ -94,6 +94,7 @@ rollout
 SAML
 SCIM
 SSO
+TAR
 TOTP
 ttl
 keyless

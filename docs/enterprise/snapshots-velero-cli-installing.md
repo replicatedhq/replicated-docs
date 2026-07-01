@@ -41,7 +41,7 @@ To install the Velero CLI in an online cluster:
    curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.18.2/velero-v1.18.2-linux-amd64.tar.gz
    ```
 
-1. Run the following command to extract the Tape Archive (TAR) file:
+1. Run the following command to extract the TAR file:
 
    ```
    tar zxvf velero-VERSION-linuxamd64.tar.gz
@@ -83,7 +83,7 @@ To install the Velero CLI in an air-gapped cluster:
 
 1. Copy the TAR file to the air-gapped node.
 
-1. Run the following command to extract the Tape Archive (TAR) file:
+1. Run the following command to extract the TAR file:
 
    ```
    tar zxvf velero-VERSION-linuxamd64.tar.gz
