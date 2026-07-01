@@ -8,6 +8,21 @@ Each Embedded Cluster binary that you download targets a particular application 
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
+## Multi-node clusters
+
+In multi-node clusters, run the `upgrade` command on the primary controller (the first controller installed). The upgrade proceeds in two stages:
+
+1. The primary controller upgrades its own binaries, Kubernetes version, and Embedded Cluster components.
+2. The primary controller's daemon streams the upgrade bundle to each remaining node over HTTPS. Controllers upgrade first (one at a time, to preserve etcd quorum), then workers (one at a time).
+
+The end user does not need to copy files to remote nodes or run commands on them. The daemon on each remote node receives the bundle, extracts it, and performs the local upgrade automatically. Progress is visible in the installer UI or persistent admin console during interactive upgrades, and in the CLI output during headless upgrades.
+
+If a node cannot be reached during the upgrade, the orchestrator reports the failure and stops. Resolve the connectivity issue and re-run the upgrade to retry.
+
+:::note
+If your cluster contains nodes running Embedded Cluster versions earlier than 3.2, the orchestrator cannot stream bundles to those nodes. The installer UI automatically detects this and displays manual instructions for upgrading those nodes. You can also use `create-upgrade-bundle` on the primary controller to produce a bundle, copy it to each older node, and run `node upgrade` on that node. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
+:::
+
 ## Upgrade using the Embedded Cluster UI
 
 ### Use the Enterprise Portal for a guided upgrade

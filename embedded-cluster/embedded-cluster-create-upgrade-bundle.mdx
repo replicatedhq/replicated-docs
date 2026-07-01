@@ -2,6 +2,10 @@
 
 This topic describes the options available with the Embedded Cluster `create-upgrade-bundle` command. Use this command to produce a bundle used for offline or constrained-path upgrades.
 
+In most clusters, you do not need this command. When you run `upgrade` on the primary controller, the daemon automatically streams the upgrade bundle to each remote node. See [Multi-node clusters](updating-embedded#multi-node-clusters).
+
+Use `create-upgrade-bundle` when you need to upgrade nodes manually, for example when a node is running an Embedded Cluster version earlier than 3.2 and cannot receive streamed upgrades. Copy the output bundle to the target node and run [node upgrade](embedded-cluster-node-upgrade).
+
 ## Usage
 
 ```bash
