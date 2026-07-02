@@ -154,7 +154,7 @@ You can explicitly include or exclude images from being scanned by the Security 
 
 ## Retrieve scan results with the Vendor API
 
-You can retrieve the Security Center's scan results programmatically with the Replicated Vendor API. The API returns the same Grype scan data that powers the Security Center dashboards, so you can use the results in a CI/CD pipeline. For example, you can gate the promotion of a release from one channel to the next based on the vulnerabilities found in the release's images, which surfaces vulnerabilities earlier in your delivery process.
+You can retrieve the Security Center's scan results programmatically with the Replicated Vendor API. The API returns the same Grype scan data that powers the Security Center dashboards, so you can use the results in a CI/CD pipeline. For example, you can gate the promotion of a release from one channel to the next based on the vulnerabilities found in the release's images. This surfaces vulnerabilities earlier in your delivery process.
 
 A pipeline that gates promotion on scan results typically does the following:
 
@@ -182,7 +182,7 @@ The Vendor API expects the token directly in the `Authorization` header, without
 
 ### Promote a release and get the channel sequence
 
-Scan results are addressed by the release's channel sequence, which is the release's position in a given channel, and not by its release sequence. Promote the release with the Vendor API, which returns the `channelSequence` in the response:
+You request scan results by the release's channel sequence, which is the release's position in a given channel, not by its release sequence. Promote the release with the Vendor API, which returns the `channelSequence` in the response:
 
 ```bash
 CHANNEL_SEQUENCE=$(curl -s -X POST \
@@ -240,7 +240,7 @@ The response contains a `scans` array with one entry per scanned image. Each ent
 
 Scans run asynchronously and continuously, so a scan might not be complete when you request the results. While a scan is in progress, its `scan_status` is a non-terminal value such as `pending`, `in_progress`, or `generating`, and its `result` is `null`. A completed scan has a `scan_status` of `succeeded`, and a scan that could not complete has a `scan_status` of `failed`. Poll the endpoint until every scan reaches a terminal status before you evaluate the results.
 
-Grype reports more severities than the four shown in the Security Center dashboard. In addition to Critical, High, Medium, and Low, an individual match can have a severity of `Negligible` or `Unknown`. Filter on the severities that matter to your security policy.
+Grype reports more severity levels than the four shown in the Security Center dashboard. In addition to Critical, High, Medium, and Low, an individual match can have a severity of `Negligible` or `Unknown`. Filter on the severity levels that matter to your security policy.
 
 Each match includes a `vulnerability.fix.state` field that indicates whether a fix is available. A value of `fixed` means a fix exists, `not-fixed` means no fix is available, and `unknown` means the fix status is not known. Gate on `fixed` vulnerabilities to focus on issues that you can remediate.
 
@@ -259,7 +259,7 @@ curl -s \
       | select(.vulnerability.fix.state == "fixed")] | length'
 ```
 
-To save the matching CVEs to a file for a report, wrap the results in an array so that the output is valid JSON rather than a stream of concatenated objects:
+To save the matching CVEs to a file for a report, wrap the results in an array. This makes the output valid JSON rather than a stream of concatenated objects:
 
 ```bash
 curl -s \
@@ -273,7 +273,7 @@ curl -s \
 
 ### Promote to the next channel
 
-If the release passes your policy, promote it to the next channel by calling the promote endpoint again with the ID of the next channel, such as your Stable channel.
+If the release passes your policy, promote it to the next channel, such as your Stable channel. To do so, call the promote endpoint again with the ID of the next channel.
 
 ### Retrieve summarized scan results
 
@@ -293,7 +293,7 @@ To retrieve the Software Bills of Materials (SBOMs) for a release, use the `secu
 GET /v3/app/{appId}/channel/{channelId}/securebuild/sbom?channel_sequence={channelSequence}
 ```
 
-Unlike the scan endpoints, the SBOM response is an object keyed by image reference. Each image's `sbom` field is a JSON-encoded SPDX 2.3 string, so parse the string with `fromjson` before you query it:
+Unlike the scan endpoints, the SBOM response is an object keyed by image reference. Each image's `sbom` field is a JSON-encoded Software Package Data Exchange (SPDX) 2.3 string, so parse the string with `fromjson` before you query it:
 
 ```json
 {
@@ -312,9 +312,9 @@ curl -s \
   | jq -r '.sboms["example.com/app/api:1.2.3"].sbom | fromjson'
 ```
 
-### Example GitHub Actions workflow
+### Example workflow to gate promotion
 
-The following example gates promotion to the Stable channel on the absence of fixable Critical and High vulnerabilities. It waits for all scans to reach a terminal status, evaluates the results, and fails the job when the gate does not pass, which prevents the promotion step from running:
+The following example is a GitHub Actions workflow that gates promotion to the Stable channel on the absence of fixable Critical and High vulnerabilities. It waits for all scans to reach a terminal status, evaluates the results, and fails the job when the gate does not pass. A failed job prevents the promotion step from running:
 
 ```yaml
 name: Gate promotion on scan results
