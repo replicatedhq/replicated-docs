@@ -65,6 +65,7 @@ exceptions:
   - URL
   - USB
   - UTF
+  - UID
   - UUID
   - VXLAN
   - XML
