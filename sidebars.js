@@ -408,6 +408,7 @@ const sidebars = {
             "enterprise/snapshots-restoring-full",
             "enterprise/snapshots-updating-with-admin-console",
             "enterprise/snapshots-troubleshooting-backup-restore",
+            "enterprise/snapshots-troubleshooting-reclaim-space",
             "enterprise/snapshots-velero-upgrading",
           ],
         },

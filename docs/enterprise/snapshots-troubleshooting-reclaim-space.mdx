@@ -1,0 +1,81 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
+# Deleted snapshots do not reclaim disk space in embedded kURL clusters
+
+This topic describes how to reclaim disk space after deleting snapshots in embedded kURL clusters when the expected space is not freed.
+
+<KotsAvailability/>
+
+## Symptom
+
+After deleting snapshots from the Admin Console or with the KOTS CLI, the disk space on the embedded kURL cluster is not reclaimed. The snapshots continue to consume disk space. The available disk space might remain the same or decrease over time.
+
+## Cause
+
+The cause depends on the version of Velero installed in the cluster.
+
+### Velero 1.16 and earlier
+
+Velero 1.16 and earlier use Restic for file-system backups. Restic does not immediately remove data from the backup repository when you delete a snapshot. Instead, Restic marks the data as no longer referenced and reclaims the space only during a prune operation. By default, Velero runs a prune operation based on the `--default-restic-prune-frequency` flag. If the prune frequency is too low or pruning has not run, deleted snapshots continue to consume disk space.
+
+In addition, Velero versions up to and including 1.16.x do not purge data from Host Path storage. Even if the Restic prune operation runs, the Host Path storage location might not release the underlying disk space.
+
+### Velero 1.17 and later
+
+Velero 1.17 and later use Kopia for file-system backups by default. Velero replaced the `--default-restic-prune-frequency` flag with `--default-repo-maintain-frequency`. Kopia performs repository maintenance that reclaims space from deleted snapshots. Velero 1.17 and later also include the fix for purging data from Host Path storage.
+
+## Solution
+
+The solution depends on the Velero version.
+
+### Velero 1.16 and earlier
+
+For Velero 1.16 and earlier, you can manually reclaim disk space by running a Restic prune. You can also adjust the prune frequency so that Velero reclaims space automatically.
+
+To run a manual prune:
+
+1. Run the following command to create a `DeleteBackupRequests` or use the Velero CLI to trigger a Restic prune. The exact command depends on your Velero version and configuration. For more information, see [Restic backup repository maintenance](https://velero.io/docs/v1.16/file-system-backup/) in the Velero documentation.
+
+1. Monitor the node-agent Pod logs to verify that the prune operation completes:
+
+   ```bash
+   kubectl logs -n velero -l name=node-agent -f
+   ```
+
+To adjust the prune frequency, patch the Velero deployment with the `--default-restic-prune-frequency` flag. For example:
+
+```bash
+kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--default-restic-prune-frequency=24h0m0s"}]'
+```
+
+Replace `24h0m0s` with the desired frequency. Velero uses the default value if you do not set the flag. For more information, see [File System Backup](https://velero.io/docs/v1.16/file-system-backup/) in the Velero documentation.
+
+### Velero 1.17 and later
+
+For Velero 1.17 and later, Kopia automatically performs repository maintenance based on the `--default-repo-maintain-frequency` flag. If disk space is not reclaimed, verify that the Kopia maintenance job has run.
+
+To check the maintenance status, run:
+
+```bash
+velero repo get
+```
+
+Describe the `BackupRepository` CRs if they are not in a `Ready` state:
+
+```bash
+kubectl describe backuprepository BACKUP_REPOSITORY_NAME -n velero
+```
+
+To adjust the maintenance frequency, patch the Velero deployment with the `--default-repo-maintain-frequency` flag. For example:
+
+```bash
+kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--default-repo-maintain-frequency=24h0m0s"}]'
+```
+
+For more information, see [File System Backup](https://velero.io/docs/v1.17/file-system-backup/) in the Velero documentation.
+
+## Additional resources
+
+- [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility)
+- [Troubleshoot Snapshots](/enterprise/snapshots-troubleshooting-backup-restore)
+- [Upgrade Velero for snapshots](/enterprise/snapshots-velero-upgrading)
