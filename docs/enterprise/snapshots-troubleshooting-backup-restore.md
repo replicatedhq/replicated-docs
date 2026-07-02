@@ -99,7 +99,7 @@ timed out after 12h0m0s
 
 #### Cause
 
-This error message appears when the node-agent Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default timeout is 240 minutes.
+This error message appears when the node-agent Pod operation timeout limit is reached. The default timeout is 240 minutes.
 
 For Velero 1.16 and earlier, Velero integrates with Restic to provide a solution for backing up and restoring Kubernetes volumes. For more information, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
 
@@ -254,30 +254,6 @@ There is a known issue in Kubernetes versions earlier than version 1.19 where us
 This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
 
 For more information about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
-
-### Partial snapshot restore is stuck in progress
-
-#### Symptom
-
-In the Admin Console, you see at least one volume restore progress bar frozen at 0%. Example Admin Console display:
-
-![Snapshot Troubleshoot Frozen Restore](/images/snapshot-troubleshoot-frozen-restore.png)
-
-You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
-
-```shell
-NAME                                  READY   STATUS      RESTARTS   AGE
-example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- the offending pod
-example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
-```
-
-#### Cause
-
-We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or later.
-
-#### Solution
-
-Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
 ### Partial snapshot restore finishes with warnings
 
