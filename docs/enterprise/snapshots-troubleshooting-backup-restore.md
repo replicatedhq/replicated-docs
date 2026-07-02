@@ -3,7 +3,7 @@ import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 # Troubleshoot snapshots
 
-When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
+When a snapshot fails, KOTS automatically collects and stores a support bundle. This bundle contains all logs and system state at the time of the failure. It is a good place to view the logs.
 
 <KotsAvailability/>
 
@@ -29,7 +29,7 @@ An error occurred: some backup storage locations are invalid: backup store for l
 
 #### Cause
 
-If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
+If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The support bundle includes the Velero logs, and the message looks like this.
 
 #### Solution
 
@@ -53,7 +53,7 @@ An error occurred: some backup storage locations are invalid: backup store for l
 
 #### Cause
 
-This error message is caused when Velero is attempting to start, and it is configured to use a reconfigured or re-used bucket.
+Velero displays this error message when it attempts to start and uses a reconfigured or re-used bucket.
 
 When configuring Velero to use a bucket, the bucket cannot contain other data, or Velero will crash.
 
@@ -78,7 +78,7 @@ time="2023-11-16T21:29:44Z" level=fatal msg="Failed to start metric server for n
 
 #### Cause
 
-This is a result of a known issue in Velero 1.12.0 and 1.12.1 where the port is not set correctly when starting the metrics server. This causes the metrics server to fail to start with a `permission denied` error in environments that do not run MinIO and have Host Path, NFS, or internal storage destinations configured. When the metrics server fails to start, the node-agent Pod crashes. For more information about this issue, see [the GitHub issue details](https://github.com/vmware-tanzu/velero/issues/6792).
+This issue occurs in Velero 1.12.0 and 1.12.1. Velero does not set the port correctly when starting the metrics server. The metrics server fails to start with a `permission denied` error. The error occurs in environments that do not run MinIO and have Host Path, Network File System (NFS), or internal storage destinations configured. When the metrics server fails to start, the node-agent Pod crashes. For more information about this issue, see [the GitHub issue details](https://github.com/vmware-tanzu/velero/issues/6792).
 
 #### Solution
 
@@ -99,7 +99,7 @@ timed out after 12h0m0s
 
 #### Cause
 
-This error message appears when the node-agent Pod operation timeout limit is reached. The default timeout is 240 minutes.
+This error message appears when the node-agent Pod operation reaches the timeout limit. The default timeout is 240 minutes.
 
 For Velero 1.16 and earlier, Velero integrates with Restic to provide a solution for backing up and restoring Kubernetes volumes. For more information, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
 
@@ -131,7 +131,7 @@ The timeout value reverts back to the default value if you rerun the `velero ins
 
 #### Symptom
 
-The node-agent Pod is killed by the Linux kernel Out Of Memory (OOM) killer or snapshots are failing with errors similar to:
+The Linux kernel Out Of Memory (OOM) killer kills the node-agent Pod, or snapshots fail with errors similar to:
 
 ```
 pod volume backup failed: ... signal: killed
@@ -139,7 +139,7 @@ pod volume backup failed: ... signal: killed
 
 #### Cause
 
-Velero sets default limits for the velero Pod and the node-agent Pod during installation. For Velero 1.16 and earlier, there is a known issue with Restic that causes high memory usage, which can result in failures during snapshot creation when the Pod reaches the memory limit. For Velero 1.17 and later, Velero uses Kopia for file-system backups by default, and large volumes can also require a higher memory limit.
+Velero sets default limits for the velero Pod and the node-agent Pod during installation. For Velero 1.16 and earlier, a known Restic issue causes high memory usage. This high memory usage can cause failures during snapshot creation when the Pod reaches the memory limit. For Velero 1.17 and later, Velero uses Kopia for file-system backups by default. Large volumes with Kopia can also require a higher memory limit.
 
 For more information about the Restic issue, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the Restic GitHub repository.
 
@@ -147,7 +147,7 @@ For more information about the Restic issue, see the [Restic backup — OOM-kill
 
 <NodeAgentMemLimit/>
 
-### At least one source file could not be read
+### Velero cannot read at least one source file
 
 #### Symptom
 
@@ -179,7 +179,7 @@ For Velero 1.17 and later, Kopia spawns data mover pods from the node-agent. If 
 
 #### Solution
 
-Check the node-agent logs for errors that prevent data mover pods from starting. Verify that the data mover pod image can be pulled and that any pod security policies or security context constraints allow the pod to start.
+Check the node-agent logs for errors that prevent data mover pods from starting. Verify that the cluster can pull the data mover pod image and that any pod security policies or security context constraints allow the pod to start.
 
 ### BackupRepository is not available
 
@@ -207,7 +207,7 @@ Common errors include invalid credentials, network connectivity issues, or probl
 
 #### Cause
 
-For Velero 1.17 and later, Kopia needs writable directories for cache and configuration. The default paths are `/home/cnb/udmrepo` and `/home/cnb/.cache`. If `ReadOnlyRootFilesystem` is set for the Velero or node-agent pods, Kopia cannot write to these directories and the backup or restore fails.
+For Velero 1.17 and later, Kopia needs writable directories for cache and configuration. The default paths are `/home/cnb/udmrepo` and `/home/cnb/.cache`. If `ReadOnlyRootFilesystem` applies to the Velero or node-agent pods, Kopia cannot write to these directories and the backup or restore fails.
 
 #### Solution
 
@@ -239,7 +239,7 @@ For more information, see [Upgrade Velero for snapshots](snapshots-velero-upgrad
 
 #### Symptom
 
-In the Replicated KOTS Admin Console, you see an **Application failed to restore** error message that indicates the port number for a static NodePort is already in use. For example:
+In the Replicated KOTS Admin Console, you see an **Application failed to restore** error. The error indicates that the port number for a static NodePort is already in use. For example:
 
 ![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
 
@@ -247,11 +247,11 @@ In the Replicated KOTS Admin Console, you see an **Application failed to restore
 
 #### Cause
 
-There is a known issue in Kubernetes versions earlier than version 1.19 where using a static NodePort for services can collide in multi-primary high availability setups when recreating the services. For more information about this known issue, see https://github.com/kubernetes/kubernetes/issues/85894.
+A known issue in Kubernetes versions earlier than version 1.19 can cause static NodePort services to collide in multi-primary high availability setups. This collision occurs when recreating the services. For more information about this known issue, see https://github.com/kubernetes/kubernetes/issues/85894.
 
 #### Solution
 
-This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
+Kubernetes version 1.19 fixes this issue. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
 
 For more information about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
 
@@ -259,14 +259,14 @@ For more information about the fix, see https://github.com/kubernetes/kubernetes
 
 #### Symptom
 
-In the Admin Console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
+In the Admin Console, when the partial snapshot restore completes, you see warnings indicating that Velero did not restore Endpoint resources:
 
 ![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
 
 #### Cause
 
-The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources. For more information about this issue, see [the issue details](https://github.com/vmware-tanzu/velero/issues/6280) in GitHub.
+Velero changed the resource restore priority in 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources. For more information about this issue, see [the issue details](https://github.com/vmware-tanzu/velero/issues/6280) in GitHub.
 
 #### Solution
 
-These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, to prevent encountering these warnings, use Velero version 1.11.1 or later.
+These warnings do not necessarily mean that the restore itself failed. The endpoints likely exist because Kubernetes creates them when the restore process restores the related Service resources. However, to prevent encountering these warnings, use Velero version 1.11.1 or later.

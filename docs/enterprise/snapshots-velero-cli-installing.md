@@ -5,7 +5,7 @@ import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 You install the Velero CLI before installing Velero and configuring a storage destination for backups.
 
 :::note
-For embedded clusters created with Replicated kURL, if the kURL Installer spec included the Velero add-on, then Velero was automatically installed with default internal storage. Replicated recommends that you proceed to change the default internal storage because it is insufficient for disaster recovery. See [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
+For embedded clusters created with Replicated kURL, check whether the kURL Installer spec included the Velero add-on. If so, the kURL installer automatically installed Velero with default internal storage. Replicated recommends that you change the default internal storage because it is insufficient for disaster recovery. See [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 <KotsAvailability/>
@@ -23,7 +23,7 @@ To install the Velero CLI in an online cluster:
     - (Embedded kURL cluster) Run an SSH command to access and authenticate to your cluster node.
     - (Existing cluster) Open a terminal in the environment that you manage the cluster from, which can be a local machine that has kubectl installed.
 
-1. Check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest supported version. For more information about supported versions, see [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
+1. Check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although Replicated supports earlier versions of Velero, Replicated recommends using the latest supported version. For more information about supported versions, see [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
 
     Note the version number for the next step.
 
@@ -63,7 +63,7 @@ To install the Velero CLI in an online cluster:
 
 To install the Velero CLI in an air-gapped cluster:
 
-1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest supported version. See [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
+1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although Replicated supports earlier versions of Velero, Replicated recommends using the latest supported version. See [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility).
 
     Note the version number for the next step.
 

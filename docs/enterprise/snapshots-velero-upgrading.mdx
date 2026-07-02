@@ -20,11 +20,11 @@ Complete the following prerequisites before you upgrade Velero:
 
 1. Take a snapshot of the application before you upgrade. This snapshot lets you restore the application if the upgrade fails.
 
-1. Ensure that the Velero plugin for the target storage destination is installed. For example, verify that the plugin image is available in the registry for air-gapped environments. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
+1. Install the Velero plugin for the target storage destination, if needed. For example, verify that the plugin image is available in the registry for air-gapped environments. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
 
 ## Migrate from local volume provider (LVP) to a Kopia-compatible destination
 
-LVP is not compatible with Kopia. If Velero is configured to use LVP, you must migrate to a Kopia-compatible destination before you upgrade to Velero 1.17 or later.
+LVP is not compatible with Kopia. If the storage location uses LVP, migrate to a Kopia-compatible destination before you upgrade to Velero 1.17 or later.
 
 :::important
 LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17 and later. Replicated recommends that you migrate to a Kopia-compatible destination before you upgrade.
@@ -35,7 +35,7 @@ In-place reconfiguration from LVP to a filesystem-based Minio deployment is not 
 Replicated recommends one of the following options:
 
 * Reinstall KOTS with `--with-minio=true`. This installs a Minio object store that is compatible with Kopia.
-* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Ensure that the target Velero plugin is installed before you reconfigure the storage location. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
+* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Install the target Velero plugin before you reconfigure the storage location. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
 
 For more information about LVP storage issues after upgrade, see [LVP storage location is unavailable after upgrade](snapshots-troubleshooting-backup-restore#lvp-storage-location-is-unavailable-after-upgrade) in _Troubleshoot Snapshots_.
 
@@ -49,7 +49,7 @@ To upgrade Velero, follow the upgrade instructions for the target Velero version
 
 After you upgrade Velero, verify that the upgrade is successful:
 
-1. Run `velero version` to confirm that the expected Velero version is installed.
+1. Run `velero version` to confirm the expected Velero version.
 
 1. Check the status of the `BackupStorageLocation`:
 
@@ -79,7 +79,7 @@ After you upgrade Velero, verify that the upgrade is successful:
 
 ## Restore existing Restic backups
 
-Restic backups created on Velero 1.16 and earlier can be restored on Velero 1.17 and 1.18. Velero 1.17 and 1.18 retain the ability to restore Restic backups. To restore an existing Restic backup, use the same storage location and credentials that were used to create the backup.
+Velero 1.17 and 1.18 can restore Restic backups created on Velero 1.16 and earlier. To restore an existing Restic backup, use the same storage location and credentials that you used to create the backup.
 
 ## Additional resources
 

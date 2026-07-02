@@ -11,7 +11,7 @@ This topic describes how to configure namespace access and the memory limit for 
 
 ## Overview
 
-The Replicated KOTS Admin Console requires access to the namespace where Velero is installed. If your Admin Console is running with minimal role-based-access-control (RBAC) privileges, you must enable the Admin Console to access Velero.
+The Replicated KOTS Admin Console requires access to the namespace where Velero runs. If your Admin Console is running with minimal role-based-access-control (RBAC) privileges, you must enable the Admin Console to access Velero.
 
 Additionally, if the application uses a large amount of memory, you can configure the default memory limit to help ensure that Velero runs successfully with snapshots.
 
@@ -26,7 +26,7 @@ kubectl kots velero ensure-permissions --namespace ADMIN_CONSOLE_NAMESPACE --vel
 ```
 Replace:
 * `ADMIN_CONSOLE_NAMESPACE` with the namespace on the cluster where the Admin Console is running.
-* `VELERO_NAMESPACE` with the namespace on the cluster where Velero is installed.
+* `VELERO_NAMESPACE` with the namespace on the cluster where Velero runs.
 
 For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the KOTS CLI documentation. For more information about RBAC privileges for the Admin Console, see [Kubernetes RBAC](/vendor/packaging-rbac).
 
