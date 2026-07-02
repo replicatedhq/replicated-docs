@@ -11,24 +11,13 @@ Run one of the following commands to install Velero, depending on the version of
        --plugins velero/velero-plugin-for-aws:v1.14.2
      ```
 
-   * **Velero v1.10 to v1.16**:
+   * **Velero v1.11 to v1.16**:
 
      ```bash
      velero install \
        --no-default-backup-location \
        --no-secret \
        --use-node-agent --uploader-type=restic \
-       --use-volume-snapshots=false \
-       --plugins velero/velero-plugin-for-aws:v1.14.2
-     ```
-
-   * **Velero versions earlier than v1.10**:
-
-     ```bash
-     velero install \
-       --no-default-backup-location \
-       --no-secret \
-       --use-restic \
        --use-volume-snapshots=false \
        --plugins velero/velero-plugin-for-aws:v1.14.2
      ```
