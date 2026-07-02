@@ -1,0 +1,92 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
+# Upgrade Velero for snapshots
+
+This topic describes how to upgrade Velero for Replicated snapshots.
+
+<KotsAvailability/>
+
+## Overview
+
+Velero 1.17 and later uses Kopia as the default uploader for file-system backups. If you upgrade from Velero 1.16 or earlier, verify that your storage destination is compatible with Kopia before you upgrade. Some storage destinations, such as the Local Volume Provider (LVP), are not compatible with Kopia. Migrate these destinations before the upgrade.
+
+For more information about snapshot troubleshooting, see [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore).
+
+## Before you upgrade
+
+Complete the following prerequisites before you upgrade Velero:
+
+1. Check the current storage destination type. If the storage location uses LVP, migrate to a Kopia-compatible destination before you upgrade. For more information, see [Migrate from Local Volume Provider (LVP) to a Kopia-compatible destination](#migrate-from-local-volume-provider-lvp-to-a-kopia-compatible-destination).
+
+1. Take a snapshot of the application before you upgrade. This snapshot lets you restore the application if the upgrade fails.
+
+1. Install the Velero plugin for the target storage destination, if needed. For example, verify that the plugin image is available in the registry for air-gapped environments. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
+
+## Migrate from local volume provider (LVP) to a Kopia-compatible destination
+
+LVP is not compatible with Kopia. If the storage location uses LVP, migrate to a Kopia-compatible destination before you upgrade to Velero 1.17 or later.
+
+:::important
+LVP backups created on Velero 1.16 and earlier are not restorable on Velero 1.17 and later. Replicated recommends that you migrate to a Kopia-compatible destination before you upgrade.
+:::
+
+In-place reconfiguration from LVP to a filesystem-based Minio deployment is not supported. The `minio-enabled-snapshots=false` setting persists, so reconfiguring to filesystem Minio in the Admin Console does not enable a Kopia-compatible object store.
+
+Replicated recommends one of the following options:
+
+* Reinstall KOTS with `--with-minio=true`. This installs a Minio object store that is compatible with Kopia.
+* Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Install the target Velero plugin before you reconfigure the storage location. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
+
+For more information about LVP storage issues after upgrade, see [LVP storage location is unavailable after upgrade](snapshots-troubleshooting-backup-restore#lvp-storage-location-is-unavailable-after-upgrade) in _Troubleshoot Snapshots_.
+
+## Upgrade one version at a time
+
+Replicated recommends that you upgrade Velero one version at a time. For example, if you are running Velero 1.15, upgrade to Velero 1.16 first, verify that snapshots work, and then upgrade to Velero 1.17. Upgrading incrementally reduces the risk of incompatible custom resources or storage locations.
+
+To upgrade Velero, follow the upgrade instructions for the target Velero version in the [Velero documentation](https://velero.io/docs/). KOTS does not provide an Admin Console button or a KOTS CLI command to upgrade Velero. The cluster administrator performs the upgrade manually.
+
+## Verify the upgrade
+
+After you upgrade Velero, verify that the upgrade is successful:
+
+1. Run `velero version` to confirm the expected Velero version.
+
+1. Check the status of the `BackupStorageLocation`:
+
+   ```bash
+   velero backup-location get
+   ```
+
+   The BackupStorageLocation must be in an `Available` state before you create backups. If it is not available, describe the BackupStorageLocation to view the error:
+
+   ```bash
+   kubectl describe backupstoragelocation <NAME> -n velero
+   ```
+
+1. Check the status of the `BackupRepository` CRs:
+
+   ```bash
+   kubectl get backuprepositories -n velero
+   ```
+
+   All `BackupRepository` CRs must be in a `Ready` state before you create backups. If a CR is not ready, describe the CR to view the error:
+
+   ```bash
+   kubectl describe backuprepository <NAME> -n velero
+   ```
+
+1. Create a test backup and verify that it completes successfully. For more information, see [Create and Schedule Backups](snapshots-creating).
+
+## Restore existing Restic backups
+
+Velero 1.17 and 1.18 can restore Restic backups created on Velero 1.16 and earlier. To restore an existing Restic backup, use the same storage location and credentials that you used to create the backup.
+
+## Additional resources
+
+* [Troubleshoot Snapshots](snapshots-troubleshooting-backup-restore)
+* [Configure Other Storage Destinations](snapshots-storage-destinations)
+* [Configure a Host Path Storage Destination](snapshots-configuring-hostpath)
+* [Configure an NFS Storage Destination](snapshots-configuring-nfs)
+* [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config)
+* [Create and Schedule Backups](snapshots-creating)
+* [Update storage settings](snapshots-updating-with-admin-console)

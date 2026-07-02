@@ -1,6 +1,6 @@
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
-import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
+import NodeAgentDaemonSet from "../partials/snapshots/_node-agent-daemonset.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
 import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 import KotsAvailability from "../partials/kots/_kots-availability.mdx"
@@ -14,6 +14,10 @@ This topic describes how to install Velero and configure a Network File System (
 :::
 
 <KotsAvailability/>
+
+:::important
+The local-volume-provider (LVP) plugin supports only Restic. Velero 1.17 and later do not support LVP. KOTS uses LVP only when you disable MinIO or explicitly install the LVP plugin. If you use LVP for NFS storage, migrate to a Kopia-compatible destination before upgrading to Velero 1.17 or later. Existing LVP backups from Velero 1.16 and earlier are not restorable on Velero 1.17 or later. For more information, see [Upgrade Velero for snapshots](snapshots-velero-upgrading).
+:::
 
 ## Requirements
 
@@ -38,7 +42,7 @@ To install Velero and configure NFS storage in an online environment:
 
 1. <InstallVelero/>
 
-1. <ResticDaemonSet/>
+1. <NodeAgentDaemonSet/>
 
 1. Run the following command to configure the NFS storage destination:
 
@@ -53,9 +57,9 @@ To install Velero and configure NFS storage in an online environment:
 
   For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-## Install Velero and configure NFS storage in air gapped environments
+## Install Velero and configure NFS storage in air-gapped environments
 
-To install Velero and configure NFS storage in air gapped environments:
+To install Velero and configure NFS storage in air-gapped environments:
 
 1. <CheckVersion/>
 
@@ -63,7 +67,7 @@ To install Velero and configure NFS storage in air gapped environments:
 
       <RegistryCredNote/>
 
-1. <ResticDaemonSet/>
+1. <NodeAgentDaemonSet/>
 
 1. Run the following command to configure the NFS storage destination: 
 

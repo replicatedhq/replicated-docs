@@ -22,7 +22,7 @@ To configure snapshots for embedded clusters:
         - [Configure an NFS Storage Destination](snapshots-configuring-nfs)
         - [Configure Other Storage Destinations](snapshots-storage-destinations)
 
-1. Optionally increase the default memory for the node-agent (restic) Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Optionally increase the default memory for the node-agent Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configuring backup storage for existing clusters
 
@@ -38,7 +38,7 @@ Follow this process to install Velero and configure the snapshots feature:
     - [Configure an NFS Storage Destination](snapshots-configuring-nfs)
     - [Configure Other Storage Destinations](snapshots-storage-destinations)
 
-1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the node-agent (restic) Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the node-agent Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Next step
 

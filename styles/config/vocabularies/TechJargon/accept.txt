@@ -94,6 +94,7 @@ rollout
 SAML
 SCIM
 SSO
+TAR
 TOTP
 ttl
 keyless
@@ -124,3 +125,9 @@ discoverability
 idempotently
 monorepo
 Monorepo
+LVP
+uploader
+CRs
+BackupRepository
+preconfigured
+crashloop
