@@ -308,6 +308,8 @@ To duplicate an existing external registry:
 
 You can view image pull activity for each of your external registries that are connected to the Replicated proxy registry. This includes a summary of recent pull activity as well as the full history of image pulls.
 
+The **Image Registries** page also shows total registry egress for the current calendar month. You can use this value with the **Egress Threshold Reached** notification event to get alerted when monthly registry egress reaches a configured threshold. For more information, see [Event types and filters](/reference/notifications-events-filters#egress-threshold-reached).
+
 You can also use the Replicated Vendor API `/v3/external_registry/logs` endpoint to get image pull activity. For more information, see [Get the logs for a specific external registry either by endpoint or slug, or both](https://replicated-vendor-api.readme.io/reference/externalregistrylogs) in the Vendor API documentation.
 
 * To view a summary of recent pull activity: In the **Vendor Portal**, go to **Image Registries > Available Image Registries > [Registry Name] > Recent Pull Activity**.

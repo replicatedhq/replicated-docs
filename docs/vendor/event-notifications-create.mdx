@@ -186,6 +186,15 @@ As a Release Engineer, I want alerts when an air gap bundle build fails on a tes
   - Filter - Channel: Select "Unstable", "Beta", or "Stable", depending on the channels you monitor
 - **Delivery Method:** Webhook to your team chat or email to your release engineering alias
 
+### Operations manager: Registry egress threshold
+
+As an Operations Manager, I want alerts when monthly registry egress reaches an expected threshold. This helps me investigate usage changes before the billing period ends.
+
+- **Event Type:** Egress Threshold Reached
+- **Configuration:**
+  - Filter - Threshold (TiB): Enter the monthly egress threshold, for example `5`
+- **Delivery Method:** Email to your operations alias or webhook to your monitoring system
+
 ### Development leader: Paid customer downloads release assets
 
 As a Development Leader, I want to be notified when a paid customer pulls release assets to initiate a paid install.
