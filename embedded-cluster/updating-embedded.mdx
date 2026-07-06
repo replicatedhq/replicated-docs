@@ -196,3 +196,21 @@ sudo ./APP_SLUG upgrade --license LICENSE_FILE --headless
 ```
 
 Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration during the upgrade. Embedded Cluster automatically detects the air gap installation.
+
+## Upgrade failure handling {#upgrade-failures}
+
+Embedded Cluster upgrades follow the same sequential [deployment pipeline](embedded-overview#deployment-pipeline) as installations. If any stage fails, the upgrade stops and reports the error. The stages that already completed are not rolled back.
+
+### Retrying a failed upgrade
+
+To retry a failed upgrade, resolve the underlying issue and re-run the `upgrade` command with the same binary. Each stage of the upgrade is safe to re-run.
+
+### Helm chart rollback
+
+If a Helm chart fails during the upgrade (addon, extension, or application chart), Embedded Cluster does not automatically roll back that chart's Helm release to its previous revision. The failed release remains in a `failed` state. Re-running `upgrade` cleans up the failed release and retries the installation.
+
+### Database migrations and application-level rollback
+
+Embedded Cluster manages infrastructure and chart deployment. Application-level concerns like database migration rollback are the vendor's responsibility. If your application uses Helm hooks (such as a `pre-upgrade` Job) to run database migrations, design those migrations to be idempotent so they are safe to re-run if the upgrade is retried.
+
+Embedded Cluster does not attempt to reverse database migrations or other application state changes when an upgrade fails. Plan your migration strategy accordingly.
