@@ -78,6 +78,10 @@ To edit policy permissions for individual team members:
 ## Enable users to auto-join your team
 By default, users must receive an invitation to join your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if the team enables it. The auto-join feature does not apply to SAML authentication because SAML users log in through their SAML provider's portal.
 
+:::note
+Auto-join only affects who can join _without an invitation_. It does not restrict who you can invite manually. An administrator can always invite a user from a domain other than the auto-join domain. For more information, see [Manage google authentication](team-management-google-auth).
+:::
+
 To add, edit, or delete custom RBAC policies, see [Configure RBAC Policies](team-management-rbac-configuring).
 
 To enable users to auto-join your team:
