@@ -57,6 +57,7 @@ exceptions:
   - SSH
   - SSL
   - SVG
+  - TAR
   - TBD
   - TCP
   - TODO
@@ -64,6 +65,7 @@ exceptions:
   - URL
   - USB
   - UTF
+  - UID
   - UUID
   - VXLAN
   - XML

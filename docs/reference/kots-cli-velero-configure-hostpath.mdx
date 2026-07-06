@@ -8,6 +8,10 @@ import Help from "../partials/kots-cli/_help.mdx"
 
 Configure snapshots to use a host path as storage destination.
 
+:::note
+The local-volume-provider (LVP) plugin supports only Restic. Velero 1.17 and later do not support LVP. By default, KOTS uses the S3-compatible filesystem MinIO path for HostPath storage when MinIO is enabled. KOTS uses LVP only when you disable MinIO or explicitly install the LVP plugin. For more information, see [Upgrade Velero for snapshots](/enterprise/snapshots-velero-upgrading).
+:::
+
 ### Usage
 
 ```bash

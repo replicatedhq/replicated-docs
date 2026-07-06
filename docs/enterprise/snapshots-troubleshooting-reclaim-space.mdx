@@ -1,0 +1,78 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
+# Deleted snapshots do not reclaim disk space on host path storage
+
+This topic describes why deleted snapshots might not reclaim disk space on embedded kURL clusters. It also explains how to reclaim the space manually.
+
+The issue applies to clusters that use Host Path storage with the Velero Restic uploader.
+
+<KotsAvailability/>
+
+## Symptom
+
+On an embedded kURL cluster that uses Host Path storage with the Velero Restic uploader, disk space is not reclaimed after you delete snapshots. You can delete snapshots from the Admin Console or with the KOTS CLI. The disk continues to fill even though only the retained backups appear in `velero get backup`.
+
+## Cause
+
+Velero's repository maintenance job runs a `restic prune` operation. The prune removes data that is no longer referenced from the Restic repository. This frees the disk space that deleted or expired snapshots used.
+
+On Velero versions earlier than 1.17.0, the repository maintenance job does not inherit the Velero Pod security context. The job runs as a different user than the node-agent Pod that created the Restic repository files on the Host Path store. The Restic files belong to UID 1001 with mode 0700. The maintenance job receives a `permission denied` error when it tries to read the repository. The prune operation then fails.
+
+Because the prune fails, data from deleted or expired snapshots is never reclaimed. The backup disk grows without bound.
+
+For example, the maintenance Pod logs show an error similar to the following:
+
+```
+restic prune --repo=.../restic/default ...
+Fatal: unable to open repository at .../restic/default:
+  ReadDir: open .../restic/default/keys: permission denied
+```
+
+Velero 1.17.0 and later include the upstream fix. The fix copies the security context from the origin Pod to the maintenance job. The automated prune operation can then read the repository files and reclaim disk space. For more information, see [Copy security context from origin pod](https://github.com/vmware-tanzu/velero/pull/8943) in the Velero repository.
+
+## Solution
+
+The solution depends on the Velero version.
+
+### Velero 1.17.0 and later
+
+Upgrade to Velero 1.17.0 or later. The automated Restic repository maintenance job can then read the repository files and reclaim disk space. After the upgrade, you can adjust the maintenance frequency with the `--default-repo-maintain-frequency` Velero server flag. For example:
+
+```bash
+kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--default-repo-maintain-frequency=48h0m0s"}]'
+```
+
+Replace `48h0m0s` with the desired frequency. Velero uses the default value if you do not set the flag.
+
+:::note
+The `--default-restic-prune-frequency` flag was the previous name for this flag. Velero removed `--default-restic-prune-frequency` in version 1.10.0. It renamed the flag to `--default-repo-maintain-frequency`. On Velero 1.10.0 and later, `--default-restic-prune-frequency` is not a recognized flag and has no effect. For more information, see the [Velero 1.10 breaking changes](https://github.com/vmware-tanzu/velero/blob/main/changelogs/CHANGELOG-1.10.md#breaking-changes).
+:::
+
+For more information about file-system backups, see [File System Backup](https://velero.io/docs/v1.17/file-system-backup/) in the Velero documentation.
+
+### Velero 1.16.x and earlier
+
+On Velero versions earlier than 1.17.0, the automated prune fails regardless of the maintenance frequency. Tuning the frequency does not help. To reclaim disk space until you can upgrade to Velero 1.17.0 or later, run `restic prune` manually from inside the Velero Pod. The Velero Pod runs as the correct user (UID 1001), so the prune operation can read the repository files.
+
+Run the following commands to prune both the `default` and `kurl` Restic repositories:
+
+```bash
+PREFIX=$(kubectl -n velero get bsl default -o jsonpath='{.spec.config.resticRepoPrefix}')
+
+kubectl -n velero get secret velero-repo-credentials -o jsonpath='{.data.repository-password}' | base64 -d \
+| kubectl -n velero exec -i deploy/velero -c velero -- \
+    restic -r "$PREFIX/default" --cache-dir=/scratch/.cache/restic --password-file=/dev/stdin prune
+
+kubectl -n velero get secret velero-repo-credentials -o jsonpath='{.data.repository-password}' | base64 -d \
+| kubectl -n velero exec -i deploy/velero -c velero -- \
+    restic -r "$PREFIX/kurl" --cache-dir=/scratch/.cache/restic --password-file=/dev/stdin prune
+```
+
+For more information about upgrading Velero, see [Upgrade Velero for snapshots](/enterprise/snapshots-velero-upgrading).
+
+## Additional resources
+
+- [Velero Version Compatibility](/vendor/snapshots-overview#velero-version-compatibility)
+- [Troubleshoot Snapshots](/enterprise/snapshots-troubleshooting-backup-restore)
+- [Upgrade Velero for snapshots](/enterprise/snapshots-velero-upgrading)
+- [Configure a Host Path Storage Destination](/enterprise/snapshots-configuring-hostpath)
