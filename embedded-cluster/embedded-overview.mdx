@@ -40,6 +40,24 @@ For more information about how to install with Embedded Cluster, see:
 * [Air Gap Installation with Embedded Cluster](installing-embedded-air-gap)
 * [Install with a customer-managed registry](installing-embedded-byo-registry)
 
+## Deployment pipeline {#deployment-pipeline}
+
+During both installation and upgrade, Embedded Cluster deploys components in a fixed, sequential pipeline. Each stage must complete before the next begins:
+
+1. **Host preflight checks:** Verifies that the host meets requirements (disk space, memory, CPU, ports, hostname length).
+1. **Kubernetes bootstrap:** Embedded Cluster installs and starts the k0s Kubernetes distribution.
+1. **Built-in addons:** Installs infrastructure addons in a fixed order:
+   1. **OpenEBS** (local PersistentVolume storage)
+   1. **SeaweedFS** (S3-compatible object store, HA airgap clusters only)
+   1. **Image registry** (internal image registry, airgap only unless using a customer-managed registry)
+1. **Helm chart extensions:** Installs vendor-provided extension charts, sorted by `weight` (ascending). Charts with equal weights install in alphabetical order. See [extensions](embedded-config#extensions).
+1. **Application preflight checks:** Runs vendor-defined preflight checks against the cluster.
+1. **Application charts:** Installs the application's HelmChart custom resources, sorted by `weight` (ascending).
+
+Each Helm chart (addons, extensions, and application charts) is installed with `--wait` and `--wait-for-jobs`, which means Helm hooks (`pre-install`, `post-install`, `pre-upgrade`, `post-upgrade`) run and must succeed before the next chart begins. This enables patterns like running database migrations in a Helm pre-upgrade hook Job.
+
+Extensions install after built-in addons and before application charts. This provides a platform-then-infrastructure-then-application deployment order when combined with `weight`-based sorting within each tier.
+
 ## About upgrading with Embedded Cluster
 
 Upgrades can be performed from the CLI on a controller. Alternatively, an opt-in [persistent admin console](embedded-persistent-console) can be installed on a controller to give end users a browser-driven upgrade experience without SSH access. The persistent admin console is not enabled by default.

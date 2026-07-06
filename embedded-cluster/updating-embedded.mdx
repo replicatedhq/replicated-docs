@@ -196,3 +196,27 @@ sudo ./APP_SLUG upgrade --license LICENSE_FILE --headless
 ```
 
 Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration during the upgrade. Embedded Cluster automatically detects the air gap installation.
+
+## Upgrade failure handling {#upgrade-failures}
+
+Embedded Cluster upgrades follow the same sequential [deployment pipeline](embedded-overview#deployment-pipeline) as installations. If any stage fails, the upgrade stops and reports the error. Stages that already completed successfully are not rolled back automatically.
+
+Most upgrade failures can be resolved by fixing the underlying issue and re-running the upgrade. In rare cases where an upgrade cannot be recovered, disaster recovery (restore from backup) is the recommended path.
+
+### Retrying a failed upgrade
+
+Re-run the `upgrade` command with the same binary after resolving the issue. Each stage is idempotent and safe to re-run. For upgrades initiated from the persistent admin console, use the console's upgrade flow to retry.
+
+### Helm chart rollback
+
+When a Helm chart fails during the upgrade (addon, extension, or application chart), the failed release remains in a `failed` state rather than rolling back to its previous revision. Re-running `upgrade` cleans up the failed release and retries the installation.
+
+### Database migrations and application-level rollback
+
+Embedded Cluster handles infrastructure and chart deployment. Application-level concerns like database migration rollback are managed by your application. If you use Helm hooks (such as a `pre-upgrade` Job) to run database migrations, design those migrations to be idempotent so they are safe to re-run when an upgrade is retried.
+
+### Disaster recovery {#upgrade-dr}
+
+For cases where an upgrade fails and cannot be recovered by retrying, treat the situation as a disaster recovery scenario. Replicated recommends bundling a backup solution like [Velero](https://velero.io/) as a Helm chart extension in your application package. This gives your customers a backup and restore path that you control, including the Velero version, backup scope, and upgrade cadence.
+
+When you bundle a backup solution this way, backups cover your application data only. Embedded Cluster infrastructure state is not included in application backups because it is rebuilt from the install artifacts during a restore, so a restore onto a fresh machine recovers the full environment.
