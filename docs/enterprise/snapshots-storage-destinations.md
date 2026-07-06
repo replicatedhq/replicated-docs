@@ -35,8 +35,7 @@ To install Velero and configure an AWS storage destination:
 1. Run the `velero install` command with these additional flags:
 
    * **Velero 1.17 and later**: Use the `--use-node-agent` and `--use-volume-snapshots=false` flags.
-   * **Velero 1.10 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
-   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
+   * **Velero 1.11 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
 
    **Example:**
 
@@ -61,8 +60,7 @@ To install Velero and configure a GCP storage destination:
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.17 and later**: Use the `--use-node-agent` and `--use-volume-snapshots=false` flags.
-   * **Velero 1.10 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
-   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
+   * **Velero 1.11 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
 
    **Example:**
 
@@ -86,8 +84,7 @@ To install Velero and configure an Azure storage destination:
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.17 and later**: Use the `--use-node-agent` and `--use-volume-snapshots=false` flags.
-   * **Velero 1.10 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
-   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
+   * **Velero 1.11 to 1.16**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
 
    **Example:**
 
