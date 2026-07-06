@@ -44,8 +44,8 @@ For more information about how to install with Embedded Cluster, see:
 
 During both installation and upgrade, Embedded Cluster deploys components in a fixed, sequential pipeline. Each stage must complete before the next begins:
 
-1. **Kubernetes bootstrap:** Embedded Cluster installs and starts the k0s Kubernetes distribution.
 1. **Host preflight checks:** Verifies that the host meets requirements (disk space, memory, CPU, ports, hostname length).
+1. **Kubernetes bootstrap:** Embedded Cluster installs and starts the k0s Kubernetes distribution.
 1. **Built-in addons:** Installs infrastructure addons in a fixed order:
    1. **OpenEBS** (local PersistentVolume storage)
    1. **SeaweedFS** (S3-compatible object store, HA airgap clusters only)

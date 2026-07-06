@@ -205,7 +205,7 @@ Most upgrade failures can be resolved by fixing the underlying issue and re-runn
 
 ### Retrying a failed upgrade
 
-Re-run the `upgrade` command with the same binary after resolving the issue. Each stage is idempotent and safe to re-run.
+Re-run the `upgrade` command with the same binary after resolving the issue. Each stage is idempotent and safe to re-run. For upgrades initiated from the persistent admin console, use the console's upgrade flow to retry.
 
 ### Helm chart rollback
 
@@ -219,4 +219,4 @@ Embedded Cluster handles infrastructure and chart deployment. Application-level 
 
 For cases where an upgrade fails and cannot be recovered by retrying, treat the situation as a disaster recovery scenario. Replicated recommends bundling a backup solution like [Velero](https://velero.io/) as a Helm chart extension in your application package. This gives your customers a backup and restore path that you control, including the Velero version, backup scope, and upgrade cadence.
 
-In Embedded Cluster v3, application backups are scoped to your application data only. Embedded Cluster infrastructure state is rebuilt from the install artifacts during a restore, so a restore onto a fresh machine recovers the full environment.
+When you bundle a backup solution this way, backups cover your application data only. Embedded Cluster infrastructure state is not included in application backups because it is rebuilt from the install artifacts during a restore, so a restore onto a fresh machine recovers the full environment.
