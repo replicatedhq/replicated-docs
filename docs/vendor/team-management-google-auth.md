@@ -20,7 +20,11 @@ To manage Google authentication settings:
     |-----------------------|------------------------|
     | Allow Google authentication for team members | Enables team members to log in using a Google account. |
     | Restrict login to only allow to Google authentication | Requires new users to accept an invitation and sign up with a Google account that exactly matches the email address used in the invitation. The email address can be a gmail.com address or user from another domain, but it must match the email address from the invitation exactly. Disabling this setting requires users to accept the invitation by creating a username and password (or use the SAML workflow). |
-  
+
+:::note
+Google authentication and the auto-join feature are independent. Auto-join limits who can join your team _without an invitation_ to users whose email domain matches your team's domain. It does not limit who you can invite manually. An administrator can invite a user from any domain, even when auto-join is enabled, as long as that user signs in with a Google account whose email exactly matches the invitation. For more information about auto-join, see [Enable users to auto-join your team](team-management#enable-users-to-auto-join-your-team).
+:::
+
 
 ## Migrating existing accounts
 Existing end users can sign in to an account that matches their Google Workspace (formerly GSuite) email address. This applies to all teams except those that restrict end users to SAML or require two-factor authentication (2FA). However, Google authentication only matches existing user accounts. For users with task-based email addresses (such as name+news@domain.com), you can sign in with email/password or invite your regular email address to join the team. You can also contact support to change your email address. For more information about task-based email addresses, see [Create task-specific email addresses](https://support.google.com/a/users/answer/9308648?hl=en) in the Google Support site.
