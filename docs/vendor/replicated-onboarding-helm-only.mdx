@@ -104,7 +104,7 @@ To configure your chart to use the proxy registry:
 
 ### Task 4: Add the HelmChart custom resource and create a release
 
-For each Helm chart used by your application, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of the images that are used by your Helm chart. This enables features such as air gap installations and scanning and reporting on application images with the [Replicated Security Center (Alpha)](/vendor/security-center-about). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+For each Helm chart used by your application, add a unique Replicated HelmChart custom resource. Replicated uses the HelmChart resource to generate a list of the images that your Helm chart uses. This enables features such as air gap installations and scanning and reporting on application images with the [Replicated Security Center (Beta)](/vendor/security-center-about). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 After you configure the HelmChart custom resource, you can create and promote your first release in the Vendor Portal.
 
