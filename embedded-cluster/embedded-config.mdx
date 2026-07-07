@@ -167,6 +167,10 @@ You must add the custom domains that you specify in the `domains.proxyRegistryDo
 
 If `domains.proxyRegistryDomain` and `domains.replicatedAppDomain` are not set, Embedded Cluster uses the default Replicated domains. For more information about aliasing Replicated endpoints with custom domains, see [About Custom Domains](/vendor/custom-domains).
 
+:::note
+Setting `domains.proxyRegistryDomain` is not the same as using a customer-managed (BYO) registry. A custom domain still fronts the Replicated proxy registry, so images continue to originate from Replicated. To pull all images from a registry that the customer controls instead, use a BYO registry. See [Install with a customer-managed registry](installing-embedded-byo-registry).
+:::
+
 #### Example
 
 ```yaml

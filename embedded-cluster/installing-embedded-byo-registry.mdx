@@ -13,6 +13,12 @@ When BYO registry is enabled, Embedded Cluster pulls _all_ images from a single 
 
 BYO registry is supported for both online and air gap installations. In air gap installations with BYO registry, Embedded Cluster does not deploy its internal image registry to the cluster, because all images are served from the customer's registry.
 
+:::note
+A BYO registry is not the same as a [custom domain for the Replicated proxy registry](embedded-config#domains). The `domains.proxyRegistryDomain` field in the Embedded Cluster Config sets a custom (vanity) domain that still fronts the Replicated proxy registry, so images continue to originate from Replicated. The `--registry` flag instead replaces the proxy registry entirely with a registry that the customer controls.
+
+The two are independent. When you install or upgrade with `--registry`, Embedded Cluster pulls all images from the BYO registry regardless of whether `domains.proxyRegistryDomain` is set, and you do not need to set `domains.proxyRegistryDomain` to use a BYO registry.
+:::
+
 ### When to use a customer-managed registry
 
 A customer-managed registry is useful for customers with strict network or compliance policies that require all container images to come from a registry they control. Use cases include:
@@ -20,6 +26,7 @@ A customer-managed registry is useful for customers with strict network or compl
 * Customers that block outbound traffic to `proxy.replicated.com` and cannot run the internal air gap registry that Embedded Cluster deploys.
 * Customers that scan and sign images in their own registry before they reach the cluster.
 * Customers that already mirror third-party images to a central registry and want application images to follow the same path.
+* Customers that want to install now and mirror later: bring the cluster up against the default registry to unblock environmental testing, then switch to the BYO registry once their image review and mirroring are complete. See [Enable BYO registry on an existing cluster](#upgrade-byo).
 
 ### Limitations
 
@@ -30,7 +37,7 @@ A customer-managed registry is useful for customers with strict network or compl
 
 Before a customer can install with BYO registry, the following must be in place:
 
-* An OCI-compliant registry that is reachable from every Embedded Cluster host. Authentication can be anonymous, username and password, or mTLS (`--registry-tls-cert` and `--registry-tls-key`). If the registry's TLS certificate is signed by a private CA, pass it with `--registry-ca-cert`; otherwise the host's system root CAs are used.
+* An OCI-compliant registry that is reachable from every Embedded Cluster host. These three authentication mechanisms are supported, and are the only mechanisms supported: anonymous (public) access, username and password, and mTLS (`--registry-tls-cert` and `--registry-tls-key`). Cloud provider IAM or keyless authentication (for example, Amazon ECR or Google Artifact Registry credential helpers) is not supported; use a username and password or mTLS instead. If the registry's TLS certificate is signed by a private CA, pass it with `--registry-ca-cert`; otherwise the host's system root CAs are used.
 
 * All images required for the release are pushed to the registry using the layout described in [Registry layout requirements](#registry-layout) below.
 
@@ -217,6 +224,8 @@ sudo ./APP_SLUG upgrade \
 ## Author charts for a BYO registry {#chart-authoring}
 
 To work with BYO registry, application Helm charts must produce image references through Replicated template functions rather than hardcoding registry hosts. Embedded Cluster rewrites the output of these functions at install time based on the install mode (`proxy`, `airgap`, or `byo`).
+
+The `ReplicatedImageName` and `ReplicatedImageRegistry` behavior described here is the current Embedded Cluster 3.x (v3) contract.
 
 ### `ReplicatedImageName`
 
