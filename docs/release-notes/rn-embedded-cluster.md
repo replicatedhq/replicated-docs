@@ -12,6 +12,36 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.2
+
+Released on July 7, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.2+k8s-1.36</td>
+    <td id="center">2.19.2+k8s-1.35</td>
+    <td id="center">2.19.2+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-2}
+* Adds a host preflight that fails the install when the node hostname is 55 characters or longer. Longer hostnames overflow the 63-character Kubernetes label limit that k0s uses for etcd members, which previously caused the installation to fail without a clear cause.
+* Updates Velero to version 1.18.2.
+
+### Bug fixes {#bug-fixes-2-19-2}
+* Fixes an issue where a node reset could leave behind stale files and systemd unit files when `k0s stop` failed, which could block subsequent installations on the host.
+
 ## 2.19.1
 
 Released on June 24, 2026
