@@ -27,6 +27,20 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 
 
+## 1.130.7
+
+Released on July 3, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Improvements {#improvements-1-130-7}
+* Adds support for Velero 1.17 with snapshots. KOTS now selects the correct file system backup uploader for your Velero version—using kopia on Velero 1.17 and later, where the restic uploader was removed—so snapshot setup instructions stay valid as you upgrade Velero.
+* Updates the Troubleshoot, Go module, and container image dependencies.
+
+### Bug fixes {#bug-fixes-1-130-7}
+* Fixes an issue where configuring an NFS or Host Path snapshot destination on Velero 1.17 and later could produce a broken backup configuration, because the underlying local-volume-provider plugin is not supported on those versions. These destinations are now blocked with a clear message on Velero 1.17 and later; use an object storage destination instead.
+* Fixes an issue where the MinIO image path used for file system snapshots was inconsistent with other KOTS components.
+
 ## 1.130.6
 
 Released on June 26, 2026
