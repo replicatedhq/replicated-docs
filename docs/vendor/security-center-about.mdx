@@ -61,7 +61,7 @@ The following describes the Security Center SBOM generation process:
 
 ## Requirements
 * Access to the Security Center Alpha requires a feature flag be turned on for your team. For more information, reach out to your Replicated account representative.
-* Version 1.9.0 or later of the [Replicated SDK](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) is required to report CVE information from specific customer instances back to the Vendor Portal. For more information, see [Customer-Specific CVE Information](#customer-specific-cve-information) below.
+* Version 1.9.0 or later of the [Replicated SDK](/vendor/replicated-sdk-installing#install-the-sdk-as-a-subchart) is required to report CVE information from specific customer instances back to the Vendor Portal. For more information, see [Customer-Specific CVE Information](/vendor/security-center-view-vendor-portal#customer-specific-cve-information).
   * For Helm CLI installations, additionally set the Replicated SDK to [Report All Images](/vendor/replicated-sdk-customizing#report-all-images). This ensures that the Security Center reports all container images observed in the cluster. This settting is enabled by default for Embedded Cluster installations.
 * Each Helm chart in the release must have a unique [HelmChart](/reference/custom-resource-helmchart-v2) custom resource. The HelmChart custom resource is required for both Embedded Cluster and Helm CLI installations in online (internet-connected) or air-gapped environments to create the list of images that are scanned and reported on in the Security Center.
   
@@ -92,68 +92,3 @@ The following describes the Security Center SBOM generation process:
 
 * If you have configured the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values provided in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values provided in the `builder` key.
 
-## Vendor Portal Security Center interfaces
-
-### Security Center dashboard
-
-The Security Center dashboard is available in the Vendor Portal at **[App name] > Security**. 
- 
-The following shows an example of the Security Center dashboard:
-
-![Security Center dashboard](/images/security-center-dashboard.png)
-
-[View a larger version of this image](/images/security-center-dashboard.png)
-
-You can filter for the information on the Security Center dashboard by release type (Linux/Embedded Cluster or Helm) and release channel. The information displayed on the Security Center dashboard applies to the currently promoted release of the selected type on the selected channel.
-
-The Security Center dashboard includes the following:
-* An overview of vulnerabilities present in the release, including a breakdown of CVE severity (Critical, High, Medium, Low) and a detailed list of the top security risks
-* On the **Container images** tab, a complete list of scanned images with vulnerability counts per image
-* On the **CVE details** tab, for each CVE identified:
-  * The CVE identifier and description
-  * The CVSS score and severity rating
-  * A list of images affected by the CVE
-  * Fixed versions (when available)
-
-### Release-specific cve information
-
-CVE details are available for all current and previously promoted application release versions. To view CVE information for a specifc release, go to **Releases > [Release Version] >  Security**.
-
-### Customer-specific cve information
-
-You can view CVE details at the customer level for active instances running the Replicated SDK verson 1.9.0 or later. This gives you visibility into all container images running alongside your application, helping you identify security risks and urgent upgrade needs across your customer base.
-
-To view CVE information for a specific customer instance go to **Customers > [Customer] > [Instance] > Security**.
-
-## Enterprise Portal Security Center interface
-
-The Enterprise Portal Security Center allows you to provide key security information to your enterprise customers alongside your application releases.
-
-The **Security Center** tab of the Enterprise Portal is not enabled by default. See [Enable the Enterprise Portal Security Center](#enable-the-enterprise-portal-security-center). When enabled, the Security Center intelligently filters data based on the customer's installation type, ensuring that customers only see relevant security information.
-
-On the **Security Center** tab of the Enterprise Portal, for each available release version, customers can:
-* View a CVE report with the complete list of known vulnerabilities and their severity levels
-* View details about the vulnerabilities identified for each image
-* Understand how many CVEs are fixed by upgrading to newer versions
-* Download the Software Bill of Materials (SBOM) in SPDX format for compliance and security audits
-
-The following shows an example of the Security Center dashboard in the Enterprise Portal:
-
-![Enterprise Portal Security Center dashboard](/images/ep-security-center-dashboard.png)
-
-[View a larger version of this image](/images/ep-security-center-dashboard.png)
-
-
-### Enable the Enterprise Portal Security Center
-
-The **Security Center** tab in the Enterprise Portal is not enabled by default. If the Security Center feature flag is enabled for your Vendor Portal team, you can optionally enable the Enterprise Portal **Security Center** tab on a per-customer basis or globally for all customers.
-
-To enable the **Security Center** tab in a customer's Enterprise Portal, go to **Customers > [Customer] > Enterprise Portal access**.
-
-To enable the **Security Center** tab for all customers using the Enterprise Portal, go to **Enterprise Portal > Portal Settings > Optional Features** and enable the **Enable Security Center** feature toggle.
-
-## Retrieve scan results with the Vendor API
-
-You can retrieve the Security Center's scan results programmatically with the Replicated Vendor API. The API returns the same Grype scan data that powers the Security Center dashboards, so you can use the results in a CI/CD pipeline, such as gating the promotion of a release from one channel to the next based on the vulnerabilities found in the release's images.
-
-For more information, see [Retrieve scan results with the Vendor API](/vendor/security-center-retrieve-scan-results).
