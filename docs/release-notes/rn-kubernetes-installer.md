@@ -10,6 +10,19 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.08-0
+
+Released on July 8, 2026
+
+### New Features {#new-features-v2026-07-08-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.19.7.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 2.2.5.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.14.
+* Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.20.3.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.92.1-87.10.1.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.5.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.17.2.
+
 ## v2026.06.22-0
 
 Released on June 22, 2026
