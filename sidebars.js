@@ -230,6 +230,9 @@ const sidebars = {
       label: "Security Center (Alpha)",
       items: [
         "vendor/security-center-about",
+        "vendor/security-center-view-vendor-portal",
+        "vendor/security-center-enable-customer-access",
+        "vendor/security-center-retrieve-scan-results",
       ],
     },
     {

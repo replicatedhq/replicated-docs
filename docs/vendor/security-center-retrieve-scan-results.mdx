@@ -1,0 +1,224 @@
+---
+sidebar_label: "Retrieve Security Scans via API (Alpha)"
+---
+
+# Retrieve Security Center scan results with the Vendor API
+
+:::note
+The Security Center is Alpha. The features and functionality described on this page are subject to change.
+:::
+
+You can retrieve the Security Center's scan results programmatically with the Replicated Vendor API. The API returns the same Grype scan data that powers the Security Center dashboards, so you can use the results in a CI/CD pipeline. For example, you can gate the promotion of a release from one channel to the next based on the vulnerabilities found in the release's images. This surfaces vulnerabilities earlier in your delivery process.
+
+A pipeline that gates promotion on scan results typically does the following:
+
+1. Promotes a release to an initial channel, such as Unstable.
+1. Retrieves the vulnerability scan results for the images in the release from the Vendor API.
+1. Evaluates the results against a security policy.
+1. Promotes the release to the next channel, such as Stable, only if it passes.
+
+## Prerequisites
+
+Complete the following prerequisites before you retrieve scan results with the Vendor API:
+
+* Create a Vendor API token that has `Read` access to your app's channels. The token needs the `kots/app/[:app_id]/channel/[:channel_id]/read` RBAC policy. For more information about API tokens, see [Using Vendor API v3](/reference/vendor-api-using).
+* Note your app ID and the ID of the channel that you promote to. To list these, use the [app ls](/reference/replicated-cli-app-ls) and [channel ls](/reference/replicated-cli-channel-ls) Replicated CLI commands.
+
+The examples in this section use the following environment variables:
+
+```bash
+export REPLICATED_API_TOKEN=<your-vendor-api-token>
+export APP_ID=<your-app-id>
+export CHANNEL_ID=<the-target-channel-id>
+```
+
+The Vendor API expects the token directly in the `Authorization` header, without a `Bearer` prefix. A request that includes a `Bearer` prefix returns a `401 Unauthorized` response.
+
+## Promote a release and get the channel sequence
+
+You request scan results by the release's channel sequence, which is the release's position in a given channel, not by its release sequence. Promote the release with the Vendor API, which returns the `channelSequence` in the response:
+
+```bash
+CHANNEL_SEQUENCE=$(curl -s -X POST \
+  -H "Authorization: $REPLICATED_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{\"channelId\": \"$CHANNEL_ID\", \"versionLabel\": \"1.2.3\"}" \
+  "https://api.replicated.com/vendor/v3/app/$APP_ID/release/$RELEASE_SEQUENCE/promote" \
+  | jq -r '.channelSequence')
+```
+
+:::note
+If you promote with the [release promote](/reference/replicated-cli-release-promote) Replicated CLI command instead, the CLI output does not include the channel sequence. To find the channel sequence for a channel's current release, run `replicated channel inspect $CHANNEL_ID`. For more information, see [channel inspect](/reference/replicated-cli-channel-inspect).
+:::
+
+## Retrieve the raw scan results
+
+To retrieve the complete Grype scan output for every image in the release, use the `securebuild/scan-raw` endpoint:
+
+```
+GET /v3/app/{appId}/channel/{channelId}/securebuild/scan-raw?channel_sequence={channelSequence}
+```
+
+For example:
+
+```bash
+curl -s \
+  -H "Authorization: $REPLICATED_API_TOKEN" \
+  "https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID/securebuild/scan-raw?channel_sequence=$CHANNEL_SEQUENCE" \
+  | jq .
+```
+
+The response contains a `scans` array with one entry per scanned image. Each entry includes a `scan_status` field and, when the scan is complete, a `result` object that holds the raw Grype output, including the `matches` array of detected vulnerabilities:
+
+```json
+{
+  "scans": [
+    {
+      "image": "example.com/app/api:1.2.3",
+      "scan_status": "succeeded",
+      "result": {
+        "matches": [
+          {
+            "vulnerability": {
+              "id": "CVE-2024-12345",
+              "severity": "High",
+              "fix": { "state": "fixed", "versions": ["1.2.4"] }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+Scans run asynchronously and continuously, so a scan might not be complete when you request the results. While a scan is in progress, its `scan_status` is a non-terminal value such as `pending`, `in_progress`, or `generating`, and its `result` is `null`. A completed scan has a `scan_status` of `succeeded`, and a scan that could not complete has a `scan_status` of `failed`. Poll the endpoint until every scan reaches a terminal status before you evaluate the results.
+
+Grype reports more severity levels than the four shown in the Security Center dashboard. In addition to Critical, High, Medium, and Low, an individual match can have a severity of `Negligible` or `Unknown`. Filter on the severity levels that matter to your security policy.
+
+Each match includes a `vulnerability.fix.state` field that indicates whether a fix is available. A value of `fixed` means a fix exists, `not-fixed` means no fix is available, and `unknown` means the fix status is not known. Gate on `fixed` vulnerabilities to focus on issues that you can remediate.
+
+## Evaluate the scan results
+
+Use `jq` to evaluate the scan results against your policy. Use the `?` operator to make the filters null-safe. Without it, an image whose scan has not produced a `result` throws an error that can silently skip the gate.
+
+The following example counts all fixable Critical and High vulnerabilities across every image:
+
+```bash
+curl -s \
+  -H "Authorization: $REPLICATED_API_TOKEN" \
+  "https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID/securebuild/scan-raw?channel_sequence=$CHANNEL_SEQUENCE" \
+  | jq '[.scans[]?.result?.matches[]?
+      | select(.vulnerability.severity == "Critical" or .vulnerability.severity == "High")
+      | select(.vulnerability.fix.state == "fixed")] | length'
+```
+
+To save the matching CVEs to a file for a report, wrap the results in an array. This makes the output valid JSON rather than a stream of concatenated objects:
+
+```bash
+curl -s \
+  -H "Authorization: $REPLICATED_API_TOKEN" \
+  "https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID/securebuild/scan-raw?channel_sequence=$CHANNEL_SEQUENCE" \
+  | jq '[.scans[]?.result?.matches[]?
+      | select(.vulnerability.severity == "Critical" or .vulnerability.severity == "High")
+      | {id: .vulnerability.id, severity: .vulnerability.severity, fix: .vulnerability.fix.state}]' \
+  > cve-report.json
+```
+
+## Promote to the next channel
+
+If the release passes your policy, promote it to the next channel, such as your Stable channel. To do so, call the promote endpoint again with the ID of the next channel.
+
+## Retrieve summarized scan results
+
+If you need only severity counts rather than the full Grype output, use the `securebuild/scan` endpoint:
+
+```
+GET /v3/app/{appId}/channel/{channelId}/securebuild/scan?channel_sequence={channelSequence}
+```
+
+For each image, this endpoint returns a `result` with aggregated `counts`, per-severity breakdowns (`critical`, `high`, `medium`, and `low`), a `vulnerability_details` list, and a `fixed_counts` object. The `fixed_counts` object reports how many vulnerabilities at each severity have a fix available. This is convenient for a pass/fail gate, because you do not need to filter the `matches` array yourself.
+
+## Retrieve SBOMs
+
+To retrieve the Software Bills of Materials (SBOMs) for a release, use the `securebuild/sbom` endpoint:
+
+```
+GET /v3/app/{appId}/channel/{channelId}/securebuild/sbom?channel_sequence={channelSequence}
+```
+
+Unlike the scan endpoints, the SBOM response is an object keyed by image reference. Each image's `sbom` field is a JSON-encoded Software Package Data Exchange (SPDX) 2.3 string, so parse the string with `fromjson` before you query it:
+
+```json
+{
+  "sboms": {
+    "example.com/app/api:1.2.3": { "sbom": "<SPDX 2.3 JSON string>" }
+  }
+}
+```
+
+For example, to extract the SPDX document for a single image:
+
+```bash
+curl -s \
+  -H "Authorization: $REPLICATED_API_TOKEN" \
+  "https://api.replicated.com/vendor/v3/app/$APP_ID/channel/$CHANNEL_ID/securebuild/sbom?channel_sequence=$CHANNEL_SEQUENCE" \
+  | jq -r '.sboms["example.com/app/api:1.2.3"].sbom | fromjson'
+```
+
+## Example workflow to gate promotion
+
+The following example is a GitHub Actions workflow that gates promotion to the Stable channel on the absence of fixable Critical and High vulnerabilities. It waits for all scans to reach a terminal status, evaluates the results, and fails the job when the gate does not pass. A failed job prevents the promotion step from running:
+
+```yaml
+name: Gate promotion on scan results
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_sequence:
+        required: true
+      channel_sequence:
+        required: true
+
+env:
+  API_BASE: https://api.replicated.com/vendor/v3
+  APP_ID: ${{ vars.REPLICATED_APP_ID }}
+  UNSTABLE_CHANNEL_ID: ${{ vars.UNSTABLE_CHANNEL_ID }}
+  STABLE_CHANNEL_ID: ${{ vars.STABLE_CHANNEL_ID }}
+
+jobs:
+  scan-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for scans to complete
+        run: |
+          URL="$API_BASE/app/$APP_ID/channel/$UNSTABLE_CHANNEL_ID/securebuild/scan-raw?channel_sequence=${{ inputs.channel_sequence }}"
+          for i in $(seq 1 30); do
+            PENDING=$(curl -s -H "Authorization: ${{ secrets.REPLICATED_API_TOKEN }}" "$URL" \
+              | jq '[.scans[]? | select(.scan_status != "succeeded" and .scan_status != "failed")] | length')
+            if [ "${PENDING:-1}" -eq 0 ]; then echo "All scans complete."; break; fi
+            echo "Waiting for $PENDING scan(s)..."; sleep 20
+          done
+
+      - name: Fail on fixable Critical and High CVEs
+        run: |
+          URL="$API_BASE/app/$APP_ID/channel/$UNSTABLE_CHANNEL_ID/securebuild/scan-raw?channel_sequence=${{ inputs.channel_sequence }}"
+          COUNT=$(curl -s -H "Authorization: ${{ secrets.REPLICATED_API_TOKEN }}" "$URL" \
+            | jq '[.scans[]?.result?.matches[]?
+                | select(.vulnerability.severity == "Critical" or .vulnerability.severity == "High")
+                | select(.vulnerability.fix.state == "fixed")] | length')
+          echo "Fixable Critical and High CVEs: ${COUNT:-unknown}"
+          if [ "${COUNT:-1}" -ne 0 ]; then
+            echo "::error::Release has $COUNT fixable Critical and High CVEs. Blocking promotion."
+            exit 1
+          fi
+
+      - name: Promote to Stable
+        run: |
+          curl -s -X POST \
+            -H "Authorization: ${{ secrets.REPLICATED_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"channelId\": \"$STABLE_CHANNEL_ID\", \"versionLabel\": \"1.2.3\"}" \
+            "$API_BASE/app/$APP_ID/release/${{ inputs.release_sequence }}/promote"
+```
