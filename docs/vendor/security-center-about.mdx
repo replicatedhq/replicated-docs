@@ -24,6 +24,14 @@ The following describes the types of images that Replicated identifies for each 
 - **Additional images**: Any images listed in the Replicated Application custom resource [`additionalImages`](/reference/custom-resource-application#additionalimages) field. For example, applications packaged as Kubernetes Operators might need to include additional images that are not referenced until runtime. 
 - **Embedded Cluster images**: Any infrastructure images used by Replicated Embedded Cluster installations, if relevant.
 
+### Include and exclude images from Security Center scans
+
+You can explicitly include or exclude images from being scanned by the Security Center:
+
+* To exclude images from being scanned in Helm CLI installations, use the [installer-only annotation](/vendor/enterprise-portal-configure#installer-only). This is useful if your application has any charts and resources that are only relevant to Embedded Cluster installations and should not be shown to customers that install with the Helm CLI.
+
+* If there are any images that are _not_ referenced in the PodSpecs for your application but should be included in Security Center image scans, list those images in the Application custom resource [additionalImages](/vendor/operator-defining-additional-images#define-additional-images-for-air-gap-bundles) field.
+
 ### How cve scanning works
 
 The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [Grype](https://github.com/anchore/grype). This means that, as new CVEs are disclosed, they automatically appear in your Security Center without requiring a new release.
@@ -143,14 +151,6 @@ The **Security Center** tab in the Enterprise Portal is not enabled by default. 
 To enable the **Security Center** tab in a customer's Enterprise Portal, go to **Customers > [Customer] > Enterprise Portal access**.
 
 To enable the **Security Center** tab for all customers using the Enterprise Portal, go to **Enterprise Portal > Portal Settings > Optional Features** and enable the **Enable Security Center** feature toggle.
-
-## Include and exclude images from Security Center scans
-
-You can explicitly include or exclude images from being scanned by the Security Center:
-
-* To exclude images from being scanned in Helm CLI installations, use the [installer-only annotation](/vendor/enterprise-portal-configure#installer-only). This is useful if your application has any charts and resources that are only relevant to Embedded Cluster installations and should not be shown to customers that install with the Helm CLI.
-
-* If there are any images that are _not_ referenced in the PodSpecs for your application but should be included in Security Center image scans, list those images in the Application custom resource [additionalImages](/vendor/operator-defining-additional-images#define-additional-images-for-air-gap-bundles) field.
 
 ## Retrieve scan results with the Vendor API
 
