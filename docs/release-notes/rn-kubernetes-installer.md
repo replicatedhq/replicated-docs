@@ -14,6 +14,10 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 Released on July 8, 2026
 
+:::important
+[Velero add-on](https://kurl.sh/docs/add-ons/velero) versions 1.17 and later switch the file-system backup uploader from Restic to Kopia, which is not compatible with the Local Volume Provider (LVP). To continue using file-system backups after upgrading, you must migrate to a Kopia-compatible destination. For more information, see [Migrate from Local Volume Provider (LVP) to a Kopia-compatible destination](https://docs.replicated.com/enterprise/snapshots-velero-upgrading#migrate-from-local-volume-provider-lvp-to-a-kopia-compatible-destination).
+:::
+
 ### New Features {#new-features-v2026-07-08-0}
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.19.7.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 2.2.5.
@@ -22,6 +26,7 @@ Released on July 8, 2026
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.92.1-87.10.1.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.5.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.17.2.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.18.2.
 
 ## v2026.06.22-0
 
