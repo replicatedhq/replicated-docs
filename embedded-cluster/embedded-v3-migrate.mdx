@@ -174,7 +174,7 @@ The Embedded Cluster v3 installer wizard includes a **Set Up** page where end cu
 
 ## Migrate an installation from Embedded Cluster v2 to Embedded Cluster v3
 
-Embedded Cluster supports upgrading existing installations from v2 to v3 without having to reinstall the application. The migration uses the same `upgrade` command as any v3-to-v3 upgrade. The v3 binary automatically detects the v2 installation and handles the migration, prompting the user to confirm.
+Embedded Cluster supports upgrading existing installations from v2 to v3 without having to reinstall the application. The migration uses the same `upgrade` command as any v3-to-v3 upgrade. The v3 binary automatically detects the v2 installation and handles the migration, prompting the user to confirm. Running `install` on a node with an existing v2 installation is blocked — use `upgrade` instead.
 
 :::note
 Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design to prevent accidental migrations. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
