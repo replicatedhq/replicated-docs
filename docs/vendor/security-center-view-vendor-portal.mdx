@@ -31,9 +31,19 @@ The Security Center dashboard includes the following:
   * A list of images affected by the CVE
   * Fixed versions (when available)
 
+### Filter container images by source
+
+On the **Container images** tab, you can filter the list of scanned images by source:
+
+* **All Images**: All scanned images in the release.
+* **Application Images**: Images that belong to your application.
+* **Replicated Platform Images**: Replicated-owned images, such as the Replicated SDK and Embedded Cluster or KOTS components.
+
+You can also select **Show only vulnerable images** to limit the list to images that have known vulnerabilities.
+
 ## Release-specific CVE information
 
-CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**.
+CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**. This page shows the same container image list and source filter as the [Security Center dashboard](#security-center-dashboard).
 
 ## Customer-specific CVE information
 
