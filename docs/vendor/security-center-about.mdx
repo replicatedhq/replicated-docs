@@ -24,6 +24,19 @@ The following describes the types of images that Replicated identifies for each 
 - **Additional images**: Any images listed in the Replicated Application custom resource [`additionalImages`](/reference/custom-resource-application#additionalimages) field. For example, applications packaged as Kubernetes Operators might need to include additional images that are not referenced until runtime. 
 - **Embedded Cluster images**: Any infrastructure images used by Replicated Embedded Cluster installations, if relevant.
 
+### How image classification works
+
+Security Center classifies each scanned image as an application image or a Replicated Platform image:
+
+* **Application image**: An image that belongs to your application. This includes images referenced in your Helm charts or Kubernetes manifests, and images listed in the Application custom resource [`additionalImages`](/reference/custom-resource-application#additionalimages) field.
+* **Replicated Platform image**: An image that Replicated owns and maintains, rather than an image from your application. This includes the Replicated SDK and, for Embedded Cluster installations, infrastructure that Replicated installs, such as the Admin Console and the Embedded Cluster operator.
+
+Security Center classifies the Replicated SDK as a Replicated Platform image even when you bundle it as a subchart of your application's chart.
+
+If Security Center cannot determine that Replicated owns an image, it classifies the image as an application image.
+
+In the Vendor Portal, you can filter the container image list by this classification. For more information, see [Filter container images by source](/vendor/security-center-view-vendor-portal#filter-container-images-by-source) in _View Security Information in Vendor Portal_.
+
 ### Include and exclude images from Security Center scans
 
 You can explicitly include or exclude images from being scanned by the Security Center:
