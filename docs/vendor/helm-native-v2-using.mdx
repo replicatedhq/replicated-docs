@@ -88,7 +88,7 @@ To configure a release to support installations with HelmChart v2:
 
 To support KOTS existing cluster or kURL installations with HelmChart v2, complete these additional steps:
 
-1. For each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` label and `kots.io/app-slug: APP_SLUG` annotation to all resources that you want to be included in backups with Replicated snapshots. Use a `when` statement so that these are added to resources only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
+1. For each HelmChart v2 resource in the release, configure the [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) key to add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to all resources that you want to be included in backups with Replicated snapshots. The `kots.io/app-slug` value must be added as a pod label, not only as an annotation, because restore for Helm-native v2 apps matches on pod labels. Use a `when` statement so that these are added to resources only when the customer has the [`isSnapshotSupported`](/vendor/licenses-using-builtin-fields#admin-console-feature-options) field enabled for their license.
 
     :::note
     The Replicated [snapshots](snapshots-overview) feature for backup and restore is supported only for KOTS existing cluster and kURL installations. Snapshots are not supported for installations with Embedded Cluster. For more information about disaster recovery for Embedded Cluster installations, see [Disaster Recovery for Embedded Cluster](/embedded-cluster/v2/embedded-disaster-recovery).
@@ -106,7 +106,7 @@ To support KOTS existing cluster or kURL installations with HelmChart v2, comple
     spec:
       ...
       optionalValues:
-      # Add backup label and app slug annotation only when the
+      # Add the backup and app slug labels only when the
       # license supports snapshots.
       # Use the LicenseFieldValue template function to check if
       # the isSnapshotSupported license field is enabled
@@ -116,15 +116,15 @@ To support KOTS existing cluster or kURL installations with HelmChart v2, comple
           mariadb:
             commonLabels:
               kots.io/backup: velero
-            podLabels:
-              kots.io/backup: velero
-            commonAnnotations:
-              # Use the LicenseFieldValue template function and the 
-              # built-in appSlug license field value to inject the 
+              # Use the LicenseFieldValue template function and the
+              # built-in appSlug license field value to inject the
               # app slug
               kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
-            podAnnotations:
-              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }} 
+            podLabels:
+              kots.io/backup: velero
+              # The app slug must be a pod label, not only an
+              # annotation, so that restore can match on it
+              kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
     ```
     For more information about the KOTS LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context).
 
