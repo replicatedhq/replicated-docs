@@ -272,6 +272,24 @@ For air gap installations, use a Base64 encoded image for the `icon` field becau
 
 For more information about the Application custom resource fields, see [Application custom resource](/reference/custom-resource-application).
 
+## Add application links to the Finish page
+
+To display access links on the Installation Complete page, include a SIG Application custom resource (`app.k8s.io/v1beta1`) in your release with `spec.descriptor.links`:
+
+```yaml
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: my-app
+spec:
+  descriptor:
+    links:
+      - description: Open My App
+        url: "http://my-app-url"
+```
+
+Links defined here appear on the Finish page after a successful install.
+
 ## Add support for air gap installations {#local-image-registry}
 
 This section describes how to support air gap installations with Embedded Cluster v3. It includes information about how to configure your release and lists the limitations and known issues of air gap installations with Embedded Cluster v3.
