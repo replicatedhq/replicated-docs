@@ -176,6 +176,63 @@ spec:
 
 If the chart's `values.yaml` has `gpu.enabled: false` and the customer has not overridden it, the GPU node check is excluded from the rendered spec.
 
+### Run connectivity checks inside the cluster {#in-cluster-collectors}
+
+The `http`, `postgres`, `mysql`, `mssql`, `redis`, and `clickhouse` collectors run wherever the preflight process runs. In Embedded Cluster v3, that is the host, not inside the cluster. As a result, a check such as "is the application's database reachable" tests connectivity from the host rather than from within the cluster, which can produce misleading results.
+
+To run one of these checks from inside the cluster, wrap it in a [`runPod`](https://troubleshoot.sh/docs/collect/run-pod) collector that uses the Troubleshoot image and the matching `collect` subcommand. The Pod runs the collector from within the cluster and prints its result, which you evaluate with a [`textAnalyze`](https://troubleshoot.sh/docs/analyze/regex) analyzer. The following example checks that a PostgreSQL database is reachable from inside the cluster:
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta3
+kind: Preflight
+metadata:
+  name: my-app-preflights
+spec:
+  collectors:
+    - runPod:
+        name: postgres-check
+        namespace: '{{ .Release.Namespace }}'
+        podSpec:
+          restartPolicy: Never
+          containers:
+            - name: check
+              image: proxy.replicated.com/library/troubleshoot:v0.131.0
+              command: ["collect", "postgres", "--uri", "postgres://{{ .Values.db.user }}:{{ .Values.db.password }}@{{ .Values.db.host }}:5432/{{ .Values.db.name }}"]
+  analyzers:
+    - textAnalyze:
+        checkName: PostgreSQL reachable
+        collectorName: postgres-check
+        fileName: "*.log"
+        regex: '"isConnected": *true'
+        outcomes:
+          - pass:
+              when: "true"
+              message: "Connected to PostgreSQL from inside the cluster."
+          - fail:
+              when: "false"
+              message: "Could not connect to PostgreSQL from inside the cluster."
+```
+
+Each collector documents its `collect` subcommand and flags on its own page in the Troubleshoot documentation: [http](https://troubleshoot.sh/docs/collect/http), [postgres](https://troubleshoot.sh/docs/collect/postgresql), [mysql](https://troubleshoot.sh/docs/collect/mysql), [mssql](https://troubleshoot.sh/docs/collect/mssql), [redis](https://troubleshoot.sh/docs/collect/redis), and [clickhouse](https://troubleshoot.sh/docs/collect/clickhouse).
+
+### Include preflight images in air gap bundles {#preflight-air-gap-images}
+
+In air gap installations, images referenced by a v1beta3 preflight spec are **not** automatically included in the air gap bundle. This includes the Troubleshoot image used to run checks inside the cluster (see [Run connectivity checks inside the cluster](#in-cluster-collectors)) and any other images your collectors reference, such as a `runPod` container image. Unlike application workload images, which are detected from your Helm charts, preflight images must be declared explicitly.
+
+Add each image to the `additionalImages` field of the [Application custom resource](/reference/custom-resource-application) so that it is included in the air gap bundle:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-app
+spec:
+  additionalImages:
+    - proxy.replicated.com/library/troubleshoot:v0.131.0
+```
+
+For more information, see [Define Additional Images](/vendor/operator-defining-additional-images).
+
 ### Limitations
 
 - A release may contain at most one external preflight spec.
