@@ -12,6 +12,38 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.10.0-beta.1
+
+Released on July 10, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.10.0-beta.1+k8s-1.36</td>
+    <td id="center">3.10.0-beta.1+k8s-1.35</td>
+    <td id="center">3.10.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.1</td>
+    <td id="center">1.35.4</td>
+    <td id="center">1.34.14</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-3-10-0-beta-1}
+
+* Blocks install on nodes that already have an Embedded Cluster v2 installation, directing users to run `upgrade` instead.
+* Adds a host preflight that fails install when the node hostname exceeds 54 characters, preventing an etcd member label overflow that previously crashlooped the controller with no clear signal.
+
+### Bug fixes {#bug-fixes-3-10-0-beta-1}
+
+* Fixes an issue where an interactive upgrade failed with a port conflict error when the persistent admin console was already running. The console now drives the upgrade instead.
+* Fixes the config UI so that a dropdown's default value hint shows the option's title instead of its underlying name.
+* Fixes v2-to-v3 migration to regenerate the TLS certificate when the v2 console's hostname is an in-cluster service name, instead of carrying forward a cert for an unreachable address.
+* Fixes an error that blocked install, upgrade, and v2-to-v3 migration when a release did not include a kots.io/v1beta1 Application manifest.
+* Fixes an error that blocked install, upgrade, and v2-to-v3 migration when a release did not include a kots.io/v1beta1 Config manifest.
+
 ## 3.9.0-beta.1
 
 Released on June 22, 2026
