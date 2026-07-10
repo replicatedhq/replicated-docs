@@ -44,6 +44,8 @@ v1beta3 supports this model because it treats the spec as Helm template YAML rat
 - The spec uses Helm template syntax (`{{ .Values.something }}`, `{{ include "helper" . }}`) instead of `repl{{ }}` Replicated template syntax.
 - The spec is not valid YAML before rendering. Standard YAML linters will not work on it directly.
 - For releases with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. Embedded Cluster renders the spec one time per chart in the release, each time in that chart's context.
+- The connectivity collectors (`http`, `postgres`, `mysql`, `mssql`, `redis`, and `clickhouse`) run wherever the preflight process runs, which is the host in Embedded Cluster v3, rather than inside the cluster as they did under KOTS. To run these checks from within the cluster, wrap them in a `runPod` collector. See [Run connectivity checks inside the cluster](embedded-using#in-cluster-collectors).
+- For air gap installations, images referenced by the preflight spec (such as the Troubleshoot image used to run checks inside the cluster) are not automatically included in the air gap bundle and must be added to the Application `additionalImages` field. See [Include preflight images in air gap bundles](embedded-using#preflight-air-gap-images).
 
 For details about the rendering pipeline and multi-chart examples, see [Add preflight checks](embedded-using#preflights). For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
 
