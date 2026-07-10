@@ -13,6 +13,7 @@ Content is driven by entitlements and channel assignment, so each customer sees 
 ## What your customers can do
 
 - **Install and upgrade**: Step-by-step installation instructions for Helm and Embedded Cluster (Linux), with per-instance commands personalized to each customer's license and environment
+- **Automate installs and upgrades**: Service account API endpoints let customers create install profiles, fetch structured instructions, and download artifacts from CI/CD systems. For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
 - **Manage instances**: View all deployed instances, check for available updates, and follow inline upgrade instructions
 - **Download install artifacts**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal. Available artifacts vary by install method and license entitlements
 - **Access security data**: Review CVE reports, filter to fixable vulnerabilities, view per-instance upgrade recommendations, and download SBOMs for each release. Available for Helm and Embedded Cluster installs when Security Center is enabled
@@ -28,6 +29,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 - **Content repo driven**: All portal content (pages, navigation, branding) is managed through a GitHub repo you control, not through Vendor Portal UI forms
 - **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
 - **Versioned docs**: Each Git branch becomes a version in the customer's portal, with smart resolution that automatically finds the right content for any release
+- **Service account automation docs**: Built-in API reference and workflow guide components help customers automate install and upgrade workflows with service account tokens
 - **Local preview**: `replicated enterprise-portal preview` lets you preview the full portal locally with live reload
 - **Helm chart reference**: Auto-generated from your promoted releases with AI-enhanced descriptions
 - **Terraform module distribution**: License-gated module registry with native `terraform init` integration (premium feature)
