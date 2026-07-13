@@ -178,7 +178,7 @@ Embedded Cluster runs Kubernetes (k0s) as a systemd service, so a node automatic
 To check whether a node has rejoined after a reboot, run the following command from a controller node:
 
 ```bash
-sudo ./APP_SLUG shell kubectl get nodes
+sudo ./APP_SLUG shell -c "kubectl get nodes"
 ```
 
 Where `APP_SLUG` is the unique slug for the application. All nodes should show `Ready` status before proceeding with the next reboot.
