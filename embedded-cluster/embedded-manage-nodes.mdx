@@ -136,6 +136,22 @@ To enable HA for an existing Embedded Cluster installation with three or more co
 
    Where `APP_SLUG` is the unique slug for the application.
 
+## Reboot nodes
+
+Embedded Cluster runs Kubernetes (k0s) as a systemd service, so a node automatically rejoins the cluster after a reboot. No special preparation is required — you do not need to cordon or drain the node before rebooting.
+
+**Single-node clusters:** The application is unavailable while the node is rebooting. Schedule reboots during a maintenance window, and expect a short outage (typically a few minutes) while the node restarts and pods are rescheduled.
+
+**Multi-node clusters:** Reboot one node at a time. Wait for the rebooted node to fully rejoin the cluster and report `Ready` before rebooting the next node. Do not reboot two or more controller nodes at the same time — losing multiple controllers simultaneously can break etcd quorum and take the entire cluster offline.
+
+To check whether a node has rejoined after a reboot, run the following command from a controller node:
+
+```bash
+sudo ./APP_SLUG shell kubectl get nodes
+```
+
+Where `APP_SLUG` is the unique slug for the application. All nodes should show `Ready` status before proceeding with the next reboot.
+
 ## Reset nodes and remove clusters
 
 This section describes how to reset individual nodes and how to delete an entire multi-node cluster using the Embedded Cluster [reset](embedded-cluster-reset) command.
