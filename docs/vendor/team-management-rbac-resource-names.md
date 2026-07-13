@@ -150,14 +150,6 @@ Grants the holder permission to delete the customer specified by ID for the spec
 
 Grants the holder permission to unarchive (restore) the customer specified by ID for the specified applications.
 
-### kots/app/[:appid]/license/[:customerid]/slack-notifications/read
-
-Grants the holder permission to view the team's Slack notification subscriptions for instances associated with the specified license.
-
-### kots/app/[:appid]/license/[:customerid]/slack-notifications/update
-
-Grants the holder permission to edit the team's Slack notification subscriptions for instances associated with the specified license.
-
 ### kots/app/[:appid]/builtin-licensefields/update
 
 Grants the holder permission to edit the builtin license field override values for the specified applications.

@@ -18,13 +18,13 @@
     "generate-llms": "node static/js/generate-llms.js"
   },
   "dependencies": {
-    "@algolia/client-search": "^5.55.1",
-    "@babel/traverse": "^8.0.0",
+    "@algolia/client-search": "^5.55.2",
+    "@babel/traverse": "^8.0.4",
     "@docsearch/docusaurus-adapter": "^4.6.3",
-    "@docusaurus/core": "3.10.0",
-    "@docusaurus/preset-classic": "3.10.0",
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
     "@mdx-js/react": "^3.1.1",
-    "@types/node": "26.1.0",
+    "@types/node": "26.1.1",
     "@types/react": "19.2.17",
     "clsx": "^2.1.1",
     "immer": "^11.1.11",
@@ -37,9 +37,9 @@
     "ts-node": "10.9.2"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.10.1",
-    "@docusaurus/types": "3.10.1",
-    "typescript": "~6.0.3"
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "typescript": "~7.0.2"
   },
   "resolutions": {
     "immer": "^10.1.1",
