@@ -1,15 +1,17 @@
-# Automate Enterprise Portal with the Vendor API
+---
+sidebar_label: Enterprise Portal Headless Automation
+---
+
+# Enterprise Portal Headless Automation
 
 :::important Alpha Feature
 Features described on this page are in alpha and subject to change. Some capabilities might require additional access.
 :::
 
-This topic describes how to use the Vendor API to manage Enterprise Portal setup for your customers.
-Use these APIs when your own systems create customers, invite customer users, prepare install profiles, or revoke Enterprise Portal service accounts.
+The Enterprise Portal can be operated headlessly through the Vendor API v3. This lets you integrate Enterprise Portal functionality into your existing distribution portal, support portal, or internal tooling rather than directing customers to the Enterprise Portal UI. Common use cases include automating customer onboarding, embedding portal access into your own product, and programmatically managing install profiles and instructions.
 
-Vendor API automation is different from customer service account automation.
 Vendor API requests use a vendor API token and run against `https://api.replicated.com/vendor/v3`.
-Customer service account requests use a customer service account token and run against your Enterprise Portal domain.
+This is different from customer service account automation, where customer service account requests use a customer service account token and run against your Enterprise Portal domain.
 
 ## When to use the Vendor API
 
