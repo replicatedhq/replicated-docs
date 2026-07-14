@@ -21,14 +21,14 @@ Released on July 14, 2026
 
 Released on July 13, 2026
 
-### New Features {#new-features-v2026-07-13-4}
+### Improvements {#improvements-v2026-07-13-4}
 * The Software Bill of Materials card and Download SBOM are now available on the Security Center Overview for the release in view, matching the per-release Security tab.
 
 ## v2026.07.13-3
 
 Released on July 13, 2026
 
-### New Features {#new-features-v2026-07-13-3}
+### Improvements {#improvements-v2026-07-13-3}
 * Security Center now surfaces images that could not be scanned via a new "Unscanned Images" filter, a count in the incomplete-scan banner, and a deep link from the banner to those images.
 
 ## v2026.07.10-3
