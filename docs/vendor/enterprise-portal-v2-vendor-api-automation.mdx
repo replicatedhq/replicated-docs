@@ -48,10 +48,15 @@ Before customers can use the Enterprise Portal, make sure the customer has acces
 You can manage per-customer access in the Vendor Portal or with the Vendor API.
 
 Vendors using both Classic and New Enterprise Portal control access per customer.
-For an existing customer, use [Update a customer](https://replicated-vendor-api.readme.io/reference/updatecustomer-1) to set `is_enterprise_portal_enabled` to `true`.
-The [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) request accepts `portal_version: "v2"` for a new customer.
-For an existing customer, use [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) with `customerId` and `portalVersion: "v2"` to select the New Enterprise Portal.
+For an existing customer, use [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) to select the New Enterprise Portal.
+Send `customerId` and `portalVersion: "v2"`.
+This matches the **Use new Enterprise Portal for this customer** toggle in the Vendor Portal.
 Updating an existing customer's portal version requires additional feature access and an administrator token.
+
+Some teams still use per-customer Enterprise Portal access.
+For those customers, use [Patch a customer](https://replicated-vendor-api.readme.io/reference/patchcustomer).
+Set `is_enterprise_portal_enabled` to `true`.
+For new customers created through the Vendor API, the [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) request accepts `portal_version: "v2"`.
 
 For teams using only the New Enterprise Portal, customers can access the portal without a per-customer enable toggle.
 For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-invite).
