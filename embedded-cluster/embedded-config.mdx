@@ -42,7 +42,7 @@ spec:
           chartVersion: "4.11.3"
         releaseName: ingress-nginx
         namespace: ingress-nginx
-        values: |
+        values:
           controller:
             service:
               type: NodePort
@@ -66,7 +66,7 @@ spec:
         releaseName: goldpinger
         namespace: goldpinger
         weight: 11
-        values: |
+        values:
           image:
             repository: 'repl{{ ReplicatedImageName "docker.io/bloomberg/goldpinger" }}'
 ```
@@ -196,13 +196,15 @@ Each object in `helmCharts` can include the following fields:
 * `releaseName`: (Required) Helm release name.
 * `namespace`: (Required) Namespace for the release.
 * `weight`: Controls installation order relative to other Helm chart extensions. Lower weights install before higher weights. When weights are equal, charts install in alphabetical order by namespace and release name. The default weight is `0`. Negative weights are supported.
-* `values`: Multi-line string of Helm values. This field supports [Replicated template functions](/reference/template-functions-about). Embedded Cluster updates Helm extensions when users deploy new versions of your application. For example, you can change `values` from one release to another, and those changes apply when the user deploys the new version.
+* `values`: Helm values for the chart, provided as nested YAML (a map, not a multi-line string). This field supports [Replicated template functions](/reference/template-functions-about). Embedded Cluster updates Helm extensions when users deploy new versions of your application. For example, you can change `values` from one release to another, and those changes apply when the user deploys the new version.
 
 Each extension chart is installed with `helm upgrade --install --wait --wait-for-jobs`, so Helm hooks (such as `pre-install` and `pre-upgrade` Jobs) run and must succeed before the next chart begins.
 
 #### Requirements
 
 * You must provide `chart.chartVersion`. Omitting it can cause upgrade issues.
+
+* The `values` field must be nested YAML, not a multi-line string (`values: |`). Vendor Portal does not reject releases where `values` is a string, and air gap bundles still build, but installation fails when Embedded Cluster parses the extension.
 
 * For air gap bundles, images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. For an example of how to set digests to empty strings and pull by tag only, see the `ingress-nginx` [Example](embedded-config#extension-example).
 
@@ -219,7 +221,7 @@ spec:
           chartVersion: "4.11.3"
         releaseName: ingress-nginx
         namespace: ingress-nginx
-        values: |
+        values:
           controller:
             service:
               type: NodePort
