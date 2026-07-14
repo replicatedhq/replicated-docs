@@ -203,7 +203,7 @@ extensions:
         chartVersion: "4.11.3"
       releaseName: ingress-nginx
       namespace: ingress-nginx
-      values: |
+      values:
         controller:
           image:
             registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
