@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.14-1
+
+Released on July 14, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-14-1}
+* Made the vulnerability severity colors on the Security Center overview consistent with the rest of the Security Center.
+
 ## v2026.06.08-0
 
 Released on June 8, 2026
