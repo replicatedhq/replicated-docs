@@ -1,0 +1,169 @@
+# Automate Enterprise Portal with the Vendor API
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. Some capabilities might require additional access.
+:::
+
+This topic describes how to use the Vendor API to manage Enterprise Portal setup for your customers.
+Use these APIs when your own systems create customers, invite customer users, prepare install profiles, or revoke Enterprise Portal service accounts.
+
+Vendor API automation is different from customer service account automation.
+Vendor API requests use a vendor API token and run against `https://api.replicated.com/vendor/v3`.
+Customer service account requests use a customer service account token and run against your Enterprise Portal domain.
+
+## When to use the Vendor API
+
+Use the Vendor API when you need to automate vendor-owned Enterprise Portal tasks, including:
+
+- Creating customer records and updating Enterprise Portal access settings
+- Inviting customer users to the Enterprise Portal
+- Listing or removing customer users
+- Creating install options for a customer
+- Generating install or update instructions for a known install options record
+- Listing or revoking Enterprise Portal service accounts
+
+Use the customer service account API when the customer's automation needs to fetch install instructions or download install artifacts.
+Those requests run against your Enterprise Portal domain.
+
+## Authentication
+
+Vendor API requests require a vendor API token in the `Authorization` header:
+
+```shell
+curl --request GET \
+  --url https://api.replicated.com/vendor/v3/apps \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+Generate a service account or user API token in the Vendor Portal.
+The token must have permission for the Enterprise Portal operation you call.
+For more information, see [Use the Vendor API v3](/reference/vendor-api-using).
+
+## Customer access
+
+Before customers can use the Enterprise Portal, make sure the customer has access to the New Enterprise Portal.
+You can manage per-customer access in the Vendor Portal or with the customer update endpoints.
+
+For mixed Classic and New Enterprise Portal teams, customer access is controlled per customer.
+For teams using only the New Enterprise Portal, customers can access the portal without a per-customer enable toggle.
+For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-invite).
+
+## Invite customer users
+
+Use the Vendor API to invite a customer user when your own systems manage customer onboarding.
+The invitation sends an email to the customer user.
+
+```shell
+curl --request POST \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/customer-user' \
+  --header 'Authorization: <vendor-api-token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "customer_id": "<customer-id>",
+    "email_address": "admin@example.com"
+  }'
+```
+
+You can also list and remove customer users:
+
+- `GET /vendor/v3/app/{app_id}/enterprise-portal/customer-users`
+- `DELETE /vendor/v3/app/{app_id}/enterprise-portal/customer-user`
+
+The delete endpoint accepts `customer_id` and `email_address` as query parameters.
+
+## Create install options
+
+Install options describe a customer's install profile.
+They include the install type, network mode, channel, release sequence, and related install settings.
+
+Creating install options through the Vendor API also creates an Enterprise Portal service account for that install profile.
+There is no separate Vendor API endpoint for creating a service account directly.
+
+The customer must have the selected install type enabled.
+Air gap Helm installations also require Helm air gap access.
+Linux installations require Embedded Cluster download access.
+Air gap Linux installations require general air gap access.
+The selected channel must be available to the customer, and the release sequence must exist in that channel.
+The `instance_name` is also the service account name and must be unique for the customer.
+
+```shell
+curl --request POST \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/install-options?includeInstructions=true' \
+  --header 'Authorization: <vendor-api-token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "customer_id": "<customer-id>",
+    "install_type": "helm",
+    "instance_name": "production",
+    "network_availability": "airgap",
+    "registry_availability": "offline",
+    "kubernetes_distribution": "vanilla",
+    "channel_id": "<channel-id>",
+    "channel_release_sequence": 42
+  }'
+```
+
+The response includes:
+
+- `install_options`: The install profile record.
+- `service_account`: The service account created for the install profile, including `service_account.token`.
+- `instructions`: Generated install instructions when `includeInstructions=true`.
+
+Supported install types are `helm` and `linux`. Supported network availability values are `online`, `proxy`, and `airgap`.
+
+For Helm install options, `registry_availability` can be `online`, `partial`, or `offline`.
+Helm install options can also include `kubernetes_distribution`.
+Supported values are `vanilla`, `openshift`, `rancher`, `aks`, `eks`, and `gke`.
+
+For Linux install options, use `is_multi_node` for multi-node Embedded Cluster installs.
+Do not include Helm-only fields such as `registry_availability` or `kubernetes_distribution`.
+
+## Fetch instructions
+
+You can fetch install instructions for an existing install options record:
+
+```shell
+curl --request GET \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/install-options/<install-options-id>?includeInstructions=true' \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+You can fetch update instructions when you know the target channel and channel sequence:
+
+```shell
+curl --request GET \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/install-options/<install-options-id>/update-instructions?targetChannelId=<channel-id>&targetChannelSequence=<sequence>' \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+The Vendor API returns structured JSON instructions.
+Customer automation should use the `service_account.token` returned by the create install options response.
+Store the token securely when you create the install options record, then use it for requests to your Enterprise Portal domain.
+
+## Manage service accounts
+
+Use the Vendor API to list or revoke Enterprise Portal service accounts.
+This is useful when your systems need to audit customer automation access or remove a token that should no longer work.
+
+List service accounts:
+
+```shell
+curl --request GET \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/service-accounts?filterCustomerId=<customer-id>' \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+Revoke a service account:
+
+```shell
+curl --request DELETE \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/service-accounts/<service-account-id>' \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+Revoking a service account clears sensitive token data and makes the service account name reusable.
+
+## Related API reference
+
+For request and response schemas, see the [Vendor API v3 Reference](https://replicated-vendor-api.readme.io/reference).
+The Enterprise Portal endpoints are under the `enterprisePortal` tag.
