@@ -204,8 +204,6 @@ Each extension chart is installed with `helm upgrade --install --wait --wait-for
 
 * You must provide `chart.chartVersion`. Omitting it can cause upgrade issues.
 
-* The `values` field must be nested YAML, not a multi-line string (`values: |`). Vendor Portal does not reject releases where `values` is a string, and air gap bundles still build, but installation fails when Embedded Cluster parses the extension.
-
 * For air gap bundles, images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. For an example of how to set digests to empty strings and pull by tag only, see the `ingress-nginx` [Example](embedded-config#extension-example).
 
 #### Example {#extension-example}
