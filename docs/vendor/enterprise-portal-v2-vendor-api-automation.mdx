@@ -17,9 +17,11 @@ Use the Vendor API when you need to automate vendor-owned Enterprise Portal task
 
 - Creating customer records and updating Enterprise Portal access settings
 - Inviting customer users to the Enterprise Portal
+- Generating one-time customer login URLs
 - Listing or removing customer users
-- Creating install options for a customer
+- Creating, updating, or deleting install options for a customer
 - Generating install or update instructions for a known install options record
+- Monitoring install and update attempts
 - Listing or revoking Enterprise Portal service accounts
 
 Use the customer service account API when the customer's automation needs to fetch install instructions or download install artifacts.
@@ -43,9 +45,14 @@ For more information, see [Use the Vendor API v3](/reference/vendor-api-using).
 ## Customer access
 
 Before customers can use the Enterprise Portal, make sure the customer has access to the New Enterprise Portal.
-You can manage per-customer access in the Vendor Portal or with the customer update endpoints.
+You can manage per-customer access in the Vendor Portal or with the Vendor API.
 
 Vendors using both Classic and New Enterprise Portal control access per customer.
+For an existing customer, use [Update a customer](https://replicated-vendor-api.readme.io/reference/updatecustomer-1) to set `is_enterprise_portal_enabled` to `true`.
+The [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) request accepts `portal_version: "v2"` for a new customer.
+For an existing customer, use [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) with `customerId` and `portalVersion: "v2"` to select the New Enterprise Portal.
+Updating an existing customer's portal version requires additional feature access and an administrator token.
+
 For teams using only the New Enterprise Portal, customers can access the portal without a per-customer enable toggle.
 For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-invite).
 
@@ -53,6 +60,7 @@ For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-
 
 Use the Vendor API to invite a customer user when your own systems manage customer onboarding.
 The invitation sends an email to the customer user.
+For the request and response schemas, see [Invite an Enterprise Portal customer user](https://replicated-vendor-api.readme.io/reference/inviteenterpriseportalcustomeruser) in the Vendor API v3 documentation.
 
 ```shell
 curl --request POST \
@@ -67,10 +75,30 @@ curl --request POST \
 
 You can also list and remove customer users:
 
-- `GET /vendor/v3/app/{app_id}/enterprise-portal/customer-users`
-- `DELETE /vendor/v3/app/{app_id}/enterprise-portal/customer-user`
+- [List Enterprise Portal customer users](https://replicated-vendor-api.readme.io/reference/listenterpriseportalcustomerusers): `GET /vendor/v3/app/{app_id}/enterprise-portal/customer-users`
+- [Remove an Enterprise Portal customer user](https://replicated-vendor-api.readme.io/reference/deleteenterpriseportalcustomeruser): `DELETE /vendor/v3/app/{app_id}/enterprise-portal/customer-user`
 
 The delete endpoint accepts `customer_id` and `email_address` as query parameters.
+
+## Generate a customer login URL
+
+Use the system user login endpoint to add Enterprise Portal access to your own customer portal.
+The endpoint creates a system user for the customer if one does not exist and returns a one-time login URL.
+
+```shell
+curl --request POST \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/system-user-login' \
+  --header 'Authorization: <vendor-api-token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "customer_id": "<customer-id>"
+  }'
+```
+
+The response includes `login_url` and `nonce`.
+Send the customer to `login_url` to open the Enterprise Portal without a separate invitation or login step.
+The URL expires after 10 minutes.
+For the request and response schemas, see [Create a one-time Enterprise Portal login URL](https://replicated-vendor-api.readme.io/reference/createenterpriseportalsystemuserlogin) in the Vendor API v3 documentation.
 
 ## Create install options
 
@@ -79,6 +107,7 @@ They include the install type, network mode, channel, release sequence, and rela
 
 Creating install options through the Vendor API also creates an Enterprise Portal service account for that install profile.
 There is no separate Vendor API endpoint for creating a service account directly.
+For the request and response schemas, see [Create an installation options record](https://replicated-vendor-api.readme.io/reference/createinstalloptions) in the Vendor API v3 documentation.
 
 The customer must have the selected install type enabled.
 Air gap Helm installations also require Helm air gap access.
@@ -110,6 +139,8 @@ The response includes:
 - `service_account`: The service account created for the install profile, including `service_account.token`.
 - `instructions`: Generated install instructions when `includeInstructions=true`.
 
+You can also [update an installation options record](https://replicated-vendor-api.readme.io/reference/patchinstalloptions) with `PATCH` or [delete an installation options record](https://replicated-vendor-api.readme.io/reference/deleteinstalloptions) with `DELETE`.
+
 Supported install types are `helm` and `linux`. Supported network availability values are `online`, `proxy`, and `airgap`.
 
 For Helm install options, `registry_availability` can be `online`, `partial`, or `offline`.
@@ -129,6 +160,8 @@ curl --request GET \
   --header 'Authorization: <vendor-api-token>'
 ```
 
+For the response schema, see [Get an installation options record](https://replicated-vendor-api.readme.io/reference/getinstalloptions) in the Vendor API v3 documentation.
+
 You can fetch update instructions when you know the target channel and channel sequence:
 
 ```shell
@@ -137,14 +170,35 @@ curl --request GET \
   --header 'Authorization: <vendor-api-token>'
 ```
 
-The Vendor API returns structured JSON instructions.
+For the response schema, see [Get update instructions](https://replicated-vendor-api.readme.io/reference/getupdateinstructions) in the Vendor API v3 documentation.
+
+Instruction responses include a `format` field.
+For the `basic` format, the `steps` array contains ordered steps with a stable `step_name`, shell commands, and optional download URLs or downloadable artifacts.
+For the `mdx` format, the response contains `mdx_template`, `context`, and `renderer_version` instead of `steps`.
 Customer automation should use the `service_account.token` returned by the create install options response.
 Store the token securely when you create the install options record, then use it for requests to your Enterprise Portal domain.
+
+## Monitor install and update progress
+
+Use [List installation attempts](https://replicated-vendor-api.readme.io/reference/listinstallattempts) to monitor tracked installs for a customer:
+
+```text
+GET /vendor/v3/app/{app_id}/enterprise-portal/install-attempts?filterCustomerId={customer_id}
+```
+
+Use [List customer update attempts](https://replicated-vendor-api.readme.io/reference/listupdateattempts) to monitor tracked updates:
+
+```text
+GET /vendor/v3/app/{app_id}/enterprise-portal/update-attempts?customer_id={customer_id}
+```
+
+The responses include attempt status and timing information that you can use to detect succeeded, in-progress, stalled, discarded, or obsolete workflows.
 
 ## Manage service accounts
 
 Use the Vendor API to list or revoke Enterprise Portal service accounts.
 This is useful when your systems need to audit customer automation access or remove a token that should no longer work.
+For the request and response schemas, see [List Enterprise Portal service accounts](https://replicated-vendor-api.readme.io/reference/listenterpriseportalserviceaccounts) and [Revoke an Enterprise Portal service account](https://replicated-vendor-api.readme.io/reference/deleteenterpriseportalserviceaccount) in the Vendor API v3 documentation.
 
 List service accounts:
 
@@ -165,6 +219,10 @@ curl --request DELETE \
 Revoking a service account clears sensitive token data and makes the service account name reusable.
 
 ## Related API reference
+
+The examples on this page require customer, channel, and channel release identifiers.
+Use [List all customers](https://replicated-vendor-api.readme.io/reference/listcustomers-1) to find `customer_id` and [List channels](https://replicated-vendor-api.readme.io/reference/listchannels) to find `channel_id`.
+Then use [List releases for a channel](https://replicated-vendor-api.readme.io/reference/listchannelreleases) and pass the selected release's `channel_sequence` value as `channel_release_sequence`.
 
 For request and response schemas, see the [Vendor API v3 Reference](https://replicated-vendor-api.readme.io/reference).
 Select the `enterprisePortal` tag to view the Enterprise Portal endpoints.
