@@ -73,7 +73,7 @@ The following fields are supported on all optional collectors for preflights and
 
 ### KOTS collector example
 
-This is an example of collector definition for a KOTS support bundle:
+This is an example of a collector definition for a KOTS support bundle. It uses the [`logs`](https://troubleshoot.sh/docs/collect/logs/) collector to collect logs from your application's Pods, selected by label. Collecting application logs is one of the most common and useful things to include in a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -82,18 +82,19 @@ metadata:
   name: sample
 spec:
   collectors:
-    - collectd:
-        collectorName: "collectd"
-        image: busybox:1
+    - logs:
+        collectorName: "app-logs"
+        selector:
+          - app.kubernetes.io/name=my-app
         namespace: default
-        hostPath: "/var/lib/collectd/rrd"
-        imagePullPolicy: IfNotPresent
-        imagePullSecret:
-           name: my-temporary-secret
-           data:
-             .dockerconfigjson: ewoJICJhdXRocyI6IHsKzCQksHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjoge30KCX0sCgkiSHR0cEhlYWRlcnMiOiB7CgkJIlVzZXItQWdlbnQiOiAiRG9ja2VyLUNsaWVudC8xOS4wMy4xMiAoZGFyd2luKSIKCX0sCgkiY3JlZHNTdG9yZSI6ICJkZXNrdG9wIiwKCSJleHBlcmltZW50YWwiOiAiZGlzYWJsZWQiLAoJInN0YWNrT3JjaGVzdHJhdG9yIjogInN3YXJtIgp9
-           type: kubernetes.io/dockerconfigjson
+        limits:
+          maxAge: 720h
+          maxLines: 10000
 ```
+
+The `selector` field uses standard Kubernetes label selector syntax to match the Pods whose logs you want to collect. You can list multiple selectors, and each entry can include multiple comma-separated labels (for example, `app.kubernetes.io/name=my-app,role=worker`). The `namespace` field limits collection to a single namespace. If you omit `namespace`, logs are collected from all namespaces that the collector has access to. The `limits` field bounds how much log data is collected: `maxAge` limits how far back in time to collect (Go duration format, such as `720h` for 30 days) and `maxLines` caps the number of lines collected per container.
+
+For the full list of `logs` collector fields, see [Logs](https://troubleshoot.sh/docs/collect/logs/) in the Troubleshoot documentation.
 
 ### Analyzer global fields
 
