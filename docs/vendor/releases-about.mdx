@@ -80,17 +80,30 @@ The demoted release's channel sequence and version are not reused. For customers
 
 For information about how to demote a release, see [Demote a Release](/vendor/releases-creating-releases#demote-a-release) in _Managing Releases with the Vendor Portal_. 
 
-The following describes how each installation method handles a demoted release:
+The following describes how each installation method handles a demoted release.
+
+#### Online installations
+
+When customers check for updates over the internet:
 
 * **Helm CLI**: When a release is demoted, it is no longer listed in the customer's Enterprise Portal as available for update, unless the customer had already downloaded the release before it was demoted.
 
 * **Embedded Cluster**: When a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
 
-*  **Existing Cluster KOTS and kURL (KOTS 1.128.0 and Later)**: In KOTS existing cluster and kURL installations that use KOTS 1.128.0 or later, when a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
+* **Existing Cluster KOTS and kURL (KOTS 1.128.0 and Later)**: In KOTS existing cluster and kURL installations that use KOTS 1.128.0 or later, when a release is demoted, it is removed from the list of available updates in the Admin Console the next time that an upstream version check occurs, unless the customer had already deployed the release before it was demoted.
 
 * **Existing Cluster KOTS and kURL (KOTS 1.127.2 and Earlier)**: In KOTS existing cluster and kURL installations that use KOTS 1.127.2 or earlier, after the Admin Console checks for upstream updates, it automatically downloads metadata for the newly-available releases. Therefore, whether or not the customer can see a demoted release in the Admin Console depends on the last time the customer checked for updates:
    * If the customer checked for updates and fetched a release _before_ it was demoted, then the release will remain listed in the Admin Console the next time an update check occurs. This is because a release cannot be withdrawn from the customer’s environment after it has been downloaded.
-   * If the customer checks for udpates _after_ a release was demoted, then the demoted release is not fetched and is not listed in the Admin Console.
+   * If the customer checks for updates _after_ a release was demoted, then the demoted release is not fetched and is not listed in the Admin Console.
+
+#### Air gap installations
+
+For air gap installations with Embedded Cluster, KOTS, or kURL, customers install and update from air gap bundles rather than checking for updates over the internet. A demoted release is excluded from any air gap bundle built _after_ the release is demoted. This means the demoted release:
+
+* Is not available to install from newly built air gap bundles.
+* Is not included in the list of required releases that customers must step through when updating.
+
+As with online installations, a release cannot be withdrawn after it has been downloaded. Air gap bundles that were built and downloaded _before_ the release was demoted still contain that release. To ensure that customers no longer receive a demoted release, demote it before the relevant air gap bundle is built or downloaded.
 
 ### Archived releases
 
@@ -98,7 +111,7 @@ You can archive releases to remove them from view on the Vendor Portal **Release
 
 Archiving a release is most useful when you want to reduce the number of releases that you see on the **Releases** page, while ensuring that all of the archived releases are still available for use.
 
-For information about how to demote a release, see [Archive a Release](/vendor/releases-creating-releases#archive-a-release) in _Managing Releases with the Vendor Portal_. 
+For information about how to archive a release, see [Archive a Release](/vendor/releases-creating-releases#archive-a-release) in _Managing Releases with the Vendor Portal_. 
 
 ### Release properties
 
