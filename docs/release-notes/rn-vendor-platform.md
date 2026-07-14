@@ -17,6 +17,230 @@ Released on July 14, 2026
 ### Bug Fixes {#bug-fixes-v2026-07-14-1}
 * Made the vulnerability severity colors on the Security Center overview consistent with the rest of the Security Center.
 
+## v2026.07.13-4
+
+Released on July 13, 2026
+
+### Improvements {#improvements-v2026-07-13-4}
+* The Software Bill of Materials card and Download SBOM are now available on the Security Center Overview for the release in view, matching the per-release Security tab.
+
+## v2026.07.13-3
+
+Released on July 13, 2026
+
+### Improvements {#improvements-v2026-07-13-3}
+* Security Center now surfaces images that could not be scanned via a new "Unscanned Images" filter, a count in the incomplete-scan banner, and a deep link from the banner to those images.
+
+## v2026.07.10-3
+
+Released on July 10, 2026
+
+### New Features {#new-features-v2026-07-10-3}
+* The Security Center CVE details tab now has a multi-select severity filter (Critical / High / Medium / Low) with live counts and a "Showing X of Y CVEs" label.
+
+## v2026.07.10-1
+
+Released on July 10, 2026
+
+### Improvements {#improvements-v2026-07-10-1}
+* The customer instance Security page now uses the shared Container Images list, adding the image source-type filter and image counts for parity with the Security Center and per-release Security tabs.
+
+## v2026.07.09-1
+
+Released on July 9, 2026
+
+### Improvements {#improvements-v2026-07-09-1}
+* The Container Images list on the Security Center page and the per-release Security tab now use one shared component with consistent source-type filtering, image counts, and "show only vulnerable" behavior.
+
+## v2026.07.09-0
+
+Released on July 9, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-09-0}
+* Security Center now correctly classifies the Replicated SDK image as a Replicated Platform Image when it is bundled as a subchart of a vendor's chart, instead of counting it as a vendor application image.
+
+## v2026.07.07-3
+
+Released on July 7, 2026
+
+### Improvements {#improvements-v2026-07-07-3}
+* The release Overview tab now shows active instance and customer-access counts, a Helm charts breakdown (name, app version, chart version, size), and a compact SBOM reference linking to the Security tab.
+
+## v2026.07.07-2
+
+Released on July 7, 2026
+
+### Improvements {#improvements-v2026-07-07-2}
+* Release SBOM details and download moved from the Release Overview tab to the Release Security tab, which now includes a vulnerability summary with vendor and Replicated image breakdowns.
+
+## v2026.07.07-0
+
+Released on July 7, 2026
+
+### New Features {#new-features-v2026-07-07-0}
+* Added a Vendor API `GET /v3/app/{appId}/release/{sequence}/exposure` endpoint returning active-instance and customer-with-access counts, with a per-channel breakdown, for a release.
+
+## v2026.07.06-2
+
+Released on July 6, 2026
+
+### New Features {#new-features-v2026-07-06-2}
+* The Security Center Container Images list can now be filtered by source type (My Application Images / Replicated Platform Images), and Replicated platform images are visually distinguished.
+
+## v2026.07.06-1
+
+Released on July 6, 2026
+
+### New Features {#new-features-v2026-07-06-1}
+* The Vendor API image scan response now includes a `source_type` ("replicated" or "vendor") on each image and a `summary` block with per-source image and vulnerability counts.
+
+## v2026.07.06-0
+
+Released on July 6, 2026
+
+### New Features {#new-features-v2026-07-06-0}
+* The Vendor Portal now shows installer guidance and supported install types based on team entitlements.
+
+### Bug Fixes {#bug-fixes-v2026-07-06-0}
+* The app dashboard's "Upcoming license expiration" card now shows an error state instead of rendering blank when its data fails to load.
+
+## v2026.06.30-3
+
+Released on June 30, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-30-3}
+* Fixed a bug that could cause a 500 error when pulling images through the Replicated proxy registry from an ECR registry that uses OIDC authentication.
+
+## v2026.06.25-7
+
+Released on June 25, 2026
+
+### Improvements {#improvements-v2026-06-25-7}
+* The Vendor Portal now shows additional Embedded Cluster settings and status in places that were previously hidden unless KOTS was enabled.
+
+## v2026.06.25-5
+
+Released on June 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-25-5}
+* Fixed `replicated release create` rejecting releases where a parent Helm chart bundles its sub-charts under a directory other than `charts/`. Sub-charts bundled inside a parent chart are no longer treated as top-level charts requiring their own HelmChart custom resource.
+
+## v2026.06.25-2
+
+Released on June 25, 2026
+
+### New Features {#new-features-v2026-06-25-2}
+* Enterprise Portal docs navigation now supports recursively nested sidebar items.
+
+## v2026.06.24-6
+
+Released on June 24, 2026
+
+### Improvements {#improvements-v2026-06-24-6}
+* The "Beta" label has been removed from the Compatibility Matrix Virtual Machines feature.
+
+## v2026.06.24-3
+
+Released on June 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-24-3}
+* The Instance Uptime time-range selector now collapses to a dropdown on narrow screens instead of overflowing.
+
+## v2026.06.24-1
+
+Released on June 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-24-1}
+* Fixed modal Save and Delete buttons that could fire their request multiple times when clicked rapidly; they now disable while the action is in progress.
+
+## v2026.06.24-0
+
+Released on June 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-24-0}
+* Fixed the channel card "Latest Release" section overlapping the "Release history" link and release properties on narrow screens.
+
+## v2026.06.23-0
+
+Released on June 23, 2026
+
+### Improvements {#improvements-v2026-06-23-0}
+* Custom Metrics is now generally available: the "Beta" label has been removed from the Custom Metrics card in the Vendor Portal.
+
+## v2026.06.22-0
+
+Released on June 22, 2026
+
+### New Features {#new-features-v2026-06-22-0}
+* Enterprise Portal Helm install instructions and support bundle collection steps now include direct browser download options for Troubleshoot kubectl plugins.
+
+## v2026.06.18-4
+
+Released on June 18, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-18-4}
+* Fixed release notification emails so custom templates using `{{release_notes}}` render markdown release notes correctly.
+
+## v2026.06.18-3
+
+Released on June 18, 2026
+
+### New Features {#new-features-v2026-06-18-3}
+* Enterprise Portal Helm install instructions can now include browser download links for Helm chart tarballs.
+
+## v2026.06.17-3
+
+Released on June 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-17-3}
+* Fixed stale KOTS Release History badges after demoting a current release.
+
+## v2026.06.16-0
+
+Released on June 16, 2026
+
+### New Features {#new-features-v2026-06-16-0}
+* The Vendor Portal now notifies Enterprise Portal vendors when upstream content template updates are available for their linked content repo.
+* Added a Vendor Portal setting to hide Enterprise Portal release versions that do not have matching versioned content.
+
+## v2026.06.12-3
+
+Released on June 12, 2026
+
+### New Features {#new-features-v2026-06-12-3}
+* The Enterprise Portal now supports browser downloads for Embedded Cluster air gap bundles from Linux install instructions.
+
+## v2026.06.11-6
+
+Released on June 11, 2026
+
+### Bug Fixes {#bug-fixes-v2026-06-11-6}
+* Custom domain configuration errors now display on separate lines instead of running together on a single line.
+
+## v2026.06.11-5
+
+Released on June 11, 2026
+
+### New Features {#new-features-v2026-06-11-5}
+* Enterprise Portal `theme.yaml` now supports `branding.defaultTheme` to set the default docs theme to light or dark.
+
+## v2026.06.09-3
+
+Released on June 9, 2026
+
+### New Features {#new-features-v2026-06-09-3}
+* Enterprise Portal v2 is now the default Enterprise Portal experience for new vendor teams. Existing teams with GitHub-backed Enterprise Portal content are migrated to the EP v2 flag model.
+
+## v2026.06.08-2
+
+Released on June 8, 2026
+
+### New Features {#new-features-v2026-06-08-2}
+* Support Bundle Uploaded and Support Bundle Analyzed notifications can now be filtered by instance tags, so vendors can route those notifications by instance tags when the event has validated instance context.
+
+### Bug Fixes {#bug-fixes-v2026-06-08-2}
+* Instances with zero tags now show an "Add tags" action on the instance details page.
+
 ## v2026.06.08-0
 
 Released on June 8, 2026
