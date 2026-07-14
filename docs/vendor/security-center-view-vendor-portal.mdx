@@ -24,12 +24,17 @@ You can filter for the information on the Security Center dashboard by release t
 
 The Security Center dashboard includes the following:
 * An overview of vulnerabilities present in the release, including a breakdown of CVE severity (Critical, High, Medium, Low) and a detailed list of the top security risks
+* The software bill of materials (SBOM) for the release, with a **Download SBOM** option
 * On the **Container images** tab, a complete list of scanned images with vulnerability counts per image
 * On the **CVE details** tab, for each CVE identified:
   * The CVE identifier and description
   * The CVSS score and severity rating
   * A list of images affected by the CVE
   * Fixed versions (when available)
+
+### Software bill of materials (SBOM)
+
+The Security Center dashboard displays the software bill of materials (SBOM) for the release in view. The SBOM includes the format, the number of components and dependencies, the generation date, and the tool used. Select **Download SBOM** to download the SBOM as a JSON file.
 
 ### Filter container images by source
 
@@ -54,7 +59,7 @@ Security Center groups each CVE by its highest severity level across all affecte
 
 ## Release-specific CVE information
 
-CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**. This page shows the same container image list and source filter as the [Security Center dashboard](#security-center-dashboard).
+CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**. This page shows the same container image list, source filter, and SBOM as the [Security Center dashboard](#security-center-dashboard).
 
 ## Customer-specific CVE information
 
