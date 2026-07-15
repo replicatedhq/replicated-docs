@@ -26,17 +26,20 @@ Replicated might use the following entities to provide infrastructure that helps
 | Entity Name | Purpose | Country where Infrastructure Resides | Notes
 |---------------------|----------------------------|-------|----|
 | Amazon Web Services | Various IaaS  | United States | Vendor portal, registry, api and supporting infrastructure services.
+| Latitude.sh | Various IaaS  | United States | Vendor portal, registry, api and supporting infrastructure services.
 | Cloudflare | Network security, DDoS mitigation, DNS  | United States |
 | Datadog | Performance monitoring | United States |
 | DBT Labs | Data transformation or migration | United States |
 | FiveTran | Data transformation or migration  | United States |
 | Github | Customer support  | United States | Replicated's customers may engage with our customer support team using Github issues in a private repo.
-| Google Looker | Product usage metrics  | United States |
+| Omni Analytics | Product usage metrics  | United States |
 | Hex | Data transformation or migration | United States |
-| Knock Labs, Inc.| Event notifications | United States |   |
-| Postmark / Active Campaign | Transactional emails from Vendor Portal. Marketing related communications. | United States | Active Campaign and Postmark businesses merged.|
-| Salesforce |Customer and sales relationship management| United States | 
+| Postmark | Transactional emails from Vendor Portal. Marketing related communications. | United States |
+| Attio |Customer and sales relationship management| United States | 
 | Snowflake | Usage data analysis and transformation   | United States |
-| Timescale | Time-series data of instance metrics  | United States | See our [Data Transmission Policy](/vendor/policies-data-transmission)
+| Google Workspace | Email, calednar, docs/drive   | United States |
+| Slack | Customer and internal communication   | United States |
+| OpenAI | Platform level services and LLMs   | United States |
+| FireworksAI | Platform level services and LLMs   | United States |
 
-Last modified January 4, 2024
+Last modified July 14, 2026
