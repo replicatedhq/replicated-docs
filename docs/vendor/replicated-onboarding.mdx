@@ -305,6 +305,10 @@ To define preflight checks for your application:
 
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Define preflight checks](/vendor/preflight-defining). For examples, see [Example preflight specs](/vendor/preflight-examples).
 
+   :::note
+   This uses a `troubleshoot.sh/v1beta2` spec, which is supported by KOTS, kURL, and Embedded Cluster v2. Embedded Cluster v3 requires a `troubleshoot.sh/v1beta3` spec packaged as a release-level file instead. See [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+   :::
+
      If you deploy your application as multiple Helm charts, add the Secret to the `templates` directory for the chart you install first.
 
 1. Update dependencies and package the chart as a `.tgz`:

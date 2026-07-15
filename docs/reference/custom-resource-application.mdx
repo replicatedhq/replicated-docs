@@ -191,10 +191,11 @@ An array of strings that reference images to include in air gap bundles and push
 
 For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, or kURL installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
 
+For Embedded Cluster v3, `additionalImages` is also used to include images in air gap bundles when those images are not directly referenced in your Helm chart templates. This includes images used by preflight checks, such as the Troubleshoot image used to run checks inside the cluster. See [Include preflight images in air gap bundles](/embedded-cluster/v3/embedded-using#preflight-air-gap-images).
+
 #### Limitations
 
 * The `additionalImages` property doesn't support Go templating.
-* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `additionalImages` property.
 
 #### Example
 
@@ -212,12 +213,11 @@ spec:
 
 ### `excludedImages`
 
-An array of strings that reference images to exclude from air gap bundles.
+An array of strings that reference images to exclude from air gap bundles. Supported for Embedded Cluster v2, Embedded Cluster v3, KOTS existing cluster, and kURL installations.
 
 #### Limitations
 
 * The `excludedImages` property doesn't support Go templating.
-* Supported for Embedded Cluster v2, KOTS existing cluster, and kURL installations only. Embedded Cluster v3 doesn't support the `excludedImages` property.
 
 #### Example
 

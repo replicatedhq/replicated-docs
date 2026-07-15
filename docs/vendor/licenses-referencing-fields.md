@@ -1,6 +1,10 @@
 # Check entitlements in preflights with Replicated template functions
 
-This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
+This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with KOTS, kURL, or Embedded Cluster v2.
+
+:::note
+This example uses `troubleshoot.sh/v1beta2` with the Replicated `repl{{ LicenseFieldValue }}` template function. Embedded Cluster v3 requires preflight specs to use `troubleshoot.sh/v1beta3`, which Embedded Cluster renders with Helm rather than the Replicated template engine, so `LicenseFieldValue` is not available inside a v3 preflight spec. Instead, reference the entitlement through the Helm values that the Replicated SDK injects, for example `{{ .Values.global.replicated.licenseFields.node_count.value }}`. See [Check entitlements in Helm charts](/vendor/licenses-reference-helm) and [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+:::
 
 ## Overview
 

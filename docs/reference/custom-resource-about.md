@@ -50,9 +50,9 @@ The following custom resources can be used in releases distributed with Replicat
         <td>Customizes the default rule levels for the release linter</td>
     </tr>
     <tr>
-        <td>troubleshoot.sh/v1beta2</td>
+        <td>troubleshoot.sh/v1beta2<br/>troubleshoot.sh/v1beta3</td>
         <td>[Preflight](custom-resource-preflight)</td>
-        <td>Defines collectors and analyzers for preflight checks</td>
+        <td>Defines collectors and analyzers for preflight checks. KOTS, kURL, and Embedded Cluster v2 use <code>v1beta2</code>. Embedded Cluster v3 requires <code>v1beta3</code>. See <a href="/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3">Preflight specs must use v1beta3</a>.</td>
     </tr>
     <tr>
         <td>troubleshoot.sh/v1beta2</td>

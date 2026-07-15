@@ -75,6 +75,10 @@ To add preflight checks for your application, create a Preflight YAML specificat
 
 For information about how to add preflight checks to your application, including examples, see [Define Preflight Checks](preflight-defining).
 
+:::note
+Preflight specs use `troubleshoot.sh/v1beta2` for KOTS, kURL, and Embedded Cluster v2. Embedded Cluster v3 requires `troubleshoot.sh/v1beta3`. See [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+:::
+
 ### Blocking installation with required (strict) preflights
 
 For applications installed with KOTS or Embedded Cluster, it is possible to block the deployment of a release if a preflight check fails. This is helpful when it is necessary to prevent an installation or upgrade from continuing unless a given requirement is met.
