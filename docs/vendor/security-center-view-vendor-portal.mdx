@@ -46,6 +46,26 @@ On the **Container images** tab, you can filter the list of scanned images by so
 
 You can also select **Show only vulnerable images** to limit the list to images that have known vulnerabilities.
 
+### Find other releases affected by an image
+
+On the **Container images** tab, each image includes a **Find in other releases** option that shows every other release referencing the same image. This is useful for assessing the blast radius of a vulnerability. If an image has a CVE, the panel shows which other releases, channels, and customer instances might also be affected.
+
+Select **Find in other releases** on an image to expand a panel listing matching releases, grouped as follows:
+
+* **Active Releases**: The latest promoted release on each channel that references the image.
+* **All Releases**: Every release that references the image, whether it is currently active or was previously promoted, along with the number of active instances running each release.
+
+A release can be promoted to more than one channel. When this happens, it can appear more than once in the results, once for each channel.
+
+For each matching release, the panel shows:
+
+* The release sequence and version, linked to that release's **Security** tab
+* The channel the release is promoted to
+* The number of active instances running that release
+* The specific image tag or reference that matched. The same image can be referenced differently across releases — for example, with different registry prefixes or tags
+
+The **All Releases** list also shows a **Total exposure** count of active instances across every matching release.
+
 ### Filter CVEs by severity
 
 On the **CVE details** tab, you can filter the list of CVEs by severity level. Select any combination of the following to narrow the list:
