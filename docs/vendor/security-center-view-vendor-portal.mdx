@@ -48,21 +48,21 @@ You can also select **Show only vulnerable images** to limit the list to images 
 
 ### Find other releases affected by an image
 
-On the **Container images** tab, each image includes a **Find in other releases** option that shows every other release referencing the same image. This is useful for assessing the blast radius of a vulnerability. If an image has a CVE, the panel shows which other releases, channels, and customer instances might also be affected.
+On the **Container images** tab, each image includes a **Find in other releases** option that shows every other release referencing the same image. This is useful for assessing the blast radius of a vulnerability. If an image has a CVE, the panel shows which other releases, channels, and customer instances the CVE might also affect.
 
 Select **Find in other releases** on an image to expand a panel listing matching releases, grouped as follows:
 
 * **Active Releases**: The latest promoted release on each channel that references the image.
-* **All Releases**: Every release that references the image, whether it is currently active or was previously promoted, along with the number of active instances running each release.
+* **All Releases**: Every release that references the image, whether active or previously promoted, along with the number of active instances running each release.
 
-A release can be promoted to more than one channel. When this happens, it can appear more than once in the results, once for each channel.
+A release can span more than one channel, so it can appear multiple times in the results, one row per channel.
 
 For each matching release, the panel shows:
 
 * The release sequence and version, linked to that release's **Security** tab
-* The channel the release is promoted to
+* The channel the release ships to
 * The number of active instances running that release
-* The specific image tag or reference that matched. The same image can be referenced differently across releases — for example, with different registry prefixes or tags
+* The specific image tag or reference that matched. Releases can reference the same image differently — for example, with different registry prefixes or tags
 
 The **All Releases** list also shows a **Total exposure** count of active instances across every matching release.
 
