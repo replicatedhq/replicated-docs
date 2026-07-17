@@ -244,6 +244,10 @@ spec:
 
 ### Ternary operators
 
+:::note
+This example uses `HasLocalRegistry`, `LocalRegistryHost`, and `LocalRegistryNamespace`, which are not supported in Embedded Cluster v3. For v3, use the `ReplicatedImageName` and `ReplicatedImageRegistry` template functions instead. See [Template Functions for Embedded Cluster](/embedded-cluster/v3/template-functions).
+:::
+
 Ternary operators are useful for templating strings where certain values must render differently based on a condition.
 They work best when you need to render a small portion of a string conditionally,
 rather than choosing between entirely different values.
