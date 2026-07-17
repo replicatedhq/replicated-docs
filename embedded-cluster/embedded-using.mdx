@@ -371,9 +371,23 @@ Embedded Cluster installations in air gap environments have the following limita
 
 If your application requires certain components deployed before the application and as part of the cluster itself, add them as [extensions](embedded-config#extensions) in the Embedded Cluster Config. For example, you can add a Helm extension to deploy an ingress controller. You can add extensions for Helm charts that you own or for third-party charts.
 
+Embedded Cluster v3 resolves each extension chart from a `.tgz` chart archive that is bundled in the release, matching by chart name and version. It does not pull extension charts at install time from an HTTP Helm repository or an OCI registry. For this reason, adding an extension for a chart hosted in a repository or registry requires you to first package the chart as a `.tgz` archive and include it in your release, the same way you do for your application charts.
+
 To add Helm extensions:
 
-1. In the Embedded Cluster Config, add the Helm chart to the [`extensions`](embedded-config#extensions) key.
+1. Package the chart as a `.tgz` archive at the version you want to install, and add the archive to your release. For a chart hosted in an HTTP Helm repository or an OCI registry, pull it first with `helm pull`. For example:
+
+   ```bash
+   # HTTP Helm repository
+   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   helm repo update
+   helm pull ingress-nginx/ingress-nginx --version 4.11.3
+
+   # OCI registry
+   helm pull oci://quay.io/jetstack/charts/cert-manager --version 1.19.2
+   ```
+
+1. Reference the chart in the Embedded Cluster Config under [`extensions.helmCharts`](embedded-config#extensions), using a `chart.name` and `chart.chartVersion` that match the packaged archive's `Chart.yaml`.
 
 1. If you support air gap installations, configure each of your `extensions` so that they resolve correctly for both online and air gap installations. See [Add support for air gap installations](#local-image-registry) on this page.
 
