@@ -18,13 +18,15 @@ From anywhere on your machine, run the command below, replacing both placeholder
 - `<your-app-slug>` — your application's slug.
 
 ```shell
-replicated enterprise-portal preview /path/to/your-content-repo --app <your-app-slug>
+replicated enterprise-portal preview /path/to/your-content-repo \
+  --app <your-app-slug>
 ```
 
 For example, if you cloned your repo to `~/repos/acme-enterprise-portal-content` and your app slug is `acme`:
 
 ```shell
-replicated enterprise-portal preview ~/repos/acme-enterprise-portal-content --app acme
+replicated enterprise-portal preview ~/repos/acme-enterprise-portal-content \
+  --app acme
 ```
 
 The CLI pulls a preview container (first run only), starts a local server, and opens the full Enterprise Portal experience at `http://localhost:3000` (auto-increments if the port is busy).
