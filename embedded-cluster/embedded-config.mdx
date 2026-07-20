@@ -197,6 +197,7 @@ Each object in `helmCharts` can include the following fields:
 * `namespace`: (Required) Namespace for the release.
 * `weight`: Controls installation order relative to other Helm chart extensions. Lower weights install before higher weights. When weights are equal, charts install in alphabetical order by namespace and release name. The default weight is `0`. Negative weights are supported.
 * `values`: Helm values for the chart, provided as nested YAML. This field supports [Replicated template functions](/reference/template-functions-about). Embedded Cluster updates Helm extensions when users deploy new versions of your application. For example, you can change `values` from one release to another, and those changes apply when the user deploys the new version.
+* `builder`: Helm values used only during air gap bundle building. When the Vendor Portal builds an air gap bundle, it runs `helm template` on the chart with these values to discover which container images to include. Use `builder` when the chart has optional images that only appear with specific values (for example, `metrics.enabled: true`). If the chart's default `values.yaml` already exposes all images, you do not need to configure `builder`. This field works the same way as [`builder`](/reference/custom-resource-helmchart-v2#builder) on the HelmChart v2 custom resource.
 
 Each extension chart is installed with `helm upgrade --install --wait --wait-for-jobs`, so Helm hooks (such as `pre-install` and `pre-upgrade` Jobs) run and must succeed before the next chart begins.
 
