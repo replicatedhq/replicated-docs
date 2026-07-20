@@ -12,13 +12,28 @@ Run the Enterprise Portal locally using the Replicated CLI. This is the fastest 
 
 **Prerequisites:** Docker running, the `replicated` CLI installed, and your content repo checked out locally.
 
-From anywhere on your machine:
+From anywhere on your machine, run the command below, replacing both placeholders:
+
+- `/path/to/your-content-repo` — the absolute path to the local directory where you cloned your content repo. This is a path on disk, not a Git URL, and not the literal placeholder text.
+- `<your-app-slug>` — your application's slug.
 
 ```shell
-replicated enterprise-portal preview /path/to/your-content-repo --app <your-app-slug>
+replicated enterprise-portal preview /path/to/your-content-repo \
+  --app <your-app-slug>
+```
+
+For example, if you cloned your repo to `~/repos/acme-enterprise-portal-content` and your app slug is `acme`:
+
+```shell
+replicated enterprise-portal preview ~/repos/acme-enterprise-portal-content \
+  --app acme
 ```
 
 The CLI pulls a preview container (first run only), starts a local server, and opens the full Enterprise Portal experience at `http://localhost:3000` (auto-increments if the port is busy).
+
+:::note
+If you see `content path does not exist: /path/to/repo`, the example path was run literally. Replace it with the absolute path to your locally cloned content repo.
+:::
 
 If you are authenticated with the CLI (`replicated login`, `REPLICATED_API_TOKEN`, or `--token`), a customer switcher dropdown appears in the preview toolbar. Switching customers re-renders the page with that customer's entitlements, channel, and license data applied. Without a token, the preview runs with mock customer data.
 

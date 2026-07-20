@@ -23,6 +23,15 @@ API manual sync (see [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-r
 replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/sync
 ```
 
+## Updated `main` but customers still see old content
+
+The `main` branch is only the last-resort fallback. When a customer views a release, Enterprise Portal serves the highest version branch whose name is at or below that release version (nearest lower semver), and falls back to `main` only when no such branch exists. A stray version branch (for example, `v0.0.1`) sorts at or below almost every release, so it captures those releases and serves its own content, even after you update `main`.
+
+- On the Content tab, check which branches are synced. If you are not maintaining version-specific docs, keep only `main` and delete stray version branches so every release falls back to `main`.
+- If you are using versioned docs, update the version branch that actually serves the release, not just `main`.
+
+See [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs) for how version resolution works.
+
 ## Pages not showing in navigation
 
 - Check `toc.yaml` includes the page
@@ -36,6 +45,10 @@ replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/s
 - Branch names with `/` (like `feature/foo` or `austin/initial-customization`) are treated as nested URL path segments in the preview. Use flat branch names (like `feature-foo`) to avoid this.
 - The `main` branch is hidden from the version list when other branches exist. If you only have `main`, it shows as the sole version. If you have other branches, navigating to a URL with `/main/` in the path returns a 404.
 - Uncommitted changes only appear on your currently checked-out branch. Other branches serve their last committed state.
+
+## Local preview: "content path does not exist"
+
+The preview command's example path is a placeholder. If you see `content path does not exist: /path/to/repo`, you ran the example literally. Replace `/path/to/repo` with the absolute path to your locally cloned content repo, for example `~/repos/acme-enterprise-portal-content`. See [Local preview](/vendor/enterprise-portal-v2-access#local-preview).
 
 ## Version branch not working
 

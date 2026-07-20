@@ -82,6 +82,28 @@ Click **Review** on the Content tab banner to open the template updates modal. E
 
 ### Applying an update
 
-Template updates do not apply automatically. Each update's guide describes what files to copy or modify and what to verify after making the change. Because your repo has diverged from the template, each guide provides targeted adoption steps rather than a wholesale merge.
+Template updates do not apply automatically, and Replicated does not modify your repo. The banner is an informational feed of changes published since your last review, not a comparison against your repo or a list of changes you are missing. Each update's guide describes what files to copy or modify and what to verify.
 
-After reviewing the available updates, click **Mark reviewed** to acknowledge them. The banner clears until Replicated publishes the next template update. Marking updates as reviewed is per-user, so other team members continue to see the banner until they review it themselves.
+Because you cloned the template rather than forked it, your repo shares no Git history with it, so you cannot bring in updates with a plain `git pull` or `git merge`. Instead, add the template as a remote once, then pull in the specific files each guide lists:
+
+```shell
+# One-time setup: add the template as a remote
+git remote add upstream https://github.com/replicatedhq/enterprise-portal-content.git
+git fetch upstream
+
+# See what changed in the template compared to your content
+git diff HEAD upstream/main -- pages toc.yaml theme.yaml updates
+
+# Bring in the files a specific update's guide lists, then review and commit
+git checkout upstream/main -- pages/example.md toc.yaml
+git add -A && git commit -m "Adopt template update"
+git push
+```
+
+Verify the result with a [local preview](/vendor/enterprise-portal-v2-access#local-preview) before pushing to a branch that customers see.
+
+:::note
+Adopting an update on one branch does not propagate it to your other branches. If you maintain version branches, apply the update to each branch where you want it.
+:::
+
+After reviewing the available updates, click **Mark reviewed** to acknowledge them. This only clears the banner for you and does not change your repo. Marking updates as reviewed is per-user, so other team members continue to see the banner until they review it themselves.
