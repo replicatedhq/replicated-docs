@@ -93,7 +93,7 @@ To support air gap installations with Embedded Cluster v3:
 
 1. If you added any Helm chart `extensions` in the Embedded Cluster Config, configure them for air gap:
 
-    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. See [`builder`](embedded-config#extensions) in _Embedded Cluster Config_.
+    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. The `builder` key does not support Replicated template functions. See [`builder`](embedded-config#extensions) in _Embedded Cluster Config_.
 
     <details>
     <summary>Example (Extension with conditional images)</summary>
@@ -113,13 +113,9 @@ To support air gap installations with Embedded Cluster v3:
             builder:
               defaultBackend:
                 enabled: true
-            values: |
-              defaultBackend:
-                enabled: true
-              controller:
-                image:
-                  registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
     ```
+
+    Use `builder` for static values that affect image discovery. Use `values` (step 4b below) for template functions like `ReplicatedImageRegistry` that rewrite image references at install time.
     </details>
 
     **b. Rewrite image references** in each extension using either the [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) template function (if the chart uses a single field for the full image reference) or the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function (if the chart uses separate fields for registry and repository).

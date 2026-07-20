@@ -16,7 +16,7 @@ The Embedded Cluster air gap bundle is a `.tgz` archive that contains:
 * `assets/APP_SLUG.airgap` containing application images and Helm extension images in a Docker registry format
 * `assets/ec-VERSION.airgap` containing Embedded Cluster infrastructure images (k0s, Calico, CoreDNS, OpenEBS, and other built-in components)
 
-Application images and Helm extension images are stored in separate registries within the bundle. Application images are in the `images/` directory of the app `.airgap` file. Extension images are in the `embedded-cluster/` directory. At install time, application images are loaded into a Docker registry deployed to the cluster, while infrastructure and extension images are preloaded directly into containerd on each node.
+Application images and Helm extension images are stored in separate locations within the bundle. Application images are in the `images/` directory of the app `.airgap` file. Extension images are in the `embedded-cluster/` directory. At install time, application images and extension images are loaded into a Docker registry deployed to the cluster. Infrastructure images (k0s, Calico, and other built-in components) are preloaded directly into containerd on each node.
 
 ## Prerequisites
 
