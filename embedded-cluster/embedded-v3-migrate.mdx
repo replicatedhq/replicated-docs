@@ -55,7 +55,15 @@ To use Embedded Cluster v3, package your application as one or more Helm charts.
 
 ### HelmChart v2 required
 
-Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`). It does not support HelmChart v1.
+Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`). It does not support HelmChart v1. Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR — the extension schema in the Config serves the same purpose.
+
+### Helm extension charts must be bundled in the release {#extension-charts}
+
+In Embedded Cluster v2, Helm extensions defined under `extensions.helm.charts` were pulled at install time from an HTTP Helm repository or an OCI registry, based on the `chartname` and `version` fields (and any repositories listed under `extensions.helm.repositories`).
+
+Embedded Cluster v3 does not pull extension charts at install time from any source, whether an HTTP Helm repository or an OCI registry. Instead, it resolves each extension chart from a `.tgz` chart archive that is bundled in the release, matching by chart name and version. The v3 `extensions.helmCharts` schema has no repository or registry field.
+
+As a result, migrating a repo-sourced or OCI-sourced v2 extension is not only a change to the Config YAML shape. You must also package the chart as a `.tgz` archive and include it in the release. For the steps, see [Update your release to Embedded Cluster v3](#update-your-release-to-embedded-cluster-v3) below.
 
 ### Config value defaults are persisted at install time
 
@@ -129,7 +137,7 @@ To update a release from Embedded Cluster v2 to v3:
 
    For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
-1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your Helm charts. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
+1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your application Helm charts. Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
 
@@ -137,9 +145,31 @@ To update a release from Embedded Cluster v2 to v3:
 
     <EcConfig/>    
 
-1. Update any existing Helm extensions to use the `extensions.helmChart` format. See [`extensions`](embedded-config#extensions).
+1. Update any existing Helm extensions to the v3 `extensions.helmCharts` format. See [`extensions`](embedded-config#extensions).
 
-   **Example:**
+   Because Embedded Cluster v3 resolves extension charts from bundled `.tgz` archives rather than pulling them from a repository or registry (see [Helm extension charts must be bundled in the release](#extension-charts)), updating the Config YAML is not sufficient on its own. For each Helm extension you defined in v2:
+
+   1. Pull the chart to a local `.tgz` archive at the version you want to install.
+
+      For a chart hosted in an HTTP Helm repository (for example, a v2 `chartname` such as `ingress-nginx/ingress-nginx`):
+
+      ```bash
+      helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+      helm repo update
+      helm pull ingress-nginx/ingress-nginx --version 4.11.3
+      ```
+
+      For a chart hosted in an OCI registry (for example, a v2 `chartname` such as `oci://quay.io/jetstack/charts/cert-manager`):
+
+      ```bash
+      helm pull oci://quay.io/jetstack/charts/cert-manager --version 1.19.2
+      ```
+
+   1. Add the resulting `.tgz` archive to your release.
+
+   1. Reference the chart in the Embedded Cluster Config under `extensions.helmCharts`, using a `chart.name` and `chart.chartVersion` that match the packaged archive's `Chart.yaml`.
+
+   **Example Config:**
 
    ```yaml
    apiVersion: embeddedcluster.replicated.com/v1beta1
