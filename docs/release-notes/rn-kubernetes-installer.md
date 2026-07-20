@@ -10,6 +10,19 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.20-0
+
+Released on July 20, 2026
+
+### New Features {#new-features-v2026-07-20-0}
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.5.1.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.35.6 1.34.9 1.33.13 1.32.13.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 2.2.6.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.14.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.7.
+* Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.21.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.92.1-87.15.1.
+
 ## v2026.07.08-0
 
 Released on July 8, 2026
