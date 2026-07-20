@@ -8,9 +8,15 @@ This topic describes how to install an application with Replicated Embedded Clus
 
 Building an air gap bundle for a release with an Embedded Cluster Config produces an Embedded Cluster air gap bundle that contains everything needed to install in an air-gapped environment.
 
-The Embedded Cluster air gap bundle contains the assets normally found in an application air gap bundle (`airgap.yaml`, `app.tar.gz`, and an images directory). It also includes an `embedded-cluster` directory with the assets needed to install the infrastructure (Embedded Cluster/k0s and [extensions](embedded-config#extensions)).
+The Embedded Cluster air gap bundle is a `.tgz` archive that contains:
 
-During installation with Embedded Cluster in air gap environments, Embedded Cluster deploys a Docker registry to the cluster to store application images. The installer preloads infrastructure images (for Embedded Cluster and Helm extensions) and the Helm charts on each node at installation time.
+* The Embedded Cluster CLI binary and supporting binaries
+* `license.yaml` with the customer license
+* `assets/release.tgz` with the application release (Helm charts, custom resources, and manifests)
+* `assets/APP_SLUG.airgap` containing application images and Helm extension images in a Docker registry format
+* `assets/ec-VERSION.airgap` containing Embedded Cluster infrastructure images (k0s, Calico, CoreDNS, OpenEBS, and other built-in components)
+
+Application images and Helm extension images are stored in separate locations within the bundle. Application images are in the `images/` directory of the app `.airgap` file. Extension images are in the `embedded-cluster/` directory. At install time, application images and extension images are loaded into a Docker registry deployed to the cluster. Infrastructure images (k0s, Calico, and other built-in components) are preloaded directly into containerd on each node.
 
 ## Prerequisites
 
