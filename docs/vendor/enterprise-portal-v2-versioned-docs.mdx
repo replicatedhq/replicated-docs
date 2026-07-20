@@ -6,6 +6,10 @@ Features described on this page are in alpha and subject to change. For access, 
 
 Use versioned docs if you need to maintain different documentation for different versions of your software, for example, distinct install steps or caveats for specific releases.
 
+:::note
+If your documentation does not change between releases, you do not need version branches. Keep only `main` and let every release fall back to it. Add a version branch only when a specific release needs different content. Avoid leaving stray version branches (for example, `v0.0.1`): through the nearest-lower-semver rule below, such a branch captures releases and serves its content instead of `main`.
+:::
+
 Each Git branch in your content repo (other than `main`) becomes a selectable version in the customer-facing portal. Each version has its own table of contents, markdown pages, and theme/branding overrides.
 
 ## Process
