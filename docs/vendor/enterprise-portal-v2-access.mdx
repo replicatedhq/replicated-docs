@@ -60,3 +60,13 @@ To view the production Enterprise Portal as a specific customer, use the **Login
 This is useful for verifying that a customer sees the correct content, entitlements, and branding without creating a permanent user account in their portal team. The system creates a temporary system user scoped to that customer and generates a magic link nonce that expires after 10 minutes.
 
 The login routes to the correct portal version automatically. If the customer is on the new Enterprise Portal, the link opens `{appSlug}.enterpriseportal.app` (or your custom domain). If the customer is on Classic, the link opens `get.replicated.com`.
+
+:::note
+**Login as customer** opens a full customer-admin session, not a read-only or preview view. Any action you take runs as the customer and is visible to them, including starting install flows and creating or revoking service accounts. Use it to view and assist, not to make changes on the customer's behalf.
+:::
+
+### Undoing changes made while logged in as a customer
+
+Records created during a **Login as customer** session are read-only in the Vendor Portal. To revoke a service account, log in as the customer again, open the team settings **Service accounts** tab in the Enterprise Portal, and revoke the account. Revoking is a soft action: the account is marked revoked and its token is cleared, and the record is retained.
+
+{/* TODO: document removing a pending install attempt once the discard control is restored in the Enterprise Portal UI. */}
