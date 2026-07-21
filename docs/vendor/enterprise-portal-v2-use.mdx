@@ -32,7 +32,7 @@ All users invited to the same customer team share access to the same pull tokens
 
 Once logged in, customers see a sidebar with the navigation defined by the vendor's `toc.yaml`. The default template organizes content into:
 
-- **Installation**: Requirements, release history, and step-by-step install instructions for Linux and Helm
+- **Installation**: Requirements, release history, and step-by-step install instructions for Linux (Embedded Cluster) and Helm
 - **Operations**: Security reports and support bundle management
 - **Updates**: Check for updates and follow upgrade instructions
 - **Support**: FAQ and contact support information
@@ -76,6 +76,14 @@ Depending on the install method and license entitlements, customers can download
 
 For Embedded Cluster air gap installations, customers using a private registry can enter their registry hostname directly in the install flow. The instructions update to include image pull, tag, and push commands targeting that registry, along with the appropriate `--registry` flags on the install command. This is also available during Embedded Cluster upgrades when the instance was originally installed with a private registry.
 
+### KOTS and kURL instances {#kots-and-kurl-instances}
+
+KOTS and kURL instances appear on the **Instances & Updates** page alongside Helm and Embedded Cluster instances, labeled **KOTS** or **kURL**. Each instance shows its current version and status.
+
+The Enterprise Portal does not provide step-by-step, in-console install or upgrade instructions for KOTS or kURL. These instance cards don't expand into inline upgrade steps the way Helm and Embedded Cluster cards do.
+
+Air gap instance records for KOTS and kURL are not yet available. Only KOTS and kURL instances that have already checked in appear in the portal. Customers can't manually add a record or extract one from a support bundle for these install types yet.
+
 ## Team management
 
 Customer team admins can manage their portal team from the Team Settings page:
@@ -112,9 +120,9 @@ When Security Center is enabled by the vendor, customers with Helm or Embedded C
 - **SBOMs**: Download the Software Bill of Materials for any release version. SBOMs are accessible to all portal team members regardless of role.
 
 :::note
-Security Center data is available for Helm and Embedded Cluster installations only. Security data is not displayed for KOTS or kURL installations.
+Security Center data is available for Helm and Embedded Cluster installations only. KOTS and kURL instances don't contribute CVE data or upgrade recommendations, and they aren't counted toward instance totals in Security Center. Customers whose only instances are KOTS or kURL don't see Security Center at all. Customers with a mix of instance types still see Security Center for their Helm and Embedded Cluster instances.
 :::
 
 ## License information
 
-Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. This information is accessible from the portal but is read-only for customers.
+Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. This information is accessible from the portal but is read-only for customers. License details, including the install type label (Helm, Linux (Embedded Cluster), KOTS, or kURL), display correctly regardless of which install types the customer uses.
