@@ -37,7 +37,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 ## Current limitations {#current-limitations}
 
 - Step-by-step, in-console install and upgrade instructions, and structured install-step customization, are available only for Embedded Cluster and Helm CLI installations. The Enterprise Portal does not provide install or upgrade commands for KOTS or kURL. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
-- Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle. This is available for Embedded Cluster and Helm air gap installations. It is not yet available for KOTS or kURL, so only KOTS and kURL instances that have already checked in appear in the portal.
+- Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 - Security Center data (CVE reports and SBOMs) is available for Helm and Embedded Cluster installations only. Customers whose only instances are KOTS or kURL do not see Security Center at all. Customers with a mix of instance types see Security Center data for their Helm and Embedded Cluster instances.
 - If you have many version branches and need to make a change across all versions, you must update each branch individually.
 
