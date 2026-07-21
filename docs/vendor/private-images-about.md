@@ -26,6 +26,15 @@ After connecting your registry, the steps to enable the proxy registry vary depe
 
 * **Embedded Cluster v3 installations**: The Embedded Cluster daemon handles registry authentication using an enterprise portal service account token instead of a license ID.
 
+## About OCI Referrers API support
+
+The proxy registry passes all Open Container Initiative (OCI) Referrers API requests (`GET /v2/<name>/referrers/<digest>`) through to your upstream registry. Whether these requests return referrers depends on your upstream registry:
+
+* If your upstream registry serves the OCI Referrers API, the proxy passes the upstream response back unchanged, including response headers such as `OCI-Filters-Applied` when the upstream applies the `artifactType` filter.
+* If your upstream registry does not serve the OCI Referrers API, it returns a `404` on the endpoint and the proxy passes that response through. The spec-compliant `404` signals clients to fall back to the `sha256-<digest>` referrers tag schema.
+
+The Replicated-hosted registry (`registry.replicated.com`) does not serve the OCI Referrers API.
+
 ## About allowing pull-through access of public images
 
 Using the Replicated proxy registry to grant pull-through access to public images can simplify network access requirements for your customers, as they only need to whitelist a single domain (either `proxy.replicated.com` or your custom domain) instead of multiple registry domains.
