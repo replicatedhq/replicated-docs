@@ -31,6 +31,18 @@ For teams using only the New Enterprise Portal, go to **Enterprise Portal > Cust
 
 For vendors in mixed mode (both Classic and New enabled), the customer creation screen includes a **Use new Enterprise Portal for this customer** checkbox. When checked, the customer is enrolled in the New portal and any auto-invite email points them to the New portal URL instead of Classic. This checkbox is only visible to team admins. When unchecked or not visible, new customers default to Classic.
 
+## Access to multiple channels
+
+A license is assigned to a single channel. To give one end user access to releases from more than one channel (for example, a stable channel for production and an alpha channel for a test environment), create a separate customer for each channel, each with a license on the intended channel.
+
+To present these as a single login, invite the **same email address** to each customer. The user logs in once and switches between the customers using the team switcher in the portal. For the customer-side experience, see [Access with multiple teams](/vendor/enterprise-portal-v2-use#access-with-multiple-teams).
+
+Because each customer appears to the end user as a separate team, name your customers descriptively (for example, `Customer A - Stable` and `Customer A - Alpha`) so users can tell their environments apart.
+
+:::note
+Inviting different email addresses to each customer creates separate logins with no team switcher. Use the same email address for each customer to give one person a unified experience.
+:::
+
 ## Removing users
 
 To remove a user from a customer's portal team:
