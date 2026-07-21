@@ -28,10 +28,10 @@ After connecting your registry, the steps to enable the proxy registry vary depe
 
 ## About OCI Referrers API support
 
-The proxy registry passes OCI Referrers API requests (`GET /v2/<name>/referrers/<digest>`) through to your upstream registry. Whether these requests return referrers depends on your upstream registry:
+The proxy registry passes all Open Container Initiative (OCI) Referrers API requests (`GET /v2/<name>/referrers/<digest>`) through to your upstream registry. Whether these requests return referrers depends on your upstream registry:
 
-* If your upstream registry serves the OCI Referrers API, referrers requests through the proxy return the upstream response. Response headers, including `OCI-Filters-Applied` when the `artifactType` filter is applied, are passed through unmodified.
-* If your upstream registry does not serve the OCI Referrers API, the proxy returns a spec-compliant `404` on the endpoint. This signals clients to fall back to the `sha256-<digest>` referrers tag schema.
+* If your upstream registry serves the OCI Referrers API, the proxy passes the upstream response back unchanged, including response headers such as `OCI-Filters-Applied` when the upstream applies the `artifactType` filter.
+* If your upstream registry does not serve the OCI Referrers API, it returns a `404` on the endpoint and the proxy passes that response through. The spec-compliant `404` signals clients to fall back to the `sha256-<digest>` referrers tag schema.
 
 The Replicated-hosted registry (`registry.replicated.com`) does not serve the OCI Referrers API.
 
