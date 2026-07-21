@@ -27,7 +27,7 @@ Released on July 10, 2026
     <th>Kubernetes Version</th>
     <td id="center">1.36.1</td>
     <td id="center">1.35.4</td>
-    <td id="center">1.34.14</td>
+    <td id="center">1.34.8</td>
   </tr>
 </table>
 
