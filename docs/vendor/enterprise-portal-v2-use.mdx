@@ -95,6 +95,27 @@ The default Enterprise Portal content template includes an API reference and wor
 
 For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
 
+{/* HOLD (sc-139006). Do not publish the section below until the token rotation fix ships. Rotation currently fails in production and silently invalidates the token. https://app.shortcut.com/replicated/story/139006
+
+## Rotate or revoke a service account token
+
+Customer team admins manage a token's lifecycle from **Team Settings > Service Accounts** in the Enterprise Portal. Each service account has a row menu with two actions.
+
+**Rotate token** issues a new token and immediately invalidates the current one, while keeping the same service account and its identity. Any system still using the old token loses access until it is updated with the new token:
+
+- For Helm installs, run `helm registry login` again with the new token and then redeploy with `helm upgrade`. The portal displays the exact commands after rotation.
+- For Embedded Cluster 2.7.4 and later, the running cluster picks up the new token on its next license sync, so no manual step is needed.
+- For Embedded Cluster versions earlier than 2.7.4, the cluster cannot adopt a rotated token and can no longer be updated. The portal asks the admin to confirm this before rotating.
+
+Read-only automation is not exempt. If you use the token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, those calls also stop working with the old token after rotation. Update the token everywhere it is stored, not only on the installation.
+
+**Revoke** permanently disables the service account. Its token is cleared and cannot be recovered, so revoking is the right choice only when a token should stop working entirely. To replace a token while keeping the account and its installations working, use **Rotate token** instead.
+
+:::note
+Revoking or rotating a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation can be updated with the new token.
+:::
+*/}
+
 ## Support bundles
 
 Customers can generate and upload support bundles from the portal:
