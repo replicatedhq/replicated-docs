@@ -231,10 +231,7 @@ Revoking is immediate and permanent. The token stops working right away, its sec
 There is no per-token expiry setting in the API. Do not script scheduled revocation as a substitute for token expiry. Revoking issues no new token, so every downstream installation must be updated with a working token out of band, and the required steps differ by installer. For example, Helm installs need a new `helm registry login` and a redeploy, while Embedded Cluster installs re-sync on newer versions but not on older ones. Scheduled revocation without a re-sync plan will take those installations offline.
 :::
 
-{/* HOLD (sc-139006). Do not publish until the token rotation fix ships. https://app.shortcut.com/replicated/story/139006
-
 The Vendor API can list and revoke service accounts, but it cannot rotate a token. Rotation is a customer team admin action performed from **Team Settings > Service Accounts** in the Enterprise Portal. For more information, see [Rotate or revoke a service account token](/vendor/enterprise-portal-v2-use#rotate-or-revoke-a-service-account-token).
-*/}
 
 ## Related API reference
 

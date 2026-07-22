@@ -95,8 +95,6 @@ The default Enterprise Portal content template includes an API reference and wor
 
 For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
 
-{/* HOLD (sc-139006). Do not publish the section below until the token rotation fix ships. Rotation currently fails in production and silently invalidates the token. https://app.shortcut.com/replicated/story/139006
-
 ## Rotate or revoke a service account token
 
 Customer team admins manage a token's lifecycle from **Team Settings > Service Accounts** in the Enterprise Portal. Each service account has a row menu with two actions.
@@ -114,7 +112,6 @@ Read-only automation is not exempt. If you use the token headlessly to call Ente
 :::note
 Revoking or rotating a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation can be updated with the new token.
 :::
-*/}
 
 ## Support bundles
 
