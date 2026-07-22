@@ -208,6 +208,12 @@ The Embedded Cluster v3 installer wizard includes a **Set Up** page where end cu
 
 Embedded Cluster supports upgrading existing installations from v2 to v3 without having to reinstall the application. The migration uses the same `upgrade` command as any v3-to-v3 upgrade. The v3 binary automatically detects the v2 installation and handles the migration, prompting the user to confirm. Running `install` on a node with an existing v2 installation is blocked — use `upgrade` instead.
 
+:::important
+If your v3 release uses a newer Kubernetes minor version than the customer's v2 installation, the migration also upgrades Kubernetes. Because Kubernetes supports upgrading only one minor version at a time, the migration fails if the customer's Kubernetes version is more than one minor version behind the version in your v3 release.
+
+To avoid this, ensure that customers step through the intermediate Kubernetes minor versions before they migrate to v3. Replicated recommends that you mark each release that increases the Kubernetes minor version as required so that customers cannot skip it. For more information, see [Increase the Kubernetes minor version](embedded-config#increment-k8s).
+:::
+
 :::note
 Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design to prevent accidental migrations. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
 :::
