@@ -86,9 +86,9 @@ Replicated recommends that you update the version frequently to ensure that you 
 
 ### Increase the Kubernetes minor version {#increment-k8s}
 
-Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks any upgrade that would skip a Kubernetes minor version. When you promote a release that increases the Kubernetes minor version, Replicated recommends that you mark the release as required. This guides customers through each Kubernetes minor version in sequence, so that their upgrades stay on a supported path.
+Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks any upgrade that would skip a Kubernetes minor version. When you promote a release that increases the Kubernetes minor version, Replicated recommends that you mark the release as required.
 
-If these releases are not marked as required, a customer can attempt to upgrade directly from an older version to your latest release, skipping the intermediate versions. Because this would skip one or more Kubernetes minor versions, Embedded Cluster blocks the upgrade, and the customer must instead upgrade to the intermediate releases one at a time.
+Marking these releases as required leads customers through the Kubernetes minor versions in order. Customers can then upgrade to your latest release without having to plan the upgrade path themselves or run into a blocked upgrade.
 
 For more information about required releases, see [Required releases](/vendor/releases-about#required-releases).
 
