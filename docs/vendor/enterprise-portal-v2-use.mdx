@@ -102,7 +102,7 @@ Customer team admins manage a token's lifecycle from **Team Settings > Service A
 **Rotate token** issues a new token and immediately invalidates the current one, while keeping the same service account and its identity. Any system still using the old token loses access until it is updated with the new token:
 
 - For Helm installs, run `helm registry login` again with the new token and then redeploy with `helm upgrade`. The portal displays the exact commands after rotation.
-- For Embedded Cluster 2.7.4 and later, the running cluster picks up the new token on its next license sync, so no manual step is needed.
+- For Embedded Cluster 2.7.4 and later, upload the new token from the **License** page in the cluster's admin console. The cluster then adopts the rotated token without reinstalling. Automatic license sync does not pick up a rotated token on its own, because the running cluster authenticates with the old token, which rotation has already invalidated.
 - For Embedded Cluster versions earlier than 2.7.4, the cluster cannot adopt a rotated token and can no longer be updated. The portal asks the admin to confirm this before rotating.
 
 Read-only automation is not exempt. If you use the token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, those calls also stop working with the old token after rotation. Update the token everywhere it is stored, not only on the installation.
