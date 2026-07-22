@@ -84,6 +84,14 @@ Replicated recommends that you update the version frequently to ensure that you 
 
 <DoNotDowngrade/>
 
+### Increase the Kubernetes minor version {#increment-k8s}
+
+Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks any upgrade that would skip a Kubernetes minor version. When you promote a release that increases the Kubernetes minor version, Replicated recommends that you mark the release as required.
+
+Marking these releases as required leads customers through the Kubernetes minor versions in order. Customers can then upgrade to your latest release without having to plan the upgrade path themselves or run into a blocked upgrade.
+
+For more information about required releases, see [Required releases](/vendor/releases-about#required-releases).
+
 ## roles (Beta) {#roles}
 
 You can customize node roles in the Embedded Cluster Config using the `roles` key.
