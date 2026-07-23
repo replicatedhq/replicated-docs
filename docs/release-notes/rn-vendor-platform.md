@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.23-3
+
+Released on July 23, 2026
+
+### New Features {#new-features-v2026-07-23-3}
+* Restored the ability to discard pending installations in Enterprise Portal v2.
+
 ## v2026.07.14-1
 
 Released on July 14, 2026
