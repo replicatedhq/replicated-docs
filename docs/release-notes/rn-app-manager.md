@@ -37,12 +37,6 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 ### Bug fixes {#bug-fixes-1-130-9}
 * Fixes a path traversal vulnerability (tar-slip) in archive extraction
 
-## 1.130.8
-
-Released on July 16, 2026
-
-Support for Kubernetes: 1.34, 1.35, and 1.36
-
 ## 1.130.7
 
 Released on July 6, 2026
