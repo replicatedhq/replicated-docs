@@ -47,7 +47,7 @@ You can explicitly include or exclude images from being scanned by the Security 
 
 ### How cve scanning works
 
-The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, every image is scanned continuously (not just at release time) using the open source vulnerability scanner [Grype](https://github.com/anchore/grype). This means that, as new CVEs are disclosed, they automatically appear in your Security Center without requiring a new release.
+The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, images are scanned on a recurring schedule using the open source vulnerability scanner [Grype](https://github.com/anchore/grype), not only at release time. Newly promoted images are scanned as soon as they are identified, and previously scanned images are rescanned periodically, with more recently promoted images scanned more frequently than older ones. This means that, as new CVEs are disclosed, they surface in your Security Center over time without requiring a new release.
 
 The following describes the Security Center CVE scanning process:
 
