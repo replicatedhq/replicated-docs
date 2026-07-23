@@ -25,7 +25,17 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.130.9
 
+Released on July 22, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Improvements {#improvements-1-130-9}
+* Adds an opt-in cleanup policy that prunes old support bundle archives and application version archives to relieve storage pressure. The policy is disabled by default and is configured through the `prune-*` keys in the `kotsadm-confg` ConfigMap. 
+
+### Bug fixes {#bug-fixes-1-130-9}
+* Fixes a path traversal vulnerability (tar-slip) in archive extraction
 
 ## 1.130.7
 
