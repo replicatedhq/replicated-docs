@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.23-6
+
+Released on July 23, 2026
+
+### Improvements {#improvements-v2026-07-23-6}
+* Added a warning explaining that "Login as customer" opens a full customer-admin session where actions are real and visible to the customer.
+
 ## v2026.07.23-3
 
 Released on July 23, 2026
