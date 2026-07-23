@@ -32,6 +32,12 @@ To add a custom domain for the New Enterprise Portal:
 
 When verification succeeds, the status changes to **Valid Configuration** and customers can access your portal at the custom domain. The default domain remains available.
 
+## Transitioning from the Classic Enterprise Portal or Download Portal
+
+If you already serve the Classic Enterprise Portal or the Download Portal on a custom domain, that same domain cannot also serve the New Enterprise Portal. A single custom domain maps to one portal.
+
+To move customers over gradually, add a second, separate custom domain here for the New Enterprise Portal and keep your existing domain in place. Both portals then run at the same time, each at its own domain. Customers you move to the New Enterprise Portal are served at the new domain, and customers still on the Classic Enterprise Portal or Download Portal continue to use your existing domain.
+
 ## Branding on a custom domain
 
 The login page footer behaves differently depending on whether you use a custom domain. On a custom domain, you can remove the footer entirely. On the default `*.enterpriseportal.app` domain, keeping the footer is recommended to avoid the portal being flagged by Google Safe Browsing. For more information, see [Login page footer](/vendor/enterprise-portal-v2-branding#login-page-footer) in _Customize Portal Branding_.
