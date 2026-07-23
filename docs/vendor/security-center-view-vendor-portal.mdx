@@ -89,7 +89,7 @@ On the **By Customer** tab, you can:
 * Sort the results by Critical CVEs, total CVEs, customer name, or number of instances.
 * Turn on **Show unfixable CVEs** to include CVEs without a known fix.
 
-Each customer row shows the number and status of its instances and the aggregate CVE counts across instances. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
+Each customer row shows the number and status of its instances and the aggregate CVE counts across instances, where each severity count is the highest value reported by any single instance rather than a sum. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
 
 An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
 
