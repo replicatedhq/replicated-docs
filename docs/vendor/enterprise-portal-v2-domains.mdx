@@ -1,0 +1,51 @@
+# Configure a Custom Domain
+
+:::important Alpha Feature
+Features described on this page are in alpha and subject to change. For access, contact your Replicated account representative.
+:::
+
+Every Enterprise Portal has a default domain that is always available. You can also add your own custom domain so that customers access the portal at a branded URL.
+
+You manage New Enterprise Portal domains from **Enterprise Portal > Domains**, not from the Vendor Portal **Custom Domains** page. The **Custom Domains** page covers the Classic Enterprise Portal, the Download Portal, and other Replicated endpoints. For those endpoints, see [Use Custom Domains](/vendor/custom-domains-using).
+
+## Default domain
+
+Replicated assigns every portal a default domain in the form `{appSlug}.enterpriseportal.app` and configures it automatically. This domain is always available, including after you add a custom domain, so any links that use it continue to work.
+
+## Add a custom domain
+
+To add a custom domain for the New Enterprise Portal:
+
+1. In the [Vendor Portal](https://vendor.replicated.com), go to **Enterprise Portal > Domains**.
+
+1. Click **Add Domain**. In the **Custom Domain** field, enter the domain you want to use, then click **Add**.
+
+    The domain must include a subdomain, such as `portal.example.com`. Root domains are not supported. If you need to use a root domain, contact Replicated support.
+
+1. The domain appears with a **Pending Verification** status, and the Domains tab shows the DNS record you need to create. With your DNS provider, create the Canonical Name (CNAME) record shown, which points your subdomain at `custom.enterpriseportal.app`. For example:
+
+    | Type | Name | Value |
+    | :--- | :--- | :--- |
+    | CNAME | `portal.example.com` | `custom.enterpriseportal.app` |
+
+1. After the record propagates, click **Refresh** to check the status. Replicated verifies the DNS configuration automatically, which can take up to 24 hours after your DNS changes propagate.
+
+When verification succeeds, the status changes to **Valid Configuration** and customers can access your portal at the custom domain. The default domain remains available.
+
+## Transitioning from the Classic Enterprise Portal or Download Portal
+
+If you already serve the Classic Enterprise Portal or the Download Portal on a custom domain, that same domain cannot also serve the New Enterprise Portal. A single custom domain maps to one portal.
+
+To move customers over gradually, add a second, separate custom domain for the New Enterprise Portal and keep your existing domain in place. Both portals then run at the same time, each at its own domain. Customers you move to the New Enterprise Portal reach it at the new domain. Customers still on the Classic Enterprise Portal or Download Portal continue to use your existing domain.
+
+## Branding on a custom domain
+
+The login page footer behaves differently depending on whether you use a custom domain. On a custom domain, you can remove the footer entirely. On the default `*.enterpriseportal.app` domain, keep the footer to avoid Google Safe Browsing flagging the portal. For more information, see [Login page footer](/vendor/enterprise-portal-v2-branding#login-page-footer) in _Customize Portal Branding_.
+
+## Known issue
+
+If you use a custom domain and any of your customers use link transformers such as Microsoft Defender Safe Links, legitimate URLs in Enterprise Portal emails can break when the transformer rewrites them. To avoid this, request a "Do not rewrite the following URLs" exclusion policy for your custom domain. For more information, see [Known issue](/vendor/custom-domains#known-issue) in _About Custom Domains_.
+
+## Remove a custom domain
+
+To remove a custom domain, go to **Enterprise Portal > Domains** and remove the domain. After you remove it, your portal is no longer accessible at that domain, and the default domain (`{appSlug}.enterpriseportal.app`) is still available. Update any links or DNS records that you have shared with customers so that they continue to reach the portal.

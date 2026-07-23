@@ -22,7 +22,11 @@ You can configure custom domains for the following services:
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from the app service. By default, this service uses the domain `replicated.app`. Replicated recommends using a CNAME such as `updates.{your app name}.com`. 
 
-- **Enterprise Portal:** The Enterprise Portal is a web-based portal that provides end customers with a centralized location for managing their installation. By default, the Enterprise Portal uses the domain **`[DOMAIN].replicated.com`**. Replicated recommending using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`.
+- **Enterprise Portal:** The Enterprise Portal is a web-based portal that provides end customers with a centralized location for managing their installation. How you configure a custom domain depends on which version of the Enterprise Portal you use:
+
+     - For the Classic Enterprise Portal, configure the custom domain on this **Custom Domains** page. The Classic Enterprise Portal shares the Download Portal domain (`get.replicated.com`). Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`.
+
+     - The New Enterprise Portal manages its own domains separately and is not configured on the **Custom Domains** page. By default it uses `{appSlug}.enterpriseportal.app`. To add a custom domain for the New Enterprise Portal, see [Configure a Custom Domain](/vendor/enterprise-portal-v2-domains).
 
 - **Download Portal:** The Download Portal can be used to share customer license files, air gap bundles, and so on. By default, the Download Portal uses the domain `get.replicated.com`. Replicated recommends using a CNAME such as `portal.{your app name}.com` or `enterprise.{your app name}.com`. 
 
