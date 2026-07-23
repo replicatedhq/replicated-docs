@@ -306,9 +306,7 @@ To duplicate an existing external registry:
 
 ## View pull activity
 
-You can view image pull activity for each of your external registries that are connected to the Replicated proxy registry. This includes a summary of recent pull activity as well as the full history of image pulls.
-
-The **Image Registries** page also shows total registry egress for the current calendar month. You can use this value with the **Egress Threshold Reached** notification event to get alerted when monthly registry egress reaches a configured threshold. For more information, see [Event types and filters](/reference/notifications-events-filters#egress-threshold-reached).
+You can view image pull activity for each of your external registries that are connected to the Replicated proxy registry. This includes a summary of recent pull activity as well as the full history of image pulls. For aggregate download volume across all your registries, see [View registry egress](#view-registry-egress) below.
 
 You can also use the Replicated Vendor API `/v3/external_registry/logs` endpoint to get image pull activity. For more information, see [Get the logs for a specific external registry either by endpoint or slug, or both](https://replicated-vendor-api.readme.io/reference/externalregistrylogs) in the Vendor API documentation.
 
@@ -366,3 +364,36 @@ You can also use the Replicated Vendor API `/v3/external_registry/logs` endpoint
       <td>If the registry operation was successful</td>
     </tr>
   </table>
+
+## View registry egress
+
+The **Image Registries** page displays a **Registry egress this month** summary at the top, showing the total volume of image data downloaded through Replicated during the current calendar month (in UTC). This is the outbound data transfer generated when your customers, or your own systems, pull images through the Replicated proxy registry or the Replicated registry.
+
+The summary breaks the total down as follows:
+
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Team total</td>
+    <td>The combined egress for all applications in your team for the current month.</td>
+  </tr>
+  <tr>
+    <td>Proxy registry</td>
+    <td>Egress from images pulled through the Replicated proxy registry, which delivers images from your external private registries.</td>
+  </tr>
+  <tr>
+    <td>Replicated registry</td>
+    <td>Egress from images pulled from the Replicated registry.</td>
+  </tr>
+  <tr>
+    <td>This app</td>
+    <td>The portion of the team total attributable to the application you are currently viewing.</td>
+  </tr>
+</table>
+
+:::note
+To get alerted when your monthly registry egress reaches a configured volume, use the **Egress Threshold Reached** notification event. For more information, see [Event types and filters](/reference/notifications-events-filters#egress-threshold-reached).
+:::
