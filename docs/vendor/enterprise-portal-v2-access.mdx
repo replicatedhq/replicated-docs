@@ -69,4 +69,4 @@ The login routes to the correct portal version automatically. If the customer is
 
 Records created during a **Login as customer** session are read-only in the Vendor Portal. To revoke a service account, log in as the customer again, open the team settings **Service accounts** tab in the Enterprise Portal, and revoke the account. Revoking is a soft action: the account is marked revoked and its token is cleared, and the record is retained.
 
-{/* TODO: document removing a pending install attempt once the discard control is restored in the Enterprise Portal UI. */}
+To discard a pending installation, log in as the customer again and open the installation flow. In the list of pending installations, select the discard icon (the trash icon) for the installation you want to remove, then confirm in the **Discard install and service account token** dialog. Discarding permanently deletes the service account that was created for that installation, so when a service account was created only by starting an installation, discarding the installation removes both at once.
