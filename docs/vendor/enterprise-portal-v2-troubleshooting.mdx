@@ -77,7 +77,7 @@ replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/s
 
 - Confirm the customer's **Portal Version** is set to the new portal on their **Enterprise Portal access** tab
 - Verify the Enterprise Portal site is deployed (check that the Content tab shows a linked repo and synced branches)
-- If using a custom domain, confirm DNS is pointed at the new portal domain (`\{appSlug\}.enterpriseportal.app`), not the Classic domain (`get.replicated.com`)
+- If using a custom domain, confirm the CNAME record points your subdomain at `custom.enterpriseportal.app`, not the Classic domain (`get.replicated.com`). For how to add and verify a custom domain, see [Configure a Custom Domain](/vendor/enterprise-portal-v2-domains)
 
 ## Customer invitation not received
 

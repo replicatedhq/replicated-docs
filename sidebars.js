@@ -220,6 +220,7 @@ const sidebars = {
         "vendor/enterprise-portal-v2-helm-reference",
         "vendor/enterprise-portal-v2-terraform",
         "vendor/enterprise-portal-v2-access",
+        "vendor/enterprise-portal-v2-domains",
         "vendor/enterprise-portal-v2-invite",
         "vendor/enterprise-portal-v2-vendor-api-automation",
         "vendor/enterprise-portal-v2-self-serve-signup",
