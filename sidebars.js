@@ -212,6 +212,7 @@ const sidebars = {
       items: [
         "vendor/enterprise-portal-v2-about",
         "vendor/enterprise-portal-v2-connect-repo",
+        "vendor/enterprise-portal-v2-domains",
         "vendor/enterprise-portal-v2-emails",
         "vendor/enterprise-portal-v2-branding",
         "vendor/enterprise-portal-v2-content",
@@ -220,7 +221,6 @@ const sidebars = {
         "vendor/enterprise-portal-v2-helm-reference",
         "vendor/enterprise-portal-v2-terraform",
         "vendor/enterprise-portal-v2-access",
-        "vendor/enterprise-portal-v2-domains",
         "vendor/enterprise-portal-v2-invite",
         "vendor/enterprise-portal-v2-vendor-api-automation",
         "vendor/enterprise-portal-v2-self-serve-signup",
