@@ -8,7 +8,7 @@ sidebar_label: "View Security Information in Vendor Portal (Alpha)"
 The Security Center is Alpha. The features and functionality described on this page are subject to change.
 :::
 
-In the Vendor Portal, the Security Center provides a dashboard for monitoring vulnerabilities across your releases, along with release-specific and customer-specific views of CVE information.
+In the Vendor Portal, the Security Center provides dashboards for monitoring vulnerabilities across your releases and assessing the impact of CVEs across your customer fleet. You can also view security information for a specific release or customer instance.
 
 ## Security Center dashboard
 
@@ -23,6 +23,7 @@ The following shows an example of the Security Center dashboard:
 You can filter for the information on the Security Center dashboard by release type (Linux/Embedded Cluster or Helm) and release channel. The information displayed on the Security Center dashboard applies to the currently promoted release of the selected type on the selected channel.
 
 The Security Center dashboard includes the following:
+* The number of customers affected by Critical or High CVEs, with a link to view the impact by customer
 * An overview of vulnerabilities present in the release, including a breakdown of CVE severity (Critical, High, Medium, Low) and a detailed list of the top security risks
 * The software bill of materials (SBOM) for the release, with a **Download SBOM** option
 * On the **Container images** tab, a complete list of scanned images with vulnerability counts per image
@@ -56,6 +57,41 @@ On the **CVE details** tab, you can filter the list of CVEs by severity level. S
 The **Showing X of Y CVEs** label reflects how many CVEs match the current filter.
 
 Security Center groups each CVE by its highest severity level across all affected images. For example, a CVE with a Critical rating in one image and a Low rating in another appears in the **Critical** group. This ensures that each CVE reflects its most severe rating.
+
+## Customer Impact dashboard
+
+The **Customer Impact** dashboard shows fleet-wide CVE exposure for Helm and Embedded Cluster instances that report data to the Vendor Portal.
+
+To open the dashboard, go to **[App name] > Security** and select **Customer Impact**.
+
+The following shows an example of the Customer Impact dashboard:
+
+![Security Center Customer Impact dashboard](/images/security-center-customer-impact.png)
+
+[View a larger version of this image](/images/security-center-customer-impact.png)
+
+### Review the customer impact overview
+
+The **Overview** tab includes:
+
+* A security posture snapshot that compares the number of customers with Critical or High CVEs to the total number of customers.
+* The number of actively promoted releases with Critical or High CVEs, compared to the number of promoted releases with security data.
+* The **Actively promoted releases** table, which lists the current release on each active channel. For each release, the table shows the version, channel, CVE counts by severity, number of customers on the channel, number of active instances, and number of instances with Critical CVEs.
+
+By default, the dashboard counts only CVEs that have a known fix. Turn on **Show unfixable CVEs** to include CVEs for which no fix is currently available.
+
+### View impact by customer
+
+On the **By Customer** tab, you can:
+
+* Search for a customer.
+* Filter customers by one or more CVE severity levels.
+* Sort the results by Critical CVEs, total CVEs, customer name, or number of instances.
+* Turn on **Show unfixable CVEs** to include CVEs without a known fix.
+
+Each customer row shows the number and status of its instances and the aggregate CVE counts across instances. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
+
+An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
 
 ## Release-specific CVE information
 
