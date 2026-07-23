@@ -27,6 +27,8 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 
 
+
+
 ## 1.130.7
 
 Released on July 6, 2026
