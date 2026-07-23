@@ -98,6 +98,7 @@ The `toc.yaml` file at the root of your repo defines the sidebar navigation. Eac
 | Key | What it does |
 | :--- | :--- |
 | `page` | Renders a markdown file from your repo (e.g. `pages/getting-started.md`) |
+| `link` | Opens an external URL in a new tab instead of a page (see [External links](#external-links)) |
 | `terraform_module` | Generates docs from a Terraform module source URI (see [Terraform Modules](/vendor/enterprise-portal-v2-terraform)) |
 | `helm_chart` | Generates reference docs from a Helm chart in your promoted release (see [Helm Reference Docs](/vendor/enterprise-portal-v2-helm-reference)) |
 | `items` | Nests child navigation items to create expandable sections. Items can nest to any depth, with each child following the same structure |
@@ -181,6 +182,30 @@ navigation:
 In this example, **Configuration** expands to show **Required Values** and **Optional Values**. **Required Values** further expands to show **Authentication** and **Networking**. Each level is collapsible in the sidebar.
 
 Any item with `items` can also have its own `page`, `visible_when`, and `icon`. If all children of a parent are hidden by `visible_when`, the parent is also hidden automatically.
+
+### External links {#external-links}
+
+Use `link` to add a navigation item that opens an external URL in a new tab instead of rendering a page from your content repo:
+
+```yaml
+- title: Support
+  icon: life-buoy
+  items:
+    - title: Submit a Support Request
+      link: https://support.example.com
+    - title: Support Bundles
+      page: pages/support/bundles.md
+```
+
+Supported `link` values:
+
+- Fully-qualified `http://` or `https://` URLs
+- `mailto:` links, including query parameters (for example, `mailto:support@example.com?subject=Help`)
+- Bare external hostnames (for example, `support.example.com` or `www.google.com/search?q=replicated`), which the portal treats as `https://` automatically
+
+A `link` value must be a static URL. Template variables (`\{\{ \}\}`) and other dynamic values are not supported, and validation rejects relative or internal-looking paths. If a navigation item's `link` value fails validation, content sync (and local preview) fails with an error that names the offending item.
+
+If an item specifies both `link` and `page`, `link` takes priority.
 
 ## MDX components {#mdx-components}
 
