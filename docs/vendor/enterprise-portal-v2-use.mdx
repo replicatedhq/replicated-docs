@@ -95,6 +95,24 @@ The default Enterprise Portal content template includes an API reference and wor
 
 For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
 
+## Rotate or revoke a service account token
+
+Customer team admins manage a token's lifecycle from **Team Settings > Service Accounts** in the Enterprise Portal. Each service account has a row menu with two actions.
+
+**Rotate token** issues a new token and immediately invalidates the current one, while keeping the same service account and its identity. Any system still using the old token loses access until it is updated with the new token:
+
+- For Helm installs, run `helm registry login` again with the new token and then redeploy with `helm upgrade`. The portal displays the exact commands after rotation.
+- For Embedded Cluster installs that include the admin console, version 2.7.4 and later, upload the new token from the **License** page in the admin console. The cluster then adopts the rotated token without reinstalling. Automatic license sync does not pick up a rotated token on its own, because the running cluster authenticates with the old token, which rotation has already invalidated.
+- For Embedded Cluster versions earlier than 2.7.4, and for Embedded Cluster installs that do not include the admin console, a running cluster cannot adopt a rotated token. Reinstalling with the new token is required. Confirm the installed versions before rotating a token that Embedded Cluster instances depend on.
+
+Read-only automation is not exempt. If you use the token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, those calls also stop working with the old token after rotation. Update the token everywhere it is stored, not only on the installation.
+
+**Revoke** permanently disables the service account. Its token is cleared and cannot be recovered, so revoking is the right choice only when a token should stop working entirely. To replace a token while keeping the account and its installations working, use **Rotate token** instead.
+
+:::note
+Revoking or rotating a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation can be updated with the new token.
+:::
+
 ## Support bundles
 
 Customers can generate and upload support bundles from the portal:
