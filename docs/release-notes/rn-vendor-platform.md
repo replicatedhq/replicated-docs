@@ -17,6 +17,114 @@ Released on July 23, 2026
 ### New Features {#new-features-v2026-07-23-3}
 * Restored the ability to discard pending installations in Enterprise Portal v2.
 
+## v2026.07.23-2
+
+Released on July 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-23-2}
+* Fixed an issue that caused service account token rotation to always fail with a 500 error.
+
+## v2026.07.23-0
+
+Released on July 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-23-0}
+* Fixed SCIM user filtering so that `eq` filters match values exactly instead of matching substrings.
+
+## v2026.07.22-1
+
+Released on July 22, 2026
+
+### New Features {#new-features-v2026-07-22-1}
+* Security Center now shows a fleet-wide snapshot of how many customers and active instances are impacted by a given vulnerability.
+
+## v2026.07.21-4
+
+Released on July 21, 2026
+
+### New Features {#new-features-v2026-07-21-4}
+* Enterprise Portal v2 can now create air gap KOTS and kURL installations.
+
+### Improvements {#improvements-v2026-07-21-4}
+* Clarified the Security Center copy shown for KOTS and kURL installations.
+
+## v2026.07.21-0
+
+Released on July 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-21-0}
+* Fixed vendor license downloads for Embedded Cluster customers.
+
+## v2026.07.20-2
+
+Released on July 20, 2026
+
+### Improvements {#improvements-v2026-07-20-2}
+* Users without the admin role can now disable accounts.
+
+## v2026.07.20-1
+
+Released on July 20, 2026
+
+### New Features {#new-features-v2026-07-20-1}
+* Enterprise Portal v2 now displays KOTS and kURL instances.
+
+## v2026.07.20-0
+
+Released on July 20, 2026
+
+### New Features {#new-features-v2026-07-20-0}
+* Enterprise Portal v2 now supports downloads for KOTS and kURL installations.
+
+## v2026.07.17-7
+
+Released on July 17, 2026
+
+### Improvements {#improvements-v2026-07-17-7}
+* Renamed the "Air gap build" status labels to "Release build".
+
+## v2026.07.17-5
+
+Released on July 17, 2026
+
+### New Features {#new-features-v2026-07-17-5}
+* The proxy registry now passes through the native OCI Referrers API for proxied and anonymous pulls, so that image signatures and attestations can be discovered through the proxy.
+
+## v2026.07.17-1
+
+Released on July 17, 2026
+
+### Improvements {#improvements-v2026-07-17-1}
+* Added accessible names to the Troubleshoot filter, search, and form controls to improve screen reader support.
+
+## v2026.07.16-16
+
+Released on July 16, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-16-16}
+* Fixed an issue where a customer's Security Center setting was not preserved.
+
+## v2026.07.16-11
+
+Released on July 16, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-16-11}
+* Restored processing of the license update queue.
+
+## v2026.07.16-4
+
+Released on July 16, 2026
+
+### Improvements {#improvements-v2026-07-16-4}
+* Added scope attributes to table headers to improve screen reader support.
+
+## v2026.07.16-0
+
+Released on July 16, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-16-0}
+* Fixed the Channels list view install modal so that it shows all entitlement-driven tabs.
+
 ## v2026.07.14-1
 
 Released on July 14, 2026
