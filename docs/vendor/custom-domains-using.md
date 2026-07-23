@@ -71,9 +71,9 @@ After you add one or more custom domains in the Vendor Portal, you can configure
 
 ### Configure Enterprise Portal domains {#enterprise-portal}
 
-The Classic Enterprise Portal and the Download Portal share a domain that you add and manage on the **Custom Domains** page, using the steps in [Add a custom domain in the Vendor Portal](#add-domain) above.
+The Classic Enterprise Portal and the Download Portal share a domain that you add and manage on the **Custom Domains** page, using the steps in [Add a custom domain in the Vendor Portal](#add-domain).
 
-The New Enterprise Portal, currently in alpha, is the exception. It manages its own domains from **Enterprise Portal > Domains** instead of the **Custom Domains** page. For the steps, see [Configure a Custom Domain](/vendor/enterprise-portal-v2-domains). Teams that use only the New Enterprise Portal do not see Download Portal domains on the **Custom Domains** page.
+The New Enterprise Portal, which is in alpha, is the exception. It manages its own domains from **Enterprise Portal > Domains** instead of the **Custom Domains** page. For the steps, see [Configure a Custom Domain](/vendor/enterprise-portal-v2-domains). Teams that use only the New Enterprise Portal do not see Download Portal domains on the **Custom Domains** page.
 
 ### Configure Embedded Cluster to use custom domains {#ec}
 
