@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.24-0
+
+Released on July 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-24-0}
+* Fixed an issue where Enterprise Portal installation instructions failed when the selected release was no longer available. The portal now displays a warning and allows another release to be selected.
+
 ## v2026.07.23-6
 
 Released on July 23, 2026
