@@ -17,6 +17,13 @@ Released on July 27, 2026
 ### New Features {#new-features-v2026-07-27-1}
 * Security Center now includes a By CVE view that shows affected releases, customers, and instances.
 
+## v2026.07.24-6
+
+Released on July 24, 2026
+
+### New Features {#new-features-v2026-07-24-6}
+* Added version-filtered downloads for KOTS and kURL instances in the Enterprise Portal v2 Instances & Updates card, so those customers can browse releases newer than their current version and download the correct artifacts for their install type.
+
 ## v2026.07.24-5
 
 Released on July 24, 2026
