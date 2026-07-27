@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.27-1
+
+Released on July 27, 2026
+
+### New Features {#new-features-v2026-07-27-1}
+* Security Center now includes a By CVE view that shows affected releases, customers, and instances.
+
 ## v2026.07.24-5
 
 Released on July 24, 2026
