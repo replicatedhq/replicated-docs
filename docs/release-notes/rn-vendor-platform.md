@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.24-6
+
+Released on July 24, 2026
+
+### New Features {#new-features-v2026-07-24-6}
+* Added version-filtered downloads for KOTS and kURL instances in the Enterprise Portal v2 Instances & Updates card, so those customers can browse releases newer than their current version and download the correct artifacts for their install type.
+
 ## v2026.07.24-5
 
 Released on July 24, 2026
