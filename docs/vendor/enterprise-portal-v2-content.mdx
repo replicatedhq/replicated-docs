@@ -473,7 +473,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. No props.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline upgrade instructions, while KOTS and kURL instances expand into a panel for downloading versioned install and update artifacts. No props.
 
 ### Security components
 
@@ -540,7 +540,7 @@ The comparison value must be quoted (double or single quotes). Supports nesting.
 
 Entitlements are accessible as `\{\{ entitlements.<name> \}\}` for interpolation and `\{\{#if entitlements.<name>\}\}` for conditionals. There are two kinds:
 
-- **Built-in flags**: Set on the license via Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isHelmAirgapEnabled`
+- **Built-in flags**: Set on the license via Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isKurlInstallEnabled`, `isHelmAirgapEnabled`
 - **Custom entitlements**: Any that you define (e.g. `isHAEnabled`, `isEnterpriseEnabled`)
 
 Example:
