@@ -361,6 +361,10 @@ When a customer selects limited or no registry access, `<HelmInstallAssets />` a
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
+**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Downloadable artifacts include the KOTS CLI, the Admin Console bundle, and the application air gap bundle. Available when the customer's license has the KOTS install type with air gap enabled. Props: `stepNumber`.
+
+**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Downloadable artifacts include the kURL installer bundle and the application air gap bundle. Available when the customer's license has the kURL install type with air gap enabled. Props: `stepNumber`.
+
 **`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
 
 ```markdown
@@ -473,7 +477,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. No props.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline upgrade instructions, while KOTS and kURL instances expand into a panel for downloading versioned install and update artifacts. No props.
 
 ### Security components
 
@@ -540,7 +544,7 @@ The comparison value must be quoted (double or single quotes). Supports nesting.
 
 Entitlements are accessible as `\{\{ entitlements.<name> \}\}` for interpolation and `\{\{#if entitlements.<name>\}\}` for conditionals. There are two kinds:
 
-- **Built-in flags**: Set on the license via Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isHelmAirgapEnabled`
+- **Built-in flags**: Set on the license through the Vendor Portal: `isHelmInstallEnabled`, `isAirgapSupported`, `isEmbeddedClusterDownloadEnabled`, `isEmbeddedClusterMultiNodeEnabled`, `isKotsInstallEnabled`, `isKurlInstallEnabled`, `isHelmAirgapEnabled`
 - **Custom entitlements**: Any that you define (e.g. `isHAEnabled`, `isEnterpriseEnabled`)
 
 Example:
