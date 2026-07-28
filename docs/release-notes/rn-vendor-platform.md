@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.28-0
+
+Released on July 28, 2026
+
+### Improvements {#improvements-v2026-07-28-0}
+* Updated Enterprise Portal access messaging in Vendor Portal to reflect KOTS and kURL support in Enterprise Portal v2.
+
 ## v2026.07.27-1
 
 Released on July 27, 2026
