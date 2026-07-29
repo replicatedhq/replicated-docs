@@ -416,6 +416,8 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 
 #### Adding KOTS or kURL installer pages
 
+KOTS and kURL instances already appear on the Instances & Updates page with no setup, where entitled customers can download versioned artifacts and create air gap instance records. This is rendered by the `<InstancesAndUpdates />` component, which ships in the default template. The dedicated installer pages described here are an optional addition that gives KOTS and kURL customers a download page of their own, the same as the Linux and Helm install pages.
+
 The default content template ships install pages for Embedded Cluster (`pages/installation/linux.md`) and Helm (`pages/installation/helm.md`), already listed in `toc.yaml`. It does not ship pages for KOTS or kURL. To give those customers a dedicated installer page, add one yourself using the `<KotsDownloadAssets />` or `<KurlDownloadAssets />` component.
 
 1. Create a page that embeds the component, for example `pages/installation/kots.md`:
