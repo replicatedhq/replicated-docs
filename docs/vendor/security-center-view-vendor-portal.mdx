@@ -10,19 +10,21 @@ The Security Center is Alpha. The features and functionality described on this p
 
 In the Vendor Portal, the Security Center provides dashboards for monitoring vulnerabilities across your releases and assessing the impact of CVEs across your customer fleet. You can also view security information for a specific release or customer instance.
 
-## Security Center dashboard
+To open the Security Center, go to **[App name] > Security**. The **Customer Impact** dashboard opens by default. Use the section switch to select **Release Security** or return to **Customer Impact**.
 
-The Security Center dashboard is available in the Vendor Portal at **[App name] > Security**.
+## Release Security dashboard
 
-The following shows an example of the Security Center dashboard:
+Select **Release Security** to view security information for the release selected by installation type and channel.
 
-![Security Center dashboard](/images/security-center-dashboard.png)
+The following shows an example of the Release Security dashboard:
+
+![Release Security dashboard](/images/security-center-dashboard.png)
 
 [View a larger version of this image](/images/security-center-dashboard.png)
 
-You can filter for the information on the Security Center dashboard by release type (Linux/Embedded Cluster or Helm) and release channel. The information displayed on the Security Center dashboard applies to the currently promoted release of the selected type on the selected channel.
+You can filter the Release Security dashboard by release type (Linux/Embedded Cluster or Helm) and release channel.
 
-The Security Center dashboard includes the following:
+The Release Security dashboard includes the following:
 * The number of customers affected by Critical or High CVEs, with a link to view the impact by customer
 * An overview of vulnerabilities present in the release, including a breakdown of CVE severity (Critical, High, Medium, Low) and a detailed list of the top security risks
 * The software bill of materials (SBOM) for the release, with a **Download SBOM** option
@@ -35,7 +37,7 @@ The Security Center dashboard includes the following:
 
 ### Software bill of materials (SBOM)
 
-The Security Center dashboard displays the software bill of materials (SBOM) for the release in view. The SBOM includes the format, the number of components and dependencies, the generation date, and the tool used. Select **Download SBOM** to download the SBOM as a JSON file.
+The Release Security dashboard displays the software bill of materials (SBOM) for the release in view. The SBOM includes the format, the number of components and dependencies, the generation date, and the tool used. Select **Download SBOM** to download the SBOM as a JSON file.
 
 ### Filter container images by source
 
@@ -82,8 +84,6 @@ Security Center groups each CVE by its highest severity level across all affecte
 
 The **Customer Impact** dashboard shows fleet-wide CVE exposure for Helm and Embedded Cluster instances that report data to the Vendor Portal.
 
-To open the dashboard, go to **[App name] > Security** and select **Customer Impact**.
-
 The following shows an example of the Customer Impact dashboard:
 
 ![Security Center Customer Impact dashboard](/images/security-center-customer-impact.png)
@@ -113,9 +113,19 @@ Each customer row shows the number and status of its instances and the aggregate
 
 An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
 
+### View impact by CVE
+
+On the **By CVE** tab, you can:
+
+* Search by CVE ID.
+* Filter CVEs by severity.
+* Select **Show unfixable CVEs** to include CVEs without a known fix.
+
+Each CVE row shows its description and the number of affected releases and customers. Expand a CVE to view the affected releases. Expand a release to view affected customers and the status of each customer instance.
+
 ## Release-specific CVE information
 
-CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**. This page shows the same container image list, source filter, and SBOM as the [Security Center dashboard](#security-center-dashboard).
+CVE details are available for all current and previously promoted application release versions. To view CVE information for a specific release, go to **Releases > [Release Version] > Security**. This page shows the same container image list, source filter, and SBOM as the [Release Security dashboard](#release-security-dashboard).
 
 ## Customer-specific CVE information
 
