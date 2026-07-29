@@ -39,6 +39,7 @@ statusInformers
 supportMinimalRBACPrivileges
 targetKotsVersion
 unarchive
+unfixable
 Unarchived
 collab
 Reinvite
