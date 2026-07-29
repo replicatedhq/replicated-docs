@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.29-2
+
+Released on July 29, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-29-2}
+* Fixed SAML login redirects to honor each customer's selected Enterprise Portal version.
+
 ## v2026.07.29-0
 
 Released on July 29, 2026
