@@ -17,6 +17,13 @@ Released on July 29, 2026
 ### Bug Fixes {#bug-fixes-v2026-07-29-2}
 * Fixed SAML login redirects to honor each customer's selected Enterprise Portal version.
 
+## v2026.07.29-1
+
+Released on July 29, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-29-1}
+* Fixes a bug that could cause air gap  build status to be shown as "Not Built" when it is queued.
+
 ## v2026.07.29-0
 
 Released on July 29, 2026
