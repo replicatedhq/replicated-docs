@@ -30,7 +30,7 @@ The **Overview** tab includes:
 * The number of actively promoted releases with Critical or High CVEs, compared to the number of promoted releases with security data.
 * The **Actively promoted releases** table, which lists the current release on each active channel. For each release, the table shows the version, channel, CVE counts by severity, number of customers on the channel, number of active instances, and number of instances with Critical CVEs.
 
-By default, the dashboard counts only CVEs that have a known fix. Turn on **Show unfixable CVEs** to include CVEs for which no fix is currently available.
+By default, the dashboard counts only CVEs that have a known fix. Turn on **Show unfixable CVEs** to include CVEs for which no fix is available.
 
 ### View impact by customer
 
@@ -41,7 +41,7 @@ On the **By Customer** tab, you can:
 * Sort the results by Critical CVEs, total CVEs, customer name, or number of instances.
 * Turn on **Show unfixable CVEs** to include CVEs without a known fix.
 
-Each customer row shows the number and status of its instances and the aggregate CVE counts across instances, where each severity count is the highest value reported by any single instance rather than a sum. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
+Each customer row shows its number of instances, instance statuses, and aggregate CVE counts. Each aggregate severity count is the highest value reported by a single instance, rather than a sum. Expand a row to view the status, installation type, channel, application version, last check-in, and SDK-reported CVE counts for each instance.
 
 An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
 
