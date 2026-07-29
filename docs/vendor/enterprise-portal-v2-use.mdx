@@ -80,15 +80,13 @@ For Embedded Cluster air gap installations, customers using a private registry c
 
 KOTS and kURL instances appear on the **Instances & Updates** page alongside Helm and Embedded Cluster instances, labeled **KOTS** or **kURL**. Each instance shows its current version and status.
 
-The Enterprise Portal does not generate step-by-step, in-console install or upgrade instructions for KOTS or kURL. Instead, these instance cards expand into a panel for downloading versioned artifacts. Customers select a release, either one newer than their current version or the current version when they are up to date. They then download that release's artifacts, such as the application air gap bundle, the Admin Console or installer bundle, and any available command-line tools.
+KOTS and kURL instance cards expand into a panel for downloading versioned artifacts. Customers select a release, either one newer than their current version or the current version when they are up to date. They then download that release's artifacts, such as the application air gap bundle, the Admin Console or installer bundle, and any available command-line tools.
 
 The download panel appears only for customers whose license has the KOTS or kURL install type together with air gap enabled. If the customer's license has expired, the panel shows a renewal notice instead of the version picker.
 
-Customers can also download the same artifacts from dedicated installer pages, one for KOTS and one for kURL. Vendors add these pages to the portal content using the `<KotsDownloadAssets />` and `<KurlDownloadAssets />` components. Each component renders a version picker and the selected release's artifacts, with the same install-type and air gap gating as the instance card panel.
+When the vendor includes them, customers can also download the same artifacts from dedicated installer pages, one for KOTS and one for kURL. These pages offer the same version picker and downloads, with the same install-type and air gap gating as the instance card panel.
 
 Customers can create air gap instance records for KOTS and kURL the same way as for Helm and Embedded Cluster. They can enter instance information manually from the Instances & Updates page, or extract details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
-
-The `<InstancesAndUpdates />` component in the default content template renders the instance cards, including the KOTS and kURL download panel. For more information, see [MDX components](/vendor/enterprise-portal-v2-content#mdx-components) in _Customize Portal Content_.
 
 ## Team management
 
