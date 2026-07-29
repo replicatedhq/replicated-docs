@@ -414,6 +414,35 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 </Prerequisites>
 ```
 
+#### Adding KOTS or kURL installer pages
+
+The default content template ships install pages for Embedded Cluster (`pages/installation/linux.md`) and Helm (`pages/installation/helm.md`), already listed in `toc.yaml`. It does not ship pages for KOTS or kURL. To give those customers a dedicated installer page, add one yourself using the `<KotsDownloadAssets />` or `<KurlDownloadAssets />` component.
+
+1. Create a page that embeds the component, for example `pages/installation/kots.md`:
+
+   ```markdown
+   # KOTS Installation
+
+   Download the artifacts for your licensed version below.
+
+   <KotsDownloadAssets stepNumber={1} />
+   ```
+
+1. Add the page to `toc.yaml` under the Installation section, gated with `visible_when` so it only appears for customers whose license includes the KOTS install type with air gap enabled:
+
+   ```yaml
+   - title: KOTS
+     page: pages/installation/kots.md
+     visible_when:
+       entitlements:
+         - isKotsInstallEnabled
+         - isAirgapSupported
+   ```
+
+For kURL, use the `<KurlDownloadAssets />` component and gate the navigation item on `isKurlInstallEnabled` and `isAirgapSupported`.
+
+The download components gate themselves on the same entitlements, so a customer who reaches the page without them sees nothing to download. Matching the `visible_when` conditions to the component keeps the navigation item hidden for those customers instead of showing them an empty page.
+
 ### Update components
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
