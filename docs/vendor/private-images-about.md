@@ -6,7 +6,13 @@ This topic describes how the Replicated proxy registry can be used to grant prox
 
 If your application images are available in a private image registry exposed to the internet such as Docker Hub or Amazon Elastic Container Registry (ECR), then the Replicated proxy registry can grant proxy, or _pull-through_, access to the images without exposing registry credentials to your customers. When you use the proxy registry, you do not have to modify the process that you already use to build and push images to deploy your application.
 
+The proxy registry works with most registries that conform to the Open Container Initiative (OCI) standard. For the full list of supported registries, see [Supported registries](/vendor/packaging-private-images#supported-registries).
+
 To grant proxy access, the proxy registry uses the customer licenses that you create in the Replicated vendor portal. This allows you to revoke a customer’s ability to pull private images by editing their license, rather than having to manage image access through separate identity or authentication systems. For example, when a trial license expires, the customer's ability to pull private images is automatically revoked.
+
+:::note
+The Replicated proxy registry provides pull-through access to your container images. It is not a general-purpose forward proxy and does not relay arbitrary outbound traffic, such as operating system packages or npm and pip requests. It delivers only content that Replicated supports serving.
+:::
 
 The following diagram demonstrates how the proxy registry pulls images from your external registry, and how deployed instances of your application pull images from the proxy registry:
 
