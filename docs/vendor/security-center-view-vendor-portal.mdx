@@ -12,6 +12,49 @@ In the Vendor Portal, the Security Center provides dashboards for monitoring vul
 
 To open the Security Center, go to **[App name] > Security**. The **Customer Impact** dashboard opens by default. Use the section switch to select **Release Security** or return to **Customer Impact**.
 
+## Customer Impact dashboard
+
+The **Customer Impact** dashboard shows fleet-wide CVE exposure for Helm and Embedded Cluster instances that report data to the Vendor Portal.
+
+The following shows an example of the Customer Impact dashboard:
+
+![Security Center Customer Impact dashboard](/images/security-center-customer-impact.png)
+
+[View a larger version of this image](/images/security-center-customer-impact.png)
+
+### Review the customer impact overview
+
+The **Overview** tab includes:
+
+* A security posture snapshot that compares the number of customers with Critical or High CVEs to the total number of customers.
+* The number of actively promoted releases with Critical or High CVEs, compared to the number of promoted releases with security data.
+* The **Actively promoted releases** table, which lists the current release on each active channel. For each release, the table shows the version, channel, CVE counts by severity, number of customers on the channel, number of active instances, and number of instances with Critical CVEs.
+
+By default, the dashboard counts only CVEs that have a known fix. Turn on **Show unfixable CVEs** to include CVEs for which no fix is currently available.
+
+### View impact by customer
+
+On the **By Customer** tab, you can:
+
+* Search for a customer.
+* Filter customers by one or more CVE severity levels.
+* Sort the results by Critical CVEs, total CVEs, customer name, or number of instances.
+* Turn on **Show unfixable CVEs** to include CVEs without a known fix.
+
+Each customer row shows the number and status of its instances and the aggregate CVE counts across instances, where each severity count is the highest value reported by any single instance rather than a sum. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
+
+An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
+
+### View impact by CVE
+
+On the **By CVE** tab, you can:
+
+* Search by CVE ID.
+* Filter CVEs by severity.
+* Select **Show unfixable CVEs** to include CVEs without a known fix.
+
+Each CVE row shows its description and the number of affected releases and customers. Expand a CVE to view the affected releases. Expand a release to view affected customers and the status of each customer instance.
+
 ## Release security dashboard
 
 Select **Release Security** to view security information for the release selected by installation type and channel.
@@ -79,49 +122,6 @@ On the **CVE details** tab, you can filter the list of CVEs by severity level. S
 The **Showing X of Y CVEs** label reflects how many CVEs match the current filter.
 
 Security Center groups each CVE by its highest severity level across all affected images. For example, a CVE with a Critical rating in one image and a Low rating in another appears in the **Critical** group. This ensures that each CVE reflects its most severe rating.
-
-## Customer Impact dashboard
-
-The **Customer Impact** dashboard shows fleet-wide CVE exposure for Helm and Embedded Cluster instances that report data to the Vendor Portal.
-
-The following shows an example of the Customer Impact dashboard:
-
-![Security Center Customer Impact dashboard](/images/security-center-customer-impact.png)
-
-[View a larger version of this image](/images/security-center-customer-impact.png)
-
-### Review the customer impact overview
-
-The **Overview** tab includes:
-
-* A security posture snapshot that compares the number of customers with Critical or High CVEs to the total number of customers.
-* The number of actively promoted releases with Critical or High CVEs, compared to the number of promoted releases with security data.
-* The **Actively promoted releases** table, which lists the current release on each active channel. For each release, the table shows the version, channel, CVE counts by severity, number of customers on the channel, number of active instances, and number of instances with Critical CVEs.
-
-By default, the dashboard counts only CVEs that have a known fix. Turn on **Show unfixable CVEs** to include CVEs for which no fix is currently available.
-
-### View impact by customer
-
-On the **By Customer** tab, you can:
-
-* Search for a customer.
-* Filter customers by one or more CVE severity levels.
-* Sort the results by Critical CVEs, total CVEs, customer name, or number of instances.
-* Turn on **Show unfixable CVEs** to include CVEs without a known fix.
-
-Each customer row shows the number and status of its instances and the aggregate CVE counts across instances, where each severity count is the highest value reported by any single instance rather than a sum. Expand a row to view each instance's status, installation type, channel, application version, last check-in, and CVE counts reported by the Replicated SDK.
-
-An air gap instance might not have SDK-reported CVE data. In this case, Security Center displays the CVE counts for the latest release on the instance's channel as a reference. These counts represent the release and not the instance's reported security posture.
-
-### View impact by CVE
-
-On the **By CVE** tab, you can:
-
-* Search by CVE ID.
-* Filter CVEs by severity.
-* Select **Show unfixable CVEs** to include CVEs without a known fix.
-
-Each CVE row shows its description and the number of affected releases and customers. Expand a CVE to view the affected releases. Expand a release to view affected customers and the status of each customer instance.
 
 ## Release-specific CVE information
 
