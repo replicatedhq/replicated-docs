@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.29-0
+
+Released on July 29, 2026
+
+### Improvements {#improvements-v2026-07-29-0}
+* Security Center now opens Customer Impact by default while keeping Release Security available from the section switch.
+
 ## v2026.07.28-0
 
 Released on July 28, 2026
