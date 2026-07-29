@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.29-1
+
+Released on July 29, 2026
+
+### Bug Fixes {#bug-fixes-v2026-07-29-1}
+* Fixes a bug that could cause air gap  build status to be shown as "Not Built" when it is queued.
+
 ## v2026.07.29-0
 
 Released on July 29, 2026
