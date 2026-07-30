@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.30-1
+
+Released on July 30, 2026
+
+### New Features {#new-features-v2026-07-30-1}
+* Customer Impact now shows the security benefit and regressions of upgrading each reporting Helm or Embedded Cluster instance to the latest release available on its channel.
+
 ## v2026.07.29-2
 
 Released on July 29, 2026
