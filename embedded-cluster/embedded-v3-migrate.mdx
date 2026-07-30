@@ -1,9 +1,9 @@
 import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
 import EcConfig from "../docs/partials/embedded-cluster/v3/_ec-config.mdx"
 
-# Migrate from Embedded Cluster v2
+# Upgrade from Embedded Cluster v2
 
-This page describes how to migrate from Embedded Cluster v2 to Embedded Cluster v3.
+This page describes how to upgrade from Embedded Cluster v2 to Embedded Cluster v3.
 
 It includes information about how to update your application release to support Embedded Cluster v3. It also describes how to upgrade existing installations from Embedded Cluster v2 to v3.
 
@@ -63,7 +63,7 @@ In Embedded Cluster v2, Helm extensions defined under `extensions.helm.charts` w
 
 Embedded Cluster v3 does not pull extension charts at install time from any source, whether an HTTP Helm repository or an OCI registry. Instead, it resolves each extension chart from a `.tgz` chart archive that is bundled in the release, matching by chart name and version. The v3 `extensions.helmCharts` schema has no repository or registry field.
 
-As a result, migrating a repo-sourced or OCI-sourced v2 extension is not only a change to the Config YAML shape. You must also package the chart as a `.tgz` archive and include it in the release. For the steps, see [Update your release to Embedded Cluster v3](#update-your-release-to-embedded-cluster-v3) below.
+As a result, upgrading a repo-sourced or OCI-sourced v2 extension is not only a change to the Config YAML shape. You must also package the chart as a `.tgz` archive and include it in the release. For the steps, see [Update your release to Embedded Cluster v3](#update-your-release-to-embedded-cluster-v3) below.
 
 ### Config value defaults are persisted at install time
 
@@ -79,7 +79,7 @@ If your application uses the Replicated proxy registry, Embedded Cluster v3 conf
 
 ### Changes to Application custom resource fields {#application-cr-changes}
 
-Because Embedded Cluster v3 removes the KOTS Admin Console, several fields in the [Application custom resource](/reference/custom-resource-application) no longer have a meaningful equivalent in v3. These fields can be safely removed from your Application manifest during migration. If left in place, they are silently ignored.
+Because Embedded Cluster v3 removes the KOTS Admin Console, several fields in the [Application custom resource](/reference/custom-resource-application) no longer have a meaningful equivalent in v3. These fields can be safely removed from your Application manifest during the upgrade. If left in place, they are silently ignored.
 
 The following Application spec fields are not used in Embedded Cluster v3:
 
@@ -204,21 +204,21 @@ To update a release from Embedded Cluster v2 to v3:
 
 The Embedded Cluster v3 installer wizard includes a **Set Up** page where end customers provide cluster-level settings such as proxy configuration. In Embedded Cluster v2, these settings were passed as CLI flags at install time.
 
-## Migrate an installation from Embedded Cluster v2 to Embedded Cluster v3
+## Upgrade an installation from Embedded Cluster v2 to Embedded Cluster v3
 
-Embedded Cluster supports upgrading existing installations from v2 to v3 without having to reinstall the application. The migration uses the same `upgrade` command as any v3-to-v3 upgrade. The v3 binary automatically detects the v2 installation and handles the migration, prompting the user to confirm. Running `install` on a node with an existing v2 installation is blocked — use `upgrade` instead.
+Embedded Cluster supports upgrading existing installations from v2 to v3 without having to reinstall the application. The upgrade uses the same `upgrade` command as any v3-to-v3 upgrade. The v3 binary automatically detects the v2 installation and handles the upgrade, prompting the user to confirm. Running `install` on a node with an existing v2 installation is blocked — use `upgrade` instead.
 
 :::important
-If your v3 release uses a newer Kubernetes minor version than the customer's v2 installation, the migration also upgrades Kubernetes. Kubernetes supports upgrading only one minor version at a time, so Embedded Cluster blocks the migration if the customer's Kubernetes version is more than one minor version behind the version in your v3 release.
+If your v3 release uses a newer Kubernetes minor version than the customer's v2 installation, the upgrade also upgrades Kubernetes. Kubernetes supports upgrading only one minor version at a time, so Embedded Cluster blocks the upgrade if the customer's Kubernetes version is more than one minor version behind the version in your v3 release.
 
-To avoid this, ensure that customers step through the intermediate Kubernetes minor versions before they migrate to v3. Replicated recommends that you mark each release that increases the Kubernetes minor version as required so that customers cannot skip it. For more information, see [Increase the Kubernetes minor version](embedded-config#increment-k8s).
+To avoid this, ensure that customers step through the intermediate Kubernetes minor versions before they upgrade to v3. Replicated recommends that you mark each release that increases the Kubernetes minor version as required so that customers cannot skip it. For more information, see [Increase the Kubernetes minor version](embedded-config#increment-k8s).
 :::
 
 :::note
-Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design to prevent accidental migrations. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
+Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design to prevent accidental upgrades. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
 :::
 
-To migrate an existing installation to Embedded Cluster v3:
+To upgrade an existing installation to Embedded Cluster v3:
 
 1. Get the customer's Embedded Cluster install instructions from the Vendor Portal or from the Enterprise Portal.
 
@@ -235,7 +235,7 @@ To migrate an existing installation to Embedded Cluster v3:
    ```
    Where `APP_SLUG` in the unique application slug.
 
-1. When prompted, type `yes` to confirm that you want to migrate to v3.
+1. When prompted, type `yes` to confirm that you want to upgrade to v3.
 
    ```bash
    Detected EC v2 installation. This upgrade will migrate the cluster from v2 to v3.
