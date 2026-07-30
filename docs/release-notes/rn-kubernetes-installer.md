@@ -10,6 +10,14 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.07.30-0
+
+Released on July 30, 2026
+
+### New Features {#new-features-v2026-07-30-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.35.7 1.34.10 1.33.13 1.32.13.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.11.2-1.1.2.
+
 ## v2026.07.20-0
 
 Released on July 20, 2026
