@@ -40,9 +40,9 @@ Released on July 10, 2026
 
 * Fixes an issue where an interactive upgrade failed with a port conflict error when the persistent admin console was already running. The console now drives the upgrade instead.
 * Fixes the config UI so that a dropdown's default value hint shows the option's title instead of its underlying name.
-* Fixes v2-to-v3 migration to regenerate the TLS certificate when the v2 console's hostname is an in-cluster service name, instead of carrying forward a cert for an unreachable address.
-* Fixes an error that blocked install, upgrade, and v2-to-v3 migration when a release did not include a kots.io/v1beta1 Application manifest.
-* Fixes an error that blocked install, upgrade, and v2-to-v3 migration when a release did not include a kots.io/v1beta1 Config manifest.
+* Fixes v2-to-v3 upgrade to regenerate the TLS certificate when the v2 console's hostname is an in-cluster service name, instead of carrying forward a cert for an unreachable address.
+* Fixes an error that blocked install, upgrade, and v2-to-v3 upgrade when a release did not include a kots.io/v1beta1 Application manifest.
+* Fixes an error that blocked install, upgrade, and v2-to-v3 upgrade when a release did not include a kots.io/v1beta1 Config manifest.
 
 ## 3.9.0-beta.1
 
