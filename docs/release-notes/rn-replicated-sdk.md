@@ -8,6 +8,20 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+## 1.19.8
+
+Released on July 31, 2026
+
+### Bug fixes {#bug-fixes-1-19-8}
+* Fixes an issue where setting `nameOverride` (or declaring the Replicated SDK chart as an aliased subchart) rebranded the Kubernetes object names but not the container, volume, and volumeMount names in the rendered Deployment. These pod spec fields are now wired to the same `replicated.name` helper, so the override applies consistently.
+
+## 1.19.7
+
+Released on July 13, 2026
+
+### Improvements {#improvements-1-19-7}
+* Updates Go dependencies to address several CVEs.
+
 ## 1.19.6
 
 Released on June 8, 2026
