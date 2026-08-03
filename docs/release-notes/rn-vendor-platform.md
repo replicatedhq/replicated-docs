@@ -10,6 +10,16 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.03-0
+
+Released on August 3, 2026
+
+### New Features {#new-features-v2026-08-03-0}
+* Vendors can configure Enterprise Portal v2 Security Center display preferences from a new Settings tab.
+
+### Improvements {#improvements-v2026-08-03-0}
+* Added an API foundation for controlling Security Center visibility, unfixable CVEs, and raw scan downloads per application.
+
 ## v2026.07.30-1
 
 Released on July 30, 2026
