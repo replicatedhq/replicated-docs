@@ -351,7 +351,7 @@ Props: `installType` (`"linux"` or `"helm"`).
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
-**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide), `namespace` (optional, string; when set, the generated install command includes `--namespace <namespace>` so the app installs into that namespace. When omitted, the install uses the default namespace).
 
 When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. No additional configuration is required.
 
@@ -394,6 +394,22 @@ For applications with multiple Helm charts, you can control which charts appear 
 ```
 
 The `charts` and `exclude` props accept comma-separated chart names. Use `charts` to include only the listed charts, or `exclude` to show all charts except the listed ones.
+
+#### Installing into a specific namespace
+
+By default, `<HelmInstallAssets />` generates an install command that uses the default namespace. If your application always installs into a fixed namespace, set the `namespace` prop to add `--namespace <namespace>` to the generated command:
+
+```markdown
+<HelmInstallAssets namespace="salt-os" />
+```
+
+To set a default namespace while letting individual customers override it, reference a custom license field with a fallback:
+
+```markdown
+<HelmInstallAssets namespace={entitlements.helm_namespace || "salt-os"} />
+```
+
+This installs into `salt-os` for most customers, but a customer whose license defines a `helm_namespace` custom field installs into that namespace instead. For more on custom license fields, see [Entitlements](#entitlements).
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
