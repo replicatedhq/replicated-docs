@@ -17,6 +17,16 @@ Released on August 3, 2026
 ### Bug Fixes {#bug-fixes-v2026-08-03-1}
 * Enforce the SAML domain allowlist on JIT-provisioned and invited Enterprise Portal users, and return actionable error messages on SAML login failures instead of a bare 403.
 
+## v2026.08.03-0
+
+Released on August 3, 2026
+
+### New Features {#new-features-v2026-08-03-0}
+* Vendors can configure Enterprise Portal v2 Security Center display preferences from a new Settings tab.
+
+### Improvements {#improvements-v2026-08-03-0}
+* Added an API foundation for controlling Security Center visibility, unfixable CVEs, and raw scan downloads per application.
+
 ## v2026.07.30-1
 
 Released on July 30, 2026
