@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.03-1
+
+Released on August 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-03-1}
+* Enforce the SAML domain allowlist on JIT-provisioned and invited Enterprise Portal users, and return actionable error messages on SAML login failures instead of a bare 403.
+
 ## v2026.08.03-0
 
 Released on August 3, 2026
