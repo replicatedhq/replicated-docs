@@ -305,15 +305,15 @@ Props: `command`, `label`, `encoded`.
 
 **`<ContentLink>`**: Internal navigation links. Standard markdown links (`[text](path)`) are automatically converted to use client-side navigation, so you don't need to use this component directly.
 
-Link paths are resolved relative to the current page's URL, and the portal automatically injects the customer's selected version into the resolved route. Because resolution is relative, a bare `section/page` path only resolves correctly from a top-level page. From a page inside a subdirectory, the same path resolves against that subdirectory. For example, `[Configure values](installation/values)` authored on the `installation/helm` page resolves to `installation/installation/values`, which does not exist.
+Link paths resolve relative to the current page's URL, and the portal injects the customer's selected version into the resolved route. Because resolution is relative, a bare `section/page` path resolves correctly only from a top-level page. From a page inside a subdirectory, the same path resolves against that subdirectory. For example, `[Configure values](installation/values)` authored on the `installation/helm` page resolves to `installation/installation/values`, which does not exist.
 
-To link reliably from any page regardless of its depth, use a leading-slash absolute path. Absolute paths resolve from the content root, and the selected version is still injected:
+To link reliably from any page, use a leading-slash absolute path. Absolute paths resolve from the content root, and the portal still injects the selected version:
 
 ```markdown
 See [Configure values](/installation/values).
 ```
 
-From any page, this resolves to `/<version>/installation/values`.
+From any page, this path resolves to `/<version>/installation/values`.
 
 ### Installation components
 
