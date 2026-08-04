@@ -400,16 +400,16 @@ The `charts` and `exclude` props accept comma-separated chart names. Use `charts
 By default, `<HelmInstallAssets />` generates an install command that uses the default namespace. If your application always installs into a fixed namespace, set the `namespace` prop to add `--namespace <namespace>` to the generated command:
 
 ```markdown
-<HelmInstallAssets namespace="salt-os" />
+<HelmInstallAssets namespace="my-namespace" />
 ```
 
 To set a default namespace while letting individual customers override it, reference a custom license field with a fallback:
 
 ```markdown
-<HelmInstallAssets namespace={entitlements.helm_namespace || "salt-os"} />
+<HelmInstallAssets namespace={entitlements.helm_namespace || "my-namespace"} />
 ```
 
-This installs into `salt-os` for most customers, but a customer whose license defines a `helm_namespace` custom field installs into that namespace instead. For more on custom license fields, see [Entitlements](#entitlements).
+This installs into `my-namespace` for most customers, but a customer whose license defines a `helm_namespace` custom field installs into that namespace instead. For more on custom license fields, see [Entitlements](#entitlements).
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
