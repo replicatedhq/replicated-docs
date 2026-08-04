@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.04-0
+
+Released on August 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-04-0}
+* Enterprise Portal v2 customers now see an actionable error page when SAML login fails to start, instead of being silently returned to a blank login form.
+
 ## v2026.08.03-1
 
 Released on August 3, 2026
