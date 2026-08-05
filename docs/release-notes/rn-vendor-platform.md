@@ -16,6 +16,17 @@ Released on August 5, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-05-1}
 * Show missing SBOM data as not yet available instead of displaying a loading error.
+## v2026.08.05-0
+
+Released on August 5, 2026
+
+### Improvements {#improvements-v2026-08-05-0}
+* The Enterprise Portal Security page now shows how many container images are still awaiting a vulnerability scan.
+
+### Bug Fixes {#bug-fixes-v2026-08-05-0}
+* Fixed the Enterprise Portal Security and Update tabs crashing when a container image vulnerability scan had not finished.
+* Fixed the Enterprise Portal Security page counting container images without a finished vulnerability scan as though they had been assessed.
+* Fixed Enterprise Portal reporting a release as having no vulnerabilities when none of its container images had been scanned yet.
 
 ## v2026.08.04-0
 
