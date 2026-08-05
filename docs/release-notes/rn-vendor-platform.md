@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.05-1
+
+Released on August 5, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-05-1}
+* Show missing SBOM data as not yet available instead of displaying a loading error.
+
 ## v2026.08.04-0
 
 Released on August 4, 2026
