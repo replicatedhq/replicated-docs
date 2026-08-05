@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.05-2
+
+Released on August 5, 2026
+
+### Improvements {#improvements-v2026-08-05-2}
+* Enterprise Portal Security Center now shows fixable vulnerabilities by default, respects vendor settings for allowing unfixable CVEs, and lets customers switch views when all CVEs are available.
+
 ## v2026.08.04-0
 
 Released on August 4, 2026
