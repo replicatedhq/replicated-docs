@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.05-3
+
+Released on August 5, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-05-3}
+* CSV exports now use safe, correctly formatted filenames from download responses.
+
 ## v2026.08.05-2
 
 Released on August 5, 2026
