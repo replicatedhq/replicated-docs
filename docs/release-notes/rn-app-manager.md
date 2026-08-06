@@ -25,7 +25,17 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.131.0
 
+Released on August 6, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Bug fixes {#bug-fixes-1-131-0}
+* Fixes an issue where preflight and support-bundle collector images that were explicitly configured to point at a local or pull-through mirror registry were incorrectly re-flattened, dropping the upstream image path and breaking image pulls in air gap installs behind a pull-through mirror.
+
+### Breaking changes {#breaking-changes-1-131-0}
+* The containers/image library bundled with KOTS no longer accepts the deprecated v1 format for `/etc/containers/registries.conf`. Systems with a legacy v1 format registries configuration must migrate to the v2 format before using KOTS image operations (such as air gap bundle pushes and image copying).
 
 ## 1.130.9
 
