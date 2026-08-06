@@ -137,8 +137,10 @@ Customers can generate and upload support bundles from the portal:
 
 When Security Center is enabled by the vendor, customers with Helm or Embedded Cluster installations can view security data for their releases.
 
-- **CVE reports**: Browse vulnerabilities by severity for the selected release version. A toggle filters between all vulnerabilities and fixable-only vulnerabilities, where fixable means a patched package version is available.
-- **Upgrade recommendations**: CVE entries link to upgrade recommendations for affected instances, showing customers a path to the version that resolves each vulnerability.
+- **CVE reports**: Browse vulnerabilities by severity, component, and container image for the selected release. The **Fixed In** column identifies the earliest subsequent release on the customer's channel where the CVE is no longer detected. A dash indicates that no release-level fix is known.
+- **Fixable CVE filtering**: Vendors can show only CVEs with an available fix or allow customers to switch between all CVEs and fixable CVEs.
+- **Release comparisons**: Compare the selected release with the latest available release. The report shows how many CVEs are fixed by severity and container image.
+- **Upgrade recommendations**: When active instances use the selected release, follow links to the **Instances & Updates** page to upgrade them. When viewing the latest release, select an older release listed on the page to review its security data and upgrade options.
 - **SBOMs**: Download the Software Bill of Materials for any release version. SBOMs are accessible to all portal team members regardless of role.
 
 :::note

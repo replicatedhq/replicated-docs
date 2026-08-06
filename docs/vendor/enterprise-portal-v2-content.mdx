@@ -524,11 +524,11 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 These components require Security Center to be enabled for the customer and are available for Helm and Embedded Cluster installs only. See [Security Center](/vendor/security-center-about) for more information.
 
-**`<CVEReport />`**: Displays the CVE vulnerability report for the selected release. Includes a toggle to filter between all vulnerabilities and fixable-only vulnerabilities. No props.
+**`<CVEReport />`**: Displays CVEs by severity, component, and container image for the selected release. For each CVE, the report identifies the earliest subsequent release where the CVE is no longer detected. The report also compares CVE counts with the latest release. Depending on your Security Center settings, the report shows only fixable CVEs or includes a toggle for customers to show all CVEs. No props.
 
-**`<SBOMReport />`**: Displays the Software Bill of Materials for the selected release. No props.
+**`<SBOMReport />`**: Displays SBOM metadata and a download option for the selected release. If no SBOM is available, the component displays an unavailable state. No props.
 
-**`<SecurityVersionSelector />`**: Version picker for security reports. No props.
+**`<SecurityVersionSelector />`**: Selects the install type and release used by the security reports. For older releases, the component shows active instances and links to their upgrade options. When customers select the latest release, the component identifies active instances on older releases. No props.
 
 ## Template variables
 
