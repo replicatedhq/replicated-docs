@@ -10,6 +10,12 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.06-0
+
+Released on August 6, 2026
+
+### New Features {#new-features-v2026.08.06-0}
+* Adds Ubuntu version 26.04
 
 
 ## v2026.07.30-0
