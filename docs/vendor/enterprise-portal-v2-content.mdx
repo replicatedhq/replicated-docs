@@ -397,21 +397,23 @@ The `charts` and `exclude` props accept comma-separated chart names. Use `charts
 
 #### Installing into a specific namespace
 
-By default, the Helm instruction components generate commands that use the default namespace. If your application always installs into a fixed namespace, set the `namespace` prop on `<HelmInstallAssets />`, `<HelmAirgapInstallAssets />`, or `<HelmUpdateAssets />` to add `--namespace <namespace>` to the generated install and upgrade commands:
+By default, the Helm instruction components generate commands that install into the default namespace. To install into a specific namespace, set the `namespace` prop on `<HelmInstallAssets />` or `<HelmAirgapInstallAssets />`:
 
 ```markdown
 <HelmInstallAssets namespace="my-namespace" />
 ```
 
-To set a default namespace while letting individual customers override it, reference a custom license field with a fallback:
+The generated install command adds `--namespace my-namespace --create-namespace`, so the namespace is created if it does not already exist. You do not set a namespace on `<HelmUpdateAssets />`. Upgrades automatically target the namespace the customer installed into.
+
+To let each customer's namespace come from their license, reference a custom license field with a template expression:
 
 ```markdown
-<HelmInstallAssets namespace={entitlements.helm_namespace || "my-namespace"} />
+<HelmInstallAssets namespace="{{entitlements.helm_namespace}}" />
 ```
 
-This installs into `my-namespace` for most customers, but a customer whose license defines a `helm_namespace` custom field installs into that namespace instead. For more on custom license fields, see [Entitlements](#entitlements).
+A customer whose license defines a `helm_namespace` custom field installs into that namespace. A customer without it installs into the default namespace. For more on custom license fields, see [Entitlements](#entitlements).
 
-The generated commands do not include `--create-namespace`, so the target namespace must already exist in the customer's cluster before they run the install command.
+Namespace values are validated as DNS-1123 labels, so an invalid value surfaces an error in the portal preview instead of silently installing into the default namespace.
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
