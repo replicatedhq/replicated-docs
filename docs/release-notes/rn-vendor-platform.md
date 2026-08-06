@@ -17,6 +17,34 @@ Released on August 5, 2026
 ### Bug Fixes {#bug-fixes-v2026-08-05-6}
 * Existing Enterprise Portal v2 users with pending team invites can now discover and accept those invites from login/team selection and the authenticated change-team menu.
 
+## v2026.08.05-5
+
+Released on August 5, 2026
+
+### New Features {#new-features-v2026-08-05-5}
+* Vendors can now read channel-specific release notes from a Changelog view on Channel Release History.
+
+## v2026.08.05-3
+
+Released on August 5, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-05-3}
+* CSV exports now use safe, correctly formatted filenames from download responses.
+
+## v2026.08.05-2
+
+Released on August 5, 2026
+
+### Improvements {#improvements-v2026-08-05-2}
+* Enterprise Portal Security Center now shows fixable vulnerabilities by default, respects vendor settings for allowing unfixable CVEs, and lets customers switch views when all CVEs are available.
+
+## v2026.08.05-1
+
+Released on August 5, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-05-1}
+* Show missing SBOM data as not yet available instead of displaying a loading error.
+
 ## v2026.08.05-0
 
 Released on August 5, 2026
