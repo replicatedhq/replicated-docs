@@ -25,6 +25,23 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.131.0
+
+Released on August 6, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Improvements {#improvements-1-131-0}
+* Rebuilds the kotsadm image with an updated base image and Go 1.26.5, including all bundled tools (helm, kubectl, kustomize), to resolve high severity CVEs CVE-2026-27145, CVE-2026-42504, CVE-2026-39822, and CVE-2026-50163, and medium severity CVEs CVE-2026-42505, CVE-2026-42507, CVE-2025-11187, CVE-2026-2673, and CVE-2025-15469.
+* Fixes high and medium severity vulnerabilities GHSA-x744-4wpc-v9h2, GHSA-hrxh-6v49-42gf, GHSA-jxpm-75mh-9fp7, GHSA-fxhp-mv3v-67qp, GHSA-gcjh-h69q-9w9g, and GO-2026-5970 in the KOTS Go dependencies.
+* Fixes high and medium severity CVEs CVE-2026-46625, CVE-2026-13311, and CVE-2026-41907 in the KOTS front-end dependencies.
+
+### Bug fixes {#bug-fixes-1-131-0}
+* Fixes an issue where preflight and support-bundle collector images that were explicitly configured to point at a local or pull-through mirror registry were incorrectly re-flattened, dropping the upstream image path and breaking image pulls in air gap installs behind a pull-through mirror.
+
+### Breaking changes {#breaking-changes-1-131-0}
+* The containers/image library bundled with KOTS no longer accepts the deprecated v1 format for `/etc/containers/registries.conf`. Systems with a legacy v1 format registries configuration must migrate to the v2 format before using KOTS image operations (such as air gap bundle pushes and image copying).
+
 ## 1.130.9
 
 Released on July 22, 2026
