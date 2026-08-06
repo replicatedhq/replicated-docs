@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.05-6
+
+Released on August 5, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-05-6}
+* Existing Enterprise Portal v2 users with pending team invites can now discover and accept those invites from login/team selection and the authenticated change-team menu.
+
 ## v2026.08.05-5
 
 Released on August 5, 2026
