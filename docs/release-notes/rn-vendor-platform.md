@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.05-5
+
+Released on August 5, 2026
+
+### New Features {#new-features-v2026-08-05-5}
+* Vendors can now read channel-specific release notes from a Changelog view on Channel Release History.
+
 ## v2026.08.05-3
 
 Released on August 5, 2026
