@@ -10,6 +10,8 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+
 ## v2026.07.30-0
 
 Released on July 30, 2026
