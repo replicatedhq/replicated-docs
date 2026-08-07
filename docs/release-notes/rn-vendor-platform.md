@@ -17,6 +17,21 @@ Released on August 7, 2026
 ### Improvements {#improvements-v2026-08-07-1}
 * Enterprise Portal security data now identifies the earliest vendor release that resolves each CVE.
 
+## v2026.08.07-0
+
+Released on August 7, 2026
+
+### Improvements {#improvements-v2026-08-07-0}
+* Made Enterprise Portal sidebar section headings more prominent.
+* Clarified the Enterprise Portal sidebar by grouping each section's pages against a guide rail that marks the page you are on.
+* Enterprise Portal navigation section icons are now opt-in instead of falling back to a generic icon.
+* Marked the current page in the Enterprise Portal sidebar for screen readers.
+
+### Bug Fixes {#bug-fixes-v2026-08-07-0}
+* Fixed duplicate headings on Enterprise Portal pages that embed support bundle or instance components.
+* Fixed Enterprise Portal sidebar text being unreadable in dark mode for portals with a light custom sidebar color.
+* Fixed the Enterprise Portal sidebar divider rendering as a bright line in dark mode.
+
 ## v2026.08.05-6
 
 Released on August 5, 2026
