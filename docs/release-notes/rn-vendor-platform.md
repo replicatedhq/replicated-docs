@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.07-1
+
+Released on August 7, 2026
+
+### Improvements {#improvements-v2026-08-07-1}
+* Enterprise Portal security data now identifies the earliest vendor release that resolves each CVE.
+
 ## v2026.08.05-6
 
 Released on August 5, 2026
