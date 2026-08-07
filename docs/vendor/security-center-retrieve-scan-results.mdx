@@ -74,7 +74,7 @@ The response contains a `scans` array with one entry per scanned image. Each ent
 {
   "scans": [
     {
-      "image": "example.com/app/api:1.2.3",
+      "input": "example.com/app/api:1.2.3",
       "scan_status": "succeeded",
       "result": {
         "matches": [
@@ -92,7 +92,7 @@ The response contains a `scans` array with one entry per scanned image. Each ent
 }
 ```
 
-Scans run asynchronously and continuously, so a scan might not be complete when you request the results. While a scan is in progress, its `scan_status` is a non-terminal value such as `pending`, `in_progress`, or `generating`, and its `result` is `null`. A completed scan has a `scan_status` of `succeeded`, and a scan that could not complete has a `scan_status` of `failed`. Poll the endpoint until every scan reaches a terminal status before you evaluate the results.
+Scans run asynchronously and continuously, so a scan might not be complete when you request the results. While a scan is in progress, its `scan_status` is a non-terminal value such as `pending` or `in_progress`, and its `result` is `null`. A completed scan has a `scan_status` of `succeeded`, and a scan that could not complete has a `scan_status` of `failed`. Poll the endpoint until every scan reaches a terminal status before you evaluate the results.
 
 Grype reports more severity levels than the four shown in the Security Center dashboard. In addition to Critical, High, Medium, and Low, an individual match can have a severity of `Negligible` or `Unknown`. Filter on the severity levels that matter to your security policy.
 
@@ -138,6 +138,16 @@ GET /v3/app/{appId}/channel/{channelId}/securebuild/scan?channel_sequence={chann
 ```
 
 For each image, this endpoint returns a `result` with aggregated `counts`, per-severity breakdowns (`critical`, `high`, `medium`, and `low`), a `vulnerability_details` list, and a `fixed_counts` object. The `fixed_counts` object reports how many vulnerabilities at each severity have a fix available. This is convenient for a pass/fail gate, because you do not need to filter the `matches` array yourself.
+
+Each image also includes a `source_type` of `vendor` or `replicated`. Use this field to distinguish your application images from Replicated Platform images.
+
+The response includes a top-level `summary` object with the following fields:
+
+* `total_images`: Total images in the response, including images with incomplete scans
+* `vendor_image_count`: Images classified as application images
+* `replicated_image_count`: Images classified as Replicated Platform images
+* `vendor_vuln_counts`: Vulnerability counts across application images
+* `replicated_vuln_counts`: Vulnerability counts across Replicated Platform images
 
 ## Retrieve SBOMs
 

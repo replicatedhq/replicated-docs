@@ -8,26 +8,64 @@ sidebar_label: "Enable Customer Access to Security Information (Alpha)"
 The Security Center is Alpha. The features and functionality described on this page are subject to change.
 :::
 
-The Enterprise Portal Security Center allows you to provide key security information to your enterprise customers alongside your application releases.
+The Security Center allows you to provide security information to customers through Enterprise Portal (Classic) or Enterprise Portal (New). The configuration steps and customer experience differ between the two portals.
 
-The **Security Center** tab of the Enterprise Portal is not enabled by default. See [Enable the Enterprise Portal Security Center](#enable-the-enterprise-portal-security-center). When enabled, the Security Center intelligently filters data based on the customer's installation type, ensuring that customers only see relevant security information.
+## Enterprise Portal (Classic)
 
-On the **Security Center** tab of the Enterprise Portal, for each available release version, customers can:
+The **Security Center** tab in Enterprise Portal (Classic) displays security information for each available release version. Customers can:
+
 * View a CVE report with the complete list of known vulnerabilities and their severity levels
 * View details about the vulnerabilities identified for each image
 * Understand how many CVEs are fixed by upgrading to newer versions
 * Download the Software Bill of Materials (SBOM) in SPDX format for compliance and security audits
 
-The following shows an example of the Security Center dashboard in the Enterprise Portal:
+The following shows an example of the Security Center dashboard in Enterprise Portal (Classic):
 
-![Enterprise Portal Security Center dashboard](/images/ep-security-center-dashboard.png)
+![Enterprise Portal (Classic) Security Center dashboard](/images/ep-security-center-dashboard.png)
 
 [View a larger version of this image](/images/ep-security-center-dashboard.png)
 
-## Enable the Enterprise Portal Security Center
+### Enable the Security Center in Enterprise Portal (Classic)
 
-The **Security Center** tab in the Enterprise Portal is not enabled by default. If the Security Center feature flag is enabled for your Vendor Portal team, you can optionally enable the Enterprise Portal **Security Center** tab on a per-customer basis or globally for all customers.
+The **Security Center** tab is not enabled by default. If the Security Center feature flag is enabled for your team, you can enable the tab for one customer or all customers.
 
-To enable the **Security Center** tab in a customer's Enterprise Portal, go to **Customers > [Customer] > Enterprise Portal access**.
+To enable the **Security Center** tab for one customer:
 
-To enable the **Security Center** tab for all customers using the Enterprise Portal, go to **Enterprise Portal > Portal Settings > Optional Features** and enable the **Enable Security Center** feature toggle.
+1. In the Vendor Portal, go to **Customers > [Customer] > Enterprise Portal access**.
+1. Enable **Enable Security Center for this customer**.
+
+To enable the **Security Center** tab for all customers using Enterprise Portal (Classic):
+
+1. In the Vendor Portal, go to **Enterprise Portal > Portal Settings**.
+1. Under **Optional Features**, enable **Enable Security Center**.
+
+## Enterprise Portal (New) (Alpha)
+
+In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-content#security-components) in _Customize Enterprise Portal Content_.
+
+Customers can select a release and review CVEs by severity, affected component, and container image. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM.
+
+Security reports are available for Helm and Embedded Cluster releases. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
+
+### Configure Security Center settings
+
+To configure Security Center for Enterprise Portal (New):
+
+1. In the Vendor Portal, go to **Enterprise Portal > Security Center**.
+1. Enable **Enable Security Center**.
+1. Configure **Only show fixable CVEs**:
+   * When enabled, customers see only CVEs with an available fix.
+   * When disabled, customers can switch between all CVEs and CVEs with an available fix.
+1. Select **Save changes**.
+
+### Enable Security Center for a customer
+
+The app-level Security Center setting does not grant access to individual customers. To grant access:
+
+1. In the Vendor Portal, go to **Customers > [Customer] > Enterprise Portal access**.
+1. If **Portal Version** is available, set it to **Use new Enterprise Portal for this customer**.
+1. Enable **Enable Security Center for this customer**.
+
+### Add a Security page to the content repository
+
+Add a page containing the Security Center components to each applicable version branch in your content repository. Include the page in `toc.yaml` so that customers can open it from the portal navigation. For more information, see [Table of contents](/vendor/enterprise-portal-v2-content#table-of-contents) in _Customize Enterprise Portal Content_.

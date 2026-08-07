@@ -82,9 +82,12 @@ The preview command's example path is a placeholder. If you see `content path do
 ## Security Center not showing
 
 - Confirm the `Enable Security Center in Enterprise Portal` feature flag is enabled for your team
+- Go to **Enterprise Portal > Security Center** and confirm that **Enable Security Center** is enabled
 - Check the per-customer toggle: on the customer's **Enterprise Portal access** tab, **Enable Security Center for this customer** must be on
+- If **Portal Version** is available, confirm that it is set to **Use new Enterprise Portal for this customer**
 - Verify the Security page is included in your `toc.yaml`
-- Security data is generated from release scans. If no releases have been promoted, there is no data to display
+- Confirm that the customer's license supports Helm or Embedded Cluster releases. Security reports are not available for KOTS or kURL releases
+- Security data is generated from release scans. If no releases have been promoted or scans are incomplete, some security data is not available
 
 ## Customer not seeing new portal
 
