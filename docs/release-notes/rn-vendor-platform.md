@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.07-2
+
+Released on August 7, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-07-2}
+* Fixed the release manifest file tree so releases with many YAML files can be scrolled.
+
 ## v2026.08.07-1
 
 Released on August 7, 2026
