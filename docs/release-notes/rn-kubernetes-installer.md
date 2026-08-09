@@ -16,7 +16,7 @@ Released on August 9, 2026
 
 ### New Features {#new-features-v2026-08-09-0}
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.14.
-
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.36.3
 ## v2026.08.06-0
 
 Released on August 6, 2026
