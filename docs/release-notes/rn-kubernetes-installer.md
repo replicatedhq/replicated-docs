@@ -10,6 +10,13 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.09-0
+
+Released on August 9, 2026
+
+### New Features {#new-features-v2026-08-09-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.14.
+
 ## v2026.08.06-0
 
 Released on August 6, 2026
