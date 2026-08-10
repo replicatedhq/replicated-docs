@@ -12,6 +12,61 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.4
+
+Released on August 10, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.4+k8s-1.36</td>
+    <td id="center">2.19.4+k8s-1.35</td>
+    <td id="center">2.19.4+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.9</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-4}
+* Addresses a HIGH severity vulnerability ([CVE-2026-49478](https://nvd.nist.gov/vuln/detail/CVE-2026-49478)) in `sigstore/fulcio`.
+
+### Bug fixes {#bug-fixes-2-19-4}
+* Fixes an issue where output from `k0s stop` and `k0s reset` was buffered until the command exited, so interrupted or long-running calls left no trace in the logs.
+
+## 2.19.3
+
+Released on July 21, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.3+k8s-1.36</td>
+    <td id="center">2.19.3+k8s-1.35</td>
+    <td id="center">2.19.3+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.130.8</td>
+  </tr>
+</table>
+
+### Bug fixes {#bug-fixes-2-19-3}
+* Fixes an issue where updating the registry secret during an upgrade could fail with an `AlreadyOwnedError` if the secret was previously owned by an Installation that had since become obsolete.
+
 ## 2.19.2
 
 Released on July 7, 2026
