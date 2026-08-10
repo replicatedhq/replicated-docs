@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.10-0
+
+Released on August 10, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-10-0}
+* Non-admin RBAC users can now see the Enterprise Portal v2 portal-version toggle when they have read access; the toggle remains disabled unless they are admins.
+
 ## v2026.08.07-2
 
 Released on August 7, 2026
