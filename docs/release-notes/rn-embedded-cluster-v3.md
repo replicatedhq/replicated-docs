@@ -12,6 +12,40 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.11.0
+
+Released on August 10, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.11.0+k8s-1.36</td>
+    <td id="center">3.11.0+k8s-1.35</td>
+    <td id="center">3.11.0+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-11-0}
+
+* Adds the `KubernetesVersion`, `KubernetesMajorVersion`, and `KubernetesMinorVersion` template functions, matching the existing KOTS functions of the same name.
+* Adds a `--force` flag to `upgrade` and `node upgrade` to bypass the new safeguard that refuses to start an upgrade while a previous one on the same target is still incomplete.
+
+### Improvements {#improvements-3-11-0}
+
+* Replaces Kubernetes jargon with plain, customer-facing language throughout the install and upgrade wizards and headless CLI output (for example, node becomes host, controller becomes primary host, and worker becomes secondary host).
+* Uses "upgrade" instead of "migration" in the v2-to-v3 upgrade CLI output, matching the docs terminology.
+* Bumps bundled Kubernetes component versions (k0s, kube-proxy, calico, CoreDNS, and metrics-server) to clear CVEs.
+
+### Bug fixes {#bug-fixes-3-11-0}
+
+* Fixes install so that it can resume after being interrupted at any phase (for example, by Ctrl+C, a crash, or a host reboot). Rerunning `install` with the same arguments now picks up where it left off instead of requiring a destructive reset and reinstall.
+
 ## 3.10.0-beta.1
 
 Released on July 10, 2026
