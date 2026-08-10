@@ -12,16 +12,16 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## 3.11.0
+## 3.11.0-beta.1
 
 Released on August 10, 2026
 
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">3.11.0+k8s-1.36</td>
-    <td id="center">3.11.0+k8s-1.35</td>
-    <td id="center">3.11.0+k8s-1.34</td>
+    <td id="center">3.11.0-beta.1+k8s-1.36</td>
+    <td id="center">3.11.0-beta.1+k8s-1.35</td>
+    <td id="center">3.11.0-beta.1+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
