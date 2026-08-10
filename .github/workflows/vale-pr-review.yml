@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Vale on changed files
         if: steps.changed.outputs.all_changed_files_count != '0'
-        uses: errata-ai/vale-action@v2
+        uses: errata-ai/vale-action@v3
         with:
           files: ${{ steps.changed.outputs.all_changed_files }}
           separator: " "
