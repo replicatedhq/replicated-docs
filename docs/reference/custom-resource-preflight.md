@@ -21,7 +21,7 @@ The following sections show basic Preflight and Support Bundle custom resource d
 ### Preflight
 
 :::note
-This example uses `troubleshoot.sh/v1beta2` (supported by KOTS, kURL, and Embedded Cluster v2). Embedded Cluster v3 requires preflight specs to use `troubleshoot.sh/v1beta3`, packaged as a release-level file and rendered with Helm template syntax (not `repl{{ }}`). The SupportBundle custom resource is unaffected. See [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+This example uses `troubleshoot.sh/v1beta2` (supported by KOTS, kURL, and Embedded Cluster v2). Embedded Cluster v3 requires preflight specs to use `troubleshoot.sh/v1beta3`, packaged as a release-level file and rendered with Helm template syntax (not `repl{{ }}`). `troubleshoot.sh/v1beta3` is not supported by KOTS or Embedded Cluster v2. This change does not affect the SupportBundle custom resource, which does not support `v1beta3` on any installer. See [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
 :::
 
 The Preflight custom resource uses `kind: Preflight`:
