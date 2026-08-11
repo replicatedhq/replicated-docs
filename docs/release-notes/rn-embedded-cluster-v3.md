@@ -33,7 +33,7 @@ Released on August 11, 2026
 
 ### Bug fixes {#bug-fixes-3-11-1}
 
-* Fixes config validation so that a required item that is hidden (`hidden: true`) no longer fails with an error when left empty, matching KOTS behavior.
+* Fixes config validation so that a required item that is hidden (`hidden: true`) no longer fails with an error when left empty.
 
 ## 3.11.0-beta.1
 
