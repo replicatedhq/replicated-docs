@@ -10,6 +10,15 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.12-0
+
+Released on August 12, 2026
+
+### Improvements {#improvements-v2026-08-12-0}
+* Closing the vulnerable-password banner now permanently hides it for that account.
+* Updated Enterprise Portal template update copy to clarify that newly published template changes are informational and can be marked as seen.
+* Enterprise Portal v2 now shows release notes in Release History and during the upgrade flow.
+
 ## v2026.08.10-1
 
 Released on August 10, 2026
