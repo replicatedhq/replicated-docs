@@ -138,10 +138,10 @@ Where `<app-slug>` is your app's slug, `<repo-name>` is the linked Terraform rep
 
 When the customer runs `terraform init`, Terraform makes four sequential requests to `proxy.replicated.com`:
 
-1. **Discovery**: Worker returns a static registry manifest pointing to the modules API. No auth required.
-1. **List versions**: Worker calls the Replicated API, which validates the license, checks the customer's channel, and returns the allowed `version_label` values. Only version numbers are returned to the customer.
-1. **Download pointer**: Worker calls the Replicated API to create a short-lived server-side session backed by a JWT. The response includes an `X-Terraform-Get` header with the archive URL containing the JWT as a query parameter. The JWT is an opaque, short-lived token. The GitHub credential is stored server-side and never exposed to the customer.
-1. **Tarball download**: Worker validates the JWT against the server-side session. The Replicated API regenerates a fresh, short-lived GitHub token and returns the installation credentials to the worker, which fetches the tarball from GitHub and streams it back. GitHub redirects to a temporary `codeload.github.com` URL; the worker follows this redirect internally so the customer never sees it.
+1. **Discovery**: The proxy returns a static registry manifest pointing to the modules API. No auth required.
+1. **List versions**: The proxy calls the Replicated API, which validates the license, checks the customer's channel, and returns the allowed `version_label` values as version numbers only.
+1. **Download pointer**: The proxy calls the Replicated API to create a short-lived server-side session backed by a JSON Web Token (JWT). The response includes an `X-Terraform-Get` header with the archive URL containing the JWT as a query parameter. The JWT is an opaque, short-lived token. The Replicated API stores the GitHub credential server-side and never exposes it to the customer.
+1. **Tarball download**: The proxy validates the JWT against the server-side session. The Replicated API regenerates a fresh, short-lived GitHub token and returns the installation credentials to the proxy. The proxy fetches the tarball from GitHub and streams it back to the customer. GitHub redirects to a temporary `codeload.github.com` URL. The proxy follows this redirect internally, so the customer never sees it.
 
 The customer **never sees** the GitHub token, repo URL, or any internal infrastructure. They only ever send their license ID and only ever talk to `proxy.replicated.com`.
 
