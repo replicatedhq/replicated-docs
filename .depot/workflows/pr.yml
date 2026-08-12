@@ -52,8 +52,8 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: scripts/ci/vale-changed.sh
 
-  factory-config:
-    name: Validate Factory configuration
+  factory-workflow:
+    name: Validate Factory workflow
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: depot-ubuntu-latest
     timeout-minutes: 5
@@ -62,14 +62,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      - name: Validate Factory workspace
-        uses: elasticclaw/actions/publish-workspace@0a880e0bb75a9957a101962671af55267b778ed3
-        with:
-          hub-endpoint: https://factory.repldev.com
-          token: dry-run
-          path: .factory
-          dry-run: true
 
       - name: Validate dependency workflow
         uses: elasticclaw/actions/publish-workflow@0a880e0bb75a9957a101962671af55267b778ed3

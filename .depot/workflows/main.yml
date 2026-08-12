@@ -44,7 +44,7 @@ jobs:
             "https://crawler.algolia.com/api/1/crawlers/${CRAWLER_ID}/reindex"
 
   factory:
-    name: Publish Factory configuration
+    name: Publish Factory workflow
     if: >-
       github.event_name == 'push'
       || inputs.target == 'all'
@@ -71,18 +71,10 @@ jobs:
             changed=true
           elif [[ -z "$BEFORE_SHA" || "$BEFORE_SHA" == "0000000000000000000000000000000000000000" ]]; then
             changed=true
-          elif ! git diff --quiet "$BEFORE_SHA...$GITHUB_SHA" -- .factory .factory-workflows; then
+          elif ! git diff --quiet "$BEFORE_SHA...$GITHUB_SHA" -- .factory-workflows; then
             changed=true
           fi
           echo "changed=$changed" >> "$GITHUB_OUTPUT"
-
-      - name: Publish Factory workspace
-        if: steps.changes.outputs.changed == 'true'
-        uses: elasticclaw/actions/publish-workspace@0a880e0bb75a9957a101962671af55267b778ed3
-        with:
-          hub-endpoint: https://factory.repldev.com
-          token: ${{ secrets.ELASTICCLAW_TOKEN }}
-          path: .factory
 
       - name: Publish dependency workflow
         if: steps.changes.outputs.changed == 'true'
