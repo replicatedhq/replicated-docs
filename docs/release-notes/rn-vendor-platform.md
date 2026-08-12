@@ -10,6 +10,17 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.10-1
+
+Released on August 10, 2026
+
+### Improvements {#improvements-v2026-08-10-1}
+* Removed the non-actionable Issues column from Enterprise Portal v2 support bundle history.
+* Changed the Enterprise Portal local preview command to use the current directory so it can be copied and run as-is.
+
+### Bug Fixes {#bug-fixes-v2026-08-10-1}
+* Fixed Enterprise Portal v2 support bundle history showing a blank area when no bundles had been uploaded.
+
 ## v2026.08.10-0
 
 Released on August 10, 2026
