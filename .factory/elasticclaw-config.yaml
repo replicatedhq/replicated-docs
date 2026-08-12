@@ -1,0 +1,12 @@
+schema_version: v1
+name: replicated-docs
+
+provider: replicated
+instance_type: r1.large
+ttl: 48h
+nix: true
+docker: true
+
+repositories:
+  - repo: replicatedhq/replicated-docs
+    permissions: write
