@@ -1,0 +1,73 @@
+name: "depot: PR"
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: depot-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  label:
+    name: Label PR
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository
+      && !startsWith(github.head_ref, 'deps/')
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Add documentation labels
+        env:
+          GH_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          jq -n '{labels: ["type::feature", "type::docs"]}' \
+            | gh api \
+                --method POST \
+                "repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/labels" \
+                --input -
+
+  vale:
+    name: Vale
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+
+      - name: Review changed documentation
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: scripts/ci/vale-changed.sh
+
+  factory-workflow:
+    name: Validate Factory workflow
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Validate dependency workflow
+        uses: elasticclaw/actions/publish-workflow@0a880e0bb75a9957a101962671af55267b778ed3
+        with:
+          hub-endpoint: https://factory.repldev.com
+          token: dry-run
+          workspace: replicated-docs
+          path: .factory-workflows/dependency-update.yaml
+          dry-run: true
