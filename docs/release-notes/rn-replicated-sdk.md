@@ -8,6 +8,8 @@ pagination_prev: null
 
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
+<!--RELEASE_NOTES_PLACEHOLDER-->
+
 ## 1.19.8
 
 Released on July 31, 2026

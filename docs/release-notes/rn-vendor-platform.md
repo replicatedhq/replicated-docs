@@ -17,6 +17,13 @@ Released on August 13, 2026
 ### Bug Fixes {#bug-fixes-v2026-08-13-2}
 * Fixed Enterprise Portal license downloads for kURL customers that do not have KOTS or Embedded Cluster enabled.
 
+## v2026.08.13-1
+
+Released on August 13, 2026
+
+### New Features {#new-features-v2026-08-13-1}
+* Vendors can now see which customers and images are driving registry egress and view the app's daily egress trend on the Image Registries page.
+
 ## v2026.08.12-0
 
 Released on August 12, 2026

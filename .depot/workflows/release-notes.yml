@@ -1,0 +1,79 @@
+name: "depot: release notes"
+
+on:
+  repository_dispatch:
+    types:
+      - app-manager-release-notes
+      - embedded-cluster-release-notes
+      - embedded-cluster-release-notes-v3
+      - kubernetes-installer-release-notes
+      - replicated-sdk-release-notes
+      - vendor-portal-release-notes
+  workflow_dispatch:
+    inputs:
+      event_type:
+        description: Release-notes automation to run
+        required: true
+        type: choice
+        options:
+          - app-manager-release-notes
+          - embedded-cluster-release-notes
+          - embedded-cluster-release-notes-v3
+          - kubernetes-installer-release-notes
+          - replicated-sdk-release-notes
+          - vendor-portal-release-notes
+      version:
+        description: Released version or tag
+        required: true
+        type: string
+      prev_version:
+        description: Previous version (Replicated SDK only)
+        required: false
+        type: string
+      dry_run:
+        description: Generate the documentation diff without creating a PR or notifying Slack
+        required: true
+        type: boolean
+        default: true
+
+concurrency:
+  group: >-
+    depot-release-notes-${{
+      github.event.action || inputs.event_type
+    }}-${{
+      github.event.client_payload.version || inputs.version
+    }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    name: Generate release-notes PR
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 15
+    env:
+      EVENT_TYPE: ${{ github.event.action || inputs.event_type }}
+      VERSION: ${{ github.event.client_payload.version || inputs.version }}
+      PREV_VERSION: ${{ github.event.client_payload.prev_version || inputs.prev_version }}
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+      GH_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
+      PUBLIC_REPO_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
+      EC_READ_PAT: ${{ secrets.EC_READ_PAT }}
+      VENDOR_PORTAL_PAT: ${{ secrets.VENDOR_PORTAL_PAT }}
+      KOTS_RELEASE_NOTES_SLACK_WEBHOOK: ${{ secrets.KOTS_RELEASE_NOTES_SLACK_WEBHOOK }}
+      KURL_RELEASE_NOTES_SLACK_WEBHOOK: ${{ secrets.KURL_RELEASE_NOTES_SLACK_WEBHOOK }}
+      EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK: ${{ secrets.EMBEDDED_CLUSTER_RELEASE_NOTES_SLACK_WEBHOOK }}
+      REPLICATED_SDK_RELEASE_NOTES_SLACK_WEBHOOK: ${{ secrets.REPLICATED_SDK_RELEASE_NOTES_SLACK_WEBHOOK }}
+      VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.REPLICATED_GH_PAT }}
+
+      - name: Generate release notes and create or update the PR
+        run: scripts/ci/release-notes.sh
