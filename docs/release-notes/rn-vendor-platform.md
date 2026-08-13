@@ -10,6 +10,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2026.08.13-2
+
+Released on August 13, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-13-2}
+* Fixed Enterprise Portal license downloads for kURL customers that do not have KOTS or Embedded Cluster enabled.
+
 ## v2026.08.12-0
 
 Released on August 12, 2026
