@@ -28,7 +28,8 @@ Grants the holder permission to delete an application.
 Grants the holder permission to modify application settings, such as renaming the application, toggling trial signup, configuring security center settings, and managing support bundle upload visibility.
 
 ### kots/externalregistry/list
-Grants the holder the ability to list external docker registry for applications.
+
+Grants the holder permission to list external Docker registries for applications and view registry egress totals. Customer-level egress also requires permission to view every customer for the application.
 
 ### kots/externalregistry/create
 
@@ -136,7 +137,7 @@ Grants the holder permission to create a new license in the specified applicatio
 
 ### kots/app/[:appid]/license/[:customerid]/read
 
-Grants the holder permission to view the license specified by ID. If you deny this permission, the licenses do not appear in search, CSV export, or the Vendor Portal.
+Grants the holder permission to view the license specified by ID. If you deny this permission, the licenses do not appear in search, CSV export, or the Vendor Portal. Customer-level registry egress requires this permission for every customer with attributed egress.
 
 ### kots/app/[:appid]/license/[:customerid]/update
 
