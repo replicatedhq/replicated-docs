@@ -13,7 +13,7 @@ Update an existing customer's information and settings.
 	The --customer flag is required to specify which customer to update.
 
 ```
-replicated customer update --customer <id> --name <name> [options] [flags]
+replicated customer update --customer <id> [options] [flags]
 ```
 
 ### Examples
@@ -62,7 +62,7 @@ replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --outp
       --name string                  Name of the customer
       --snapshot                     If set, the license will allow Snapshots.
       --support-bundle-upload        If set, the license will allow uploading support bundles.
-      --type string                  The license type to update. One of: dev|trial|paid|community|test (default: dev) (default "dev")
+      --type string                  The license type to update. One of: dev|trial|paid|community|test
 ```
 
 ### Options inherited from parent commands
