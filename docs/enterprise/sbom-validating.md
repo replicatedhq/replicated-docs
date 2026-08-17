@@ -30,9 +30,14 @@ To validate a KOTS SBOM signature:
     tar -zxvf kots_darwin_all.tar.gz
     ```
     A KOTS binary and SBOM folder are created.
+    The SBOM folder contains the following files:
+
+    - `kots-sbom.tgz` contains the SBOM for KOTS Go dependencies
+    - `kots-sbom.tgz.bundle` contains the signature and verification material for the SBOM
+    - `key.pub` is the public key used to verify the SBOM signature
 1. Run the following cosign command to validate the signatures:
     ```
-    cosign verify-blob --key sbom/key.pub --signature sbom/kots-sbom.tgz.sig sbom/kots-sbom.tgz
+    cosign verify-blob --key sbom/key.pub --bundle sbom/kots-sbom.tgz.bundle sbom/kots-sbom.tgz
     ```
 
 ## Validate a kURL SBOM signature
