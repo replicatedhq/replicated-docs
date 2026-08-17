@@ -367,7 +367,9 @@ You can also use the Replicated Vendor API `/v3/external_registry/logs` endpoint
 
 ## View registry egress
 
-The **Image Registries** page displays a **Registry egress this month** summary at the top, showing the total volume of image data downloaded through Replicated during the current calendar month (in UTC). This is the outbound data transfer generated when your customers, or your own systems, pull images through the Replicated proxy registry or the Replicated registry.
+The **Image Registries** page displays a **Registry egress this month** summary at the top. It shows the volume of image data downloaded through Replicated during the current calendar month in Coordinated Universal Time (UTC).
+
+This egress includes image pulls by your customers and your systems through the Replicated proxy registry or the Replicated registry.
 
 The summary breaks the total down as follows:
 
@@ -393,6 +395,18 @@ The summary breaks the total down as follows:
     <td>The portion of the team total attributable to the application you are currently viewing.</td>
   </tr>
 </table>
+
+### View egress by customer and image
+
+The **Customer egress** section shows which customers account for the current application's egress during the month. The table shows each customer's egress and percentage of the application total. It also identifies archived customers and groups traffic without a customer ID as **Unattributed**.
+
+You can sort the table by egress volume or customer name. Each expandable customer row contains egress totals for its images, including the registry host, image name, and image reference.
+
+You must have permission to view all customers for the application to see customer-level egress. If your role cannot view one or more customers, the section does not display customer-level egress.
+
+### View daily egress
+
+The **Daily egress** section charts the current application's egress for each UTC day in the month.
 
 :::note
 To get alerted when your monthly registry egress reaches a configured volume, use the **Egress Threshold Reached** notification event. For more information, see [Event types and filters](/reference/notifications-events-filters#egress-threshold-reached).
