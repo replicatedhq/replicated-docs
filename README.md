@@ -132,7 +132,7 @@ When you submit a PR in GitHub, Netlify builds a preview automatically. However,
 
 ### Prerequisites
 
-- Node.js version 18 or higher
+- Node.js version 20 or higher
 - npm (comes bundled with Node.js)
 
 ### Start the local dev server with `npm start`
