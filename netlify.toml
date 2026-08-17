@@ -30,6 +30,10 @@
   from = "/vendor/operator-defining-additional-namespaces"
   to = "/reference/custom-resource-application#additionalnamespaces"
 
+[[redirects]]
+  from = "/vendor/replicated-sdk-slsa-validating"
+  to = "/enterprise/image-provenance-validating"
+
 # Redirects from the root of the directories
 [[redirects]]
   #from = "/*"
@@ -555,6 +559,5 @@
 ###################################################
 # Redirects To the Release Notes Section
 ###################################################
-
 
 
