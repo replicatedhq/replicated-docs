@@ -33,7 +33,37 @@ The KOTS and Replicated SDK images are signed with the following identity:
 - Certificate identity: `sb-attestor@cve0-issuer.iam.gserviceaccount.com`
 - OpenID Connect (OIDC) issuer: `https://accounts.google.com`
 
-In the following commands, replace `IMAGE` with one of the image names listed above and replace `IMAGE_DIGEST` with the digest of the image that you want to verify.
+In the following commands, replace `IMAGE` with one of the image names listed above and replace `IMAGE_TAG` with the tag of the image that you want to verify.
+
+You can run the commands with an image tag. For greater security, Replicated recommends using the image digest instead because a digest identifies immutable image content.
+
+To get the digest for an image tag, use one of the following options:
+
+1. With [Docker Buildx](https://docs.docker.com/reference/cli/docker/buildx/imagetools/inspect/), run:
+
+   ```bash
+   docker buildx imagetools inspect IMAGE:IMAGE_TAG
+   ```
+
+   Use the value of the top-level `Digest` field in the output.
+
+1. With [Skopeo](https://github.com/containers/skopeo), run:
+
+   ```bash
+   skopeo inspect \
+     --override-os linux \
+     --override-arch amd64 \
+     --format '{{.Digest}}' \
+     docker://IMAGE:IMAGE_TAG
+   ```
+
+1. With [Crane](https://github.com/google/go-containerregistry/tree/main/cmd/crane), run:
+
+   ```bash
+   crane digest IMAGE:IMAGE_TAG
+   ```
+
+To verify by digest, replace `IMAGE:IMAGE_TAG` in the following commands with `IMAGE@DIGEST`, where `DIGEST` is the complete digest value, including the `sha256:` prefix.
 
 ### Verify SLSA provenance
 
@@ -44,7 +74,7 @@ cosign verify-attestation \
   --type https://slsa.dev/provenance/v1 \
   --certificate-identity sb-attestor@cve0-issuer.iam.gserviceaccount.com \
   --certificate-oidc-issuer https://accounts.google.com \
-  IMAGE@sha256:IMAGE_DIGEST
+  IMAGE:IMAGE_TAG
 ```
 
 Successful verification confirms that the provenance attestation applies to the image and was signed by the expected identity. The command also verifies the signing certificate and the attestation's inclusion in the Rekor transparency log.
@@ -57,7 +87,7 @@ Run:
 cosign verify \
   --certificate-identity sb-attestor@cve0-issuer.iam.gserviceaccount.com \
   --certificate-oidc-issuer https://accounts.google.com \
-  IMAGE@sha256:IMAGE_DIGEST
+  IMAGE:IMAGE_TAG
 ```
 
 ### Verify the SBOM attestation
@@ -69,5 +99,5 @@ cosign verify-attestation \
   --type https://spdx.dev/Document \
   --certificate-identity sb-attestor@cve0-issuer.iam.gserviceaccount.com \
   --certificate-oidc-issuer https://accounts.google.com \
-  IMAGE@sha256:IMAGE_DIGEST
+  IMAGE:IMAGE_TAG
 ```
