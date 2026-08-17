@@ -13,7 +13,6 @@ on:
         options:
           - all
           - algolia
-          - factory
 
 concurrency:
   group: depot-main-${{ github.ref }}
@@ -43,44 +42,3 @@ jobs:
             --user "${CRAWLER_USER_ID}:${CRAWLER_API_KEY}" \
             "https://crawler.algolia.com/api/1/crawlers/${CRAWLER_ID}/reindex"
 
-  factory:
-    name: Publish Factory workflow
-    if: >-
-      github.event_name == 'push'
-      || inputs.target == 'all'
-      || inputs.target == 'factory'
-    runs-on: depot-ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-        with:
-          fetch-depth: 0
-
-      - name: Detect Factory changes
-        id: changes
-        env:
-          BEFORE_SHA: ${{ github.event.before }}
-          FORCE_PUBLISH: ${{ github.event_name == 'workflow_dispatch' }}
-        run: |
-          set -euo pipefail
-          changed=false
-          if [[ "$FORCE_PUBLISH" == "true" ]]; then
-            changed=true
-          elif [[ -z "$BEFORE_SHA" || "$BEFORE_SHA" == "0000000000000000000000000000000000000000" ]]; then
-            changed=true
-          elif ! git diff --quiet "$BEFORE_SHA...$GITHUB_SHA" -- .factory-workflows; then
-            changed=true
-          fi
-          echo "changed=$changed" >> "$GITHUB_OUTPUT"
-
-      - name: Publish dependency workflow
-        if: steps.changes.outputs.changed == 'true'
-        uses: elasticclaw/actions/publish-workflow@0a880e0bb75a9957a101962671af55267b778ed3
-        with:
-          hub-endpoint: https://factory.repldev.com
-          token: ${{ secrets.ELASTICCLAW_TOKEN }}
-          workspace: replicated-docs
-          path: .factory-workflows/dependency-update.yaml
