@@ -51,13 +51,13 @@ To validate a kURL SBOM signature:
     There are three assets related to the SBOM:
 
     - `kurl-sbom.tgz` contains SBOMs for Go and Javascript dependencies
-    - `kurl-sbom.tgz.sig` is the digital signature for `kurl-sbom.tgz`
+    - `kurl-sbom.tgz.bundle` contains the signature and verification material for `kurl-sbom.tgz`
     - `key.pub` is the public key from the key pair used to `sign kurl-sbom.tgz`
 
-2. Run the following cosign command to validate the signatures:
-    ```
-    cosign verify-blob --key key.pub --signature kurl-sbom.tgz.sig kurl-sbom.tgz
-    
+2. Run the following cosign command to validate the signature:
+
+    ```bash
+    cosign verify-blob --key key.pub --bundle kurl-sbom.tgz.bundle kurl-sbom.tgz
     ```
 
 ## Validate a Troubleshoot SBOM signature
