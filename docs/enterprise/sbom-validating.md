@@ -12,7 +12,7 @@ For information about validating SLSA provenance and image signatures for Replic
 
 ## Prerequisite
 
-Before you perform these tasks, install cosign v3 or later. For more information, see the [sigstore repository](https://github.com/sigstore/cosign) in GitHub.
+Before you perform these tasks, install cosign v3. For more information, see the [sigstore repository](https://github.com/sigstore/cosign) in GitHub.
 
 
 ## Validate a KOTS SBOM signature
