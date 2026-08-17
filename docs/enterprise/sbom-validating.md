@@ -8,11 +8,11 @@ A _software bill of materials_ (SBOM) is an inventory of all components used to 
 
 When you install software, validating an SBOM signature can help you understand exactly what the software package is installing. This information can help you ensure that the files are compatible with your licensing policies and help determine whether there is exposure to CVEs.
 
-For information about validating the Replicated SDK, including SLSA provenance, image signatures, and SBOM attestations, see [Validate provenance of releases for the Replicated SDK](/vendor/replicated-sdk-slsa-validating).
+For information about validating SLSA provenance and image signatures for Replicated images, see [Validate image provenance](/enterprise/image-provenance-validating).
 
 ## Prerequisite
 
-Before you perform these tasks, you must install cosign. For more information, see the [sigstore repository](https://github.com/sigstore/cosign) in GitHub.
+Before you perform these tasks, install cosign v3 or later. For more information, see the [sigstore repository](https://github.com/sigstore/cosign) in GitHub.
 
 
 ## Validate a KOTS SBOM signature
@@ -64,18 +64,18 @@ To validate a kURL SBOM signature:
 
 A signed SBOM for Troubleshoot dependencies is included in each release.
 
-To validate an Troubleshoot SBOM signature:
+To validate a Troubleshoot SBOM signature:
 
-1. Go to the [Troubleshoot GitHub repository](https://github.com/replicatedhq/troubleshoot/releases) and download the specific Troubleshoot release files that you want to validate. 
+1. Go to the [Troubleshoot GitHub repository](https://github.com/replicatedhq/troubleshoot/releases) and download the specific Troubleshoot release files that you want to validate.
 
     There are three assets related to the SBOM:
 
     - `troubleshoot-sbom.tgz` contains a software bill of materials for Troubleshoot.
-    - `troubleshoot-sbom.tgz.sig` is the digital signature for `troubleshoot-sbom.tgz`
-    - `key.pub` is the public key from the key pair used to sign `troubleshoot-sbom.tgz`
+    - `troubleshoot-sbom.tgz.bundle` contains the signature and verification material for `troubleshoot-sbom.tgz`.
+    - `key.pub` is the public key from the key pair used to sign `troubleshoot-sbom.tgz`.
 
-2. Run the following cosign command to validate the signatures:
-    ```
-   $ cosign verify-blob --key key.pub --signature troubleshoot-sbom.tgz.sig troubleshoot-sbom.tgz
-    
+2. Run the following cosign command to validate the signature:
+
+    ```bash
+    cosign verify-blob --key key.pub --bundle troubleshoot-sbom.tgz.bundle troubleshoot-sbom.tgz
     ```
