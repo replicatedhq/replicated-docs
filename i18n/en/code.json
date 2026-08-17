@@ -1,0 +1,10 @@
+{
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "This documentation is for Replicated {versionLabel}.",
+    "description": "The label used to tell the user that they're browsing an unmaintained version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "We recommend using {latestVersionLink} instead, which is the newest product version.",
+    "description": "The label used to tell the user to check the latest version"
+  }
+}
