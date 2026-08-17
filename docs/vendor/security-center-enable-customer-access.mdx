@@ -43,7 +43,7 @@ To enable the **Security Center** tab for all customers using Enterprise Portal 
 
 In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-content#security-components) in _Customize Enterprise Portal Content_.
 
-Customers can select a release and review CVEs by severity, affected component, and container image. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM.
+Customers can select a release and review CVEs by severity, affected component, and container image. The CVE report identifies the earliest vendor release that resolves each CVE. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM.
 
 Security reports are available for Helm and Embedded Cluster releases. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
 
@@ -56,6 +56,9 @@ To configure Security Center for Enterprise Portal (New):
 1. Configure **Only show fixable CVEs**:
    * When enabled, customers see only CVEs with an available fix.
    * When disabled, customers can switch between all CVEs and CVEs with an available fix.
+1. Configure **Allow raw scan downloads**:
+   * When enabled, customers can download the complete raw scan JSON.
+   * When disabled, customers can still view scan details, but they cannot download the raw scan file.
 1. Select **Save changes**.
 
 ### Enable Security Center for a customer

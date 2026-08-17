@@ -35,7 +35,7 @@ Security Center classifies the Replicated SDK as a Replicated Platform image eve
 
 If Security Center cannot determine that Replicated owns an image, it classifies the image as an application image.
 
-In the Vendor Portal, you can filter the container image list by this classification. For more information, see [Filter container images by source](/vendor/security-center-view-vendor-portal#filter-container-images-by-source) in _View Security Information in Vendor Portal_.
+In the Vendor Portal, you can filter the container image list by this classification. For more information, see [Filter container images by source or scan status](/vendor/security-center-view-vendor-portal#filter-container-images-by-source-or-scan-status) in _View Security Information in Vendor Portal_.
 
 ### Include and exclude images from Security Center scans
 
@@ -54,11 +54,11 @@ The following describes the Security Center CVE scanning process:
 1. For each image that Replicated identified in the release, SecureBuild pulls the image by digest and scans it with Grype. SecureBuild scans for multiple architectures (amd64 and arm64) when relevant.
 1. Grype compares packages in the image against vulnerability databases, including NVD, OS-specific databases, and language-specific sources.
 1. Security Center aggregates the vulnerability counts for all images by severity: Critical, High, Medium, and Low.
-1. For each CVE, Security Center includes an identifier, description, CVSS score, affected artifacts, and available fixes.
+1. For each CVE, Security Center includes an identifier, description, severity, affected artifacts, and available fixes.
 1. Security Center displays the results of the CVE scan in the Vendor Portal and both Enterprise Portal experiences:
    - **Vendor Portal**: In the Vendor Portal, you can assess fleet-wide CVE exposure by customer, release, or CVE. You can also view a release vulnerability overview that includes a severity breakdown, top risks, and a complete image inventory with CVE counts. For each image, you can view detailed CVE information.
    - **Enterprise Portal (Classic)**: Customers can view known vulnerabilities, per-image details, and CVE reduction metrics when comparing versions.
-   - **Enterprise Portal (New)**: Customers can view known vulnerabilities, per-image details, and CVE reduction metrics when comparing versions.
+   - **Enterprise Portal (New)**: Customers can view known vulnerabilities, per-image details, CVE reduction metrics when comparing versions, and the earliest vendor release that resolves each CVE.
 
 ### How SBOM generation works
 
@@ -103,6 +103,6 @@ The following describes the Security Center SBOM generation process:
 
 * The Security Center is Alpha. The features and functionality of the Security Center are subject to change.
 
-* Security Center reporting is available only for Embedded Cluster and Helm CLI installations. It is not available for kURL installations or for KOTS installations in an existing cluster.
+* Customer-specific Security Center reporting, including Customer Impact data, upgrade recommendations, and Enterprise Portal security reports, is available only for Embedded Cluster and Helm CLI installations. For releases installed with KOTS or kURL, Vendor Portal release views report on application images but do not include infrastructure components such as the Admin Console, rqlite, Dex, or kURL Kubernetes components. KOTS and kURL instances do not contribute instance-specific CVE data.
 
 * If you have configured the [`builder`](/reference/custom-resource-helmchart-v2#builder) key in any of the HelmChart custom resources in your release, note that the Security Center uses the Helm values provided in the `builder` key to create the list of images that are scanned and reported on for the given Helm chart. The Security Center will scan and report on this same list of images for both air gap and online installations. If there are any images that you want reported on in the Security Center, ensure that they are exposed by the values provided in the `builder` key.
