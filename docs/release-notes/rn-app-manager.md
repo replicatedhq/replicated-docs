@@ -33,6 +33,9 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 ### Improvements {#improvements-1-131-3}
 * Resolves GO-2026-6179 and GO-2026-6180 CVEs.
 
+### Bug fixes {#bug-fixes-1-131-3}
+* Fixes a bug where rqlite could panic with index out of range error.
+
 ## 1.131.2
 
 Released on August 13, 2026
