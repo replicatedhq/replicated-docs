@@ -13,9 +13,6 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on August 18, 2026
 
-### Improvements {#improvements-v2026-08-18-1}
-* Testing. Do not merge.
-
 ### Bug Fixes {#bug-fixes-v2026-08-18-1}
 * Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
 * Show channel names alongside channel IDs in release promotion audit log descriptions.
