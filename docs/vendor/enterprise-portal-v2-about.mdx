@@ -51,6 +51,7 @@ Customers moving from the Download Portal gain the same content and automation c
 - Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 - Security Center data (CVE reports and SBOMs) is available for Helm and Embedded Cluster installations only. Customers whose only instances are KOTS or kURL see an explanatory message instead of security data. Customers with a mix of instance types see Security Center data for their Helm and Embedded Cluster instances.
 - If you have many version branches and need to make a change across all versions, you must update each branch individually.
+- Air gap Helm installations relocate images to the customer's private registry using `docker tag` and `docker push`, which does not preserve image digests or multi-architecture image manifests. If your application references images by digest (`@sha256:...`) or ships multi-architecture images, the relocated images might not match what your chart expects, which can cause image pull failures.
 
 ## Requirements
 
