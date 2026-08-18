@@ -9,6 +9,16 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.18-1
+
+Released on August 18, 2026
+
+### Improvements {#improvements-v2026-08-18-1}
+* Testing. Do not merge.
+
+### Bug Fixes {#bug-fixes-v2026-08-18-1}
+* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
+* Show channel names alongside channel IDs in release promotion audit log descriptions.
 
 ## v2026.08.13-2
 
