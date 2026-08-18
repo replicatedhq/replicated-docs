@@ -250,21 +250,35 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * In the **Latest release** section, view the properties of the latest release, and get information about any warnings or errors in the YAML files for the latest release.
 
-   Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
-   
-   You can also build and download air gap bundles to be used in air gap installations with Replicated installers (Embedded Cluster, KOTS, kURL), edit the release properties for each release promoted to the channel from the **Release History** page, and demote a release from the channel.
-
-   The following shows an example of the **Release History** page: 
-
-   <img src="/images/channels-release-history.png" alt="Release history page in the Vendor Portal" width="750"/>
-
-   [View a larger version of this image](/images/channel-card.png)
+   Click **Release history** to access the history of all releases promoted to the channel.
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
    * In the **kURL installer** section, view the current kURL installer promoted to the channel. Click **Installer history** to view the history of kURL installers promoted to the channel. For more information about creating kURL installers, see [Create a kURL Installer](packaging-embedded-kubernetes).
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel.
+
+### Release History page
+
+The **Release History** page lists all releases promoted to the selected channel. Use the view toggle to switch between the following views:
+
+* **Table**: The default view. The Table view displays release metadata and actions. From this view, you can view the version labels and files in each release, build and download air gap bundles for use with Replicated installers (Embedded Cluster, KOTS, kURL), edit release properties, and demote releases from the channel.
+
+  The following shows the Table view:
+
+  <img src="/images/channels-release-history.png" alt="Table view on the Channel Release History page" width="750"/>
+
+  [View a larger version of this image](/images/channels-release-history.png)
+
+* **Changelog**: Displays release notes as rendered Markdown cards across the releases on the channel, so that you can read the notes without opening each release individually. Each card identifies the release and includes its promotion or demotion date, status badges, compatible install types, and an **Edit** action. For release notes that exceed the available space on the card, click **Show more** to expand the notes and **Show less** to collapse them.
+
+  The following shows the Changelog view:
+
+  <img src="/images/release-history-changelog.png" alt="Changelog view on the Channel Release History page" width="750"/>
+
+  [View a larger version of this image](/images/release-history-changelog.png)
+
+  If none of the releases on the page have release notes, the empty state explains that you can add notes by choosing **Edit release** for an entry in the Table view. Click **View releases** to return to the Table view.
 
 ### Draft release page
 
