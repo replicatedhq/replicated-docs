@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.19.10
+
+Released on August 18, 2026
+
+### Improvements {#improvements-1-19-10}
+* Resolves GO-2026-6180 and GO-2026-6179 CVEs.
 
 ## 1.19.8
 
