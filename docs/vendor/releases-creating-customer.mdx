@@ -152,11 +152,11 @@ The Vendor Portal does not clear the **Last Active** timestamp when a customer b
 The **Active** or **Inactive** status on the **Customers** list is an aggregate across all of the customer's instances, not a single instance flag. A customer is **Active** if either of the following is true:
 
 * At least one of the customer's online instances has checked in within the last 24 hours.
-* The customer has an air gap instance on record.
+* The customer has an air gap instance on record that is not archived.
 
-Air gap instances count toward **Active** status indefinitely, with no 24-hour cutoff. This is because air gap instances do not check in on a regular schedule. An air gap instance reports data only when a support bundle is generated in the customer environment and uploaded to the Vendor Portal, so the Vendor Portal cannot rely on a recent check-in to determine whether the instance is still running. For more information about how air gap telemetry reaches the Vendor Portal, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+Air gap instances count toward **Active** status indefinitely, with no 24-hour cutoff. Archiving an air gap instance removes it from this calculation. For more information about archiving instances, see [Archive or unarchive an instance](#archive-instance). This is because air gap instances do not check in on a regular schedule. An air gap instance reports data only when a support bundle is generated in the customer environment and uploaded to the Vendor Portal, so the Vendor Portal cannot rely on a recent check-in to determine whether the instance is still running. For more information about how air gap telemetry reaches the Vendor Portal, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
 
-A customer is **Inactive** when none of its online instances have checked in within the last 24 hours and the customer has no air gap instance on record. A customer can be **Inactive** while still having a **Last Active** timestamp, because the timestamp records the most recent check-in that was ever seen even though no instance has checked in recently. This usually means the instances were decommissioned, uninstalled, or lost connectivity.
+A customer is **Inactive** when none of its online instances have checked in within the last 24 hours and the customer has no unarchived air gap instance on record. A customer can be **Inactive** while still having a **Last Active** timestamp, because the timestamp records the most recent check-in that was ever seen even though no instance has checked in recently. This usually means the instances were decommissioned, uninstalled, or lost connectivity.
 
 :::note
 A customer's **Active** or **Inactive** status is independent of their license status. A customer can show as **Active** with an expired license, and a customer with a valid license can show as **Inactive**.
