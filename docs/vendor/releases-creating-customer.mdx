@@ -137,6 +137,37 @@ To bulk archive instances:
 
    A summary shows how many instances were archived and lists any skipped instances with the reason they were skipped.
 
+## Understand customer status and activity {#customer-status}
+
+The **Customers** list includes a **Last Active** timestamp and an **Active** or **Inactive** status for each customer. These values are aggregated across all of the customer's instances, so they can behave differently from the per-instance data shown on a customer's **Reporting** tab. This section describes how each value is determined.
+
+### Last Active
+
+The **Last Active** timestamp reflects the most recent check-in received from any of the customer's instances. If the timestamp is populated, then at least one instance reported data to the Vendor Portal at some point, which means the application was installed and checked in successfully at least once.
+
+The Vendor Portal does not clear the **Last Active** timestamp when a customer becomes inactive. It continues to show the most recent check-in that was ever recorded, even after the instances stop reporting.
+
+### Active and Inactive status
+
+The **Active** or **Inactive** status on the **Customers** list is an aggregate across all of the customer's instances, not a single instance flag. A customer is **Active** if either of the following is true:
+
+* At least one of the customer's online instances has checked in within the last 24 hours.
+* The customer has an air gap instance on record.
+
+Air gap instances count toward **Active** status indefinitely, with no 24-hour cutoff. This is because air gap instances do not check in on a regular schedule. An air gap instance reports data only when a support bundle is generated in the customer environment and uploaded to the Vendor Portal, so the Vendor Portal cannot rely on a recent check-in to determine whether the instance is still running. For more information about how air gap telemetry reaches the Vendor Portal, see [Collecting Telemetry for Air Gap Instances](/vendor/telemetry-air-gap).
+
+A customer is **Inactive** when none of its online instances have checked in within the last 24 hours and the customer has no air gap instance on record. A customer can be **Inactive** while still having a **Last Active** timestamp, because the timestamp records the most recent check-in that was ever seen even though no instance has checked in recently. This usually means the instances were decommissioned, uninstalled, or lost connectivity.
+
+:::note
+A customer's **Active** or **Inactive** status is independent of their license status. A customer can show as **Active** with an expired license, and a customer with a valid license can show as **Inactive**.
+:::
+
+### Active status with zero active instances
+
+A customer can show as **Active** on the **Customers** list while their **Reporting** tab shows **Active Instances = 0**. This happens when the customer's activity comes from an air gap instance.
+
+The **Active Instances** count on the **Reporting** tab includes only online instances that have checked in recently. Air gap instances are bucketed separately and are not included in that count. Because an air gap instance keeps the customer **Active** indefinitely, the customer's overall status can be **Active** even though the **Active Instances** count is 0. In this case, the customer's activity is coming from an air gap install rather than a recently checking-in online instance.
+
 ## Search customers
 
 You can search your customers using filters in the Vendor Portal. If you want to filter using multiple license types or channels, you can download a CSV file instead. For more information, see [Export customer and instance data](#export) on this page.
