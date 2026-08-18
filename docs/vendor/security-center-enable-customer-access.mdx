@@ -43,9 +43,9 @@ To enable the **Security Center** tab for all customers using Enterprise Portal 
 
 In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-content#security-components) in _Customize Enterprise Portal Content_.
 
-Customers can select a release and review CVEs by severity, affected component, and container image. The CVE report identifies the earliest vendor release that resolves each CVE. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM.
+Customers can select a release and review CVEs by severity, affected component, and container image. The CVE report identifies the earliest vendor release that resolves each CVE. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM. When enabled in the Security Center settings, customers can also download the raw Grype scan JSON for a release.
 
-Security reports are available for Helm and Embedded Cluster releases. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
+Security reports, including raw scan downloads, are available for Helm and Embedded Cluster releases for both online and air gap installations. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
 
 ### Configure Security Center settings
 
@@ -56,10 +56,12 @@ To configure Security Center for Enterprise Portal (New):
 1. Configure **Only show fixable CVEs**:
    * When enabled, customers see only CVEs with an available fix.
    * When disabled, customers can switch between all CVEs and CVEs with an available fix.
-1. Configure **Allow raw scan downloads**:
-   * When enabled, customers can download the complete raw scan JSON.
-   * When disabled, customers can still view scan details, but they cannot download the raw scan file.
+1. Configure **Allow raw scan downloads**. This setting is disabled by default:
+   * When enabled, the CVE Report card displays **Download full CVE report**. Customers can use this button to download the complete raw Grype scan JSON for the selected release.
+   * When disabled, the button is not displayed. Customers can still view the CVE report when they have access to the Security Center.
 1. Select **Save changes**.
+
+The downloaded JSON contains the same raw Grype scan data that is available to vendors through the [`securebuild/scan-raw` Vendor API endpoint](/vendor/security-center-retrieve-scan-results#retrieve-the-raw-scan-results). The customer-facing download is controlled by this setting and is distinct from both Vendor API access and the SPDX SBOM download.
 
 ### Enable Security Center for a customer
 
