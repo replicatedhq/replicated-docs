@@ -9,23 +9,20 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
-## v2026.08.19-2
-
-Released on August 19, 2026
-
-### Improvements {#improvements-v2026-08-19-2}
-* Testing. Do not merge.
-
-### Bug Fixes {#bug-fixes-v2026-08-19-2}
-* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
-* Show channel names alongside channel IDs in release promotion audit log descriptions.
-
 ## v2026.08.19-4
 
 Released on August 19, 2026
 
 ### New Features {#new-features-v2026-08-19-4}
 * Improved Enterprise Portal content branch management for apps with many synced branches, including search, pagination, and grouped branch lists.
+
+## v2026.08.19-2
+
+Released on August 19, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-19-2}
+* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
+* Show channel names alongside channel IDs in release promotion audit log descriptions.
 
 ## v2026.08.18-1
 
