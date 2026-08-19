@@ -230,7 +230,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Security Center (Alpha)",
+      label: "Security Center (Beta)",
       items: [
         "vendor/security-center-about",
         "vendor/security-center-view-vendor-portal",

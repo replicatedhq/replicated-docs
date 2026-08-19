@@ -1,11 +1,11 @@
 ---
-sidebar_label: "View Security Information in Vendor Portal (Alpha)"
+sidebar_label: "View Security Information in Vendor Portal (Beta)"
 ---
 
 # View Security Information in Vendor Portal
 
 :::note
-The Security Center is Alpha. The features and functionality described on this page are subject to change.
+The Security Center is Beta. The features and functionality described on this page are subject to change.
 :::
 
 In the Vendor Portal, the Security Center provides dashboards for monitoring vulnerabilities across your releases and assessing the impact of CVEs across your customer fleet. You can also view security information for a specific release or customer instance.
@@ -80,24 +80,25 @@ The Release Security dashboard includes the following:
 * On the **Container images** tab, a complete image inventory with scan status and vulnerability counts per image
 * On the **CVE details** tab, for each CVE identified:
   * The CVE identifier and description
-  * The CVSS score and severity rating
+  * The highest severity rating across affected images
   * A list of images affected by the CVE
-  * Fixed versions (when available)
 
 ### Software bill of materials (SBOM)
 
 The Release Security dashboard displays the software bill of materials (SBOM) for the release in view. The SBOM includes the format, the number of components and dependencies, the generation date, and the tool used. Select **Download SBOM** to download the SBOM as a JSON file.
 
-### Filter container images by source
+### Filter container images by source or scan status
 
 On the **Container images** tab, you can filter the image inventory. Each filter displays the number of matching images:
 
 * **All Images**: All images in the release.
 * **Application Images**: Scanned images that belong to your application.
 * **Replicated Platform Images**: Scanned Replicated-owned images, such as the Replicated SDK and Embedded Cluster or KOTS components.
-* **Unscanned Images**: Images that Security Center could not scan.
+* **Incomplete scans**: Images whose initial scan is queued, in progress, failed, or could not start because the image was not found. Images with incomplete scans can also appear in the application or Replicated Platform image counts.
 
-You can also select **Show only vulnerable images** to limit the list to images that have known vulnerabilities. The **Showing X of Y images** label reports the number of displayed images. Security Center disables the vulnerable-image filter when you select **Unscanned Images** because unscanned images have no vulnerability data.
+You can also select **Show only vulnerable images** to limit the list to images that have known vulnerabilities. The **Showing X of Y images** label reports the number of displayed images. Security Center disables the vulnerable-image filter when you select **Incomplete scans** because these images have no current vulnerability data.
+
+When the release has incomplete scans, Security Center shows when it last checked their statuses. Scan statuses do not refresh continuously. Select **Refresh statuses** to retrieve the current status of each incomplete scan.
 
 ### Find other releases that use a vulnerable image
 
@@ -138,4 +139,4 @@ CVE details are available for all current and previously promoted application re
 
 You can view CVE details at the customer level for active instances running the Replicated SDK version 1.9.0 or later. This gives you visibility into all container images running alongside your application, helping you identify security risks and urgent upgrade needs across your customer base.
 
-To view CVE information for a specific customer instance, go to **Customers > [Customer] > [Instance] > Security**. The customer instance page provides the same image counts, source filters, unscanned-image filter, and vulnerable-image filter as the Release Security dashboard.
+To view CVE information for a specific customer instance, go to **Customers > [Customer] > [Instance] > Security**. The customer instance page provides the same image counts, source filters, incomplete-scan filter, and vulnerable-image filter as the Release Security dashboard.

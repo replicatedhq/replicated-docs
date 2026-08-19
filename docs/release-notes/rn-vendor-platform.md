@@ -20,6 +20,21 @@ Released on August 19, 2026
 * Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
 * Show channel names alongside channel IDs in release promotion audit log descriptions.
 
+## v2026.08.19-4
+
+Released on August 19, 2026
+
+### New Features {#new-features-v2026-08-19-4}
+* Improved Enterprise Portal content branch management for apps with many synced branches, including search, pagination, and grouped branch lists.
+
+## v2026.08.18-1
+
+Released on August 18, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-18-1}
+* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
+* Show channel names alongside channel IDs in release promotion audit log descriptions.
+
 ## v2026.08.13-2
 
 Released on August 13, 2026

@@ -18,6 +18,13 @@ The following KOTS images have SLSA provenance attestations, image signatures, a
 - `index.docker.io/kotsadm/kotsadm-migrations`
 - `index.docker.io/kotsadm/kurl-proxy`
 
+## Troubleshoot images
+
+The following Troubleshoot images have SLSA provenance attestations, image signatures, and SBOM attestations for release 0.132.2 and later:
+
+- `index.docker.io/replicated/troubleshoot`
+- `index.docker.io/replicated/preflight`
+
 ## Replicated SDK images
 
 The following Replicated SDK image has SLSA provenance attestations, image signatures, and SBOM attestations:
@@ -28,7 +35,7 @@ The following Replicated SDK image has SLSA provenance attestations, image signa
 
 Before performing these tasks, install [cosign](https://github.com/sigstore/cosign) v3.
 
-The KOTS and Replicated SDK images are signed with the following identity:
+The KOTS, Troubleshoot, and Replicated SDK images are signed with the following identity:
 
 - Certificate identity: `sb-attestor@cve0-issuer.iam.gserviceaccount.com`
 - OpenID Connect (OIDC) issuer: `https://accounts.google.com`

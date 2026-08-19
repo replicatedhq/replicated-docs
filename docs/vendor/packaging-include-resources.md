@@ -56,7 +56,7 @@ You can use the `kots.io/installer-only` annotation to prevent an entire Helm ch
 
 The `kots.io/installer-only` annotation does the following:
 - Excludes the chart (or the resource in a chart's templates) from the Helm CLI installation and update instructions in the Enterprise Portal and Vendor Portal. For more information about how users can view these instructions in the Enterprise Portal, see [View Insall and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log In To and Use the Enterprise Portal_.
-- Excludes the chart (or the resource in a chart's templates) from Security Center reports for Helm CLI installations. For more information about the Security Center, see [About the Security Center (Alpha)](/vendor/security-center-about).
+- Excludes the chart (or the resource in a chart's templates) from Security Center reports for Helm CLI installations. For more information about the Security Center, see [About the Security Center (Beta)](/vendor/security-center-about).
 
 This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or deployed when customers install with the Helm CLI.
 
