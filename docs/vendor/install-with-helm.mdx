@@ -17,7 +17,7 @@ Before you install, complete the following prerequisites:
 
 * Declare the Replicated SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-* If the [Security Center (Alpha)](/vendor/security-center-about) is enabled for your account, add a unique HelmChart custom resource for each Helm chart in your release. The HelmChart custom resource is required to create the list of images that are scanned and reported on in the Security Center.
+* To use the [Security Center (Beta)](/vendor/security-center-about), add a unique HelmChart custom resource for each Helm chart in your release. The Security Center uses these HelmChart custom resources to create the list of images that it scans and reports on.
 
     The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
 
