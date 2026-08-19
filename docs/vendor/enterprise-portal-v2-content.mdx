@@ -524,7 +524,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 These components require Security Center to be enabled for the customer and are available for Helm and Embedded Cluster installs only. See [Security Center](/vendor/security-center-about) for more information.
 
-**`<CVEReport />`**: Displays CVEs by severity, component, and container image for the selected release. The report also compares CVE counts with the latest release. Depending on your Security Center settings, the report shows only fixable CVEs or includes a toggle for customers to show all CVEs. No props.
+**`<CVEReport />`**: Displays CVEs by severity, component, and container image for the selected release. For each CVE, the **Fixed In** column identifies the earliest vendor release that resolves it, when one is available. The report also compares CVE counts with the latest release. Depending on your Security Center settings, the report shows only fixable CVEs or includes a toggle for customers to show all CVEs. When **Enable raw CVE scan to be downloadable** is enabled, the report also displays **Download full CVE report**, which downloads the raw Grype scan JSON for the selected release. This download is distinct from the SPDX SBOM available through `<SBOMReport />`. No props.
 
 **`<SBOMReport />`**: Displays SBOM metadata and a download option for the selected release. If no SBOM is available, the component displays an unavailable state. No props.
 

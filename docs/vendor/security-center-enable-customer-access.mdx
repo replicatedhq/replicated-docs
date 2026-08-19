@@ -43,24 +43,29 @@ To enable the **Security Center** tab for all customers using Enterprise Portal 
 
 In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-content#security-components) in _Customize Enterprise Portal Content_.
 
-Customers can select a release and review CVEs by severity, affected component, and container image. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM.
+Customers can select a release and review CVEs by severity, affected component, and container image. The CVE report identifies the earliest vendor release that resolves each CVE. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM. When enabled in the Portal Features settings, customers can also download the raw Grype scan JSON for a release.
 
-Security reports are available for Helm and Embedded Cluster releases. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
+Security reports, including raw scan downloads, are available for Helm and Embedded Cluster releases for both online and air gap installations. Customers whose licenses support only KOTS or kURL see a message that security reports are not available.
 
-### Configure Security Center settings
+### Configure Security Center display settings
 
-To configure Security Center for Enterprise Portal (New):
+To configure how Security Center reports display in Enterprise Portal (New):
 
-1. In the Vendor Portal, go to **Enterprise Portal > Security Center**.
-1. Enable **Enable Security Center**.
-1. Configure **Only show fixable CVEs**:
+1. In the Vendor Portal, go to **Enterprise Portal > Content**.
+1. Under **Portal Features**, configure **Display only fixable CVEs in Security Center report**:
    * When enabled, customers see only CVEs with an available fix.
    * When disabled, customers can switch between all CVEs and CVEs with an available fix.
-1. Select **Save changes**.
+1. Configure **Enable raw CVE scan to be downloadable**. This setting is disabled by default:
+   * When enabled, the CVE Report card displays **Download full CVE report**. Customers can use this button to download the complete raw Grype scan JSON for the selected release.
+   * When disabled, the button is not displayed. Customers can still view the CVE report when they have access to the Security Center.
+
+Changes to the Portal Features settings are saved automatically.
+
+The downloaded JSON contains the same raw Grype scan data that is available to vendors through the [`securebuild/scan-raw` Vendor API endpoint](/vendor/security-center-retrieve-scan-results#retrieve-the-raw-scan-results). The customer-facing download is controlled by this setting and is distinct from both Vendor API access and the SPDX SBOM download.
 
 ### Enable Security Center for a customer
 
-The app-level Security Center setting does not grant access to individual customers. To grant access:
+The Portal Features settings control how Security Center reports display; they do not grant Security Center access to individual customers. To grant access:
 
 1. In the Vendor Portal, go to **Customers > [Customer] > Enterprise Portal access**.
 1. If **Portal Version** is available, set it to **Use new Enterprise Portal for this customer**.
