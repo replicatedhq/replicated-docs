@@ -59,17 +59,29 @@ Restrict which email domains can be invited to a customer's portal:
 1. In the **Authentication** section, enable **Domain Restrictions**
 1. Add one or more allowed email domains (e.g., `acme.com`)
 
-Only users with email addresses matching an allowed domain can be invited. This prevents accidental invitations to personal email addresses or unauthorized domains.
+Only users with email addresses matching an allowed domain can be invited. This prevents accidental invitations to personal email addresses or unauthorized domains. The allowed domain list also governs SAML logins. For more information, see [Just-in-time user provisioning](#jit-provisioning) below.
 
-## SAML authentication (Alpha)
+## SAML authentication
 
-Allow customers to use their corporate identity provider for portal login:
+Allow customers to use their corporate identity provider for portal login. SAML authentication is enabled for all teams by default, so you do not need to request access to it.
 
 1. Go to **Customers > [Customer Name] > Enterprise Portal access**
 1. In the **Authentication** section, enable **SAML Authentication**
 1. The customer can then configure their IdP details (metadata URL, certificates) from within the Enterprise Portal's team settings
 
-SAML supports just-in-time user provisioning. When a user logs in via SAML for the first time and their email matches a pending invitation, their account is automatically activated.
+### Just-in-time user provisioning {#jit-provisioning}
+
+SAML supports just-in-time (JIT) user provisioning, which creates a portal account the first time that a user logs in with SAML. Whether the user also needs a pending invitation depends on where the login starts:
+
+- **IdP-initiated**: the user starts at the identity provider. The portal creates the account with no invitation
+- **Portal-initiated**: the user starts at the portal login page. The portal creates the account only if that email address already has a pending invitation, and otherwise returns the `saml_invite_required` error
+
+When **Domain Restrictions** are enabled, the allowed domain list also governs SAML. The portal does not create an account for a user whose email domain is absent from the list, and returns the `domain_not_allowed` error instead. Two details of this check matter in practice:
+
+- It runs before the invitation check, so a new user from a domain that is not allowed sees `domain_not_allowed` even when they also lack an invitation
+- It applies only when the portal creates the account. Removing a domain from the list does not lock out users who were already provisioned from it
+
+For the full set of SAML login errors and how to resolve them, see [SAML login errors](/vendor/enterprise-portal-v2-troubleshooting#saml-login-errors) in _Troubleshoot the Enterprise Portal_.
 
 ## Service accounts
 

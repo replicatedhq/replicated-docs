@@ -105,6 +105,15 @@ The preview command's example path is a placeholder. If you see `content path do
 - Confirm self-service sign-ups are enabled in **Enterprise Portal > Self-Service Sign-Ups**
 - The signup URL is unique to your application. Verify the URL being shared is correct
 
+## SAML login errors {#saml-login-errors}
+
+The Enterprise Portal login page surfaces these errors directly to the customer user. The domain check runs before the invitation check, so a new user from a domain that is not allowed sees `domain_not_allowed` even when they also lack an invitation. Check the errors in the order below.
+
+- `domain_not_allowed`: the user's email domain is absent from the customer's allowed domain list. Add the domain under **Domain Restrictions** on the customer's **Enterprise Portal access** tab, or have the user log in with an address on an allowed domain. This check applies only when the portal creates the account, so removing a domain from the list does not lock out users who were already provisioned from it
+- `saml_invite_required`: the login started at the portal login page, and that email address has no pending invitation. Invite the user, or have them start the login from their identity provider instead, which provisions with no invitation. For the difference between the two flows, see [Just-in-time user provisioning](/vendor/enterprise-portal-v2-invite#jit-provisioning) in _Manage Customer Access_
+- `saml_invalid_email`: the SAML assertion carried no email address, or one the portal could not use. Confirm that the identity provider releases an email attribute for the user
+- `saml_auth_failed`: a general SAML failure. The portal returns this error both when it starts the login and when it processes the assertion, so it covers configuration problems on either side. Confirm that **SAML Authentication** is enabled for the customer in the Vendor Portal, and that the identity provider metadata URL and signing certificate in the customer's portal team settings are current
+
 ## Login footer showing Replicated branding
 
 - Customize the login page footer by setting `loginFooterText` and `loginFooterLinks` in your `theme.yaml`
