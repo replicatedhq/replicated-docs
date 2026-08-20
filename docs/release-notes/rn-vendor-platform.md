@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.19-7
+
+Released on August 19, 2026
+
+### Improvements {#improvements-v2026-08-19-7}
+* Standardized text-field behavior and styling across Vendor Portal forms.
+
 ## v2026.08.19-6
 
 Released on August 19, 2026
