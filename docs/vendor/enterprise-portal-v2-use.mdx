@@ -129,7 +129,7 @@ Revoking or rotating a token affects every system that authenticates with it. Wh
 
 Customers can generate and upload support bundles from the portal:
 
-- **Generate bundles**: Follow the instructions on the Support Bundles page to generate a diagnostic bundle from their Linux or Helm installation
+- **Generate bundles**: Follow the instructions on the Support Bundles page to generate a diagnostic bundle. The page provides instructions for Embedded Cluster, kURL, Helm, and KOTS installations, and each customer sees only the methods that their license enables
 - **Upload bundles**: Upload an existing bundle file for vendor analysis. The maximum upload size is 2 GB. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.
 - **View history**: See previously uploaded bundles and their status
 
@@ -149,4 +149,6 @@ Security Center data is available for Helm and Embedded Cluster installations on
 
 ## License information
 
-Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. This information is accessible from the portal but is read-only for customers.
+Customers can view their license details including expiration date, license type, assigned channel, and any custom license fields configured by the vendor. Customers cannot edit their license from the portal.
+
+Customers whose license enables Embedded Cluster, KOTS, or kURL installations can also download their `license.yaml` file, which those installation methods require. Helm installations do not use a license file, so Helm customers do not see a download option.

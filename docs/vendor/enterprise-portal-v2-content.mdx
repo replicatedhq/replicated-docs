@@ -514,9 +514,15 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<HelmBundles />`**: Helm-specific support bundle generation instructions. A download link for the support-bundle plugin binary is always included, regardless of registry access settings. No props.
 
+**`<KurlBundles />`**: kURL-specific support bundle generation instructions. No props.
+
+**`<KotsBundles />`**: KOTS-specific support bundle generation instructions for an existing cluster. No props.
+
+Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method.
+
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
-**`<LicenseDownload />`**: Renders a button that lets customers download their license file. No props.
+**`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
 **`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline upgrade instructions, while KOTS and kURL instances expand into a panel for downloading versioned install and update artifacts. No props.
 
