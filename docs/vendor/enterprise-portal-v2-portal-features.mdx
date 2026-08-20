@@ -38,7 +38,7 @@ The panel displays the disclaimer "Responses are generated using AI and may cont
 
 ### Data sent to the AI provider {#ask-ai-data}
 
-Replicated processes Ask AI requests with a third-party AI provider. When a customer sends a question, the following is transmitted to that provider:
+Replicated processes Ask AI requests with [Groq](https://groq.com), using the `openai/gpt-oss-120b` model. When a customer sends a question, the following is transmitted to Groq:
 
 - The question text
 - Up to the last 10 messages of the current conversation, which the panel sends so that follow-up questions have context
@@ -46,7 +46,7 @@ Replicated processes Ask AI requests with a third-party AI provider. When a cust
 
 Customer identifiers, license fields, and entitlement values are not sent as data to be reasoned about. Entitlements are applied before the request, to select which content is included.
 
-Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on.
+Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on. For the list of third-party providers that Replicated uses, see [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors).
 
 ### Disabling Ask AI
 
@@ -62,3 +62,4 @@ For what each setting does and how to grant a customer access to Security Center
 
 - [Customize Portal Content](/vendor/enterprise-portal-v2-content)
 - [Enable Customer Access to Security Information](/vendor/security-center-enable-customer-access)
+- [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors)
