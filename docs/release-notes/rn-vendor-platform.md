@@ -15,6 +15,14 @@ Released on August 20, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-20-4}
 * Fixed an issue where promoting a release without manually setting version label could incorrectly assign version 0.0.1 instead of the semantic version suggested.
+
+## v2026.08.20-0
+
+Released on August 20, 2026
+
+### Improvements {#improvements-v2026-08-20-0}
+* Added a help link in Enterprise Portal repo pickers so vendors can update GitHub App permissions when a repository is missing from the dropdown.
+
 ## v2026.08.19-9
 
 Released on August 19, 2026
