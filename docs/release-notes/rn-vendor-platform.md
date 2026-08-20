@@ -344,13 +344,6 @@ Released on July 17, 2026
 ### Improvements {#improvements-v2026-07-17-1}
 * Added accessible names to the Troubleshoot filter, search, and form controls to improve screen reader support.
 
-## v2026.07.16-4
-
-Released on July 16, 2026
-
-### Improvements {#improvements-v2026-07-16-4}
-* Added scope attributes to table headers to improve screen reader support.
-
 ## v2026.07.16-16
 
 Released on July 16, 2026
@@ -364,6 +357,13 @@ Released on July 16, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-07-16-11}
 * Restored processing of the license update queue.
+
+## v2026.07.16-4
+
+Released on July 16, 2026
+
+### Improvements {#improvements-v2026-07-16-4}
+* Added scope attributes to table headers to improve screen reader support.
 
 ## v2026.07.16-0
 
