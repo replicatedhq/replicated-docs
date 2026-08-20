@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.20-0
+
+Released on August 20, 2026
+
+### Improvements {#improvements-v2026-08-20-0}
+* Added a help link in Enterprise Portal repo pickers so vendors can update GitHub App permissions when a repository is missing from the dropdown.
 ## v2026.08.19-9
 
 Released on August 19, 2026
