@@ -57,6 +57,8 @@ To enable automatic invitations:
 
 You can restrict user invitations for a customer's Enterprise Portal to specific email domains. When you add allowed domains for a customer, only users with allowed email domains can be invited to the Enterprise Portal.
 
+The allowed domain list also governs SAML logins. The Enterprise Portal does not create an account for a user whose email domain is absent from the list, including a user who logs in through their IdP. The check applies only at account creation, so removing a domain does not lock out users who were already provisioned from it. For more information, see [About SAML logins](enterprise-portal-use#about-saml) in _Log In and Use the Enterprise Portal_.
+
 To configure allowed domains for a customer's Enterprise Portal invitations:
 
 1. In the Vendor Portal, go to **Customers** and select the target customer.
