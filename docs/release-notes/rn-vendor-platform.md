@@ -15,6 +15,7 @@ Released on August 20, 2026
 
 ### Improvements {#improvements-v2026-08-20-0}
 * Added a help link in Enterprise Portal repo pickers so vendors can update GitHub App permissions when a repository is missing from the dropdown.
+
 ## v2026.08.19-9
 
 Released on August 19, 2026
