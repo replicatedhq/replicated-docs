@@ -1,0 +1,65 @@
+# Configure Portal Features
+
+This topic describes the app-level Enterprise Portal settings in the **Portal Features** section of the Vendor Portal, including the Ask AI assistant and the Security Center display settings.
+
+## About Portal Features
+
+**Portal Features** is a set of app-level settings that control optional capabilities in the new Enterprise Portal. The settings apply to every customer of the application. They are separate from the per-customer settings on a customer's **Enterprise Portal access** tab, which control whether an individual customer has portal access at all.
+
+To open the settings, go to **Enterprise Portal > Content** in the Vendor Portal and find the **Portal Features** section. Changes are saved automatically.
+
+The section contains the following settings:
+
+| Setting | Default | Description |
+|---|---|---|
+| **Enable Ask AI** | Disabled | Adds an AI assistant to the portal that answers customer questions from your portal content. See [Ask AI](#ask-ai) below. |
+| **Display only fixable CVEs in Security Center report** | Enabled | Limits the CVE report to vulnerabilities with an available fix. Disable it to let customers switch between all CVEs and fixable CVEs. See [Security Center display settings](#security-center-display-settings) below. |
+| **Enable raw CVE scan to be downloadable** | Disabled | Lets customers download the raw Grype scan JSON for a release. See [Security Center display settings](#security-center-display-settings) below. |
+
+The two Security Center settings appear only when Security Center is enabled for your team. If **Portal Features** shows only **Enable Ask AI**, contact your Replicated account representative about Security Center.
+
+Access to the settings also depends on your Vendor Portal permissions. The Security Center display settings use their own permission, so a team member can be able to change **Enable Ask AI** and still see a message that the Security Center settings are unavailable. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+
+## Ask AI {#ask-ai}
+
+When you enable **Enable Ask AI**, the portal adds an **Ask AI** button to the header of every content page. The button opens an assistant panel on the right side of the page, where the customer can ask questions and receive streamed answers. The setting is disabled by default, and it applies to all of your customers at once.
+
+The assistant is delivered in the page header only. It is not a navigation item, and there is currently no supported way to move it, rename it, or hide it from a subset of customers. The **Enable Ask AI** setting is the only control over whether customers see it.
+
+### What the assistant answers from
+
+Each question is answered from the portal content that the asking customer can see. The assistant receives the same entitlement-filtered and version-filtered content that the customer would get by browsing the portal, so two customers on different licenses can receive different answers to the same question. The assistant does not disclose features that the customer is not entitled to, and it does not mention entitlements, licenses, or feature flags.
+
+For questions about your application, the assistant uses only your portal content. If your content does not cover a topic, the assistant says that it does not have information about it rather than inferring an answer. It may also draw on general public knowledge about dependencies and infrastructure, such as Kubernetes, the Helm CLI, Linux administration, Docker, cloud providers, networking, TLS, and DNS. It does not use outside knowledge about your application itself, because published information about your application can be out of date or wrong.
+
+When an answer draws on a specific portal page, the assistant links to that page so that the customer can read the source.
+
+The panel displays the disclaimer "Responses are generated using AI and may contain mistakes." on every conversation.
+
+### Data sent to the AI provider {#ask-ai-data}
+
+Replicated processes Ask AI requests with [Groq](https://groq.com), using the `openai/gpt-oss-120b` model. When a customer sends a question, the following is transmitted to Groq:
+
+- The question text
+- Up to the last 10 messages of the current conversation, which the panel sends so that follow-up questions have context
+- The portal content that the asking customer is entitled to see, for the version they are viewing
+
+Customer identifiers, license fields, and entitlement values are not sent as data to be reasoned about. Entitlements are applied before the request, to select which content is included.
+
+Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on. For the list of third-party providers that Replicated uses, see [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors).
+
+### Disabling Ask AI
+
+Disable **Enable Ask AI** to remove the button from the portal header for all customers. Disabling the setting stops new requests. It does not affect conversations that have already been sent.
+
+## Security Center display settings {#security-center-display-settings}
+
+The **Display only fixable CVEs in Security Center report** and **Enable raw CVE scan to be downloadable** settings control how Security Center reports appear to customers. They do not grant Security Center access, which is a per-customer setting.
+
+For what each setting does and how to grant a customer access to Security Center, see [Configure Security Center display settings](/vendor/security-center-enable-customer-access#configure-security-center-display-settings) in _Enable Customer Access to Security Information_.
+
+## Related topics
+
+- [Customize Portal Content](/vendor/enterprise-portal-v2-content)
+- [Enable Customer Access to Security Information](/vendor/security-center-enable-customer-access)
+- [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors)
