@@ -216,6 +216,7 @@ const sidebars = {
         "vendor/enterprise-portal-v2-emails",
         "vendor/enterprise-portal-v2-branding",
         "vendor/enterprise-portal-v2-content",
+        "vendor/enterprise-portal-v2-portal-features",
         "vendor/enterprise-portal-v2-service-account-automation",
         "vendor/enterprise-portal-v2-versioned-docs",
         "vendor/enterprise-portal-v2-helm-reference",
