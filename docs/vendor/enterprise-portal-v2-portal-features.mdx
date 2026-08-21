@@ -19,14 +19,7 @@ The section contains the following settings:
 
 ### Permissions
 
-The **Portal Features** settings are not all controlled by the same permission:
-
-| Setting | Read permission | Update permission |
-|---|---|---|
-| **Enable Ask AI**, **Enable Security Center for all customers** | `kots/app/[:appid]/read` | `kots/app/[:appid]/update` |
-| **Display only fixable CVEs in Security Center report**, **Enable raw CVE scan to be downloadable** | `kots/app/[:appid]/enterprise-portal/security-settings/read` | `kots/app/[:appid]/enterprise-portal/security-settings/update` |
-
-Because the two groups use separate permissions, a team member can have access to one group and not the other. If you lack the read permission for a setting, the Vendor Portal replaces it with a message saying so. If you lack the update permission, the setting appears but is read-only. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+All **Portal Features** settings require the application read and update permissions. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
 
 ## Ask AI {#ask-ai}
 
