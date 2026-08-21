@@ -28,7 +28,7 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 
 Released on August 21, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-4}
 * Stores rendered support bundle sub-specs in Secrets instead of ConfigMaps to prevent the sub-specs from being collected by the default support bundle collector. KOTS automatically removes legacy support bundle sub-spec ConfigMaps.
@@ -38,7 +38,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on August 18, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-3}
 * Resolves GO-2026-6179 and GO-2026-6180 CVEs.
@@ -50,7 +50,7 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on August 13, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-2}
 * Resolves following High level CVEs: CVE-2026-27145, CVE-2026-39822, CVE-2026-42504, GHSA-5p4m-2wfm-xmqj, GHSA-2v37-7h3g-55p8.
