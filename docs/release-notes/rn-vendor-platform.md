@@ -9,11 +9,21 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## v2026.08.21-1
+
+Released on August 21, 2026
+
+### New Features {#new-features-v2026-08-21-1}
+
+* Vendors can enable Security Center for all current and future Enterprise Portal customers with one app-level setting.
+
 ## v2026.08.21-0
 
 Released on August 21, 2026
 
 ### Improvements {#improvements-v2026-08-21-0}
+
 * Standardized inline status messages across Vendor Portal for more consistent styling and accessibility.
 
 ## v2026.08.20-7
@@ -21,13 +31,15 @@ Released on August 21, 2026
 Released on August 20, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-20-7}
+
 * Non-admin users with read-only Enterprise Portal access permissions can now discover customer access controls as disabled controls with permission guidance instead of having them hidden.
 
 ## v2026.08.20-6
 
 Released on August 20, 2026
 
-### Improvements {#improvements-v2026-08-20-6}
+### Improvements {#improvements-v2026.08.20-6}
+
 * Vendor Portal support bundles can now be associated with their customer and instance using embedded instance-report or cluster license metadata when standard SDK collectors are missing.
 
 ## v2026.08.20-0
