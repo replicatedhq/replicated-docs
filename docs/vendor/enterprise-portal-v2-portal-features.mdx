@@ -1,10 +1,10 @@
 # Configure Portal Features
 
-This topic describes the app-level Enterprise Portal settings in the **Portal Features** section of the Vendor Portal, including the Ask AI assistant and the Security Center display settings.
+This topic describes the app-level Enterprise Portal settings in the **Portal Features** section of the Vendor Portal, including the Ask AI assistant and the Security Center settings.
 
 ## About Portal Features
 
-**Portal Features** is a set of app-level settings that control optional capabilities in the new Enterprise Portal. The settings apply to every customer of the application. They are separate from the per-customer settings on a customer's **Enterprise Portal access** tab, which control whether an individual customer has portal access at all.
+**Portal Features** is a set of app-level settings that control optional capabilities in the Enterprise Portal. The settings apply to every customer of the application. They are separate from the per-customer settings on a customer's **Enterprise Portal access** tab, which control whether an individual customer has portal access at all.
 
 To open the settings, go to **Enterprise Portal > Content** in the Vendor Portal and find the **Portal Features** section. Changes are saved automatically.
 
@@ -17,11 +17,16 @@ The section contains the following settings:
 | **Display only fixable CVEs in Security Center report** | Enabled | Limits the CVE report to vulnerabilities with an available fix. Disable it to let customers switch between all CVEs and fixable CVEs. See [Security Center display settings](#security-center-display-settings). |
 | **Enable raw CVE scan to be downloadable** | Disabled | Lets customers download the raw Grype scan JSON for a release. See [Security Center display settings](#security-center-display-settings). |
 
-The three Security Center settings are available to all teams.
+### Permissions
 
-Access to these settings depends on your Vendor Portal permissions, and they are not all governed by the same one. **Enable Ask AI** and **Enable Security Center for all customers** use the application read and update permissions. The two Security Center display settings use a separate Security Center settings permission.
+The **Portal Features** settings are not all controlled by the same permission:
 
-Because the permissions are separate, a team member can be able to change **Enable Ask AI** and **Enable Security Center for all customers** while the display settings are unavailable to them. Without read permission, a setting is replaced by a message explaining that. Without update permission, it appears but cannot be changed. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+| Setting | Read permission | Update permission |
+|---|---|---|
+| **Enable Ask AI**, **Enable Security Center for all customers** | `kots/app/[:appid]/read` | `kots/app/[:appid]/update` |
+| **Display only fixable CVEs in Security Center report**, **Enable raw CVE scan to be downloadable** | `kots/app/[:appid]/enterprise-portal/security-settings/read` | `kots/app/[:appid]/enterprise-portal/security-settings/update` |
+
+Because the two groups use separate permissions, a team member can have access to one group and not the other. If you lack the read permission for a setting, the Vendor Portal replaces it with a message explaining that. If you lack the update permission, the setting appears but is read-only. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
 
 ## Ask AI {#ask-ai}
 
@@ -31,15 +36,15 @@ The assistant is delivered in the page header only. It is not a navigation item,
 
 ### What the assistant answers from
 
-Each question is answered from the portal content that the asking customer can see. The assistant receives content drawn from what that customer can see in the portal, for the version they are viewing, so two customers on different licenses can receive different answers to the same question. Content is excluded based on the `visible_when` conditions on your TOC entries and on page frontmatter, so the gating that you already configured for the portal also applies to the assistant.
+Each question is answered from the portal content the asking customer can see, for the version they are viewing, so two customers on different licenses can receive different answers to the same question. Content is excluded based on the `visible_when` conditions on your TOC entries and on page frontmatter, so the gating that you already configured for the portal also applies to the assistant.
 
-Separately, the request instructs the assistant not to mention entitlements, licenses, or feature flags, and not to bring up a fixed set of installation and recovery capabilities that the customer's license does not include. That instruction is a prompt to the model rather than an enforced filter, so do not rely on it alone to keep the existence of a feature confidential from a customer.
+Separately, the request instructs the assistant not to mention entitlements, licenses, or feature flags, and not to bring up a fixed set of installation and recovery capabilities that the customer's license does not include. That instruction is a prompt to the model, not an enforced filter, so do not rely on it alone to keep a feature's existence confidential.
 
-For questions about your application, the assistant uses only your portal content. If your content does not cover a topic, the assistant says that it does not have information about it rather than inferring an answer. It may also draw on general public knowledge about dependencies and infrastructure, such as Kubernetes, the Helm CLI, Linux administration, Docker, cloud providers, networking, TLS, and DNS. It does not use outside knowledge about your application itself, because published information about your application can be out of date or wrong.
+For questions about your application itself, the assistant uses only your portal content. If your content does not cover a topic, it says that it does not have information rather than inferring an answer. It does not draw on outside knowledge about your application, because published information about your application can be out of date or wrong. For dependencies and infrastructure — Kubernetes, the Helm CLI, Linux administration, Docker, cloud providers, networking, TLS, and DNS — it may also use general public knowledge.
 
-Long pages and large content sets are truncated to fit the request, so the assistant can report that it lacks information about a topic that your content does cover.
+Long pages and large content sets are truncated to fit the request, so the assistant can miss a topic that your content does cover.
 
-When an answer draws on a specific portal page, the assistant is instructed to cite that page so that the customer can find the source.
+When an answer draws on a specific portal page, the assistant is instructed to cite that page as the source.
 
 The panel displays the disclaimer "Responses are generated using AI and may contain mistakes." on every conversation.
 
@@ -48,13 +53,13 @@ The panel displays the disclaimer "Responses are generated using AI and may cont
 Replicated processes Ask AI requests with a third-party AI provider. When a customer sends a question, the following is transmitted to that provider:
 
 - The question text
-- Up to the last 10 messages of the current conversation, so that follow-up questions have context. The panel sends the whole conversation to Replicated, which forwards only the most recent messages to the provider
+- Up to the last 10 messages of the current conversation, for context on follow-up questions. The panel sends the whole conversation to Replicated, which forwards only the most recent messages to the provider
 - The portal content that the asking customer is entitled to see, for the version they are viewing
 
 Replicated does not send the license document itself. Two things derived from the customer do reach the provider:
 
 - **Values rendered from template variables.** Template variables are resolved before the content is sent, so any app, customer, channel, or release values that your content renders are transmitted as part of it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
-- **The capabilities the customer's license excludes.** The request names a fixed set of installation and recovery capabilities that the customer is not entitled to, so that the assistant does not offer them.
+- **The capabilities the customer's license excludes.** The request names a fixed set of installation and recovery capabilities the customer is not entitled to, so the assistant does not offer them.
 
 Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on.
 
@@ -62,21 +67,21 @@ Because enabling Ask AI sends your portal content and your customers' questions 
 
 Disable **Enable Ask AI** to remove the button from the portal header for all customers. Disabling the setting stops new requests. It does not affect conversations that have already been sent.
 
-## Security Center display settings {#security-center-display-settings}
-
-The **Display only fixable CVEs in Security Center report** and **Enable raw CVE scan to be downloadable** settings control how Security Center reports appear to customers. They do not grant access to the Security Center itself.
-
-For what each setting does, see [Configure Security Center display settings](/vendor/security-center-enable-customer-access#configure-security-center-display-settings) in _Enable Customer Access to Security Information_.
-
 ## Security Center access {#security-center-access}
 
 **Enable Security Center for all customers** grants Security Center access to every current and future customer. It is disabled by default. While it is enabled, a new-portal customer's own **Enable Security Center for this customer** setting displays as enabled and cannot be changed. For a customer still on Enterprise Portal (Classic), the per-customer setting is hidden instead. In both cases, the saved individual settings take effect again when you disable the app-level setting.
 
 This is the same app-level setting as the **Enable Security Center** option in **Enterprise Portal > Portal Settings > Optional Features**. Turning it on in either place grants access across both Enterprise Portal (Classic) and the new Enterprise Portal.
 
-Granting access does not by itself give customers anything to open. The Security page has to exist in your content repository and be listed in `toc.yaml`.
+Access alone gives customers nothing to open. The Security page must also exist in your content repository and be listed in `toc.yaml`.
 
 For the full procedure and the per-customer alternative, see [Enable Security Center access](/vendor/security-center-enable-customer-access#enable-security-center-access) in _Enable Customer Access to Security Information_.
+
+## Security Center display settings {#security-center-display-settings}
+
+The **Display only fixable CVEs in Security Center report** and **Enable raw CVE scan to be downloadable** settings control how Security Center reports appear to customers. They do not grant access to the Security Center itself.
+
+For what each setting does, see [Configure Security Center display settings](/vendor/security-center-enable-customer-access#configure-security-center-display-settings) in _Enable Customer Access to Security Information_.
 
 ## Related topics
 
