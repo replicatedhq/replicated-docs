@@ -13,12 +13,13 @@ The section contains the following settings:
 | Setting | Default | Description |
 |---|---|---|
 | **Enable Ask AI** | Disabled | Adds an AI assistant to the portal that answers customer questions from your portal content. See [Ask AI](#ask-ai). |
+| **Enable Security Center for all customers** | Disabled | Grants Security Center access to all current and future customers, overriding each customer's individual setting. See [Security Center access](#security-center-access). |
 | **Display only fixable CVEs in Security Center report** | Enabled | Limits the CVE report to vulnerabilities with an available fix. Disable it to let customers switch between all CVEs and fixable CVEs. See [Security Center display settings](#security-center-display-settings). |
 | **Enable raw CVE scan to be downloadable** | Disabled | Lets customers download the raw Grype scan JSON for a release. See [Security Center display settings](#security-center-display-settings). |
 
-The two Security Center settings appear only when Security Center is enabled for your team. If **Portal Features** shows only **Enable Ask AI**, contact your Replicated account representative about Security Center.
+The three Security Center settings appear only when Security Center is enabled for your team. If **Portal Features** shows only **Enable Ask AI**, contact your Replicated account representative about Security Center.
 
-Access to the settings also depends on your Vendor Portal permissions. The Security Center display settings use their own permission, so a team member can be able to change **Enable Ask AI** and still see a message that the Security Center settings are unavailable. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+Access to the settings also depends on your Vendor Portal permissions. The Security Center settings use their own permissions, so a team member can be able to change **Enable Ask AI** and still see a message that the Security Center settings are unavailable. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
 
 ## Ask AI {#ask-ai}
 
@@ -54,9 +55,17 @@ Disable **Enable Ask AI** to remove the button from the portal header for all cu
 
 ## Security Center display settings {#security-center-display-settings}
 
-The **Display only fixable CVEs in Security Center report** and **Enable raw CVE scan to be downloadable** settings control how Security Center reports appear to customers. They do not grant Security Center access, which is a per-customer setting.
+The **Display only fixable CVEs in Security Center report** and **Enable raw CVE scan to be downloadable** settings control how Security Center reports appear to customers. They do not grant access to the Security Center itself.
 
-For what each setting does and how to grant a customer access to Security Center, see [Configure Security Center display settings](/vendor/security-center-enable-customer-access#configure-security-center-display-settings) in _Enable Customer Access to Security Information_.
+For what each setting does, see [Configure Security Center display settings](/vendor/security-center-enable-customer-access#configure-security-center-display-settings) in _Enable Customer Access to Security Information_.
+
+## Security Center access {#security-center-access}
+
+**Enable Security Center for all customers** grants Security Center access to every current and future customer. It is disabled by default. While it is enabled, each customer's own **Enable Security Center for this customer** setting displays as enabled and cannot be changed; the saved individual settings take effect again when you disable it.
+
+Granting access does not by itself give customers anything to open. The Security page has to exist in your content repository and be listed in `toc.yaml`.
+
+For the full procedure and the per-customer alternative, see [Enable Security Center access](/vendor/security-center-enable-customer-access#enable-security-center-access) in _Enable Customer Access to Security Information_.
 
 ## Related topics
 
