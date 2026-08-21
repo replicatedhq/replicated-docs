@@ -56,15 +56,6 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 * Resolves following High level CVEs: CVE-2026-27145, CVE-2026-39822, CVE-2026-42504, GHSA-5p4m-2wfm-xmqj, GHSA-2v37-7h3g-55p8.
 * Resolves following Medium level CVEs: CVE-2026-42505, CVE-2026-42507, GHSA-55q2-fjhq-7xh7.
 
-## 1.131.1
-
-Released on August 6, 2026
-
-### Improvements {#improvements-1-131-1}
-* Drop troubleshoot.sh/v1beta3 docs from release files
-* 
-
-
 ## 1.131.0
 
 Released on August 6, 2026
