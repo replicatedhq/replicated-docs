@@ -19,7 +19,9 @@ The section contains the following settings:
 
 The three Security Center settings are available to all teams.
 
-Access to the settings also depends on your Vendor Portal permissions. One permission controls **Enable Ask AI** and **Enable Security Center for all customers**; the two Security Center display settings use a separate one. A team member can therefore be able to change the first two settings and still see a message that the display settings are unavailable. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+Access to these settings depends on your Vendor Portal permissions, and they are not all governed by the same one. **Enable Ask AI** and **Enable Security Center for all customers** use the application read and update permissions. The two Security Center display settings use a separate Security Center settings permission.
+
+Because the permissions are separate, a team member can be able to change **Enable Ask AI** and **Enable Security Center for all customers** while the display settings are unavailable to them. Without read permission, a setting is replaced by a message explaining that. Without update permission, it appears but cannot be changed. For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring).
 
 ## Ask AI {#ask-ai}
 
@@ -29,7 +31,7 @@ The assistant is delivered in the page header only. It is not a navigation item,
 
 ### What the assistant answers from
 
-Each question is answered from the portal content that the asking customer can see. The assistant receives the same entitlement-filtered and version-filtered content that the customer would get by browsing the portal, so two customers on different licenses can receive different answers to the same question. Content that the customer is not entitled to is excluded before the request is sent, so the assistant cannot quote it.
+Each question is answered from the portal content that the asking customer can see. The assistant receives content drawn from what that customer can see in the portal, for the version they are viewing, so two customers on different licenses can receive different answers to the same question. Content is excluded based on the `visible_when` conditions on your TOC entries and on page frontmatter, so the gating that you already configured for the portal also applies to the assistant.
 
 Separately, the request instructs the assistant not to mention entitlements, licenses, or feature flags, and not to bring up a fixed set of installation and recovery capabilities that the customer's license does not include. That instruction is a prompt to the model rather than an enforced filter, so do not rely on it alone to keep the existence of a feature confidential from a customer.
 
@@ -37,7 +39,7 @@ For questions about your application, the assistant uses only your portal conten
 
 Long pages and large content sets are truncated to fit the request, so the assistant can report that it lacks information about a topic that your content does cover.
 
-When an answer draws on a specific portal page, the assistant cites that page so that the customer can find the source.
+When an answer draws on a specific portal page, the assistant is instructed to cite that page so that the customer can find the source.
 
 The panel displays the disclaimer "Responses are generated using AI and may contain mistakes." on every conversation.
 
@@ -49,9 +51,9 @@ Replicated processes Ask AI requests with a third-party AI provider. When a cust
 - Up to the last 10 messages of the current conversation, so that follow-up questions have context. The panel sends the whole conversation to Replicated, which forwards only the most recent messages to the provider
 - The portal content that the asking customer is entitled to see, for the version they are viewing
 
-Replicated does not send the customer's license or its entitlement fields to the provider. Two things derived from the customer do reach it:
+Replicated does not send the license document itself. Two things derived from the customer do reach the provider:
 
-- **Values rendered from customer template variables.** Variables such as `customer.email`, `customer.id`, and `customer.name` are resolved before the content is sent, so their values are transmitted as part of the content. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
+- **Values rendered from template variables.** Template variables are resolved before the content is sent, so any app, customer, channel, or release values that your content renders are transmitted as part of it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
 - **The capabilities the customer's license excludes.** The request names a fixed set of installation and recovery capabilities that the customer is not entitled to, so that the assistant does not offer them.
 
 Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on.
