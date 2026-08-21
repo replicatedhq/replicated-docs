@@ -72,7 +72,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer v3</a></td>
-    <td>GA</td>
+    <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
