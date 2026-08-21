@@ -24,6 +24,16 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.131.4
+
+Released on August 21, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### Improvements {#improvements-1-131-4}
+* Stores rendered support bundle sub-specs in Secrets instead of ConfigMaps to prevent the sub-specs from being collected by the default support bundle collector. KOTS automatically removes legacy support bundle sub-spec ConfigMaps.
+* Resolves security vulnerabilities in dependencies shared with Embedded Cluster.
+
 ## 1.131.3
 
 Released on August 18, 2026
