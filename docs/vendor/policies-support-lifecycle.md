@@ -96,9 +96,9 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
   </tr>
   <tr>
     <td>1.36</td>
-    <td>NA</td>
+    <td>3.9.0-beta.1 and later, and 2.19.1 and later</td>
     <td>1.130.5 and later</td>
-    <td>NA</td>
+    <td>v2026.08.09-0 and later</td>
     <td>2027 June 28</td>
   </tr>
   <tr>
@@ -115,13 +115,6 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <td>v2025.10.08-0 and later</td>
     <td>2026 October 27</td>
   </tr>
-  <tr>
-    <td>1.33</td>
-    <td>3.0.0-beta.1 and later, and 2.10.0 and later</td>
-    <td>1.124.17 and later</td>
-    <td>v2025.08.26-0 and later</td>
-    <td>2026 June 28</td>
-  </tr>
 </table>
 
 Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS, kURL or Embedded Cluster, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
@@ -129,4 +122,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 June 23.
+Last modified 2026 August 21.
