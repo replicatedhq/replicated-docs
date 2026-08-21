@@ -5,9 +5,9 @@ This lists describes the infrastructure environment, subprocessors and other ent
 
 Prior to engaging any third party, Replicated performs diligence to evaluate their privacy, security and confidentiality practices. Whenever possible, Replicated uses encryption for data at rest and in motion so that all information is not available to these third parties. 
 
-Replicated does not engage in the business of selling or trading personal information. Any personally identifible information Replicated might possibly hold is data that a customer has provided to us. 
+Replicated does not engage in the business of selling or trading personal information. Any personally identifiable information Replicated might possibly hold is data that a customer has provided to us. 
 
-The fields that Replicated may posess as identifiable to a physical person may include:
+The fields that Replicated may possess as identifiable to a physical person may include:
 - Name
 - Email
 - Phone Number
@@ -37,7 +37,7 @@ Replicated might use the following entities to provide infrastructure that helps
 | Postmark | Transactional emails from Vendor Portal. Marketing related communications. | United States |
 | Attio |Customer and sales relationship management| United States | 
 | Snowflake | Usage data analysis and transformation   | United States |
-| Google Workspace | Email, calednar, docs/drive   | United States |
+| Google Workspace | Email, calendar, docs/drive   | United States |
 | Slack | Customer and internal communication   | United States |
 | OpenAI | Platform level services and LLMs   | United States |
 | FireworksAI | Platform level services and LLMs   | United States |
