@@ -131,3 +131,5 @@ CRs
 BackupRepository
 preconfigured
 crashloop
+LLM
+LLMs

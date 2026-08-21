@@ -41,5 +41,6 @@ Replicated might use the following entities to provide infrastructure that helps
 | Slack | Customer and internal communication   | United States |
 | OpenAI | Platform level services and LLMs   | United States |
 | FireworksAI | Platform level services and LLMs   | United States |
+| Groq | Platform level services and LLMs | United States | Powers the Ask AI assistant in the Enterprise Portal. Receives end-customer questions and the portal content that the asking customer is entitled to see, including any customer name, email address, ID, or channel name that template variables render into that content.
 
-Last modified July 14, 2026
+Last modified August 21, 2026
