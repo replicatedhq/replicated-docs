@@ -347,6 +347,14 @@ Grants the holder permission to soft-delete Enterprise Portal install options fo
 
 Grants the holder permission to view Enterprise Portal instances for the specified application.
 
+### kots/app/[:appid]/enterprise-portal/security-settings/read
+
+Grants the holder permission to view Enterprise Portal Security Center display settings for the specified application.
+
+### kots/app/[:appid]/enterprise-portal/security-settings/update
+
+Grants the holder permission to update Enterprise Portal Security Center display settings for the specified application.
+
 ### kots/app/[:appid]/enterprise-portal/service-accounts/read
 
 Grants the holder permission to view Enterprise Portal service accounts for the specified application.
