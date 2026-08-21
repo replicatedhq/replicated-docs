@@ -65,24 +65,22 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer</a></td>
+    <td><a href="/embedded-cluster/v2/embedded-overview">Replicated Embedded Cluster Installer v2</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic Native Installer</a></td>
-    <td>EOL</td>
-    <td>2023 December 31&#42;</td>
-    <td>2024 December 31&#42;</td>
+    <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer v3</a></td>
+    <td>GA</td>
+    <td>N/A</td>
+    <td>N/A</td>
   </tr>
 </table>
 
-&#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
-
 ## Supported Replicated Installer versions
 
-The following table lists the versions of Replicated KOTS and Replicated kURL that are supported on each Kubernetes version.
+The following table lists the versions of Replicated Embedded Cluster, Replicated KOTS, and Replicated kURL that are supported on each Kubernetes version.
 
 The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
 
