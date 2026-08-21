@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.21-0
+
+Released on August 21, 2026
+
+### Improvements {#improvements-v2026-08-21-0}
+* Standardized inline status messages across Vendor Portal for more consistent styling and accessibility.
 ## v2026.08.20-0
 
 Released on August 20, 2026
