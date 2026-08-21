@@ -4,7 +4,7 @@ This topic describes the app-level Enterprise Portal settings in the **Portal Fe
 
 ## About Portal Features
 
-**Portal Features** is a set of app-level settings that control optional capabilities in the Enterprise Portal. The settings apply to every customer of the application. They are separate from the per-customer settings on a customer's **Enterprise Portal access** tab, which control whether an individual customer has portal access at all.
+**Portal Features** is a set of app-level settings that control optional capabilities in the Enterprise Portal. The settings apply to every customer of the application. They are separate from the per-customer settings on a customer's **Enterprise Portal access** tab. Those control whether an individual customer has portal access at all.
 
 To open the settings, go to **Enterprise Portal > Content** in the Vendor Portal and find the **Portal Features** section. Changes are saved automatically.
 
@@ -32,17 +32,21 @@ Because the two groups use separate permissions, a team member can have access t
 
 When you turn on **Enable Ask AI**, the portal adds an **Ask AI** button to the header of every content page. The button opens an assistant panel on the right side of the page, where the customer can ask questions and receive streamed answers. The setting is disabled by default, and it applies to all of your customers.
 
-The assistant is delivered in the page header only. It is not a navigation item, and there is no supported way to move it, rename it, or hide it from a subset of customers. The **Enable Ask AI** setting is the only control over whether customers see it.
+The assistant appears only in the page header. It is not a navigation item, and there is no supported way to move it, rename it, or hide it from some customers. **Enable Ask AI** is the only control over whether customers see it.
 
 ### What the assistant answers from
 
-Each question is answered from the portal content the asking customer can see, for the version they are viewing, so two customers on different licenses can receive different answers to the same question. Content is excluded based on the `visible_when` conditions on your TOC entries and on page frontmatter, so the gating that you already configured for the portal also applies to the assistant.
+The assistant answers each question from the portal content the asking customer can see, for the version they are viewing. Two customers on different licenses can therefore get different answers to the same question.
 
-Separately, the request instructs the assistant not to mention entitlements, licenses, or feature flags, and not to bring up a fixed set of installation and recovery capabilities that the customer's license does not include. That instruction is a prompt to the model, not an enforced filter, so do not rely on it alone to keep a feature's existence confidential.
+The `visible_when` conditions on your `toc.yaml` entries and page frontmatter decide what the assistant receives. The gating you already configured for the portal applies to the assistant too.
+
+The request also instructs the assistant not to mention entitlements, licenses, or feature flags. It further tells the assistant not to bring up installation or recovery capabilities the customer's license excludes.
+
+Both are prompts to the model, not enforced filters. Do not rely on them alone to keep a feature's existence confidential.
 
 For questions about your application itself, the assistant uses only your portal content. If your content does not cover a topic, it says that it does not have information rather than inferring an answer. It does not draw on outside knowledge about your application, because published information about your application can be out of date or wrong. For dependencies and infrastructure — Kubernetes, the Helm CLI, Linux administration, Docker, cloud providers, networking, TLS, and DNS — it may also use general public knowledge.
 
-Long pages and large content sets are truncated to fit the request, so the assistant can miss a topic that your content does cover.
+Replicated truncates long pages and large content sets to fit the request. The assistant can therefore miss a topic that your content does cover.
 
 When an answer draws on a specific portal page, the assistant is instructed to cite that page as the source.
 
@@ -58,10 +62,10 @@ Replicated processes Ask AI requests with a third-party AI provider. When a cust
 
 Replicated does not send the license document itself. Two things derived from the customer do reach the provider:
 
-- **Values rendered from template variables.** Template variables are resolved before the content is sent, so any app, customer, channel, or release values that your content renders are transmitted as part of it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
+- **Values rendered from template variables.** Replicated resolves template variables before sending the content. Any app, customer, channel, or release value your content renders therefore travels with it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
 - **The capabilities the customer's license excludes.** The request names a fixed set of installation and recovery capabilities the customer is not entitled to, so the assistant does not offer them.
 
-Because enabling Ask AI sends your portal content and your customers' questions to a third-party provider, review the setting against your own agreements with your customers before you turn it on.
+Enabling Ask AI sends your portal content and your customers' questions to a third-party provider. Review the setting against your own agreements with your customers before you turn it on.
 
 ### Disabling Ask AI
 
