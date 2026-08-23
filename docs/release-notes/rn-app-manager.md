@@ -24,6 +24,14 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.131.5
+
+Released on August 23, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### Bug Fixes {#bug-fixes-1-131-5}
+* Fixed a security issue where redactor specs and the \`kotsadm-redact\` backend ConfigMap were stored as ConfigMaps, causing literal redactor values to be collected in support bundles in clear text. Redactor storage has been moved to Kubernetes Secrets.
 ## 1.131.4
 
 Released on August 21, 2026
