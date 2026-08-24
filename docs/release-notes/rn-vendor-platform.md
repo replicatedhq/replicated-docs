@@ -1671,6 +1671,13 @@ Released on September 17, 2024
 ### Bug fixes {#bug-fixes-v2024-09-17-0}
 * Fixes updating the custom domain override on channels in the Vendor Portal.
 
+## V2024.09.13-1
+
+Released on September 13, 2024
+
+### New features {#new-features-v2024-09-13-1}
+* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
+
 ## V2024.09.13-0
 
 Released on September 13, 2024
@@ -1678,20 +1685,12 @@ Released on September 13, 2024
 ### Bug fixes {#bug-fixes-v2024-09-13-0}
 * The correct error status code is now returned when downloading an Embedded Cluster release fails.
 
-
 ## V2024.09.12-3
 
 Released on September 12, 2024
 
 ### New features {#new-features-v2024-09-12-3}
 * Compatibility Matrix: Adds new instance shapes for OKE (Oracle) distribution.
-
-## V2024.09.13-1
-
-Released on September 13, 2024
-
-### New features {#new-features-v2024-09-13-1}
-* Compatibility Matrix: Adds Alpha support for Embedded Cluster multinode.
 
 ## V2024.09.11-2
 
@@ -3129,19 +3128,19 @@ Released on November 6, 2023
 ### Improvements {#improvements-v2023-11-06-1}
 * Improves the way large amounts of custom metrics display on the Instance Details page, in both the Filters dropdown and the Custom Metrics section on the left.
 
-## V2023.11.03-1
-
-Released on November 3, 2023
-
-### Bug fixes {#bug-fixes-v2023-11-03-1}
-* Filters out "read" events in the audit log initial search query.
-
 ## V2023.11.03-2
 
 Released on November 3, 2023
 
 ### Improvements {#improvements-v2023-11-03-2}
 * Redirects user to the most recently managed application upon login.
+
+## V2023.11.03-1
+
+Released on November 3, 2023
+
+### Bug fixes {#bug-fixes-v2023-11-03-1}
+* Filters out "read" events in the audit log initial search query.
 
 ## V2023.10.30-3
 
