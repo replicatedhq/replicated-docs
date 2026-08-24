@@ -48,6 +48,13 @@ Released on August 20, 2026
 
 * Vendor Portal support bundles can now be associated with their customer and instance using embedded instance-report or cluster license metadata when standard SDK collectors are missing.
 
+## v2026.08.20-4
+
+Released on August 20, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-20-4}
+* Fixed an issue where promoting a release without manually setting a version label could incorrectly assign version 0.0.1 instead of the suggested semantic version.
+
 ## v2026.08.20-0
 
 Released on August 20, 2026
