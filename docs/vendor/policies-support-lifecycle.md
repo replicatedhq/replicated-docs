@@ -65,24 +65,22 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer</a></td>
+    <td><a href="/embedded-cluster/v2/embedded-overview">Replicated Embedded Cluster Installer v2</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic Native Installer</a></td>
-    <td>EOL</td>
-    <td>2023 December 31&#42;</td>
-    <td>2024 December 31&#42;</td>
+    <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer v3</a></td>
+    <td>Beta</td>
+    <td>N/A</td>
+    <td>N/A</td>
   </tr>
 </table>
 
-&#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
-
 ## Supported Replicated Installer versions
 
-The following table lists the versions of Replicated KOTS and Replicated kURL that are supported on each Kubernetes version.
+The following table lists the versions of Replicated Embedded Cluster, Replicated KOTS, and Replicated kURL that are supported on each Kubernetes version.
 
 The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
 
@@ -96,9 +94,9 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
   </tr>
   <tr>
     <td>1.36</td>
-    <td>NA</td>
+    <td>3.9.0-beta.1 and later, and 2.19.1 and later</td>
     <td>1.130.5 and later</td>
-    <td>NA</td>
+    <td>v2026.08.09-0 and later</td>
     <td>2027 June 28</td>
   </tr>
   <tr>
@@ -115,13 +113,6 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <td>v2025.10.08-0 and later</td>
     <td>2026 October 27</td>
   </tr>
-  <tr>
-    <td>1.33</td>
-    <td>3.0.0-beta.1 and later, and 2.10.0 and later</td>
-    <td>1.124.17 and later</td>
-    <td>v2025.08.26-0 and later</td>
-    <td>2026 June 28</td>
-  </tr>
 </table>
 
 Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS, kURL or Embedded Cluster, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
@@ -129,4 +120,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 June 23.
+Last modified 2026 August 21.

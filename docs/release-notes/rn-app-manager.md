@@ -24,11 +24,29 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.131.5
+
+Released on August 23, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### Bug Fixes {#bug-fixes-1-131-5}
+* Fixed a security issue where redactor specs and the \`kotsadm-redact\` backend ConfigMap were stored as ConfigMaps, causing literal redactor values to be collected in support bundles in clear text. Redactor storage has been moved to Kubernetes Secrets.
+## 1.131.4
+
+Released on August 21, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Improvements {#improvements-1-131-4}
+* Stores rendered support bundle sub-specs in Secrets instead of ConfigMaps to prevent the sub-specs from being collected by the default support bundle collector. KOTS automatically removes legacy support bundle sub-spec ConfigMaps.
+* Resolves security vulnerabilities in dependencies shared with Embedded Cluster.
+
 ## 1.131.3
 
 Released on August 18, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-3}
 * Resolves GO-2026-6179 and GO-2026-6180 CVEs.
@@ -40,20 +58,11 @@ Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
 
 Released on August 13, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-2}
 * Resolves following High level CVEs: CVE-2026-27145, CVE-2026-39822, CVE-2026-42504, GHSA-5p4m-2wfm-xmqj, GHSA-2v37-7h3g-55p8.
 * Resolves following Medium level CVEs: CVE-2026-42505, CVE-2026-42507, GHSA-55q2-fjhq-7xh7.
-
-## 1.131.1
-
-Released on August 6, 2026
-
-### Improvements {#improvements-1-131-1}
-* Drop troubleshoot.sh/v1beta3 docs from release files
-* 
-
 
 ## 1.131.0
 

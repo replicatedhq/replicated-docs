@@ -10,6 +10,8 @@ The Security Center is Beta. The features and functionality described on this pa
 
 The Security Center allows you to provide security information to customers through Enterprise Portal (Classic) or Enterprise Portal (New). The configuration steps and customer experience differ between the two portals.
 
+Security Center access is disabled by default. You can enable access for individual customers or for all current and future customers. The app-level setting applies to both portal versions and overrides individual customer settings. Individual settings remain saved and take effect when you disable the app-level setting.
+
 ## Enterprise Portal (Classic)
 
 The **Security Center** tab in Enterprise Portal (Classic) displays security information for each available release version. Customers can:
@@ -34,10 +36,12 @@ To enable the **Security Center** tab for one customer:
 1. In the Vendor Portal, go to **Customers > [Customer] > Enterprise Portal access**.
 1. Enable **Enable Security Center for this customer**.
 
-To enable the **Security Center** tab for all customers using Enterprise Portal (Classic):
+To enable Security Center for all customers across Enterprise Portal (Classic) and Enterprise Portal (New):
 
 1. In the Vendor Portal, go to **Enterprise Portal > Portal Settings**.
 1. Under **Optional Features**, enable **Enable Security Center**.
+
+This setting is the same app-level setting as **Enable Security Center for all customers** under **Enterprise Portal > Content > Portal Features**.
 
 ## Enterprise Portal (New) (Alpha)
 
@@ -59,17 +63,26 @@ To configure how Security Center reports display in Enterprise Portal (New):
    * When enabled, the CVE Report card displays **Download full CVE report**. Customers can use this button to download the complete raw Grype scan JSON for the selected release.
    * When disabled, the button is not displayed. Customers can still view the CVE report when they have access to the Security Center.
 
-Changes to the Portal Features settings are saved automatically.
+Changes to the Portal Features settings are saved automatically. For an overview of every setting in the **Portal Features** section, including **Enable Ask AI**, see [Configure Portal Features](/vendor/enterprise-portal-v2-portal-features).
 
 The downloaded JSON contains the same raw Grype scan data that is available to vendors through the [`securebuild/scan-raw` Vendor API endpoint](/vendor/security-center-retrieve-scan-results#retrieve-the-raw-scan-results). The customer-facing download is controlled by this setting and is distinct from both Vendor API access and the SPDX SBOM download.
 
-### Enable Security Center for a customer
+### Enable Security Center access
 
-The Portal Features settings control how Security Center reports display; they do not grant Security Center access to individual customers. To grant access:
+To enable Security Center for all current and future customers:
+
+1. In the Vendor Portal, go to **Enterprise Portal > Content**.
+1. Under **Portal Features**, enable **Enable Security Center for all customers**.
+
+When this setting is enabled, each customer's **Enable Security Center for this customer** setting displays as enabled and is unavailable. The saved individual setting takes effect when you disable the app-level setting.
+
+To enable Security Center for one customer when the app-level setting is disabled:
 
 1. In the Vendor Portal, go to **Customers > [Customer] > Enterprise Portal access**.
 1. If **Portal Version** is available, set it to **Use new Enterprise Portal for this customer**.
 1. Enable **Enable Security Center for this customer**.
+
+These access settings do not add a Security page to the content repository. Customers can open Security Center only when the Security page is included in `toc.yaml`.
 
 ### Add a Security page to the content repository
 
