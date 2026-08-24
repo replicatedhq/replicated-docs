@@ -12,6 +12,29 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.12.0-beta.1
+
+Released on August 21, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.12.0-beta.1+k8s-1.36</td>
+    <td id="center">3.12.0-beta.1+k8s-1.35</td>
+    <td id="center">3.12.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
+  </tr>
+</table>
+
+### Bug fixes {#bug-fixes-3-12-0}
+
+* Tightens the permissions on the license file, which is now written as `0600` instead of `0644`. Upgrading updates the permissions on existing installations.
+
 ## 3.11.1-beta.1
 
 Released on August 11, 2026
