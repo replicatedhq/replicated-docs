@@ -52,7 +52,7 @@ The panel displays the disclaimer "Responses are generated using AI and may cont
 
 ### Data sent to the AI provider {#ask-ai-data}
 
-Replicated processes Ask AI requests with [Groq](https://groq.com), using the `openai/gpt-oss-120b` model. When a customer sends a question, the following is transmitted to Groq:
+When the Ask AI capability is enabled, Replicated processes any Ask AI requests with [Groq](https://groq.com), using the `openai/gpt-oss-120b` model. When a customer sends a question, the following is transmitted to Groq:
 
 - The question text
 - Up to the last 10 messages of the current conversation, for context on follow-up questions. The panel sends the whole conversation to Replicated, which forwards only the most recent messages to the provider
