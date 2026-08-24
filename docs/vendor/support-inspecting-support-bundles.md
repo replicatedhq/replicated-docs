@@ -56,9 +56,9 @@ Deleting a support bundle is permanent and cannot be undone. If the bundle was s
 
 1. In the Vendor Portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page.
 
-1. Find the support bundle that you want to delete, and click the delete (trash) icon for that bundle.
+1. In the row for the support bundle that you want to delete, click the options (three-dot) menu, then click **Delete**.
 
-1. Confirm the deletion when prompted.
+1. In the **Delete bundle** dialog, click **Delete bundle** to confirm.
 
 ### Delete with the Vendor API
 
