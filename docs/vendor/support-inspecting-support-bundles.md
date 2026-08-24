@@ -41,3 +41,25 @@ To inspect a support bundle:
    ![Submit a Support Request](/images/support.png)
 
    [View larger version of this image](/images/support.png)
+
+## Delete a support bundle
+
+You can delete a support bundle that has been uploaded to the Vendor Portal. Deleting a bundle permanently removes it and its analysis from the Vendor Portal.
+
+Delete a bundle when it contains sensitive data that should not be retained, such as customer credentials, secrets, or other confidential information that was captured in collected logs or files.
+
+:::note
+Deleting a support bundle is permanent and cannot be undone. If the bundle was shared with Replicated as part of a support issue, deleting it removes your uploaded copy from the Vendor Portal.
+:::
+
+### Delete from the Vendor Portal
+
+1. In the Vendor Portal, go to the [**Troubleshoot**](https://vendor.replicated.com/troubleshoot) page.
+
+1. In the row for the support bundle that you want to delete, click the options (three-dot) menu, then click **Delete**.
+
+1. In the **Delete bundle** dialog, click **Delete bundle** to confirm.
+
+### Delete with the Vendor API
+
+To delete a bundle programmatically, such as for bulk cleanup or as part of an automated data-retention workflow, use the [deleteSupportBundle](https://replicated-vendor-api.readme.io/reference/deletesupportbundle) endpoint. This requires a Vendor API token with the `team/support-issues/write` RBAC policy and the ID of the bundle you want to delete. For more information about API tokens, see [Using Vendor API v3](/reference/vendor-api-using).
