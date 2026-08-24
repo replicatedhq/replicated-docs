@@ -94,6 +94,10 @@ To add collectors and analyzers:
     - [copy](https://troubleshoot.sh/docs/collect/copy/) and [copyFromHost](https://troubleshoot.sh/docs/collect/copy-from-host/)
     - [http](https://troubleshoot.sh/docs/collect/http/)
 
+    :::important
+    Do not write credentials into a collector spec as literal values, including values supplied by Helm template functions or KOTS config options. The rendered spec is deployed to the cluster, where a support bundle can collect it in plain text. For the recommended approach, see [Run a pod with a credential from a Secret](/vendor/support-bundle-examples#run-pod-credentials) in _Example support bundle specs_.
+    :::
+
 1. Update `spec.analyzers` with additional analyzers based on your application needs. For the list of all available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section in the Troubleshoot documentation.
 
     The following are some recommended analyzers:

@@ -7,6 +7,7 @@ import LogsSelectorsSecret from "../partials/support-bundles/_logs-selectors-sec
 import LogsLimitsSecret from "../partials/support-bundles/_logs-limits-secret.mdx"
 import RedisMysqlSecret from "../partials/support-bundles/_redis-mysql-secret.mdx"
 import RunPodsSecret from "../partials/support-bundles/_run-pods-secret.mdx"
+import RunPodsCredentialsSecret from "../partials/support-bundles/_run-pods-credentials-secret.mdx"
 
 # Example support bundle specs
 
@@ -93,3 +94,21 @@ The example below uses the `textAnalyze` analyzer to check that a command succes
 For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-pod/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
 
 <RunPodsSecret/>
+
+## Run a pod with a credential from a Secret {#run-pod-credentials}
+
+If a collector needs a credential, such as a database password, use a `runPod` collector and pass the credential to the Pod with `env.valueFrom.secretKeyRef`. The spec then contains only the name of the Secret and the key. The kubelet resolves the credential when the Pod starts, so the credential never appears in the spec. The service account that generates the support bundle also does not need permission to read the Secret.
+
+Do not write credentials into a collector spec as literal values, including values supplied by Helm template functions or KOTS config options. Template functions resolve to the live credential when the spec is rendered and deployed to the cluster. A support bundle can then collect the deployed spec in plain text, and the built-in redactors do not reliably mask these values.
+
+The following example uses a `runPod` collector to test a PostgreSQL connection. The `PGPASSWORD` environment variable is read from the `my-app-postgres` Secret, and the `textAnalyze` analyzer checks the output that the Pod writes to `/postgres-connection.log` in the bundle. The `namespace` field defaults to `default`, so set it to the namespace where the Secret exists.
+
+:::important
+The `runPod` collector saves everything that the Pod writes to stdout into the support bundle. Ensure that the command you run does not print the credential, such as by echoing the environment variable or running a client with verbose or debug logging enabled.
+:::
+
+<RunPodsCredentialsSecret/>
+
+This pattern applies to support bundles only. Preflight checks run before the release is deployed, so any Secret that your application creates does not exist yet when preflights run. For more information, see [Define preflight checks](/vendor/preflight-defining).
+
+For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-pod/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
