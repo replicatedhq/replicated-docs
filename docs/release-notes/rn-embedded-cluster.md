@@ -12,6 +12,63 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.6
+
+Released on August 25, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.6+k8s-1.36</td>
+    <td id="center">2.19.6+k8s-1.35</td>
+    <td id="center">2.19.6+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.131.5</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-6}
+* Updates Troubleshoot to v0.133.0.
+* Updates the SeaweedFS 4.44.0 container images.
+* Updates the OpenEBS 4.5.1 container images.
+* Updates the Velero 1.18.2 container images.
+
+## 2.19.5
+
+Released on August 24, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.5+k8s-1.36</td>
+    <td id="center">2.19.5+k8s-1.35</td>
+    <td id="center">2.19.5+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.131.5</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-5}
+* Updates KOTS to 1.131.5.
+* Updates OpenEBS to 4.5.1.
+* Updates SeaweedFS to 4.44.0.
+
 ## 2.19.4
 
 Released on August 10, 2026
