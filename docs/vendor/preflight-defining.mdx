@@ -76,7 +76,7 @@ The `mysql`, `postgres`, `mssql`, and `redis` collectors accept credentials only
 
 To check a credentialed resource without exposing the credential, use a `runPod` collector and pass the credential to the Pod with `env.valueFrom.secretKeyRef`. The kubelet resolves the credential when the Pod starts, so the credential never appears in the spec.
 
-Replicated recommends that you design these preflight checks around a pre-existing Secret. The Secret must already exist in the cluster when preflight checks run, so add a values field such as `existingSecret` that the customer sets to the name of a Secret that they create before they install your application. Document the keys that your preflight checks expect, such as `password`.
+Replicated recommends that you design these preflight checks around a pre-existing Secret. The Secret must already exist in the cluster when preflight checks run. Reference the Secret by name in the spec, and document the name and the keys that your preflight checks expect, such as `password`.
 
 A Secret created by your application's own chart does not work, because application charts install after preflight checks run. This applies even when the Secret is annotated with `helm.sh/hook: pre-install`, because Helm hooks run during the installation of the chart that defines them.
 
@@ -84,7 +84,7 @@ For Embedded Cluster installations, you can also create the Secret in a Helm cha
 
 If the credential is not available until deploy time, do not check it in a preflight check. Validate it in your application instead, and use a support bundle to troubleshoot failures. For more information, see [Pass a credential to the pod](/vendor/support-bundle-examples#run-pod-credentials) in _Example support bundle specs_.
 
-The following example checks a PostgreSQL connection using a password from a pre-existing Secret. The customer supplies the name of the Secret in `.Values.global.externalDatabase.existingSecret`.
+The following example checks a PostgreSQL connection using a password from a pre-existing Secret named `my-app-postgres`.
 
 :::note
 The `runPod` collector requires `pods/create` RBAC. The collector saves everything that the Pod writes to stdout into the preflight output, so make sure that the command does not print the credential.
