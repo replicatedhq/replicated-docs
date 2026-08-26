@@ -80,9 +80,11 @@ Replicated recommends that you design these preflight checks around a pre-existi
 
 A Secret created by your application's own chart does not work, because application charts install after preflight checks run. This applies even when the Secret is annotated with `helm.sh/hook: pre-install`, because Helm hooks run during the installation of the chart that defines them.
 
-For Embedded Cluster installations, you can also create the Secret in a Helm chart extension, because extensions install before application preflight checks. For more information, see [Deployment pipeline](/embedded-cluster/v3/embedded-overview#deployment-pipeline).
+For Embedded Cluster v3 installations, you can create the Secret in a Helm chart extension. Extensions install before application preflight checks, and the `values` field of a Helm extension supports Replicated template functions. This means that you can template a password that the user provides on the config screen into the value of the Secret. For more information, see [Deployment pipeline](/embedded-cluster/v3/embedded-overview#deployment-pipeline) and [extensions](/embedded-cluster/v3/embedded-config#extensions).
 
-If the credential is not available until deploy time, do not check it in a preflight check. Validate it in your application instead, and use a support bundle to troubleshoot failures. For more information, see [Pass a credential to the pod](/vendor/support-bundle-examples#run-pod-credentials) in _Example support bundle specs_.
+Embedded Cluster v2 does not support template functions in the Embedded Cluster Config, so you cannot pass a user-provided password to a Helm extension. For Embedded Cluster v2, do not check the credential in a preflight check. Use a support bundle after the installation completes instead. For more information, see [Pass a credential to the pod](/vendor/support-bundle-examples#run-pod-credentials) in _Example support bundle specs_.
+
+More generally, if the credential is not available before preflight checks run, validate it in your application instead of in a preflight check.
 
 The following example checks a PostgreSQL connection using a password from a pre-existing Secret named `my-app-postgres`.
 
