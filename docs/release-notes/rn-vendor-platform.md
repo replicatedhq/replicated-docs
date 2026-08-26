@@ -15,6 +15,7 @@ Released on August 24, 2026
 
 ### Improvements {#improvements-v2026-08-24-5}
 * Remove discontinued Chartsmith account linking from the Vendor Portal.
+
 ## v2026.08.21-8
 
 Released on August 21, 2026
