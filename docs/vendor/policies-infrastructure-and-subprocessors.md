@@ -5,17 +5,17 @@ This lists describes the infrastructure environment, subprocessors and other ent
 
 Prior to engaging any third party, Replicated performs diligence to evaluate their privacy, security and confidentiality practices. Whenever possible, Replicated uses encryption for data at rest and in motion so that all information is not available to these third parties. 
 
-Replicated does not engage in the business of selling or trading personal information. Any personally identifible information Replicated might possibly hold is data that a customer has provided to us. 
+Replicated does not engage in the business of selling or trading personal information. Any personally identifiable information Replicated might possibly hold is data that a customer has provided to us. 
 
-The fields that Replicated may posess as identifiable to a physical person may include:
+The fields that Replicated may possess as identifiable to a physical person may include:
 - Name
 - Email
 - Phone Number
 - Job Title
 - Business Address
-- Github Username
+- GitHub Username
 
-Note: This does not imply that all these fields are collected for each person. It also does not mean all these datapoints are used with each declared provider.
+Note: This does not imply that all these fields are collected for each person. It also does not mean all these data points are used with each declared provider.
 
 
 ## Replicated infrastructure providers
@@ -31,15 +31,16 @@ Replicated might use the following entities to provide infrastructure that helps
 | Datadog | Performance monitoring | United States |
 | DBT Labs | Data transformation or migration | United States |
 | FiveTran | Data transformation or migration  | United States |
-| Github | Customer support  | United States | Replicated's customers may engage with our customer support team using Github issues in a private repo.
+| GitHub | Customer support  | United States | Replicated's customers may engage with our customer support team using GitHub issues in a private repo.
 | Omni Analytics | Product usage metrics  | United States |
 | Hex | Data transformation or migration | United States |
 | Postmark | Transactional emails from Vendor Portal. Marketing related communications. | United States |
-| Attio |Customer and sales relationship management| United States | 
+| Attio | Customer and sales relationship management | United States |
 | Snowflake | Usage data analysis and transformation   | United States |
-| Google Workspace | Email, calednar, docs/drive   | United States |
+| Google Workspace | Email, calendar, docs/drive   | United States |
 | Slack | Customer and internal communication   | United States |
 | OpenAI | Platform level services and LLMs   | United States |
 | FireworksAI | Platform level services and LLMs   | United States |
+| Groq | Platform level services and LLMs | United States | Powers the Ask AI assistant in the Enterprise Portal. Receives end-customer questions and the portal content that the asking customer is entitled to see, including any customer name, email address, ID, or channel name that template variables render into that content.
 
-Last modified July 14, 2026
+Last modified August 21, 2026
