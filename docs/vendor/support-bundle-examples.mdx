@@ -110,4 +110,4 @@ The `runPod` collector saves everything that the Pod writes to stdout into the s
 
 <RunPodsCredentialsSecret/>
 
-This pattern does not apply to preflight checks, which run before the application is deployed. For more information, see [Define preflight checks](/vendor/preflight-defining).
+You can use the same pattern in preflight checks, but the Secret must already exist in the cluster when the preflight checks run. For more information, see [Use a credential in a preflight check](/vendor/preflight-defining#credentials) in _Define preflight checks_.
