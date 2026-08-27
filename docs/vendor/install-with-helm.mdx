@@ -69,7 +69,11 @@ To install a Helm chart:
      :::note
      You can safely ignore `WARNING: Using --password via the CLI is insecure.` The warning appears because the password is stored in bash history.
 
-     To avoid the warning, click **(show advanced)** to use a command that prompts for the password. The hostname shown in the dialog can be different for older accounts; use the displayed command.
+     To avoid the warning, click **(show advanced)** to use a command that prompts for the password.
+     :::
+
+     :::note
+     Newer accounts log in to `proxy.replicated.com` and pull from `proxy.replicated.com/registry/...`, routing all image and chart pulls through one registry. Older accounts might instead see `registry.replicated.com` in the dialog. Both work, so run the commands shown. To switch to the single-registry commands, contact your Replicated account representative.
      :::
 
 1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
