@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.26-9
+
+Released on August 26, 2026
+
+### Improvements {#improvements-v2026-08-26-9}
+* Accessibility: icon-only controls now expose descriptive names to screen readers, support keyboard interaction where applicable, and decorative icons are hidden from assistive technology.
+
 ## v2026.08.26-6
 
 Released on August 26, 2026
