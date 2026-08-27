@@ -16,6 +16,13 @@ Released on August 26, 2026
 ### Bug Fixes {#bug-fixes-v2026-08-26-6}
 * Enterprise Portal now shows a clear release-unavailable message when update instructions cannot be generated because an instance's current release was demoted from its channel, instead of opening a duplicate install-options modal.
 
+## v2026.08.25-6
+
+Released on August 25, 2026
+
+### Improvements {#improvements-v2026-08-25-6}
+* Improved screen reader support for application icon previews and two-factor authentication setup.
+
 ## v2026.08.25-5
 
 Released on August 25, 2026
