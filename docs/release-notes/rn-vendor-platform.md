@@ -16,6 +16,13 @@ Released on August 24, 2026
 ### Improvements {#improvements-v2026-08-24-5}
 * Remove discontinued Chartsmith account linking from the Vendor Portal.
 
+## v2026.08.24-4
+
+Released on August 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-24-4}
+* Fixed Release Security overview links so vulnerability, container image, and customer details open the correct Security Center tabs.
+
 ## v2026.08.24-1
 
 Released on August 24, 2026
