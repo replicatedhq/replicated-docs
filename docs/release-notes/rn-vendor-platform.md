@@ -18,6 +18,49 @@ Released on August 25, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-25-3}
 * Fixed the release editor validation panel so warnings are surfaced automatically and the panel can always be reopened.
+
+## v2026.08.25-1
+
+Released on August 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-25-1}
+* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
+* Improved notification webhook validation to prevent requests to private and special-purpose network destinations.
+
+## v2026.08.25-0
+
+Released on August 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-25-0}
+* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
+
+## v2026.08.24-9
+
+Released on August 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-24-9}
+* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
+
+## v2026.08.24-5
+
+Released on August 24, 2026
+
+### Improvements {#improvements-v2026-08-24-5}
+* Remove discontinued Chartsmith account linking from the Vendor Portal.
+
+## v2026.08.24-4
+
+Released on August 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-24-4}
+* Fixed Release Security overview links so vulnerability, container image, and customer details open the correct Security Center tabs.
+
+## v2026.08.24-1
+
+Released on August 24, 2026
+
+### Improvements {#improvements-v2026-08-24-1}
+* Air gap instance record modals now accept a custom Kubernetes version instead of a hardcoded dropdown that goes stale each release.
 ## v2026.08.21-8
 
 Released on August 21, 2026
