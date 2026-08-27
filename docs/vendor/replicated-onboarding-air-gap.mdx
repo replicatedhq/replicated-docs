@@ -123,7 +123,7 @@ To support air gap installations with Embedded Cluster v2:
                repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
    ```
 
-1. Configure the HelmChart `optionalValues` key to conditionally rewrite the Replicated SDK image to the user's local registry. The default location for the image used by the Replicated SDK Helm chart is `registry.replicated.com/library/replicated-sdk-image`.
+1. Configure the HelmChart `optionalValues` key to conditionally rewrite the Replicated SDK image to the user's local registry. The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`.
 
     ```yaml
     # HelmChart custom resource

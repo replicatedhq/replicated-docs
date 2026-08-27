@@ -57,19 +57,19 @@ To install a Helm chart:
      Helm charts marked with the `kots.io/installer-only: "true"` annotation will not appear in the Helm install instructions. These charts are deployed only when using Replicated installers (Embedded Cluster, KOTS, and kURL). For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
      :::
 
-1. In the **Helm install instructions** dialog, run the first command to log in to the Replicated registry:
+1. In the **Helm install instructions** dialog, run the first command to log in:
 
      ```bash
-     helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
+     helm registry login proxy.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
      ```
      Where:
      * `EMAIL_ADDRESS` is the customer's email address
      * `LICENSE_ID` is the ID of the customer's license
 
      :::note
-     You can safely ignore the following warning message: `WARNING: Using --password via the CLI is insecure.` This message is displayed because using the `--password` flag stores the password in bash history. This login method is not insecure.
+     You can safely ignore `WARNING: Using --password via the CLI is insecure.` The warning appears because the password is stored in bash history.
 
-     Alternatively, to avoid the warning message, you can click **(show advanced)** in the **Helm install instructions** dialog to display a login command that excludes the `--password` flag. With the advanced login command, you are prompted for the password after running the command.  
+     To avoid the warning, click **(show advanced)** to use a command that prompts for the password. The hostname shown in the dialog can be different for older accounts; use the displayed command.
      :::
 
 1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
@@ -77,7 +77,7 @@ To install a Helm chart:
 1. Run the fourth command to install using Helm:
 
      ```bash
-     helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL/CHART_NAME
+     helm install RELEASE_NAME oci://proxy.replicated.com/registry/APP_SLUG/CHANNEL/CHART_NAME
      ```
      Where:
      * `RELEASE_NAME` is the name of the Helm release.
