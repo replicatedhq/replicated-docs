@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.25-6
+
+Released on August 25, 2026
+
+### Improvements {#improvements-v2026-08-25-6}
+* Improved screen reader support for application icon previews and two-factor authentication setup.
+
 ## v2026.08.25-5
 
 Released on August 25, 2026
