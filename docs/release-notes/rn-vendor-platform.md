@@ -15,6 +15,7 @@ Released on August 26, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-26-6}
 * Enterprise Portal now shows a clear release-unavailable message when update instructions cannot be generated because an instance's current release was demoted from its channel, instead of opening a duplicate install-options modal.
+
 ## v2026.08.21-8
 
 Released on August 21, 2026
