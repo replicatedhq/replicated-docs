@@ -20,6 +20,12 @@ The following diagram demonstrates how updates are performed with Embedded Clust
 
 As shown in the diagram above, users check for available updates from the KOTS Admin Console. When deploying the new version, both the application and the cluster infrastructure are updated as needed.   
 
+:::note
+Embedded Cluster updates the application and the cluster infrastructure, including Kubernetes and KOTS, together. Updates must be performed using one of the methods described on this page: the Admin Console, the Enterprise Portal guided upgrade, or an air gap upload.
+
+The KOTS CLI is not a supported way to update an Embedded Cluster installation. In particular, `kots upstream upgrade` redeploys the application only and has no awareness of Embedded Cluster infrastructure, so cluster- and KOTS-level changes included in a release are not applied. Embedded Cluster v2 does not support headless or automated updates. Headless updates from the command line are available in [Embedded Cluster v3](/embedded-cluster/updating-embedded#upgrade-using-the-cli-headless).
+:::
+
 ## Update in online clusters
 
 ### Use the Enterprise Portal for a guided upgrade
