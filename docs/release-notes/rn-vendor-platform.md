@@ -19,6 +19,13 @@ Released on August 25, 2026
 ### Bug Fixes {#bug-fixes-v2026-08-25-3}
 * Fixed the release editor validation panel so warnings are surfaced automatically and the panel can always be reopened.
 
+## v2026.08.25-2
+
+Released on August 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-25-2}
+* Correctly apply CMX EKS extended-support pricing to Kubernetes 1.33 and stop applying it to Kubernetes 1.30.
+
 ## v2026.08.25-1
 
 Released on August 25, 2026
@@ -61,6 +68,7 @@ Released on August 24, 2026
 
 ### Improvements {#improvements-v2026-08-24-1}
 * Air gap instance record modals now accept a custom Kubernetes version instead of a hardcoded dropdown that goes stale each release.
+
 ## v2026.08.21-8
 
 Released on August 21, 2026
