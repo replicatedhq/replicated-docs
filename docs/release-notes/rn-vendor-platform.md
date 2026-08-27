@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.24-9
+
+Released on August 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-24-9}
+* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
+
 ## v2026.08.24-5
 
 Released on August 24, 2026
