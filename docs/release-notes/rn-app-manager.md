@@ -24,6 +24,15 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.131.6
+
+Released on August 24, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### Bug Fixes {#bug-fixes-1-131-6}
+* Fixes an issue where the NFS and Host Path snapshot destinations were unavailable in kURL clusters if the MinIO add-on image came from a repository other than minio/minio.
+
 ## 1.131.5
 
 Released on August 23, 2026
