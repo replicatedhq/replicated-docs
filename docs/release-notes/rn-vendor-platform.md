@@ -9,18 +9,27 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.24-5
+
+Released on August 24, 2026
+
+### Improvements {#improvements-v2026-08-24-5}
+* Remove discontinued Chartsmith account linking from the Vendor Portal.
+
 ## v2026.08.24-4
 
 Released on August 24, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-24-4}
 * Fixed Release Security overview links so vulnerability, container image, and customer details open the correct Security Center tabs.
+
 ## v2026.08.24-1
 
 Released on August 24, 2026
 
 ### Improvements {#improvements-v2026-08-24-1}
 * Air gap instance record modals now accept a custom Kubernetes version instead of a hardcoded dropdown that goes stale each release.
+
 ## v2026.08.21-8
 
 Released on August 21, 2026
