@@ -15,6 +15,7 @@ Released on August 26, 2026
 
 ### Improvements {#improvements-v2026-08-26-9}
 * Accessibility: icon-only controls now expose descriptive names to screen readers, support keyboard interaction where applicable, and decorative icons are hidden from assistive technology.
+
 ## v2026.08.21-8
 
 Released on August 21, 2026
