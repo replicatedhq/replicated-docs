@@ -820,7 +820,7 @@ Released on August 1, 2025
 
 ### Improvements {#improvements-2-8-0}
 * Adds host preflight checks to ensure nodes have sufficient storage to perform airgap installations when installing a new node and when joining nodes to an existing cluster.
-* Enables Embedded Cluster to install in SELinux environments by setting appropriate SELinux file contexts on the bin directory and restoring SELinux contexts for the data directory after creation.
+* Enables Embedded Cluster to install in SELinux environments, including SELinux in enforcing mode, by setting appropriate SELinux file contexts on the bin directory and restoring SELinux contexts for the data directory after creation. This removes the preflight added in 2.1.0 that previously required that SELinux not be in enforcing mode.
 
 ## 2.7.4
 
@@ -1223,6 +1223,10 @@ Released on February 14, 2025
 * Adds a preflight check to ensure the `overlay`, `ip_tables`, `br_netfilter`, and `nf_conntrack` kernel modules were configured correctly.
 * Adds a preflight check to ensure a node's IP address is not within the Pod and Service CIDR ranges that will be used by Kubernetes. If a conflict exists, a different CIDR block can be specified with `--cidr` or a different network interface can be specified with `--network-interface`.
 * Adds a preflight check to ensure that SELinux is not running in enforcing mode.
+
+:::note
+This preflight requirement was removed in Embedded Cluster 2.8.0, which added support for installing in SELinux environments, including enforcing mode. See the [2.8.0 release notes](#improvements-2-8-0).
+:::
 
 ### Bug fixes {#bug-fixes-2-1-0}
 * Fixes an issue when installing on Amazon Linux 2 and other older Linux distributions that causes the installation to timeout waiting for storage to be ready.
