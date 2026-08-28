@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.27-3
+
+Released on August 27, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-27-3}
+* Fixed Enterprise Portal docs exports, search snippets, and Ask AI context to use theme.yaml branding fields consistently.
+
 ## v2026.08.27-2
 
 Released on August 27, 2026
