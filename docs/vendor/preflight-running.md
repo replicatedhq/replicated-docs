@@ -68,10 +68,10 @@ To run preflights checks from a release before installation:
 
 1. Run the commands provided in the dialog:
 
-    1. Run the first command to log in to the Replicated registry:
+    1. Run the first command to log in:
 
         ```
-        helm registry login registry.replicated.com --username USERNAME --password PASSWORD
+        helm registry login proxy.replicated.com --username USERNAME --password PASSWORD
         ```
 
         Where:
@@ -80,7 +80,7 @@ To run preflights checks from a release before installation:
 
         **Example:**
         ```
-        helm registry login registry.replicated.com --username example@companyname.com password 1234abcd
+        helm registry login proxy.replicated.com --username example@companyname.com password 1234abcd
         ```
 
     1. Run the second command to install the kubectl plugin:
@@ -98,7 +98,7 @@ To run preflights checks from a release before installation:
     1. Run the third command to run preflight checks:
 
         ```
-        helm template oci://registry.replicated.com/APP_SLUG/CHANNEL/CHART | kubectl preflight -
+        helm template oci://proxy.replicated.com/registry/APP_SLUG/CHANNEL/CHART | kubectl preflight -
         ```
 
         Where:
@@ -109,10 +109,10 @@ To run preflights checks from a release before installation:
         **Examples:**
 
         ```
-        helm template oci://registry.replicated.com/gitea-app/unstable/gitea | kubectl preflight -
+        helm template oci://proxy.replicated.com/registry/gitea-app/unstable/gitea | kubectl preflight -
         ```
         ```
-        helm template oci://registry.replicated.com/gitea-app/unstable/gitea --values values.yaml | kubectl preflight -
+        helm template oci://proxy.replicated.com/registry/gitea-app/unstable/gitea --values values.yaml | kubectl preflight -
         ```
 
         For all available options with this command, see [Run Preflight Checks using the CLI](https://troubleshoot.sh/docs/preflight/cli-usage/#options) in the open source Troubleshoot documentation.

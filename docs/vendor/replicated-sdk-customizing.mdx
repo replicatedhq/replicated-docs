@@ -493,7 +493,7 @@ To install the SDK with custom RBAC:
    **Example**:
 
    ```
-   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
+   helm install wordpress oci://proxy.replicated.com/registry/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
    ```
 
    For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).  
@@ -510,7 +510,7 @@ To install the SDK with a custom ClusterRole:
    **Example**:
 
    ```
-   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
+   helm install wordpress oci://proxy.replicated.com/registry/my-app/beta/wordpress --set replicated.clusterRole=mycustomclusterrole
    ```
 
    For more information about installing with Helm, see [Install with Helm](/vendor/install-with-helm).

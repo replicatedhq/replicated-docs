@@ -5,16 +5,20 @@
   </tr>
   <tr>
       <td>`replicated.app` &#42;</td>
-      <td><p>Upstream application YAML and metadata is pulled from `replicated.app`. The current running version of the application (if any), as well as a license ID and application ID to authenticate, are all sent to `replicated.app`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `replicated.app`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65) in GitHub.</p></td>
+      <td><p>Required when the Replicated SDK is included. Application metadata is pulled from `replicated.app`, and the application sends its version, license ID, and application ID. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For IP addresses, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L60-L65).</p></td>
   </tr>
   <tr>
       <td>`registry.replicated.com`</td>
-      <td><p>Some applications host private images in the Replicated registry at this domain. The on-prem docker client uses a license ID to authenticate to `registry.replicated.com`. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `registry.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25) in GitHub.</p></td>
+      <td><p>Required only for accounts not yet using the single-registry model. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For IP addresses, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L20-L25).</p></td>
   </tr>
   <tr>
       <td>`proxy.replicated.com`</td>
-      <td><p>Private Docker images are proxied through `proxy.replicated.com`. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For the range of IP addresses for `proxy.replicated.com`, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57) in GitHub.</p></td>
+      <td><p>Private images and Helm charts are pulled through the proxy registry. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.</p><p>For IP addresses, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json#L52-L57).</p></td>
   </tr>
 </table>
 
 &#42; Required only if the [Replicated SDK](/vendor/replicated-sdk-overview) is included as a dependency of the application Helm chart.
+
+:::note
+Newer accounts route all image and chart pulls through `proxy.replicated.com` and do not need to allow `registry.replicated.com`. Older accounts must allow both. To move to the single-registry setup and remove `registry.replicated.com` from your allowlist, contact your Replicated account representative.
+:::
