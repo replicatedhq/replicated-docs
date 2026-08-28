@@ -15,6 +15,21 @@ Released on August 27, 2026
 
 ### Improvements {#improvements-v2026-08-27-4}
 * Improved Enterprise Portal v2 settings copy for clearer labels, descriptions, links, and loading states.
+
+## v2026.08.27-3
+
+Released on August 27, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-27-3}
+* Fixed Enterprise Portal docs exports, search snippets, and Ask AI context to use theme.yaml branding fields consistently.
+
+## v2026.08.27-2
+
+Released on August 27, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-27-2}
+* Fixes Enterprise Portal preview loading for content repositories checked out on git branches whose names contain slashes.
+
 ## v2026.08.26-9
 
 Released on August 26, 2026
