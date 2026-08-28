@@ -105,10 +105,10 @@ The `toc.yaml` file at the root of your repo defines the sidebar navigation. Eac
 
 Every item also supports `icon` and `visible_when` (see [Visibility](#visibility) below).
 
-The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. This means you can hide a page by simply omitting it from `toc.yaml`.
+The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. Omitting a page from `toc.yaml` hides it entirely. To keep the page in the repo and listed in the TOC without publishing it, set `hidden: true` in the page frontmatter. See [Hide unpublished pages](#hide-unpublished-pages).
 
 :::note
-The `overrides.home` page bypasses the TOC allowlist and remains accessible even if it is not listed in `toc.yaml`. If you need to hide the home page, use `visible_when` in its frontmatter instead.
+The `overrides.home` page bypasses the TOC allowlist and remains accessible even if it is not listed in `toc.yaml`. To hide the home landing page, set `hidden: true` or `visible_when` in its frontmatter. `overrides.home` cannot restore a hidden page or a child of a hidden parent.
 :::
 
 Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
@@ -182,6 +182,8 @@ navigation:
 In this example, **Configuration** expands to show **Required Values** and **Optional Values**. **Required Values** further expands to show **Authentication** and **Networking**. Each level is collapsible in the sidebar.
 
 Any item with `items` can also have its own `page`, `visible_when`, and `icon`. If all children of a parent are hidden by `visible_when`, the parent is also hidden automatically.
+
+If a TOC node has a `page` with `hidden: true`, the portal drops that node and its subtree, including nested `helm_chart` and `terraform_module` items. A section that is only a title (no `page`) cannot use `hidden`. For more information, see [Hide unpublished pages](#hide-unpublished-pages).
 
 ### External links {#external-links}
 
@@ -610,7 +612,7 @@ For production deployments, enable HA mode...
 
 ## Visibility {#visibility}
 
-Use `visible_when` to control which customers see which content. All conditions must be satisfied (AND logic).
+Use `visible_when` to control which customers see which content. All conditions must be satisfied (AND logic). To keep a page unpublished for every customer, set `hidden: true` in the page frontmatter. `hidden` is not a license or entitlement gate. See [Hide unpublished pages](#hide-unpublished-pages).
 
 ### Navigation visibility (toc.yaml)
 
@@ -631,7 +633,7 @@ Apply `visible_when` on any navigation item in `toc.yaml`:
 
 All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated server-side. Unrecognized filter dimensions are rejected (fail closed).
 
-To hide a page entirely, you can also omit it from `toc.yaml`. Pages not listed in the TOC are not reachable through navigation or direct URL (see [Table of contents](#table-of-contents) above).
+To hide a page entirely, you can also omit it from `toc.yaml`. Pages not listed in the TOC are not reachable through navigation or direct URL (see [Table of contents](#table-of-contents) above). To keep the page listed in `toc.yaml` but unpublished, use `hidden: true` in the page frontmatter instead.
 
 #### Per-user permissions in visible_when
 
@@ -701,7 +703,7 @@ Like `channel`, `customer_type` supports both `include` and `exclude` lists.
 
 ### Page-level visibility (frontmatter)
 
-You can also apply `visible_when` in a page's YAML frontmatter. This adds a per-page access gate on top of the navigation rules in `toc.yaml`.
+You can also apply `visible_when` or `hidden: true` in a page's YAML frontmatter. `visible_when` adds a per-page access gate on top of the navigation rules in `toc.yaml`. `hidden: true` keeps the page unpublished for every customer.
 
 ```markdown
 ---
@@ -719,6 +721,42 @@ Ensure your environment meets these requirements...
 The same `entitlements` conditions available in `toc.yaml` work in frontmatter, including built-in entitlements, custom license fields, and per-user permissions. Use this when you want to keep the gating condition on the page itself rather than on its `toc.yaml` navigation entry.
 
 Frontmatter `visible_when` is an additional gate, not a replacement for navigation. A page must still be reachable through the navigation (or declared as an `overrides` target) for a customer to access it directly. A page that is not referenced anywhere in `toc.yaml` is not accessible, regardless of its frontmatter.
+
+#### Hide unpublished pages {#hide-unpublished-pages}
+
+To keep a page in the repo and listed in `toc.yaml` without publishing it, set `hidden: true` in the page YAML frontmatter. Put `hidden` on the markdown page, not on `toc.yaml`.
+
+```markdown
+---
+title: Q3 announcement
+hidden: true
+---
+```
+
+Keep the page listed in `toc.yaml` as a normal page entry:
+
+```yaml
+- title: Q3 announcement
+  page: pages/announcements/q3.md
+```
+
+Customers do not see the page until you remove `hidden` or set it to `false`, then re-sync the content.
+
+`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions is unchanged. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
+
+If a TOC node has a `page` with `hidden: true`, the portal drops that node and its subtree. The subtree includes child pages, nested `helm_chart` items, and `terraform_module` items. This is the same ancestor-gating behavior as `visible_when` on a parent.
+
+A section that is only a title (no `page`) cannot use `hidden`. Set `hidden` on each child page, or use `visible_when` on the TOC node.
+
+`overrides.home` cannot restore a hidden page or a child of a hidden parent. To hide the home landing page, set `hidden: true` on that page.
+
+Omitting a page from `toc.yaml` still hides it entirely. Use `hidden` when you want to keep the page in the TOC and publish it later.
+
+:::note
+If you sync `hidden` against an Enterprise Portal binary that does not support it, the portal drops unknown YAML keys. After a binary that supports `hidden` is deployed, re-sync so the flag is stored.
+
+Local preview matches production. Hidden pages are also hidden in preview.
+:::
 
 ## Downloadable assets
 
@@ -753,7 +791,7 @@ The tag expands to a URL that authenticates the customer via their session and s
 The path inside the tag is relative to the repo root and must start with `assets/`.
 
 :::note
-Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. Asset access is controlled by the visibility of the page that references them, not by the file path or directory structure. If you need to restrict an asset to specific customers, use template conditionals (like `\{\{#ifEquals customer.name\}\}`) around the asset reference, or place the asset reference on a page gated with `visible_when`. See the example below.
+Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. Asset access is controlled by the visibility of the page that references them, not by the file path or directory structure. A page with `hidden: true` does not authorize asset downloads. If you need to restrict an asset to specific customers, use template conditionals (like `\{\{#ifEquals customer.name\}\}`) around the asset reference, or place the asset reference on a page gated with `visible_when`. See the example below.
 :::
 
 ### Per-customer asset delivery
