@@ -361,13 +361,13 @@ Props: `installType` (`"linux"` or `"helm"`).
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
-**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide), `namespace` (optional, adds `--namespace <namespace>` to the generated install commands).
 
 When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. No additional configuration is required.
 
 **`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
-**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
+**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional), `namespace` (optional, adds `--namespace <namespace>` to the generated install commands).
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
@@ -404,6 +404,26 @@ For applications with multiple Helm charts, you can control which charts appear 
 ```
 
 The `charts` and `exclude` props accept comma-separated chart names. Use `charts` to include only the listed charts, or `exclude` to show all charts except the listed ones.
+
+#### Installing into a specific namespace
+
+By default, the Helm instruction components generate commands that install into the default namespace. To install into a specific namespace, set the `namespace` prop on `<HelmInstallAssets />` or `<HelmAirgapInstallAssets />`:
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" />
+```
+
+The generated install command adds `--namespace my-namespace --create-namespace`, so the namespace is created if it does not already exist. You do not set a namespace on `<HelmUpdateAssets />`. Upgrades automatically target the namespace the customer installed into.
+
+To let each customer's namespace come from their license, reference a custom license field with a template expression:
+
+```markdown
+<HelmInstallAssets namespace="{{entitlements.helm_namespace}}" />
+```
+
+A customer whose license defines a `helm_namespace` custom field installs into that namespace. A customer without it installs into the default namespace. For more on custom license fields, see [Entitlements](#entitlements).
+
+Namespace values are validated as DNS-1123 labels, so an invalid value surfaces an error in the portal preview instead of silently installing into the default namespace.
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
@@ -459,7 +479,7 @@ The download components gate themselves on the same entitlements, so a customer 
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
-**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
+**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional), `namespace` (optional, adds `--namespace <namespace>` to the generated upgrade commands).
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
