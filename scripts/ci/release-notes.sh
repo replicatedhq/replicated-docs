@@ -119,8 +119,15 @@ else
 fi
 
 if [[ "$manual_table" == "none" && ! -s "$generated_file" ]]; then
-  echo "The release-notes generator returned no notes; no PR is needed."
-  exit 0
+  echo "The release-notes generator returned no notes; writing a maintenance-only stub entry so the version is still listed."
+  {
+    echo "## $title"
+    echo
+    echo "Released on $(date +'%B %-d, %Y')"
+    echo
+    echo "This release contained internal maintenance changes only, such as dependency and packaging updates, and includes no user-facing features, improvements, or bug fixes."
+    echo
+  } > "$generated_file"
 fi
 
 case "$manual_table" in
