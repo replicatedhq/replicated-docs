@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.08.31-2
+
+Released on August 31, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-31-2}
+* Fixes a bug where an Enterprise Portal self-signup code could be used after the Self-signup feature is disabled.
 ## v2026.08.28-0
 
 Released on August 28, 2026
