@@ -726,7 +726,7 @@ Frontmatter `visible_when` is an additional gate, not a replacement for navigati
 
 `hidden` controls whether a page is published, not who can see it. Use `visible_when` to show a page to some customers and not others based on their license. Use `hidden: true` to keep a page out of every customer's portal until you are ready to publish it, regardless of license.
 
-Set `hidden: true` in a page's YAML frontmatter when the page belongs in your content repo but is not ready for customers yet. For example, stage a product announcement, a new install guide, or a revised section next to your live docs, keep its entry in `toc.yaml` so local preview shows where it sits in the navigation, then publish it by removing the flag when you are ready. Draft pages stay under version control in the same repo and pull request flow as your published content, so nothing lives in a stray branch or an unwired file you have to remember later.
+Set `hidden: true` in a page's YAML frontmatter when the page belongs in your content repo but is not ready for customers yet. For example, stage a product announcement, a new install guide, or a revised section next to your live docs, then publish it by removing the flag when you are ready. Keep the page listed in `toc.yaml` while it is hidden so the navigation slot is already wired when you publish, rather than leaving the draft in a stray branch or an unwired file you have to remember later. Local preview hides the page the same as production, so it does not appear in the preview sidebar while `hidden` is set.
 
 Put `hidden` on the markdown page, not on `toc.yaml`.
 
@@ -758,8 +758,6 @@ Omitting a page from `toc.yaml` still hides it entirely. Use `hidden` when you w
 
 :::note
 If you sync `hidden` against an Enterprise Portal binary that does not support it, the portal drops unknown YAML keys. After a binary that supports `hidden` is deployed, re-sync so the flag is stored.
-
-Local preview matches production. Hidden pages are also hidden in preview.
 :::
 
 ## Downloadable assets
