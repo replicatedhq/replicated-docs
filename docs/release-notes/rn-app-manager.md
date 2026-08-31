@@ -79,7 +79,7 @@ Released on August 7, 2026
 
 Support for Kubernetes: 1.34, 1.35, and 1.36
 
-This release contained internal maintenance changes only, such as dependency and packaging updates, and includes no user-facing features, improvements, or bug fixes.
+This release contained internal release-packaging changes only and includes no user-facing features, improvements, or bug fixes.
 
 ## 1.131.0
 
@@ -116,7 +116,7 @@ Released on July 16, 2026
 
 Support for Kubernetes: 1.34, 1.35, and 1.36
 
-This release contained internal maintenance changes only, such as dependency and packaging updates, and includes no user-facing features, improvements, or bug fixes.
+This release contained routine dependency and tooling updates only and includes no user-facing features, improvements, or bug fixes.
 
 ## 1.130.7
 
