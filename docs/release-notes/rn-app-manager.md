@@ -73,6 +73,14 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 * Resolves following High level CVEs: CVE-2026-27145, CVE-2026-39822, CVE-2026-42504, GHSA-5p4m-2wfm-xmqj, GHSA-2v37-7h3g-55p8.
 * Resolves following Medium level CVEs: CVE-2026-42505, CVE-2026-42507, GHSA-55q2-fjhq-7xh7.
 
+## 1.131.1
+
+Released on August 7, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+This release contained internal maintenance changes only, such as dependency and packaging updates, and includes no user-facing features, improvements, or bug fixes.
+
 ## 1.131.0
 
 Released on August 6, 2026
@@ -101,6 +109,14 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Bug fixes {#bug-fixes-1-130-9}
 * Fixes a path traversal vulnerability (tar-slip) in archive extraction
+
+## 1.130.8
+
+Released on July 16, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+This release contained internal maintenance changes only, such as dependency and packaging updates, and includes no user-facing features, improvements, or bug fixes.
 
 ## 1.130.7
 
