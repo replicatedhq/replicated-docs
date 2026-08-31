@@ -39,6 +39,7 @@ See [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs) for h
 - Verify visibility rules (entitlements, channels)
 - Check frontmatter `visible_when` conditions
 - Confirm the page frontmatter does not set `hidden: true`. Hidden pages stay unpublished for every customer, including in local preview
+- Confirm the page frontmatter parses as valid YAML. Frontmatter that Enterprise Portal cannot parse is treated as unpublished, so the page is hidden from every customer, including in local preview
 - Confirm customer has required entitlements enabled
 
 ## Local preview "Page not found"

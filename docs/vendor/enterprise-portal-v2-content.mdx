@@ -724,7 +724,11 @@ Frontmatter `visible_when` is an additional gate, not a replacement for navigati
 
 #### Hide unpublished pages {#hide-unpublished-pages}
 
-To keep a page in the repo and listed in `toc.yaml` without publishing it, set `hidden: true` in the page YAML frontmatter. Put `hidden` on the markdown page, not on `toc.yaml`.
+`hidden` controls whether a page is published, not who can see it. Use `visible_when` to show a page to some customers and not others based on their license. Use `hidden: true` to keep a page out of every customer's portal until you are ready to publish it, regardless of license.
+
+Set `hidden: true` in a page's YAML frontmatter when the page belongs in your content repo but is not ready for customers yet. For example, stage a product announcement, a new install guide, or a revised section next to your live docs, keep its entry in `toc.yaml` so local preview shows where it sits in the navigation, then publish it by removing the flag when you are ready. Draft pages stay under version control in the same repo and pull request flow as your published content, so nothing lives in a stray branch or an unwired file you have to remember later.
+
+Put `hidden` on the markdown page, not on `toc.yaml`.
 
 ```markdown
 ---
