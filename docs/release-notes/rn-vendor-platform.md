@@ -15,6 +15,12 @@ Released on August 31, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-31-2}
 * Fixes a bug where an Enterprise Portal self-signup code could be used after the Self-signup feature is disabled.
+## v2026.08.31-1
+
+Released on August 31, 2026
+
+### Bug Fixes {#bug-fixes-v2026-08-31-1}
+* Enterprise Portal update badges and Security Center update nudges now use the shared semver-safe update-target comparator used by instance upgrade flows, so semver downgrades are not advertised as available updates.
 ## v2026.08.31-0
 
 Released on August 31, 2026
