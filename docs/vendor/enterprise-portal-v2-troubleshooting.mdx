@@ -38,6 +38,8 @@ See [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs) for h
 - Ensure file path matches `toc.yaml` reference
 - Verify visibility rules (entitlements, channels)
 - Check frontmatter `visible_when` conditions
+- Confirm the page frontmatter does not set `hidden: true`. Hidden pages stay unpublished for every customer, including in local preview
+- Confirm the page frontmatter is valid YAML. Invalid YAML is treated as unpublished, so the page is hidden from every customer, including in local preview
 - Confirm customer has required entitlements enabled
 
 ## Local preview "Page not found"

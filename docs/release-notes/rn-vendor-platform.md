@@ -15,6 +15,12 @@ Released on August 31, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-31-1}
 * Enterprise Portal update badges and Security Center update nudges now use the shared semver-safe update-target comparator used by instance upgrade flows, so semver downgrades are not advertised as available updates.
+## v2026.08.31-0
+
+Released on August 31, 2026
+
+### New Features {#new-features-v2026-08-31-0}
+* Enterprise Portal v2: add \`hidden: true\` page frontmatter to keep a docs page in the repo and \`toc.yaml\` without showing it to customers until it is unpublished.
 ## v2026.08.28-0
 
 Released on August 28, 2026
