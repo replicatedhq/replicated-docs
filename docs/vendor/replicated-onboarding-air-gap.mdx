@@ -38,7 +38,7 @@ By default, licenses support online installations only. You can control which of
 * **Helm CLI Air Gap Instructions (Helm CLI only)**: When enabled, a customer will see instructions in the Enterprise Portal for how to pull images into their local repository. This entitlement applies to Helm CLI installations only.
 * **Air Gap Installation Option (Replicated Installers only)**: When enabled, new installations with this license show an option to install from an air gap bundle. This entitlement applies to Replicated installers only.
 
-Licenses with these air gap entitlements support both air gap and online installations.
+Licenses with these air gap entitlements support both air gap and online installations. The customer chooses the mode for each installation, and the mode cannot change afterward. An instance installed in an online environment cannot later accept an air gap bundle. An instance installed in an air gap environment does not check for new versions over the internet. A customer who needs to move an existing instance to the other mode must reinstall in the target mode.
 
 The following shows these license fields in the **Additional install options** section of the **Manager customer** page:
 
