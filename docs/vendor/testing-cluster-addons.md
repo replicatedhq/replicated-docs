@@ -33,6 +33,12 @@ This will create two service accounts in a namespace, one read-write and the oth
 
 Additional service accounts can be created in any namespace with access to the object store by annotating the new service account with the same `eks.amazonaws.com/role-arn` annotation found in the predefined ones (`service_account_name` and `service_account_name_read_only`).
 
+:::note
+The object store add-on is scoped to the lifecycle of the cluster it was created for. When the cluster is deleted, the bucket is emptied and deleted, along with the IAM roles and service accounts that granted access to it. Objects in the bucket are not retained, and the bucket cannot be reattached to a newly created cluster. The same applies when the add-on is removed with `replicated cluster addon rm`.
+
+Treat the bucket as ephemeral test storage. To keep any objects, copy them to storage you control before deleting the add-on or the cluster.
+:::
+
 <table>
   <tr>
     <th width="35%">Type</th>
@@ -45,6 +51,10 @@ Additional service accounts can be created in any namespace with access to the o
   <tr>
     <th>Cost</th>
     <td>Flat fee of $0.50 per bucket.</td>
+  </tr>
+  <tr>
+    <th>Lifecycle</th>
+    <td>Deleted with the cluster, including all objects in the bucket. Not durable storage.</td>
   </tr>
   <tr>
     <th>Options</th>
