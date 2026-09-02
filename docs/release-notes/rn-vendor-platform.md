@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.01-0
+
+Released on September 1, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-01-0}
+* EPv2 Container Images modals now follow the active light or dark theme.
+* Security Center now displays one consistent loading state while security report data is fetched.
 ## v2026.08.31-2
 
 Released on August 31, 2026
