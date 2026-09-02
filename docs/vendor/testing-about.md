@@ -43,7 +43,8 @@ Otherwise, to request credits, log in to the Vendor Portal and go to [**Compatib
   - There is no support for IPv6 as a single stack. Dual stack support is available on kind clusters.
   - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
   - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-  - Cloud clusters cannot be used to test disaster recovery scenarios that require restoring to a newly created cluster. Backup storage provisioned by the [object store add-on](/vendor/testing-cluster-addons#object-store-alpha) is deleted with the cluster, and volume snapshots are created in the Replicated-managed cloud account and cannot be accessed from a new cluster. Restoring to the same cluster is supported.
+  - The [object store add-on](/vendor/testing-cluster-addons#object-store-alpha) cannot be used as the backup destination when testing a restore to a newly created cluster, because the bucket is deleted along with the cluster that created it. To test restoring to a new cluster, configure a storage destination that you control. See [Configure other storage destinations](/enterprise/snapshots-storage-destinations).
+  - Volume snapshots taken on cloud clusters are created in the Replicated-managed cloud account and cannot be accessed from a new cluster. To test a restore to a new cluster, use file system backup rather than CSI volume snapshots.
   - The node operating systems for clusters created with CMX cannot be configured nor replaced with different operating systems.
   - The Kubernetes scheduler for clusters created with CMX cannot be replaced with a different scheduler.
 - For additional distribution-specific limitations, see [CMX Cluster and VM Types](testing-supported-clusters).

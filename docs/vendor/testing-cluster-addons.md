@@ -36,7 +36,7 @@ Additional service accounts can be created in any namespace with access to the o
 :::note
 The object store add-on is scoped to the lifecycle of the cluster it was created for. When the cluster is deleted, the bucket is emptied and deleted, along with the IAM roles and service accounts that granted access to it. Objects in the bucket are not retained, and the bucket cannot be reattached to a newly created cluster. The same applies when the add-on is removed with `replicated cluster addon rm`.
 
-Treat the bucket as ephemeral test storage. To keep any objects, copy them to storage you control before deleting the add-on or the cluster.
+Treat the bucket as ephemeral test storage. To keep any objects, copy them to storage you control before deleting the add-on or the cluster. If you need a backup destination that outlives the cluster, such as when testing a restore to a newly created cluster, configure a storage destination in an account you control instead. See [Configure other storage destinations](/enterprise/snapshots-storage-destinations).
 :::
 
 <table>
