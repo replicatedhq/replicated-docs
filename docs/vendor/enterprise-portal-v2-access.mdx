@@ -57,6 +57,10 @@ The local preview mocks some backend endpoints locally. Install flows, instance 
 
 To view the production Enterprise Portal as a specific customer, use the **Login as customer** button on the customer's **Enterprise Portal access** tab (or the EP card on the customer's Reporting page). This generates a one-time login link and opens the portal in a new tab.
 
+:::note
+**Login as customer** requires the Enterprise Portal to be enabled for the customer. Turn on the **Enable Enterprise Portal for this customer** toggle on the customer's **Enterprise Portal access** tab first. For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-invite). Without it, **Login as customer** does not produce a logged-in session. Teams using only the new Enterprise Portal have access enabled for all customers, so no per-customer toggle is required.
+:::
+
 This is useful for verifying that a customer sees the correct content, entitlements, and branding without creating a permanent user account in their portal team. The system creates a temporary system user scoped to that customer and generates a magic link nonce that expires after 10 minutes.
 
 The login routes to the correct portal version automatically. If the customer is on the new Enterprise Portal, the link opens `{appSlug}.enterpriseportal.app` (or your custom domain). If the customer is on Classic, the link opens `get.replicated.com`.
