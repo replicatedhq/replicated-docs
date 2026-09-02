@@ -79,6 +79,7 @@ The following shows an example of the **Enterprise Portal** section:
 
 From the **Enterprise Portal** section, you can:
 * Click **View** to access the unique Enterprise Portal for the customer
+* Click **Login as customer** to open the production Enterprise Portal as that customer, for verifying content, entitlements, and branding. For more information, see [Login as customer](/vendor/enterprise-portal-v2-access#login-as-customer).
 * View the status of the customer's access to the Enterprise Portal
 * View the timestamp when the Enterprise Portal was most recently accessed by the customer
 * View the number of users with Enterprise Portal accounts
