@@ -15,6 +15,19 @@ Released on September 2, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-02-5}
 * Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
+## v2026.09.02-1
+
+Released on September 2, 2026
+
+### Improvements {#improvements-v2026-09-02-1}
+* Enterprise Portal v2 portals are now provisioned when you connect a content repository, rather than when an application is created.
+## v2026.09.02-0
+
+Released on September 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-02-0}
+* Security reports now show vulnerability information from completed image scans and disclose when some release images have not finished scanning.
+* Fixes a bug that could cause the "kots install" command to fail with error 404.
 ## v2026.09.01-0
 
 Released on September 1, 2026
