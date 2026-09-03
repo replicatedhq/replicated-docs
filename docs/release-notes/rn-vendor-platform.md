@@ -15,6 +15,24 @@ Released on September 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-03-0}
 * Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
+## v2026.09.02-5
+
+Released on September 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-02-5}
+* Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
+## v2026.09.02-3
+
+Released on September 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-02-3}
+* Ensure Embedded Cluster v3 infrastructure images are queued for SecureBuild scans.
+## v2026.09.02-1
+
+Released on September 2, 2026
+
+### Improvements {#improvements-v2026-09-02-1}
+* Enterprise Portal v2 portals are now provisioned when you connect a content repository, rather than when an application is created.
 ## v2026.09.02-0
 
 Released on September 2, 2026
