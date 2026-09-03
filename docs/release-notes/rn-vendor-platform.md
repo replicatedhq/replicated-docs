@@ -15,6 +15,12 @@ Released on September 2, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-02-5}
 * Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
+## v2026.09.02-3
+
+Released on September 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-02-3}
+* Ensure Embedded Cluster v3 infrastructure images are queued for SecureBuild scans.
 ## v2026.09.02-1
 
 Released on September 2, 2026
