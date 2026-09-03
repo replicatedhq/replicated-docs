@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.03-0
+
+Released on September 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-03-0}
+* Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
 ## v2026.09.02-5
 
 Released on September 2, 2026
