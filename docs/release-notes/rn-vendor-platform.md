@@ -15,6 +15,12 @@ Released on September 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-03-2}
 * Fix footer styling on the team selection and team creation pages.
+## v2026.09.03-0
+
+Released on September 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-03-0}
+* Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
 ## v2026.09.02-5
 
 Released on September 2, 2026
