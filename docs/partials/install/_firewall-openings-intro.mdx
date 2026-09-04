@@ -1,5 +1,9 @@
 The domains for the services listed below need to be accessible from servers performing online installations. No outbound internet access is required for air gap installations.
 
-For services hosted at domains owned by Replicated, the table includes a link to the list of IP addresses for the domain at [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json) in GitHub. Note that the IP addresses listed in the `replicatedhq/ips` repository also include IP addresses for some domains that are _not_ required for installation.
+For services hosted at domains owned by Replicated, the table includes a link to the list of IP addresses for the domain at [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/main/ip_addresses.json) in GitHub. These are the addresses that Replicated services listen on, so they are the addresses that an installation connects to. Note that the IP addresses listed in the `replicatedhq/ips` repository also include IP addresses for some domains that are _not_ required for installation.
 
-For any third-party services hosted at domains not owned by Replicated, consult the third-party's documentation for the IP address range for each domain. 
+:::note
+Replicated does not publish the source IP addresses that its services use for outbound connections, such as when the Replicated proxy registry pulls an image from a vendor's registry, and does not commit to keeping those addresses stable. Do not use the addresses in `replicatedhq/ips` to build an allowlist for traffic originating from Replicated. Where access to a registry must be restricted, use registry credentials rather than a source IP allowlist.
+:::
+
+For any third-party services hosted at domains not owned by Replicated, consult the third-party's documentation for the IP address range for each domain.
