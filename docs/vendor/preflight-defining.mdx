@@ -1,4 +1,5 @@
 import EcV3Note from "../partials/preflights/_ec-v3-v1beta3-note.mdx"
+import RunPodsCredentialsSecret from "../partials/preflights/_run-pods-credentials-secret.mdx"
 
 # Define preflight checks
 
@@ -68,6 +69,30 @@ To add a preflight spec to a release for your application:
    ```
 
 1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
+
+## Use a credential in a preflight check {#credentials}
+
+The `mysql`, `postgres`, `mssql`, and `redis` collectors accept credentials only as a literal string in the `uri` field. Helm template functions and KOTS config options do not protect the credential. These functions and config options resolve to the live credential when the spec is rendered and deployed to the cluster, where a support bundle can collect the credential in plain text. The built-in redactors do not reliably mask these values.
+
+To check a credentialed resource without exposing the credential, use a `runPod` collector and pass the credential to the Pod with `env.valueFrom.secretKeyRef`. The kubelet resolves the credential when the Pod starts, so the credential never appears in the spec.
+
+Replicated recommends that you design these preflight checks around a pre-existing Secret. The Secret must already exist in the cluster when preflight checks run. Reference the Secret by name in the spec, and document the name and the keys that your preflight checks expect, such as `password`.
+
+A Secret created by your application's own chart does not work, because application charts install after preflight checks run. This applies even when the Secret is annotated with `helm.sh/hook: pre-install`, because Helm hooks run during the installation of the chart that defines them.
+
+For Embedded Cluster v3 installations, you can create the Secret in a Helm chart extension. Extensions install before application preflight checks, and the `values` field of a Helm extension supports Replicated template functions. This means that you can template a password that the user provides on the config screen into the value of the Secret. For more information, see [Deployment pipeline](/embedded-cluster/v3/embedded-overview#deployment-pipeline) and [extensions](/embedded-cluster/v3/embedded-config#extensions).
+
+Embedded Cluster v2 does not support template functions in the Embedded Cluster Config, so you cannot pass a user-provided password to a Helm extension. For Embedded Cluster v2, do not check the credential in a preflight check. Use a support bundle after the installation completes instead. For more information, see [Pass a credential to the pod](/vendor/support-bundle-examples#run-pod-credentials) in _Example support bundle specs_.
+
+More generally, if the credential is not available before preflight checks run, validate it in your application instead of in a preflight check.
+
+The following example checks a PostgreSQL connection using a password from a pre-existing Secret named `my-app-postgres`.
+
+:::note
+The `runPod` collector requires `pods/create` RBAC. The collector saves everything that the Pod writes to stdout into the preflight output, so make sure that the command does not print the credential.
+:::
+
+<RunPodsCredentialsSecret/>
 
 ## (Optional) Block installation with required (strict) preflights {#strict}
 

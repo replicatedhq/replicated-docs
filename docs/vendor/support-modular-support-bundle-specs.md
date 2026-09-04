@@ -1,3 +1,5 @@
+import CollectorCredentialsWarning from "../partials/support-bundles/_collector-credentials-warning.mdx"
+
 # About creating modular support bundle specs
 
 This topic describes how to use a modular approach to creating support bundle specs.
@@ -59,6 +61,8 @@ spec:
 
 This collector and analyzer checks that the Redis server is responding:
 
+<CollectorCredentialsWarning/>
+
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -68,7 +72,7 @@ spec:
   collectors:
     - redis:
         collectorName: redis
-        uri: rediss://default:password@hostname:6379
+        uri: rediss://default:<PASSWORD>@hostname:6379
 ```
 
 A single support bundle archive can be generated from a combination of these manifests using the `kubectl support-bundle --load-cluster-specs` command. 
