@@ -24,6 +24,18 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.131.7
+
+Released on September 4, 2026
+
+Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+
+### Improvements {#improvements-1-131-7}
+* Improves the speed of the \`kots admin-console push-images\` command.
+* Updates SchemaHero from 0.26.0 to 0.26.1.
+
+### Bug Fixes {#bug-fixes-1-131-7}
+* Fixed an issue where the support bundle command returned by the KOTS admin console did not include the default redactor spec, causing IP addresses to not be redacted when the command was run outside of the cluster.
 ## 1.131.6
 
 Released on August 24, 2026
