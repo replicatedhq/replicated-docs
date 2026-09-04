@@ -15,6 +15,12 @@ Released on September 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-03-3}
 * The Enterprise Portal per-customer Portal Version control is now hidden for apps that have no Enterprise Portal v2 site deployed, instead of offering a switch to a portal that is not reachable.
+## v2026.09.03-2
+
+Released on September 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-03-2}
+* Fix footer styling on the team selection and team creation pages.
 ## v2026.09.03-0
 
 Released on September 3, 2026
