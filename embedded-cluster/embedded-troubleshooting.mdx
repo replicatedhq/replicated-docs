@@ -206,3 +206,46 @@ Reasons can include:
     If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
   </TabItem>
 </Tabs>
+### SELinux denials or components failing to start on an SELinux host {#selinux}
+
+#### Symptom
+
+On a host with SELinux in enforcing mode, a component fails to start, a pod does not become ready, or a command fails with `Permission denied` even though the file permissions look correct.
+
+#### Cause
+
+An SELinux policy denied the operation. This is most often because the SELinux configuration Embedded Cluster applies is missing or incomplete: for example, the data directory was relabeled or restored from a backup, or the cluster was installed by a version of Embedded Cluster that did not include the policy module.
+
+#### Solution
+
+1. SSH onto the node.
+
+1. Check for denials. When `auditd` is running, which is the default on Red Hat Enterprise Linux-family distributions, denials are written to the audit log rather than the kernel log:
+
+   ```bash
+   ausearch -m avc -ts recent
+   ```
+
+   If `ausearch` is not available, check the kernel log instead:
+
+   ```bash
+   journalctl -k | grep "avc:  denied"
+   ```
+
+   Denials that report `permissive=1` were logged but not enforced, and are not the cause.
+
+1. Confirm that the Embedded Cluster policy module is loaded:
+
+   ```bash
+   semodule -l | grep ec
+   ```
+
+   If it is not listed, the cluster was installed by a version that did not include it. Upgrading does not add the policy module. For more information, see [SELinux](/embedded-cluster/v3/installing-embedded-selinux).
+
+1. Restore the file contexts on the data directory, where `DATA_DIR` is the data directory:
+
+   ```bash
+   restorecon -RvF DATA_DIR
+   ```
+
+   The output lists every file whose label changed, which shows what had drifted.

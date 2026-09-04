@@ -1,0 +1,102 @@
+# SELinux (Beta)
+
+This topic describes how Replicated Embedded Cluster works on hosts with SELinux enabled, including the host requirements and the SELinux configuration that Embedded Cluster applies during installation.
+
+Embedded Cluster X.Y.Z and later install and run on hosts with SELinux in enforcing mode, and confine application workloads to the `container_t` domain. No SELinux configuration is required before or after installation.
+
+## Requirements
+
+To install Embedded Cluster on a host with SELinux enabled, the host must meet the following requirements:
+
+* A Red Hat Enterprise Linux-family distribution, such as Red Hat Enterprise Linux, CentOS Stream, Rocky Linux, or AlmaLinux.
+
+  Workload confinement is provided by the `container-selinux` policy, which these distributions ship. Other distributions do not provide an equivalent policy.
+
+* The `container-selinux`, `policycoreutils`, and `policycoreutils-python-utils` packages are installed:
+
+  ```bash
+  dnf install -y container-selinux policycoreutils policycoreutils-python-utils
+  ```
+
+Host preflight checks verify these requirements during installation and report which requirement is not met if the installation cannot continue. For more information, see [Embedded Cluster installation requirements](/embedded-cluster/v3/installing-embedded-requirements).
+
+## SELinux configuration applied by Embedded Cluster
+
+During installation, and when a node joins the cluster, Embedded Cluster applies the following configuration. No additional configuration is necessary.
+
+* **Loads an SELinux policy module named `ec`.** The module is included in the Embedded Cluster binary, so there is no separate package to install. It grants the permissions that the bundled components need and that `container-selinux` does not grant by default, such as reading the host certificate authority bundle.
+
+  The module is scoped to Embedded Cluster. Removing it removes the permissions it grants, and the `reset` command removes it. For more information, see [reset](/embedded-cluster/v3/embedded-cluster-reset).
+
+* **Configures containerd to label containers.** Container labeling is off by default in containerd, and without it application workloads inherit the domain of the process that started them rather than running in `container_t`.
+
+* **Labels the data directory**, then relabels it with `restorecon` so the labels apply to files that already exist.
+
+### File contexts
+
+Embedded Cluster registers the following file contexts, where `DATA_DIR` is the data directory:
+
+<table>
+<tr>
+  <th>Path</th>
+  <th>SELinux type</th>
+  <th>Purpose</th>
+</tr>
+<tr>
+  <td>`DATA_DIR`</td>
+  <td>`container_var_lib_t`</td>
+  <td>Container runtime and Kubernetes state.</td>
+</tr>
+<tr>
+  <td>`DATA_DIR/bin`</td>
+  <td>`ec_bin_t`</td>
+  <td>Embedded Cluster binaries. A private type, so container workloads cannot execute these binaries even when the data directory is mounted into a container.</td>
+</tr>
+<tr>
+  <td>`DATA_DIR/k0s/bin/containerd*` and `DATA_DIR/k0s/bin/runc`</td>
+  <td>`container_runtime_exec_t`</td>
+  <td>The container runtime, which runs in its own domain rather than as an ordinary Embedded Cluster binary.</td>
+</tr>
+</table>
+
+### Custom data directories
+
+The file contexts above are compiled into the policy module and match the default data directory. When you install with the `--data-dir` flag, Embedded Cluster adds an SELinux file context equivalence rule so that the same contexts apply to the directory you chose.
+
+This rule is what requires the `policycoreutils-python-utils` package. Without it, a custom data directory is not labeled.
+
+## Verify the SELinux configuration
+
+To confirm the configuration on a running node:
+
+1. SSH onto the node.
+
+1. Confirm that SELinux is enforcing:
+
+   ```bash
+   getenforce
+   ```
+
+1. Confirm that the Embedded Cluster policy module is loaded:
+
+   ```bash
+   semodule -l | grep ec
+   ```
+
+1. Confirm that the data directory is labeled, where `DATA_DIR` is the data directory:
+
+   ```bash
+   ls -Zd DATA_DIR DATA_DIR/bin
+   ```
+
+1. Confirm that application workloads run confined:
+
+   ```bash
+   ps -eZ | grep container_t
+   ```
+
+## Limitations
+
+* Embedded Cluster applies SELinux configuration when it installs a node and when a node joins the cluster. Upgrading a cluster does not reapply it, so a cluster keeps the configuration applied by the version that installed it. A cluster installed with a version earlier than X.Y.Z does not get the policy module by upgrading.
+
+* SELinux configuration is applied only on hosts where SELinux is enabled at install time. Enabling SELinux after installing does not apply it.
