@@ -12,6 +12,33 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.8+k8s-1.35
+
+Released on September 6, 2026
+
+<!-- VERSION TABLE PLACEHOLDER
+Please manually replace this placeholder with a version table in the format:
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.XX.Y</td>
+    <td id="center">1.XX.Y</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.XXX.Y</td>
+  </tr>
+</table>
+-->
+### Improvements {#improvements-2-19-8+k8s-1-35}
+* Air-gapped disaster recovery backups are now faster and smaller by excluding registry data that can be reconstructed from the air gap bundle during restore.
+
 ## 2.19.7
 
 Released on August 26, 2026
