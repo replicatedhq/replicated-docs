@@ -1,5 +1,6 @@
 import HttpSecret from "../partials/preflights/_http-requests-secret.mdx"
 import MySqlSecret from "../partials/preflights/_mysql-secret.mdx"
+import CollectorCredentialsWarning from "../partials/preflights/_collector-credentials-warning.mdx"
 import K8sVersionSecret from "../partials/preflights/_k8s-version-secret.mdx"
 import K8sDistroSecret from "../partials/preflights/_k8s-distro-secret.mdx"
 import NodeReqSecret from "../partials/preflights/_node-req-secret.mdx"
@@ -60,6 +61,8 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
 This example uses Helm template functions to render the credentials and connection details for the MySQL server that were supplied by the user. Additionally, it uses Helm template functions to create a conditional statement so that the MySQL collector and analyzer are included in the preflight checks only when MySQL is deployed, as indicated by a `.Values.global.mysql.enabled` field evaluating to true.
 
 For more information about using Helm template functions to access values from the values file, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/).
+
+<CollectorCredentialsWarning/>
 
 <MySqlSecret/>
 
