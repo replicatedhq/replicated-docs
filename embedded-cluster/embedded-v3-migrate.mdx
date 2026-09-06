@@ -22,9 +22,11 @@ The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin 
 
 Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource to process and deploy Helm charts. Embedded Cluster v3 also still uses Replicated custom resources like the Replicated Application and Replicated Config resources to define aspects of the installation experience.
 
-### Replicated SDK required for application status informers
+### Replicated SDK required for instance status reporting
 
-Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](/vendor/replicated-sdk-overview) in your application to get instance reporting in the Vendor Portal from application status informers.
+Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](/vendor/replicated-sdk-overview) in your application for application status informers to report instance status to the Vendor Portal.
+
+Continue to configure status informers in the Replicated Application custom resource. Embedded Cluster v3 passes them to the SDK. For more information, see [Enable and understand application status](/vendor/insights-app-status).
 
 ### Preflight specs must use v1beta3
 
