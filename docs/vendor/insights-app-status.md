@@ -18,6 +18,14 @@ To compute and display these insights, the Vendor Portal interprets and aggregat
 
 For more information about how instance data is sent to the Vendor Portal, see [About Instance and Event Data](instance-insights-event-data).
 
+## Where application status appears
+
+Status informers determine what the Vendor Portal shows, and the same informers drive the application status that your end customers see.
+
+* **Vendor Portal.** Instance status and per-resource status insights, described on this page.
+* **Replicated KOTS Admin Console.** End customers see the aggregate status and per-resource details on the dashboard. See [Understand application status details in the Admin Console](/enterprise/status-viewing-details).
+* **Embedded Cluster v2.** Includes the KOTS Admin Console, so application status displays the same way as an existing cluster KOTS installation.
+
 ## Enable application status insights
 
 To display insights on application status, the Vendor Portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
@@ -36,7 +44,7 @@ To enable application status with the SDK:
 
 1. If either of the following are true, list all the resources that you want the SDK to report on in the SDK's [`statusInformers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L287) field:
 
-     * You want the SDK to report on resources outside the Helm release for the chart where it is included as a dependency. For example, your application is installed as multiple charts and you want status data for resources created by subcharts.
+     * You want the SDK to report on resources outside the Helm release that contains it. Subcharts of that release are detected automatically, because their resources are part of the same release manifest. Resources belonging to a separate Helm release are not.
      * Your application is installed by running `helm template` then `kubectl apply`, rather than `helm install` or `helm upgrade`. In this case, the SDK is unable to automatically detect resources in the Helm release.
 
      **Example:**
@@ -55,9 +63,11 @@ To enable application status with the SDK:
      When `statusInformers` is set, the SDK reports the status of only the resources included in the `statusInformers` field.
      :::
 
-### Configure status with the Application custom resource (KOTS existing cluster only) {#replicated-installers}
+### Configure status with the Application custom resource (Replicated installers) {#replicated-installers}
 
-For existing cluster installations with KOTS that do not include the Replicated SDK, you can configure status informers in the Replicated [Application custom resource](/reference/custom-resource-application). This is not required if you already include the SDK as a dependency of your Helm chart.
+For installations with a Replicated installer, you can configure status informers in the Replicated [Application custom resource](/reference/custom-resource-application). This applies to existing cluster KOTS installations, Embedded Cluster v2, and Embedded Cluster v3.
+
+For existing cluster KOTS and Embedded Cluster v2, this is not required if you already include the SDK as a dependency of your Helm chart. For Embedded Cluster v3, which does not include KOTS, the installer passes the informers you configure here to the SDK.
 
 :::note
 When Helm-based applications that include the Replicated SDK are deployed by a Replicated installer, the SDK inherits the status informers configured in the Application custom resource. In this case, the SDK does _not_ automatically report the status of the resources that are part of the Helm release. This prevents discrepancies in the instance data in the Vendor Portal.

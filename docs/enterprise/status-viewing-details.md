@@ -9,6 +9,8 @@ This topic describes how to view the status of an application on the Replicated 
 
 <KotsAvailability/>
 
+The resources shown here are the status informers configured by the software vendor. For how they are configured, see [Enable and understand application status](/vendor/insights-app-status).
+
 ## View status details
 
 The application status displays on the dashboard of the Admin Console. Viewing the status details can be helpful for troubleshooting.

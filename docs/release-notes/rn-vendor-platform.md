@@ -15,6 +15,18 @@ Released on September 4, 2026
 
 ### New Features {#new-features-v2026-09-04-2}
 * Enterprise Portal v2 is now available to vendors who already use Enterprise Portal v1, alongside their existing portal. Existing customers stay on Enterprise Portal v1 until they are moved explicitly.
+## v2026.09.04-1
+
+Released on September 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-04-1}
+* Enterprise Portal v2 docs: tables inside Warning, Note, and Tip callouts no longer render a disconnected header bar.
+## v2026.09.04-0
+
+Released on September 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-04-0}
+* Preserve non-ASCII customer names created from self-service trial signup after the customer.name charset migration is applied.
 ## v2026.09.03-3
 
 Released on September 3, 2026

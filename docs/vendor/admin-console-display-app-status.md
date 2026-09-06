@@ -6,9 +6,13 @@ import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 # Add resource status informers
 
-This topic describes how to add status informers for your application. Status informers apply only to applications installed with Replicated KOTS. For information about how to collect application status data for applications installed with Helm, see [Enabling and Understanding Application Status](insights-app-status).
+This topic describes how to add status informers for your application using the Replicated Application custom resource. This method applies to applications installed with Replicated KOTS, including Embedded Cluster v2.
 
 <KotsAvailability/>
+
+For all other installation methods, including Helm CLI installations and Embedded Cluster v3, status informers are provided by the Replicated SDK. See [Enable and understand application status](/vendor/insights-app-status).
+
+For what your end customers see on the Admin Console dashboard, see [Understand application status details in the Admin Console](/enterprise/status-viewing-details).
 
 ## About status informers
 
