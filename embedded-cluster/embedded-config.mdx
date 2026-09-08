@@ -307,6 +307,8 @@ You can configure the Kubelet to customize worker nodes with Embedded Cluster. O
 
 Add a _worker profile_ in `unsupportedOverrides.k0s` at `config.spec.workerProfiles[]`. When you define a worker profile, Embedded Cluster uses it for every node during initial installation and when joining nodes.
 
+On new installations that use Kubernetes 1.30 or later, Embedded Cluster internally configures the `default` worker profile to store pod logs in `<data-dir>/k0s/pod-logs`. Defining `workerProfiles` replaces this internal profile and its pod log directory configuration. To use a different worker profile while storing pod logs in the data directory, set `podLogsDir` in that profile's `values`.
+
 Each profile requires:
 
 * `name`: Profile name. Do not use `default` because k0s reserves that name.
