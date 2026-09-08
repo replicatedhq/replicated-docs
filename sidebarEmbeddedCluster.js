@@ -12,7 +12,6 @@ module.exports = {
         "installing-embedded",
         "installing-embedded-air-gap",
         "installing-embedded-byo-registry",
-        "installing-embedded-selinux",
       ]
     },
     "embedded-manage-nodes",

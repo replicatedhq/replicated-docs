@@ -18,7 +18,7 @@ To install Embedded Cluster on a host with SELinux enabled, the host must meet t
   dnf install -y container-selinux policycoreutils policycoreutils-python-utils
   ```
 
-Host preflight checks verify these requirements during installation and report which requirement is not met if the installation cannot continue. For more information, see [Embedded Cluster installation requirements](/embedded-cluster/v3/installing-embedded-requirements).
+Host preflight checks verify these requirements during installation and report which requirement is not met if the installation cannot continue. For more information, see [Embedded Cluster installation requirements](/embedded-cluster/v2/installing-embedded-requirements).
 
 ## SELinux configuration applied by Embedded Cluster
 
@@ -26,7 +26,7 @@ During installation, and when a node joins the cluster, Embedded Cluster applies
 
 * **Loads an SELinux policy module named `ec`.** The module is included in the Embedded Cluster binary, so there is no separate package to install. It grants the permissions that the bundled components need and that `container-selinux` does not grant by default, such as reading the host certificate authority bundle.
 
-  The module is scoped to Embedded Cluster. Removing it removes the permissions it grants, and the `reset` command removes it. For more information, see [reset](/embedded-cluster/v3/embedded-cluster-reset).
+  The module is scoped to Embedded Cluster. Removing it removes the permissions it grants, and the `reset` command removes it. For more information, see [reset](/embedded-cluster/v2/embedded-cluster-reset).
 
 * **Configures containerd to label containers.** Container labeling is off by default in containerd, and without it application workloads inherit the domain of the process that started them rather than running in `container_t`.
 
