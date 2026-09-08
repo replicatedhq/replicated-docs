@@ -32,7 +32,7 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Bug Fixes {#bug-fixes-1-131-8}
 * Mask database credentials in support bundles when the connection string has no trailing database name, and in mysql DSNs over tcp4, tcp6 and unix sockets.
-* Fixes an issue where the "Available Updates" section of the Version history page could hang indefinitely (spinner forever) when the connection to the Replicated app service stalled. The \`GET /app/{slug}/updates\` endpoint now times out after 60 seconds instead of blocking forever.
+* Fixes an issue where the "Available Updates" section of the Version history page could hang indefinitely (spinner forever) when the connection to the Replicated app service stalled. The \`GET /app/\{slug\}/updates\` endpoint now times out after 60 seconds instead of blocking forever.
 
 ## 1.131.7
 
