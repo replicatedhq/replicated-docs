@@ -34,7 +34,7 @@ During installation, and when a node joins the cluster, Embedded Cluster applies
 
 ### File contexts
 
-Embedded Cluster registers the following file contexts, where `DATA_DIR` is the data directory:
+Embedded Cluster registers the following file contexts. `DATA_DIR` is the data directory, which defaults to `/var/lib/embedded-cluster`:
 
 <table>
 <tr>
@@ -56,6 +56,21 @@ Embedded Cluster registers the following file contexts, where `DATA_DIR` is the 
   <td>`DATA_DIR/k0s/bin/containerd*` and `DATA_DIR/k0s/bin/runc`</td>
   <td>`container_runtime_exec_t`</td>
   <td>The container runtime, which runs in its own domain rather than as an ordinary Embedded Cluster binary.</td>
+</tr>
+<tr>
+  <td>`DATA_DIR/openebs-local` and `DATA_DIR/seaweedfs`</td>
+  <td>`container_file_t`</td>
+  <td>Persistent-volume data that containers read and write.</td>
+</tr>
+<tr>
+  <td>`DATA_DIR/k0s/containerd/io.containerd.snapshotter.*/snapshots`</td>
+  <td>`container_ro_file_t`</td>
+  <td>Container image layers managed by containerd.</td>
+</tr>
+<tr>
+  <td>`/etc/cni` and `/opt/cni`</td>
+  <td>`container_file_t`</td>
+  <td>CNI configuration and plugins.</td>
 </tr>
 </table>
 
@@ -81,7 +96,7 @@ To confirm the configuration on a running node:
    semodule -l | grep ec
    ```
 
-1. Confirm that the data directory is labeled, where `DATA_DIR` is the data directory:
+1. Confirm that the data directory is labeled, where `DATA_DIR` is the data directory. The output should include `container_var_lib_t` for `DATA_DIR` and `ec_bin_t` for `DATA_DIR/bin`:
 
    ```bash
    ls -Zd DATA_DIR DATA_DIR/bin
