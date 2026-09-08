@@ -38,7 +38,7 @@ Support for Kubernetes: 1.34, 1.35, and 1.36
 
 Released on September 4, 2026
 
-Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34
+Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-131-7}
 * Improves the speed of the \`kots admin-console push-images\` command.
