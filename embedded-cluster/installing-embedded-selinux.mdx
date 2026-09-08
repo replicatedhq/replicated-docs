@@ -63,8 +63,6 @@ Embedded Cluster registers the following file contexts, where `DATA_DIR` is the 
 
 The file contexts above are compiled into the policy module and match the default data directory. When you install with the `--data-dir` flag, Embedded Cluster adds an SELinux file context equivalence rule so that the same contexts apply to the directory you chose.
 
-This rule is what requires the `policycoreutils-python-utils` package. Without it, a custom data directory is not labeled.
-
 ## Verify the SELinux configuration
 
 To confirm the configuration on a running node:
