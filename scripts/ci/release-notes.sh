@@ -18,7 +18,7 @@ case "$EVENT_TYPE" in
     target_file="docs/release-notes/rn-app-manager.md"
     title="$clean_version"
     product_name="App Manager"
-    description="Support for Kubernetes: 1.31, 1.32, 1.33, and 1.34"
+    description="Support for Kubernetes: 1.34, 1.35, and 1.36"
     source_token="${PUBLIC_REPO_TOKEN:-}"
     slack_webhook="${KOTS_RELEASE_NOTES_SLACK_WEBHOOK:-}"
     ;;
