@@ -35,7 +35,11 @@ You can use image tags and image digests together in any case where both are sup
 
 For applications installed with KOTS v1.82.0 or later, you can enable a format for air gap bundles that supports the use of image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
-You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the Vendor Portal. The **Enable new air gap bundle format** toggle is enabled by default.
+:::note
+This air gap bundle format is required for air gap installations with Replicated Embedded Cluster. Air gap builds fail for releases that include an Embedded Cluster Config when the channel does not use this format.
+:::
+
+You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the Vendor Portal. New channels have this toggle enabled by default in most accounts. Existing channels keep the setting that they were created with, so verify that the toggle is enabled before you build an air gap bundle.
 
 When you enable **Enable new air gap bundle format** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format.
 

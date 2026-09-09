@@ -144,7 +144,13 @@ To support air gap installations with Embedded Cluster v2:
 
 1. <CreateRelease/>
 
-1. In the [Vendor Portal](https://vendor.replicated.com), go to the channel where you promoted the release to build the air gap bundle. Do one of the following:
+1. In the [Vendor Portal](https://vendor.replicated.com), go to the channel where you promoted the release to build the air gap bundle.
+
+   :::note
+   Embedded Cluster requires the **Enable new air gap bundle format** channel setting. If the channel does not use this format, the air gap build fails. To check the setting, click the gear icon on the channel card to open **Edit channel settings**. See [Create and Edit Channels](/vendor/releases-creating-channels).
+   :::
+
+   Do one of the following:
      * If you enabled the **Automatically create airgap builds for newly promoted releases in this channel** setting for the channel, watch for the build status to complete.
      * If automatic air gap builds are not enabled, go to the **Release history** page for the channel and build the air gap bundle manually.
 
