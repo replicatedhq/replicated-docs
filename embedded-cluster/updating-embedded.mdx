@@ -12,6 +12,8 @@ Each Embedded Cluster binary that you download targets a particular application 
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
+An upgrade preserves the application configuration from the installed version. To change configuration during an upgrade, edit the values on the **Configure** page in the UI, or pass `--config-values` when you upgrade headlessly. Configuration items that are new in the target version take that version's default value. For items whose `value` uses a template function such as `RandomString`, the `readonly` and `hidden` properties determine whether the generated value persists or is regenerated. See [Generating Persistent and Ephemeral Strings](/reference/template-functions-static-context#generating-persistent-and-ephemeral-strings).
+
 ## Multi-node clusters
 
 In multi-node clusters, run the `upgrade` command on the primary controller (the first controller installed). The upgrade proceeds in two stages:
@@ -63,7 +65,7 @@ To upgrade more directly from the Vendor Portal:
 
 1. When prompted, enter the password you set during installation to log in to the installer. To set a different password for the installer, use the `--installer-password` flag.
 
-1. On the **Configure** page, change any application configuration you need.
+1. On the **Configure** page, change any application configuration you need. The page is pre-filled with the configuration from the installed version, so you can continue without making changes to keep it as is.
 
 1. On the **Upgrade** page, start the upgrade and wait for it to finish.
 
@@ -79,7 +81,7 @@ If the [persistent admin console](embedded-persistent-console) is installed on a
 
    The dashboard handles the fetch, prepare, restart, and binary swap, then redirects into the upgrade wizard.
 
-1. On the **Configure** page, change any application configuration you need.
+1. On the **Configure** page, change any application configuration you need. The page is pre-filled with the configuration from the installed version, so you can continue without making changes to keep it as is.
 
 1. On the **Upgrade** page, start the upgrade and wait for it to finish.
 
@@ -103,7 +105,7 @@ To perform a headless upgrade from the CLI:
 
    * Use `upgrade` instead of `install`.
    * Pass `--headless` to run without the interactive installer UI.
-   * (Optional) Pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration.
+   * (Optional) Pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration. If you omit this flag, the existing configuration is preserved.
    * (Optional) Pass `--installer-password` to change the installer password.
 
    Example:
@@ -199,7 +201,7 @@ To perform a headless upgrade in an air-gapped environment, pass `--headless` al
 sudo ./APP_SLUG upgrade --license LICENSE_FILE --headless
 ```
 
-Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration during the upgrade. Embedded Cluster automatically detects the air gap installation.
+Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration during the upgrade. If you omit this flag, the existing configuration is preserved. Embedded Cluster automatically detects the air gap installation.
 
 ## Upgrade failure handling {#upgrade-failures}
 
