@@ -156,6 +156,12 @@ replicated:
   minimalRBAC: true
 ```
 
+:::note
+If any of your customers install your application with KOTS in an existing cluster using the minimum KOTS RBAC permissions, then `minimalRBAC` is required rather than optional. KOTS can only grant permissions that it holds itself, and it cannot grant the default SDK Role from a reduced set of permissions. Defining `statusInformers` reduces the required permissions further.
+
+This applies only to installations in existing clusters. It does not apply to Embedded Cluster installations, where KOTS has cluster-scoped access. For more information, see [Namespace-scoped RBAC Requirements](/enterprise/installing-general-requirements#namespace-scoped).
+:::
+
 The permissions included in the Minimal RBAC role vary depending on if you defined custom _status informers_ for your application. See one of the following sections for more information:
 * [Default Minimal RBAC Role Without Custom Status Informers](#default-no-status-informers)
 * [Default Minimal RBAC Role With Custom Status Informers](#default-status-informers)
