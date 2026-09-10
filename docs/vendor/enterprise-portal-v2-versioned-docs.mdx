@@ -87,6 +87,63 @@ If your branch names don't match any version labels (e.g., `release-1`, `release
 
 The system does not create branches for you. You must manually create branches that correspond to your releases.
 
+## Automating content branch creation
+
+Enterprise Portal does not create content branches for you. Every release needs a branch whose name matches the release version label, and forgetting one means customers on that release fall back to older content or, with **Require matching content for release versions** enabled, do not see version-specific docs at all.
+
+To automate this, use the [`epv2-reconcile-content-branches`](https://github.com/replicatedhq/reusable-workflows/blob/main/.github/workflows/epv2-reconcile-content-branches.yaml) reusable workflow maintained by Replicated. Add it to your content repo and it creates a branch for every release across your channels that does not already have one, so Enterprise Portal always has matching content to resolve.
+
+### The branch name contract
+
+Enterprise Portal resolves a release's content by looking up a branch named exactly the bare version label, such as `0.3.312`. It does not match `v0.3.312`, `release/0.3.312`, or a label that includes build metadata or a pre-release suffix. A `v` prefix is the one mismatch Enterprise Portal normalizes automatically.
+
+Your releases must use bare `MAJOR.MINOR.PATCH` version labels. If they do not, no branch is created and nothing matches. The workflow does not create branches for `v`-prefixed, calendar-versioned, or other non-bare label schemes as-is.
+
+### Add the workflow
+
+Add a workflow to your content repo, for example `.github/workflows/reconcile-content-branches.yml`. This example runs when a release is published, with a cron fallback so nothing slips through:
+
+```yaml
+name: Reconcile EPv2 content branches
+
+on:
+  release:
+    types: [published]
+  schedule:
+    # Fallback so nothing slips through if a release did not trigger the workflow.
+    - cron: "17 */6 * * *"
+
+# Required: the workflow creates release branches in this repo.
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    uses: replicatedhq/reusable-workflows/.github/workflows/epv2-reconcile-content-branches.yaml@main
+    with:
+      app_slug: your-app-slug
+      workflow_ref: main
+    secrets:
+      replicated_api_token: ${{ secrets.REPLICATED_API_TOKEN }}
+```
+
+Note the following about this example:
+
+- `permissions: contents: write` is required so the workflow can create branches.
+- `app_slug` is your Replicated app slug, which is the value in your vendor portal URL.
+- `workflow_ref` is required and must be the same ref you pin `uses:` to. The workflow fetches its reconcile script from this ref, so pinning both to the same value keeps the workflow and its script in sync. To pin to a specific version, set both `uses: ...@<sha>` and `workflow_ref: <sha>`.
+- `replicated_api_token` is a vendor API token with read access to your apps, channels, and releases. Add it to your repository secrets.
+
+For the full input reference, see the [workflow README](https://github.com/replicatedhq/reusable-workflows/blob/main/.github/workflows/epv2-reconcile-content-branches/README.md).
+
+### When branches are cut
+
+Each branch is cut from `main` as it exists when the workflow runs, so a branch is not a point-in-time snapshot of what shipped with a release. If `main` changes after a release, the new branch captures the newer `main`. To keep branches aligned with what customers actually received, run the workflow on the `release: [published]` event or immediately after you promote a release, rather than relying only on the cron fallback.
+
+### Cleanup
+
+The workflow only creates branches. It never updates or deletes them. When you de-list or archive a release, its content branch stays behind until you remove it. Prune the branches for retired releases yourself. See [Removing versions](#removing-versions).
+
 ## Version gating by channel
 
 The version dropdown is filtered by the customer's assigned channel. Customers only see branches whose names match a `version_label` on a release promoted to their channel. For example, if a customer is on the Stable channel with releases `1.0.0` and `2.0.0`, they will only see branches named `1.0.0` and `2.0.0` (or `v1.0.0` / `v2.0.0`).
