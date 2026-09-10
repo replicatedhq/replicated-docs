@@ -1,0 +1,53 @@
+Embedded Cluster configures most of the required kernel settings itself at the start of installation, before the host preflight checks run. The preflight checks then verify the result and report anything that could not be applied.
+
+This means you do not need to set these values in advance. This section describes what Embedded Cluster changes on the host, which is often needed for security review, and what the host must provide for those changes to succeed.
+
+#### Kernel settings that Embedded Cluster configures
+
+Every change below is best effort. If one cannot be applied, installation continues and the host preflight checks report the problem.
+
+**Kernel modules.** Loaded immediately, and written to `/etc/modules-load.d/99-embedded-cluster.conf` so that they persist across reboots:
+
+`overlay`, `ip_tables`, `nf_tables`, `nft_compat`, `br_netfilter`, and `nf_conntrack`
+
+**Network parameters.** Written to `/etc/sysctl.d/99-embedded-cluster.conf` and applied:
+
+| Parameter | Value |
+|---|---|
+| `net.ipv4.ip_forward` | `1` |
+| `net.ipv4.conf.all.forwarding` | `1` |
+| `net.ipv4.conf.default.forwarding` | `1` |
+| `net.ipv6.conf.all.forwarding` | `1` |
+| `net.ipv6.conf.default.forwarding` | `1` |
+| `net.bridge.bridge-nf-call-iptables` | `1` |
+| `net.bridge.bridge-nf-call-ip6tables` | `1` |
+| `net.ipv4.conf.all.arp_filter` | `0` |
+| `net.ipv4.conf.default.arp_filter` | `0` |
+| `net.ipv4.conf.all.arp_ignore` | `0` |
+| `net.ipv4.conf.default.arp_ignore` | `0` |
+| `net.ipv4.conf.all.rp_filter` | `2` |
+| `net.ipv4.conf.default.rp_filter` | `2` |
+
+Reverse path filtering is set to loose mode. Strict mode, which is the value `1`, drops pod traffic.
+
+**Resource limits.** Written to `/etc/sysctl.d/99-dynamic-embedded-cluster.conf`, and only for values that are currently lower on the host:
+
+| Parameter | Minimum value |
+|---|---|
+| `fs.inotify.max_user_instances` | `1024` |
+| `fs.inotify.max_user_watches` | `65536` |
+
+#### What the host must provide
+
+Embedded Cluster cannot supply the following, so the host must have them before you install:
+
+* The `modprobe` command. If it is missing, Embedded Cluster skips kernel module setup entirely.
+* The `sysctl` command. If it is missing, Embedded Cluster writes the network parameter file but cannot apply it until the host reboots, and does not set the inotify limits at all.
+* The `mount` and `umount` commands.
+* A kernel that provides the modules listed above. Embedded Cluster can load them, but cannot supply them on a kernel that was built without them.
+* The following cgroup controllers: `cpu`, `cpuacct`, `cpuset`, `memory`, `devices`, `freezer`, and `pids`.
+* A hostname of 54 characters or fewer. Internal component labels are derived from the node name, and a longer hostname exceeds the Kubernetes 63-character label limit, which prevents the cluster from starting.
+
+#### Hardened hosts
+
+On hosts that enforce their own kernel parameter policy, through configuration management or a file in `/etc/sysctl.d` that loads after the Embedded Cluster file, that policy can override these values after Embedded Cluster applies them. The host preflight checks report the resulting mismatch. Allow the values above in the host's policy rather than setting them by hand.
