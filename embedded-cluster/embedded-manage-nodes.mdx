@@ -154,14 +154,11 @@ Where `APP_SLUG` is the unique slug for the application. All nodes should show `
 
 ## Remove nodes and reset machines
 
-This section describes how to remove individual nodes from a cluster using the Embedded Cluster [remove-node](embedded-cluster-remove-node) command. It also describes how to reset machines and delete an entire multi-node cluster using the [reset](embedded-cluster-reset) command.
+This section describes how to remove individual nodes from a cluster and how to delete an entire multi-node cluster using the Embedded Cluster [remove-node](embedded-cluster-remove-node) and [reset](embedded-cluster-reset) commands.
 
 ### About the `remove-node` and `reset` commands
 
-Removing a node from a multi-node cluster is a two-step process:
-
-1. From a controller node, run the `remove-node` command to remove the target node from the cluster.
-1. On the machine that you removed, run the `reset` command to remove Embedded Cluster and your application from that machine.
+To remove a node from a multi-node cluster, run the `remove-node` command from a controller node. Then, if you want to reuse the machine that you removed, run the `reset` command on it to remove Embedded Cluster and your application from that machine.
 
 Run the `remove-node` command from a controller node other than the node that you want to remove. The command performs the following steps:
 
@@ -192,7 +189,7 @@ Before you remove a node or delete a cluster, consider the following limitations
 
 * When resetting a single node or deleting a test environment, you can include the `--force` flag with the `reset` command to ignore any errors.
 
-* When removing a multi-node cluster, remove and reset the worker nodes before the controller nodes. For more information, see [Remove a multi-node cluster](#remove-a-multi-node-cluster) in this document.
+* When removing a multi-node cluster, remove the worker nodes before the controller nodes. For more information, see [Remove a multi-node cluster](#remove-a-multi-node-cluster) in this document.
 
 ### Remove a node from a multi-node cluster {#remove-a-node}
 
@@ -209,17 +206,11 @@ To remove a node from a multi-node cluster:
     * `APP_SLUG` is the unique slug for the application.
     * `NODE_NAME` is the Kubernetes node name of the node to remove. To list the node names in the cluster, run `sudo ./APP_SLUG shell -c "kubectl get nodes"`.
 
-1. SSH onto the machine that you removed and reset it:
-
-    ```bash
-    sudo ./APP_SLUG reset
-    ```
-
-1. Reboot the machine.
+1. (Optional) Reset the machine that you removed so that you can reuse it. See [Reset a node](#reset-a-node) in this document.
 
 ### Reset a node {#reset-a-node}
 
-For single-node installations, or for the last remaining controller node when deleting a multi-node cluster, run the `reset` command directly. For all other nodes in a multi-node cluster, first remove the node from the cluster. See [Remove a node from a multi-node cluster](#remove-a-node) in this document.
+For single-node installations, or for the last remaining controller node when deleting a multi-node cluster, run the `reset` command directly. For all other nodes in a multi-node cluster, first remove the node from the cluster by running `remove-node` from a controller node. See [Remove a node from a multi-node cluster](#remove-a-node) in this document.
 
 To reset a node:
 
@@ -236,14 +227,4 @@ To reset a node:
 
 ### Remove a multi-node cluster
 
-To remove a multi-node cluster:
-
-1. For each worker node in the cluster, run `remove-node` from a controller node, then run `reset` on the worker machine. See [Remove a node from a multi-node cluster](#remove-a-node) in this document.
-
-   :::note
-   The safety checks for the `reset` command prevent you from resetting a controller node that is still a member of the cluster's etcd.
-   :::
-
-1. After resetting all the worker nodes, remove and reset each controller node except the last one in the same way.
-
-1. On the last remaining controller node, run the `reset` command directly. See [Reset a node](#reset-a-node) in this document.
+To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. For more information, see [Remove a node from a multi-node cluster](#remove-a-node) and [Reset a node](#reset-a-node) in this document.
