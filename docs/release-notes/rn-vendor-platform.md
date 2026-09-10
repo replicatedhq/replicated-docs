@@ -15,6 +15,12 @@ Released on September 9, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-09-0}
 * Fixes EP v2 dashboard update availability calculations for pinned channels and mixed install-type fleets.
+## v2026.09.08-0
+
+Released on September 8, 2026
+
+### Improvements {#improvements-v2026-09-08-0}
+* KOTS existing-cluster install commands now shell-quote the app slug, version label, and private registry hostname.
 ## v2026.09.04-2
 
 Released on September 4, 2026
