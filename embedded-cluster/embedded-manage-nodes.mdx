@@ -122,7 +122,7 @@ To create a multi-node cluster with HA:
 
 * During installation with Embedded Cluster, follow the steps in the Embedded Cluster UI to join a total of three `controller` nodes to the cluster. For more information about joining nodes, see [Join nodes](#add-nodes) on this page.
 
-   Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present. 
+   Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present.
 
 ### Enable HA for an existing cluster {#enable-ha-existing}
 
@@ -215,9 +215,9 @@ To reset a node:
 
 ### Remove a multi-node cluster
 
-To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. For more information, see [Remove a node from a multi-node cluster](#remove-a-node) in this document.
+To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. Optionally, reset each machine that you remove so that you can reuse it. See [Reset a node](#reset-a-node) in this document.
 
-Optionally, reset each machine that you remove so that you can reuse it. See [Reset a node](#reset-a-node) in this document.
+For more information, see [Remove a node from a multi-node cluster](#remove-a-node) in this document.
 
 ### Limitations and best practices
 
