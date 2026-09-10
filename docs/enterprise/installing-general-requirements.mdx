@@ -245,6 +245,38 @@ In some cases, it is not possible to grant the user `* * *` permissions in the t
          resources: ["crontabs"]
          verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
        ```
+
+    1. If the application includes the Replicated SDK and the SDK is configured to use minimal RBAC, add the following rules to the Role in the YAML file that you created in the previous step:
+
+       ```yaml
+       rules:
+       - apiGroups: [""]
+         resources: ["serviceaccounts"]
+         verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+       - apiGroups: ["rbac.authorization.k8s.io"]
+         resources: ["roles", "rolebindings"]
+         verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+       - apiGroups: ["apps"]
+         resources: ["replicasets"]
+         verbs: ["get"]
+       ```
+
+       If status informers are not defined for the SDK, also add the following rules:
+
+       ```yaml
+       - apiGroups: ["apps"]
+         resources: ["replicasets"]
+         verbs: ["list", "watch"]
+       - apiGroups: ["discovery.k8s.io"]
+         resources: ["endpointslices"]
+         verbs: ["list"]
+       ```
+
+       If status informers are defined and any of them are Services or Ingresses, add the `endpointslices` rule only.
+
+       :::note
+       If the SDK is not configured to use minimal RBAC, or is configured to use a custom ClusterRole, then it cannot be installed with the minimum KOTS RBAC permissions. For more information, see [Customize RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
+       :::
     
     1. Run the following command to create the RBAC resources for KOTS in the namespace:
 

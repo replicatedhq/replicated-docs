@@ -89,6 +89,7 @@ In some cases, it is not possible to grant the user `* * *` permissions in the t
 If the user installing or upgrading KOTS cannot be granted `* * *` permissions in the namespace, then they can instead request the following:
 * The minimum RBAC permissions required by KOTS
 * RBAC permissions for any CustomResourceDefinitions (CRDs) that your application includes
+* RBAC permissions for any ServiceAccount, Role, or RoleBinding objects that your application's Helm charts create, including the Replicated SDK
 
 Installing with the minimum KOTS RBAC permissions also requires that the user manually creates a ServiceAccount, Role, and RoleBinding for KOTS, rather than allowing KOTS to automatically create a Role with `* * *` permissions.
 
@@ -101,6 +102,12 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 * **Existing clusters only**: The `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` options apply only to installations in existing clusters.
 
 * **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Define Preflight Checks](/vendor/preflight-defining).
+
+* **Helm charts that include their own RBAC**: KOTS can only grant permissions that it holds itself. If your application's Helm charts create ServiceAccount, Role, or RoleBinding objects, then users installing with the minimum KOTS RBAC permissions must be granted permission to create those objects, as well as every permission that those objects request.
+
+   This applies to the Replicated SDK, which creates a ServiceAccount, Role, and RoleBinding by default. To keep the required permissions to a minimum, set `replicated.minimalRBAC` to `true` and define `replicated.statusInformers` in your Helm chart values.
+
+   If you do not set `replicated.minimalRBAC`, or if you configure the SDK with `replicated.clusterRole`, then these users cannot install the SDK at all. Without minimal RBAC, the SDK's Role requests `get`, `list`, and `watch` on all resources in the namespace. With a custom ClusterRole, KOTS must create a ClusterRoleBinding, which a namespace-scoped Role cannot authorize. In both cases the only alternative is for the user to create a ServiceAccount and provide it with `replicated.serviceAccountName`. For more information, see [Customize RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
 
 * **Velero namespace access for KOTS snapshots**: Velero is required for enabling backup and restore with the KOTS snapshots feature. Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. 
 
