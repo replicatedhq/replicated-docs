@@ -1,0 +1,53 @@
+Embedded Cluster verifies the following host configuration with host preflight checks during installation. Configuring these values before you install avoids failed installations.
+
+#### Kernel modules
+
+The following kernel modules must be loaded or loadable:
+
+* `overlay`
+* `br_netfilter`
+* `nf_conntrack`
+
+The host must also have a usable netfilter backend. This means that either the `ip_tables` module, for legacy iptables, or the `nf_tables` module, for nftables, is available.
+
+#### Cgroup controllers
+
+The following cgroup controllers must be available:
+
+`cpu`, `cpuacct`, `cpuset`, `memory`, `devices`, `freezer`, and `pids`
+
+#### Required commands
+
+The `modprobe`, `mount`, and `umount` commands must be available on the host.
+
+#### Network parameters
+
+The following `sysctl` parameters must be set as shown. To change a parameter, add it to `/etc/sysctl.conf` and then run `sudo sysctl -p`.
+
+| Parameter | Required value |
+|---|---|
+| `net.ipv4.ip_forward` | `1` |
+| `net.ipv4.conf.all.forwarding` | `1` |
+| `net.ipv4.conf.default.forwarding` | `1` |
+| `net.bridge.bridge-nf-call-iptables` | `1` |
+| `net.ipv4.conf.all.arp_filter` | `0` |
+| `net.ipv4.conf.default.arp_filter` | `0` |
+| `net.ipv4.conf.all.arp_ignore` | `0` |
+| `net.ipv4.conf.default.arp_ignore` | `0` |
+| `net.ipv4.conf.all.rp_filter` | `2` for loose mode, or `0` to disable |
+| `net.ipv4.conf.default.rp_filter` | `2` for loose mode, or `0` to disable |
+
+Loose mode is preferred for reverse path filtering. Strict mode, which is the value `1`, drops pod traffic.
+
+#### Resource limits
+
+The following `sysctl` parameters must meet these minimums:
+
+| Parameter | Minimum value |
+|---|---|
+| `fs.inotify.max_user_instances` | `1024` |
+| `fs.inotify.max_user_watches` | `65536` |
+
+#### Hostname
+
+The hostname must be 54 characters or fewer. Internal component labels are derived from the node name, and a longer hostname exceeds the Kubernetes 63-character label limit, which prevents the cluster from starting.

@@ -73,13 +73,14 @@ For more information, see [About Instance and Event Data](/vendor/instance-insig
 ## Embedded Cluster host preflight checks {#about-host-preflight-checks}
 
 During installation, Embedded Cluster automatically runs a default set of _host preflight checks_. The default host preflight checks verify that the installation environment meets the requirements for Embedded Cluster, such as:
-* The system has sufficient disk space
-* The system has at least 2G of memory and 2 CPU cores
+* The system has sufficient disk space, memory, and CPU cores
+* Required kernel modules and network parameters are configured
+* The ports that Embedded Cluster uses are available
 * The system clock syncs
 
 If any of the Embedded Cluster host preflight checks fail, Embedded Cluster blocks installation and displays a message describing the failure.
 
-For the full default host preflight spec for Embedded Cluster, see [`preflight/embedded`](https://github.com/replicatedhq/ec/tree/f845ba382719a6218ebdca1e0e712452cb3483a4/pkg/preflight/embedded) in the `ec` repository in GitHub.
+The host preflight checks verify the requirements described in [Embedded Cluster installation requirements](installing-embedded-requirements). Ensure that the installation environment meets those requirements before you install.
 
 ### Limitations
 
