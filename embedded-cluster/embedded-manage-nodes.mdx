@@ -158,7 +158,7 @@ This section describes how to remove individual nodes from a cluster and how to 
 
 ### About the `remove-node` and `reset` commands
 
-To remove a node from a multi-node cluster, run the `remove-node` command from a controller node. Then, if you want to reuse the machine that you removed, run the `reset` command on it to remove Embedded Cluster and your application from that machine.
+To remove a node from a multi-node cluster, run the `remove-node` command from a controller node. Then, if you want to reuse the machine that you removed, run the `reset` command on it to remove Embedded Cluster from that machine.
 
 Run the `remove-node` command from a controller node other than the node that you want to remove. The command performs the following steps:
 
@@ -178,18 +178,6 @@ The `reset` command performs the following steps:
 The `reset` command does not remove the node from the cluster. To reset a controller node in a multi-node cluster, first run `remove-node` from another controller node. If you run `reset` on a worker node without first running `remove-node` from a controller node, the node's workloads are drained, but the node remains in the cluster in a `NotReady` state until you remove it with `remove-node`.
 
 For more information about these commands, see [remove-node](embedded-cluster-remove-node) and [reset](embedded-cluster-reset).
-
-### Limitations and best practices
-
-Before you remove a node or delete a cluster, consider the following limitations and best practices:
-
-* When you reset a node, Embedded Cluster deletes OpenEBS PVCs on that node. Kubernetes automatically recreates only PVCs created as part of a StatefulSet on another node in the cluster. To recreate other PVCs, redeploy the application in the cluster.
-
-* If you need to remove one controller node in a three-node cluster, first join a fourth controller node to the cluster before removing the target node. This ensures that you maintain a minimum of three nodes for the Kubernetes control plane. You can add and remove worker nodes as needed because they do not have any control plane components.
-
-* When resetting a single node or deleting a test environment, you can include the `--force` flag with the `reset` command to ignore any errors.
-
-* When removing a multi-node cluster, remove the worker nodes before the controller nodes. For more information, see [Remove a multi-node cluster](#remove-a-multi-node-cluster) in this document.
 
 ### Remove a node from a multi-node cluster {#remove-a-node}
 
@@ -227,4 +215,18 @@ To reset a node:
 
 ### Remove a multi-node cluster
 
-To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. For more information, see [Remove a node from a multi-node cluster](#remove-a-node) and [Reset a node](#reset-a-node) in this document.
+To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. For more information, see [Remove a node from a multi-node cluster](#remove-a-node) in this document.
+
+Optionally, reset each machine that you remove so that you can reuse it. See [Reset a node](#reset-a-node) in this document.
+
+### Limitations and best practices
+
+Before you remove a node or delete a cluster, consider the following limitations and best practices:
+
+* When you reset a node, Embedded Cluster deletes OpenEBS PVCs on that node. Kubernetes automatically recreates only PVCs created as part of a StatefulSet on another node in the cluster. To recreate other PVCs, redeploy the application in the cluster.
+
+* If you need to remove one controller node in a three-node cluster, first join a fourth controller node to the cluster before removing the target node. This ensures that you maintain a minimum of three nodes for the Kubernetes control plane. You can add and remove worker nodes as needed because they do not have any control plane components.
+
+* When resetting a single node or deleting a test environment, you can include the `--force` flag with the `reset` command to ignore any errors.
+
+* When removing a multi-node cluster, remove the worker nodes before the controller nodes. For more information, see [Remove a multi-node cluster](#remove-a-multi-node-cluster) in this document.
