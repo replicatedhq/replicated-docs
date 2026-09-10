@@ -12,7 +12,7 @@ Content is driven by entitlements and channel assignment, so each customer sees 
 
 ## What your customers can do
 
-- **Install and upgrade**: Step-by-step installation instructions for Helm and Embedded Cluster (Linux), with per-instance commands personalized to each customer's license and environment
+- **Install and upgrade**: Step-by-step installation instructions for Helm and Embedded Cluster (Linux), plus generated KOTS and kURL upgrade CLI commands. Vendors can add KOTS and kURL install pages.
 - **Automate installs and upgrades**: Service account API endpoints let customers create install profiles, fetch structured instructions, and download artifacts from CI/CD systems. For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
 - **Manage instances**: View all deployed instances, check for available updates, and follow inline upgrade instructions
 - **Download install artifacts**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal, including versioned install and update artifacts for KOTS and kURL air gap instances. Available artifacts vary by install method and license entitlements
@@ -28,7 +28,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ### New compared to the Classic Enterprise Portal
 
-- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal, where they see their instances, browse versions, and download install and update artifacts. These customers previously used the separate Download Portal. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
+- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow generated upgrade CLI commands, and download air gap artifacts. Vendors can add dedicated KOTS and kURL install pages. These customers previously used the separate Download Portal. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
 - **Content repo driven**: You manage all portal content (pages, navigation, branding) through a GitHub repo you control, not through Vendor Portal UI forms
 - **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
 - **Versioned docs**: Each Git branch becomes a version in the customer's portal, with smart resolution that automatically finds the correct content for any release
@@ -39,7 +39,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ### Additionally new compared to the Download Portal {#download-portal}
 
-Customers moving from the Download Portal gain the same content and automation capabilities, except for KOTS and kURL support, which the Download Portal already offered. The new Enterprise Portal also adds the following, which the Download Portal has no equivalent for:
+Customers moving from the Download Portal gain the same content and automation capabilities. The Download Portal already shared KOTS and kURL artifacts. The Enterprise Portal also generates KOTS and kURL install and upgrade CLI commands for customers. It also adds the following, which the Download Portal has no equivalent for:
 
 - **Accounts and teams**: Individual user sign-in through magic link, email invitation, or SAML SSO, replacing the Download Portal's shared password, plus multi-user team management
 - **Instance and update management**: The Instances & Updates page shows deployed instances, detects available updates, and provides inline upgrade steps. The Download Portal has no instance concept.
@@ -47,7 +47,6 @@ Customers moving from the Download Portal gain the same content and automation c
 
 ## Current limitations {#current-limitations}
 
-- The Enterprise Portal does not generate step-by-step install or upgrade instructions for KOTS or kURL installations. These are available only for Embedded Cluster and Helm CLI installations. KOTS and kURL customers with air gap enabled can instead download versioned install and update artifacts. These are available from the Instances & Updates page and from dedicated KOTS and kURL installer pages. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
 - Air gap instance records do not appear until the customer creates one from the Instances & Updates page, either by manually entering instance information or by extracting details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 - Security Center data (CVE reports and SBOMs) is available for Helm and Embedded Cluster installations only. Customers whose only instances are KOTS or kURL see an explanatory message instead of security data. Customers with a mix of instance types see Security Center data for their Helm and Embedded Cluster instances.
 - If you have many version branches and need to make a change across all versions, you must update each branch individually.
