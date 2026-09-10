@@ -49,6 +49,10 @@ You can explicitly include or exclude images from being scanned by the Security 
 
 The Security Center is powered by Replicated's [SecureBuild](https://securebuild.com/) technology. With SecureBuild, images are scanned on a recurring schedule using the open source vulnerability scanner [Grype](https://github.com/anchore/grype), not only at release time. Newly promoted images are scanned as soon as they are identified, and previously scanned images are rescanned periodically, with more recently promoted images scanned more frequently than older ones. This means that, as new CVEs are disclosed, they surface in your Security Center over time without requiring a new release.
 
+:::note
+Grype reports a CVE as fixed only after the fix data for the affected package is available in Grype's vulnerability database, and that database is rebuilt about once a day. This means an image that is already patched can continue to report the CVE until the next database update. It is most noticeable immediately after a patched image is published, such as a new Replicated SDK version that resolves a reported vulnerability. If a CVE that you expect to be resolved still appears, check the report again after the next database update before you investigate further.
+:::
+
 The following describes the Security Center CVE scanning process:
 
 1. For each image that Replicated identified in the release, SecureBuild pulls the image by digest and scans it with Grype. SecureBuild scans for multiple architectures (amd64 and arm64) when relevant.
@@ -101,6 +105,8 @@ The following describes the Security Center SBOM generation process:
 ## Limitations
 
 * The Security Center is Beta. The features and functionality of the Security Center are subject to change.
+
+* CVE reporting reflects the state of Grype's vulnerability database, which is rebuilt about once a day. An image that is already patched can continue to report a fixed CVE until the next database update. For more information, see [How CVE scanning works](#how-cve-scanning-works) on this page.
 
 * Customer-specific Security Center reporting, including Customer Impact data, upgrade recommendations, and Enterprise Portal security reports, is available only for Embedded Cluster and Helm CLI installations. For releases installed with KOTS or kURL, Vendor Portal release views report on application images but do not include infrastructure components such as the Admin Console, rqlite, Dex, or kURL Kubernetes components. KOTS and kURL instances do not contribute instance-specific CVE data.
 
