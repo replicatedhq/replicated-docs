@@ -493,6 +493,8 @@ The default content template ships install pages for Embedded Cluster (`pages/in
 
    Customers must transfer `license.yaml` and the downloaded artifacts to the air gap environment before running the commands.
 
+   For KOTS, customers must replace `$YOUR_PRIVATE_REGISTRY` in the generated commands with their private registry hostname. This page has no registry hostname input, and the single-quoted placeholder does not expand as a shell variable.
+
    These pages have no in-page version dropdown. Existing installations keep their selected release. New installations use the release matching the rendered content version, or the latest matching release when no version matches.
 
    Gate these pages on the install-type entitlement and `isAirgapSupported`. Air gap step components use `step="download_assets"`, then `step="install_kots"` or `step="install_kurl"`.
@@ -505,9 +507,9 @@ The default content template ships install pages for Embedded Cluster (`pages/in
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
-**`<KotsUpdateAssets />`**: Renders KOTS upgrade CLI commands for the customer's current instance. Online upgrades use `kubectl kots upstream upgrade --deploy`. Air gap upgrades include artifact downloads on the steps, then `push-images` and `upstream upgrade --airgap-bundle`. Props: `stepNumber`.
+**`<KotsUpdateAssets />`**: Renders KOTS upgrade CLI commands for the customer's current instance. Online upgrades use `kubectl kots upstream upgrade` with `--deploy-version-label` to deploy the selected version. Air gap upgrades include artifact downloads on the steps, then `push-images` and `upstream upgrade --airgap-bundle`. Props: `stepNumber`.
 
-**`<KurlUpdateAssets />`**: Renders kURL upgrade CLI commands for the customer's current instance. Online upgrades reuse the kURL installer command. Air gap upgrades include artifact downloads on the steps, then `upgrade.sh` and `kubectl kots upstream upgrade --airgap-bundle`. Props: `stepNumber`.
+**`<KurlUpdateAssets />`**: Renders kURL upgrade CLI commands for the customer's current instance. Online upgrades reuse the kURL installer command. Air gap upgrades include artifact downloads on the steps, then `install.sh` and `kubectl kots upstream upgrade --airgap-bundle`. Props: `stepNumber`.
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
