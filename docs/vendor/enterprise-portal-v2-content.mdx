@@ -455,12 +455,15 @@ The default content template ships install pages for Embedded Cluster (`pages/in
    ```markdown
    # KOTS Installation
 
-   <PendingInstallSelector method="kots" />
+   <PendingInstallSelector method="kots" network="online" />
    <NewInstall method="kots" />
    <VersionSelector installType="kots" />
+   <LicenseDownload />
    <KotsInstallAssets stepNumber={1} />
    <InstanceName method="kots" />
    ```
+
+   Customers must download the license for their installation and save it as `license.yaml` in the directory where they run the commands.
 
    To author a single generated step instead of the full sequence, use `<KotsInstallStep step="install_kots" stepNumber={1} />`.
 
@@ -476,7 +479,23 @@ The default content template ships install pages for Embedded Cluster (`pages/in
 
 1. For kURL, use the same page shape with `method="kurl"` and `installType="kurl"`. Use `<KurlInstallAssets />` or `<KurlInstallStep step="install_kurl" />`. Gate the navigation item on `isKurlInstallEnabled`.
 
-1. For air gap pages, set `network="airgap"` on `<PendingInstallSelector>` and `<NewInstall>`. Use `<KotsAirgapInstallAssets />` or `<KurlAirgapInstallAssets />`. Gate those pages on the install-type entitlement and `isAirgapSupported`. Air gap step components use `step="download_assets"`, then `step="install_kots"` or `step="install_kurl"`.
+1. For air gap pages, set `network="airgap"` on `<PendingInstallSelector>` and `<NewInstall>`. Use `<KotsAirgapInstallAssets />` or `<KurlAirgapInstallAssets />`. Omit `<VersionSelector>`: without a supported network control, it changes the installation to online mode. For example:
+
+   ```markdown
+   # KOTS air gap installation
+
+   <PendingInstallSelector method="kots" network="airgap" />
+   <NewInstall method="kots" network="airgap" />
+   <LicenseDownload />
+   <KotsAirgapInstallAssets stepNumber={1} />
+   <InstanceName method="kots" />
+   ```
+
+   Customers must transfer `license.yaml` and the downloaded artifacts to the air gap environment before running the commands.
+
+   These pages have no in-page version dropdown. Existing installations keep their selected release. New installations use the release matching the rendered content version, or the latest matching release when no version matches.
+
+   Gate these pages on the install-type entitlement and `isAirgapSupported`. Air gap step components use `step="download_assets"`, then `step="install_kots"` or `step="install_kurl"`.
 
 1. To keep a download-only air gap page, use `<KotsDownloadAssets />` or `<KurlDownloadAssets />` instead of the install-assets components. Gate download-only pages on the install-type entitlement and `isAirgapSupported`. The download components do not render install commands.
 
