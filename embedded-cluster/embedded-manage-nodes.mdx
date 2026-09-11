@@ -163,7 +163,7 @@ To remove a node from a multi-node cluster, run the `remove-node` command from a
 Run the `remove-node` command from a controller node other than the node that you want to remove. The command performs the following steps:
 
 1. Drain workloads from the node so that they reschedule onto other nodes in the cluster
-1. For controller nodes, remove the node from the etcd cluster and delete the autopilot ControlNode object
+1. For controller nodes, remove the node from the etcd cluster
 1. Delete the node from Kubernetes
 
 The `reset` command removes Embedded Cluster and your application from the machine where it is run. This is useful for iteration, development, and when you make mistakes because you can reuse the machine instead of having to procure a new one.
@@ -195,7 +195,7 @@ To remove a node from a multi-node cluster:
     * `NODE_NAME` is the Kubernetes node name of the node to remove. To list the node names in the cluster, run `sudo ./APP_SLUG shell -c "kubectl get nodes"`.
 
     :::note
-    If the node is unreachable, include the `--skip-drain` flag to skip draining workloads from the node. If the node's Kubernetes object is already gone, `remove-node` skips directly to the etcd and ControlNode cleanup.
+    If the node is unreachable, include the `--skip-drain` flag to skip draining workloads from the node. If the node's Kubernetes object is already gone, `remove-node` skips directly to the etcd cleanup.
     :::
 
 1. (Optional) Reset the machine that you removed so that you can reuse it. See [Reset a machine](#reset-a-node) in this document.
