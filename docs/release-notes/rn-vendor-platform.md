@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.10-0
+
+Released on September 10, 2026
+
+### Improvements {#improvements-v2026-09-10-0}
+* Security Center no longer asks customers to choose a network mode for CVE and SBOM reports.
+
+### Bug Fixes {#bug-fixes-v2026-09-10-0}
+* Security Center now distinguishes unavailable vulnerability and SBOM reports from actual service failures.
 ## v2026.09.09-0
 
 Released on September 9, 2026
