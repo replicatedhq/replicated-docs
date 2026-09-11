@@ -16,7 +16,7 @@ Before you perform this task, install [Cosign](https://github.com/sigstore/cosig
 
 ## Validate Troubleshoot CLI provenance
 
-Troubleshoot releases provide the `preflight` and `support-bundle` CLIs for multiple operating systems and architectures. CLI provenance is available for Troubleshoot release 0.135.0 and later. Each supported release includes a `troubleshoot_VERSION_provenance.sigstore.json` bundle containing signed SLSA provenance for all `preflight` and `support-bundle` archives in that release.
+Troubleshoot releases provide the `preflight` and `support-bundle` CLIs for multiple operating systems and architectures. CLI provenance is available for Troubleshoot release 0.134.1 and later. Each supported release includes a `troubleshoot_VERSION_provenance.sigstore.json` bundle containing signed SLSA provenance for all `preflight` and `support-bundle` archives in that release.
 
 To validate a Troubleshoot CLI archive:
 
@@ -26,7 +26,7 @@ To validate a Troubleshoot CLI archive:
 
 1. In the following command, replace:
 
-   - `VERSION` with the complete release tag, including the `v` prefix. For example, `v0.135.0`.
+   - `VERSION` with the complete release tag, including the `v` prefix. For example, `v0.134.1`.
    - `ARCHIVE` with the name of the downloaded archive. For example, `preflight_linux_amd64.tar.gz`.
 
 1. Run:
