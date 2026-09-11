@@ -327,7 +327,7 @@ These components render dynamic, customer-specific installation instructions bas
 <PendingInstallSelector method="linux" />
 ```
 
-Props: `method` (`"linux"` or `"helm"`, required), `network` (`"online"` or `"airgap"`, optional filter), `title` (optional, defaults to "Installations in progress"), `emptyText` (optional), `initialVisible` (optional, number of items to show before "Show all").
+Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network` (`"online"` or `"airgap"`, optional filter), `title` (optional, defaults to "Installations in progress"), `emptyText` (optional), `initialVisible` (optional, number of items to show before "Show all").
 
 **`<NewInstall>`**: Button to start a new installation. Creates a service account and generates credentials, which populate the install commands on the page.
 
@@ -335,7 +335,9 @@ Props: `method` (`"linux"` or `"helm"`, required), `network` (`"online"` or `"ai
 <NewInstall method="helm" />
 ```
 
-Props: `method` (`"linux"` or `"helm"`, required), `network` (`"online"` or `"airgap"`, optional, defaults to `"online"`), `label` (optional, defaults to "New installation").
+Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network` (`"online"` or `"airgap"`, optional), `label` (optional, defaults to "New installation").
+
+If you omit `network`, the default depends on the page's network selection: `"airgap"` for air gap, or `"online"` otherwise.
 
 :::note
 The install commands on the page are personalized to the selected installation. If you switch installations or rename your instance, the commands update automatically.
@@ -347,7 +349,7 @@ The install commands on the page are personalized to the selected installation. 
 <NetworkAvailability installType="linux" />
 ```
 
-Props: `installType` (`"linux"` or `"helm"`).
+Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<VersionSelector>`**: Dropdown for selecting which release version to install.
 
@@ -355,11 +357,11 @@ Props: `installType` (`"linux"` or `"helm"`).
 <VersionSelector installType="helm" />
 ```
 
-Props: `installType` (`"linux"` or `"helm"`).
+Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<KubernetesDistribution />`**: Selector for the target Kubernetes distribution (EKS, GKE, AKS, etc.). No props.
 
-**`<RegistryAccess />`**: Displays registry credentials and pull secret configuration. No props.
+**`<RegistryAccess />`**: Selects registry access settings and accepts a private registry hostname. Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, optional, defaults to `"helm"`). For Helm, KOTS, and kURL, the component appears only when the page's network selection is air gap.
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
@@ -373,9 +375,27 @@ When a customer selects limited or no registry access, `<HelmInstallAssets />` a
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
-**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Downloadable artifacts include the KOTS CLI, the Admin Console bundle, and the application air gap bundle. Available when the customer's license has the KOTS install type with air gap enabled. Props: `stepNumber`.
+**`<KotsInstallAssets />`**: Renders the full online KOTS existing-cluster installation command sequence. The generated `kubectl kots install` command includes `--license-file ./license.yaml`. Props: `stepNumber` (optional, starting step number).
 
-**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Downloadable artifacts include the kURL installer bundle and the application air gap bundle. Available when the customer's license has the kURL install type with air gap enabled. Props: `stepNumber`.
+**`<KurlInstallAssets />`**: Renders the full online kURL installation command sequence. Props: `stepNumber` (optional, starting step number).
+
+**`<KotsAirgapInstallAssets />`**: Renders KOTS air gap installation steps. The first step includes artifact download links. The following step includes `kubectl kots install` with `--license-file ./license.yaml` and `--airgap-bundle`. When a private registry hostname is available, the commands use that hostname in place of `$YOUR_PRIVATE_REGISTRY`. Props: `stepNumber`.
+
+**`<KurlAirgapInstallAssets />`**: Renders kURL air gap installation steps. The first step includes artifact download links. The following step extracts the installer, runs `install.sh airgap`, and runs `kubectl kots install` with `--license-file ./license.yaml`. Props: `stepNumber`.
+
+**`<KotsInstallStep>`**: Renders one online KOTS install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kots"`.
+
+**`<KurlInstallStep>`**: Renders one online kURL install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kurl"`.
+
+**`<KotsAirgapInstallStep>`**: Renders one KOTS air gap install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="download_assets"` or `step="install_kots"`. `step="download"` is an alias for `download_assets`.
+
+**`<KurlAirgapInstallStep>`**: Renders one kURL air gap install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="download_assets"` or `step="install_kurl"`.
+
+For all four KOTS and kURL step components, `step="install"` selects the corresponding `install_kots` or `install_kurl` step.
+
+**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Downloadable artifacts include the KOTS CLI, the Admin Console bundle, and the application air gap bundle. Available when the customer's license has the KOTS install type with air gap enabled. This component does not render install commands. Props: `stepNumber`.
+
+**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Downloadable artifacts include the kURL installer bundle and the application air gap bundle. Available when the customer's license has the kURL install type with air gap enabled. This component does not render install commands. Props: `stepNumber`.
 
 **`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
 
@@ -383,7 +403,7 @@ When a customer selects limited or no registry access, `<HelmAirgapInstallAssets
 <InstanceName />
 ```
 
-Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional).
+Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional, `"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<AdminConsoleUrl />`**: Displays the admin console URL for Embedded Cluster installations. No props.
 
@@ -426,23 +446,32 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 </Prerequisites>
 ```
 
-#### Adding KOTS or kURL installer pages
+#### Add KOTS or kURL installer pages
 
-KOTS and kURL instances already appear on the Instances & Updates page with no setup, where entitled customers can download versioned artifacts and create air gap instance records. This is rendered by the `<InstancesAndUpdates />` component, which ships in the default template. The dedicated installer pages described here are an optional addition that gives KOTS and kURL customers a download page of their own, the same as the Linux and Helm install pages.
+KOTS and kURL instances already appear on the Instances & Updates page with no setup. Entitled customers see generated CLI upgrade steps there, including air gap download links. The `<InstancesAndUpdates />` component in the default template renders this page.
 
-The default content template ships install pages for Embedded Cluster (`pages/installation/linux.md`) and Helm (`pages/installation/helm.md`), already listed in `toc.yaml`. It does not ship pages for KOTS or kURL. To give those customers a dedicated installer page, add one yourself using the `<KotsDownloadAssets />` or `<KurlDownloadAssets />` component.
+The default content template ships install pages for Embedded Cluster (`pages/installation/linux.md`) and Helm (`pages/installation/helm.md`), already listed in `toc.yaml`. It does not ship pages for KOTS or kURL. To give those customers a dedicated installer page, add one in your content repo.
 
-1. Create a page that embeds the component, for example `pages/installation/kots.md`:
+To let customers choose network availability, include `<NetworkAvailability>` and `<VersionSelector>` with the same `installType`, either `"kots"` or `"kurl"`. The following examples use separate online and air gap pages instead.
+
+1. Create a page that starts an install and renders the generated commands, for example `pages/installation/kots.md`:
 
    ```markdown
    # KOTS Installation
 
-   Download the artifacts for your licensed version below.
-
-   <KotsDownloadAssets stepNumber={1} />
+   <PendingInstallSelector method="kots" network="online" />
+   <NewInstall method="kots" />
+   <VersionSelector installType="kots" />
+   <LicenseDownload />
+   <KotsInstallAssets stepNumber={1} />
+   <InstanceName method="kots" />
    ```
 
-1. Add the page to `toc.yaml` under the Installation section, gated with `visible_when` so it only appears for customers whose license includes the KOTS install type with air gap enabled:
+   Customers must download the license for their installation and save it as `license.yaml` in the directory where they run the commands.
+
+   To author a single generated step instead of the full sequence, use `<KotsInstallStep step="install_kots" stepNumber={1} />`.
+
+1. Add the page to `toc.yaml` in the Installation section. Gate it with `visible_when` so it appears only for customers whose license includes that install type:
 
    ```yaml
    - title: KOTS
@@ -450,18 +479,41 @@ The default content template ships install pages for Embedded Cluster (`pages/in
      visible_when:
        entitlements:
          - isKotsInstallEnabled
-         - isAirgapSupported
    ```
 
-For kURL, use the `<KurlDownloadAssets />` component and gate the navigation item on `isKurlInstallEnabled` and `isAirgapSupported`.
+1. For kURL, use the same page shape with `method="kurl"` and `installType="kurl"`. Use `<KurlInstallAssets />` or `<KurlInstallStep step="install_kurl" />`. Gate the navigation item on `isKurlInstallEnabled`.
 
-The download components gate themselves on the same entitlements, so a customer who reaches the page without them sees nothing to download. Matching the `visible_when` conditions to the component keeps the navigation item hidden for those customers instead of showing them an empty page.
+1. For air gap pages, set `network="airgap"` on `<PendingInstallSelector>` and `<NewInstall>`. Use `<KotsAirgapInstallAssets />` or `<KurlAirgapInstallAssets />`. Omit `<VersionSelector>` unless the page also includes a matching `<NetworkAvailability>` control. Without that control, the version selector changes the installation to online mode. For example:
+
+   ```markdown
+   # KOTS air gap installation
+
+   <PendingInstallSelector method="kots" network="airgap" />
+   <NewInstall method="kots" network="airgap" />
+   <LicenseDownload />
+   <KotsAirgapInstallAssets stepNumber={1} />
+   <InstanceName method="kots" />
+   ```
+
+   Customers must transfer `license.yaml` and the downloaded artifacts to the air gap environment before running the commands.
+
+   For KOTS, customers must replace `$YOUR_PRIVATE_REGISTRY` in the generated commands with their private registry hostname. This example has no registry hostname input, and the single-quoted placeholder does not expand as a shell variable.
+
+   This example has no in-page version dropdown. Existing installations keep their selected release. New installations use the release matching the rendered content version, or the latest matching release when no version matches.
+
+   Gate these pages on the install-type entitlement and `isAirgapSupported`. Air gap step components use `step="download_assets"`, then `step="install_kots"` or `step="install_kurl"`.
+
+1. To keep a download-only air gap page, use `<KotsDownloadAssets />` or `<KurlDownloadAssets />` instead of the install-assets components. Gate download-only pages on the install-type entitlement and `isAirgapSupported`. The download components do not render install commands.
 
 ### Update components
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
+
+**`<KotsUpdateAssets />`**: Renders KOTS upgrade CLI commands for the customer's current instance. Online upgrades use `kubectl kots upstream upgrade` with `--deploy-version-label` to deploy the selected version. Air gap upgrades include artifact downloads on the steps, then `push-images` and `upstream upgrade --airgap-bundle`. Props: `stepNumber`.
+
+**`<KurlUpdateAssets />`**: Renders kURL upgrade CLI commands for the customer's current instance. Online upgrades reuse the kURL installer command. Air gap upgrades include artifact downloads on the steps, then `install.sh` and `kubectl kots upstream upgrade --airgap-bundle`. Props: `stepNumber`.
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
@@ -526,7 +578,7 @@ Each of the four support bundle components renders the steps for one installatio
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline upgrade instructions, while KOTS and kURL instances expand into a panel for downloading versioned install and update artifacts. No props.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm, Embedded Cluster, KOTS, and kURL instances expand into inline upgrade CLI commands. For air gap KOTS and kURL, those steps include the artifact downloads. No props.
 
 ### Security components
 
