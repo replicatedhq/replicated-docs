@@ -335,7 +335,9 @@ Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network
 <NewInstall method="helm" />
 ```
 
-Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network` (`"online"` or `"airgap"`, optional, defaults to `"online"`), `label` (optional, defaults to "New installation").
+Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network` (`"online"` or `"airgap"`, optional), `label` (optional, defaults to "New installation").
+
+If you omit `network`, the default depends on the page's network selection: `"airgap"` for air gap, or `"online"` otherwise.
 
 :::note
 The install commands on the page are personalized to the selected installation. If you switch installations or rename your instance, the commands update automatically.
