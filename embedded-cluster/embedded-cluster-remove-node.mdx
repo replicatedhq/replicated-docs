@@ -21,12 +21,12 @@ Replace `node-name` with the Kubernetes node name to remove.
   <tr>
     <td>`--force`</td>
     <td></td>
-    <td>Force removal without additional confirmation.</td>
+    <td>Force removal of a controller node even if removing it breaks etcd quorum. This is dangerous and can leave the cluster inoperable.</td>
   </tr>
   <tr>
     <td>`--skip-drain`</td>
     <td></td>
-    <td>Skip draining workloads from the node before removal.</td>
+    <td>Skip draining workloads from the node before removal. Use this flag to remove a node that is already unreachable.</td>
   </tr>
   <tr>
     <td>`-h`, `--help`</td>
