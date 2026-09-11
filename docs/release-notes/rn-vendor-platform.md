@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.11-2
+
+Released on September 11, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-11-2}
+* New applications no longer preselect customer install types by default. Vendors can choose the appropriate install types when creating a customer.
 ## v2026.09.10-0
 
 Released on September 10, 2026
