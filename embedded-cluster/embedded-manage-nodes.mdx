@@ -235,4 +235,4 @@ Before you remove a node or delete a cluster, consider the following limitations
 
 * When removing a multi-node cluster, remove the worker nodes before the controller nodes. For more information, see [Remove a multi-node cluster](#remove-a-multi-node-cluster) in this document.
 
-* If SeaweedFS is installed, follow the volume rebalancing procedures in the operator runbook after removing a node.
+* In air gap installations with high availability, SeaweedFS stores object storage data across nodes in the cluster. After removing a node, verify that all pods in the `seaweedfs` namespace are in a `Running` state before removing additional nodes.
