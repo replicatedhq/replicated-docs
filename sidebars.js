@@ -900,6 +900,7 @@ const sidebars = {
         },
         "enterprise/sbom-validating",
         "enterprise/image-provenance-validating",
+        "enterprise/cli-provenance-validating",
         "vendor/vendor-password-integrity",
         "vendor/packaging-private-registry-security",
       ],

@@ -2,6 +2,8 @@
 
 This topic describes how to verify the authenticity and integrity of Replicated container images, including Supply Chain Levels for Software Artifacts (SLSA) provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
 
+For information about validating SLSA provenance for CLI release archives, see [Validate CLI provenance](/enterprise/cli-provenance-validating).
+
 ## About SLSA and SBOMs
 
 [SLSA](https://slsa.dev/), pronounced "salsa," is a security framework that provides standards and controls designed to prevent tampering, improve integrity, and secure software packages and infrastructure. SLSA provenance provides information about an image's origin, creator, and build process.
