@@ -8,7 +8,7 @@ A _software bill of materials_ (SBOM) is an inventory of all components used to 
 
 When you install software, validating an SBOM signature can help you understand exactly what the software package is installing. This information can help you ensure that the files are compatible with your licensing policies and help determine whether there is exposure to CVEs.
 
-For information about validating SLSA provenance and image signatures for Replicated images, see [Validate image provenance](/enterprise/image-provenance-validating).
+For information about validating SLSA provenance and image signatures for Replicated images, see [Validate image provenance](/vendor/image-provenance-validating).
 
 ## Prerequisite
 

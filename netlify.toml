@@ -32,7 +32,15 @@
 
 [[redirects]]
   from = "/vendor/replicated-sdk-slsa-validating"
-  to = "/enterprise/image-provenance-validating"
+  to = "/vendor/image-provenance-validating"
+
+[[redirects]]
+  from = "/enterprise/sbom-validating"
+  to = "/vendor/sbom-validating"
+
+[[redirects]]
+  from = "/enterprise/image-provenance-validating"
+  to = "/vendor/image-provenance-validating"
 
 # Redirects from the root of the directories
 [[redirects]]
@@ -559,5 +567,4 @@
 ###################################################
 # Redirects To the Release Notes Section
 ###################################################
-
 
