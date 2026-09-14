@@ -17,6 +17,13 @@ Released on September 11, 2026
 * Fix KOTS air-gap installation commands to work when the no-MinIO bundle falls back to the standard kotsadm archive.
 * Restored the "Enable Enterprise Portal for all customers" switch for vendors who use only the new Enterprise Portal, which previously hid the switch while leaving the automatic invitation toggle available.
 * Automatic Enterprise Portal invitation on customer creation now requires the "Enable Enterprise Portal for all customers" switch for every vendor that has a Download Portal, and no longer requires it for vendors that do not.
+
+## v2026.09.11-2
+
+Released on September 11, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-11-2}
+* New applications no longer preselect customer install types by default. Vendors can choose the appropriate install types when creating a customer.
 ## v2026.09.10-0
 
 Released on September 10, 2026
