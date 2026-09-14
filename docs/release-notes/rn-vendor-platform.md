@@ -24,6 +24,16 @@ Released on September 11, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-11-2}
 * New applications no longer preselect customer install types by default. Vendors can choose the appropriate install types when creating a customer.
+
+## v2026.09.11-0
+
+Released on September 11, 2026
+
+### Improvements {#improvements-v2026-09-11-0}
+* Release History under Channels can now be sorted by channel sequence, creation date, or semantic version. Version sorting is available only for channels that require semantic versions.
+
+### Bug Fixes {#bug-fixes-v2026-09-11-0}
+* Clarifies the Enterprise Portal Content tab fallback branch badge so it describes the default branch instead of implying per-release fallback behavior.
 ## v2026.09.10-0
 
 Released on September 10, 2026
