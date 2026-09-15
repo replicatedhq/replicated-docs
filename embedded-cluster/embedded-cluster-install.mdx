@@ -22,6 +22,11 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
     <td>Perform an air-gapped installation. For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).</td>
   </tr>
   <tr>
+    <td>`--api-port`</td>
+    <td>int</td>
+    <td>Port for the external daemon API used by joining nodes. **Default:** `30081`</td>
+  </tr>
+  <tr>
     <td>`--cidr`</td>
     <td>string</td>
     <td>CIDR range for Pod and Service IP addresses. **Default:** `10.244.0.0/16`</td>
@@ -120,6 +125,11 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
     <td>`--registry-tls-key`</td>
     <td>string</td>
     <td>Path to the PEM-encoded private key that pairs with `--registry-tls-cert`.</td>
+  </tr>
+  <tr>
+    <td>`--roles`</td>
+    <td>strings</td>
+    <td>Comma-separated role names to assign to this node. Must include the controller role. Defaults to the configured controller role. For more information about defining roles, see [roles](embedded-config#roles) in _Embedded Cluster Config_.</td>
   </tr>
   <tr>
     <td>`--tls-cert`</td>

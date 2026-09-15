@@ -22,6 +22,11 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
     <td>Path to the [ConfigValues](/reference/custom-resource-configvalues) file for headless upgrades.</td>
   </tr>
   <tr>
+    <td>`--force`</td>
+    <td></td>
+    <td>Start a new upgrade even if a previous upgrade has not completed. Use this to retry after an upgrade that failed or was interrupted, because the incomplete revision otherwise blocks a new attempt. The `upgrade` command tells you when this flag is needed. Do not use it to start a second upgrade while one is genuinely still running.</td>
+  </tr>
+  <tr>
     <td>`--force-skip-ha-migration-check`</td>
     <td></td>
     <td>Skip checks related to high availability (HA) migration. Use with caution.</td>
