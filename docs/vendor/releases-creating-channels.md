@@ -80,8 +80,9 @@ You can archive an existing channel to prevent any new releases from being promo
 You cannot archive a channel if:
 * There are customers assigned to the channel.
 * The channel is set as the default channel.
+* The channel is set as the initial value for the built-in **Assigned channel** license field. For more information, see [Set initial values for built-in license fields](/vendor/licenses-adding-custom-fields#initial-values) in _Manage Customer License Fields_.
 
-Assign customers to a different channel and set a different channel as the default before archiving.
+Before archiving, assign customers to a different channel, set a different channel as the default, and change or reset the initial value of the **Assigned channel** license field.
 :::
 
 To archive a channel with the Vendor Portal or the Replicated CLI:
