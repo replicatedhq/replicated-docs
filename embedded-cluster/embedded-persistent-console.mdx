@@ -29,7 +29,7 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ### Access required for common operations {#operator-access}
 
-| Operation | Console (browser) | Command line on a node |
+| Operation | Persistent console | Command line on a node |
 |---|---|---|
 | View the installed version and application links | Yes | Yes |
 | See available updates and release notes | Yes | Yes |
@@ -38,10 +38,13 @@ If your end users need cluster-level visibility without command-line access, pac
 | Upload an air gap release archive | Yes | Yes |
 | Generate and download a support bundle | Yes | Yes |
 | Install the application and the console | No | Yes |
-| Add or remove nodes | No | Yes |
+| Get a command to join another node | No | Yes |
+| Remove a node | No | Yes |
 | Enable high availability | No | Yes |
 | Reset the installation | No | Yes |
 | Inspect Pods, logs, and Secrets | No | Yes, through `shell` |
+
+The install and upgrade wizards are separate from the persistent console. Both let a user generate a node join command in the browser during a multi-node installation or upgrade. The command itself still has to be run on the host that is joining, so adding a node always requires command-line access to that host. Removing a node is only available from the command line.
 
 ## Install the console
 
