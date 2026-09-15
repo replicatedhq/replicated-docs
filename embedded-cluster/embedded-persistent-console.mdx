@@ -29,22 +29,26 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ### Access required for common operations {#operator-access}
 
-| Operation | Persistent console | Command line on a node |
+The browser experience spans two surfaces. The persistent admin console is the always-on dashboard. The install and upgrade wizards are where configuration, preflight checks, and the install or upgrade run itself happen. Starting an upgrade from the console prepares it and then hands the user to the upgrade wizard, so a user does not have to choose between them.
+
+What matters for an end user without command-line access is therefore whether an operation is available in the browser at all:
+
+| Operation | Browser | Command line on a node |
 |---|---|---|
-| View the installed version and application links | Yes | Yes |
-| See available updates and release notes | Yes | Yes |
-| Upgrade the application | Yes | Yes |
-| Change configuration values | Yes, during an upgrade | Yes |
-| Upload an air gap release archive | Yes | Yes |
-| Generate and download a support bundle | Yes | Yes |
+| View the installed version and application links | Yes, in the console | Yes |
+| See available updates and release notes | Yes, in the console | Yes |
+| Upload an air gap release archive | Yes, in the console | Yes |
+| Generate and download a support bundle | Yes, in the console | Yes |
+| Upgrade the application | Yes, started in the console and completed in the wizard | Yes |
+| Change configuration values | Yes, in the wizard during an install or upgrade | Yes |
+| Get a command to join another node | Yes, in the wizard | Yes |
 | Install the application and the console | No | Yes |
-| Get a command to join another node | No | Yes |
 | Remove a node | No | Yes |
 | Enable high availability | No | Yes |
 | Reset the installation | No | Yes |
 | Inspect Pods, logs, and Secrets | No | Yes, through `shell` |
 
-The install and upgrade wizards are separate from the persistent console. Both let a user generate a node join command in the browser during a multi-node installation or upgrade. The command itself still has to be run on the host that is joining, so adding a node always requires command-line access to that host. Removing a node is only available from the command line.
+Joining a node is the one case that starts in the browser but cannot finish there. The wizard generates a join command, and that command has to be run on the host that is joining.
 
 ## Install the console
 
