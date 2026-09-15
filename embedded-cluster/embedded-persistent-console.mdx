@@ -29,26 +29,27 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ### Access required for common operations {#operator-access}
 
-The browser experience spans two surfaces. The persistent admin console is the always-on dashboard. The install and upgrade wizards are where configuration, preflight checks, and the install or upgrade run itself happen. Starting an upgrade from the console prepares it and then hands the user to the upgrade wizard, so a user does not have to choose between them.
+The browser experience spans two surfaces. The persistent admin console is the always-on dashboard. The install and upgrade wizards are where configuration, preflight checks, and the install or upgrade run itself happen. Actions started in the console, including **Redeploy**, prepare the operation and then hand the user to the wizard, so a user does not choose between the two.
 
-What matters for an end user without command-line access is therefore whether an operation is available in the browser at all:
+What matters for an end user without command-line access is whether an operation is available in the browser at all:
 
 | Operation | Browser | Command line on a node |
 |---|---|---|
-| View the installed version and application links | Yes, in the console | Yes |
+| View the installed version, channel, and application links | Yes, in the console | Yes |
 | See available updates and release notes | Yes, in the console | Yes |
 | Upload an air gap release archive | Yes, in the console | Yes |
 | Generate and download a support bundle | Yes, in the console | Yes |
+| Change configuration values without changing version | Yes, **Redeploy** in the console, then the wizard's configuration screen | Yes |
 | Upgrade the application | Yes, started in the console and completed in the wizard | Yes |
-| Change configuration values | Yes, in the wizard during an install or upgrade | Yes |
-| Get a command to join another node | Yes, in the wizard | Yes |
-| Install the application and the console | No | Yes |
+| Install the application | Yes, in the install wizard, after the installer is launched from the command line | Yes, headless |
+| Install the persistent console | No | Yes |
+| Add a node | Partly. The wizard generates a join command, which must then be run on the host that is joining | Yes |
 | Remove a node | No | Yes |
 | Enable high availability | No | Yes |
 | Reset the installation | No | Yes |
 | Inspect Pods, logs, and Secrets | No | Yes, through `shell` |
 
-Joining a node is the one case that starts in the browser but cannot finish there. The wizard generates a join command, and that command has to be run on the host that is joining.
+Two rows need care. Installing the application is browser work, but the installer that serves the wizard is started with a command on the host, so the very first step is never browser-only. Adding a node begins in the browser and cannot finish there, because the join command has to run on the joining host.
 
 ## Install the console
 
