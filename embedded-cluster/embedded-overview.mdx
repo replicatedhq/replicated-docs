@@ -78,7 +78,7 @@ During installation, Embedded Cluster automatically runs a default set of _host 
 * The ports that Embedded Cluster uses are available
 * The system clock syncs
 
-If any of the Embedded Cluster host preflight checks fail, Embedded Cluster blocks installation and displays a message describing the failure.
+If any of the Embedded Cluster host preflight checks fail, Embedded Cluster stops and displays a message describing the failure. In the installer UI, the user can choose to continue past the failure. In a headless installation, the command exits unless `--ignore-host-preflights` is passed. For more information, see [Whether users can bypass a failed check](embedded-using#preflight-bypass).
 
 The host preflight checks verify the requirements described in [Embedded Cluster installation requirements](installing-embedded-requirements). Ensure that the installation environment meets those requirements before you install.
 
