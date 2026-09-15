@@ -17,9 +17,19 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
     <th width="50%">Description</th>
   </tr>
   <tr>
+    <td>`--airgap`</td>
+    <td></td>
+    <td>Run the upgrade in air gap mode. Optional; automatically detected from the existing installation. For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).</td>
+  </tr>
+  <tr>
     <td>`--config-values`</td>
     <td>string</td>
     <td>Path to the [ConfigValues](/reference/custom-resource-configvalues) file for headless upgrades.</td>
+  </tr>
+  <tr>
+    <td>`--force`</td>
+    <td></td>
+    <td>Start a new upgrade even if a previous upgrade has not completed. Use with caution.</td>
   </tr>
   <tr>
     <td>`--force-skip-ha-migration-check`</td>
