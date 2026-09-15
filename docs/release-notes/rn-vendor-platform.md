@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.15-2
+
+Released on September 15, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-15-2}
+* Fixed the release linter truncating config option names containing dots, which caused false "Config option not found" warnings.
 ## v2026.09.14-3
 
 Released on September 14, 2026
