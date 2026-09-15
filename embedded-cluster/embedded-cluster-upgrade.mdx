@@ -19,7 +19,7 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
   <tr>
     <td>`--airgap`</td>
     <td></td>
-    <td>Run the upgrade in air gap mode. Optional; automatically detected from the existing installation. For more information, see [Air gap installation with Embedded Cluster](installing-embedded-air-gap).</td>
+    <td>Declare that this is an air gap upgrade. Optional, because the mode is detected from the existing installation. This flag cannot change an installation's mode: passing it against an online installation fails with an error. Installation mode is fixed when the application is installed. See [Air gap installation with Embedded Cluster](installing-embedded-air-gap).</td>
   </tr>
   <tr>
     <td>`--config-values`</td>
@@ -29,7 +29,7 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
   <tr>
     <td>`--force`</td>
     <td></td>
-    <td>Start a new upgrade even if a previous upgrade has not completed. Use with caution.</td>
+    <td>Start a new upgrade even if a previous upgrade has not completed. Use this to retry after an upgrade that failed or was interrupted, because the incomplete revision otherwise blocks a new attempt. The `upgrade` command tells you when this flag is needed. Do not use it to start a second upgrade while one is genuinely still running.</td>
   </tr>
   <tr>
     <td>`--force-skip-ha-migration-check`</td>
