@@ -233,6 +233,26 @@ spec:
 
 For more information, see [Define Additional Images](/vendor/operator-defining-additional-images).
 
+### Whether users can bypass a failed check {#preflight-bypass}
+
+Preflight checks always run. What differs is what happens after a check fails, and that depends on whether the analyzer sets `strict: true` and on whether the installation is running in the installer UI or headless from the CLI.
+
+| Outcome | Installer UI | Headless CLI |
+|---|---|---|
+| A check fails and the analyzer does not set `strict` | The user is offered **Continue Anyway** and can proceed. | The command exits. Pass `--ignore-host-preflights` or `--ignore-app-preflights` to proceed instead. |
+| A check fails and the analyzer sets `strict: true` | The failure is labeled **Required** and **Continue Anyway** is not offered. | The command exits. The ignore flags do not override a required check. |
+| The preflight run itself fails or returns no results | No bypass is offered, because there is no result to bypass. | The command exits. The ignore flags do not apply. |
+
+To make a check stop the installation, set `strict: true` on the analyzer. This is the only way to guarantee that a failure blocks installation, because the installer UI offers **Continue Anyway** on any failure that is not marked required. The `--ignore-host-preflights` and `--ignore-app-preflights` flags apply to headless installations and upgrades only, and do not change what the UI offers. For more information about required checks, see [Block installation with required (strict) preflights](/vendor/preflight-defining#strict).
+
+The same behavior applies when checks run during `upgrade` and when host checks run during `node join` and `restore`.
+
+#### What a bypassed application check leaves behind {#preflight-bypass-state}
+
+Host preflight checks run before Embedded Cluster installs anything. Application preflight checks run considerably later, after Kubernetes, the built-in addons, and any Helm chart extensions are installed, and before your application charts are installed. See [Deployment pipeline](embedded-overview#deployment-pipeline).
+
+This means bypassing a failed application check is a different decision from bypassing a failed host check. By the time application checks run, the host already has a running cluster on it. A user who decides not to continue at that point removes the cluster with [reset](embedded-cluster-reset) rather than abandoning the install.
+
 ### Limitations
 
 - A release may contain at most one external preflight spec.

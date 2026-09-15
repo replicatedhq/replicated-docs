@@ -39,12 +39,12 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
   <tr>
     <td>`--ignore-app-preflights`</td>
     <td></td>
-    <td>Skip application preflight checks.</td>
+    <td>Bypass application preflight check failures. The checks still run. Applies to headless installations only, and does not override a check that the application vendor marked as required with `strict: true`. See [Whether users can bypass a failed check](embedded-using#preflight-bypass).</td>
   </tr>
   <tr>
     <td>`--ignore-host-preflights`</td>
     <td></td>
-    <td>Skip Embedded Cluster host preflight checks.</td>
+    <td>Bypass Embedded Cluster host preflight check failures. The checks still run. Applies to headless installations only. See [Whether users can bypass a failed check](embedded-using#preflight-bypass).</td>
   </tr>
   <tr>
     <td>`--installer-password`</td>

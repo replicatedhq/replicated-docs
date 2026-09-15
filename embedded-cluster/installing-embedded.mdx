@@ -63,7 +63,7 @@ To install from the Vendor Portal:
 
 ## Install using the CLI (Headless)
 
-With headless installation, you provide all necessary installation assets with the installation command rather than through the UI. Assets include the license file and the application config values. During headless installations, any preflight checks defined for the application run automatically from the command line rather than appearing in the UI. You can also ignore preflight checks during headless installations when testing in development environments. See [Ignore preflight checks during installation](#ignore-preflights) on this page.
+With headless installation, you provide all necessary installation assets with the installation command rather than through the UI. Assets include the license file and the application config values. During headless installations, any preflight checks defined for the application run automatically from the command line rather than appearing in the UI. You can also allow the installation to continue when checks fail, which is useful when testing in development environments. See [Bypass preflight failures during headless installation](#ignore-preflights) on this page.
 
 To install using the CLI:
 
@@ -96,17 +96,19 @@ To install using the CLI:
 1. Monitor the command output until the install completes, then access your application as you normally do.
 
 
-## (Optional) Ignore preflight checks during installation {#ignore-preflights}
+## (Optional) Bypass preflight failures during headless installation {#ignore-preflights}
 
-You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](embedded-cluster-install).
+In headless installations, you can allow the installation to continue when preflight checks fail. The checks still run and their results are still recorded. Only the decision to stop on a failure changes. This is useful for automated installations in development environments.
 
-Ignoring host preflight checks is _not_ recommended for production installations.
+These flags apply to headless installations only. In the installer UI, the user is offered **Continue Anyway** on any failure that is not marked as required, whether or not these flags were passed.
 
-* To ignore preflight checks:
+Bypassing host preflight failures is _not_ recommended for production installations.
+
+* To bypass preflight failures:
 
     ```bash
-    sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --ignore-app-preflights --yes
+    sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --ignore-app-preflights
     ```
-    Where:
-    * `APP_SLUG` is the unique slug for the application
-    * The `--yes` flag addresses the prompt for `--ignore-host-preflights` to continue with installation
+    Where `APP_SLUG` is the unique slug for the application.
+
+Neither flag overrides a check that the application vendor marked as required with `strict: true`, and neither applies when the preflight run itself fails to produce results. In both cases the installation stops. For more information, see [Whether users can bypass a failed check](embedded-using#preflight-bypass).
