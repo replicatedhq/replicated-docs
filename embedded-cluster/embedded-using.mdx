@@ -245,10 +245,6 @@ Preflight checks always run. What differs is what happens after a check fails, a
 
 To make a check stop the installation, set `strict: true` on the analyzer. This is the only way to guarantee that a failure blocks installation, because the installer UI offers **Continue Anyway** on any failure that is not marked required. The `--ignore-host-preflights` and `--ignore-app-preflights` flags apply to headless installations and upgrades only, and do not change what the UI offers. For more information about required checks, see [Block installation with required (strict) preflights](/vendor/preflight-defining#strict).
 
-:::note
-Required application preflight checks are honored in Embedded Cluster TKVERSION and later. In earlier v3 releases, `strict: true` was accepted in the spec but did not prevent a user from continuing past the failure.
-:::
-
 The same behavior applies when checks run during `upgrade` and when host checks run during `node join` and `restore`.
 
 #### What a bypassed application check leaves behind {#preflight-bypass-state}

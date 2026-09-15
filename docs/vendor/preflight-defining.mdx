@@ -99,10 +99,6 @@ The `runPod` collector requires `pods/create` RBAC. The collector saves everythi
 For applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL), you can set any preflight analyzer to `strict: true`. When you set `strict: true`, any `fail` outcomes for the analyzer block the deployment of the release.
 
 :::note
-In Embedded Cluster v3, required checks are honored in Embedded Cluster TKVERSION and later. The installer labels the failure **Required**, does not offer **Continue Anyway**, and rejects the `--ignore-app-preflights` and `--ignore-host-preflights` flags for that check. For more information, see [Whether users can bypass a failed check](/embedded-cluster/v3/embedded-using#preflight-bypass).
-:::
-
-:::note
 Troubleshoot ignores strict preflight analyzers if the `exclude` property is also included and evaluates to `true`. See [exclude](https://troubleshoot.sh/docs/analyze/#exclude) in the Troubleshoot documentation.
 :::
 
