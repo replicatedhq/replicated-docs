@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.15-7
+
+Released on September 15, 2026
+
+### New Features {#new-features-v2026-09-15-7}
+* Adds ability to filter custom metrics by name when setting up [Event Notifications](/vendor/event-notifications-manage).
+
+### Improvements {#improvements-v2026-09-15-7}
+* Team invite emails are now rate-limited, and the Reinvite action shows when an invite can be sent again.
 ## v2026.09.15-6
 
 Released on September 15, 2026
