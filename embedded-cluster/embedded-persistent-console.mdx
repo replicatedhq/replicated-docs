@@ -21,6 +21,24 @@ The initial application install and console setup require command-line access to
 For automated deployments (such as cloud marketplace offerings using cloud-init or user-data scripts), include `console install` in your provisioning script after the initial install completes. This gives end users browser-based access from first boot without any manual setup.
 :::
 
+### What enabling the console adds {#console-scope}
+
+Installing and upgrading already happen in a browser. The installer serves a wizard that handles configuration, preflight checks, and the install or upgrade run itself, so an end user does not need a terminal for those steps. What the wizard does not do is stay available afterwards, because it belongs to an install or upgrade that someone started with a command on the host.
+
+Enabling the persistent admin console adds a dashboard that is always there. From it, an end user can:
+
+* Check the installed version and channel, and open application links
+* See available updates and read release notes
+* Upload an air gap release archive
+* Generate a support bundle and download it
+* Start an upgrade, or change configuration values at the current version with **Redeploy**
+
+Upgrades and configuration changes started from the console hand off to the same wizard, so the console does not duplicate it. The practical difference is that nobody has to be at a terminal to begin.
+
+The console does not provide Kubernetes operations. There is no way to inspect or delete Pods, read container logs, or view Secrets from it, so those need command-line access to a node through [shell](embedded-cluster-shell).
+
+If your end users need cluster-level visibility without command-line access, package a tool that provides it as a Helm chart extension in your application. See [Add Helm chart extensions](embedded-using#add-extensions).
+
 ## Install the console
 
 Once the application is installed and running, install the persistent admin console on a controller node. The console serves its web UI from that controller's hostname.
