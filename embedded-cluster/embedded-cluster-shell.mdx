@@ -2,6 +2,12 @@
 
 This topic describes the options available with the Embedded Cluster `shell` command.
 
+The `shell` command opens a shell on a cluster node with the environment already configured to reach the cluster. Use it for the Kubernetes-level operations that the [persistent admin console](embedded-persistent-console) does not cover, such as inspecting or deleting Pods, reading container logs, and viewing Secrets.
+
+The shell sets `KUBECONFIG` to the cluster's admin kubeconfig and extends `PATH` with the bundled cluster tools, so `kubectl`, `k0s`, and `helm` are available without any further setup. The application's namespace is the default context, so `kubectl get pods` works without passing `-n`.
+
+Running `shell` requires command-line access to a node. There is no browser equivalent. For what end users can do without that access, see [What enabling the console adds](embedded-persistent-console#console-scope).
+
 ## Usage
 
 ```bash
@@ -27,3 +33,17 @@ sudo ./<app-slug> shell [flags]
     <td>Help for `shell`.</td>
   </tr>
 </table>
+
+## Examples
+
+Open an interactive shell:
+
+```bash
+sudo ./APP_SLUG shell
+```
+
+Run a single command and exit:
+
+```bash
+sudo ./APP_SLUG shell -c "kubectl get pods -A"
+```
