@@ -1,5 +1,6 @@
 import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 import InstallModeFixed from "../docs/partials/install/_install-mode-fixed.mdx"
+import ResumeInstall from "../docs/partials/embedded-cluster/v3/_resume-install.mdx"
 
 # Online installation with Embedded Cluster (Beta)
 
@@ -96,28 +97,6 @@ To install using the CLI:
 1. Monitor the command output until the install completes, then access your application as you normally do.
 
 
-## Resume an interrupted installation {#resume}
-
-If an installation is interrupted, for example by Ctrl+C, a crash, or a host reboot, rerun the same `install` command on the same host. Embedded Cluster detects the incomplete installation and continues from the phase it reached, rather than requiring you to reset the host and start again.
-
-When an interrupted installation is detected, the installer asks whether to resume it. Pass `--yes` to answer that prompt automatically in scripted installations.
-
-```bash
-sudo ./APP_SLUG install --license license.yaml --yes
-```
-
-If the application is already fully installed, this is not an interrupted installation. The command directs you to use [upgrade](embedded-cluster-upgrade) instead.
-
-### Flags that a resumed installation ignores {#resume-immutable-flags}
-
-The cluster was already provisioned using the values from the original attempt, so a resumed installation keeps those values and ignores the following flags:
-
-`--api-port`, `--cidr`, `--data-dir`, `--http-proxy`, `--https-proxy`, `--network-interface`, `--no-proxy`, `--roles`
-
-If you pass any of them with a different value, the installer prints a warning naming the flags it ignored and continues with the saved values. This matters most when the interruption and the flag are related. For example, if you stopped an installation to correct a wrong `--cidr` or `--http-proxy`, rerunning `install` with the corrected value does _not_ apply it.
-
-To change any of these values, reset the host and install again. See [reset](embedded-cluster-reset).
-
 ## (Optional) Bypass preflight failures during headless installation {#ignore-preflights}
 
 In headless installations, you can allow the installation to continue when preflight checks fail. The checks still run and their results are still recorded. Only the decision to stop on a failure changes. This is useful for automated installations in development environments.
@@ -134,3 +113,5 @@ Bypassing host preflight failures is _not_ recommended for production installati
     Where `APP_SLUG` is the unique slug for the application.
 
 Neither flag overrides a check that the application vendor marked as required with `strict: true`, and neither applies when the preflight run itself fails to produce results. In both cases the installation stops. For more information, see [Whether users can bypass a failed check](embedded-using#preflight-bypass).
+
+<ResumeInstall />

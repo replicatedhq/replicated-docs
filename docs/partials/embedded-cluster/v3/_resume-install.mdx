@@ -1,0 +1,21 @@
+## Resume an interrupted installation {#resume}
+
+If an installation is interrupted, for example by Ctrl+C, a crash, or a host reboot, rerun the same `install` command on the same host. Embedded Cluster detects the incomplete installation and continues from the phase it reached, rather than requiring you to reset the host and start again. This applies to installations performed with the UI and to headless installations.
+
+When an interrupted installation is detected, the installer asks whether to resume it. Pass `--yes` to answer that prompt automatically in scripted installations.
+
+If the application is already fully installed, this is not an interrupted installation, and the command directs you to use [upgrade](/embedded-cluster/v3/embedded-cluster-upgrade) instead.
+
+:::note
+Upgrades do not resume. When an upgrade is interrupted or fails, the incomplete revision blocks a new attempt until you rerun `upgrade` with the `--force` flag. See [upgrade](/embedded-cluster/v3/embedded-cluster-upgrade).
+:::
+
+### Flags that a resumed installation ignores {#resume-immutable-flags}
+
+The cluster was already provisioned using the values from the original attempt, so a resumed installation keeps those values and ignores the following flags:
+
+`--api-port`, `--cidr`, `--data-dir`, `--http-proxy`, `--https-proxy`, `--network-interface`, `--no-proxy`, `--roles`
+
+If you pass any of them with a different value, the installer prints a warning naming the flags it ignored and continues with the saved values. This matters most when the interruption and the flag are related. For example, if you stopped an installation to correct a wrong `--cidr` or `--http-proxy`, rerunning `install` with the corrected value does _not_ apply it.
+
+To change any of these values, reset the host and install again. See [reset](/embedded-cluster/v3/embedded-cluster-reset).
