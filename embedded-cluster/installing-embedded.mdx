@@ -1,5 +1,6 @@
 import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 import InstallModeFixed from "../docs/partials/install/_install-mode-fixed.mdx"
+import BypassPreflights from "../docs/partials/embedded-cluster/v3/_bypass-preflights.mdx"
 import ResumeInstall from "../docs/partials/embedded-cluster/v3/_resume-install.mdx"
 
 # Online installation with Embedded Cluster (Beta)
@@ -97,21 +98,6 @@ To install using the CLI:
 1. Monitor the command output until the install completes, then access your application as you normally do.
 
 
-## (Optional) Bypass preflight failures during headless installation {#ignore-preflights}
-
-In headless installations, you can allow the installation to continue when preflight checks fail. The checks still run and their results are still recorded. Only the decision to stop on a failure changes. This is useful for automated installations in development environments.
-
-These flags apply to headless installations only. In the installer UI, the user is offered **Continue Anyway** on any failure that is not marked as required, whether or not these flags were passed.
-
-Bypassing host preflight failures is _not_ recommended for production installations.
-
-* To bypass preflight failures:
-
-    ```bash
-    sudo ./APP_SLUG install --license license.yaml --ignore-host-preflights --ignore-app-preflights
-    ```
-    Where `APP_SLUG` is the unique slug for the application.
-
-Neither flag overrides a check that the application vendor marked as required with `strict: true`, and neither applies when the preflight run itself fails to produce results. In both cases the installation stops. For more information, see [Whether users can bypass a failed check](embedded-using#preflight-bypass).
+<BypassPreflights />
 
 <ResumeInstall />
