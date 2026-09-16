@@ -32,6 +32,7 @@ releaseName
 releaseNotes
 replicatedRegistryDomain
 requireMinimalRBACPrivileges
+sbctl
 serviceName
 servicePort
 SlackerNews
