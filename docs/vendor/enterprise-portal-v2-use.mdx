@@ -86,7 +86,7 @@ For online KOTS, the commands install the KOTS CLI and run `kubectl kots upstrea
 
 For air gap KOTS and kURL, the expanded card includes artifact download links, then the CLI commands that apply those assets.
 
-Vendors can also add dedicated KOTS and kURL install pages in the content repo. Those pages render generated online install commands, including `kubectl kots install --license-file ./license.yaml` for KOTS. Air gap install pages include artifact download links. The default content template does not include these pages. For more information, see [Add KOTS or kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
+The default content template includes dedicated KOTS and kURL install pages. For KOTS, online and proxy installs use generated commands (`kubectl kots install --license-file ./license.yaml`). Air gap installs use a documentation-style procedure with registry placeholders and `<KotsDownloadAssets />`, not generated commands that interpolate customer registry credentials. Customize branding, Admin Console URL, registry conventions, and copy around the download component as needed. For more information, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
 
 Customers can create air gap instance records for KOTS and kURL the same way as for Helm and Embedded Cluster. They can enter instance information manually from the Instances & Updates page, or extract details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 
