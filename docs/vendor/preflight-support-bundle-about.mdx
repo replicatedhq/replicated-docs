@@ -28,7 +28,7 @@ For more information, see the [Collect](https://troubleshoot.sh/docs/collect/) s
 
 ### Redact
 
-During the redact phase, _redactors_ censor sensitive customer information from the data before analysis. By default, the following information is automatically redacted:
+During the redact phase, _redactors_ censor sensitive customer information from the data before analysis. For both preflight checks and support bundles, the following information is automatically redacted:
 
 - Passwords
 - API token environment variables in JSON
@@ -36,7 +36,7 @@ During the redact phase, _redactors_ censor sensitive customer information from 
 - Database connection strings
 - URLs that include usernames and passwords
 
-For Replicated KOTS and Embedded Cluster installations, it is also possible to add custom redactors to redact additional data. For more information, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
+For support bundles, you can also add custom redactors to redact additional data, such as API keys or account numbers. Preflight checks apply the built-in redactors only. For more information, see [Redactor](/reference/custom-resource-redactor) and the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyze
 

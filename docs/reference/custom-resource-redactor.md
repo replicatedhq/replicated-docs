@@ -12,7 +12,7 @@ Preflight checks and support bundles include built-in redactors. These built-in 
 
 You can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
-## Defining custom redactors
+## Defining Custom Redactors
 
 You can add custom redactors using the following basic Redactor custom resource manifest file (`kind: Redactor`):
 
@@ -24,8 +24,6 @@ metadata:
 spec:
   redactors: []
 ```
-
-Redactors continue to use `troubleshoot.sh/v1beta2`. The `v1beta3` API version applies only to preflight specs in Embedded Cluster v3.
 
 ### Where to include the Redactor resource {#include}
 
@@ -42,17 +40,17 @@ How you deliver the Redactor resource depends on how customers install your appl
   </tr>
   <tr>
     <td>Embedded Cluster v3</td>
-    <td>Add the Redactor resource to the release, or package the spec in a labeled Secret or ConfigMap in your Helm chart. See [Add custom redactors](/embedded-cluster/v3/embedded-using#redactors) in <em>Configure Embedded Cluster</em>.</td>
+    <td>Add the Redactor resource to the release, or package the spec in a labeled Secret in your Helm chart. Redactors continue to use `troubleshoot.sh/v1beta2`. The `v1beta3` API version applies only to preflight specs. See [Add custom redactors](/embedded-cluster/v3/embedded-using#redactors) in <em>Configure Embedded Cluster</em>.</td>
   </tr>
   <tr>
     <td>Helm</td>
-    <td>Package the spec in a Secret or ConfigMap in your chart's `templates/` directory. Label the resource `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. The `kubectl support-bundle --load-cluster-specs` command discovers labeled resources in the cluster.</td>
+    <td>Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. The `kubectl support-bundle --load-cluster-specs` command discovers labeled resources in the cluster. Use a Secret rather than a ConfigMap, because a rendered spec can contain the values it redacts.</td>
   </tr>
 </table>
 
-## Objects and fields
+## Objects and Fields
 
-A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [Redactor example](#example) on this page and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [Redactor Example](#example) on this page and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
 ### fileSelector
 
@@ -98,7 +96,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
 </table>
 
-## Redactor example {#example}
+## Redactor Example {#example}
 
 The following example shows `regex` and `yamlPath` redaction for a support bundle:
 
