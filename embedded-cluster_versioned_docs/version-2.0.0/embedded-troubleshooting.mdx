@@ -228,7 +228,7 @@ There are two causes, and an affected cluster is usually accumulating data from 
 Embedded Cluster releases that include the fix for this issue add `fs.log.purge` and `s3.clean.uploads` to the SeaweedFS maintenance cycle, which prevents further growth from both causes.
 
 :::note
-Upgrading to a release that includes the fix does not reclaim the space that is already in use straight away. After the SeaweedFS masters restart, the next maintenance cycle deletes the change log entries and the abandoned uploads, but this only marks the underlying storage as garbage. The masters vacuum a volume automatically when at least 30 percent of that volume is garbage, so a volume with a lower garbage ratio holds the space indefinitely. Use the steps in this section to reclaim the space without waiting.
+Upgrading to a release that includes the fix does not reclaim the space that is already in use straight away. SeaweedFS reclaims it over time, but the timing depends on how much of each volume is unused. Use the steps in this section to reclaim the space without waiting.
 :::
 
 #### Solution
