@@ -39,7 +39,7 @@ These apply once, when an existing v2 installation moves to v3.
 
 **Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
 
-**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation with `--port`. See [Port requirements](installing-embedded-requirements#port-requirements).
+**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation with `--installer-port`. See [Port requirements](installing-embedded-requirements#port-requirements).
 
 **Multi-node clusters also need port 30081/TCP.** The Embedded Cluster daemon API listens on this port and is what lets other nodes join and receive upgrades. Single-node clusters do not need it opened. If the port is occupied, customers can select a different port at install with `--api-port`. See [External API](embedded-cluster-external-api).
 
