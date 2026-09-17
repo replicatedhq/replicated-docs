@@ -219,13 +219,15 @@ If you do not address the growth, the controller nodes eventually run out of dis
 
 #### Cause
 
-There are two causes, and an affected cluster is usually accumulating data from both:
+The filer change logs are the cause that is present on every affected cluster. Abandoned multipart uploads can be a second contributor, depending on whether image pushes have been interrupted:
 
-* **SeaweedFS filer change logs.** The SeaweedFS master runs a periodic maintenance cycle that includes `fs.meta.save` and `fs.meta.load`, which keep the metadata of the three filers in sync. Each run writes a complete metadata snapshot to the filer change log under `/topics/.system/log`. Because the cycle runs on a timer, the change log grows for the life of the cluster regardless of application activity. The amount written on each cycle scales with the number of files in the registry, so the growth rate increases as the registry grows.
+* **SeaweedFS filer change logs.** The SeaweedFS master runs a maintenance cycle every 17 minutes that includes `fs.meta.save` and `fs.meta.load`, which keep the metadata of the three filers in sync. Each run writes a complete metadata snapshot to the filer change log under `/topics/.system/log`. Because the cycle runs on a timer, the change log grows for the life of the cluster regardless of application activity. The amount written on each cycle scales with the number of files in the registry, so the growth rate increases as the registry grows.
 
 * **Abandoned multipart uploads.** Image pushes to the built-in registry are multipart uploads. When a push is interrupted, the fragments that were already uploaded remain under `/buckets/registry/.uploads` and are never removed.
 
 Embedded Cluster releases that include the fix for this issue add `fs.log.purge` and `s3.clean.uploads` to the SeaweedFS maintenance cycle, which prevents further growth from both causes.
+
+These two causes do not necessarily account for all of the growth on a given cluster. Use the measurements in the following section to see how much space the cleanup actually reclaims.
 
 :::note
 Upgrading to a release that includes the fix does not reclaim the space that is already in use straight away. SeaweedFS reclaims it over time, but the timing depends on how much of each volume is unused. Use the steps in this section to reclaim the space without waiting.
@@ -248,10 +250,10 @@ To reclaim the disk space on an existing cluster:
 
     Record the output so that you can compare it after the cleanup.
 
-1. Delete the change log entries older than seven days and the multipart uploads older than 24 hours. Registry pushes complete in minutes, so any upload older than 24 hours is abandoned.
+1. Delete the change log entries older than seven days and the multipart uploads older than 24 hours. An upload older than 24 hours is abandoned, because registry pushes complete in minutes.
 
     :::note
-    Do not run this step while an application install or upgrade is pushing images.
+    Run this step when no application install or upgrade is in progress.
     :::
 
     ```bash
@@ -261,7 +263,11 @@ To reclaim the disk space on an existing cluster:
     EOF
     ```
 
-1. Vacuum the volumes to return the space to the file system:
+1. Vacuum the volumes to return the space to the file system. The `-garbageThreshold 0.01` value makes SeaweedFS rewrite every volume that holds any unused data, so this step is the most expensive one. On a large registry it is I/O intensive and can run for a long time, and the cluster holds a lock until it completes.
+
+    :::note
+    Run this step when no application install or upgrade is in progress. On a busy cluster, run it outside of business hours.
+    :::
 
     ```bash
     kubectl exec -i -n seaweedfs seaweedfs-master-0 -- weed shell <<'EOF'
