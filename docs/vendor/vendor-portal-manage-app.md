@@ -57,7 +57,7 @@ To create an application with the Replicated CLI:
 
 ## Get the application slug {#slug}
 
-Each application has a slug, which is used for interacting with the application using the Replicated CLI. The slug is automatically generated based on the application name and cannot be changed.
+Each application has a primary slug, which is used for interacting with the application using the Replicated CLI. The primary slug is automatically generated based on the application name and cannot be changed. You can also reserve one additional slug as an alias. For more information, see [Reserve an Application Slug Alias](/vendor/application-slug-aliases).
 
 ### Vendor Portal
 
