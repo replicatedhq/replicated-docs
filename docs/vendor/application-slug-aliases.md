@@ -14,6 +14,11 @@ Changing the active slug applies to all customers for the application. It does n
 The alias reservation is permanent. You cannot delete, release, or transfer the alias. Before reserving it, verify that the spelling is correct and that you want to assign it to the application.
 :::
 
+## KOTS version compatibility
+
+- New installations can use an application slug alias with any version of KOTS.
+- Switching an existing installation from the primary slug to an alias requires KOTS v1.132.0 or later.
+
 ## Reserve an alias
 
 The **Application slug aliases** controls are available when slug alias management is enabled for the application and your role has permission to update the application.
