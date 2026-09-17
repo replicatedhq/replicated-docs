@@ -88,7 +88,7 @@ To troubleshoot:
     ```bash
     sudo ./APP_SLUG reset
     ```
-    Where `APP_SLUG` is the unique slug for the application. 
+    Where `APP_SLUG` is the unique slug for the application.
 
     For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -154,7 +154,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
 
        For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -173,8 +173,8 @@ Reasons can include:
 
   If kernel parameters are not set correctly and these preflight checks fail, you might see a message such as `IP forwarding must be enabled.` or `ARP filtering must be disabled by default for newly created interfaces.`.
 
-  To troubleshoot incorrect kernel parameter values:       
-    
+  To troubleshoot incorrect kernel parameter values:
+
     1. Use sysctl to set the kernel parameters to the correct values:
 
         ```bash
@@ -190,7 +190,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
        For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
     1. Re-install with Embedded Cluster.
@@ -202,7 +202,7 @@ Reasons can include:
         ```bash
         kubectl patch ippool default-ipv4-ippool --type=merge -p '{"spec": {"vxlanMode": "CrossSubnet"}}'
         ```
-    
+
     If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
   </TabItem>
 </Tabs>
@@ -213,11 +213,13 @@ Reasons can include:
 
 On a multi-node airgap installation with high availability enabled, disk usage on the controller nodes increases steadily over weeks or months. The growth continues when the application is idle and no new images are pushed.
 
-The growth is in the SeaweedFS storage that backs the built-in registry, under `/var/lib/embedded-cluster/seaweedfs`. To confirm, run the following command for each SeaweedFS volume pod (`seaweedfs-volume-0`, `seaweedfs-volume-1`, and `seaweedfs-volume-2`) and compare the values over time:
+The growth is in the SeaweedFS volumes that back the built-in registry. SeaweedFS stores this data in persistent volume claims provisioned by the `openebs-hostpath` storage class on the controller nodes. To confirm, run the following command for each SeaweedFS volume pod (`seaweedfs-volume-0`, `seaweedfs-volume-1`, and `seaweedfs-volume-2`) and compare the values over time:
 
 ```bash
-kubectl exec -n seaweedfs seaweedfs-volume-0 -- df -h
+kubectl exec -n seaweedfs seaweedfs-volume-0 -- du -sh /data
 ```
+
+Where `/data` is the persistent volume claim that holds the volume files for that pod. Do not use `df` for this. The `openebs-hostpath` storage class does not enforce a quota, so `df` reports the usage of the entire node file system rather than the space that SeaweedFS uses.
 
 If you do not address the growth, the controller nodes eventually run out of disk space. This can make the cluster unhealthy and can block application upgrades.
 
@@ -232,7 +234,7 @@ There are two causes, and an affected cluster is usually accumulating data from 
 Embedded Cluster releases that include the fix for this issue add `fs.log.purge` and `s3.clean.uploads` to the SeaweedFS maintenance cycle, which prevents further growth from both causes.
 
 :::note
-Upgrading to a release that includes the fix stops the growth, but does not reclaim the space that has already been used. Deleting entries from the filer marks the underlying storage as garbage, and the space is returned only when the volumes are vacuumed. Complete the steps in this section one time on each existing cluster, including after you upgrade.
+Upgrading to a release that includes the fix does not reclaim the space that is already in use straight away. After the SeaweedFS masters restart, the next maintenance cycle deletes the change log entries and the abandoned uploads, but this only marks the underlying storage as garbage. The masters vacuum a volume automatically when at least 30 percent of that volume is garbage, so a volume with a lower garbage ratio holds the space indefinitely. Use the steps in this section to reclaim the space without waiting.
 :::
 
 #### Solution
@@ -241,16 +243,13 @@ To reclaim the disk space on an existing cluster:
 
 1. SSH into a controller node and start the Embedded Cluster shell. See [Access the cluster](#access-the-cluster).
 
-1. Measure how much space the change logs and the abandoned uploads are using. These commands are read-only:
+1. Measure the space that SeaweedFS uses on each node. This command is read-only:
 
     ```bash
-    kubectl exec -i -n seaweedfs seaweedfs-master-0 -c seaweedfs -- /usr/bin/weed shell \
-      -master=seaweedfs-master-0.seaweedfs-master.seaweedfs:9333,seaweedfs-master-1.seaweedfs-master.seaweedfs:9333,seaweedfs-master-2.seaweedfs-master.seaweedfs:9333 \
-      -filer=seaweedfs-filer-0.seaweedfs-filer.seaweedfs:8888 <<'EOF'
-    fs.du /topics
-    fs.du /buckets/registry/.uploads
-    fs.ls -l /buckets/registry/.uploads
-    EOF
+    for pod in seaweedfs-volume-0 seaweedfs-volume-1 seaweedfs-volume-2; do
+      echo -n "$pod "
+      kubectl exec -n seaweedfs $pod -- du -sh /data
+    done
     ```
 
     Record the output so that you can compare it after the cleanup.
@@ -262,9 +261,7 @@ To reclaim the disk space on an existing cluster:
     :::
 
     ```bash
-    kubectl exec -i -n seaweedfs seaweedfs-master-0 -c seaweedfs -- /usr/bin/weed shell \
-      -master=seaweedfs-master-0.seaweedfs-master.seaweedfs:9333,seaweedfs-master-1.seaweedfs-master.seaweedfs:9333,seaweedfs-master-2.seaweedfs-master.seaweedfs:9333 \
-      -filer=seaweedfs-filer-0.seaweedfs-filer.seaweedfs:8888 <<'EOF'
+    kubectl exec -i -n seaweedfs seaweedfs-master-0 -- weed shell <<'EOF'
     fs.log.purge -daysAgo 7
     s3.clean.uploads -timeAgo=24h
     EOF
@@ -273,15 +270,13 @@ To reclaim the disk space on an existing cluster:
 1. Vacuum the volumes to return the space to the file system:
 
     ```bash
-    kubectl exec -i -n seaweedfs seaweedfs-master-0 -c seaweedfs -- /usr/bin/weed shell \
-      -master=seaweedfs-master-0.seaweedfs-master.seaweedfs:9333,seaweedfs-master-1.seaweedfs-master.seaweedfs:9333,seaweedfs-master-2.seaweedfs-master.seaweedfs:9333 \
-      -filer=seaweedfs-filer-0.seaweedfs-filer.seaweedfs:8888 <<'EOF'
+    kubectl exec -i -n seaweedfs seaweedfs-master-0 -- weed shell <<'EOF'
     lock
     volume.vacuum -garbageThreshold 0.01
     unlock
     EOF
     ```
 
-1. Verify that the space was reclaimed. Repeat the measurement commands and the `df -h` command from the Symptom section, and compare the values to what you recorded.
+1. Verify that the space was reclaimed. Repeat the measurement command and compare the values to what you recorded.
 
 Registry images and application data are not affected by these commands. The purge removes only internal change log entries, which nothing in Embedded Cluster reads, and `s3.clean.uploads` removes only incomplete uploads that never became part of an image.
