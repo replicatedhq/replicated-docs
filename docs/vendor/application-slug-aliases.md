@@ -51,3 +51,7 @@ To use the reserved alias in newly generated customer instructions and licenses:
 1. Click **Save**.
 
 Changing the active slug does not update previously generated license files or instructions. It also does not make an alias writable: continue to use the primary slug when pushing images to the Replicated registry.
+
+:::important
+The Embedded Cluster CLI matches application slugs. After changing the active slug, rebuild any Embedded Cluster air gap bundles so that the application slug in each bundle matches the new active slug.
+:::
