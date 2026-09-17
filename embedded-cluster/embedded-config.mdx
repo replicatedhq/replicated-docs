@@ -12,13 +12,15 @@ This topic is a reference for the Replicated Embedded Cluster Config custom reso
 
 ## Example
 
+In the following example, replace `EC_VERSION` with the version of Embedded Cluster to install. For the available versions, see [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3).
+
 ```yaml
 apiVersion: embeddedcluster.replicated.com/v1beta1
 kind: Config
 metadata:
   name: my-embedded-cluster-config
 spec:
-  version: "3.0.0-beta.1+k8s-1.34"
+  version: "EC_VERSION"
   domains:
     proxyRegistryDomain: proxy.example.com
     replicatedAppDomain: updates.example.com
@@ -75,10 +77,10 @@ spec:
 
 Specify the versions of Embedded Cluster and Kubernetes to install. 
 
-Embedded Cluster appends the version of Kubernetes to the version label in the format `+k8s-1.34`. For example, Embedded Cluster `3.0.0-alpha-26+k8s-1.34` uses Embedded Cluster `3.0.0-alpha-26` and Kubernetes 1.34.
+Embedded Cluster appends the version of Kubernetes to the version label in the format `+k8s-1.36`. For example, Embedded Cluster `3.12.0-beta.1+k8s-1.36` uses Embedded Cluster `3.12.0-beta.1` and Kubernetes 1.36.
 
 Each version of Embedded Cluster includes specific versions of components like OpenEBS.
-For more information, see the [Embedded Cluster Release Notes](/release-notes/rn-embedded-cluster).
+For the available versions and the components included in each, see [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3).
 
 Replicated recommends that you update the version frequently to ensure that you are using the latest version of Embedded Cluster.
 

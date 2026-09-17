@@ -43,6 +43,8 @@ To create an application release that supports installation with Embedded Cluste
 
 1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
 
+     Replace `EC_VERSION` with the version to install. For the available versions, see [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3).
+
      <EcConfig/>
 
 1. If you use custom domains for the Replicated proxy registry or Replicated app service, add them to the Embedded Cluster Config `domains` key. See [Configure Embedded Cluster to use custom domains](/vendor/custom-domains-using#ec) in _Use custom domains_.
