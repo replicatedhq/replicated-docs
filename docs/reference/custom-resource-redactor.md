@@ -44,7 +44,7 @@ How you deliver the Redactor resource depends on how customers install your appl
   </tr>
   <tr>
     <td>Helm</td>
-    <td>Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. The `kubectl support-bundle --load-cluster-specs` command discovers labeled resources in the cluster. Use a Secret rather than a ConfigMap, because a rendered spec can contain the values it redacts.</td>
+    <td>Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. The `kubectl support-bundle --load-cluster-specs` command discovers labeled resources in the cluster. Use a Secret, because a rendered spec can contain the values it redacts.</td>
   </tr>
 </table>
 

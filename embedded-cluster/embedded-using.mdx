@@ -276,7 +276,7 @@ There are two ways to deliver a Redactor to an Embedded Cluster v3 installation:
 
 - **As a release-level resource:** Add the Redactor resource to your release alongside your HelmChart custom resources, the same way you did for installations with KOTS. Embedded Cluster publishes the spec into the cluster during installation and again during each upgrade. Releases that already define a Redactor need no change.
 
-- **From a Helm chart:** Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. Embedded Cluster discovers labeled resources in the cluster when it generates a support bundle. This is useful when a redactor belongs to a specific chart, or when you already ship support bundle specs this way. Use a Secret rather than a ConfigMap, because a rendered spec can contain the values it redacts.
+- **From a Helm chart:** Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. Embedded Cluster discovers labeled resources in the cluster when it generates a support bundle. This is useful when a redactor belongs to a specific chart, or when you already ship support bundle specs this way. Use a Secret, because a rendered spec can contain the values it redacts.
 
     ```yaml
     apiVersion: v1
