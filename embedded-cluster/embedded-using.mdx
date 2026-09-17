@@ -258,9 +258,77 @@ This means bypassing a failed application check is a different decision from byp
 - A release may contain at most one external preflight spec.
 - The preflight spec uses Helm template syntax, not `repl{{ }}` Replicated template syntax.
 - The spec is not valid YAML before rendering. Standard YAML linters will not validate it directly.
-- Support bundle specs are separate from preflight specs. Support bundles continue to use `v1beta2` and are not affected by this requirement.
+- Support bundle specs are separate from preflight specs. Support bundle and Redactor specs continue to use `v1beta2`. See [Add custom redactors](#redactors) on this page.
 
 For more information about host preflight checks that Embedded Cluster runs automatically, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks).
+
+## Add custom redactors {#redactors}
+
+Support bundles generated with Embedded Cluster v3 always apply the Troubleshoot built-in redactors, which hide values that match common patterns for passwords, tokens, and credentials. To scrub additional data, such as API keys or account numbers, add custom redactors with the `troubleshoot.sh/v1beta2 Redactor` resource.
+
+Redactors continue to use `v1beta2`. The `v1beta3` requirement applies only to preflight specs. See [Add preflight checks](#preflights) on this page.
+
+:::note
+Custom redactors apply to support bundles only. Preflight checks apply the built-in redactors and ignore Redactor resources.
+:::
+
+There are two ways to deliver a Redactor to an Embedded Cluster v3 installation:
+
+- **As a release-level resource:** Add the Redactor resource to your release alongside your HelmChart custom resources, the same way you did for installations with KOTS. Embedded Cluster publishes the spec into the cluster at install time and applies it to every support bundle. Releases that already define a Redactor need no change.
+
+- **From a Helm chart:** Package the spec in a Secret or ConfigMap in your chart's `templates/` directory. Label the resource `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. Embedded Cluster discovers labeled resources in the cluster when it generates a support bundle. This is useful when a redactor belongs to a specific chart, or when you already ship support bundle specs this way.
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: my-app-redactors
+      labels:
+        troubleshoot.sh/kind: support-bundle
+    stringData:
+      redactor-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: Redactor
+        metadata:
+          name: my-app-redactors
+        spec:
+          redactors:
+            - name: account numbers
+              removals:
+                regex:
+                  - redactor: '(account_number: )(?P<mask>\d+)'
+    ```
+
+You can use both methods in the same release. Embedded Cluster merges the specs and applies all of them.
+
+### Use template functions in redactors
+
+The template syntax available in a Redactor depends on how you deliver it:
+
+- **Release-level Redactor:** Use Replicated template functions. Embedded Cluster renders the spec against the customer's config values before it publishes the spec to the cluster, so functions such as `repl{{ ConfigOption "..." }}` resolve. This is the same rendering that KOTS applies to release-level Redactor resources, so specs that already use template functions continue to work.
+
+- **Redactor in a Helm chart:** Use Helm template syntax, such as `{{ .Values.exampleValue }}`. Helm renders the resource at install time. Replicated template functions are not supported directly in Helm charts. For more information, see [Supported file types](/reference/template-functions-about#supported-file-types) in _About Template Functions_.
+
+The following release-level example redacts the value that the customer entered for a config item named `api_token`:
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Redactor
+metadata:
+  name: my-app-redactors
+spec:
+  redactors:
+    - name: api token
+      removals:
+        values:
+          - 'repl{{ ConfigOption "api_token" }}'
+```
+
+:::note
+A rendered redactor can contain the resolved value of a password config item. Embedded Cluster stores the rendered release-level spec in a Secret in the `embedded-cluster` namespace.
+:::
+
+For the objects and fields supported by the Redactor resource, see [Redactor](/reference/custom-resource-redactor). For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Set up the wizard's Configure screen {#configure-screen}
 
