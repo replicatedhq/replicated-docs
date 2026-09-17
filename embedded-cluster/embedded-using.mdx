@@ -43,7 +43,7 @@ To create an application release that supports installation with Embedded Cluste
 
 1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
 
-     Replace `EC_VERSION` with the version to install. For the available versions, see [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3).
+     Replace `EC_VERSION` with the version to install, including the Kubernetes suffix. For example, `3.12.0-beta.1+k8s-1.36`. Each entry in the [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3) lists the full version strings available for that release.
 
      <EcConfig/>
 

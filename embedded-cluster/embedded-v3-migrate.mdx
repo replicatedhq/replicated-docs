@@ -13,8 +13,6 @@ Embedded Cluster v3 delivers the following improvements over v2. For the release
 
 **One guided experience from the first step.** In v2, cluster infrastructure was set up on the command line before a separate UI handled the application. In v3, a single binary drives cluster configuration, preflight checks, node setup, and application deployment in one wizard. See [Embedded Cluster overview](embedded-overview).
 
-**The cluster and the application update together.** Embedded Cluster updates the cluster infrastructure alongside application updates, so end users keep both current without using `kubectl`. See [Perform updates in embedded clusters](updating-embedded).
-
 **A smaller footprint for customers to secure.** The cluster runs your application and Embedded Cluster's own infrastructure components, with no Replicated management component holding cluster-scoped privileges. The KOTS operator's cluster-scoped RBAC grants and cross-namespace access are not part of a v3 install, which takes them out of a customer's security review. See [Removal of KOTS](#removal-of-kots).
 
 **Installs no longer reach out to chart repositories.** v3 resolves every Helm extension from a `.tgz` archive bundled in the release instead of pulling it from an HTTP repository or OCI registry at install time. Installs no longer depend on the customer's network reaching those hosts. See [Helm extension charts must be bundled in the release](#extension-charts).
@@ -41,7 +39,9 @@ These apply once, when an existing v2 installation moves to v3.
 
 **Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
 
-**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation. See [Port requirements](installing-embedded-requirements#port-requirements).
+**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation with `--port`. See [Port requirements](installing-embedded-requirements#port-requirements).
+
+**Multi-node clusters also need port 30081/TCP.** The Embedded Cluster daemon API listens on this port and is what lets other nodes join and receive upgrades. Single-node clusters do not need it opened. If the port is occupied, customers can select a different port at install with `--api-port`. See [External API](embedded-cluster-external-api).
 
 ### On any v3 installation
 
@@ -53,7 +53,7 @@ These are the ongoing differences after the upgrade.
 
 **How customers find out about updates depends on whether the console is installed.** With the persistent admin console, available updates appear in the console. Without it, customers get updates from the [Enterprise Portal](/vendor/enterprise-portal-about) or by running the `upgrade` command directly. See [Perform updates in embedded clusters](updating-embedded).
 
-**Multi-node clusters upgrade one node at a time.** After the first node upgrades, the wizard guides the user through upgrading each remaining node.
+**Multi-node clusters upgrade themselves one node at a time.** The user runs the upgrade on the primary controller, and its daemon streams the upgrade to each remaining node over the network. Controllers upgrade first, one at a time to preserve etcd quorum, then workers. Nobody copies files between machines or runs commands on the other nodes. If a node can't be reached, or is running a version that predates streamed upgrades, the wizard reports it and shows manual instructions for that node. See [Multi-node clusters](updating-embedded#multi-node-clusters).
 
 **Cluster settings are collected in the wizard.** The v3 wizard includes a *Set Up* page where end users provide cluster-level settings such as proxy configuration. In v2 these were passed as CLI flags at install time.
 
@@ -197,7 +197,7 @@ To update a release from Embedded Cluster v2 to v3:
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
 
-    Replace `EC_VERSION` with the version to install. For the available versions, see [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3).
+    Replace `EC_VERSION` with the version to install, including the Kubernetes suffix. For example, `3.12.0-beta.1+k8s-1.36`. Each entry in the [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3) lists the full version strings available for that release.
 
     **Example:**
 
