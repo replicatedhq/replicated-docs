@@ -16,6 +16,13 @@ Released on September 18, 2026
 ### Bug Fixes {#bug-fixes-v2026-09-18-2}
 * Explains why Enterprise Portal v2 setup appears when vendors open a deep link before setup is complete.
 
+## v2026.09.18-1
+
+Released on September 18, 2026
+
+### New Features {#new-features-v2026-09-18-1}
+* Enterprise Portal: Network Availability can show or hide page sections with WhenNetwork (used by the default KOTS install page).
+
 ## v2026.09.18-0
 
 Released on September 18, 2026
