@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.18-1
+
+Released on September 18, 2026
+
+### New Features {#new-features-v2026-09-18-1}
+* Enterprise Portal: Network Availability can show or hide page sections with WhenNetwork (used by the default KOTS install page).
 ## v2026.09.15-7
 
 Released on September 15, 2026
