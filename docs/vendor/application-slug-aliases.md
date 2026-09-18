@@ -14,10 +14,22 @@ Changing the active slug applies to all customers for the application. It does n
 The alias reservation is permanent. You cannot delete, release, or transfer the alias. Before reserving it, verify that the spelling is correct and that you want to assign it to the application.
 :::
 
-## KOTS version compatibility
+## Installer compatibility
+
+**Helm**
+
+- Both the primary slug and an alias can be used to pull charts. Newly generated Helm install instructions use the active slug.
+
+**KOTS**
 
 - New installations can use an application slug alias with any version of KOTS.
-- Switching an existing installation from the primary slug to an alias requires KOTS v1.132.0 or later.
+- On KOTS v1.132.0 and later, existing installations pick up a new active slug automatically on their next license sync. The Admin Console URL for the application changes to use the new slug, and existing Admin Console URLs redirect to it.
+- On KOTS versions earlier than v1.132.0, existing installations are unaffected and continue to use the slug they were installed with. The new active slug is ignored rather than applied, and no error is reported.
+
+**Embedded Cluster**
+
+- Embedded Cluster names the installer binary, its assets, and the application air gap bundle from the active slug. This applies to both Embedded Cluster v2 and v3.
+- Online installations download these artifacts at install time, so they use the active slug automatically. Air gap bundles are built once and then downloaded, so after you change the active slug, rebuild any Embedded Cluster air gap bundles so that the application slug in each bundle matches the new active slug.
 
 ## Reserve an alias
 
@@ -55,8 +67,6 @@ To use the reserved alias in newly generated customer instructions and licenses:
 
 1. Click **Save**.
 
-Changing the active slug does not update previously generated license files or instructions. It also does not make an alias writable: continue to use the primary slug when pushing images to the Replicated registry.
+1. If you support Embedded Cluster air gap installations, rebuild your air gap bundles so that the application slug in each bundle matches the new active slug. See [Installer compatibility](#installer-compatibility).
 
-:::important
-The Embedded Cluster CLI matches application slugs. After changing the active slug, rebuild any Embedded Cluster air gap bundles so that the application slug in each bundle matches the new active slug.
-:::
+Changing the active slug does not update previously generated license files or instructions. It also does not make an alias writable: continue to use the primary slug when pushing images to the Replicated registry.

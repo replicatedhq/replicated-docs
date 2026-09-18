@@ -29,7 +29,7 @@ To create a new application:
    :::important
    If you intend to use the application for testing purposes, Replicated recommends that you use a temporary name such as `My Application Demo` or `My Application Test`.
 
-   You are not able to restore or modify previously-used application names or application slugs.
+   You are not able to restore or modify previously-used application names or application slugs. You can reserve one additional slug as an alias for the application, but the alias must be a slug that is not already in use by any Replicated application. Reserving an alias does not release or reclaim a slug. For more information, see [Reserve an Application Slug Alias](/vendor/application-slug-aliases).
    :::
 
 1. Click **Create application**.
