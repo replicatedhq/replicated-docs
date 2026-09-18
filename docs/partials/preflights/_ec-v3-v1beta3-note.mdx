@@ -1,3 +1,5 @@
 :::note
-These examples use `troubleshoot.sh/v1beta2` (supported by KOTS, kURL, and Embedded Cluster v2). Embedded Cluster v3 requires preflight specs to use `troubleshoot.sh/v1beta3`, packaged as a release-level file and rendered with Helm template syntax (not `repl{{ }}`). `troubleshoot.sh/v1beta3` is not supported by KOTS or Embedded Cluster v2. This change does not affect support bundle specs, which still use `v1beta2` on all current installer products. See [Preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+These examples use `troubleshoot.sh/v1beta2` (supported by KOTS, kURL, and Embedded Cluster v2). Embedded Cluster v3 requires application preflight specs to use `troubleshoot.sh/v1beta3`, packaged as a release-level file and rendered with Helm template syntax (not `repl{{ }}`). `troubleshoot.sh/v1beta3` is not supported by KOTS or Embedded Cluster v2.
+
+The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to use `v1beta2` on all installer products, including Embedded Cluster v3. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
 :::
