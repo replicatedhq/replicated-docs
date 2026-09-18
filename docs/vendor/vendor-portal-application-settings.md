@@ -7,12 +7,6 @@ To access application settings, log in to the [Vendor Portal](https://vendor.rep
 - **Application settings:** The settings described on this page.
 - **Replicated SDK signature verification:** Provides the public key for the application and code samples for verifying the signatures on license fields. For more information, see [Verify License Field Signatures with the Replicated SDK API](/vendor/licenses-verify-fields-sdk-api).
 
-The following shows the **Application settings** tab:
-
-<img alt="Settings page" src="/images/application-settings.png" width="600px"/>
-
-[View a larger version of this image](/images/application-settings.png)
-
 The following describes each of the application settings:
 
 - **Application name:** The application name is initially set when you first create the application in the Vendor Portal. You can change the name at any time so that it displays as a user-friendly name that your team can easily identify.
