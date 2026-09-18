@@ -52,6 +52,8 @@ To add your own host preflight checks, include a HostPreflight custom resource (
 
 Custom host preflight checks behave the same as the default checks. A failure blocks the installation and displays a message describing the failure.
 
+To make a check that users cannot bypass, set `strict: true` on the analyzer, alongside `checkName`. Users cannot continue past a failed strict check with `--ignore-host-preflights`. The installation cannot proceed until the host meets the requirement.
+
 Use custom host preflight checks to enforce requirements that are more restrictive than the defaults. You can also use them to verify application-specific host requirements, such as a required kernel module or connectivity to an external endpoint.
 
 The following example adds a check for a host with at least six CPU cores:
