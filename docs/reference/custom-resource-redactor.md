@@ -40,7 +40,7 @@ How you deliver the Redactor resource depends on how customers install your appl
   </tr>
   <tr>
     <td>Embedded Cluster v3</td>
-    <td>Add the Redactor resource to the release, or package the spec in a labeled Secret in your Helm chart. Redactors continue to use `troubleshoot.sh/v1beta2`. The `v1beta3` API version applies only to preflight specs. See [Add custom redactors](/embedded-cluster/v3/embedded-using#redactors) in <em>Configure Embedded Cluster</em>.</td>
+    <td>Add the Redactor resource to the release, or package the spec in a labeled Secret in your Helm chart. Redactors continue to use `troubleshoot.sh/v1beta2`. The `v1beta3` API version applies only to the Preflight custom resource. See [Add custom redactors](/embedded-cluster/v3/embedded-using#redactors) in <em>Configure Embedded Cluster</em>.</td>
   </tr>
   <tr>
     <td>Helm</td>
