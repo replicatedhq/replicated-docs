@@ -24,7 +24,7 @@ The alias reservation is permanent. You cannot delete, release, or transfer the 
 
 - New installations can use an application slug alias with any version of KOTS.
 - On KOTS v1.132.0 and later, existing installations pick up a new active slug automatically on their next license sync. The Admin Console URL for the application changes to use the new slug, and existing Admin Console URLs redirect to it.
-- On KOTS versions earlier than v1.132.0, existing installations are unaffected and continue to use the slug they were installed with. The new active slug is ignored rather than applied, and no error is reported.
+- On KOTS versions earlier than v1.132.0, existing installations do not adopt a new active slug, and operations that compare the application slug against the license can fail. Move customers to KOTS v1.132.0 or later before you change the active slug.
 
 **Embedded Cluster**
 
