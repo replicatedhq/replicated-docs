@@ -119,6 +119,7 @@ const sidebars = {
           label: "Applications",
           items: [
             "vendor/vendor-portal-manage-app",
+            "vendor/application-slug-aliases",
             "vendor/vendor-portal-application-settings",
           ],
         },
