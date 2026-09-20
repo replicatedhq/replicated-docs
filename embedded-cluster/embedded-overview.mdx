@@ -88,7 +88,9 @@ To add your own host preflight checks, include a HostPreflight custom resource (
 
 Custom host preflight checks behave the same as the default checks. A failure stops the installation and displays a message describing the failure, and the user can bypass it the same way they bypass a default check.
 
-To make a check that users cannot bypass, set `strict: true` on the analyzer, alongside `checkName`. Users cannot continue past a failed strict check from the UI or with `--ignore-host-preflights`. The installation cannot proceed until the host meets the requirement.
+To make a check that users cannot bypass, set `strict: true` on the analyzer, alongside `checkName`. Users cannot continue past a failed strict check from the UI or with `--ignore-host-preflights`, and the installation cannot proceed until the host meets the requirement.
+
+Embedded Cluster honors strict checks in version 3.13.0 and later. In earlier versions, users can bypass a failed strict check.
 
 Use custom host preflight checks to enforce requirements that are more restrictive than the defaults. You can also use them to verify application-specific host requirements, such as a required kernel module or connectivity to an external endpoint.
 
