@@ -113,6 +113,10 @@ spec:
               message: This server has at least 6 CPU cores
 ```
 
+Put all of your custom checks in a single HostPreflight resource. If a release contains more than one, Embedded Cluster uses the first and ignores the rest without reporting an error.
+
+If your spec fails to parse, Embedded Cluster does not stop the installation. It runs the default checks, warns that it skipped your checks, and continues.
+
 For more information about writing collectors and analyzers, see [Host Collectors](https://troubleshoot.sh/docs/collect/host-collectors/) and [Host Analyzers](https://troubleshoot.sh/docs/analyze/host-analyzers/) in the Troubleshoot documentation.
 
 ### Limitations
