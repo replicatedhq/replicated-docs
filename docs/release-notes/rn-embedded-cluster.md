@@ -12,9 +12,9 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## 2.19.10+k8s-1.36
+## 2.19.10
 
-Released on September 18, 2026
+Released on September 21, 2026
 
 <!-- VERSION TABLE PLACEHOLDER
 Please manually replace this placeholder with a version table in the format:
@@ -36,10 +36,10 @@ Please manually replace this placeholder with a version table in the format:
   </tr>
 </table>
 -->
-### Improvements {#improvements-2-19-10+k8s-1-36}
+### Improvements {#improvements-2-19-10}
 * Resolves CVE-2026-56855, CVE-2026-78662, CVE-2026-84303, CVE-2026-84304, CVE-2026-84445.
 
-### Bug Fixes {#bug-fixes-2-19-10+k8s-1-36}
+### Bug Fixes {#bug-fixes-2-19-10}
 * Fixed an issue where the SeaweedFS filer metadata change log grew unbounded on high availability installations, eventually causing disk pressure on controller nodes. Maintenance scripts now purge change log entries older than 7 days.
 * Fixed an issue where multipart upload fragments from interrupted registry image pushes accumulated indefinitely in SeaweedFS on high availability installations. Maintenance scripts now clean up abandoned uploads older than 24 hours.
 
