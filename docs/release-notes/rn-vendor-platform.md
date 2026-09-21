@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.21-0
+
+Released on September 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-21-0}
+* Custom Domains directs Enterprise Portal v2 vendors to content setup when no content repository is linked, and to Domains when one is linked.
+* Registry connection tests now explain whether an image was not found, access was denied, rate limited, or temporarily unavailable.
 ## v2026.09.18-2
 
 Released on September 18, 2026
