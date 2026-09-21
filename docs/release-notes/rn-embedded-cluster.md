@@ -61,8 +61,8 @@ Released on September 20, 2026
   </tr>
 </table>
 
-### Improvements {#improvements-2-19-12}
-* Updated the Go toolchain to 1.27.1 to address CVE-2026-39821 in EC-built binaries.
+### Bug Fixes {#bug-fixes-2-19-12}
+* Fixed the Embedded Cluster operator version to include the required `v` prefix.
 
 ## 2.19.11
 
@@ -88,15 +88,13 @@ Released on September 20, 2026
 </table>
 
 ### Improvements {#improvements-2-19-11}
-* Resolves CVE-2026-56855, CVE-2026-78662, CVE-2026-84303, CVE-2026-84304, CVE-2026-84445.
-
-### Bug Fixes {#bug-fixes-2-19-11}
-* Fixed an issue where the SeaweedFS filer metadata change log grew unbounded on high availability installations, eventually causing disk pressure on controller nodes. Maintenance scripts now purge change log entries older than 7 days.
-* Fixed an issue where multipart upload fragments from interrupted registry image pushes accumulated indefinitely in SeaweedFS on high availability installations. Maintenance scripts now clean up abandoned uploads older than 24 hours.
+* Updated the Go toolchain to 1.27.1 to address CVE-2026-39821 in EC-built binaries.
+* Updates KOTS to 1.132.0.
+* Updates the k0s and registry container images.
 
 ## 2.19.10
 
-Released on September 21, 2026
+Released on September 18, 2026
 
 <table>
   <tr>
