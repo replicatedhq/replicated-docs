@@ -12,115 +12,109 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## 2.19.13+k8s-1.34
+## 2.19.13
 
 Released on September 21, 2026
 
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
-
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">2.19.13+k8s-1.36</td>
+    <td id="center">2.19.13+k8s-1.35</td>
+    <td id="center">2.19.13+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.XXX.Y</td>
+    <td colspan="3" id="center">1.132.0</td>
   </tr>
 </table>
--->
-### Bug Fixes {#bug-fixes-2-19-13+k8s-1-34}
+
+### Bug Fixes {#bug-fixes-2-19-13}
 * Host preflight checks marked as strict can no longer be bypassed with --ignore-host-preflights.
 
-## 2.19.12+k8s-1.36
+## 2.19.12
 
 Released on September 20, 2026
-
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
 
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">2.19.12+k8s-1.36</td>
+    <td id="center">2.19.12+k8s-1.35</td>
+    <td id="center">2.19.12+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.XXX.Y</td>
+    <td colspan="3" id="center">1.132.0</td>
   </tr>
 </table>
--->
-### Bug Fixes {#bug-fixes-2-19-12+k8s-1-36}
+
+### Bug Fixes {#bug-fixes-2-19-12}
+* Fixed the Embedded Cluster operator version to include the required `v` prefix.
+
+## 2.19.11
+
+Released on September 20, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.11+k8s-1.36</td>
+    <td id="center">2.19.11+k8s-1.35</td>
+    <td id="center">2.19.11+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.132.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-11}
 * Updated the Go toolchain to 1.27.1 to address CVE-2026-39821 in EC-built binaries.
-
-## 2.19.11+k8s-1.35
-
-Released on September 20, 2026
-
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
-
-<table>
-  <tr>
-    <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-  </tr>
-  <tr>
-    <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
-  </tr>
-  <tr>
-    <th>KOTS Version</th>
-    <td id="center" colspan="2">1.XXX.Y</td>
-  </tr>
-</table>
--->
-### Improvements {#improvements-2-19-11+k8s-1-35}
-* Resolves CVE-2026-56855, CVE-2026-78662, CVE-2026-84303, CVE-2026-84304, CVE-2026-84445.
-
-### Bug Fixes {#bug-fixes-2-19-11+k8s-1-35}
-* Fixed an issue where the SeaweedFS filer metadata change log grew unbounded on high availability installations, eventually causing disk pressure on controller nodes. Maintenance scripts now purge change log entries older than 7 days.
-* Fixed an issue where multipart upload fragments from interrupted registry image pushes accumulated indefinitely in SeaweedFS on high availability installations. Maintenance scripts now clean up abandoned uploads older than 24 hours.
+* Updates KOTS to 1.132.0.
+* Updates the k0s and registry container images.
 
 ## 2.19.10
 
-Released on September 21, 2026
-
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
+Released on September 18, 2026
 
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">2.19.10+k8s-1.36</td>
+    <td id="center">2.19.10+k8s-1.35</td>
+    <td id="center">2.19.10+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.XXX.Y</td>
+    <td colspan="3" id="center">1.131.8</td>
   </tr>
 </table>
--->
+
 ### Improvements {#improvements-2-19-10}
 * Resolves CVE-2026-56855, CVE-2026-78662, CVE-2026-84303, CVE-2026-84304, CVE-2026-84445.
 
