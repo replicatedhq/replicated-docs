@@ -16,6 +16,13 @@ Released on September 18, 2026
 ### Bug Fixes {#bug-fixes-v2026-09-18-2}
 * Explains why Enterprise Portal v2 setup appears when vendors open a deep link before setup is complete.
 
+## v2026.09.18-0
+
+Released on September 18, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-18-0}
+* Hide the Embedded Cluster multi-node restriction control from teams without the corresponding feature flag while keeping multi-node installations enabled by default.
+
 ## v2026.09.17-3
 
 Released on September 17, 2026
