@@ -409,9 +409,9 @@ Props: `stepNumber` (optional, starting step number).
 
 For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there.
 
-**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Downloadable artifacts include the KOTS CLI, the Admin Console bundle, and the application air gap bundle. Available when the customer's license has the KOTS install type with air gap enabled. This component does not render install commands. Props: `stepNumber`.
+**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Available when the customer's license has the KOTS install type. The KOTS CLI and optional Preflight and Support Bundle CLIs appear even when air gap is disabled. The Admin Console bundle and the application air gap bundle appear only when air gap is enabled. This component does not render install commands. Wrap it in `<WhenNetwork mode="airgap">` to show the section only for air gap (the default KOTS page does this). Props: `stepNumber`.
 
-**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Downloadable artifacts include the kURL installer bundle and the application air gap bundle. Available when the customer's license has the kURL install type with air gap enabled. This component does not render install commands. Props: `stepNumber`.
+**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Available when the customer's license has the kURL install type. Optional KOTS, Preflight, and Support Bundle CLIs appear even when air gap is disabled. The kURL installer bundle (air gap tarball) and the application air gap bundle appear only when air gap is enabled. This component does not render install commands. Props: `stepNumber`.
 
 **`<WhenNetwork>`**: Shows or hides child content based on the customer's Network Availability selection. Use this to keep online generated commands and air gap documentation on the same page. Accepted `mode` tokens are `online`, `proxy`, and `airgap` (comma-separated). With no `<NetworkAvailability/>` on the page the selection stays `"online"`, so `mode="airgap"` content never appears. Unrecognized tokens such as `"Airgap"` or `"air-gap"` are ignored; in content preview the portal shows an authoring warning listing the accepted modes. Props: `mode` (required), `children`.
 
@@ -502,6 +502,7 @@ Common vendor edits:
 - **Admin Console URL**: The default air gap procedure uses the port-forward URL (`http://localhost:8800` or `kubectl kots admin-console`). If customers reach the Admin Console through an ingress or load balancer, replace that step with your URL.
 - **Registry conventions**: Document your registry hostname or host/namespace pattern, account naming, and any required prep (for example, creating the registry namespace before push).
 - **Content around `<KotsDownloadAssets />`**: Put your own steps above and below the download component. Pass `stepNumber` when you want the component to own the numbered step chrome, or wrap it in `<InstallStep>` and omit `stepNumber` so your surrounding copy owns the numbering. Do not do both.
+- **Online CLI downloads**: Do not enable air gap on the license only to get the KOTS CLI. If online customers should download CLIs from the portal (not only `curl https://kots.io/install`), place `<KotsDownloadAssets />` outside `<WhenNetwork mode="airgap">`. If the KOTS page is missing for those customers, drop `isAirgapSupported` from that page's `visible_when` and `toc.yaml` gate so it is `isKotsInstallEnabled` only.
 
 ```markdown
 <InstallStep stepNumber={1} title="Your network and registry rules">
@@ -519,7 +520,7 @@ Your REGISTRY_HOST convention, then the docs-style command.
 
 ##### kURL installer page
 
-The default `pages/installation/kurl.md` page provides downloads for entitled air gap customers. Its frontmatter and `toc.yaml` entry are gated on both `isKurlInstallEnabled` and `isAirgapSupported`. For generated online or air gap install commands, add `<NetworkAvailability installType="kurl" />`, `<VersionSelector installType="kurl" />`, and `<KurlInstallAssets />` (which adapts when Network Availability changes) or a separate `<KurlAirgapInstallAssets />` branch, the same way Helm and Embedded Cluster pages use generated install assets. If you ship generated online kURL commands to online-only customers, drop `isAirgapSupported` from that nav gate.
+The default `pages/installation/kurl.md` page provides downloads for entitled air gap customers. Its frontmatter and `toc.yaml` entry are gated on both `isKurlInstallEnabled` and `isAirgapSupported`. For generated online or air gap install commands, add `<NetworkAvailability installType="kurl" />`, `<VersionSelector installType="kurl" />`, and `<KurlInstallAssets />` (which adapts when Network Availability changes) or a separate `<KurlAirgapInstallAssets />` branch, the same way Helm and Embedded Cluster pages use generated install assets. If you ship generated online kURL commands to online-only customers, drop `isAirgapSupported` from that nav gate. If you place `<KurlDownloadAssets />` on a page those customers can see, they get the optional CLIs; the kURL installer tarball and application air gap bundle still require air gap.
 
 ### Update components
 
