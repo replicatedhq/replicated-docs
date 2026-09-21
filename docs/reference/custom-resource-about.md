@@ -57,7 +57,7 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>troubleshoot.sh/v1beta2</td>
         <td>[Redactor](https://troubleshoot.sh/docs/redact/)</td>
-        <td>Defines custom redactors for support bundles and preflight checks</td>
+        <td>Defines custom redactors for support bundles</td>
     </tr>
     <tr>
         <td>troubleshoot.sh/v1beta2</td>

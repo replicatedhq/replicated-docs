@@ -7,6 +7,62 @@ This page describes how to upgrade from Embedded Cluster v2 to Embedded Cluster 
 
 It includes information about how to update your application release to support Embedded Cluster v3. It also describes how to upgrade existing installations from Embedded Cluster v2 to v3.
 
+## Benefits of Embedded Cluster v3
+
+Embedded Cluster v3 delivers the following improvements over v2. For the release changes required to adopt them, see [Comparison to Embedded Cluster v2](#comparison-to-embedded-cluster-v2).
+
+**One guided experience from the first step.** In v2, cluster infrastructure was set up on the command line before a separate UI handled the application. In v3, a single binary drives cluster configuration, preflight checks, node setup, and application deployment in one wizard. See [Embedded Cluster overview](embedded-overview).
+
+**A smaller footprint for customers to secure.** The cluster runs your application and Embedded Cluster's own infrastructure components, with no Replicated management component holding cluster-scoped privileges. The KOTS operator's cluster-scoped RBAC grants and cross-namespace access are not part of a v3 install, which takes them out of a customer's security review. The install and upgrade wizard runs only while an operation is in progress, so no management console runs continuously in the cluster unless a customer opts into the [persistent admin console](embedded-persistent-console). See [Removal of KOTS](#removal-of-kots).
+
+**Installs no longer reach out to chart repositories.** v3 resolves every Helm extension from a `.tgz` archive bundled in the release instead of pulling it from an HTTP repository or OCI registry at install time. Installs no longer depend on the customer's network reaching those hosts. See [Helm extension charts must be bundled in the release](#extension-charts).
+
+**Private image pulls work for pods you don't control.** In v2, the Replicated pull secret had to be injected into every Pod definition that referenced a proxied image, which meant pods created at runtime by an operator, a Job, or a third-party subchart would fail to pull unless you threaded the secret through. v3 configures the cluster to authenticate to the Replicated proxy registry for all pods, so this is handled regardless of what creates the pod. See [Automatic authentication to the Replicated proxy registry](#automatic-authentication-to-the-replicated-proxy-registry).
+
+**Support for customer-controlled registries.** The cluster can pull every image, your application and the infrastructure components alike, from a single OCI registry that the customer operates. See [Install with a customer-managed registry](installing-embedded-byo-registry).
+
+**The full lifecycle can be automated.** Install, upgrade, and `node join` each run from the CLI or the [external API](embedded-cluster-external-api) with no console interaction. See [Install using the CLI (Headless)](installing-embedded#install-using-the-cli-headless) and [Upgrade using the CLI (headless)](updating-embedded#upgrade-using-the-cli-headless).
+
+## Changes for end users
+
+You can adapt these lists for your own customer communications.
+
+### During the upgrade from v2
+
+These apply once, when an existing v2 installation moves to v3.
+
+**Customers won't see the v3 release in their Admin Console.** Releases that use Embedded Cluster v3 don't appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design, to prevent accidental upgrades. To get the v3 release, customers use the [Enterprise Portal](/vendor/enterprise-portal-about) or download the binary directly. Plan to communicate this when you promote a v3-enabled release.
+
+**The upgrade is one-way and asks for confirmation.** The v3 binary detects the existing v2 installation and prompts the user to confirm before it proceeds. There's no path back to v2.
+
+**Configuration carries forward.** Values the customer already set, such as the application domain, are preserved, so nothing has to be re-entered.
+
+**Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
+
+**Multi-node clusters upgrade the remaining nodes manually, this one time.** Streamed upgrades require every remote node to already be running Embedded Cluster 3.2 or later, and nodes still on v2 do not qualify. The wizard detects this and displays manual instructions for those nodes. The user produces an upgrade bundle on the primary controller, copies it to each remaining node, and runs `node upgrade` there. Once every node is on v3, later upgrades stream automatically with no copying. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
+
+**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation with `--installer-port`. See [Port requirements](installing-embedded-requirements#port-requirements).
+
+**Multi-node clusters also need port 30081/TCP.** The Embedded Cluster daemon API listens on this port and is what lets other nodes join and receive upgrades. Single-node clusters do not need it opened. If the port is occupied, customers can select a different port at install with `--api-port`. See [External API](embedded-cluster-external-api).
+
+### On any v3 installation
+
+These are the ongoing differences after the upgrade.
+
+**A guided wizard handles install and upgrade.** Install and upgrade operations launch a wizard that walks the user through configuration, preflight checks, node setup, and deployment, and closes when the operation finishes. It replaces the KOTS Admin Console that handled these steps in v2.
+
+**An always-on console is available when you want one.** The [persistent admin console](embedded-persistent-console) runs as an opt-in system service, giving end users a browser dashboard without command-line access. From it they can see available updates, view release notes, trigger an upgrade, upload air gap releases, and generate support bundles. It isn't installed by default, and the initial install and console setup require command-line access.
+
+**How customers find out about updates depends on whether the console is installed.** With the persistent admin console, available updates appear in the console. Without it, customers get updates from the [Enterprise Portal](/vendor/enterprise-portal-about) or by running the `upgrade` command directly. See [Perform updates in embedded clusters](updating-embedded).
+
+**Multi-node clusters upgrade themselves one node at a time.** The user runs the upgrade on the primary controller, and its daemon streams the upgrade to each remaining node over the network. Controllers upgrade first, one at a time to preserve etcd quorum, then workers. Nobody copies files between machines or runs commands on the other nodes. If a node can't be reached, or is running a version that predates streamed upgrades, the wizard reports it and shows manual instructions for that node. See [Multi-node clusters](updating-embedded#multi-node-clusters).
+
+**Cluster settings are collected in the wizard.** The v3 wizard includes a *Set Up* page where end users provide cluster-level settings such as proxy configuration. In v2 these were passed as CLI flags at install time.
+
+:::note
+Config value defaults behave differently in v3. All config values, including those that use spec defaults, are resolved and persisted at install time, and previously persisted values take precedence over new defaults on upgrade. Changing a `default` field in a later release won't reach existing installations. See [Config value defaults are persisted at install time](#config-value-defaults-are-persisted-at-install-time).
+:::
+
 ## Comparison to Embedded Cluster v2
 
 This section describes the key differences between Embedded Cluster v2 and v3. 
@@ -37,7 +93,7 @@ In v3, you package preflight specs outside your Helm charts as a release-level Y
 v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
-**Support bundles are not affected.** Support bundle specs continue to work with `v1beta2` in Embedded Cluster v3. The v1beta3 requirement applies only to preflight specs.
+**You do not need to migrate support bundle specs.** Support bundle and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. The v1beta3 requirement applies only to preflight specs. For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
 :::
 
 **Key differences from v1beta2 for preflight specs:**
@@ -133,7 +189,7 @@ To update a release from Embedded Cluster v2 to v3:
    - Move the spec file out of your Helm chart's `templates/` directory. In v3, the preflight spec is a release-level file, not part of any chart.
    - If you wrapped your spec in a Kubernetes Secret (the v1beta2 workaround for chart packaging), remove the Secret wrapper. The spec should be a plain `troubleshoot.sh/v1beta3 Preflight` resource.
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
-   - You do not need to update support bundle specs. They continue to work with `v1beta2` in Embedded Cluster v3.
+   - You do not need to update the API version of support bundle or Redactor specs. They continue to work with `v1beta2` in Embedded Cluster v3.
 
    If your release needs to support both KOTS and Embedded Cluster v3 installations during the transition period, include two preflight specs: a `v1beta2` spec for KOTS and a `v1beta3` spec for Embedded Cluster v3. KOTS ignores the `v1beta3` spec, and Embedded Cluster v3 ignores the `v1beta2` spec. Once you no longer need to support KOTS installations, you can remove the `v1beta2` spec.
 
@@ -142,6 +198,8 @@ To update a release from Embedded Cluster v2 to v3:
 1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your application Helm charts. Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
+
+    Replace `EC_VERSION` with the version to install, including the Kubernetes suffix. For example, `3.12.0-beta.1+k8s-1.36`. Each entry in the [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3) lists the full version strings available for that release.
 
     **Example:**
 
@@ -201,10 +259,6 @@ To update a release from Embedded Cluster v2 to v3:
 1. In the VM where you plan to test the installation, create a firewall opening for port 30080/TCP. Embedded Cluster v3 requires that port 30080 is open and available.
 
 1. Test the installation using a development customer.
-
-### Installer wizard differences
-
-The Embedded Cluster v3 installer wizard includes a **Set Up** page where end customers provide cluster-level settings such as proxy configuration. In Embedded Cluster v2, these settings were passed as CLI flags at install time.
 
 ## Upgrade an installation from Embedded Cluster v2 to Embedded Cluster v3
 

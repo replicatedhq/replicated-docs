@@ -20,6 +20,25 @@ The following diagram demonstrates how the proxy registry pulls images from your
 
 [View a larger version of this image](/images/private-registry-diagram-large.png)
 
+## About image delivery and caching {#delivery}
+
+The proxy registry runs on a globally-distributed edge network. Customers connect to the edge location nearest to them rather than to a single region, which shortens the round trip for authentication and image requests.
+
+For teams that have image layer caching enabled, the proxy registry also caches image layers at the edge. When a customer pulls an image, the proxy registry serves any cached layers directly and requests only the remaining layers from your external registry. This has two effects:
+
+* **Faster pulls for geographically distant customers.** Cached layers are served from the edge instead of being fetched from your external registry on every pull.
+* **Lower egress from your external registry.** A layer served from the cache does not generate a pull against your external registry, which can reduce the egress costs you pay to providers such as Amazon ECR or Google Artifact Registry.
+
+Image layer caching has the following characteristics:
+
+* Only image layers are cached. Manifests are always requested from your external registry, so a pull by tag always resolves against the current state of your registry.
+* Layers are cached by digest. Because layers are content-addressed, pulls by tag benefit from caching in the same way as pulls by digest.
+* Cached layers expire after 14 days without a pull. Frequently pulled layers remain cached, and layers that are no longer pulled are removed.
+* Your images must remain available in your external registry. Caching does not change what the proxy registry needs in order to serve your images.
+* Caching reduces the egress from your external registry. It does not change the volume of image data that Replicated delivers to your customers. For more information about viewing that volume, see [View registry egress](/vendor/packaging-private-images#view-registry-egress).
+
+Image layer caching is enabled for accounts based on the terms of their agreement with Replicated. To find out whether it is enabled for your team, or to ask about enabling it, contact your Replicated account representative.
+
 ## About enabling the proxy registry
 
 The proxy registry requires read-only credentials to your private registry to access your application images. See [Add and Manage External Registries](/vendor/packaging-private-images).

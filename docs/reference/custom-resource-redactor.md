@@ -1,20 +1,20 @@
-# Redactor (KOTS Only)
+# Redactor
 
 This topic describes how to define redactors with the Redactor custom resource.
 
 :::note
-Custom redactors defined with the Redactor resource apply only to installations with Replicated KOTS.
+Custom redactors apply to support bundles. Preflight checks apply the built-in redactors only.
 :::
 
 ## Overview
 
 Preflight checks and support bundles include built-in redactors. These built-in redactors use regular expressions to identify and hide potentially sensitive data before it is analyzed. For example, the built-in redactors hide values that match common patterns for data sources, passwords, and user IDs that can be found in standard database connection strings. They also hide environment variables with names that begin with words like token, password, or user. To view the complete list of regex patterns for the built-in redactors, see [`redact.go`](https://github.com/replicatedhq/troubleshoot/blob/main/pkg/redact/redact.go#L204) in the open-source Troubleshoot GitHub repo.
 
-For Replicated KOTS installations, you can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+You can also add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Defining Custom Redactors
 
-You can add custom redactors for KOTS installations using the following basic Redactor custom resource manifest file (`kind: Redactor`):
+You can add custom redactors using the following basic Redactor custom resource manifest file (`kind: Redactor`):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -25,9 +25,32 @@ spec:
   redactors: []
 ```
 
+### Where to include the Redactor resource {#include}
+
+How you deliver the Redactor resource depends on how customers install your application:
+
+<table>
+  <tr>
+    <th width="30%">Installation method</th>
+    <th width="70%">Where to include the Redactor</th>
+  </tr>
+  <tr>
+    <td>KOTS and Embedded Cluster v2</td>
+    <td>Add the Redactor resource to the release.</td>
+  </tr>
+  <tr>
+    <td>Embedded Cluster v3</td>
+    <td>Add the Redactor resource to the release, or package the spec in a labeled Secret in your Helm chart. Redactors continue to use `troubleshoot.sh/v1beta2`. The `v1beta3` API version applies only to preflight specs. See [Add custom redactors](/embedded-cluster/v3/embedded-using#redactors) in <em>Configure Embedded Cluster</em>.</td>
+  </tr>
+  <tr>
+    <td>Helm</td>
+    <td>Package the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec in the `redactor-spec` data key. The `kubectl support-bundle --load-cluster-specs` command discovers labeled resources in the cluster. Use a Secret, because a rendered spec can contain the values it redacts.</td>
+  </tr>
+</table>
+
 ## Objects and Fields
 
-A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [KOTS Redactor Example](#example) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [Redactor Example](#example) on this page and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
 ### fileSelector
 
@@ -73,7 +96,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
 </table>
 
-## KOTS Redactor Example {#example}
+## Redactor Example {#example}
 
 The following example shows `regex` and `yamlPath` redaction for a support bundle:
 
