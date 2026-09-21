@@ -16,6 +16,16 @@ Released on September 17, 2026
 ### Bug Fixes {#bug-fixes-v2026-09-17-3}
 * Fixed Enterprise Portal deployments reporting success after routing failures and added retries for transient routing errors.
 
+## v2026.09.17-0
+
+Released on September 17, 2026
+
+### Improvements {#improvements-v2026-09-17-0}
+* Notification email verification and rate-limit states are now shown clearly in the notification form.
+
+### Bug Fixes {#bug-fixes-v2026-09-17-0}
+* Notification test emails now require destination email verification and enforce send limits to prevent abuse.
+
 ## v2026.09.16-0
 
 Released on September 16, 2026
