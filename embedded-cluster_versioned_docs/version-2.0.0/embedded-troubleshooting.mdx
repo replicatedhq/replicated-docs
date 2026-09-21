@@ -84,7 +84,7 @@ To troubleshoot:
     ```bash
     sudo ./APP_SLUG reset
     ```
-    Where `APP_SLUG` is the unique slug for the application. 
+    Where `APP_SLUG` is the unique slug for the application.
 
     For more information, see [Reset a Node](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -150,7 +150,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
 
        For more information, see [Reset a Node](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -167,8 +167,8 @@ Reasons can include:
 
   If kernel parameters are not set correctly and these preflight checks fail, you might see a message such as `IP forwarding must be enabled.` or `ARP filtering must be disabled by default for newly created interfaces.`.
 
-  To troubleshoot incorrect kernel parameter values:       
-    
+  To troubleshoot incorrect kernel parameter values:
+
     1. Use sysctl to set the kernel parameters to the correct values:
 
         ```bash
@@ -184,7 +184,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
        For more information, see [Reset a Node](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
     1. Re-install with Embedded Cluster.
@@ -196,7 +196,87 @@ Reasons can include:
         ```bash
         kubectl patch ippool default-ipv4-ippool --type=merge -p '{"spec": {"vxlanMode": "CrossSubnet"}}'
         ```
-    
+
     If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
   </TabItem>
 </Tabs>
+
+### Disk usage on controller nodes grows over time in airgap HA installations {#seaweedfs-storage-growth}
+
+#### Symptom
+
+On a multi-node airgap installation with high availability enabled, disk usage on the controller nodes increases steadily over weeks or months. The growth continues when the application is idle and no new images are pushed.
+
+The growth is in the SeaweedFS volumes that back the built-in registry. SeaweedFS stores this data in persistent volume claims provisioned by the `openebs-hostpath` storage class on the controller nodes. To confirm, run the following command for each SeaweedFS volume pod (`seaweedfs-volume-0`, `seaweedfs-volume-1`, and `seaweedfs-volume-2`) and compare the values over time:
+
+```bash
+kubectl exec -n seaweedfs seaweedfs-volume-0 -- du -sh /data
+```
+
+Where `/data` is the persistent volume claim that holds the volume files for that pod. Do not use `df` for this. The `openebs-hostpath` storage class does not enforce a quota, so `df` reports the usage of the entire node file system rather than the space that SeaweedFS uses.
+
+If you do not address the growth, the controller nodes eventually run out of disk space. This can make the cluster unhealthy and can block application upgrades.
+
+#### Cause
+
+The filer change logs are the cause that is present on every affected cluster. Abandoned multipart uploads can be a second contributor, depending on whether image pushes have been interrupted:
+
+* **SeaweedFS filer change logs.** The SeaweedFS master runs a maintenance cycle every 17 minutes that includes `fs.meta.save` and `fs.meta.load`, which keep the metadata of the three filers in sync. Each run writes a complete metadata snapshot to the filer change log under `/topics/.system/log`. Because the cycle runs on a timer, the change log grows for the life of the cluster regardless of application activity. The amount written on each cycle scales with the number of files in the registry, so the growth rate increases as the registry grows.
+
+* **Abandoned multipart uploads.** Image pushes to the built-in registry are multipart uploads. When a push is interrupted, the fragments that were already uploaded remain under `/buckets/registry/.uploads` and are never removed.
+
+Embedded Cluster 2.19.10 and later adds `fs.log.purge` and `s3.clean.uploads` to the SeaweedFS maintenance cycle, which prevents further growth from both causes.
+
+These two causes do not necessarily account for all of the growth on a given cluster. Use the measurements in the following section to see how much space the cleanup actually reclaims.
+
+:::note
+Upgrading to Embedded Cluster 2.19.10 or later does not reclaim the space that is already in use straight away. SeaweedFS reclaims it over time, but the timing depends on how much of each volume is unused. Use the steps in this section to reclaim the space without waiting.
+:::
+
+#### Solution
+
+To reclaim the disk space on an existing cluster:
+
+1. SSH into a controller node and start the Embedded Cluster shell. See [Access the cluster](#access-the-cluster).
+
+1. Measure the space that SeaweedFS uses on each node. This command is read-only:
+
+    ```bash
+    for pod in seaweedfs-volume-0 seaweedfs-volume-1 seaweedfs-volume-2; do
+      echo -n "$pod "
+      kubectl exec -n seaweedfs $pod -- du -sh /data
+    done
+    ```
+
+    Record the output so that you can compare it after the cleanup.
+
+1. Delete the change log entries older than seven days and the multipart uploads older than 24 hours. An upload older than 24 hours is abandoned, because registry pushes complete in minutes.
+
+    :::note
+    Run this step when no application install or upgrade is in progress.
+    :::
+
+    ```bash
+    kubectl exec -i -n seaweedfs seaweedfs-master-0 -- weed shell <<'EOF'
+    fs.log.purge -daysAgo 7
+    s3.clean.uploads -timeAgo=24h
+    EOF
+    ```
+
+1. Vacuum the volumes to return the space to the file system. The `-garbageThreshold 0.01` value makes SeaweedFS rewrite every volume that holds any unused data, so this step is the most expensive one. On a large registry it is I/O intensive and can run for a long time. The `lock` command blocks other `weed shell` administrative operations until the vacuum completes, but the registry continues to serve images.
+
+    :::note
+    Run this step when no application install or upgrade is in progress. On a busy cluster, run it outside of business hours.
+    :::
+
+    ```bash
+    kubectl exec -i -n seaweedfs seaweedfs-master-0 -- weed shell <<'EOF'
+    lock
+    volume.vacuum -garbageThreshold 0.01
+    unlock
+    EOF
+    ```
+
+1. Verify that the space was reclaimed. Repeat the measurement command and compare the values to what you recorded.
+
+Registry images and application data are not affected by these commands. The purge removes only internal change log entries, which nothing in Embedded Cluster reads, and `s3.clean.uploads` removes only incomplete uploads that never became part of an image.
