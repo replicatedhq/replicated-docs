@@ -396,6 +396,10 @@ The summary breaks the total down as follows:
   </tr>
 </table>
 
+:::note
+Image layer caching can reduce the number of pulls that reach your external registry, which lowers the egress costs that you pay your registry provider. Caching does not reduce the egress that Replicated delivers, which is what this summary shows. For more information, see [About image delivery and caching](/vendor/private-images-about#delivery).
+:::
+
 ### View egress by customer and image
 
 The **Customer egress** section shows which customers account for the current application's egress during the month. The table shows each customer's egress and percentage of the application total. It also identifies archived customers and groups traffic without a customer ID as **Unattributed**.
