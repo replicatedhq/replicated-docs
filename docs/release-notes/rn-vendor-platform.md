@@ -9,7 +9,6 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
-<<<<<<< HEAD
 ## v2026.09.18-2
 
 Released on September 18, 2026
@@ -47,14 +46,6 @@ Released on September 16, 2026
 
 ### New Features {#new-features-v2026-09-16-0}
 * Enterprise Portal v2 now shows customer-runnable KOTS and kURL install commands (online, proxy, and kURL air gap cluster bootstrap). KOTS existing-cluster air gap is download-only until a default content procedure ships.
-=======
-## v2026.09.18-1
-
-Released on September 18, 2026
-
-### New Features {#new-features-v2026-09-18-1}
-* Enterprise Portal: Network Availability can show or hide page sections with WhenNetwork (used by the default KOTS install page).
->>>>>>> a3ad3dfd8 (Vendor Portal v2026.09.18-1 release notes)
 ## v2026.09.15-7
 
 Released on September 15, 2026
