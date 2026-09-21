@@ -61,7 +61,7 @@ Released on September 20, 2026
   </tr>
 </table>
 
-### Bug Fixes {#bug-fixes-2-19-12}
+### Improvements {#improvements-2-19-12}
 * Updated the Go toolchain to 1.27.1 to address CVE-2026-39821 in EC-built binaries.
 
 ## 2.19.11
