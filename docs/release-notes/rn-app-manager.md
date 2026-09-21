@@ -24,6 +24,24 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.132.0
+
+Released on September 19, 2026
+
+Support for Kubernetes: 1.34, 1.35, and 1.36
+
+### New Features {#new-features-1-132-0}
+* Adds support for application slug aliasing.
+
+### Improvements {#improvements-1-132-0}
+* Resolves CVE-2026-73500, CVE-2026-84445.
+* Updates rqlite from 10.2.7 to 10.3.4.
+* Updates schemahero 0.26.1 to 0.26.2.
+* Resolve CVE GHSA-2v4p-qf9q-27wj.
+* Fixes CVEs GHSA-w34q-cm8f-9c5x and GHSA-8wmf-6v46-5gfg.
+
+### Bug Fixes {#bug-fixes-1-132-0}
+* Fixed the release linter truncating config option names containing dots, which caused false "Config option not found" warnings.
 ## 1.131.8
 
 Released on September 8, 2026
