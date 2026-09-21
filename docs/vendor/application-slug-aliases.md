@@ -28,8 +28,9 @@ The alias reservation is permanent. You cannot delete, release, or transfer the 
 
 **Embedded Cluster**
 
-- Embedded Cluster names the installer binary, its assets, and the application air gap bundle from the active slug. This applies to both Embedded Cluster v2 and v3.
-- Online installations download these artifacts at install time, so they use the active slug automatically. Air gap bundles are built once and then downloaded, so after you change the active slug, rebuild any Embedded Cluster air gap bundles so that the application slug in each bundle matches the new active slug.
+- **New installations** use the active slug. Embedded Cluster names the installer binary, its assets, and the application air gap bundle from the active slug, and online installations download these artifacts at install time. This applies to both Embedded Cluster v2 and v3.
+- **Switching the active slug is not currently supported for existing installations.** An Embedded Cluster installation records the application slug on the host at install time, and upgrades compare that recorded value against the slug in the license. If you switch the active slug, upgrades fail on installations that already exist. Do not switch the active slug for an application that has Embedded Cluster installations in the field.
+- Air gap bundles are built once and then downloaded. After you change the active slug, rebuild any Embedded Cluster air gap bundles so that the application slug in each bundle matches the new active slug.
 
 ## Reserve an alias
 
@@ -56,6 +57,8 @@ To reserve an application slug alias:
 The alias is reserved as an inactive, read-only alias. It can be used immediately for authenticated image pulls. If the application uses the Enterprise Portal, the Vendor Portal also provisions a hostname for the alias; the displayed portal status indicates when the hostname is ready.
 
 ## Change the active slug
+
+Before you switch the active slug, confirm that the application has no existing Embedded Cluster installations, and that any existing KOTS installations are on KOTS v1.132.0 or later. See [Installer compatibility](#installer-compatibility).
 
 To use the reserved alias in newly generated customer instructions and licenses:
 
