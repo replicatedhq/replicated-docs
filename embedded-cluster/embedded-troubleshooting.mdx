@@ -92,7 +92,7 @@ To troubleshoot:
     ```bash
     sudo ./APP_SLUG reset
     ```
-    Where `APP_SLUG` is the unique slug for the application. 
+    Where `APP_SLUG` is the unique slug for the application.
 
     For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -158,7 +158,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
 
        For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
@@ -177,8 +177,8 @@ Reasons can include:
 
   If kernel parameters are not set correctly and these preflight checks fail, you might see a message such as `IP forwarding must be enabled.` or `ARP filtering must be disabled by default for newly created interfaces.`.
 
-  To troubleshoot incorrect kernel parameter values:       
-    
+  To troubleshoot incorrect kernel parameter values:
+
     1. Use sysctl to set the kernel parameters to the correct values:
 
         ```bash
@@ -194,7 +194,7 @@ Reasons can include:
        ```bash
        sudo ./APP_SLUG reset
        ```
-       Where `APP_SLUG` is the unique slug for the application. 
+       Where `APP_SLUG` is the unique slug for the application.
        For more information, see [Reset a Machine](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
 
     1. Re-install with Embedded Cluster.
@@ -206,7 +206,7 @@ Reasons can include:
         ```bash
         kubectl patch ippool default-ipv4-ippool --type=merge -p '{"spec": {"vxlanMode": "CrossSubnet"}}'
         ```
-    
+
     If this resolves the connectivity issues, there is likely an underlying network configuration problem with VXLAN traffic that should be addressed.
   </TabItem>
 </Tabs>
