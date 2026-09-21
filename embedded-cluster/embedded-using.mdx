@@ -268,7 +268,7 @@ For more information about host preflight checks that Embedded Cluster runs auto
 
 Support bundles generated with Embedded Cluster v3 always apply the Troubleshoot built-in redactors, which hide values that match common patterns for passwords, tokens, and credentials. To scrub additional data, such as API keys or account numbers, add custom redactors with the `troubleshoot.sh/v1beta2 Redactor` resource.
 
-Redactors continue to use `v1beta2`. The `v1beta3` requirement applies only to preflight specs. See [Add preflight checks](#preflights) on this page.
+Redactors continue to use `v1beta2`. The `v1beta3` requirement applies only to the Preflight custom resource, not to HostPreflight, SupportBundle, or Redactor specs. See [Add preflight checks](#preflights) on this page.
 
 :::note
 Custom redactors apply to support bundles only. Preflight checks apply the built-in redactors and ignore Redactor resources.

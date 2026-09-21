@@ -84,19 +84,19 @@ Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](
 
 Continue to configure status informers in the Replicated Application custom resource. Embedded Cluster v3 passes them to the SDK. For more information, see [Enable and understand application status](/vendor/insights-app-status).
 
-### Preflight specs must use v1beta3
+### Application preflight specs must use v1beta3 {#preflight-specs-must-use-v1beta3}
 
-Application preflight checks must use API version `troubleshoot.sh/v1beta3`. Embedded Cluster v3 does not support `v1beta2` preflight specs.
+Application preflight checks must use API version `troubleshoot.sh/v1beta3`. Embedded Cluster v3 does not support `v1beta2` application preflight specs.
 
 In v3, you package preflight specs outside your Helm charts as a release-level YAML file. Embedded Cluster renders the spec through the Helm template engine at install time, giving your preflight spec access to the full Helm rendering context, including chart values, defaults, and helper functions. Because Embedded Cluster renders the spec through Helm, the spec uses Helm template syntax (not `repl{{ }}` Replicated template syntax).
 
 v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
-**You do not need to migrate support bundle specs.** Support bundle and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. The v1beta3 requirement applies only to preflight specs. For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
+**You do not need to migrate host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
 :::
 
-**Key differences from v1beta2 for preflight specs:**
+**Key differences from v1beta2 for application preflight specs:**
 
 - The spec lives outside your Helm chart, at the release level. You do not need to wrap it in a Secret or include it in your chart's `templates/` directory.
 - The spec uses Helm template syntax (`{{ .Values.something }}`, `{{ include "helper" . }}`) instead of `repl{{ }}` Replicated template syntax.
