@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.21-1
+
+Released on September 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-21-1}
+* Enterprise Portal v2: if a page mounts KotsDownloadAssets or KurlDownloadAssets, KOTS CLI, Preflight CLI, and Support Bundle CLI now appear for customers entitled to that install method even when air gap is disabled. Admin Console bundle, application air-gap bundle, and the kURL air-gap installer tarball remain air-gap-only. Default KOTS online install commands (KotsInstallAssets) are unchanged.
 ## v2026.09.21-0
 
 Released on September 21, 2026
