@@ -16,16 +16,28 @@ When you enable SAML, you do not add new team members with the email invitation 
 | :--- | :--- | :--- |
 | SCIM | Your identity provider creates and deactivates users automatically as you assign or remove the Replicated application. | Optional. Requires SAML. See [Manage SCIM Provisioning (Beta)](team-management-scim-provisioning). |
 | IdP-initiated JIT | The user logs in to the Replicated application from your identity provider dashboard, which JIT provisions their account. | Assign the application to users or groups in your identity provider. |
-| Domain-redirect JIT | The user enters an email address matching your team's domain on the Vendor Portal SAML login page. The Vendor Portal redirects them to your identity provider, which JIT provisions their account on first login. | Contact [Support](https://vendor.replicated.com/support) or your account team to enable domain redirect for your team. This is not self-service. |
+| Domain-redirect JIT | The user enters an email address matching your team's domain on the Vendor Portal SAML login page. The Vendor Portal redirects them to your identity provider, which JIT provisions their account on first login. | Requires that your email domain is listed in your team's SAML configuration. Replicated sets this for you, so contact [Support](https://vendor.replicated.com/support) or your account team. This is not self-service. |
 | Email invitation | An administrator invites the user by email. | Available only when you do not enable **Only allow SAML logins**. See [Invite members](team-management#invite-members). |
 
 If a user who does not yet exist in your team logs in and sees the error `No SAML-enabled teams found for email domain`, none of the preceding methods provisioned their account. For more information, see [Troubleshooting](#troubleshooting).
+
+### Team IDs for domains with multiple SAML teams
+
+Most teams are the only SAML-enabled team that uses their email domain, and their users are never asked for a team ID. If more than one SAML-enabled team authorizes the same email domain, the Vendor Portal cannot tell which team a first-time user belongs to. The SAML login page then asks the user for a team ID after they enter their email address.
+
+The team ID is a short identifier that Replicated assigns to your team when it configures SAML. There is no self-service way to view it in the Vendor Portal. To get the value so that you can share it with your users, contact [Support](https://vendor.replicated.com/support) or your account team.
+
+:::note
+This team ID is not the same value as the team ID shown on the [Team Members](https://vendor.replicated.com/team/members) page. Entering the value from the Team Members page returns the error `Invalid team ID for this domain`. For more information, see [Troubleshooting](#troubleshooting).
+:::
+
+Users who already have an account in your team are not asked for a team ID, because the Vendor Portal already knows which team they belong to.
 
 ### Service provider-initiated login
 
 You can start the SAML sign-in flow directly from the Vendor Portal on the SAML login page at `https://vendor.replicated.com/login-saml`. Based on your team's SAML configuration, the Vendor Portal redirects you to your identity provider to complete authentication.
 
-You can also support IdP-initiated login from your identity provider dashboard. By default, this works only for users who already exist in your team and for users you assign the Replicated application to in your identity provider. To provision new users automatically by email domain, contact [Support](https://vendor.replicated.com/support) or your account team to enable domain redirect. Domain redirect sends any email address matching your team's domain to your identity provider for authentication. For more information, see [Provisioning users with SAML](#provisioning-users-with-saml).
+You can also support IdP-initiated login from your identity provider dashboard. By default, this works only for users who already exist in your team and for users you assign the Replicated application to in your identity provider. To provision new users automatically by email domain, your email domain must be listed in your team's SAML configuration. Replicated sets this for you, so contact [Support](https://vendor.replicated.com/support) or your account team. Any email address matching a listed domain is then sent to your identity provider for authentication. For more information, see [Provisioning users with SAML](#provisioning-users-with-saml).
 
 ### SCIM
 
@@ -147,10 +159,19 @@ You have enabled SAML on your account. For your team to use the SAML login optio
 
 On the Vendor Portal SAML login page (`https://vendor.replicated.com/login-saml`), a user sees this error when no SAML-enabled team authorizes their email domain. This error usually has one of the following causes:
 
-* The user does not yet exist in your team, and you have not enabled domain-redirect JIT provisioning for the domain. To let new users provision automatically by email domain, contact [Support](https://vendor.replicated.com/support) or your account team. For more information, see [Provisioning users with SAML](#provisioning-users-with-saml).
+* The user does not yet exist in your team, and your team's SAML configuration does not list their email domain. To let new users provision automatically by email domain, contact [Support](https://vendor.replicated.com/support) or your account team. For more information, see [Provisioning users with SAML](#provisioning-users-with-saml).
 * The email domain that the user entered does not match a domain that your team's SAML configuration authorizes. Confirm that the user entered their correct work email address.
 
 If you have assigned the user the Replicated application in your identity provider, the user can also log in from the identity provider dashboard. Your identity provider then JIT provisions their account without domain redirect.
+
+### Error: Invalid team ID for this domain
+
+On the Vendor Portal SAML login page (`https://vendor.replicated.com/login-saml`), a user sees this error when the team ID that they entered does not match a SAML-enabled team that authorizes their email domain. This error usually has one of the following causes:
+
+* The user entered the team ID from the [Team Members](https://vendor.replicated.com/team/members) page. That is a different value, and the SAML login page does not accept it. For more information, see [Team IDs for domains with multiple SAML teams](#team-ids-for-domains-with-multiple-saml-teams).
+* The user entered a team ID for a team that does not authorize their email domain. Confirm that the user entered their correct work email address.
+
+If your team does not enable **Only allow SAML logins**, you can also invite the user from the [Team Members](https://vendor.replicated.com/team/members) page instead of giving them a team ID. A pending invitation identifies the team on its own, so the user is not asked for a team ID when they log in. This applies for seven days after you send the invitation.
 
 ## Disable SAML enforcement
 
