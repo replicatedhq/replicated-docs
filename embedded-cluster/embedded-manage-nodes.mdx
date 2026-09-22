@@ -28,6 +28,14 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 To deploy multi-node clusters with Embedded Cluster, you must enable the **Multi-node Cluster (Embedded Cluster only)** license field for the customer. For more information about managing customer licenses, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
+You can enable this field for a customer whose instance is already installed, and the instance does not need to be reinstalled. However, the change does not take effect right away. Embedded Cluster reads the license that was written to disk by the last install or upgrade, and checking for updates does not refresh it. Until the license on the instance is refreshed, `create-join-bundle` fails and the Embedded Cluster UI does not offer to join nodes.
+
+How the user refreshes the license depends on the installation type:
+
+* **Online installations:** The user redeploys the current version from the Embedded Cluster UI. Embedded Cluster downloads the release again, and the downloaded release carries a current copy of the license. Upgrading to a newer version has the same effect.
+
+* **Air gap installations:** The license is refreshed only when a release is installed from a bundle that was downloaded after you enabled the field. There is currently no way to refresh the license without installing from a release bundle.
+
 ### Join nodes {#add-nodes}
 
 To join a node:
@@ -125,6 +133,8 @@ To create a multi-node cluster with HA:
    Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present.
 
 ### Enable HA for an existing cluster {#enable-ha-existing}
+
+The Kubernetes control plane becomes highly available on its own once three controller nodes are present. The `enable-ha` command covers the remaining work in air gap installations, where it deploys SeaweedFS and reconfigures the image registry to run with multiple replicas. The existing registry data is migrated into SeaweedFS, and the registry is unavailable while that migration runs.
 
 To enable HA for an existing Embedded Cluster installation with three or more controller nodes:
 

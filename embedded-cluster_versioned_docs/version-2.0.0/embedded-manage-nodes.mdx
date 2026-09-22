@@ -31,6 +31,14 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 To deploy multi-node clusters with Embedded Cluster, the **Multi-node Cluster (Embedded Cluster only)** license field must be enabled for the customer. For more information about managing customer licenses, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
+You can enable this field for a customer whose instance is already installed, and the instance does not need to be reinstalled. The Admin Console reads the customer's current license rather than the copy captured at the time of installation, so the **Add node** button appears on the **Cluster Management** page as soon as the updated license reaches the instance.
+
+How the updated license reaches the instance depends on the installation type:
+
+* **Online installations:** The license syncs automatically when the instance checks for updates. To apply the change immediately, the user can go to the **License** page in the Admin Console and click **Sync license**.
+
+* **Air gap installations:** Licenses are never synced automatically. Send the updated license file to the user, who then uploads it from the **License** page in the Admin Console.
+
 ### Add nodes to a cluster {#add-nodes}
 
 This section describes how to add nodes to a cluster with Embedded Cluster.
@@ -98,6 +106,10 @@ To automate controller node joins with Embedded Cluster:
 
 1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
+   :::note
+   When a third controller node joins, the `join` command prompts the user to enable HA. In automated joins, pass the `--no-ha` flag with the `join` command to skip the prompt and leave the cluster non-HA. Passing `--yes` enables HA without prompting, because `--yes` accepts all prompts. For more information, see [join](embedded-cluster-join).
+   :::
+
 ## Configure high availability for multi-node clusters {#ha}
 
 Multi-node clusters are not highly available by default. The first node of the cluster holds important data for Kubernetes and KOTS, such that the loss of this node would be catastrophic for the cluster. Enabling high availability requires that at least three controller nodes are present in the cluster.
@@ -119,6 +131,8 @@ Enabling high availability has the following requirements:
 * The [`enable-ha`](#enable-ha-existing) command is available with Embedded Cluster 2.3.0 and later.
 
 * High availability is supported only for clusters where at least three nodes with the controller role are present.
+
+* High availability cannot be disabled after it is enabled. Before enabling HA, confirm that the user intends to run three or more controller nodes on an ongoing basis.
 
 ### Best practices for high availability
 
@@ -156,6 +170,14 @@ To create a multi-node HA cluster:
 1. In response to the prompt asking if you want to enable high availability, type `y` or `yes`.
 
 1. Wait for the migration to HA to complete.
+
+     :::note
+     The work performed during the migration depends on the installation type:
+
+     * In online installations, the Admin Console is reconfigured to run with high availability. For more information about what this changes, see [HA architecture](#ha-architecture) above.
+
+     * In air gap installations, the same Admin Console changes are made, and SeaweedFS is also deployed so that the air gap image registry can run with multiple replicas. The existing registry data is migrated into SeaweedFS, and the registry is unavailable while that migration runs.
+     :::
 
 ### Enable high availability for an existing cluster {#enable-ha-existing}
 
