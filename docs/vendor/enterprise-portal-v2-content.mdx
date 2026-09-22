@@ -484,7 +484,7 @@ You do not need to author a KOTS page from scratch. Start from the template page
 - An installation selector (`<PendingInstallSelector>`, `<NewInstall>`, `<InstanceName>`)
 - `<NetworkAvailability installType="kots" />` and `<VersionSelector installType="kots" />`
 - `<LicenseDownload />` for every network mode (online and proxy generated `kubectl kots install` commands require `--license-file ./license.yaml`)
-- Online and proxy installs: generated commands from `<KotsInstallAssets />`, then optional workstation CLIs from `<KotsDownloadAssets cliOnly={true} />`, wrapped in `<WhenNetwork mode="online,proxy">`
+- Online and proxy installs: generated commands from `<KotsInstallAssets />`, then workstation CLIs from `<KotsDownloadAssets cliOnly={true} />`, wrapped in `<WhenNetwork mode="online,proxy">`
 - Air gap installs: a documentation-style procedure wrapped in `<WhenNetwork mode="airgap">`, including:
   - Requirements for a private registry and **two** registry accounts (read-write for `push-images`, read-only for `kots install`). These are the customer's registry credentials, not portal or license credentials.
   - `<KotsDownloadAssets />`
