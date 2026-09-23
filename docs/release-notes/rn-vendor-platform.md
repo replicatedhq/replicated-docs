@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.22-3
+
+Released on September 22, 2026
+
+### New Features {#new-features-v2026-09-22-3}
+* Enterprise Portal v2: KotsDownloadAssets and KurlDownloadAssets accept cliOnly so online pages can show KOTS/Preflight/Support Bundle CLIs without Admin Console or air-gap bundles.
+
 ## v2026.09.22-2
 
 Released on September 22, 2026
@@ -24,6 +31,7 @@ Released on September 22, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-22-0}
 * Hide the Embedded Cluster multi-node restriction control from teams without the corresponding feature flag while keeping multi-node installations enabled by default.
+
 ## v2026.09.21-1
 
 Released on September 21, 2026
