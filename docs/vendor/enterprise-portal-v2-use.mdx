@@ -54,9 +54,9 @@ Install pages show interactive, personalized instructions:
 
 The install commands are personalized to the selected installation and include the customer's specific credentials. If the customer switches installations or renames their instance, the commands update automatically.
 
-For upgrades, customers use the **Instances & Updates** page. Helm and Embedded Cluster instance cards with an available update expand into generated CLI upgrade steps. KOTS and kURL upgrades are performed in the Admin Console, which is the supported upgrade path for those installers.
+For upgrades, customers use the **Instances & Updates** page. Helm and Embedded Cluster instance cards with an available update expand into generated CLI upgrade steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps. The portal identifies the selected target and supplies an application air gap bundle when required, but the customer performs and monitors the deployment in Admin Console.
 
-Instances that are already on the latest version show an **Up to date** badge. Helm and Embedded Cluster customers can still expand those cards to view install or upgrade commands for the current version.
+Instances that are already on the latest version show an **Up to date** badge. Customers can still expand supported cards to review the current release's commands or Admin Console guidance.
 
 If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
 
@@ -80,11 +80,13 @@ For Embedded Cluster air gap installations, customers using a private registry c
 
 KOTS and kURL instances appear on the **Instances & Updates** page alongside Helm and Embedded Cluster instances, labeled **KOTS** or **kURL**. Each instance shows its current version and status.
 
-KOTS and kURL instance cards do not expand into CLI upgrade steps. Helm and Embedded Cluster cards can still expand into generated CLI upgrades. For the upgrade path, see [Installing and upgrading](#installing-and-upgrading).
+KOTS and kURL instance cards expand into a guided application-upgrade panel. Customers can review or change the intended target release and then follow ordered steps for checking, selecting, and deploying that release in Admin Console. The panel does not show an unverified upgrade CLI command or track deployment completion.
 
-Air gap KOTS and kURL customers download install artifacts from the KOTS or kURL install page (and from Release History), not from an expanded instance card. An expired license still surfaces a renewal notice on those download controls.
+For online and proxy instances, the panel gives Admin Console guidance without downloading an air gap artifact. For air gap instances, it provides the selected release's application air gap bundle and directs the customer to upload it from **Version History** in Admin Console. An expired license or a license without air gap access does not expose the bundle.
 
-The default content template includes dedicated KOTS and kURL install pages. For KOTS, the page includes `<LicenseDownload />` for every network mode (online and proxy generated commands use `--license-file ./license.yaml`). Online and proxy installs use generated commands. Air gap installs use a documentation-style procedure with registry placeholders and `<KotsDownloadAssets />`, not generated commands that interpolate customer registry credentials. Customize branding, Admin Console URL, registry conventions, and copy around the download component as needed. For more information, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
+For kURL, this panel upgrades the application only. It does not imply that every application release requires rerunning `install.sh` or upgrading the Kubernetes cluster. Vendors document any separate cluster-maintenance conditions and procedure in the customizable kURL upgrade guide.
+
+The default content template includes dedicated KOTS and kURL install pages and entitlement-gated application-upgrade guides. Vendors can customize Admin Console access, registry, support, and kURL cluster-maintenance instructions, change the panel's guide link, or remove it. For installation-page details, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
 
 Customers can create air gap instance records for KOTS and kURL the same way as for Helm and Embedded Cluster. They can enter instance information manually from the Instances & Updates page, or extract details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 
