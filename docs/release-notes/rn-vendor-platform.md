@@ -15,6 +15,14 @@ Released on September 23, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-23-0}
 * Restored per-customer Enterprise Portal management selection for vendors with Download Portal and Enterprise Portal v2, while keeping Enterprise Portal management available for vendors without Download Portal.
+
+## v2026.09.22-5
+
+Released on September 22, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-22-5}
+* Embedded Cluster airgap bundles retain the multi-node license setting when multi-node installations are enabled for the customer.
+
 ## v2026.09.22-3
 
 Released on September 22, 2026
