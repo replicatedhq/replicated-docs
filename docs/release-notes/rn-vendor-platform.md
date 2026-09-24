@@ -9,6 +9,16 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.24-0
+
+Released on September 24, 2026
+
+### Improvements {#improvements-v2026-09-24-0}
+* Clarified that air-gapped instance CVE counts reflect images observed in the latest support bundle and now warn when that data may be outdated.
+
+### Bug Fixes {#bug-fixes-v2026-09-24-0}
+* Users who created an account on a non-SAML team can now continue through their organization's SAML login, with a warning explaining account replacement before they proceed.
+* Release lint findings now show their rule identifier and link to the KOTS linter documentation when release validation v2 is enabled.
 ## v2026.09.23-0
 
 Released on September 23, 2026
