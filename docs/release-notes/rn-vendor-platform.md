@@ -13,6 +13,9 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on September 24, 2026
 
+### Improvements {#improvements-v2026-09-24-2}
+* Enterprise Portal air gap Helm and Embedded Cluster instances now show a Mark update complete button automatically. The button cannot be removed.
+
 ### Bug Fixes {#bug-fixes-v2026-09-24-2}
 * Fixed an Enterprise Portal airgap instance update issue where marking an update complete could drop the target release channel and leave the instance reporting the old version.
 
