@@ -371,13 +371,13 @@ Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
-**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide), `namespace` (optional), `createNamespace` (optional). See [Setting a namespace for Helm installs](#setting-a-namespace-for-helm-installs) below.
 
 When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. No additional configuration is required.
 
 **`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
-**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
+**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional), `namespace` (optional), `createNamespace` (optional). See [Setting a namespace for Helm installs](#setting-a-namespace-for-helm-installs) below.
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
@@ -398,6 +398,10 @@ Props: `stepNumber` (optional, starting step number).
 **`<KotsAirgapInstallAssets />`**: Renders KOTS air gap download steps for the selected release. This component does not generate `push-images` or `kots install --kotsadm-registry` commands with customer registry credentials. The default KOTS page documents that air gap procedure in markdown instead. Props: `stepNumber`.
 
 **`<KurlAirgapInstallAssets />`**: Renders kURL air gap installation steps. The first step includes artifact download links. The following step extracts the installer and runs `install.sh airgap`. Props: `stepNumber`.
+
+**`<HelmInstallStep>`**: Renders one online Helm install step by name. Props: `step` (required), `stepNumber` (optional), `charts` (optional), `exclude` (optional), `namespace` (optional), `createNamespace` (optional). Use `step="install_chart"` for the step that runs `helm install`. See [Setting a namespace for Helm installs](#setting-a-namespace-for-helm-installs) below.
+
+**`<HelmAirgapInstallStep>`**: Renders one air gap Helm install step by name. Same props as `<HelmInstallStep>`.
 
 **`<KotsInstallStep>`**: Renders one online KOTS install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kots"`.
 
@@ -444,6 +448,36 @@ For applications with multiple Helm charts, you can control which charts appear 
 ```
 
 The `charts` and `exclude` props accept comma-separated chart names. Use `charts` to include only the listed charts, or `exclude` to show all charts except the listed ones.
+
+#### Setting a namespace for Helm installs {#setting-a-namespace-for-helm-installs}
+
+`<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, `<HelmAirgapInstallStep>`, `<HelmUpdateAssets>`, and `<InstancesAndUpdates>` accept a `namespace` prop that adds `--namespace <namespace>` to the generated `helm install`, `helm upgrade`, and preflight (`helm template`) commands:
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" />
+```
+
+`namespace` must be a valid Kubernetes namespace: lowercase alphanumeric characters or `-`, starting and ending with an alphanumeric character, at most 63 characters. Author it as a string literal, or as a mustache variable for a per-customer value, for example a custom license field — `namespace="\{\{entitlements.helm_namespace\}\}"`. A JSX expression such as `namespace={someVar}` does not work: the MDX compiler only keeps numeric, boolean, and quoted-literal expression attributes.
+
+An invalid value is never rejected. The affected command is generated without `--namespace`, and the customer sees a note under that step explaining that the configured namespace isn't valid and asking them to contact you. A static (non-templated) invalid value is also flagged as a warning when you save or preview your content, so you can catch a typo before a customer ever sees it — a mustache value can only be checked once it resolves for a real customer, so it isn't flagged at save time.
+
+On `<HelmUpdateAssets>` and `<InstancesAndUpdates>`, set `namespace` to the same value used on your install page. `helm upgrade` looks up the existing release inside a single namespace, so a mismatch fails with `"<release>" has no deployed releases` for any customer whose install namespace differs from the one on the page. `<InstancesAndUpdates>` applies one `namespace` value to every instance card it renders, so use it only when every customer installs into the same namespace — if your customers each choose their own, leave it unset.
+
+If your application ships multiple Helm charts, you can pin a different namespace to each one: add one `<HelmInstallAssets>` (or `<HelmInstallStep>`) per chart, using the `charts` prop to scope each to a single chart, and give each its own `namespace` value. The generated `helm upgrade` and preflight commands resolve each chart's namespace independently, so a multi-chart layout with different namespaces per chart still upgrades and preflights correctly.
+
+##### The createNamespace prop
+
+`<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, and `<HelmAirgapInstallStep>` also accept `createNamespace`, which controls whether the install command includes `--create-namespace`. It only has an effect alongside a non-empty `namespace`, and only on install — `helm upgrade` never creates a namespace.
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" createNamespace="false" />
+```
+
+By default, or if you omit the prop, the command includes `--create-namespace` so a customer installing into a fresh cluster doesn't have to create the namespace themselves first. Whenever this flag goes out, the customer also sees a note explaining that the install requires cluster-scoped permission to create namespaces.
+
+Set `createNamespace="false"` for customers who pre-provision the namespace themselves and scope their install credentials to it. `--create-namespace` requires cluster-scoped `create` permission on namespaces even when the namespace already exists, because Helm checks permissions before checking existence — so a customer with narrowly-scoped credentials gets a `Forbidden` error on an otherwise-working install unless you opt out.
+
+Author `createNamespace` as the string `"true"` or `"false"`, the same way you author `namespace` — a JSX expression is dropped by the MDX compiler for the same reason. Any other value, including a typo like `"False"`, is treated as unset: the command defaults to creating the namespace, and the customer sees a note that the value wasn't recognized.
 
 **`<InstallStep>`**: Wraps content in a numbered step container.
 
@@ -526,7 +560,7 @@ The default `pages/installation/kurl.md` page provides downloads for entitled ai
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
-**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
+**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional), `namespace` (optional). See [Setting a namespace for Helm installs](#setting-a-namespace-for-helm-installs) above.
 
 **`<KotsUpdateAssets />`**: Renders a single line directing the customer to upgrade this instance in the Admin Console. It generates no CLI commands and no download links, and it ignores `stepNumber`.
 
@@ -595,7 +629,7 @@ Each of the four support bundle components renders the steps for one installatio
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances can expand into inline upgrade CLI commands. KOTS and kURL upgrades are performed in the Admin Console. No props.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances can expand into inline upgrade CLI commands. KOTS and kURL upgrades are performed in the Admin Console. Props: `namespace` (optional). One value applies to every instance card the component renders. See [Setting a namespace for Helm installs](#setting-a-namespace-for-helm-installs) above.
 
 ### Security components
 
