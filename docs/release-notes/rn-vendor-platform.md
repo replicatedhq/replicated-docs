@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.22-5
+
+Released on September 22, 2026
+
+### Bug Fixes {#bug-fixes-v2026-09-22-5}
+* Embedded Cluster airgap bundles retain the multi-node license setting when multi-node installations are enabled for the customer.
+
 ## v2026.09.22-3
 
 Released on September 22, 2026
