@@ -16,26 +16,33 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 Released on September 25, 2026
 
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
-
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">2.19.14+k8s-1.36</td>
+    <td id="center">2.19.14+k8s-1.35</td>
+    <td id="center">2.19.14+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.2</td>
+    <td id="center">1.35.6</td>
+    <td id="center">1.34.9</td>
   </tr>
   <tr>
     <th>KOTS Version</th>
-    <td id="center" colspan="2">1.XXX.Y</td>
+    <td colspan="3" id="center">1.132.0-ec.1</td>
   </tr>
 </table>
--->
+
+### Improvements {#improvements-2-19-14}
+* Updates Velero to 1.18.3 and the Velero AWS plugin to 1.14.3.
+* Updates KOTS to 1.132.0-ec.1.
+* Updates the k0s, OpenEBS, SeaweedFS, and registry container images.
+
+### Bug Fixes {#bug-fixes-2-19-14}
+* Fixed an issue where `unsupportedOverrides` from the end user configuration were ignored during disaster recovery restores.
+* Fixed an issue where a restore could fail if the registry Service was not ready when images were pushed.
 
 ## 2.19.13
 
