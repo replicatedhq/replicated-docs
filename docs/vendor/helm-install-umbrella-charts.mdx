@@ -10,7 +10,12 @@ This topic describes how to package an application as an umbrella Helm chart for
 
 Replicated supports applications packaged as an umbrella Helm chart: a single parent chart that declares one or more other charts as dependencies in its `Chart.yaml` file. Helm copies the dependency charts into the parent chart's `charts/` directory, and the application installs as one Helm release from one chart archive. An umbrella chart works the same way whether it's installed with the Helm CLI, KOTS, or Embedded Cluster.
 
-This is different from a release that contains multiple top-level Helm charts. You package and add each chart to the release separately, and each gets its own [HelmChart custom resource](/reference/custom-resource-helmchart-v2). An umbrella chart gives customers a single `helm install` command and gives your release a single HelmChart custom resource. In exchange, every subchart shares the parent chart's version and release cadence. Multiple top-level charts let each chart version and release independently. In exchange, customers run a separate `helm install` command for each chart. Your release also needs a separate HelmChart custom resource, values file, and chart name for each one. For information about naming top-level charts to avoid conflicts, see [Installation fails for release with multiple Helm charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshoot Helm installations with Replicated_.
+This differs from a release that contains multiple top-level Helm charts, where you package and add each chart separately and each gets its own [HelmChart custom resource](/reference/custom-resource-helmchart-v2). The two models trade off differently:
+
+- **Umbrella chart:** customers run a single `helm install` command and your release has a single HelmChart custom resource, but every subchart shares the parent chart's version and release cadence.
+- **Multiple top-level charts:** each chart versions and releases independently, but customers run a separate `helm install` command for each chart, and your release needs a separate HelmChart custom resource, values file, and chart name for each one.
+
+For information about naming top-level charts to avoid conflicts, see [Installation fails for release with multiple Helm charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshoot Helm installations with Replicated_.
 
 The rest of this topic assumes an umbrella chart with one or more subcharts. The subcharts can be charts that you author, third-party charts such as the ones published by Bitnami, or a mix of both.
 
