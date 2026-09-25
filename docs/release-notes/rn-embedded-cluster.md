@@ -12,7 +12,7 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## 2.19.14+k8s-1.36
+## 2.19.14
 
 Released on September 25, 2026
 
