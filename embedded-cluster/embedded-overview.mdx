@@ -17,6 +17,8 @@ This topic provides an introduction to Replicated Embedded Cluster.
 
 * The following Replicated template functions are not supported in Embedded Cluster v3: `HasLocalRegistry`, `LocalRegistryAddress`, `LocalRegistryHost`, `LocalRegistryNamespace`, and `LocalImageName`. Use `ReplicatedImageName` and `ReplicatedImageRegistry` instead. See [Template Functions for Embedded Cluster](template-functions).
 
+* **Installing on STIG- and CIS-hardened OS images is not supported**: Embedded Cluster isn't tested on these images, and issues have arisen when trying to install on them. Embedded Cluster does install in standard SELinux environments, including SELinux in enforcing mode, by setting appropriate SELinux file contexts on the bin directory and restoring SELinux contexts for the data directory after creation.
+
 ## Built-in extensions {#built-in-extensions}
 
 The built-in extensions installed by Embedded Cluster include:
