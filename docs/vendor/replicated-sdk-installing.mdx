@@ -19,6 +19,8 @@ For information about installing the SDK in air gap mode, see [Install the SDK i
 
 When included as a dependency of your application Helm chart, the SDK is installed as a subchart alongside the application.
 
+If you package your application as an umbrella chart with its own subcharts, see [Package an umbrella Helm chart](helm-install-umbrella-charts).
+
 To install the SDK as a subchart:
 
 1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.

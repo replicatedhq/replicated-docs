@@ -12,6 +12,8 @@ To add a Helm chart to a release, you first add the Replicated SDK as a dependen
 
 The Replicated SDK is a Helm chart that should be installed as a small service alongside your application. The SDK provides access to key Replicated functionality including instance telemetry, license verification, and an in-cluster API. For more information, see [About the Replicated SDK](replicated-sdk-overview).
 
+If your application is a single parent chart with one or more subcharts declared as dependencies, see [Package an umbrella Helm chart](helm-install-umbrella-charts). It describes how to add the SDK, access Replicated-injected values from subchart templates, and configure the release.
+
 ## Requirements and recommendations
 
 This section includes requirements and recommendations for Helm charts.
