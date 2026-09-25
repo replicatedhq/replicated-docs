@@ -14,7 +14,7 @@ Content is driven by entitlements and channel assignment, so each customer sees 
 
 - **Install and upgrade**: Step-by-step installation instructions for Helm, Embedded Cluster (Linux), KOTS, and kURL. The default content template includes dedicated KOTS and kURL install pages. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
 - **Automate installs and upgrades**: Service account API endpoints let customers create install profiles, fetch structured instructions, and download artifacts from CI/CD systems. For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
-- **Manage instances**: View all deployed instances and check for available updates. Helm and Embedded Cluster instances can expand into inline upgrade instructions. For KOTS and kURL, see [KOTS and kURL customers](#kots-and-kurl-customers).
+- **Manage instances**: View all deployed instances and check for available updates. Helm and Embedded Cluster instances expand into inline CLI instructions; KOTS and kURL instances expand into guided Admin Console application-upgrade steps. For KOTS and kURL, see [KOTS and kURL customers](#kots-and-kurl-customers).
 - **Download install artifacts**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal, including versioned install and update artifacts for KOTS and kURL air gap instances. Available artifacts vary by install method and license entitlements
 - **Access security data**: Review CVE reports, filter to fixable vulnerabilities, view per-instance upgrade recommendations, and download SBOMs. Available for Helm and Embedded Cluster installs when Security Center is enabled
 - **View release history**: Browse release notes and track what's changed between versions
@@ -39,10 +39,10 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ### Additionally new compared to the Download Portal {#download-portal}
 
-Customers moving from the Download Portal gain the same content and automation capabilities. The Download Portal already shared KOTS and kURL artifacts. The Enterprise Portal also generates KOTS and kURL **install** CLI commands (KOTS air gap remains a documented procedure with placeholders). It does not generate KOTS or kURL **upgrade** CLI in the portal UI. It also adds the following, which the Download Portal has no equivalent for:
+Customers moving from the Download Portal gain the same content and automation capabilities. The Download Portal already shared KOTS and kURL artifacts. The Enterprise Portal also generates KOTS and kURL **install** CLI commands (KOTS air gap remains a documented procedure with placeholders). For upgrades, it provides target-aware Admin Console guidance and air gap application bundles rather than generating KOTS or kURL **upgrade** CLI commands in the portal UI. It also adds the following, which the Download Portal has no equivalent for:
 
 - **Accounts and teams**: Individual user sign-in through magic link, email invitation, or SAML SSO, replacing the Download Portal's shared password, plus multi-user team management
-- **Instance and update management**: The Instances & Updates page shows deployed instances and detects available updates. Helm and Embedded Cluster cards can expand into inline upgrade steps. For KOTS and kURL upgrades, see [KOTS and kURL customers](#kots-and-kurl-customers). The Download Portal has no instance concept.
+- **Instance and update management**: The Instances & Updates page shows deployed instances and detects available updates. Helm and Embedded Cluster cards expand into inline CLI steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps, including the selected application bundle for entitled air gap customers. For details, see [KOTS and kURL customers](#kots-and-kurl-customers). The Download Portal has no instance concept.
 - **Support bundle uploads**: Customers generate and upload support bundles for troubleshooting directly from the portal
 
 ## Current limitations {#current-limitations}
@@ -91,7 +91,7 @@ For a single customer, though, these are alternatives, not concurrent options. T
 
 ## KOTS and kURL customers {#kots-and-kurl-customers}
 
-The new Enterprise Portal supports KOTS and kURL customers, with some differences from Helm and Embedded Cluster customers. KOTS and kURL upgrades are performed in the Admin Console, which is the supported upgrade path for those installers. For details on what these customers see, including current limitations, see [KOTS and kURL instances](/vendor/enterprise-portal-v2-use#kots-and-kurl-instances) in _Log in to and Use the Enterprise Portal_.
+The new Enterprise Portal supports KOTS and kURL customers, with some differences from Helm and Embedded Cluster customers. KOTS and kURL application upgrades are performed in Admin Console, and their instance cards provide target-aware guidance plus application bundle downloads for entitled air gap customers. For details on what these customers see, including current limitations, see [KOTS and kURL instances](/vendor/enterprise-portal-v2-use#kots-and-kurl-instances) in _Log in to and Use the Enterprise Portal_.
 
 ### Move a KOTS or kURL customer to the new Enterprise Portal
 

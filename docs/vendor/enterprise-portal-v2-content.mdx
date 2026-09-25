@@ -466,7 +466,7 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 
 #### KOTS and kURL installer pages {#add-kots-or-kurl-installer-pages}
 
-KOTS and kURL instances already appear on the Instances & Updates page with no setup. Embedded Cluster and Helm instances can expand into generated CLI upgrade steps. KOTS and kURL upgrades are performed in the Admin Console. The `<InstancesAndUpdates />` component in the default template renders this page.
+KOTS and kURL instances already appear on the Instances & Updates page with no setup. Embedded Cluster and Helm instances can expand into generated CLI upgrade steps. KOTS and kURL instances expand into target-aware Admin Console application-upgrade guidance, including an application bundle download for entitled air gap customers. The `<InstancesAndUpdates />` component in the default template renders this page.
 
 The default content template also ships dedicated install pages, already listed in `toc.yaml`:
 
@@ -522,15 +522,34 @@ Your REGISTRY_HOST convention, then the docs-style command.
 
 The default `pages/installation/kurl.md` page provides downloads for entitled air gap customers. Its frontmatter and `toc.yaml` entry are gated on both `isKurlInstallEnabled` and `isAirgapSupported`. For generated online or air gap install commands, add `<NetworkAvailability installType="kurl" />`, `<VersionSelector installType="kurl" />`, and `<KurlInstallAssets />` (which adapts when Network Availability changes) or a separate `<KurlAirgapInstallAssets />` branch, the same way Helm and Embedded Cluster pages use generated install assets. If you ship generated online kURL commands to online-only customers, drop `isAirgapSupported` from both the page frontmatter `visible_when` and the `toc.yaml` entry. The default kURL page is unchanged. If you add `<KurlDownloadAssets />` to a page those customers can see, pass `cliOnly={true}` so they get the optional CLIs without the kURL installer tarball or application air gap bundle.
 
+#### Default KOTS and kURL upgrade guides
+
+The default template adds `pages/updates/kots.md` and `pages/updates/kurl.md` beneath **Instances & Updates**. The KOTS page and its `toc.yaml` item use `isKotsInstallEnabled`; the kURL page and item use `isKurlInstallEnabled`. Each page uses the same entitlement in its frontmatter and navigation entry so a direct URL cannot bypass the navigation gate.
+
+Do not add `isAirgapSupported` to the whole-page gate. Each guide wraps only its air gap download-and-upload subsection in `\{\{#if entitlements.isAirgapSupported\}\}`. Online customers still need the Admin Console procedure, while air gap customers also see how to transfer and upload the application bundle.
+
+The default `pages/updates/instances.md` connects the panels to these vendor-owned procedures:
+
+```markdown
+<InstancesAndUpdates
+  kotsGuideHref="/updates/kots"
+  kurlGuideHref="/updates/kurl"
+/>
+```
+
+Edit the guide pages to describe your Admin Console access, registry, support, and kURL cluster-maintenance requirements. You can point either prop to another content route or remove the prop and page. A configured link appears only when the customer's matching KOTS or kURL capability is enabled.
+
+The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Vendors must document when cluster maintenance is required and provide a separately validated procedure.
+
 ### Update components
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
-**`<KotsUpdateAssets />`**: Renders a single line directing the customer to upgrade this instance in the Admin Console. It generates no CLI commands and no download links, and it ignores `stepNumber`.
+**`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path and renders only the application air gap bundle, without recording an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, and `isCurrentVersion`.
 
-**`<KurlUpdateAssets />`**: Renders a single line directing the customer to upgrade this instance in the Admin Console. It generates no CLI commands and no download links, and it ignores `stepNumber`.
+**`<KurlUpdateAssets />`**: Renders the same guided application-upgrade flow for a kURL instance. It does not present the kURL installer bundle or `install.sh` as an application-update action. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, and `isCurrentVersion`.
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
@@ -569,8 +588,6 @@ No manual migration needed. The upgrade is automatic.
 
 In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" instructions, while a customer on 2.1.0 would see the "Upgrading from 2.x" block.
 
-**`<MarkUpdateComplete />`**: Button for the customer to confirm an upgrade is complete. No props.
-
 **`<ReleaseNotes />`**: Displays release notes for the target update version. No props.
 
 ### Portal components
@@ -595,7 +612,7 @@ Each of the four support bundle components renders the steps for one installatio
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances can expand into inline upgrade CLI commands. KOTS and kURL upgrades are performed in the Admin Console. No props.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button automatically once their upgrade instructions have loaded. The button cannot be removed. Optional props: `kotsGuideHref` and `kurlGuideHref`. Each link is authorized against the matching method capability before it reaches the panel, so removing a method entitlement also removes the link to its gated page.
 
 ### Security components
 
