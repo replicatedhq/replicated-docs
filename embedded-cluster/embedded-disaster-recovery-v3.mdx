@@ -1,0 +1,257 @@
+---
+title: Back up and restore Embedded Cluster v3
+description: Configure Velero backups and recover an Embedded Cluster v3 application on replacement hosts.
+---
+
+# Back up and restore Embedded Cluster v3
+
+This topic describes disaster recovery for **Embedded Cluster v3 only**. It covers how application vendors package recovery infrastructure and how operators configure backups and restore an application on replacement hosts.
+
+Embedded Cluster coordinates recovery using Velero backups. Velero stores application resources and volume backups in the configured backup location. During recovery, Embedded Cluster creates a new Kubernetes cluster, restores saved installation state, waits for replacement hosts, and restores the application through Velero.
+
+## Requirements
+
+* The application release must include a Velero Helm chart and the plugins and recovery infrastructure required by its backup configuration.
+* The customer license must enable disaster recovery (`spec.isDisasterRecoverySupported`). The **Disaster Recovery** tab requires both this license setting and a packaged Velero chart. The `restore` command rejects licenses that do not enable disaster recovery.
+* Operators must have backup storage and the credentials required by the application's Velero configuration.
+* Recovery requires the **same application release and Embedded Cluster installer bundle used for the backup**, a signed license matching the application's channel, and empty replacement hosts that meet the [installation requirements](installing-embedded-requirements).
+* Keep the installer bundle, Velero configuration, storage credentials, and any backup repository password accessible outside the cluster being backed up.
+
+## Package recovery infrastructure
+
+This section is for application vendors. Operators using an application that already includes recovery infrastructure can continue to [Configure backups](#configure-backups).
+
+Package Velero as an application `HelmChart` or an Embedded Cluster Helm chart extension. Embedded Cluster detects Velero from the packaged chart metadata, including a Velero dependency packaged inside a wrapper chart. Renaming a Helm release to `velero` does not enable disaster recovery.
+
+Embedded Cluster installs the entire Velero chart, including its wrapper if present, before restoring the application. Keep ordinary application workloads in separate charts. Mark other charts required during recovery with `spec.recovery: true` on an application `HelmChart`, or `recovery: true` on an Embedded Cluster extension chart entry. Chart weights control installation order.
+
+Recovery charts must use literal configuration values rather than Replicated template expressions. The saved application configuration is not available when these charts are first installed. Recovery charts must not create active Velero schedules during restore; let operators supply schedules with their backup configuration.
+
+The application vendor is responsible for choosing compatible Velero, chart, and plugin versions and configuring the backup method. For example:
+
+* File-system backups require the Velero node agent and host paths that match the Embedded Cluster kubelet. With the default data directory, these paths are `/var/lib/ec/kubelet/pods` and `/var/lib/ec/kubelet/plugins`. Account for custom data directories in deployments that use them.
+* Object storage requires the corresponding Velero provider plugin and credentials.
+* Snapshots and snapshot data movement require the appropriate snapshot plugins, CSI components, and storage infrastructure.
+
+Embedded Cluster does not install a fixed set of provider plugins or select a volume backup method. Validate the complete backup and restore workflow with the versions and infrastructure packaged by the application. For file-system backup requirements, see the [Velero documentation](https://velero.io/docs/v1.18/file-system-backup/).
+
+### Include recovery metadata in backups
+
+Embedded Cluster maintains a Secret named `embedded-cluster-recovery` in the application namespace. It contains the installation state needed to recover, including release identity, node topology, saved application configuration, license, and console password hash. It does not contain application volume data.
+
+Every backup must include this Secret and the application's required resources and volumes. Include the application namespace and Secrets in the backup scope. Any resource filters or label selectors must also include the recovery Secret, which has this label:
+
+```yaml
+embeddedcluster.replicated.com/recovery: "true"
+```
+
+Embedded Cluster updates the Secret as installation state changes and refreshes it before a manual backup. Velero executes scheduled backups directly. Protect access to backup storage because backups contain application data and credentials.
+
+## Configure backups
+
+1. Open the [persistent admin console](embedded-persistent-console). If it is not installed, run this command on a controller node:
+
+   ```bash
+   sudo ./APP_SLUG console install
+   ```
+
+   Replace `APP_SLUG` with the application slug.
+
+1. Open **Disaster Recovery**.
+1. In **Configuration**, paste the Velero configuration supplied for the application, replacing the storage settings and credentials for your environment.
+1. Click **Apply configuration**.
+
+The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
+
+Embedded Cluster passes provider-specific configuration to Kubernetes without restricting it to a predefined storage form. Kubernetes and Velero validate the resources. Include at least one Schedule: schedules provide both automatic backups and templates for manual backups.
+
+The page shows **Velero is configured** when the recovery workloads, backup locations, and existing backup repositories are ready and schedules are present without validation errors. Otherwise, it displays errors and keeps the editor available. These readiness checks do not replace testing a backup and restore.
+
+To change the configuration, click **Update configuration** and submit the updated manifests. The editor does not prefill saved credentials. Use **Cancel** to close it without applying changes.
+
+### Example: Amazon S3 with file-system backups
+
+This example assumes the application already packages the AWS plugin and a correctly configured Velero node agent. It creates credentials, a backup location, and a daily backup schedule. It does not install Velero or its plugins.
+
+Replace `APP_NAMESPACE`, `BUCKET_NAME`, `AWS_REGION`, and the credential placeholders. `APP_NAMESPACE` normally matches the application slug. Choose a prefix for this installation's backups and retain it for restore.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloud-credentials
+  namespace: velero
+type: Opaque
+stringData:
+  cloud: |
+    [default]
+    aws_access_key_id=REPLACE_ME
+    aws_secret_access_key=REPLACE_ME
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: velero-repo-credentials
+  namespace: velero
+type: Opaque
+stringData:
+  repository-password: "REPLACE_WITH_A_PERSISTENT_REPOSITORY_PASSWORD"
+---
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: default
+  namespace: velero
+spec:
+  provider: aws
+  default: true
+  objectStorage:
+    bucket: BUCKET_NAME
+    prefix: application-backups
+  credential:
+    name: cloud-credentials
+    key: cloud
+  config:
+    region: AWS_REGION
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily
+  namespace: velero
+spec:
+  schedule: "0 2 * * *"
+  template:
+    includedNamespaces:
+      - APP_NAMESPACE
+    storageLocation: default
+    ttl: 720h
+    defaultVolumesToFsBackup: true
+    snapshotVolumes: false
+```
+
+The example uses a 30-day retention period and file-system volume backups. It disables volume snapshots for this schedule. For required storage permissions and configuration for S3-compatible endpoints, see the [AWS plugin backup location documentation](https://github.com/velero-io/velero-plugin-for-aws/blob/main/backupstoragelocation.md). Other storage providers require their own plugins and configuration.
+
+### Preserve the repository password
+
+For file-system backups, `repository-password` protects access to Velero's encrypted backup repository. It does not encrypt the live PVC. Set it before the first volume backup creates the repository, store it outside the cluster, and supply the same value during recovery. Changing it after repository creation does not change the existing repository password and can make those backups inaccessible. See [Velero repository credentials](https://velero.io/docs/v1.18/file-system-backup/#prerequisites).
+
+## Create and manage backups
+
+Velero runs each enabled schedule using its cron expression. In **Schedule**, pause or enable schedules as needed. Pausing a schedule stops its automatic backups; it can still serve as a template for a manual backup.
+
+To create a manual backup:
+
+1. In **Manual backup**, select a schedule as the backup template.
+1. Review the displayed YAML. The backup uses the schedule's scope and settings, including its storage location, volume backup options, and retention period.
+1. Enter a backup name, or leave it blank for an automatically generated name.
+1. Click **Create backup**.
+1. Watch the **Backups** table until the backup reaches its final status. A request being accepted does not mean that the backup has completed.
+
+The table shows backups with the latest first, including failed and partially failed backups. After configuration, existing backups in the storage location can take time to appear while Velero synchronizes them. The page updates automatically and shows backup-location synchronization status below the table.
+
+To delete a backup, click **Delete** on its row and confirm in the dialog. This requests deletion through Velero, including the backup's stored data; it does not merely hide the row. Deletion can take time or fail if the storage location does not permit deletion.
+
+### Check volume backup completion
+
+A backed-up PVC resource alone does not confirm that its volume contents were backed up. For file-system backups, inspect the PodVolumeBackup resources associated with the backup. From a shell with access to the cluster's `kubectl`, run:
+
+```bash
+kubectl -n velero get podvolumebackups.velero.io \
+  -l velero.io/backup-name=BACKUP_NAME -o yaml
+```
+
+Replace `BACKUP_NAME` with the name from the console. Check that the expected volumes are present and their `status.phase` is `Completed`. Applications without eligible mounted volumes might have no PodVolumeBackup resources. Snapshot-based backups use different resources; follow the application's storage-specific verification instructions.
+
+## Restore on replacement hosts
+
+Restore creates a new cluster. Do not install the application on the replacement hosts before running restore. Embedded Cluster installs Kubernetes and recovery infrastructure first, leaving application workloads for Velero to restore.
+
+### Start recovery
+
+1. Download and extract the installer bundle matching the backed-up application release and Embedded Cluster version onto the first replacement controller. Keep the extracted `assets` directory alongside the application binary.
+1. Copy the signed license to that host.
+1. Run:
+
+   ```bash
+   sudo ./APP_SLUG restore --license ./license.yaml
+   ```
+
+1. Set the restore UI password and configure TLS when prompted.
+1. Open the URL printed by the command and sign in using the restore UI password. Leave the command running while using the wizard.
+
+Embedded Cluster runs host preflight checks before installing Kubernetes. The `--ignore-host-preflights` option bypasses non-strict failures only; strict failures and errors executing the checks still stop recovery.
+
+The bootstrap license must enable disaster recovery and match the installer application and channel. Its license ID does not have to match the backed-up license ID. The saved license is recovered with the installation state.
+
+### Configure Velero and select a backup
+
+1. Supply compatible Velero configuration, including the same storage bucket, prefix, and repository password used for the backup. Storage credentials must permit access to that backup.
+1. Apply the configuration and wait for Velero to synchronize its backup list.
+1. Select a backup with status **Completed**.
+
+You can reuse configuration containing Schedule resources. Embedded Cluster automatically pauses submitted schedules during recovery. They remain paused until you explicitly enable them after recovery.
+
+Embedded Cluster first restores only the recovery Secret. It validates the saved release identity against the installer and reads the saved topology and application configuration before continuing.
+
+### Join replacement hosts
+
+For a multi-node backup, the restore wizard displays the required role combinations and host counts alongside the joined hosts. The first controller is already running; do not join it again.
+
+1. In **Add Hosts**, select the roles for the replacement host.
+1. On that replacement host, run the displayed `curl` command to download its join bundle.
+1. Run the displayed `tar` command to extract the bundle.
+1. Run the displayed `node join` command from the extracted directory.
+1. Repeat for the remaining hosts. Join controller nodes one at a time.
+
+The download creates a bundle for the selected roles; there is no separate generation step. The replacement hosts must be able to reach the first controller at the address shown in the download command.
+
+The wizard warns if the selected role combination does not match the backup or is already satisfied. Recovery continues automatically when the joined hosts match the saved counts and all required hosts are ready and running the matching release.
+
+The replacement cluster can use different network interfaces and pod/service CIDRs. Configure them with `--network-interface` and `--cidr` when starting recovery if necessary. Joining hosts receive the replacement cluster's network settings. Application settings containing old addresses might still require application-specific changes.
+
+### Complete recovery and enable schedules
+
+After the hosts and storage infrastructure are ready, Embedded Cluster restores application resources and volumes through Velero, then reconciles the matching application release. Failed or partially failed restores do not mark recovery complete.
+
+On **Enable backup schedules**, enable the schedules you want to run. If you configured a backup location as `ReadOnly` during recovery, change it to `ReadWrite` before resuming backups.
+
+The restore command keeps serving the UI after recovery completes. Press **Ctrl+C** when you are finished. You can also manage schedules later from **Disaster Recovery** in the persistent admin console. Install the console on a recovered controller with `sudo ./APP_SLUG console install` if needed. The recovered installation uses the console password saved in the backup.
+
+### Resume an interrupted restore
+
+On the first replacement controller, run:
+
+```bash
+sudo ./APP_SLUG restore --resume --license ./license.yaml
+```
+
+The license is required on every invocation, including resume. Embedded Cluster uses the saved recovery progress and Velero Restore names to continue. Failed Velero restore attempts can be retried. Interactive recovery writes progress to `restore.log` after printing the UI URL.
+
+### Restore without the browser
+
+To supply configuration and a backup name from the command line:
+
+```bash
+chmod 600 ./velero.yaml
+sudo ./APP_SLUG restore --license ./license.yaml \
+  --headless --yes \
+  --velero-config ./velero.yaml \
+  --backup BACKUP_NAME
+```
+
+For a multi-node backup, follow the terminal instructions to create and transfer join bundles to replacement hosts. Headless recovery exits after completion. Enable paused schedules later from the admin console.
+
+Run `sudo ./APP_SLUG restore --help` for the full list of options. For installations whose application namespace differs from the application slug, specify `--app-namespace` with the backed-up namespace.
+
+## Troubleshooting
+
+| Symptom | What to check |
+| --- | --- |
+| The Disaster Recovery tab is missing | Confirm that the installed license enables disaster recovery and the deployed release packages a Velero chart. |
+| Configuration is unhealthy | Read the displayed error. Check recovery workload readiness, backup storage access, repository readiness, and Schedule validation errors. Missing schedules are configuration errors. |
+| Existing backups are not listed | Check the synchronization status under the table, the configured bucket and prefix, storage access, and whether backup synchronization is disabled for a location. |
+| A backup is partially failed or failed | Inspect its errors and the Velero logs before attempting recovery. Recovery requires a completed backup. |
+| Volume recovery cannot access the repository | Confirm that the supplied repository password matches the password used when the repository was created, and check storage credentials. |
+| Recovery is waiting for hosts | Compare joined hosts and roles with the expected topology. Check node readiness and release versions, and remove extra hosts if counts exceed the backup. |
+| The installer does not match the backup | Use the original application release and Embedded Cluster installer bundle. Recovery is not an application upgrade. |
