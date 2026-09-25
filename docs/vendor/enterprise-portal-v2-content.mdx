@@ -588,8 +588,6 @@ No manual migration needed. The upgrade is automatic.
 
 In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" instructions, while a customer on 2.1.0 would see the "Upgrading from 2.x" block.
 
-**`<MarkUpdateComplete />`**: Button for the customer to confirm an upgrade is complete. No props.
-
 **`<ReleaseNotes />`**: Displays release notes for the target update version. No props.
 
 ### Portal components
@@ -614,7 +612,7 @@ Each of the four support bundle components renders the steps for one installatio
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Optional props: `kotsGuideHref` and `kurlGuideHref`. Each link is authorized against the matching method capability before it reaches the panel, so removing a method entitlement also removes the link to its gated page.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button automatically once their upgrade instructions have loaded. The button cannot be removed. Optional props: `kotsGuideHref` and `kurlGuideHref`. Each link is authorized against the matching method capability before it reaches the panel, so removing a method entitlement also removes the link to its gated page.
 
 ### Security components
 
