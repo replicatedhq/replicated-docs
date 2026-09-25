@@ -85,7 +85,18 @@ If your branch names don't match any version labels (e.g., `release-1`, `release
 1. Update the docs content for the new version
 1. Push the branch. Enterprise Portal syncs automatically and the new version appears in the dropdown for customers on a channel with that release
 
-The system does not create branches for you. You must manually create branches that correspond to your releases.
+Enterprise Portal does not create branches for you. Create a branch for each release where your documentation changes, or see [Automating branch creation](#automating-branch-creation).
+
+## Automating branch creation
+
+Replicated publishes a [reusable GitHub Actions workflow](https://github.com/replicatedhq/reusable-workflows/tree/main/.github/workflows/epv2-reconcile-content-branches), as an example you can adopt or adapt, that creates a content branch for every release on the channels you choose. It cuts each branch from your base branch and only creates branches, never updating or deleting them.
+
+Whether it helps depends on how often your content changes:
+
+- **Your content changes meaningfully with most releases.** The workflow fits. You were going to create those branches anyway, and it removes a step that is easy to forget.
+- **Your content stays the same across most releases.** You do not need it. Each branch is a copy of your base branch from the moment the job ran, so you would hold many identical branches and maintain one per release if the content later diverges.
+
+In the second case, leave **Require matching content for release versions** off so a release resolves to the nearest lower branch, and [pin](#pinning-releases-to-branches) any release where resolution picks the wrong content.
 
 ## Version gating by channel
 
