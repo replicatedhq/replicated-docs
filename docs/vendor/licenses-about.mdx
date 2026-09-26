@@ -127,7 +127,13 @@ To update licenses in air gap installations, customers need to upload the update
 
 ### Helm installations
 
-For installations with the Helm CLI, license details can be retrieved from the Vendor Portal  during runtime using the in-cluster SDK API license endpoints. For more information, see [Replicated SDK API license Endpoints](#replicated-sdk-api-license-endpoints) on this page.
+Helm CLI installations do not include the Admin Console, so there is no **Sync license** action for the customer to take. How a license change reaches the instance depends on where the value is read.
+
+In online environments, the Replicated SDK retrieves license details from the Vendor Portal at runtime. Changes to a customer's license are available from the in-cluster SDK API `license` endpoints without any action from the customer. For more information, see [Replicated SDK API license Endpoints](#replicated-sdk-api-license-endpoints) on this page.
+
+License values that your Helm templates reference, such as the `global.replicated.licenseFields` values injected by the Replicated registry, are set when the chart is pulled from the Replicated registry. To update those values, the customer pulls the chart again and runs `helm upgrade`.
+
+In air gap environments, the SDK cannot reach the Vendor Portal, so both the SDK API and the injected chart values return what was set at the last chart pull. To apply an updated license, the customer pulls the chart again from a workstation with internet access using their license ID, transfers the chart archive into the air gap environment, and runs `helm upgrade` with the newly pulled chart.
 
 ## About querying license entitlements
 
