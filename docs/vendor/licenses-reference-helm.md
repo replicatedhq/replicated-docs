@@ -25,6 +25,12 @@ global:
 
 You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation.
 
+:::note
+The values in `global.replicated.licenseFields` are a snapshot taken when the chart was last pulled from the Replicated registry. Helm templates are rendered during `helm install` and `helm upgrade`, so checks written this way are evaluated at deployment time using the license as it was at the last pull. When you change a customer's license in the Vendor Portal, the new values reach the instance the next time the customer pulls the chart and upgrades.
+
+Use this approach for enforcement that is scoped to a deployment. To enforce an entitlement that must take effect without a new deployment, query the license at runtime with the Replicated SDK API. See [Query Entitlements with the Replicated SDK API](licenses-reference-sdk).
+:::
+
 ## Prerequisite
 
 Add the Replicated SDK to your application:

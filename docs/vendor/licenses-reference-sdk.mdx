@@ -13,6 +13,12 @@ After the Replicated SDK is initialized and running in a customer environment, y
 
 For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API_.
 
+:::note
+Querying the license at runtime with the SDK API is different from checking entitlements in Helm templates. Template checks read the `global.replicated.licenseFields` values that were injected when the chart was last pulled, so they are evaluated at deployment time and change only when the customer pulls the chart again and upgrades. Use the SDK API when an entitlement must take effect without a new deployment, and avoid enforcing the same entitlement both ways, which can produce different results for the same customer. See [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
+
+In air gap environments, the SDK cannot reach the Vendor Portal and the `license` endpoints return the values that were injected when the chart was last pulled. See [Install the SDK in Air Gap Environments](replicated-sdk-airgap).
+:::
+
 ## Prerequisite
 
 Add the Replicated SDK to your application:
