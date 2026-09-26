@@ -132,7 +132,6 @@ const sidebars = {
             "vendor/releases-creating-releases",
             "vendor/releases-creating-cli",
             "vendor/helm-install-release",
-            "vendor/helm-install-umbrella-charts",
             "vendor/releases-sharing-license-install-script",
             "reference/linter",
           ],

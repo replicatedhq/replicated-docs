@@ -3,6 +3,7 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import SdkChartPlacement from "../partials/replicated-sdk/_sdk-chart-placement.mdx"
 
 # Enable and understand application status
 
@@ -38,7 +39,9 @@ When you include the Replicated SDK as a dependency in your primary Helm chart, 
 
 To enable application status with the SDK:
 
-1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
+1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. For more information, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
+
+   <SdkChartPlacement/>
 
    <DependencyYaml/>
 
