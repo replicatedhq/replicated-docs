@@ -78,18 +78,11 @@ To support air gap installations with Embedded Cluster v3:
     ```
     </details>
 
-1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image registry using the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function:
+1. Embedded Cluster v3 automatically rewrites the Replicated SDK image reference to the local registry in air gap installations. You do not need to configure this in the HelmChart custom resource for the chart where you included the Replicated SDK as a dependency.
 
-    ```yaml
-    # HelmChart custom resource
-    apiVersion: kots.io/v1beta2
-    kind: HelmChart
-    spec:
-      values:
-        replicated:
-          image:
-            registry: '{{repl ReplicatedImageRegistry (HelmValue ".replicated.image.registry") }}'
-    ```
+   :::note
+   Do not add the [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry), [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost), or [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) template functions to a HelmChart custom resource shared with an existing cluster installation with KOTS. Embedded Cluster v3 does not implement these functions, and an undefined template function causes the render to fail.
+   :::
 
 1. If you added any Helm chart `extensions` in the Embedded Cluster Config, configure them for air gap:
 
