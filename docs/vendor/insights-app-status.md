@@ -41,9 +41,9 @@ To enable application status with the SDK:
 
 1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. For more information, see [Install the Replicated SDK](/vendor/replicated-sdk-installing).
 
-   <SdkChartPlacement/>
-
    <DependencyYaml/>
+
+   <SdkChartPlacement/>
 
 1. If either of the following are true, list all the resources that you want the SDK to report on in the SDK's [`statusInformers`](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml#L287) field:
 
