@@ -4,7 +4,7 @@ This topic describes how to query license entitlements at runtime using the Repl
 
 ## Overview
 
-The Replicated SDK retrieves up-to-date customer license information from the Vendor Portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more. For more information about distributing the SDK with your application, see [About the Replicated SDK](replicated-sdk-overview).
+The Replicated SDK retrieves customer license information from the Vendor Portal during runtime. This means that changes you make to a customer's license reach the customer environment without the customer needing to deploy a new version. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more. In online environments, the SDK refreshes license information at startup and then polls the Vendor Portal for updates every four hours by default. For more information about distributing the SDK with your application, see [About the Replicated SDK](replicated-sdk-overview).
 
 After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
@@ -16,7 +16,10 @@ For more information about these endpoints, see [license](/reference/replicated-
 :::note
 Querying the license at runtime with the SDK API is different from checking entitlements in Helm templates. Template checks read the `global.replicated.licenseFields` values that were injected when the chart was last pulled, so they are evaluated at deployment time and change only when the customer pulls the chart again and upgrades. Use the SDK API when an entitlement must take effect without a new deployment, and avoid enforcing the same entitlement both ways, which can produce different results for the same customer. See [Check Entitlements in Helm Charts Before Deployment](licenses-reference-helm).
 
-In air gap environments, the SDK cannot reach the Vendor Portal and the `license` endpoints return the values that were injected when the chart was last pulled. See [Install the SDK in Air Gap Environments](replicated-sdk-airgap).
+In air gap environments, the SDK cannot reach the Vendor Portal and the `license` endpoints return the values that were injected when the chart was last pulled. See [Install the SDK in Air Gap Environments](replicated-sdk-airgap). To apply an updated license, the customer uses the method that matches how the application was installed:
+
+* For installations with a Replicated installer, the customer uploads the new license file on the **License** tab of the Admin Console, then deploys the version that is created. See [Update Licenses in the Admin Console](/enterprise/updating-licenses).
+* For Helm CLI installations, which do not include the Admin Console, the customer pulls the chart again from a connected workstation using their license ID, transfers the chart archive into the air gap environment, and runs `helm upgrade` with the newly pulled chart.
 :::
 
 ## Prerequisite
