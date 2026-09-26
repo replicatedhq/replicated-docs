@@ -12,8 +12,8 @@ Replicated supports applications packaged as an umbrella Helm chart: a single pa
 
 This differs from a release that contains multiple top-level Helm charts, where you package and add each chart separately and each gets its own [HelmChart custom resource](/reference/custom-resource-helmchart-v2). The two models trade off differently:
 
-- **Umbrella chart:** customers run a single `helm install` command and your release has a single HelmChart custom resource, but every subchart shares the parent chart's version and release cadence.
-- **Multiple top-level charts:** each chart versions and releases independently, but customers run a separate `helm install` command for each chart, and your release needs a separate HelmChart custom resource, values file, and chart name for each one.
+- **Umbrella chart:** customers run a single `helm install` command, and your release has a single HelmChart custom resource. Every subchart shares the parent chart's version and release cadence.
+- **Multiple top-level charts:** each chart versions and releases independently. Customers run a separate `helm install` command for each chart. Your release needs a separate HelmChart custom resource, values file, and chart name for each one.
 
 For information about naming top-level charts to avoid conflicts, see [Installation fails for release with multiple Helm charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshoot Helm installations with Replicated_.
 
