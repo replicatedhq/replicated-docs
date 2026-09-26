@@ -1,0 +1,85 @@
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import HelmPackage from "../partials/helm/_helm-package.mdx"
+import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
+
+# Package an umbrella Helm chart
+
+This topic describes how to package an application as an umbrella Helm chart for distribution with Replicated.
+
+## Overview
+
+Replicated supports applications packaged as an umbrella Helm chart: a single parent chart that declares one or more other charts as dependencies in its `Chart.yaml` file. Helm copies the dependency charts into the parent chart's `charts/` directory, and the application installs as one Helm release from one chart archive. An umbrella chart works the same way whether it's installed with the Helm CLI, KOTS, or Embedded Cluster.
+
+This differs from a release that contains multiple top-level Helm charts, where you package and add each chart separately and each gets its own [HelmChart custom resource](/reference/custom-resource-helmchart-v2). The two models trade off differently:
+
+- **Umbrella chart:** customers run a single `helm install` command, and your release has a single HelmChart custom resource. Every subchart shares the parent chart's version and release cadence.
+- **Multiple top-level charts:** each chart versions and releases independently. Customers run a separate `helm install` command for each chart. Your release needs a separate HelmChart custom resource, values file, and chart name for each one.
+
+For information about naming top-level charts to avoid conflicts, see [Installation fails for release with multiple Helm charts](helm-install-troubleshooting#air-gap-values-file-conflict) in _Troubleshoot Helm installations with Replicated_.
+
+The rest of this topic assumes an umbrella chart with one or more subcharts. The subcharts can be charts that you author, third-party charts such as the ones published by Bitnami, or a mix of both.
+
+## Add the Replicated SDK
+
+Add the Replicated SDK as a dependency in the `Chart.yaml` file of your umbrella chart, not in any of its subcharts. Because an umbrella chart has a single entry point, the umbrella chart is also the chart that customers install first.
+
+<DependencyYaml/>
+
+For more information, see [Install the SDK as a subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Install the Replicated SDK_.
+
+## Access global.replicated values from subchart templates
+
+Helm shares every value in the top-level `global` key with the parent chart and with every subchart, at any nesting depth. A subchart template can read a value like `global.replicated.dockerconfigjson` the same way your parent chart's templates do. This requires no extra wiring from you as the umbrella chart author.
+
+This includes the `global.replicated` values that the Replicated registry injects during Helm CLI installations, and that KOTS and Embedded Cluster installers provide at deploy time. These values include the customer's license fields (`global.replicated.licenseFields`) and the base64-encoded Docker config used to authenticate with the proxy registry (`global.replicated.dockerconfigjson`). For more information, see [Helm global.replicated values schema](helm-install-values-schema). This works the same way for subcharts you own and for third-party subcharts, as long as their templates reference `.Values.global` rather than a chart-scoped value.
+
+The Replicated SDK's own values work differently. When you add the SDK as a dependency, Helm scopes its values—such as `replicated.appID` and `replicated.versionLabel`—to the SDK subchart. These live in the plain `replicated` key, not in `global`. Sibling subcharts don't receive these values automatically. For the full list, see [Replicated SDK Helm values](helm-install-values-schema#replicated-sdk-helm-values).
+
+### Use the SDK's image pull secret in a subchart
+
+The Replicated SDK creates the `enterprise-pull-secret` image pull secret directly in the cluster, in the same namespace as the rest of your release. Because it's a Kubernetes Secret rather than a Helm value, any Pod template in any subchart can reference it by name in `imagePullSecrets`. This works regardless of which chart created the Secret.
+
+For subcharts that you own, add the same `imagePullSecrets` Helm helper described in [Use the proxy registry with Helm CLI installations](helm-image-registry). For a third-party subchart whose templates you don't control, check whether the subchart already accepts a list of pull secrets, commonly through a `global.imagePullSecrets` value. If it does, set that value in your umbrella chart's values instead of modifying the subchart. If you proxy images for a Bitnami subchart, also see the note about `global.security.allowInsecureImages` in [Use the proxy registry with Helm CLI installations](helm-image-registry#use-proxy-registry).
+
+## Point subchart images at the proxy registry
+
+Rewriting image references to use the Replicated proxy registry is a per-chart change. Update the registry in each subchart's own image values, the same way you would for any additional top-level chart. See [Modify image references in Helm values to point to the proxy registry](replicated-onboarding#task-2) in _Onboard to the Replicated Platform_. There's no `global` shortcut for this step, because each subchart's Pod templates read its own image values, not a shared key.
+
+## Package the chart
+
+Update dependencies and package the umbrella chart, and the subcharts it bundles, into a single `.tgz` file:
+
+<HelmPackage/>
+
+:::note
+<RegistryLogout/>
+:::
+
+Add the resulting archive to a release like any other Helm chart. See [Package a Helm chart for a release](helm-install-release).
+
+Configure a single [HelmChart custom resource](/reference/custom-resource-helmchart-v2) for the umbrella chart, with `chart.name` and `chart.chartVersion` matching the umbrella chart's own `Chart.yaml` file, not a subchart's. Set values for a subchart the way Helm does: nest them inside a key matching the subchart's name, or its `alias` if it has one. Use this pattern in the `values`, `optionalValues`, and `builder` keys. For example, the following HelmChart custom resource sets a value for a subchart named `postgresql`:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    postgresql:
+      enabled: true
+```
+
+For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
+
+## Turn subcharts on or off
+
+To let customers enable or disable an optional subchart, add a `condition` field to its dependency entry in `Chart.yaml`. Then, map a HelmChart custom resource value or Admin Console Config option to that condition. See [Helm optional dependencies](packaging-include-resources#helm-optional-dependencies) in _Conditionally include or exclude resources_.
+
+## Configure air gap bundles and image scanning
+
+The `builder` key on your HelmChart custom resource must render every subchart's images for the air gap bundle and Security Center scans. Set enough values in the `builder` key to do this, following the same subchart-name nesting as `values`. A subchart's resources might be conditional, for example behind a `condition` field in `Chart.yaml` or an `if` statement in its templates. In that case, the `builder` key must also set the value that makes the condition true. Otherwise, that subchart's images are missing from the bundle. See [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_ and [Incomplete list of required images in the Helm air gap instructions](helm-install-troubleshooting#incomplete-list-of-required-images-in-the-helm-air-gap-instructions) in _Troubleshoot Helm installations with Replicated_.
+
+## Differences across install methods
+
+None of the steps in this topic are specific to one install method. You configure one Helm chart, one HelmChart custom resource, and one release, and it installs the same way with the Helm CLI, KOTS, and Embedded Cluster.

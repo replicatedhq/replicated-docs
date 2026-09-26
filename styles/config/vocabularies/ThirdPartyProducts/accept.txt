@@ -5,6 +5,7 @@ AKS
 AlmaLinux
 Anchore
 AWS
+Bitnami
 bcrypt
 clsx
 containerd
