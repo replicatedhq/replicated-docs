@@ -29,6 +29,8 @@ KOTS directs Helm to install the Helm charts based on the value of `weight` in a
 
 The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a Helm chart, the `weight` is `0`.
 
+The `weight` property is also used for installations with the Helm CLI, where it determines the order in which the charts are listed in the install and update instructions in the Vendor Portal and the Enterprise Portal. For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_.
+
 For example:
 
 ```yaml

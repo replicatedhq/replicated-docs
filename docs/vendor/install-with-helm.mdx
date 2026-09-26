@@ -32,8 +32,26 @@ Before you install, complete the following prerequisites:
         name: examplechart
         # chartVersion must match the version of the chart
         chartVersion: 1.0.0
+      # weight determines the order that charts are listed in the
+      # install instructions, with lower weights first
+      weight: 1
     ```
+
+    The `weight` property also determines the order in which the chart is listed in the Helm install instructions. For more information, see [Chart installation order](#order) below.
+
     For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+
+## Chart installation order {#order}
+
+For releases that contain more than one Helm chart, the `weight` property of the HelmChart custom resource determines the order in which the charts are listed in the Helm install instructions. Charts are listed by `weight` in ascending order, with lower weights first. Charts with the same `weight` are listed alphabetically by chart name. Charts that do not have a corresponding HelmChart custom resource are listed last.
+
+The same ordering is used for the install and update instructions in the Replicated Enterprise Portal. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log in to and Use the Enterprise Portal_.
+
+:::note
+The `weight` property only controls the order in which the commands are listed. Unlike installations with a Replicated installer, the Helm CLI install instructions do not wait for one chart to be deployed and ready before the next chart is installed. If your application requires that a chart is ready before another chart is installed, include this requirement in the documentation that you provide to your customers.
+:::
+
+For more information about how `weight` controls the deployment order for installations with a Replicated installer, see [Helm chart deployment order with `weight`](/vendor/orchestrating-resource-deployment#weight) in _Orchestrate resource deployment_.
 
 ## Firewall openings for online installations with Helm {#firewall}
 
@@ -88,6 +106,8 @@ To install a Helm chart:
      * `APP_SLUG` is the slug for the application. For information about how to find the application slug, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug).
      * `CHANNEL` is the lowercased name of the channel where the release was promoted, such as `beta` or `unstable`. Channel is not required for releases promoted to the Stable channel.
      * `CHART_NAME` is the name of the Helm chart.
+
+     If the release contains more than one Helm chart, the dialog lists a `helm install` command for each chart. The commands are listed in the order determined by the `weight` property of the HelmChart custom resource. For more information, see [Chart installation order](#order) above.
 
      :::note
      To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
