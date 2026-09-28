@@ -54,6 +54,8 @@ Install pages show interactive, personalized instructions:
 
 The install commands are personalized to the selected installation and include the customer's specific credentials. If the customer switches installations or renames their instance, the commands update automatically.
 
+For Helm installations of releases that contain more than one Helm chart, the charts are listed in the order determined by the `weight` property of the HelmChart custom resource. This applies to both the install and the upgrade instructions. For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_.
+
 For upgrades, customers use the **Instances & Updates** page. Helm and Embedded Cluster instance cards with an available update expand into generated CLI upgrade steps. KOTS and kURL upgrades are performed in the Admin Console, which is the supported upgrade path for those installers.
 
 Instances that are already on the latest version show an **Up to date** badge. Helm and Embedded Cluster customers can still expand those cards to view install or upgrade commands for the current version.
