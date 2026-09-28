@@ -2,6 +2,7 @@ import CommunityHelp from "../partials/getting-started/_community-help.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
 import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import SdkChartPlacement from "../partials/replicated-sdk/_sdk-chart-placement.mdx"
 import EcCr from "../partials/embedded-cluster/v2/_ec-config.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import Requirements from "../partials/embedded-cluster/v2/_requirements.mdx"
@@ -94,11 +95,11 @@ To package your Helm chart with the Replicated SDK:
 
 1. Go to the local directory where your Helm chart is.
 
-1. In your application Helm chart `Chart.yaml` file, add the following YAML to declare the SDK as a dependency.
-   
-   If you install your application as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Package a Helm chart for a release](helm-install-release).
+1. In your application Helm chart `Chart.yaml` file, add the following YAML to declare the SDK as a dependency. For more information, see [Package a Helm chart for a release](helm-install-release).
 
    <DependencyYaml/>   
+
+   <SdkChartPlacement/>
 
 1. Update dependencies and package the chart as a `.tgz` file:
 

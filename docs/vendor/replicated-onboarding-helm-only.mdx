@@ -2,6 +2,7 @@ import CommunityHelp from "../partials/getting-started/_community-help.mdx"
 import CreateApp from "../partials/getting-started/_create-app.mdx"
 import CreateRelease from "../partials/getting-started/_create-promote-release.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+import SdkChartPlacement from "../partials/replicated-sdk/_sdk-chart-placement.mdx"
 import HelmPackage from "../partials/helm/_helm-package.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import TestYourChanges from "../partials/getting-started/_test-your-changes.mdx"
@@ -66,11 +67,11 @@ The Replicated SDK is a Helm chart that can be installed as a small service alon
 
 To add the Replicated SDK:
 
-* In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency.
-   
-   If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart. For more information, see [Package a Helm Chart for a Release](helm-install-release).
+* In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. For more information, see [Package a Helm chart for a release](helm-install-release).
 
    <DependencyYaml/>
+
+   <SdkChartPlacement/>
 
 ### Task 3: Configure your chart to use the Replicated proxy registry {#task-2}
 

@@ -46,11 +46,46 @@ If any of the Embedded Cluster host preflight checks fail, installation is block
 
 For the full default host preflight specs for Embedded Cluster, see [`preflights/specs`](https://github.com/replicatedhq/embedded-cluster/tree/main/pkg-new/preflights/specs) in the `embedded-cluster` repository in GitHub.
 
+#### Add custom host preflight checks {#custom-host-preflight-checks}
+
+To add your own host preflight checks, include a HostPreflight custom resource (`kind: HostPreflight`, `apiVersion: troubleshoot.sh/v1beta2`) in the release. Your checks run in addition to the default checks, during installation and when a node joins the cluster. Host preflight checks do not run during upgrades.
+
+Custom host preflight checks behave the same as the default checks. A failure blocks the installation and displays a message describing the failure.
+
+To make a check that users cannot bypass, set `strict: true` on the analyzer, alongside `checkName`. Users cannot continue past a failed strict check with `--ignore-host-preflights`, and the installation cannot proceed until the host meets the requirement.
+
+Embedded Cluster honors strict checks in version 2.19.12 and later. In earlier versions, users can bypass a failed strict check.
+
+Use custom host preflight checks to enforce requirements that are more restrictive than the defaults. You can also use them to verify application-specific host requirements, such as a required kernel module or connectivity to an external endpoint.
+
+The following example adds a check for a host with at least six CPU cores:
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: HostPreflight
+metadata:
+  name: ec-host-preflights
+spec:
+  collectors:
+    - cpu: {}
+  analyzers:
+    - cpu:
+        checkName: Number of CPU cores
+        outcomes:
+          - fail:
+              when: "count < 6"
+              message: This server has less than 6 CPU cores
+          - pass:
+              message: This server has at least 6 CPU cores
+```
+
+For more information about writing collectors and analyzers, see [Host Collectors](https://troubleshoot.sh/docs/collect/host-collectors/) and [Host Analyzers](https://troubleshoot.sh/docs/analyze/host-analyzers/) in the Troubleshoot documentation.
+
 #### Limitations
 
 Embedded Cluster host preflight checks have the following limitations:
 
-* The default host preflight checks for Embedded Cluster cannot be modified, and vendors cannot provide their own custom host preflight spec for Embedded Cluster.
+* The default host preflight checks for Embedded Cluster cannot be modified or removed. Custom host preflight checks run in addition to the defaults.
 * Host preflight checks do not check that any application-specific requirements are met. For more information about defining preflight checks for your application, see [Define Preflight Checks](/vendor/preflight-defining).
 
 ### Multi-node installations
