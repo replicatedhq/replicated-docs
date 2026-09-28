@@ -2,6 +2,7 @@ import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 import KotsVerReq from "../partials/replicated-sdk/_kots-version-req.mdx"
 import RegistryLogout from "../partials/replicated-sdk/_registry-logout.mdx"
 import IntegrationMode from "../partials/replicated-sdk/_integration-mode-install.mdx"
+import SdkChartPlacement from "../partials/replicated-sdk/_sdk-chart-placement.mdx"
 
 # Install the Replicated SDK
 
@@ -21,9 +22,11 @@ When included as a dependency of your application Helm chart, the SDK is install
 
 To install the SDK as a subchart:
 
-1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency. If your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first. Do not declare the SDK in more than one chart.
+1. In your application Helm chart `Chart.yaml` file, add the YAML below to declare the SDK as a dependency.
 
      <DependencyYaml/>
+
+     <SdkChartPlacement/>
 
 1. Update the `charts/` directory:
 
