@@ -13,14 +13,14 @@ To add a Helm chart to a release, you first add the Replicated SDK as a dependen
 
 The Replicated SDK is a Helm chart that should be installed as a small service alongside your application. The SDK provides access to key Replicated functionality including instance telemetry, license verification, and an in-cluster API. For more information, see [About the Replicated SDK](replicated-sdk-overview).
 
-## Package an umbrella Helm chart
+## Choose a packaging approach
 
 Replicated supports packaging your application as an umbrella Helm chart. An umbrella chart is a single parent chart that declares one or more other charts as dependencies in its `Chart.yaml` file. The subcharts can be charts that you author, third-party charts such as the ones published by Bitnami, or a mix of both.
 
 This differs from a release that contains multiple top-level Helm charts, where you package and add each chart separately and each gets its own [HelmChart custom resource](/reference/custom-resource-helmchart-v2). The two approaches involve different tradeoffs:
 
 - **Umbrella chart:** customers run a single `helm install` command, and your release has a single HelmChart custom resource. Every subchart ships on the parent chart's release cadence.
-- **Multiple top-level charts:** each chart is versioned and released independently. Customers run a separate `helm install` command for each chart. Your release needs a separate HelmChart custom resource, values file, and chart name for each one.
+- **Multiple top-level charts:** each chart is versioned and released independently. Customers run a separate `helm install` command for each chart. Your release needs a separate HelmChart custom resource, values file, and chart name for each one. See [Chart naming](#chart-naming) on this page.
 
 For an umbrella chart, configure a single HelmChart custom resource with `chart.name` and `chart.chartVersion` matching the umbrella chart's own `Chart.yaml` file, not a subchart's. For more information, see [chart](/reference/custom-resource-helmchart-v2#chart) in _HelmChart v2_.
 
