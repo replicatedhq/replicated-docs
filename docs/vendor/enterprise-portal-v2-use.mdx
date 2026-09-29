@@ -56,7 +56,7 @@ The install commands are personalized to the selected installation and include t
 
 For Helm installations of releases that contain more than one Helm chart, the charts are listed in the order determined by the `weight` property of the HelmChart custom resource. This applies to both the install and the upgrade instructions. For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_.
 
-For upgrades, customers use the **Instances & Updates** page. Helm and Embedded Cluster instance cards with an available update expand into generated CLI upgrade steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps. The portal identifies the selected target and supplies an application air gap bundle when required, but the customer performs and monitors the deployment in Admin Console.
+For upgrades, customers use the **Instances & Updates** page. Helm and Embedded Cluster instance cards with an available update expand into generated CLI upgrade steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps. The portal identifies the selected target and supplies an application air gap bundle when required, but the customer performs and monitors the deployment in the Admin Console.
 
 Instances that are already on the latest version show an **Up to date** badge. Customers can still expand supported cards to review the current release's commands or Admin Console guidance.
 
@@ -82,13 +82,21 @@ For Embedded Cluster air gap installations, customers using a private registry c
 
 KOTS and kURL instances appear on the **Instances & Updates** page alongside Helm and Embedded Cluster instances, labeled **KOTS** or **kURL**. Each instance shows its current version and status.
 
-KOTS and kURL instance cards expand into a guided application-upgrade panel. Customers can review or change the intended target release and then follow ordered steps for checking, selecting, and deploying that release in Admin Console. The panel does not show an unverified upgrade CLI command or track deployment completion.
+KOTS and kURL instance cards expand into a guided application-upgrade panel. Customers can review or change the intended target release and then follow ordered steps for checking, selecting, and deploying that release in the Admin Console. The panel does not generate an upgrade CLI command, and it does not track whether the deployment completed.
 
-For online and proxy instances, the panel tells the customer to reopen Admin Console (`kubectl kots admin-console --namespace <app>` for KOTS, `--namespace default` for kURL), then open Version History and click Check for updates before deploying. It does not download an air gap artifact. For air gap instances, it provides the selected release's application air gap bundle. When that bundle is ready and the instance is not already on the release, the panel includes the same reopen command, then directs the customer to upload the bundle from **Version History** and deploy. A bundle that is still building stops at that status, and a card for the installed release does not say to deploy. An expired license or a license without air gap access does not expose the bundle.
+What the panel shows depends on the instance:
 
-For kURL, this panel upgrades the application only. It does not imply that every application release requires rerunning `install.sh` or upgrading the Kubernetes cluster. Vendors document any separate cluster-maintenance conditions and procedure in the customizable kURL upgrade guide.
+- **Online and proxy**: The command to reopen the Admin Console, then steps to open **Version History**, check for updates, and deploy. No air gap artifact is offered.
+- **Air gap**: The selected release's application air gap bundle. When the bundle is ready and the instance is not already on that release, the panel adds the reopen command and steps to upload the bundle from **Version History** and deploy.
+- **Air gap, bundle still building**: The build status only, with no upload or deploy steps.
+- **Air gap, already on the selected release**: The bundle, with no deploy step.
+- **Expired license, or a license without air gap access**: No bundle.
 
-The default content template includes dedicated KOTS and kURL install pages and entitlement-gated application-upgrade guides. Vendors can customize Admin Console access, registry, support, and kURL cluster-maintenance instructions, change the panel's guide link, or remove it. For installation-page details, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
+The reopen command uses the customer's application slug for KOTS and `default` for kURL, which is where kURL's `install.sh` runs the Admin Console.
+
+For kURL, the panel upgrades the application only. It does not rerun `install.sh` or upgrade the cluster, and an application release does not on its own mean either is needed. Vendors document their own cluster-maintenance conditions and procedure in the customizable kURL upgrade guide.
+
+The default content template includes dedicated KOTS and kURL install pages and entitlement-gated application-upgrade guides. Vendors can customize Admin Console access, registry, support, and kURL cluster-maintenance instructions, change the panel's guide link, or remove it. For installation-page details, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_. An expired license still surfaces a renewal notice on the install-page download controls.
 
 Customers can create air gap instance records for KOTS and kURL the same way as for Helm and Embedded Cluster. They can enter instance information manually from the Instances & Updates page, or extract details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 
