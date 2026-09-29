@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.29-0
+
+Released on September 29, 2026
+
+### Improvements {#improvements-v2026-09-29-0}
+* Enterprise Portal v2 now guides KOTS and kURL customers through target-specific Admin Console application upgrades and provides the selected application bundle for entitled air gap instances.
 ## v2026.09.25-0
 
 Released on September 25, 2026
