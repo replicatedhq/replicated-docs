@@ -9,6 +9,16 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.29-1
+
+Released on September 29, 2026
+
+### New Features {#new-features-v2026-09-29-1}
+* Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
+
+### Bug Fixes {#bug-fixes-v2026-09-29-1}
+* Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
+
 ## v2026.09.29-0
 
 Released on September 29, 2026
