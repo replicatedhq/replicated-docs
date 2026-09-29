@@ -1,0 +1,19 @@
+docs/reference/custom-resource-application.mdx
+  s_957dbde3dc2e7e::t_8a1d31b1753f46 442,463
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "63cb9ca6390fcf132f0eeb2b1ff2126c62584059",
+  "prompts": {},
+  "sessions": {
+    "s_957dbde3dc2e7e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_957dbde3dc2e7e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

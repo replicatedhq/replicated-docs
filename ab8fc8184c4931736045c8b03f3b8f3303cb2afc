@@ -1,0 +1,19 @@
+docs/vendor/packaging-kots-versions.md
+  s_d99d0ac4b89102::t_05b0da1229ce01 41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ab8fc8184c4931736045c8b03f3b8f3303cb2afc",
+  "prompts": {},
+  "sessions": {
+    "s_d99d0ac4b89102": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d99d0ac4b89102",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
