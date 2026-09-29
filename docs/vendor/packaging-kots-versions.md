@@ -35,11 +35,20 @@ After updating KOTS to the minimum version or later, users can use the Admin Con
 
 Including `targetKotsVersion` in the Application custom resource enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version of KOTS that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
-If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [Vendor Portal](https://vendor.replicated.com).
+Setting `targetKotsVersion` also changes what is offered for installing into an existing cluster:
+
+* [Vendor Portal](https://vendor.replicated.com): if the latest release in a channel includes `targetKotsVersion`, the install command on the channel card installs that specific version of KOTS.
+* [Enterprise Portal (New)](/vendor/enterprise-portal-v2-about): the install and update instructions use that version of KOTS, and the KOTS CLI and KOTS Admin Console Bundle downloads are for that version.
+* [Download Portal](/vendor/releases-share-download-portal): the KOTS CLI and KOTS Admin Console Bundle downloads are for that version, and the option to choose a different version of KOTS is not shown.
 
 ### How the Admin Console handles targetKotsVersion
 
-Specifying a `targetKotsVersion` does not prevent an end user from upgrading to a later version of KOTS after the initial installation.
+Specifying a `targetKotsVersion` does not prevent an end user from updating to a later version of KOTS after the initial installation. The target version is enforced for new installations only, and is not re-evaluated when an existing installation updates.
+
+An installation can end up running a version of KOTS later than the target version specified in its deployed release in two ways:
+
+* You promote a release with a higher `targetKotsVersion`. This is the intended path, and the Admin Console prompts the user as described below.
+* The end user updates KOTS with the KOTS CLI on their own, independently of anything you specify. Nothing prevents this.
 
 If a new version of the application specifies a later target KOTS version than what is currently installed, users are not prevented from deploying that version of the application.
 
