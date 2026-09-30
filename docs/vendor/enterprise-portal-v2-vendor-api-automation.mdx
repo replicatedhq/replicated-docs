@@ -148,7 +148,9 @@ The response includes:
 
 You can also [update an installation options record](https://replicated-vendor-api.readme.io/reference/patchinstalloptions) with `PATCH` or [delete an installation options record](https://replicated-vendor-api.readme.io/reference/deleteinstalloptions) with `DELETE`.
 
-Supported install types are `helm` and `linux`. Supported network availability values are `online`, `proxy`, and `airgap`.
+Supported install types for Vendor API create are `helm` and `linux`. Supported network availability values are `online`, `proxy`, and `airgap`.
+
+The customer service account API also accepts `kots` and `kurl`. Vendor API create stays `helm` and `linux`. To fetch KOTS or kURL instructions from the Vendor API, create the install options record in the Enterprise Portal or with the customer service account API, then GET that record with `includeInstructions=true`. For the customer API, see [KOTS and kURL automation](/vendor/enterprise-portal-v2-service-account-automation#kots-and-kurl-automation).
 
 For Helm install options, `registry_availability` can be `online`, `partial`, or `offline`.
 Helm install options can also include `kubernetes_distribution`.
