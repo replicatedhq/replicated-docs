@@ -9,6 +9,22 @@ pagination_prev: null
 This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.30-0
+
+Released on September 30, 2026
+
+### New Features {#new-features-v2026-09-30-0}
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.33.7.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.16.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.57.5.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.18.4.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.9.0.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.11.3-1.1.3.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.94.1-91.8.0.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 2.3.6.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.36.5 1.35.9 1.34.12 1.33.13.
+* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 3.1.2.
+* Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.21.2.
 ## v2026.09.20-0
 
 Released on September 20, 2026
