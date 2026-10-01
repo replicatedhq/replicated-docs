@@ -9,6 +9,21 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.09.30-1
+
+Released on September 30, 2026
+
+### New Features {#new-features-v2026-09-30-1}
+* Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
+
+### Improvements {#improvements-v2026-09-30-1}
+* SC-138994: KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle. https://app.shortcut.com/replicated/story/138994.
+
+### Bug Fixes {#bug-fixes-v2026-09-30-1}
+* Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
+* Prevented vendor invitations and customer login links for Enterprise Portal v2 sites that are not configured, while preserving v1 access and showing warnings when automatic invitations are skipped.
+* Fixed Enterprise Portal customer-user totals when filtering by email.
+
 ## v2026.09.30-0
 
 Released on September 30, 2026
