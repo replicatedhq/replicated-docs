@@ -1,0 +1,14 @@
+docs/vendor/enterprise-portal-v2-self-serve-signup.mdx
+  h_a187b1a47af8c8 16-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "455590ab616814cf435311986890ef8ec5806510",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}

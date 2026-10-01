@@ -1,0 +1,54 @@
+docs/partials/helm/_helm-cr-weight.mdx
+  h_a187b1a47af8c8 7-9
+docs/partials/replicated-sdk/_sdk-chart-placement.mdx
+  h_a187b1a47af8c8 1
+docs/release-notes/rn-embedded-cluster.md
+  h_a187b1a47af8c8 15-46
+docs/release-notes/rn-vendor-platform.md
+  h_a187b1a47af8c8 12-17
+docs/vendor/enterprise-portal-use.mdx
+  h_a187b1a47af8c8 87-88
+docs/vendor/enterprise-portal-v2-use.mdx
+  h_a187b1a47af8c8 57-58,87
+docs/vendor/enterprise-portal-v2-versioned-docs.mdx
+  h_a187b1a47af8c8 88-99
+docs/vendor/environment-setup.mdx
+  h_a187b1a47af8c8 189-202
+docs/vendor/helm-install-release.md
+  h_a187b1a47af8c8 4,16-32,57,60-61
+docs/vendor/insights-app-status.md
+  h_a187b1a47af8c8 6,42,46-47
+docs/vendor/install-with-helm.mdx
+  h_a187b1a47af8c8 35-37,39-41,44-55,110-111
+docs/vendor/licenses-about.mdx
+  h_a187b1a47af8c8 130-136
+docs/vendor/licenses-reference-helm.md
+  h_a187b1a47af8c8 28-31
+docs/vendor/licenses-reference-sdk.mdx
+  h_a187b1a47af8c8 7-11,20-23
+docs/vendor/orchestrating-resource-deployment.md
+  h_a187b1a47af8c8 32-33
+docs/vendor/replicated-onboarding-helm-only.mdx
+  h_a187b1a47af8c8 5,70,74-75
+docs/vendor/replicated-onboarding.mdx
+  h_a187b1a47af8c8 5,98,102-103
+docs/vendor/replicated-sdk-installing.mdx
+  h_a187b1a47af8c8 5,25,29-30
+embedded-cluster/embedded-overview.mdx
+  h_a187b1a47af8c8 85-123,128
+embedded-cluster_versioned_docs/version-2.0.0/embedded-overview.mdx
+  h_a187b1a47af8c8 49-83,88
+styles/config/vocabularies/ThirdPartyProducts/accept.txt
+  h_a187b1a47af8c8 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e3cb4eb1c52adb6e427d1de0a5845bc5056b6692",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}

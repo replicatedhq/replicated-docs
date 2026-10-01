@@ -1,0 +1,48 @@
+docs/vendor/packaging-kots-versions.md
+  s_ab6ba5cfc9980e::t_d7cf6a56b5c44d 38-40,42
+  s_d99d0ac4b89102::t_05b0da1229ce01 41
+  s_77b2505fa6e6c4::t_bcb3981a643ba1 46-51
+docs/reference/custom-resource-application.mdx
+  s_51e0747929e0d4::t_a5243bb6a9dbd4 444,466
+  s_77b2505fa6e6c4::t_adb9ff9f3d9af7 442-443,464-465
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "95c7e95d8e56bb3358420a51c0bf5ac18eaa7681",
+  "prompts": {},
+  "sessions": {
+    "s_51e0747929e0d4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_51e0747929e0d4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_77b2505fa6e6c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_77b2505fa6e6c4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_ab6ba5cfc9980e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ab6ba5cfc9980e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_d99d0ac4b89102": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d99d0ac4b89102",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

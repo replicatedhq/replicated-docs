@@ -1,0 +1,18 @@
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  h_a187b1a47af8c8 139
+docs/vendor/enterprise-portal-v2-use.mdx
+  h_a187b1a47af8c8 118
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  h_a187b1a47af8c8 151,153
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5216e23284ef8b7ccc9d1d3b551ba7791fd3647e",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}
