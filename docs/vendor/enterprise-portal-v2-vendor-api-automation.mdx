@@ -148,9 +148,9 @@ The response includes:
 
 You can also [update an installation options record](https://replicated-vendor-api.readme.io/reference/patchinstalloptions) with `PATCH` or [delete an installation options record](https://replicated-vendor-api.readme.io/reference/deleteinstalloptions) with `DELETE`.
 
-Supported install types are `helm` and `linux`. Supported network availability values are `online`, `proxy`, and `airgap`.
+Supported install types are `helm`, `linux`, `kots`, and `kurl`. Supported network availability values are `online`, `proxy`, and `airgap`.
 
-KOTS and kURL install options records are created by customers.
+KOTS and kURL require those install types on the customer license. `kots` and `kurl` do not use `registry_availability` or `kubernetes_distribution`.
 
 For Helm install options, `registry_availability` can be `online`, `partial`, or `offline`.
 Helm install options can also include `kubernetes_distribution`.
