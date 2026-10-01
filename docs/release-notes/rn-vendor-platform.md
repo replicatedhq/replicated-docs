@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.01-1
+
+Released on October 1, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-01-1}
+* Enterprise Portal now shows when CVE fixability information is unavailable or incomplete instead of reporting missing data as zero fixable vulnerabilities.
 ## v2026.09.30-1
 
 Released on September 30, 2026
