@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.02-2
+
+Released on October 2, 2026
+
+### Improvements {#improvements-v2026-10-02-2}
+* Added an explanation to the disabled "Manage this customer in Enterprise Portal" switch when the app-level "Enable Enterprise Portal for all customers" setting overrides it.
+
+### Bug Fixes {#bug-fixes-v2026-10-02-2}
+* Fixed the Vendor Portal Customers list showing the Enterprise Portal global-setting banner, and a Download Portal badge on customer rows, to teams that do not have a Download Portal.
 ## v2026.10.02-1
 
 Released on October 2, 2026
