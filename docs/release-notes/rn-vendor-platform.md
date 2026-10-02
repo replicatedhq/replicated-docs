@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.01-2
+
+Released on October 1, 2026
+
+### New Features {#new-features-v2026-10-01-2}
+* SC-138994: Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules. https://app.shortcut.com/replicated/story/138994.
+
+### Improvements {#improvements-v2026-10-01-2}
+* SC-138994: Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
 ## v2026.10.01-1
 
 Released on October 1, 2026
