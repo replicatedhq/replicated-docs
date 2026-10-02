@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.02-1
+
+Released on October 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-02-1}
+* Fixes a bug that could cause custom metrics to be missing when a support bundle from an airgap instance is uploaded. This impacts only instances installed using a service account.
 ## v2026.10.02-0
 
 Released on October 2, 2026
