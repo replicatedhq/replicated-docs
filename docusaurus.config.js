@@ -102,15 +102,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Temporary: remove this block after the October 3, 2026 maintenance window.
-      announcementBar: {
-        id: 'planned-maintenance-2026-10-03',
-        content:
-          'Planned maintenance is in progress today, Saturday, October 3, from 9:00 a.m.–6:00 p.m. ET. <a href="https://status.replicated.com/" target="_blank" rel="noopener noreferrer">View live updates →</a>',
-        backgroundColor: '#ff4856',
-        textColor: '#ffffff',
-        isCloseable: false,
-      },
       docs: {
         sidebar: {
           hideable: true,
