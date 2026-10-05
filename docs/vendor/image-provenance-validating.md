@@ -3,7 +3,7 @@
 This topic describes how to verify the authenticity and integrity of Replicated container images, including Supply Chain Levels for Software Artifacts (SLSA) provenance, image signatures, and Software Bill of Materials (SBOM) attestations.
 
 :::note
-This topic covers Replicated **container images**. To validate the `preflight` and `support-bundle` **CLI binaries** that you download, see [Validate Troubleshoot CLI provenance](/vendor/troubleshoot-cli-provenance-validating).
+This topic covers Replicated **container images**. To validate Embedded Cluster v3 release files, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-provenance-validating). To validate the `preflight` and `support-bundle` **CLI binaries** that you download, see [Validate Troubleshoot CLI provenance](/vendor/troubleshoot-cli-provenance-validating).
 :::
 
 ## About SLSA and SBOMs

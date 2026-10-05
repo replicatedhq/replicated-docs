@@ -1,6 +1,6 @@
 # Validate SBOM signatures
 
-This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated KOTS, Replicated kURL, and Troubleshoot releases.
+This topic describes how to validate software bill of materials (SBOM) signatures for Replicated KOTS, Replicated kURL, Troubleshoot, and Embedded Cluster v3 releases.
 
 ## About Software Bills of Materials
 
@@ -9,6 +9,8 @@ A _software bill of materials_ (SBOM) is an inventory of all components used to 
 When you install software, validating an SBOM signature can help you understand exactly what the software package is installing. This information can help you ensure that the files are compatible with your licensing policies and help determine whether there is exposure to CVEs.
 
 For information about validating SLSA provenance and image signatures for Replicated images, see [Validate container image provenance](/vendor/image-provenance-validating).
+
+For information about validating Embedded Cluster v3 release archives and installer binaries, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-provenance-validating).
 
 ## Prerequisite
 
@@ -79,3 +81,32 @@ To validate a Troubleshoot SBOM signature:
     ```bash
     cosign verify-blob --key key.pub --bundle troubleshoot-sbom.tgz.bundle troubleshoot-sbom.tgz
     ```
+
+## Validate an Embedded Cluster v3 SBOM signature
+
+Beginning with release 3.14.0-beta.1, each Embedded Cluster v3 release includes an SBOM for the Go and npm dependencies used to build Embedded Cluster v3.
+
+To validate an Embedded Cluster v3 SBOM signature:
+
+1. Replace `VERSION` with the complete Embedded Cluster v3 release version. Do not include a Kubernetes version suffix. For example, use `3.14.0-beta.1`, not `3.14.0-beta.1+k8s-1.36`.
+
+1. Download the SBOM archive and its Sigstore bundle:
+
+   ```bash
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-sbom.tgz
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-sbom.sigstore.json
+   ```
+
+   The SBOM archive contains `ec-VERSION-sbom.spdx.json` in SPDX JSON format.
+
+1. Run the following command:
+
+   ```bash
+   cosign verify-blob \
+     --bundle VERSION-sbom.sigstore.json \
+     --certificate-identity "https://github.com/replicatedhq/ec/.github/workflows/release.yml@refs/tags/VERSION" \
+     --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+     VERSION-sbom.tgz
+   ```
+
+Successful verification confirms that the SBOM archive has not changed and that the expected Embedded Cluster release workflow signed it. Cosign returns a nonzero exit status if verification fails. Do not use the SBOM if verification fails.
