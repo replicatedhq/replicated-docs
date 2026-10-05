@@ -2,13 +2,17 @@
 
 This topic describes how to use Cosign to verify keyless Supply Chain Levels for Software Artifacts (SLSA) provenance for Troubleshoot CLI release archives.
 
+:::note
+This topic covers the `preflight` and `support-bundle` **CLI binaries** that you download. To validate Replicated **container images**, including the Troubleshoot and Preflight images, see [Validate container image provenance](/vendor/image-provenance-validating).
+:::
+
 ## About Troubleshoot CLI provenance
 
 Troubleshoot releases include a Sigstore bundle containing signed SLSA provenance for the `preflight` and `support-bundle` CLI archives beginning with release 0.134.1. The provenance associates each release archive's digest with the Troubleshoot release workflow and release tag that produced it. The keyless signature uses a short-lived certificate issued through the GitHub Actions OpenID Connect (OIDC) identity.
 
 To verify a Troubleshoot CLI archive, download the archive and its Sigstore bundle from the same release. Then, use Cosign to confirm that the archive's digest is included in the signed provenance and that the expected workflow identity produced the attestation.
 
-For information about validating Replicated container images, see [Validate image provenance](/vendor/image-provenance-validating). For information about validating SBOM signatures, see [Validate SBOM signatures](/vendor/sbom-validating).
+For information about validating SBOM signatures, see [Validate SBOM signatures](/vendor/sbom-validating).
 
 ## Prerequisite
 
