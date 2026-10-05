@@ -1,0 +1,19 @@
+docs/vendor/sbom-validating.md
+  s_a6bb9ae53555d3::t_074f8fd32be277 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4b400cfeee125627fa3dfe8c277e545ab9bda984",
+  "prompts": {},
+  "sessions": {
+    "s_a6bb9ae53555d3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a6bb9ae53555d3",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
