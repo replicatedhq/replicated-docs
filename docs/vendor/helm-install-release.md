@@ -27,7 +27,7 @@ For an umbrella chart, configure a single HelmChart custom resource with `chart.
 For more information about working with subcharts, see:
 
 - [Helm optional dependencies](packaging-include-resources#helm-optional-dependencies) in _Conditionally include or exclude resources_, to let customers turn a subchart on or off.
-- [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_, to render every subchart's images for air gap bundles and Security Center scans.
+- [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_, to render every subchart's images into the release's image list. This list is what generates the air gap install instructions, builds the `.airgap` bundle, and determines which images the Security Center scans.
 - [About the Replicated SDK](replicated-sdk-overview), to understand the distinction between the SDK's own values and the `global.replicated` values that every subchart can read.
 
 ## Requirements and recommendations
@@ -71,3 +71,5 @@ To package a Helm chart so that it can be added to a release:
     :::
 
 1. Add the `.tgz` file to a release. For more information, see [Manage Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+1. Add a HelmChart custom resource to the release for each top-level Helm chart. The Vendor Portal uses these custom resources to build the release's image list, which generates the air gap install instructions, builds the `.airgap` bundle, and determines which images the Security Center scans. A release that contains charts but no HelmChart custom resource has an empty image list. For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).

@@ -17,7 +17,9 @@ Before you install, complete the following prerequisites:
 
 * Declare the Replicated SDK as a dependency in your Helm chart. For more information, see [Install the SDK as a Subchart](replicated-sdk-installing#install-the-sdk-as-a-subchart) in _Installing the Replicated SDK_.
 
-* To use the [Security Center (Beta)](/vendor/security-center-about), add a unique HelmChart custom resource for each Helm chart in your release. The Security Center uses these HelmChart custom resources to create the list of images that it scans and reports on.
+* Add a unique HelmChart custom resource for each Helm chart in your release. The Vendor Portal runs `helm template` against these custom resources to build the list of images in the release.
+
+    Releases that do not include a HelmChart custom resource have an empty image list. This means that the air gap install instructions render no image relocation commands, the `.airgap` bundle is built without application images, and the [Security Center (Beta)](/vendor/security-center-about) has no images to scan. For more information, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
     The following is an example HelmChart custom resource for a chart named `examplechart` with a chart version of `1.0.0`:
 
