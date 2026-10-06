@@ -32,8 +32,8 @@ To connect the Replicated proxy registry to Harbor for pull-through proxy cachin
 
     * For the provider field, choose Docker Registry.
     * For the URL field, enter `https://proxy.replicated.com` or the custom domain that is configured for the Replicated proxy registry. For more information about configuring custom domains in the Vendor Portal, see [Use Custom Domains](/vendor/custom-domains-using). 
-    * For the access ID, enter the email address associated with the customer in the Vendor Portal.
-    * For the access secret, enter the customer's unique license ID. You can find the license ID in the Vendor Portal by going to **Customers > [Customer Name]**.
+    * For the access ID, enter the email address associated with the customer in the Vendor Portal. This field is not validated, so any value is accepted.
+    * For the access secret, enter the customer's credential. For customers using the Download Portal or the Classic Enterprise Portal, this is the customer's unique license ID, which you can find in the Vendor Portal by going to **Customers > [Customer Name]**. For customers using the new Enterprise Portal, this is a service account token. Service accounts have a token and no username, which is why there is no separate value for the access ID. Customer team admins create service accounts from **Team Settings > Service Accounts** in the Enterprise Portal. For more information, see [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
 
 1. Verify your configuration by testing the connection and then save the endpoint.  
 
@@ -71,4 +71,18 @@ To configure image mirroring in Harbor:
 
 [jFrog Artifactory](https://jfrog.com/help/r/jfrog-artifactory-documentation) supports pull-through caching for Docker registries.
 
-For information about how to configure a pull-through cache with Artifactory, see [Remote Repository](https://jfrog.com/help/r/jfrog-artifactory-documentation/configure-a-remote-repository) in the Artifactory documentation.
+Create a Docker remote repository with the following settings:
+
+* **URL**: `https://proxy.replicated.com`, or the custom domain configured for the Replicated proxy registry.
+* **Username**: not validated. Enter any value.
+* **Password**: the customer's license ID, or a service account token for customers using the new Enterprise Portal.
+
+Artifactory sends Basic credentials to the `/v2/` endpoint to validate the configuration, so the connection test succeeds when the credential is valid.
+
+Images on the Replicated proxy registry use the path `proxy.replicated.com/proxy/<app-slug>/<registry-slug>/<repo>:<tag>`. Through Artifactory the same image is available at `<artifactory-host>/<repo-key>/proxy/<app-slug>/<registry-slug>/<repo>:<tag>`. If you use a custom domain for the proxy registry, the host changes and the rest of the path is the same.
+
+:::note
+Customers pulling through Artifactory need to override the image repository values in your chart to point at the Artifactory host, and supply an image pull secret for Artifactory using their own Artifactory credentials rather than the Replicated credential above. The values to override depend on how your chart is structured.
+:::
+
+For more information about how to configure a pull-through cache with Artifactory, see [Remote Repository](https://jfrog.com/help/r/jfrog-artifactory-documentation/configure-a-remote-repository) in the Artifactory documentation.
