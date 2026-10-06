@@ -12,9 +12,11 @@ In addition to the support for on-demand pull-through caching, connecting the Re
 * Registries like Harbor or Artifactory typically support access controls as well as scanning images for security vulnerabilities
 * With Harbor, users can optionally set up replication rules for image mirroring, which can be used to improve data availability and reliability
 
-## Limitation
+## Limitations
 
-Artifactory does not support mirroring or replication for Docker registries. If you need to set up image mirroring, use Harbor. See [Set Up Mirroring in Harbor](#harbor-mirror) below.
+* Artifactory does not support mirroring or replication for Docker registries. If you need to set up image mirroring, use Harbor. See [Set Up Mirroring in Harbor](#harbor-mirror) below.
+
+* The Harbor proxy cache trims a multi-architecture manifest list down to the platforms that it has already cached, and stores the result under a digest that differs from the one in the source registry. This has two effects. An image reference that is pinned to a specific digest does not resolve through the cache, and any platform that was not cached is missing from the manifest list that Harbor serves. If your application uses digest-pinned or multi-architecture images, verify that they pull correctly through the cache before you rely on it for an installation. For more information, see [Fix proxy cache manifest list reconcile](https://github.com/goharbor/harbor/pull/23355) in the Harbor repository.
 
 ## Connect the Replicated proxy registry to Harbor
 
