@@ -12,6 +12,86 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.14.0-beta.1
+
+Released on October 5, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.14.0-beta.1+k8s-1.36</td>
+    <td id="center">3.14.0-beta.1+k8s-1.35</td>
+    <td id="center">3.14.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-14-0}
+
+* Adds backup and restore orchestration directly to Embedded Cluster using application-packaged Velero. This replaces the prototype disaster recovery extension and its recovery keys; backups from the prototype are not compatible with the new workflow.
+* Adds external NFS backup destinations through a dedicated SeaweedFS service, supporting either an NFS export or an existing NFS-mounted host directory.
+* Adds backup and restore support for air gap installations, including bootstrapping the internal registry and loading recovery images before restoring the application.
+* Automatically rewrites image references in rendered Helm pod specifications, including subcharts, hooks, and init containers, for air gap and bring-your-own registries. Online installations use release image metadata to proxy eligible private images. Images in custom fields or scripts still require explicit template functions.
+
+### Improvements {#improvements-3-14-0}
+
+* Preserves saved installation settings during restore, including the network CIDR, data directory, and API port, while allowing explicit replacement values. Host-specific settings such as proxy configuration and TLS certificates can be supplied for the replacement environment.
+* Publishes keyless Sigstore signatures for installer binaries and release archives, SLSA build provenance, and a signed source-dependency SBOM. For verification instructions, see [Verify Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-release-files-validating).
+* Shows support bundle guidance when installation of the Kubernetes runtime fails or an upgrade encounters an error, helping operators collect diagnostics before attempting recovery.
+
+### Bug fixes {#bug-fixes-3-14-0}
+
+* Applies application-provided redactor specifications to support bundles, including redactor templates that reference application configuration.
+* Resumes failed application preflight checks after a configuration correction without repeating completed host checks and infrastructure installation.
+* Applies values supplied through `--config-values` even when the configuration item's `when` condition hides it.
+* Reports configuration input that cannot be applied instead of silently discarding it, and detects references to undefined configuration items. Preserves uploaded file contents when only the filename changes.
+* Waits for replacement hosts to become ready before installing infrastructure during a multi-node restore.
+* Fixes `restore --headless` to support the complete restore workflow.
+
+## 3.13.0-beta.1
+
+Released on September 16, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.13.0-beta.1+k8s-1.36</td>
+    <td id="center">3.13.0-beta.1+k8s-1.35</td>
+    <td id="center">3.13.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-13-0}
+
+* Adds a Disaster Recovery entry to the Admin Console for applications that include the lifecycle disaster recovery extension.
+* Displays application health reported by the Replicated SDK on the installation and upgrade completion screens and in the Admin Console.
+
+### Improvements {#improvements-3-13-0}
+
+* Displays join command expiration in the UI and reports expired join tokens with instructions to generate a new bundle, instead of returning an authentication error or timing out.
+
+### Bug fixes {#bug-fixes-3-13-0}
+
+* Prevents `reset` from hanging indefinitely when the container runtime stops responding. Reset times out the stalled Kubernetes cleanup and continues host teardown.
+* Allows operators to bypass eligible failed preflight checks in the install and upgrade UI without setting CLI flags. Checks that fail to execute cannot be bypassed.
+* Honors strict preflight failures when the preflight result marks them as required, preventing bypass through either the UI or headless flags.
+* Resets the support bundle Share button for each newly generated bundle so that an unshared bundle is not incorrectly marked as sent.
+* Returns users to the correct installation step after login and prevents configuration changes to an already deployed revision from being saved for a later upgrade.
+* Stops worker reset from attempting to delete its own Kubernetes Node object without permission. Remove the node from a controller using `remove-node`.
+* Makes `kubectl` available in the debug shell on newly joined nodes.
+* Adds periodic cleanup of SeaweedFS change logs and abandoned registry uploads. Existing accumulated storage still requires a one-time manual purge and vacuum to reclaim disk space.
+
 ## 3.12.0-beta.1
 
 Released on August 21, 2026
