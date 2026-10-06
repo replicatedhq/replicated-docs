@@ -10,7 +10,7 @@ When you install software, validating an SBOM signature can help you understand 
 
 For information about validating SLSA provenance and image signatures for Replicated images, see [Validate container image provenance](/vendor/image-provenance-validating).
 
-For information about validating Embedded Cluster v3 release archives and installer binaries, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-provenance-validating).
+For information about validating Embedded Cluster v3 release archives and installer binaries, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-release-files-validating).
 
 ## Prerequisite
 

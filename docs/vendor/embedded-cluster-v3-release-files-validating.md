@@ -17,59 +17,45 @@ Before you perform these tasks, install the following tools:
 
 ## Download the release files
 
-Embedded Cluster v3 release files are available for Linux AMD64, Linux ARM64, macOS, and Windows AMD64.
+Embedded Cluster v3 release files are available for Linux x86-64.
 
 To download the files:
 
-1. Choose a version and platform from the following table:
+1. Replace `VERSION` with the complete Embedded Cluster v3 release version. Do not include a Kubernetes version suffix. For example, use `3.14.0-beta.1`, not `3.14.0-beta.1+k8s-1.36`.
 
-   | Platform | Release archive | Installer binary in the archive |
-   | --- | --- | --- |
-   | Linux AMD64 | `VERSION-linux-amd64.tgz` | `cli-linux-amd64` |
-   | Linux ARM64 | `VERSION-linux-arm64.tgz` | `cli-linux-arm64` |
-   | macOS | `VERSION-darwin-all.tgz` | `cli-darwin-all` |
-   | Windows AMD64 | `VERSION-windows-amd64.zip` | `cli-windows-amd64.exe` |
+1. Download the release archive and its Sigstore bundles:
 
-   Replace `VERSION` with the complete Embedded Cluster v3 release version. Do not include a Kubernetes version suffix. For example, use `3.14.0-beta.1`, not `3.14.0-beta.1+k8s-1.36`.
-
-1. Download the release archive from the following location:
-
-   ```text
-   https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/ARCHIVE
+   ```bash
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-linux-amd64.tgz
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-linux-amd64.archive.sigstore.json
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-linux-amd64.binary.sigstore.json
+   curl -LO https://tf-embedded-cluster-binaries.s3.us-east-1.amazonaws.com/releases/VERSION-linux-amd64.provenance.sigstore.json
    ```
 
-   Replace `ARCHIVE` with the release archive filename from the preceding table.
-
-1. Download the following Sigstore bundles from the same location. Replace `VERSION-PLATFORM` with the archive filename without the `.tgz` or `.zip` extension.
-
-   ```text
-   VERSION-PLATFORM.archive.sigstore.json
-   VERSION-PLATFORM.binary.sigstore.json
-   VERSION-PLATFORM.provenance.sigstore.json
-   ```
+The archive contains the `cli-linux-amd64`, `daemon-linux-amd64`, and `web-linux-amd64` binaries. Only `cli-linux-amd64` has an individual signature and is an individual subject in the provenance bundle. The archive signature and provenance cover the archive as a whole. Replicated does not publish individual bundles for the other two binaries.
 
 ## Verify the release archive signature
 
-In the following command, replace `VERSION`, `PLATFORM`, and `ARCHIVE` with the values for the release that you downloaded:
+Run the following command:
 
 ```bash
 cosign verify-blob \
-  --bundle VERSION-PLATFORM.archive.sigstore.json \
+  --bundle VERSION-linux-amd64.archive.sigstore.json \
   --certificate-identity "https://github.com/replicatedhq/ec/.github/workflows/release.yml@refs/tags/VERSION" \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-  ARCHIVE
+  VERSION-linux-amd64.tgz
 ```
 
 Successful verification confirms that the release archive has not changed and that the expected Embedded Cluster release workflow signed it. Cosign returns a nonzero exit status if verification fails. Do not use the archive if verification fails.
 
 ## Verify SLSA provenance for the release archive
 
-In the following command, replace `VERSION`, `PLATFORM`, and `ARCHIVE` with the values for the release that you downloaded:
+Run the following command:
 
 ```bash
-gh attestation verify ARCHIVE \
+gh attestation verify VERSION-linux-amd64.tgz \
   --repo replicatedhq/ec \
-  --bundle VERSION-PLATFORM.provenance.sigstore.json \
+  --bundle VERSION-linux-amd64.provenance.sigstore.json \
   --cert-identity "https://github.com/replicatedhq/ec/.github/workflows/release.yml@refs/tags/VERSION" \
   --cert-oidc-issuer https://token.actions.githubusercontent.com \
   --source-ref refs/tags/VERSION
@@ -81,36 +67,32 @@ Successful verification confirms that the archive's digest is included in the si
 
 To verify the installer binary signature:
 
-1. Extract the release archive.
-
-   For Linux or macOS, run:
+1. Extract the release archive:
 
    ```bash
-   tar -xzf ARCHIVE
+   tar -xzf VERSION-linux-amd64.tgz
    ```
 
-   For Windows, extract the `.zip` archive.
-
-1. In the following command, replace `VERSION`, `PLATFORM`, and `BINARY` with the values for the release that you downloaded:
+1. Run the following command:
 
    ```bash
    cosign verify-blob \
-     --bundle VERSION-PLATFORM.binary.sigstore.json \
+     --bundle VERSION-linux-amd64.binary.sigstore.json \
      --certificate-identity "https://github.com/replicatedhq/ec/.github/workflows/release.yml@refs/tags/VERSION" \
      --certificate-oidc-issuer https://token.actions.githubusercontent.com \
-     BINARY
+     cli-linux-amd64
    ```
 
 Successful verification confirms that the installer binary has not changed and that the expected Embedded Cluster release workflow signed it. Cosign returns a nonzero exit status if verification fails. Do not use the binary if verification fails.
 
 ## Verify SLSA provenance for the installer binary
 
-In the following command, replace `VERSION`, `PLATFORM`, and `BINARY` with the values for the release that you downloaded:
+Run the following command:
 
 ```bash
-gh attestation verify BINARY \
+gh attestation verify cli-linux-amd64 \
   --repo replicatedhq/ec \
-  --bundle VERSION-PLATFORM.provenance.sigstore.json \
+  --bundle VERSION-linux-amd64.provenance.sigstore.json \
   --cert-identity "https://github.com/replicatedhq/ec/.github/workflows/release.yml@refs/tags/VERSION" \
   --cert-oidc-issuer https://token.actions.githubusercontent.com \
   --source-ref refs/tags/VERSION
