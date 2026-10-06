@@ -1,0 +1,23 @@
+docs/vendor/helm-install-airgap.mdx
+  s_75e7b79b08c406::t_ee8504ddaf65d4 19
+docs/vendor/helm-install-release.md
+  s_75e7b79b08c406::t_48edb487dc38de 30,74-75
+docs/vendor/install-with-helm.mdx
+  s_75e7b79b08c406::t_be093f43673e34 20-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "05ed5a44ec692c07e72296cbe97b4f77660a427c",
+  "prompts": {},
+  "sessions": {
+    "s_75e7b79b08c406": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_75e7b79b08c406",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
