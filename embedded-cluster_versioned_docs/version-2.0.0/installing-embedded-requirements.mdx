@@ -11,6 +11,49 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 <EmbeddedClusterRequirements/>
 
+## Disk space requirements {#disk-space}
+
+The filesystem that contains the data directory requires the most disk space. The data directory holds the k0s Kubernetes data, including etcd, containerd images, and pod logs, along with the OpenEBS PersistentVolume data and Embedded Cluster assets such as charts and binaries. By default, the data directory is `/var/lib/embedded-cluster`.
+
+During installation, the host preflight checks enforce the following disk space requirements. The installation is blocked when these requirements are not met:
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Requirement</th>
+  </tr>
+  <tr>
+    <td>The filesystem containing the data directory</td>
+    <td>40Gi or more of total space, and less than 80% used</td>
+  </tr>
+  <tr>
+    <td>The filesystem containing the data directory (air gap installations only)</td>
+    <td>Controller nodes: available space of at least 2x the size of the extracted air gap bundle. Worker nodes: available space for the infrastructure images.</td>
+  </tr>
+</table>
+
+After installation, the host support bundle includes additional disk space checks that produce warnings when they fail. These checks cover the root filesystem (`/`) with 40Gi of total space, less than 80% used, and 10Gi available; the filesystems containing the data directory, the k0s data directory, and the OpenEBS local PV directory; and `/tmp` with 5Gi of total space.
+
+For more information about the default host preflight checks, see [`preflights/specs`](https://github.com/replicatedhq/embedded-cluster/tree/main/pkg-new/preflights/specs) in the `embedded-cluster` repository in GitHub.
+
+### Custom partitioning {#custom-partitioning}
+
+If the root filesystem (`/`) has limited space, place the data directory on a separate disk or partition:
+
+* Create a dedicated filesystem and mount it at the data directory path, or pass the `--data-dir` flag with the Embedded Cluster `install` command to relocate the data directory. The relocated data directory must meet the same disk space and write latency requirements as the default location. For more information, see [install](/embedded-cluster/v2/embedded-cluster-install).
+
+:::warning
+Do not create a symbolic link from the data directory path to another location. A host preflight check blocks the installation when the data directory is a symlink.
+:::
+
+When you use separate partitions, each partition cannot share free space with the others, so plan for the following:
+
+* **Data directory mount**: Enough space for etcd, container images, PersistentVolumes, pod logs, and backups. The enforced minimum is 40Gi with less than 80% used, but plan for steady-state growth above that minimum.
+* **Root filesystem**: At least 10Gi of available space. Upgrades stage the new k0s binary in `/usr/local/bin`, which temporarily requires several hundred MB alongside the existing binary during the upgrade.
+* **`/tmp`**: At least 5Gi of total space.
+
+Because separate partitions cannot share free space, the aggregate total storage for a host with custom partitioning should be larger than the total for a host that uses a single root volume.
+
 ## Port requirements
 
 <EmbeddedClusterPortRequirements/>
