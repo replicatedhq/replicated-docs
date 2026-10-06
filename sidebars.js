@@ -901,6 +901,7 @@ const sidebars = {
         },
         "vendor/sbom-validating",
         "vendor/image-provenance-validating",
+        "vendor/embedded-cluster-v3-release-files-validating",
         "vendor/troubleshoot-cli-provenance-validating",
         "vendor/vendor-password-integrity",
         "vendor/packaging-private-registry-security",
