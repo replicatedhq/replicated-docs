@@ -28,6 +28,9 @@ replicated customer create --app myapp --name "Enterprise Ltd" --type paid --cha
 # Create a trial customer with an expiration date
 replicated customer create --app myapp --name "Trial User" --type trial --channel stable --expires-in 720h
 
+# Create a customer whose license expires at a specific date
+replicated customer create --app myapp --name "Annual Customer" --type paid --channel stable --expires-at 2027-01-31
+
 # Create a customer with all available options
 replicated customer create --app myapp --name "Full Options Inc" --custom-id "FULL001" \
 	--channel stable --type paid --email "contact@fulloptions.com" --expires-in 8760h \
@@ -46,6 +49,7 @@ replicated customer create --app myapp --name "Full Options Inc" --custom-id "FU
       --embedded-cluster-download    If set, the license will allow Embedded Cluster downloads.
       --embedded-cluster-multinode   If set, users can add nodes to Embedded Cluster instances. (default true)
       --ensure-channel               If set, channel will be created if it does not exist.
+      --expires-at string            If set, the license will expire at this date. Accepts RFC3339 timestamps like '2027-01-31T15:04:05Z' or dates like '2027-01-31' (midnight UTC)
       --expires-in duration          If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
       --geo-axis                     If set, the license will allow Geo Axis usage.
       --gitops                       If set, the license will allow the GitOps usage.

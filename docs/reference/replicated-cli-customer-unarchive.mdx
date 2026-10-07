@@ -1,0 +1,54 @@
+# replicated customer unarchive
+
+Unarchive a customer
+
+### Synopsis
+
+Unarchive a customer for the current application.
+
+This command restores a previously archived customer, making them
+visible in active customer lists again.
+
+The customer can be specified by either their name or ID. A name only
+matches archived customers. If more than one archived customer has that
+name, use the customer ID.
+
+```
+replicated customer unarchive <customer_name_or_id> [flags]
+```
+
+### Examples
+
+```
+# Unarchive a customer by name
+replicated customer unarchive "Acme Inc"
+
+# Unarchive a customer by ID
+replicated customer unarchive cus_abcdef123456
+
+# Unarchive multiple customers by ID
+replicated customer unarchive cus_abcdef123456 cus_xyz9876543210
+
+# Unarchive a customer in a specific app (if you have multiple apps)
+replicated customer unarchive --app myapp "Acme Inc"
+```
+
+### Options
+
+```
+  -h, --help   help for unarchive
+```
+
+### Options inherited from parent commands
+
+```
+      --app string       The app slug or app id to use in all calls
+      --debug            Enable debug output
+  -o, --output string    The output format to use. Supported formats vary by command (json, table, wide). (default 'table', override with REPLICATED_OUTPUT env var) (default "table")
+      --profile string   The authentication profile to use for this command
+      --token string     The API token to use to access your app in the Vendor API
+```
+
+### SEE ALSO
+
+* [replicated customer](replicated-cli-customer)	 - Manage customers
