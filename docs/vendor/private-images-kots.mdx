@@ -173,7 +173,7 @@ To use the proxy registry with applications packaged as Kubernetes Operators:
 
 ## Migrate from the Replicated registry to the proxy registry {#migrate-replicated-registry}
 
-Replicated has deprecated the ability to push images to the Replicated registry. Vendors already using the Replicated registry are not affected by this change. Images that are already hosted on the Replicated registry will continue to be available for pull access.
+Pushing images to the Replicated registry is deprecated and is not available to new vendors. If your team already pushes images to the Replicated registry, you can continue to push and pull them. There is no end date for push access, and Replicated will give advance notice before this changes.
 
 If you already host any Docker images on the Replicated registry, Replicated recommends that you move your images to an external registry and use the Replicated proxy registry.
 
