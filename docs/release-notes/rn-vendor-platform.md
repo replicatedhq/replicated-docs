@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.06-4
+
+Released on October 6, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-06-4}
+* Helm upgrade instructions now include the preflight checks command for releases whose only preflight is an external troubleshoot.sh/v1beta3 spec. Previously these customers were told to install the preflight plugin and never given a command to run it.
 ## v2026.10.06-3
 
 Released on October 6, 2026
