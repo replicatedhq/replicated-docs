@@ -51,6 +51,141 @@ embeddedcluster.replicated.com/recovery: "true"
 
 Embedded Cluster updates the Secret as installation state changes and refreshes it before a manual backup. Velero executes scheduled backups directly. Protect access to backup storage because backups contain application data and credentials.
 
+## Define application Backup and Restore templates
+
+This section is for application vendors. Add Velero `Backup` and `Restore` manifests to the application release alongside its other application specs. Embedded Cluster accepts one `velero.io/v1` Backup and an optional Restore. A Restore requires a Backup; multiple templates of either kind are rejected.
+
+Embedded Cluster consumes these manifests as templates. Including them in a release does not create a live Backup or Restore during installation. Vendors define the application policy; operators configure the destination, cron expression, and retention duration.
+
+| Template | Vendor controls | Embedded Cluster behavior |
+| --- | --- | --- |
+| Backup | Namespaces, resource filters, label selectors, hooks, volume options, and other native Velero backup settings | Copies the rendered `spec` into Schedule templates, using the operator's TTL and backup storage location. Manual backups use the installed policy with the selected schedule's TTL and location. |
+| Restore | Restore filters, hooks, resource modifiers, and other native Velero restore settings | Saves the rendered policy in the recovery Secret and uses it for application recovery from that backup. Sets the runtime name, namespace, and selected `backupName`. |
+
+Templates render against the installed revision's saved application configuration, license, namespace, and Embedded Cluster template context. Recovery infrastructure charts still use the limited bootstrap context described above; they cannot depend on saved application configuration.
+
+### Example: choose the namespaces and backup method
+
+Add a `backup.yaml` file to the application release:
+
+```yaml
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: application
+spec:
+  includedNamespaces:
+    - 'repl{{ Namespace }}'
+    - application-database
+  defaultVolumesToFsBackup: true
+  snapshotVolumes: false
+```
+
+The namespace template resolves to the application's installed namespace, including `kotsadm` after a v2 migration. Replace `application-database` with the additional namespace used by the application, or remove it if all workloads run in the application namespace. This example backs up resources and mounted volume contents in both namespaces using file-system backups. The packaged Velero installation must provide the corresponding node agent and plugins.
+
+Operators do not need to repeat these settings in a Schedule. After configuring credentials and a backup storage location, they can submit:
+
+```yaml
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily
+  namespace: velero
+spec:
+  schedule: "0 2 * * *"
+  template:
+    storageLocation: default
+    ttl: 720h
+```
+
+Embedded Cluster generates the effective template from the vendor Backup and these operator settings. Operator-supplied namespace, hook, or volume settings in the Schedule template do not override the vendor policy. Backup defaults for TTL and location apply when the corresponding Schedule settings are omitted.
+
+Generated schedules carry the label `embeddedcluster.replicated.com/backup-policy: vendor`. Embedded Cluster periodically reconciles their templates when the installed policy changes, preserving cron, TTL, storage location, and pause state. Existing unmarked schedules are not automatically adopted; reapply them through the configuration editor to use the vendor policy. Existing backups retain their saved Restore policy.
+
+If the release has no Backup template, operators continue to supply the full backup policy in their Schedule YAML. For supported fields and version-specific behavior, see the [Velero Backup API](https://velero.io/docs/v1.18/api-types/backup/).
+
+### Example: use label selectors without excluding recovery state
+
+Application data and Embedded Cluster recovery state belong in the same backup. A vendor Backup must include the application namespace and `embedded-cluster-recovery` Secret. Embedded Cluster validates this requirement and rejects policies that exclude its recovery state; it does not silently broaden the vendor's scope.
+
+For label-based selection, use `orLabelSelectors` to include application resources and the recovery Secret. For example, the following Backup includes resources labeled `backup: application` and resources carrying the recovery label:
+
+```yaml
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: application
+spec:
+  includedNamespaces:
+    - 'repl{{ Namespace }}'
+  orLabelSelectors:
+    - matchLabels:
+        backup: application
+    - matchLabels:
+        embeddedcluster.replicated.com/recovery: "true"
+  defaultVolumesToFsBackup: true
+  snapshotVolumes: false
+```
+
+Label all application resources that must be recovered, including Pods and PVCs. The recovery-label branch does not override namespace or resource exclusions: those filters must also include the recovery Secret. Do not combine `labelSelector` and `orLabelSelectors` in the same Backup.
+
+### Example: pause an operator-managed database during restore
+
+A resource modifier can patch a custom resource before Kubernetes receives it. This is useful when a database operator must see a restored resource in a paused state before it starts reconciling. Pod restore hooks cannot guarantee this ordering.
+
+Add a `restore.yaml` file to the application release:
+
+```yaml
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: application
+spec:
+  includedNamespaces:
+    - 'repl{{ Namespace }}'
+    - application-database
+  resourceModifier:
+    kind: ConfigMap
+    name: pause-postgres
+```
+
+Package the referenced ConfigMap in the Velero chart or a separate recovery chart marked `spec.recovery: true`. For example, the recovery chart can contain this manifest:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pause-postgres
+  namespace: velero
+data:
+  resource-modifiers.yaml: |
+    version: v1
+    resourceModifierRules:
+      - conditions:
+          groupResource: postgresclusters.postgres-operator.crunchydata.com
+          resourceNameRegex: "^application-postgres$"
+          namespaces:
+            - application-database
+        patches:
+          - operation: add
+            path: /spec/paused
+            value: "true"
+```
+
+Replace the resource name and namespace with those used by the application's PostgresCluster. The example sets `spec.paused` to the boolean `true`. The application's database recovery procedure must then configure its data source and unpause the resource at the appropriate point.
+
+The ConfigMap must exist in Velero's namespace before Embedded Cluster submits the application Restore. Including it only in the backup is too late. Use exactly one data key containing the rules document. Velero validates the rule syntax; Embedded Cluster checks the reference and data-key count. Test the resulting resource state: a rule matching no resources can still result in a completed restore. See [Velero resource modifiers](https://velero.io/docs/v1.18/restore-resource-modifiers/).
+
+Embedded Cluster restores the recovery Secret first with its own restricted Restore. Vendor hooks, filters, and modifiers apply to the subsequent application Restore. If no Restore template was saved with the backup, Embedded Cluster uses its default application restore behavior.
+
+Vendor filesystem-restore plugin settings can also be packaged in the Velero chart. Keep a single ConfigMap matching the pod-volume-restore plugin selector; Embedded Cluster rejects multiple matching ConfigMaps before starting a vendor application Restore.
+
+### Shared packaging with KOTS and v2 upgrades
+
+The same native Velero Backup and Restore documents can be included in an application release deployed by KOTS or Embedded Cluster v3. Validate the template functions and Velero fields against both deployment environments. Embedded Cluster v3 supports `LocalImageName` as an alias for `ReplicatedImageName` in these templates; other KOTS-only helpers are not automatically available. Include restore-hook container images in the airgap bundle and use the appropriate image template functions.
+
+After a v2 installation is upgraded to v3, Embedded Cluster reads the vendor templates from the migrated installed revision and renders them with the migrated configuration. Include the migrated application namespace and its recovery Secret in the Backup policy. Backups taken after the upgrade contain v3 recovery state and can be restored with the matching v3 installer. Restoring a v2 backup directly into v3 is not supported. The upgrade procedure and migration of KOTS scheduling settings are outside this topic.
+
 ## Configure backups
 
 1. Open the [persistent admin console](embedded-persistent-console). If it is not installed, run this command on a controller node:
@@ -67,7 +202,7 @@ Embedded Cluster updates the Secret as installation state changes and refreshes 
 
 The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
 
-Embedded Cluster passes provider-specific configuration to Kubernetes without restricting it to a predefined storage form. Kubernetes and Velero validate the resources. Include at least one Schedule: schedules provide both automatic backups and templates for manual backups.
+Embedded Cluster passes provider-specific configuration to Kubernetes without restricting it to a predefined storage form. Kubernetes and Velero validate the resources. Include at least one Schedule: schedules provide both automatic backups and templates for manual backups. If the release defines a Backup template, supply the cron expression, TTL, and storage location; Embedded Cluster supplies the application policy. Otherwise, include the full backup scope and volume settings in the Schedule.
 
 The page shows **Velero is configured** when the recovery workloads, backup locations, and existing backup repositories are ready and schedules are present without validation errors. Otherwise, it displays errors and keeps the editor available. These readiness checks do not replace testing a backup and restore.
 
@@ -75,9 +210,9 @@ To change the configuration, click **Update configuration** and submit the updat
 
 ### Example: Amazon S3 with file-system backups
 
-This example assumes the application already packages the AWS plugin and a correctly configured Velero node agent. It creates credentials, a backup location, and a daily backup schedule. It does not install Velero or its plugins.
+This example assumes the application defines a file-system Backup template as shown above and already packages the AWS plugin and a correctly configured Velero node agent. It creates credentials, a backup location, and a daily backup schedule. It does not install Velero or its plugins.
 
-Replace `APP_NAMESPACE`, `BUCKET_NAME`, `AWS_REGION`, and the credential placeholders. `APP_NAMESPACE` is the application slug for new installations and `kotsadm` for installations migrated from Embedded Cluster v2. Choose a prefix for this installation's backups and retain it for restore.
+Replace `BUCKET_NAME`, `AWS_REGION`, and the credential placeholders. Choose a prefix for this installation's backups and retain it for restore.
 
 ```yaml
 apiVersion: v1
@@ -126,15 +261,25 @@ metadata:
 spec:
   schedule: "0 2 * * *"
   template:
-    includedNamespaces:
-      - APP_NAMESPACE
     storageLocation: default
     ttl: 720h
-    defaultVolumesToFsBackup: true
-    snapshotVolumes: false
 ```
 
-The example uses a 30-day retention period and file-system volume backups. It disables volume snapshots for this schedule. For required storage permissions and configuration for S3-compatible endpoints, see the [AWS plugin backup location documentation](https://github.com/velero-io/velero-plugin-for-aws/blob/main/backupstoragelocation.md). Other storage providers require their own plugins and configuration.
+The example sets a 30-day retention period. Namespace scope and file-system volume settings come from the application's Backup template.
+
+For releases without a Backup template, add the application's backup scope and volume settings to `spec.template`. For example:
+
+```yaml
+template:
+  includedNamespaces:
+    - APP_NAMESPACE
+  storageLocation: default
+  ttl: 720h
+  defaultVolumesToFsBackup: true
+  snapshotVolumes: false
+```
+
+Replace `APP_NAMESPACE` with the application slug for a new installation or `kotsadm` for an installation migrated from v2. For required storage permissions and configuration for S3-compatible endpoints, see the [AWS plugin backup location documentation](https://github.com/velero-io/velero-plugin-for-aws/blob/main/backupstoragelocation.md). Other storage providers require their own plugins and configuration.
 
 ### Preserve the repository password
 
@@ -164,7 +309,7 @@ Supply:
 | Schedule | Five-field cron expression |
 | Retention | Positive duration, such as `720h` for 30 days |
 
-Embedded Cluster creates the SeaweedFS resources, credentials, backup location, and schedule. The bucket is `ec-backups`; the generated backup location and schedule are named `ec-filesystem`. The dedicated SeaweedFS instance runs with one replica and the `Recreate` deployment strategy, separately from any airgap registry storage. Its internal S3 endpoint uses authenticated HTTP. All master state, volume data, and filer database files reside on the external storage; preserve the entire directory.
+Embedded Cluster creates the SeaweedFS resources, credentials, backup location, and schedule. When the release defines a Backup template, the generated schedule uses that policy with the supplied cron expression and retention. The bucket is `ec-backups`; the generated backup location and schedule are named `ec-filesystem`. The dedicated SeaweedFS instance runs with one replica and the `Recreate` deployment strategy, separately from any airgap registry storage. Its internal S3 endpoint uses authenticated HTTP. All master state, volume data, and filer database files reside on the external storage; preserve the entire directory.
 
 A new destination must be empty. Initialization writes a destination marker. During restore, supply the retained destination, prefix, credentials, and repository password. Recovery requires the existing marker and storage layout and does not initialize a missing bucket as a new destination.
 
@@ -389,7 +534,7 @@ The replacement cluster can use different network interfaces and pod/service CID
 
 ### Complete recovery and enable schedules
 
-After the hosts and storage infrastructure are ready, Embedded Cluster restores application resources and volumes through Velero, then reconciles the matching application release. Failed or partially failed restores do not mark recovery complete.
+After the hosts and storage infrastructure are ready, Embedded Cluster restores application resources and volumes through Velero using the Restore policy saved in the backup, if present, then reconciles the matching application release. Failed or partially failed restores do not mark recovery complete.
 
 On **Enable backup schedules**, enable the schedules you want to run. If you configured a backup location as `ReadOnly` during recovery, change it to `ReadWrite` before resuming backups.
 
@@ -445,12 +590,13 @@ Run `sudo ./APP_SLUG restore --help` for the full list of options. The applicati
 
 Keep these items in this draft until the release documentation and support matrix are finalized:
 
-* Confirm the first supported EC version and availability of browser, headless, airgap, BYO registry, and prototype filesystem destinations. Backups must be created with a backup-capable release; there is no earlier EC backup format to support.
+* Confirm the first supported EC version and availability of browser, headless, airgap, BYO registry, and prototype filesystem destinations. Backups must be created with a v3 backup-capable release, including after a v2-to-v3 upgrade. V2 backups cannot be restored directly into v3.
 * Verify vendor packaging with bootstrap-safe image templates, separate recovery charts, node-agent paths, plugins, and disabled recovery-time schedules. Exercise explicit digests as well as image tags.
 * Test single-node and multi-node restore with external network access blocked, including metadata retrieval before joins, registry credential recovery, fresh pulls on every host, and the transition to HA storage.
 * Test registry-data exclusions under broad backup scopes with both file-system backups and snapshots, retaining unrelated data and objects.
 * Verify recovery of saved CIDR, data directory, and API port; explicit overrides; one combined rebuild; and restored Services and volume data with changed networks and paths.
-* Verify new-install and v2-migrated namespace recovery, automatic first-controller roles, and correct join requirements.
+* Verify new-install and v2-migrated namespace recovery, automatic first-controller roles, and correct join requirements. Test backups taken after a v2-to-v3 upgrade using migrated vendor templates and configuration.
+* Verify Backup and Restore template rendering, multiple namespaces, selectors that retain the recovery Secret, hooks, operator TTL overrides, and policy updates. Confirm resource modifiers take effect before operator reconciliation and their ConfigMaps are available from recovery charts.
 * Test browser and headless selection, unattended inputs, authenticated join downloads, redirected progress, terminal restore failures, resume, reselection before state import, and schedule re-enablement.
 * Verify NFS and host-path recovery from retained external storage, kernel and mount requirements, permissions, single-writer fencing, larger backups, interruption recovery, retention/deletion, and repository maintenance. Confirm disconnected image availability separately; do not imply production support from a successful backup alone.
 * Confirm host CA trust requirements before bootstrap and backup-storage access. Test private registry CA and client certificates separately from console TLS.
