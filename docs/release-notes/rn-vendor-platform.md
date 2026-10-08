@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.08-8
+
+Released on October 8, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-08-8}
+* Fixes a bug that could cause air gap builds to stay in queued state an excessive amount of time.
 ## v2026.10.08-6
 
 Released on October 8, 2026
