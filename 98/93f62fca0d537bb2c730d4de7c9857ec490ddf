@@ -1,0 +1,21 @@
+docs/vendor/enterprise-portal-v2-about.mdx
+  s_917ccd7ee0cdad::t_cc3033260001c2 34
+docs/vendor/enterprise-portal-v2-versioned-docs.mdx
+  s_917ccd7ee0cdad::t_456821ae029b1d 9,15-16,22-24,28-29,54-55,66,72,74-77,79,85,102,104
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9893f62fca0d537bb2c730d4de7c9857ec490ddf",
+  "prompts": {},
+  "sessions": {
+    "s_917ccd7ee0cdad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_917ccd7ee0cdad",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
