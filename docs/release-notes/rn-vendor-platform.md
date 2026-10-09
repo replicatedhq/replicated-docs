@@ -9,6 +9,16 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.08-4
+
+Released on October 8, 2026
+
+### Improvements {#improvements-v2026-10-08-4}
+* Increased the vendor logo on the Enterprise Portal v2 sign-in, Select Team, and sign-in status screens to 64px tall.
+
+### Bug Fixes {#bug-fixes-v2026-10-08-4}
+* Fixed the vendor logo appearing off-center in a separate white strip on the Enterprise Portal v2 Select Team screen.
+* Fixed the Enterprise Portal v2 Select Team screen not showing the vendor logo for users who signed in with a magic link.
 ## v2026.10.08-2
 
 Released on October 8, 2026
