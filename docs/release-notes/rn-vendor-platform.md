@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.08-12
+
+Released on October 8, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-08-12}
+* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads. https://app.shortcut.com/replicated/story/139994.
 ## v2026.10.08-8
 
 Released on October 8, 2026
