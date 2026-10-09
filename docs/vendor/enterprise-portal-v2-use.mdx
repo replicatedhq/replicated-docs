@@ -92,7 +92,7 @@ What the panel shows depends on the instance:
 - **Air gap, already on the selected release**: The bundle, with no deploy step.
 - **Expired license, or a license without air gap access**: No bundle.
 
-The reopen command uses the customer's application slug for KOTS and `default` for kURL, which is where kURL's `install.sh` runs the Admin Console. Vendors whose Admin Console is in a different namespace set the optional `namespace` prop on `<InstancesAndUpdates />` and on the default-guide `<AdminConsoleCommand />` so customers get `kubectl kots admin-console --namespace` for that kotsadm namespace without rewriting the sample. When `namespace` is empty, the defaults above are unchanged. See [KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides) in _Customize Portal Content_.
+The reopen command uses the customer's application slug for KOTS and `default` for kURL, which is where kURL's `install.sh` runs the Admin Console. To set a different namespace for those commands, see [KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides) in _Customize Portal Content_.
 
 For kURL, the panel upgrades the application only. It does not rerun `install.sh` or upgrade the cluster, and an application release does not on its own mean either is needed. Vendors document their own cluster-maintenance conditions and procedure in the customizable kURL upgrade guide.
 
