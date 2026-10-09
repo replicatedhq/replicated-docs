@@ -1,0 +1,36 @@
+scripts/ci/replicated-cli-docs.sh
+  s_d88745954b427c::t_4fb77a7e6ce6d7 1-10,12,25-70
+  s_d88745954b427c::t_9c70bbdf8f0a04 11,13-24
+scripts/README.md
+  s_d88745954b427c::t_9c70bbdf8f0a04 9-10,34-35,39-41
+  s_d88745954b427c::t_c76bbf828c3152 7-8,11-33,36-38,42,48-49,51-52
+  s_d88745954b427c::t_714c6669797527 43-47,50
+  s_d88745954b427c::t_c63e72ef4a97a1 96
+scripts/ci/update-replicated-cli-docs.cjs
+  s_d88745954b427c::t_26a9fc3194fa69 20
+  s_d88745954b427c::t_4fb77a7e6ce6d7 1-19,21-52
+scripts/ci/sidebar.test.cjs
+  s_d88745954b427c::t_714c6669797527 1-48
+.depot/workflows/sidebar.yml
+  s_d88745954b427c::t_714c6669797527 1-32
+.depot/workflows/replicated-cli-docs.yml
+  s_d88745954b427c::t_9c70bbdf8f0a04 35-40
+  s_d88745954b427c::t_4fb77a7e6ce6d7 1-34,46-47
+  s_d88745954b427c::t_219a90e7e4ddd6 41-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "922ddc993a0da05b16d27c16cb0ae853d85238de",
+  "prompts": {},
+  "sessions": {
+    "s_d88745954b427c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1227b-13b8-70b0-a1b0-e8efce131c2a",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}
