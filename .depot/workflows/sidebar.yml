@@ -1,0 +1,32 @@
+name: "depot: Sidebar check"
+
+on:
+  pull_request:
+    paths:
+      - sidebars.js
+
+concurrency:
+  group: depot-sidebar-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  sidebar:
+    name: Validate sidebar and CLI command insertion
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Check sidebar
+        run: node --test scripts/ci/sidebar.test.cjs
