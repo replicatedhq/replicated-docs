@@ -14,6 +14,8 @@ If you use GitHub Actions as your CI/CD platform, you can include these custom a
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
+The GitHub actions cover a subset of the Replicated CLI. For example, actions can create and archive customers, but no action updates an existing customer. For tasks that don't have an action, run the Replicated CLI in your workflow. For managing customers, see [Automate customer management](/vendor/licenses-automate-customer-management).
+
 ## GitHub actions workflow examples
 
 The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example workflows that use the Replicated GitHub actions. You can use these workflows as a template for your own GitHub Actions CI/CD workflows:
@@ -25,10 +27,10 @@ The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated
 
 ## Integrate GitHub actions
 
-The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also describes when to use the action in a workflow and indicates the related Replicated CLI command where applicable.
+The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CD workflows. The table also describes when to use the action in a workflow and indicates the related Replicated CLI command where applicable.
 
 :::note
-For an up-to-date list of the avilable custom GitHub actions, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+For an up-to-date list of the available custom GitHub actions, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 :::
 
 <table>
@@ -43,7 +45,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
       <p>In release workflows, a temporary channel is created to promote a release for testing. This action archives the temporary channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-cleanup">Archive the temporary channel and customer</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td> 
-    <td><a href="/reference/replicated-cli-channel-delete"><code>channel delete</code></a></td>
+    <td><a href="/reference/replicated-cli-channel-rm"><code>channel rm</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer">archive-customer</a></td>
@@ -51,7 +53,15 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
       <p>In release workflows, a temporary customer is created so that a release can be installed for testing. This action archives the temporary customer after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-cleanup">Archive the temporary channel and customer</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td> 
-    <td>N/A</td>
+    <td><a href="/reference/replicated-cli-customer-archive"><code>customer archive</code></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-channel">create-channel</a></td>
+    <td>
+      <p>In release workflows, use this action to create a temporary channel for testing a release.</p>
+      <p>See <a href="/vendor/ci-workflows#rel-release">Create a release and promote to a temporary channel</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    </td>
+    <td><a href="/reference/replicated-cli-channel-create"><code>channel create</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster">create-cluster</a></td>
@@ -60,6 +70,14 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
       <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-cluster-create"><code>cluster create</code></a></td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-customer">create-customer</a></td>
+    <td>
+      <p>In release workflows, use this action to create a temporary customer so that a release can be installed for testing.</p>
+      <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    </td>
+    <td><a href="/reference/replicated-cli-customer-create"><code>customer create</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-release">create-release</a></td>

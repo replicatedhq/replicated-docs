@@ -22,6 +22,10 @@ For more information about creating custom RBAC policies in the Vendor Portal, i
 
 For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
 
+## About automating customer management in CI/CD
+
+The workflows in this topic create temporary customers for testing. To manage the customers who install your application from a CI/CD pipeline, such as creating customers, renewing licenses, and changing channels when a reviewed change merges, see [Automate customer management](/vendor/licenses-automate-customer-management).
+
 ## Development workflow
 
 In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. Additionally, for applications managed in the Replicated vendor portal, a release is created and promoted to a channel in the Replicated Vendor Portal where it can be shared with internal teams.
@@ -78,7 +82,7 @@ Add a job with the following steps to prepare clusters with CMX, deploy the appl
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
-1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `cluster prepare` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) Replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
+1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `cluster prepare` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster rm`](/reference/replicated-cli-cluster-rm) Replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
 ## CMX-only development workflow
 
@@ -301,4 +305,4 @@ Consider the following requirements and recommendations:
 
 Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
 
-See the [channel rm](/reference/replicated-cli-channel-rm) Replicated CLI command and the [customer/\{customer_id\}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) endpoint in the Vendor API v3 documentation. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.
+See the [channel rm](/reference/replicated-cli-channel-rm) and [customer archive](/reference/replicated-cli-customer-archive) Replicated CLI commands. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.
