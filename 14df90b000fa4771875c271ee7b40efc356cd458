@@ -1,0 +1,25 @@
+sidebars.js
+  s_7489899e0d9e62::t_5a3caaea3dc845 904
+docs/vendor/embedded-cluster-v3-release-files-validating.md
+  s_7489899e0d9e62::t_ae24632b6bdef7 20,24,26,28-32,35,39,43,46,53,56,58,70,73,76,80,83,90,93,95
+docs/vendor/image-provenance-validating.md
+  s_7489899e0d9e62::t_aee23c20fc4411 6
+docs/vendor/sbom-validating.md
+  s_7489899e0d9e62::t_3163c9149f5e08 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "14df90b000fa4771875c271ee7b40efc356cd458",
+  "prompts": {},
+  "sessions": {
+    "s_7489899e0d9e62": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0e99e-abd5-78f0-ab79-a82e42f0c961",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Olivia Campbell <olivia.susan.campbell@gmail.com>"
+    }
+  }
+}

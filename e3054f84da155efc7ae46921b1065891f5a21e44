@@ -1,0 +1,25 @@
+docs/partials/install/_kubernetes-compatibility.mdx
+  s_9bd1feb2de081d::t_00d48beab94b65 3-4
+docs/release-notes/rn-app-manager.md
+  s_9bd1feb2de081d::t_81279ed7d9ad6a 31
+docs/vendor/policies-support-lifecycle.md
+  s_9bd1feb2de081d::t_77efb6d1602f7e 96,98,119
+scripts/ci/release-notes.sh
+  s_9bd1feb2de081d::t_dc1cfbe23c01a4 21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e3054f84da155efc7ae46921b1065891f5a21e44",
+  "prompts": {},
+  "sessions": {
+    "s_9bd1feb2de081d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9bd1feb2de081d",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
