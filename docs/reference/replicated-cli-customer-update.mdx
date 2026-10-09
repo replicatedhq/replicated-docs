@@ -34,6 +34,9 @@ replicated customer update --customer cus_abcdef123456 --name "Updated Corp" --t
 # Set an expiration date for a customer's license
 replicated customer update --customer cus_abcdef123456 --expires-in 8760h
 
+# Set the license to expire at a specific date and time
+replicated customer update --customer cus_abcdef123456 --expires-at 2027-01-31T00:00:00Z
+
 # Update a customer and output the result in JSON format
 replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --output json
 ```
@@ -50,6 +53,7 @@ replicated customer update --customer cus_abcdef123456 --name "JSON Corp" --outp
       --embedded-cluster-download    If set, the license will allow Embedded Cluster downloads.
       --embedded-cluster-multinode   If set, users can add nodes to Embedded Cluster instances. (default true)
       --ensure-channel               If set, channel will be created if it does not exist.
+      --expires-at string            If set, the license will expire at this date. Accepts RFC3339 timestamps like '2027-01-31T15:04:05Z' or dates like '2027-01-31' (midnight UTC)
       --expires-in duration          If set, an expiration date will be set on the license. Supports Go durations like '72h' or '3600m'
       --geo-axis                     If set, the license will allow Geo Axis usage.
       --gitops                       If set, the license will allow the GitOps usage.
