@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.08-6
+
+Released on October 8, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-08-6}
+* Enterprise Portal content pages, PDF, assets, and Ask AI documentation context now require a release version available on the assigned customer channel. Account and settings pages remain accessible when no documentation version is available.
 ## v2026.10.08-5
 
 Released on October 8, 2026
