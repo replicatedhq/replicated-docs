@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.08-2
+
+Released on October 8, 2026
+
+### Improvements {#improvements-v2026-10-08-2}
+* \`GET /v3/supportbundles\` accepts optional \`pageSize\` and \`currentPage\` query parameters to return one page of bundles.
+
+### Bug Fixes {#bug-fixes-v2026-10-08-2}
+* The Support Bundles page in the Vendor Portal no longer times out for teams with many support bundles. Bundles are now shown 20 per page.
 ## v2026.10.08-0
 
 Released on October 8, 2026
