@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.09-4
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-4}
+* Clarified on the New Portal setup wizard that a hybrid vendor's Classic Portal is unaffected and continues to serve customers.
+
+### Bug Fixes {#bug-fixes-v2026-10-09-4}
+* Fixed the Enterprise Portal page forgetting a hybrid vendor's choice of Classic Portal or New Portal view between visits.
 ## v2026.10.09-0
 
 Released on October 9, 2026
