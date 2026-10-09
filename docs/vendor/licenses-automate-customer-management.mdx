@@ -1,0 +1,277 @@
+import ChangeChannel from "../partials/customers/_change-channel.mdx"
+
+# Automate customer management
+
+This topic describes how to automate creating, renewing, updating, and archiving customers with the Replicated CLI and the Vendor API. It also describes how to send customer and instance events back to your own systems.
+
+## Overview
+
+Many teams track contracts and renewals in a system other than the Vendor Portal, such as a customer relationship management (CRM) system, a billing system, or a list of customers kept in a Git repository. When customer records change in that system, the matching customers in the Vendor Portal need to change too. Automating those updates keeps the two in sync without manual edits in the Vendor Portal.
+
+Replicated does not provide built-in integrations with CRM or billing systems. You build and maintain the automation, calling the Replicated CLI or the Vendor API from wherever your team already runs automation. For example:
+
+* A workflow in your CRM that calls the Vendor API when a contract is signed or renewed
+* A CI/CD pipeline that applies changes when a reviewed change to a customer list merges in Git
+* A scheduled script that compares your records with the Vendor Portal and reports differences
+
+### Choose the Replicated CLI or the Vendor API
+
+Replicated recommends the Replicated CLI for scripts and CI/CD pipelines. The CLI handles authentication, changes only the fields that you pass as flags, and accepts expiration dates with a time zone offset.
+
+Use the Vendor API directly when your automation can only make HTTP requests, such as a workflow in a CRM. Some operations are available only in the Vendor API, including setting custom license field values and removing an expiration date. From a script, you can call these endpoints with the [`replicated api`](/reference/replicated-cli-api) command, which uses the same authentication as the rest of the CLI.
+
+If you use GitHub Actions, the [create-customer](https://github.com/replicatedhq/replicated-actions/tree/main/create-customer) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions cover creating and archiving customers. No action updates an existing customer, so use the CLI in your workflow for renewals, channel changes, and other updates. See [Run the CLI in CI/CD](#ci-cd).
+
+## Set up authentication
+
+Replicated recommends a service account with a custom RBAC policy for automation. A service account isn't tied to a person, so it keeps working when someone leaves your team, and the policy limits the token to the operations your automation performs.
+
+1. Create a custom RBAC policy that allows only the resources your automation uses. The following example allows creating, updating, archiving, and unarchiving customers, and creating, viewing, and archiving channels:
+
+    ```json
+    {
+      "v1": {
+        "name": "Customer automation",
+        "resources": {
+          "allowed": [
+            "kots/app/*/license/**",
+            "kots/license/*/archive",
+            "kots/license/*/unarchive",
+            "kots/app/*/channel/create",
+            "kots/app/*/channel/*/read",
+            "kots/app/*/channel/*/archive"
+          ],
+          "denied": []
+        }
+      }
+    }
+    ```
+
+    Archiving and unarchiving a customer check both the `kots/license/*` and the `kots/app/*/license/*` resources, so the policy includes both. If the same token promotes releases, add `kots/app/*/channel/*/promote`. Test the policy with a run of your automation before you rely on it.
+
+    For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring) and [RBAC resource names](/vendor/team-management-rbac-resource-names).
+
+1. Create a service account that uses the policy. See [Create a service account](/vendor/replicated-api-tokens#create-a-service-account).
+
+   If your automation has a step that only reads (e.g. a step that previews changes before they're applied), create a second service account from the same policy and select **Limit to read-only version of above policy**.
+
+1. Make the token and your application slug available to your automation. The CLI reads the `REPLICATED_API_TOKEN` and `REPLICATED_APP` environment variables. See [Set environment variables](/reference/replicated-cli-installing#env-var) in _Install the Replicated CLI_.
+
+## Link customers to your records
+
+Set a custom ID on each customer to link it to the matching record in your system, such as a CRM account ID or a contract number. You can search for customers by custom ID in the Vendor Portal and in the CLI output.
+
+Replicated doesn't require custom IDs to be unique, and neither the CLI nor the Vendor API checks whether a customer already exists before creating one. If your automation can run more than once for the same record, look up the custom ID first so that a retry doesn't create a duplicate customer. See [Look up customers](#look-up).
+
+When you create a customer, store the customer ID and license ID that Replicated returns in your own record. The license ID never changes, including after a renewal or a channel change.
+
+## Create a customer
+
+The following example creates a paid customer that can install with Helm, with a license that expires on October 1, 2027:
+
+```bash
+replicated customer create \
+  --name "Example Bank" \
+  --email platform-team@examplebank.example \
+  --custom-id SF-0001 \
+  --channel Stable \
+  --type paid \
+  --expires-at 2027-10-01 \
+  --helm-install \
+  --kots-install=false \
+  --output json
+```
+
+Note the following:
+
+* Customers that install with Helm need an email address.
+* The `--kots-install` flag defaults to `true`. For a customer that installs only with Helm, pass `--kots-install=false`.
+* The `--channel` flag takes a channel name or ID.
+
+For all available flags, see [customer create](/reference/replicated-cli-customer-create).
+
+The CLI can't set custom license field values. To create a customer and set custom license field values in the same request, use the Vendor API. Custom license field values go in `entitlementValues`, and each value is a string:
+
+```bash
+replicated api post /v3/customer --body '{
+  "app_id": "APP_ID",
+  "name": "Example Bank",
+  "email": "platform-team@examplebank.example",
+  "custom_id": "SF-0001",
+  "channel_id": "CHANNEL_ID",
+  "type": "paid",
+  "expires_at": "2027-10-01",
+  "is_helm_install_enabled": true,
+  "is_kots_install_enabled": false,
+  "entitlementValues": [
+    {"name": "seat_count", "value": "100"}
+  ]
+}'
+```
+
+Replace `APP_ID` with your application ID and `CHANNEL_ID` with the ID of the channel. For more information, see [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) in the Vendor API v3 documentation.
+
+## Renew a license
+
+To renew a license, set a new expiration date:
+
+```bash
+replicated customer update --customer CUSTOMER_ID --expires-at 2028-10-01
+```
+
+The `--expires-at` flag accepts either a date or an RFC 3339 timestamp:
+
+* A date such as `2028-10-01` is stored as midnight UTC at the start of that day. A license with this value expires as September 30 ends in UTC.
+* A timestamp with an offset, such as `2028-09-30T23:59:59-07:00`, is converted to UTC. Use this format to end a license at the end of a day in the customer's time zone. Timestamps without `Z` or an offset are rejected.
+
+If you call the Vendor API directly, `expires_at` accepts a date (`2028-10-01`) or a UTC timestamp ending in `Z` (`2028-10-01T06:59:59Z`). Convert timestamps with an offset to UTC before you send them.
+
+After a renewal, the customer keeps the same license ID. How the new expiration date reaches an existing installation depends on the installation method. See [How end customers sync licenses](/vendor/licenses-about#how-end-customers-sync-licenses).
+
+### Remove an expiration date
+
+The CLI can set an expiration date but can't remove one. To remove it, use the Vendor API:
+
+```bash
+replicated api patch /v3/customer/CUSTOMER_ID --body '{"remove_expires_at": true}'
+```
+
+## Update custom license field values
+
+:::note
+The Replicated CLI doesn't support setting custom license field values. The `customer create` and `customer update` commands set only built-in license fields. To set custom license field values from automation, use the Vendor API, either directly or with the `replicated api` command.
+:::
+
+To change custom license field values on an existing customer, use a `PATCH` request to the Vendor API. Fields that you don't include are left unchanged:
+
+```bash
+replicated api patch /v3/customer/CUSTOMER_ID --body '{
+  "add_entitlements": [
+    {"name": "seat_count", "value": "250"}
+  ],
+  "remove_entitlements": ["trial_feature"]
+}'
+```
+
+`add_entitlements` sets the value of each field that you list. `remove_entitlements` resets each field that you list to its default value. A request that names a license field that doesn't exist for the application fails.
+
+For more information, see [Update a customer](https://replicated-vendor-api.readme.io/reference/patchcustomer) in the Vendor API v3 documentation.
+
+:::note
+Use `PATCH` rather than `PUT` to update a customer from automation. A `PUT` request to `/v3/customer/CUSTOMER_ID` replaces the customer, and resets most fields that you don't include in the request to their default values. For example, omitting `expires_at` in a `PUT` request removes the customer's expiration date.
+:::
+
+## Change a customer's channel
+
+To assign a customer to a different channel, pass the channel name or ID:
+
+```bash
+replicated customer update --customer CUSTOMER_ID --channel CHANNEL_ID
+```
+
+A customer is assigned to one channel at a time, so this replaces the customer's current channel.
+
+Before you move a customer to a new channel, promote a release to that channel so that the customer has a release to install. See [release promote](/reference/replicated-cli-release-promote).
+
+<ChangeChannel/>
+
+For Helm installations, the chart URL includes the channel slug for every channel except the channel with the slug `stable`. For example, a customer on the `stable` channel installs from `oci://registry.replicated.com/APP_SLUG/CHART_NAME`, and a customer on a channel with the slug `example-telecom` installs from `oci://registry.replicated.com/APP_SLUG/example-telecom/CHART_NAME`. After a channel change, the customer's previous chart URL returns `Channel not found for license`. Run `replicated customer inspect --customer CUSTOMER_ID` to get the install command for the new channel, and send it to the customer before you change their channel.
+
+When a customer moves off a channel that was created only for them, you can archive the channel with [channel rm](/reference/replicated-cli-channel-rm). A channel can't be archived while any customer is still assigned to it.
+
+## Archive and unarchive customers
+
+To archive a customer, pass the customer ID:
+
+```bash
+replicated customer archive CUSTOMER_ID
+```
+
+Archiving takes effect immediately. The customer can no longer log in to the Replicated registry, and archived customers don't appear in `replicated customer ls`.
+
+To unarchive a customer, use the `customer unarchive` command in Replicated CLI v0.129.15 and later, or the Vendor API:
+
+```bash
+replicated api post /v3/customer/CUSTOMER_ID/unarchive
+```
+
+An unarchived customer keeps their original license ID, so their existing credentials and install commands work again. Creating a new customer instead gives the customer a new license ID.
+
+## Look up customers {#look-up}
+
+To list customers as JSON, run:
+
+```bash
+replicated customer ls --output json
+```
+
+To find a customer by custom ID, filter the output. For example, with `jq`:
+
+```bash
+replicated customer ls --output json | jq '.[] | select(.customId == "SF-0001")'
+```
+
+Archived customers aren't included in the output.
+
+To view one customer, including their install commands, run `replicated customer inspect --customer CUSTOMER_ID`. See [customer inspect](/reference/replicated-cli-customer-inspect).
+
+## Send events to your systems
+
+Automation can also flow the other way, from Replicated to your systems. Event notifications send an email or a webhook when something happens to a customer or an instance. You can point a webhook at an endpoint that updates your CRM, billing system, or internal tools.
+
+The following events are commonly used to keep external records in sync:
+
+* `customer.created`, `customer.updated`, `customer.archived`, and `customer.unarchived`, to confirm that a change your automation made took effect
+* `customer.license_expiring`, to start a renewal before a license expires. The `daysUntilExpiry` filter accepts `0`, `1`, `7`, `14`, `30`, `60`, and `90`.
+* `release.asset_downloaded`, filtered to the first pull for a license type, to record when a customer first pulls the software
+* `instance.ready`, to record when an instance reports a Ready status for the first time
+
+For example, to send an email to your renewals team 90, 30, and 7 days before any license expires, create a file named `expiring.json`:
+
+```json
+{
+  "name": "Licenses expiring",
+  "isEnabled": true,
+  "emailAddress": "renewals@example.com",
+  "eventConfigs": [
+    {
+      "eventType": "customer.license_expiring",
+      "filters": {
+        "appId": "APP_ID",
+        "daysUntilExpiry": ["90", "30", "7"]
+      }
+    }
+  ]
+}
+```
+
+Then, create the subscription:
+
+```bash
+replicated notification subscription create --file expiring.json
+```
+
+For more information, see:
+
+* [About event notifications](/vendor/event-notifications)
+* [Create event notification subscriptions](/vendor/event-notifications-create), including an example for [revenue recognition](/vendor/event-notifications-create#revenue-operations-first-software-pull-for-revenue-recognition)
+* [Configure and test webhooks](/vendor/event-notifications-webhooks)
+* [Event types and filters](/reference/notifications-events-filters)
+
+## Run the CLI in CI/CD {#ci-cd}
+
+You can run the Replicated CLI in any CI/CD platform. Pin the CLI version so that a new release doesn't change your pipeline's behavior.
+
+To install the CLI on a Linux runner:
+
+```bash
+version=0.129.15
+curl -fsSL "https://github.com/replicatedhq/replicated/releases/download/v${version}/replicated_${version}_linux_amd64.tar.gz" \
+  | sudo tar xz -C /usr/local/bin replicated
+```
+
+For a single command, you can also run the `replicated/vendor-cli` container image. The image doesn't include a shell or tools such as `jq`, so install the CLI on the runner for scripts.
+
+One pattern is to keep the list of customers in a file in Git and treat changes to it like code changes. A pipeline compares the file with the Vendor Portal on each pull request and shows the planned changes, using a read-only token. When the pull request merges, a second job applies the changes with a read/write token. If you use this pattern, report customers that exist in the Vendor Portal but not in the file rather than archiving them automatically, so that a missing line in the file can't remove a customer's access.
+
+For more information about using the CLI in CI/CD, see [Recommended CI/CD workflows](/vendor/ci-workflows).
