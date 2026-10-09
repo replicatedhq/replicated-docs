@@ -1,0 +1,47 @@
+name: "depot: Replicated CLI docs"
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Generate the documentation diff without creating a PR
+        required: true
+        type: boolean
+        default: true
+
+concurrency:
+  group: depot-replicated-cli-docs
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    name: Generate CLI documentation PR
+    runs-on: depot-ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DRY_RUN: ${{ inputs.dry_run }}
+      GH_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.REPLICATED_GH_PAT }}
+
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version: stable
+          cache: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+
+      - name: Generate CLI docs and create or update the PR
+        run: scripts/ci/replicated-cli-docs.sh
