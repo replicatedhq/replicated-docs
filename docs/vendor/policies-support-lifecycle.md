@@ -84,6 +84,8 @@ The following table lists the versions of Replicated Embedded Cluster, Replicate
 
 The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
 
+Replicated aims to add support for new upstream Kubernetes minor versions within one month of their upstream release. This timeline can be affected by when the major Kubernetes distributions make the new version available for validation, and by when compatible releases of the components each installer bundles are available. Embedded Cluster support for a new minor version typically follows a few weeks later than other installers, because Embedded Cluster depends on the release of the Kubernetes distribution it's built on. Until an installer supports a new Kubernetes version, the table lists that installer as NA.
+
 <table>
   <tr>
     <th>Kubernetes Version</th>
@@ -127,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 October 7.
+Last modified 2026 October 9.
