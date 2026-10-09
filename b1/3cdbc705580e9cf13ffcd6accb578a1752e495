@@ -1,0 +1,19 @@
+docs/vendor/enterprise-portal-v2-versioned-docs.mdx
+  s_38efe92e5d5d01::t_8ebaa5a4ccf767 14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b13cdbc705580e9cf13ffcd6accb578a1752e495",
+  "prompts": {},
+  "sessions": {
+    "s_38efe92e5d5d01": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_38efe92e5d5d01",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
