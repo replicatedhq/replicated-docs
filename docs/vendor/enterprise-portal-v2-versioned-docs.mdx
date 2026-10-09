@@ -11,7 +11,7 @@ Each Git branch in your content repo holds one version of your content, with its
 ## Process
 
 - **Initial sync**: When you connect a repo, all branches are discovered and synced.
-- **Push sync**: When you push to any branch, a GitHub webhook triggers a sync for that branch only. Pushing a new branch for the first time automatically creates a new version.
+- **Push sync**: When you push to any branch, a GitHub webhook triggers a sync for that branch only. Pushing a new branch for the first time syncs it automatically. It does not add an entry to the version dropdown. Releases that resolve to the new branch show its content.
 - **`main` is never listed**: The `main` branch does not appear in the version dropdown. Customers see its content only when a release does not resolve to any other branch, so do not use `main` for drafts. Use a branch name that is not a version instead, such as `wip/2.1.0`. See [Naming your branches](#naming-your-branches).
 - **`main` as fallback**: The `main` branch serves as the last-resort fallback. If no branch matches the selected version and no lower semver branch exists, `main` content is shown. This ensures customers always see content. If your repo has no `main` branch, the branch whose name sorts highest alphabetically is the fallback instead, so keep a `main` branch in your repo.
 
