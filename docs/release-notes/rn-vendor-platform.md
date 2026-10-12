@@ -18,6 +18,18 @@ Released on October 9, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-09-4}
 * Fixed the Enterprise Portal page forgetting a hybrid vendor's choice of Classic Portal or New Portal view between visits.
+## v2026.10.09-3
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-3}
+* Security Center now makes customer and instance findings easier to reconcile by showing reporting coverage, scan coverage, evidence source and timing, architecture, attribution, and the real worst instance used for customer-level triage.
+## v2026.10.09-1
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-1}
+* Security Center now shows release architecture context and lets vendors view architecture-specific vulnerability results.
 ## v2026.10.09-0
 
 Released on October 9, 2026
