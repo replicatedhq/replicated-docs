@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.12-0
+
+Released on October 12, 2026
+
+### New Features {#new-features-v2026-10-12-0}
+* Enterprise Portal v2 KOTS and kURL upgrade guidance accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
 ## v2026.10.09-4
 
 Released on October 9, 2026
