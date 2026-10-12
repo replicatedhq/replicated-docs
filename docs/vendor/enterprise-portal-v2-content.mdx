@@ -537,9 +537,29 @@ The default `pages/updates/instances.md` connects the panels to these vendor-own
 />
 ```
 
-Edit the guide pages to describe your Admin Console access, registry, support, and kURL cluster-maintenance requirements. You can point either prop to another content route or remove the prop and page.
+The default KOTS and kURL guides mount `<AdminConsoleCommand />` for the reopen sample. With no `namespace` prop, KOTS uses the application slug and kURL uses `default`, which is where `install.sh` runs kotsadm:
 
-The default KOTS guide reopens the Admin Console with `kubectl kots admin-console --namespace {{app.slug}}`. The default kURL guide uses `--namespace default`, which is where `install.sh` runs kotsadm. If your Admin Console is in a different namespace, put that command in the guide. The default guides do not include `kubectl kots upstream upgrade`. Add that command only if every customer uses the same namespace, and include the app slug argument.
+```markdown
+<AdminConsoleCommand installType="kots" lead="Reopen the KOTS Admin Console by running" />
+```
+
+Set `kotsNamespace` on `<InstancesAndUpdates />` and `namespace` on the matching `<AdminConsoleCommand />` only if every customer's Admin Console runs in that namespace, for example because your own install instructions tell customers to use it. Leave `kurlNamespace` unset unless you forked `install.sh` and every kURL customer's Admin Console runs in that namespace. These props do not change the namespace in the portal's KOTS install command. After you set one, the reopen command no longer tells the customer to substitute a different namespace. Vendors whose customers use different namespaces should leave the props unset.
+
+The values must be DNS-1123 labels of at most 63 characters. Invalid namespace values keep the type default. A KOTS override does not change kURL cards, and a kURL override does not change KOTS cards.
+
+```markdown
+<InstancesAndUpdates
+  kotsGuideHref="/updates/kots"
+  kurlGuideHref="/updates/kurl"
+  kotsNamespace="kotsadm"
+/>
+
+<AdminConsoleCommand installType="kots" namespace="kotsadm" lead="Reopen the KOTS Admin Console by running" />
+```
+
+Edit the guide pages to describe your Admin Console access, registry, support, and kURL cluster-maintenance requirements. You can point `kotsGuideHref` or `kurlGuideHref` to another content route, or remove the prop and page.
+
+The default guides do not include `kubectl kots upstream upgrade`. Add that command only if every customer uses the same namespace, and include the app slug argument.
 
 The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Vendors must document when cluster maintenance is required and provide a separately validated procedure.
 
@@ -549,9 +569,11 @@ The kURL guide separates an application update from kURL/Kubernetes cluster main
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
-**`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path and renders only the application air gap bundle, without recording an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, and `isCurrentVersion`.
+**`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path and renders only the application air gap bundle, without recording an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional kotsadm namespace for the reopen command).
 
-**`<KurlUpdateAssets />`**: Renders the same guided application-upgrade flow for a kURL instance. The reopen command uses `--namespace default`. It does not present the kURL installer bundle or `install.sh` as an application-update action. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, and `isCurrentVersion`.
+**`<KurlUpdateAssets />`**: Renders the same guided application-upgrade flow for a kURL instance. With no `namespace` prop, the reopen command uses `--namespace default`. It does not present the kURL installer bundle or `install.sh` as an application-update action. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional).
+
+**`<AdminConsoleCommand />`**: Renders the `kubectl kots admin-console --namespace` sample used on the default KOTS and kURL upgrade guides. Props: `installType` (required, `kots` or `kurl`; any other value renders nothing), `namespace` (optional namespace where the Admin Console is running; empty or invalid keeps the type default), and `lead` (optional text before the command; the component appends the command and a period).
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
@@ -614,7 +636,7 @@ Each of the four support bundle components renders the steps for one installatio
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button once their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. The button cannot be removed. Optional props: `kotsGuideHref` and `kurlGuideHref`. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button once their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. The button cannot be removed. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, and `kurlNamespace`. `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
 
 ### Security components
 

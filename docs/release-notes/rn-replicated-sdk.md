@@ -9,6 +9,14 @@ pagination_prev: null
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.19.12
+
+Released on October 12, 2026
+
+### Improvements {#improvements-1-19-12}
+* Updates Helm from v3.21.4 to v3.22.0 and Kubernetes libraries from v0.37.0 to v0.37.1.
+* Updates Go dependencies.
+
 ## 1.19.10
 
 Released on August 18, 2026

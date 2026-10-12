@@ -14,7 +14,28 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 12, 2026
 
 ### New Features {#new-features-v2026-10-12-0}
-* Enterprise Portal v2 KOTS and kURL upgrade guidance accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command.
+* Enterprise Portal v2 KOTS and kURL upgrade guidance accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
+## v2026.10.09-4
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-4}
+* Clarified on the New Portal setup wizard that a hybrid vendor's Classic Portal is unaffected and continues to serve customers.
+
+### Bug Fixes {#bug-fixes-v2026-10-09-4}
+* Fixed the Enterprise Portal page forgetting a hybrid vendor's choice of Classic Portal or New Portal view between visits.
+## v2026.10.09-3
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-3}
+* Security Center now makes customer and instance findings easier to reconcile by showing reporting coverage, scan coverage, evidence source and timing, architecture, attribution, and the real worst instance used for customer-level triage.
+## v2026.10.09-1
+
+Released on October 9, 2026
+
+### Improvements {#improvements-v2026-10-09-1}
+* Security Center now shows release architecture context and lets vendors view architecture-specific vulnerability results.
 ## v2026.10.09-0
 
 Released on October 9, 2026
