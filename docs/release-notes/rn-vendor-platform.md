@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.12-3
+
+Released on October 12, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-12-3}
+* Fixed the Enterprise Portal page opening hybrid vendors on the New Portal view when none of their Enterprise Portal customers use the New Portal.
+* Customer license updates now enforce team access for GitOps, Snapshot, Enterprise Portal, and customer SAML. Features can be disabled after access is removed, and authorized customer SAML settings are now saved on creation.
 ## v2026.10.12-2
 
 Released on October 12, 2026
