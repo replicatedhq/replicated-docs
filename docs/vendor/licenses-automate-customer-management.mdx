@@ -26,7 +26,7 @@ If you use GitHub Actions, the [create-customer](https://github.com/replicatedhq
 
 Replicated recommends a service account with a custom RBAC policy for automation. A service account isn't tied to a person, so it keeps working when someone leaves your team, and the policy limits the token to the operations your automation performs.
 
-1. Create a custom RBAC policy that allows only the resources your automation uses. The following example allows creating, updating, archiving, and unarchiving customers, and creating, viewing, and archiving channels:
+1. Create a custom RBAC policy that allows only the resources your automation uses. The following example allows creating, viewing, updating, archiving, and unarchiving customers, creating, viewing, and archiving channels, and creating notification subscriptions:
 
     ```json
     {
@@ -34,12 +34,18 @@ Replicated recommends a service account with a custom RBAC policy for automation
         "name": "Customer automation",
         "resources": {
           "allowed": [
-            "kots/app/*/license/**",
+            "kots/app/*/read",
+            "kots/app/*/license/create",
+            "kots/app/*/license/*/read",
+            "kots/app/*/license/*/update",
+            "kots/app/*/license/*/archive",
+            "kots/app/*/license/*/unarchive",
             "kots/license/*/archive",
             "kots/license/*/unarchive",
             "kots/app/*/channel/create",
             "kots/app/*/channel/*/read",
-            "kots/app/*/channel/*/archive"
+            "kots/app/*/channel/*/archive",
+            "team/notifications/subscriptions/create"
           ],
           "denied": []
         }
@@ -47,7 +53,14 @@ Replicated recommends a service account with a custom RBAC policy for automation
     }
     ```
 
-    Archiving and unarchiving a customer check both the `kots/license/*` and the `kots/app/*/license/*` resources, so the policy includes both. If the same token promotes releases, add `kots/app/*/channel/*/promote`. Test the policy with a run of your automation before you rely on it.
+    Note the following about this policy:
+
+    * The CLI looks up your application before every command, so the policy needs `kots/app/*/read`.
+    * Archiving and unarchiving a customer check both the `kots/license/*` and the `kots/app/*/license/*` resources, so the policy includes both.
+    * The policy lists each customer operation instead of using `kots/app/*/license/**`, which also allows deleting customers.
+    * If your automation doesn't create notification subscriptions, remove `team/notifications/subscriptions/create`. If the same token promotes releases, add `kots/app/*/channel/*/promote`.
+
+    Test the policy with a run of your automation before you rely on it.
 
     For more information, see [Configure RBAC policies](/vendor/team-management-rbac-configuring) and [RBAC resource names](/vendor/team-management-rbac-resource-names).
 
@@ -61,7 +74,7 @@ Replicated recommends a service account with a custom RBAC policy for automation
 
 Set a custom ID on each customer to link it to the matching record in your system, such as a CRM account ID or a contract number. You can search for customers by custom ID in the Vendor Portal and in the CLI output.
 
-Replicated doesn't require custom IDs to be unique, and neither the CLI nor the Vendor API checks whether a customer already exists before creating one. If your automation can run more than once for the same record, look up the custom ID first so that a retry doesn't create a duplicate customer. See [Look up customers](#look-up).
+Replicated doesn't require custom IDs to be unique, and neither the CLI nor the Vendor API checks whether a customer already exists before creating one. If your automation can run more than once for the same record, look up the custom ID first so that a retry doesn't create a duplicate customer. Include archived customers in the lookup, so that a returning customer is unarchived rather than created again. See [Look up customers](#look-up).
 
 When you create a customer, store the customer ID and license ID that Replicated returns in your own record. The license ID never changes, including after a renewal or a channel change.
 
@@ -90,7 +103,7 @@ Note the following:
 
 For all available flags, see [customer create](/reference/replicated-cli-customer-create).
 
-The CLI can't set custom license field values. To create a customer and set custom license field values in the same request, use the Vendor API. Custom license field values go in `entitlementValues`, and each value is a string:
+To create a customer and set [custom license field values](#update-custom-license-field-values) in the same request, use the Vendor API. Custom license field values go in `entitlementValues`, and each value is a string:
 
 ```bash
 replicated api post /v3/customer --body '{
@@ -175,7 +188,9 @@ Before you move a customer to a new channel, promote a release to that channel s
 
 <ChangeChannel/>
 
-For Helm installations, the chart URL includes the channel slug for every channel except the channel with the slug `stable`. For example, a customer on the `stable` channel installs from `oci://registry.replicated.com/APP_SLUG/CHART_NAME`, and a customer on a channel with the slug `example-telecom` installs from `oci://registry.replicated.com/APP_SLUG/example-telecom/CHART_NAME`. After a channel change, the customer's previous chart URL returns `Channel not found for license`. Run `replicated customer inspect --customer CUSTOMER_ID` to get the install command for the new channel, and send it to the customer before you change their channel.
+For Helm installations, the chart URL includes the channel slug for every channel except the channel with the slug `stable`. For example, a customer on the `stable` channel installs from `oci://registry.replicated.com/APP_SLUG/CHART_NAME`, and a customer on a channel with the slug `example-telecom` installs from `oci://registry.replicated.com/APP_SLUG/example-telecom/CHART_NAME`. After a channel change, the customer's previous chart URL returns `Channel not found for license`.
+
+`replicated customer inspect --customer CUSTOMER_ID` shows the install command for the customer's current channel, so it shows the new command only after the channel change. To send the new command before the change, build the chart URL from the new channel's slug. Otherwise, change the channel, run `customer inspect`, and send the customer the new command.
 
 When a customer moves off a channel that was created only for them, you can archive the channel with [channel rm](/reference/replicated-cli-channel-rm). A channel can't be archived while any customer is still assigned to it.
 
@@ -211,7 +226,23 @@ To find a customer by custom ID, filter the output. For example, with `jq`:
 replicated customer ls --output json | jq '.[] | select(.customId == "SF-0001")'
 ```
 
-Archived customers aren't included in the output.
+Archived customers aren't included in the output. To include archived customers, search with the Vendor API and set `include_archived`. The `customId:` query is an exact match:
+
+```bash
+replicated api post /v3/customers/search --body '{
+  "app_id": "APP_ID",
+  "query": "customId:SF-0001",
+  "include_archived": true,
+  "include_active": true,
+  "include_inactive": true,
+  "include_paid": true,
+  "include_trial": true,
+  "include_dev": true,
+  "include_community": true
+}'
+```
+
+The search returns only the customer types and statuses that you include, so set each `include_` field that applies to your customers. For more information, see [Search customers](https://replicated-vendor-api.readme.io/reference/searchteamcustomers) in the Vendor API v3 documentation.
 
 To view one customer, including their install commands, run `replicated customer inspect --customer CUSTOMER_ID`. See [customer inspect](/reference/replicated-cli-customer-inspect).
 
@@ -250,6 +281,8 @@ Then, create the subscription:
 ```bash
 replicated notification subscription create --file expiring.json
 ```
+
+An email address must be verified before it can receive notifications. The first time a service account creates a subscription for an email address, the subscription is created disabled, even if `isEnabled` is `true`, and Replicated sends a verification email to that address. After the address is verified, enable the subscription in the Vendor Portal. Later subscriptions that the same service account creates for that address are enabled as requested. Webhook subscriptions don't need verification. For more information, see [Create event notification subscriptions](/vendor/event-notifications-create).
 
 For more information, see:
 
