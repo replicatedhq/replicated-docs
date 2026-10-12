@@ -6,26 +6,27 @@ The Enterprise Portal is Beta. Features described on this page are subject to ch
 
 Use versioned docs if you need to maintain different documentation for different versions of your software, for example, distinct install steps or caveats for specific releases.
 
-Each Git branch in your content repo (other than `main`) becomes a selectable version in the customer-facing portal. Each version has its own table of contents, markdown pages, and theme/branding overrides.
+Each Git branch in your content repo holds one version of your content, with its own table of contents, markdown pages, and theme/branding overrides. Customers don't choose branches. They choose a release from their channel, and Enterprise Portal shows the content from the branch that release resolves to. See [Version resolution](#version-resolution).
 
 ## Process
 
 - **Initial sync**: When you connect a repo, all branches are discovered and synced.
-- **Push sync**: When you push to any branch, a GitHub webhook triggers a sync for that branch only. Pushing a new branch for the first time automatically creates a new version.
-- **`main` is synced but hidden**: The `main` branch content is stored in the database but never shown to customers directly. You can use `main` as a draft/working branch.
-- **`main` as fallback**: The `main` branch serves as the last-resort fallback. If no branch matches the selected version and no lower semver branch exists, `main` content is shown. This ensures customers always see content.
+- **Push sync**: When you push to any branch, a GitHub webhook triggers a sync for that branch only. Pushing a new branch for the first time syncs it automatically. It does not add an entry to the version dropdown. Releases that resolve to the new branch show its content.
+- **`main` is never listed**: The `main` branch does not appear in the version dropdown. Customers see its content only when a release does not resolve to any other branch, so do not use `main` for drafts. Use a branch name that is not a version instead, such as `wip/2.1.0`. See [Naming your branches](#naming-your-branches).
+- **`main` as fallback**: The `main` branch serves as the last-resort fallback. If no branch matches the selected version and no lower semver branch exists, `main` content is shown. This ensures customers always see content. If your repo has no `main` branch, the branch whose name sorts highest alphabetically is the fallback instead, so keep a `main` branch in your repo.
 
 ## Version dropdown
 
 Customers viewing Enterprise Portal see a version dropdown in the header when there are two or more versions available on their channel.
 
-Versions are sorted by **reverse lexicographic order** on the branch name. The highest-sorting branch name is first in the list and becomes the default.
+The dropdown lists release version labels, not branch names. Each entry shows the content that its release resolves to, so several entries can show the same content. For example, releases `2.1.1` and `2.1.2` both show the `2.1.0` branch if neither has its own branch.
+
+Releases are sorted newest first by semantic version. Labels that are not valid semantic versions are listed after them.
 
 When a customer visits the portal:
 
-1. If they've previously selected a version (stored in a browser cookie), that version is used
-1. Otherwise, the **first version** in the sorted list (highest branch name) is the default
-1. If no versions match the customer's channel releases, content is resolved using the version resolution chain (nearest lower branch, then `main` as fallback)
+1. If they've previously selected a version (stored in a browser cookie) and it is still available, that version is used
+1. Otherwise, the **first version** in the list (the newest release) is the default
 
 ## Version resolution
 
@@ -50,6 +51,8 @@ If patch releases `2.0.1` and `2.0.2` use the same instructions as `2.0.0`, you 
 Enable **Require matching content for release versions** when customers should only see releases with explicit version-specific content.
 When enabled, the version dropdown includes only releases with a matching content branch, a normalized `v` prefix match, or a pinned version.
 
+If you share one branch across many releases, such as one branch per minor version, most of your releases have no exactly matching branch, and enabling this setting hides them from the dropdown.
+
 Use this setting when fallback content could be misleading, such as when every visible release must have release-specific install steps, upgrade notes, or compatibility guidance.
 
 ## Pinning releases to branches
@@ -60,30 +63,26 @@ For cases where the automatic resolution picks the wrong content, you can pin a 
 
 To pin a release, use the **Pin release** controls at the bottom of the Content Repository card on the Content tab. Select the release version label and the target branch, then click **Pin**. The pin takes effect immediately.
 
-Pins are snapshots, not aliases. If the source branch content changes after pinning, the pinned version's content is not updated. To refresh a pin, delete it and re-create it.
+Pins follow their branch. When you push changes to the branch that a release is pinned to, the pinned release shows the updated content. If you delete that branch, Enterprise Portal moves the pin to the nearest lower semver branch. If there is no lower semver branch, the pin is kept and a notice is shown for it on the Content tab.
 
 To remove a pin, click the delete icon next to the version in the Content Repository card and confirm.
 
 ## Naming your branches {#naming-your-branches}
 
-**Required for version gating:** Name branches to match your release `version_label` values (e.g., branch `1.0.0` for release version `1.0.0`). If branch names don't match version labels, all branches are shown to all customers with no filtering.
+Branch names decide which content each release shows. They do not control which versions customers see in the dropdown or the order of the dropdown. See [Version dropdown](#version-dropdown).
 
-Branch name matches to release versions provide gating by channel: customers only see doc versions for releases on their channel. A `v` prefix mismatch is handled automatically (branch `v1.0.0` matches label `1.0.0` and vice versa).
+- **Give a release its own content**: Name the branch the same as the release `version_label` (e.g., branch `2.1.0` for release `2.1.0`). A `v` prefix mismatch is handled automatically (branch `v2.1.0` matches label `2.1.0` and vice versa).
+- **Share content across releases**: Create one branch for the first release that needs the content. Later releases without their own branch use the nearest lower branch. For example, branch `2.1.0` covers `2.1.1`, `2.1.2`, and later releases until a higher branch exists.
+- **Pre-release labels sort below their release**: A label such as `2.2.0-beta.1` or `2.2.0-g1a2b3c` comes before `2.2.0` in semantic version order, so a branch named `2.2.0` does not cover it. It resolves to the nearest lower branch, such as `2.1.0`. To cover every `2.2.0` pre-release and every later `2.2.x` release with one branch, name the branch `2.2.0-0`, which is the lowest possible `2.2.0` pre-release.
+- **Do not give working branches version names**: A branch such as `2.1.3-wip` is a valid pre-release version, so it becomes the nearest lower branch for `2.1.3` and every later release until a higher branch exists. Use a name that is not a version, such as `wip/2.1.3`.
 
-Your naming convention also controls the dropdown order. Versions are sorted in reverse lexicographic order, so the highest branch name becomes the default:
-
-- `1.0.0`, `2.0.0`, `2.1.0` -> default = `2.1.0`
-- `v1.0`, `v2.0`, `v2.1` -> default = `v2.1`
-
-:::note
-If your branch names don't match any version labels (e.g., `release-1`, `release-2`), version gating is skipped and all branches are shown to all customers.
-:::
+A branch whose name is not a version (e.g., `wip/2.1.3` or `release-1`) is used only for a release whose label matches the branch name exactly, or as the fallback when your repo has no `main` branch.
 
 ## Adding versions
 
 1. Create a new branch matching your release version label: `git checkout -b 2.0.0`
 1. Update the docs content for the new version
-1. Push the branch. Enterprise Portal syncs automatically and the new version appears in the dropdown for customers on a channel with that release
+1. Push the branch. Enterprise Portal syncs it automatically, and releases that resolve to the branch show the new content
 
 Enterprise Portal does not create branches for you. Create a branch for each release where your documentation changes, or see [Automating branch creation](#automating-branch-creation).
 
@@ -100,11 +99,9 @@ In the second case, leave **Require matching content for release versions** off 
 
 ## Version gating by channel
 
-The version dropdown is filtered by the customer's assigned channel. Customers only see branches whose names match a `version_label` on a release promoted to their channel. For example, if a customer is on the Stable channel with releases `1.0.0` and `2.0.0`, they will only see branches named `1.0.0` and `2.0.0` (or `v1.0.0` / `v2.0.0`).
+The version dropdown lists only releases promoted to the customer's assigned channel, however you name your branches. For example, a customer on the Stable channel with releases `1.0.0` and `2.0.0` sees those two versions, whether you have a branch for each release or one `1.0.0` branch that both releases resolve to. A customer cannot open a version that is not on their channel, including by entering its URL.
 
-If no branches match any version labels (e.g., you use a naming convention like `release-1` that doesn't correspond to version labels), the filter is skipped and all branches are shown.
-
-**To use version gating:** name your content repo branches to match your release `version_label` values. The local CLI preview also respects this filtering. When you switch customers in the preview toolbar, the version dropdown shows only the branches that customer would see based on their channel's releases.
+The local CLI preview also respects this filtering. When you switch customers in the preview toolbar, the version dropdown shows the versions that customer would see based on their channel's releases.
 
 ## Version URL
 
@@ -125,7 +122,7 @@ To hide releases without matching content branches, enable **Require matching co
 
 ## Overrides
 
-`main` content is never shown to customers directly (it serves as fallback content). In `toc.yaml`, the docs template supports an `overrides` map.
+In `toc.yaml`, the docs template supports an `overrides` map.
 
 Currently the only supported override is `home`, which replaces the default version landing page with a custom markdown page:
 

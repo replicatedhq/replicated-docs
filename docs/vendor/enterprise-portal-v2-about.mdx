@@ -31,7 +31,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 - **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow install instructions, and download air gap artifacts. The default content template includes dedicated KOTS and kURL install pages. These customers previously used the separate Download Portal. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
 - **Content repo driven**: You manage all portal content (pages, navigation, branding) through a GitHub repo you control, not through Vendor Portal UI forms
 - **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
-- **Versioned docs**: Each Git branch becomes a version in the customer's portal, with smart resolution that automatically finds the correct content for any release
+- **Versioned docs**: Keep different content for different releases in Git branches. Each release on a customer's channel shows the content from the branch it resolves to, so you only create a branch when your docs change
 - **Service account automation**: Customers automate install and upgrade workflows with service account tokens, aided by a built-in API reference and workflow guide
 - **Local preview**: `replicated enterprise-portal preview` lets you preview the full portal locally with live reload
 - **Helm chart reference**: Auto-generated from your promoted releases with AI-enhanced descriptions
