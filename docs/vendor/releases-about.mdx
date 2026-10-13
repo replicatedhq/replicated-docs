@@ -137,9 +137,9 @@ As shown in the screenshot above, the release has the following properties:
 
 ### Required releases
 
-You can enable the **Prevent this release from being skipped during upgrades** release property to mark a release as required. The following describes the end customer experience for required releases in the Admin Console and Enterprise Portal:
+You can enable the **Prevent this release from being skipped during upgrades** release property to mark a release as required. The following describes the end customer experience for required releases by installation method:
 
-* For Embedded Cluster, KOTS existing cluster, or kURL installations, the Admin Console requires users to upgrade to the required version before they can upgrade to a later version. For example, if release version 1.1.0 is marked as required, users with 1.0.0 deployed must upgrade to 1.1.0 before they can upgrade to 1.1.1.
+* For Embedded Cluster v2, KOTS existing cluster, or kURL installations, the Admin Console requires users to upgrade to the required version before they can upgrade to a later version. For example, if release version 1.1.0 is marked as required, users with 1.0.0 deployed must upgrade to 1.1.0 before they can upgrade to 1.1.1.
 
   The following shows an example of the Admin Console **Version history** page when there is a required release:
 
@@ -149,12 +149,16 @@ You can enable the **Prevent this release from being skipped during upgrades** r
 
   As shown in the image above, the required release is labeled "Required", and the user is unable to click **Deploy** for a later version until the required version is deployed.
 
+* For Embedded Cluster v3 installations, users must upgrade to the required version before they can upgrade to a later version. This applies to upgrades with the [`upgrade`](/embedded-cluster/v3/embedded-cluster-upgrade) command and with the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console). If an upgrade would skip a required version, the `upgrade` command exits with an error that lists the versions to install first. If the upgrade to a required version did not complete, users must retry it before they can upgrade to a later version.
+
+  In the persistent admin console, required releases are labeled "Required" in the list of available updates. For air gap upgrades, the **Upgrade** button for a later version is disabled until the required version is deployed. For online upgrades, the **Upgrade** button is available, but the upgrade stops with the same error after the release is downloaded.
+
 * In the Enterprise Portal, required releases are indicated in the list of available application versions. If the user is performing an upgrade and the Enterprise Portal has awareness of the currently-installed version, then the customer is prevented from selecting any version later than the required version. For new installations, the list allows any version to be selected.
 
   :::note
   The Enterprise Portal does _not_ prevent users from skipping a required version.
   
-  For Embedded Cluster, KOTS existing cluster, or kURL installations, the Admin Console enforces required releases. For Helm CLI installations, required releases are not enforced. See [Limitations](#limitations).
+  For Embedded Cluster v3 installations, Embedded Cluster enforces required releases. For Embedded Cluster v2, KOTS existing cluster, or kURL installations, the Admin Console enforces required releases. For Helm CLI installations, required releases are not enforced. See [Limitations](#limitations).
   :::
 
   ![release version list in enterprise portal](/images/enterprise-portal-required-releases.png)
@@ -166,7 +170,8 @@ You can enable the **Prevent this release from being skipped during upgrades** r
 Required releases have the following limitations:
 
 * Required releases are not enforced for Helm CLI installations. When the **Prevent this release from being skipped during upgrades** option is enabled, Helm CLI customers will see that the release is labeled as "required" in the Enterprise Portal. However, this label does not prevent users from skipping a required release version when installing with the Helm CLI.
-* After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if `allowRollback` is true in the Application custom resource manifest. For more information, see [`allowRollback`](/reference/custom-resource-application#allowrollback) in the Application custom resource topic.
+* For Embedded Cluster v3 installations, the list of required releases is included in each release when it is downloaded. If you mark or unmark a release as required after a customer downloads a later release, an upgrade with that download uses the list from the time of download. For air gap installations, this applies to the air gap bundle.
+* For Embedded Cluster v2, KOTS existing cluster, or kURL installations, after users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if `allowRollback` is true in the Application custom resource manifest. For more information, see [`allowRollback`](/reference/custom-resource-application#allowrollback) in the Application custom resource topic.
 * If you change the channel an existing customer is assigned to, the Admin Console always fetches the latest release on the new channel, regardless of any required releases on the channel. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 * For installations using KOTS 1.125.2 or earlier (Embedded Cluster 2.9.0 or earlier), if you disable the **Prevent this release from being skipped during upgrades** option for a promoted release, the release will still be marked as required in the Admin Console, and users must still upgrade to the given version before they can upgrade to later versions. To skip a previously-required release during upgrades, users must first update their installation to KOTS 1.126.0 or later (Embedded Cluster 2.10.0 or later). For more information, see [Remove Release Requirement](/vendor/releases-creating-releases#remove-req) in _Manage Releases with the Vendor Portal_.
 
