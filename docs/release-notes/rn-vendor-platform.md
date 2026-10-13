@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.13-5
+
+Released on October 13, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-13-5}
+* Enterprise Portal now enforces pinned-release access in install options, update instructions, Helm references and diffs, PDF exports, and Security Center. EP v2 now shows only the assigned channel on multi-channel licenses; previously selectable secondary channels are no longer available there. The stale-mapping correction is hardening, not an observed production mismatch.
 ## v2026.10.13-3
 
 Released on October 13, 2026
