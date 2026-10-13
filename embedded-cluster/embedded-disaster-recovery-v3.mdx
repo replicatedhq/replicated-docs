@@ -197,7 +197,7 @@ After a v2 installation is upgraded to v3, Embedded Cluster reads the vendor tem
    Replace `APP_SLUG` with the application slug.
 
 1. Open **Disaster Recovery**.
-1. In **Configuration**, choose **Velero YAML** and paste the configuration supplied for the application, replacing the storage settings and credentials for your environment. The prototype NFS and host-path forms are described below.
+1. In **Configuration**, choose a backup destination. For service account token authentication, see [Configure web identity for disaster recovery](embedded-web-identity). The **Web identity** destination fields configure AWS S3. For other provider-specific manifests, select **Velero YAML** and paste the application configuration, replacing its storage settings and credentials. The prototype NFS and host-path forms are described below.
 1. Click **Apply configuration**.
 
 The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
@@ -206,7 +206,7 @@ Embedded Cluster passes provider-specific configuration to Kubernetes without re
 
 The page shows **Velero is configured** when the recovery workloads, backup locations, and existing backup repositories are ready and schedules are present without validation errors. Otherwise, it displays errors and keeps the editor available. These readiness checks do not replace testing a backup and restore.
 
-To change the configuration, click **Update configuration** and submit the updated manifests. The editor does not prefill saved credentials. Use **Cancel** to close it without applying changes.
+To change the configuration, click **Update configuration** and submit the updated manifests. The editor does not prefill saved credentials. Use **Cancel editing** to close it without applying changes.
 
 ### Example: Amazon S3 with file-system backups
 

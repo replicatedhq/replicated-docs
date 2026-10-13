@@ -1,0 +1,270 @@
+---
+title: Configure web identity for disaster recovery (Beta)
+description: Configure a public Kubernetes token issuer for disaster recovery and connect Velero to backup storage with web identity.
+---
+
+# Configure web identity for disaster recovery (Beta)
+
+This topic describes web identity setup for Embedded Cluster v3 disaster recovery, including an AWS S3 procedure.
+
+Kubernetes signs tokens that identify service accounts. The storage provider verifies them using the cluster's public keys and grants access according to its trust and permission settings.
+
+Issuer setup is independent of the storage provider. The **Web identity** destination fields configure AWS S3; other providers use their own Velero plugins and manifests.
+
+The audience identifies the token's intended recipient and must match the provider's trust configuration. The subject identifies the Kubernetes service account.
+
+## Requirements
+
+* A license with disaster recovery enabled.
+* A release containing Velero in the `velero` namespace and the storage provider's plugin. File-system backups also require a node agent.
+* Backup storage, permission to configure provider trust and storage access, and cluster connectivity to the provider's authentication and storage endpoints.
+* A stable public HTTPS issuer URL routed to the Kubernetes API, with a certificate trusted by the provider. Do not include credentials, a port, query parameters, a fragment, or a trailing slash.
+
+A reverse proxy, load balancer, or tunnel can provide the issuer route. In Compatibility Matrix, expose the Kubernetes API port, which defaults to `6443`, through HTTPS ingress.
+
+For more information about recovery requirements, see [Back up and restore Embedded Cluster v3](embedded-disaster-recovery-v3).
+
+## Configure the cluster issuer
+
+Use these steps after installation or during recovery. Vendors must package the provider's plugin and token volumes before publishing the release.
+
+1. Open **Disaster recovery** in the persistent admin console. For recovery, start `restore` on an empty replacement host and open the restore wizard's **Configure** screen.
+
+1. Under **Backup destination**, select **Web identity**.
+
+1. If automatic backup schedules are enabled, pause them in **Schedule** and wait for active backups and restores to finish.
+
+1. Enter the public HTTPS URL in **Public issuer URL** and click **Apply issuer**.
+
+   Embedded Cluster enables public discovery, restarts controllers one at a time, then replaces Velero and node-agent pods. The UI reports each controller's progress.
+
+   All controllers must be Ready and support issuer configuration. Every controller accepts the new issuer before any signs tokens with it. Previous issuers remain accepted while pods rotate their tokens. If setup fails, click **Apply issuer** again to continue.
+
+   Destination fields appear after all controllers finish. Temporary connection and readiness errors are expected during restarts; investigate errors that persist afterward.
+
+1. Open both links shown by the form. For `https://issuer.example.com`, verify that these URLs return JSON without authentication:
+
+   ```text
+   https://issuer.example.com/.well-known/openid-configuration
+   https://issuer.example.com/openid/v1/jwks
+   ```
+
+   The discovery document's `issuer` must match your URL. Its `jwks_uri` identifies the public key endpoint. Kubernetes serves both documents directly.
+
+You can join controllers before or after issuer setup. Join bundles apply the signing and accepted issuers before Kubernetes starts. If a proxy routes to multiple controllers, their APIs must use the same issuer and signing keys.
+
+Issuer setup makes the OIDC discovery and public key endpoints accessible without authentication.
+
+## Configure the issuer for file-based recovery
+
+Use `--velero-config` to supply Kubernetes manifests instead of entering configuration in the wizard. This also supports headless recovery; Helm values are not accepted.
+
+1. Prepare the credential, BackupStorageLocation, repository-password Secret, and Schedule manifests required by your storage provider. Use the original destination and repository password. Set each Schedule's `spec.paused` to `true`.
+
+1. Add this ConfigMap as a separate YAML document. Replace the issuer URL with the replacement cluster's public route and `TOKEN_AUDIENCE` with the provider's accepted audience:
+
+   ```yaml
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: ec-velero-web-identity
+     namespace: velero
+   data:
+     issuerUrl: https://issuer.example.com
+     audience: TOKEN_AUDIENCE
+   ```
+
+   Both values are validated before issuer setup. An issuer-only ConfigMap is rejected before Kubernetes starts on an empty host.
+
+1. Save the manifests as `velero-restore.yaml`. Because the file contains credentials such as the repository password, Embedded Cluster requires that only its owner can read or write it:
+
+   ```bash
+   chmod 600 velero-restore.yaml
+   ```
+
+1. Start recovery on an empty replacement host:
+
+   ```bash
+   sudo ./APP_SLUG restore --license license.yaml \
+     --velero-config velero-restore.yaml
+   ```
+
+   Replace `APP_SLUG` with the application slug. Embedded Cluster sets the issuer before starting Kubernetes, avoiding a restart. The wizard opens at backup selection.
+
+1. Verify the public endpoints and configure provider trust for the replacement issuer.
+
+For headless recovery, see [Restore without the browser](embedded-disaster-recovery-v3#restore-without-the-browser) in _Back up and restore Embedded Cluster v3_.
+
+Recovery rebuilds retain the replacement cluster's signing keys and restore public discovery permissions, including when saved network or data directory settings differ.
+
+## Configure AWS S3 backups
+
+The AWS plugin exchanges the token with AWS Security Token Service (STS) for temporary credentials. An Identity and Access Management (IAM) role grants S3 access without static access keys.
+
+You need an S3 bucket and permission to configure an IAM identity provider and role.
+
+### Package the Velero chart
+
+Vendors include the AWS plugin for S3 storage with either access keys or web identity. Choose compatible chart, Velero, and plugin versions. For more information, see [Velero plugins for AWS](https://github.com/velero-io/velero-plugin-for-aws).
+
+Add these values to the Velero HelmChart resource, replacing `AWS_PLUGIN_VERSION`. The example uses file-system backups with destinations and schedules configured through the UI.
+
+```yaml
+values:
+  initContainers:
+    - name: velero-plugin-for-aws
+      image: docker.io/velero/velero-plugin-for-aws:AWS_PLUGIN_VERSION
+      volumeMounts:
+        - name: plugins
+          mountPath: /target
+  serviceAccount:
+    server:
+      create: true
+      name: velero
+  credentials:
+    useSecret: false
+  backupsEnabled: false
+  snapshotsEnabled: false
+  deployNodeAgent: true
+  configuration:
+    defaultVolumesToFsBackup: true
+    extraEnvVars:
+      - name: AWS_EC2_METADATA_DISABLED
+        value: "true"
+  extraVolumes:
+    - name: web-identity
+      projected:
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3600
+              path: token
+  extraVolumeMounts:
+    - name: web-identity
+      mountPath: /var/run/secrets/aws
+      readOnly: true
+  nodeAgent:
+    podVolumePath: /var/lib/ec/kubelet/pods
+    pluginVolumePath: /var/lib/ec/kubelet/plugins
+    extraVolumes:
+      - name: web-identity
+        projected:
+          sources:
+            - serviceAccountToken:
+                expirationSeconds: 3600
+                path: token
+    extraVolumeMounts:
+      - name: web-identity
+        mountPath: /var/run/secrets/aws
+        readOnly: true
+```
+
+Keep the volume name `web-identity`, token path `token`, and mount path `/var/run/secrets/aws`. Embedded Cluster identifies the projection by its name and token path. The AWS profile references the mounted file. `AWS_EC2_METADATA_DISABLED` disables fallback to EC2 instance credentials.
+
+The example creates the `velero` service account. Embedded Cluster generates the trust policy subject from the installed deployment's service account, including vendor overrides.
+
+Omit the token audience from the chart. Embedded Cluster applies the form's **Token audience** to Velero and its node agent, including during upgrades and recovery. Audience changes replace their pods.
+
+Keep customer-specific issuer, role, region, bucket, prefix, and password values outside the chart. Operators supply them through the form. Recovery infrastructure cannot depend on saved application configuration: Velero accesses S3 before that configuration is restored.
+
+To define backup scope, hooks, and volume settings, see [Define application Backup and Restore templates](embedded-disaster-recovery-v3#define-application-backup-and-restore-templates) in _Back up and restore Embedded Cluster v3_.
+
+### Configure AWS trust
+
+Complete [Configure the cluster issuer](#configure-the-cluster-issuer), then follow these steps in the customer's AWS account.
+
+1. Choose a token audience, such as `sts.amazonaws.com`. Use the same value in AWS and the Embedded Cluster **Token audience** field.
+
+1. In the AWS IAM console, open **Identity providers** and click **Add provider**. Select **OpenID Connect**. Set **Provider URL** to the cluster's issuer URL and **Audience** to your chosen value. Click **Add provider**.
+
+   AWS reads the discovery and public key documents to verify signed tokens. For more information, see [Create an OpenID Connect identity provider in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html).
+
+1. Open **Roles** and click **Create role**. Select **Web identity**, choose the identity provider and audience, and complete the wizard.
+
+1. Copy the role ARN into the Embedded Cluster form, such as `arn:aws:iam::AWS_ACCOUNT_ID:role/VELERO_ROLE`. Use the role ARN, not the provider ARN. Expand **AWS setup instructions** and copy the generated trust policy.
+
+1. Open the role's **Trust relationships** tab and click **Edit trust policy**. Paste the generated policy, which restricts the issuer, audience, and installed Velero service account.
+
+   This example uses `https://issuer.example.com` and the chart example's `velero` service account. Replace `AWS_ACCOUNT_ID` and `TOKEN_AUDIENCE`. Include any issuer URL path in the provider ARN and condition keys.
+
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": {
+           "Federated": "arn:aws:iam::AWS_ACCOUNT_ID:oidc-provider/issuer.example.com"
+         },
+         "Action": "sts:AssumeRoleWithWebIdentity",
+         "Condition": {
+           "StringEquals": {
+             "issuer.example.com:aud": "TOKEN_AUDIENCE",
+             "issuer.example.com:sub": "system:serviceaccount:velero:velero"
+           }
+         }
+       }
+     ]
+   }
+   ```
+
+   AWS enforces the subject condition when the policy includes it. Omitting the condition allows other service accounts with matching issuer and audience tokens to assume the role. For more information, see [Available keys for AWS OIDC federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html#condition-keys-wif) in the AWS documentation.
+
+1. Click **Update policy**.
+
+1. Open **Permissions** and select **Add permissions > Create inline policy**. Use the **JSON** editor to grant access to the backup bucket and prefix. For required S3 permissions, see [Set permissions for Velero](https://github.com/velero-io/velero-plugin-for-aws#set-permissions-for-velero). Complete the wizard to create the policy.
+
+### Configure the backup destination
+
+1. Return to the **Web identity** form and complete these fields:
+
+   | Field | Value |
+   | --- | --- |
+   | Token audience | The audience registered in AWS and required by the trust policy. The form defaults to `sts.amazonaws.com`. |
+   | IAM role ARN | The role configured above. |
+   | AWS region | The region containing the S3 bucket. |
+   | S3 bucket | An existing bucket name. Embedded Cluster does not create the bucket. |
+   | Backup prefix | A nonempty path within the bucket for this installation's backups. Ensure the role's permissions cover it. |
+   | Repository password | A password for a new volume backup repository, or the original password during recovery. |
+   | Backup schedule (cron) | A five-field cron expression, such as `0 2 * * *` for daily backups at 02:00 UTC. |
+   | Retention | A positive duration, such as `720h` for 30 days. |
+
+   Retain the repository password outside the cluster. It protects volume backups, independently of AWS authentication. Password changes are rejected after repositories exist.
+
+1. For an installed cluster, click **Apply configuration**. Wait for the backup location and Velero workloads to become ready, then create a manual backup.
+
+   For recovery, click **Next: Select backup**. Wait for Velero to sync the backup list, select a completed backup, and continue through the wizard.
+
+Initial setup and recovery create a paused schedule. Enable it in **Schedule**, or on the restore wizard's **Finish** screen.
+
+Updates can change the bucket, prefix, IAM role, region, or audience while preserving the schedule's enabled or paused state. Updates are rejected during active backups or restores. Pause schedules before audience changes, which replace Velero and node-agent pods. Destination changes synchronize backups from the selected bucket and prefix; they do not move backup data.
+
+Recovery requires the original bucket, prefix, and repository password. Register a different replacement issuer URL as another IAM provider, with a separate trust policy statement. Replacement clusters generate their own signing keys. When reusing an issuer URL, route it to the replacement API so AWS can retrieve those keys.
+
+### Recover with a configuration file
+
+Use the shared [file-based recovery procedure](#configure-the-issuer-for-file-based-recovery) with these AWS-specific manifests:
+
+1. Start with [Example: Amazon S3 with file-system backups](embedded-disaster-recovery-v3#example-amazon-s3-with-file-system-backups) in _Back up and restore Embedded Cluster v3_. Use the original destination and repository password. Set each Schedule's `spec.paused` to `true`.
+
+1. Replace the static access key profile in the credentials Secret with this profile. Replace `ROLE_ARN` and `AWS_REGION`:
+
+   ```yaml
+   stringData:
+     cloud: |
+       [default]
+       role_arn = ROLE_ARN
+       web_identity_token_file = /var/run/secrets/aws/token
+       region = AWS_REGION
+   ```
+
+   Retain the Secret name referenced by the BackupStorageLocation's `spec.credential`. Set its `spec.config.region` to the bucket's region and `spec.config.profile` to `default`.
+
+1. Set the issuer ConfigMap's `audience` to the value registered in AWS, such as `sts.amazonaws.com`. Follow the shared recovery procedure and [Configure AWS trust](#configure-aws-trust) for the replacement issuer.
+
+## Configure another storage provider
+
+Your storage provider and Velero plugin must support Kubernetes service account tokens. Issuer setup alone does not configure provider credentials or storage.
+
+Follow the provider's trust instructions for the issuer, audience, and subject. Vendors package its plugin and token mounts. Operators supply credential and BackupStorageLocation manifests through **Velero YAML** or `--velero-config`. For more information, see [Configure backups](embedded-disaster-recovery-v3#configure-backups) in _Back up and restore Embedded Cluster v3_.
+
+The AWS profile, IAM role ARN, `sts.amazonaws.com` audience, and `/var/run/secrets/aws` path are AWS-specific examples, not defaults for other providers.

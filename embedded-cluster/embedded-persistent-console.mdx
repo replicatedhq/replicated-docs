@@ -81,6 +81,12 @@ If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec
 If you are upgrading from Embedded Cluster v2, any existing Application links carry over automatically.
 :::
 
+## Disaster recovery (Beta)
+
+When your license enables disaster recovery and your release includes Velero, the console provides a **Disaster recovery** page. Use this page to configure backup storage and credentials, manage backups and schedules, and configure a public service account token issuer. The **Web identity** form includes AWS S3 destination settings. Other storage providers use their own Velero manifests.
+
+For more information about issuer configuration and the AWS setup procedure, see [Configure web identity for disaster recovery](embedded-web-identity).
+
 ## Support bundles
 
 The console dashboard includes a **Generate support bundle** button that creates a support bundle directly on the host. Because the console runs as a systemd service on the host (not as a pod in the cluster), support bundle generation works even when the cluster is unhealthy or down.
