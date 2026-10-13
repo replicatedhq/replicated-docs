@@ -142,6 +142,7 @@ const sidebars = {
           items: [
             "vendor/licenses-about",
             "vendor/releases-creating-customer",
+            "vendor/licenses-automate-customer-management",
             "vendor/licenses-adding-custom-fields",
             "vendor/licenses-install-types",
             "vendor/releases-share-download-portal",
