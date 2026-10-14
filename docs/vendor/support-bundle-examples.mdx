@@ -15,7 +15,7 @@ import PrometheusRunPodSecret from "../partials/support-bundles/_prometheus-run-
 
 This topic includes example support bundle specifications. For more, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
-Each example is a self-contained spec. You can copy the collectors and analyzers from an example into your existing spec, or add the example to your release as its own Secret. When a support bundle is generated, all of the specs in the cluster are combined into a single bundle. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).
+Each example is a self-contained spec. You can copy the collectors and analyzers from an example into your existing spec, or add the example to your release as its own Secret. When a support bundle is generated from the KOTS Admin Console or with `kubectl support-bundle --load-cluster-specs`, all of the labeled specs in the cluster are combined into a single bundle. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).
 
 ## Check application health
 
