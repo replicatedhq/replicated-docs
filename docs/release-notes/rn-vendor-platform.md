@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.14-7
+
+Released on October 14, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-14-7}
+* Fixed instance cards and Security Center dropdown options in Enterprise Portal v2 becoming unreadable on hover in dark mode.
+* Fixed unreadable note callouts on Terraform module reference pages in Enterprise Portal v2 dark mode.
 ## v2026.10.14-6
 
 Released on October 14, 2026
