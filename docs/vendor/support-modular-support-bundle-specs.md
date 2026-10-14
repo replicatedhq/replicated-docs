@@ -1,18 +1,26 @@
 import CollectorCredentialsWarning from "../partials/support-bundles/_collector-credentials-warning.mdx"
 
-# About creating modular support bundle specs
+# Combine support bundle specs
 
-This topic describes how to use a modular approach to creating support bundle specs.
+This topic describes how support bundle specs are combined, and how to use multiple specs to organize the collectors and analyzers for your application.
 
 ## Overview
 
-Support bundle specifications can be designed using a modular approach. This refers to creating multiple different specs that are scoped to individual components or microservices, rather than creating a single, large spec. For example, for applications that are deployed as multiple Helm charts, vendors can create a separate support bundle spec in the `templates` directory in the parent chart as well as in each subchart. 
+Support bundles are often generated from more than one spec. When a customer generates a support bundle, every support bundle spec in the cluster is discovered and combined, and the result is one support bundle archive. With `kubectl support-bundle --load-cluster-specs`, this includes every Secret or ConfigMap with the `troubleshoot.sh/kind: support-bundle` label.
 
-This modular approach helps teams develop specs that are easier to maintain and helps teams to avoid merge conflicts that are more likely to occur when making to changes to a large spec. When generating support bundles for an application that includes multiple modular specs, the specs are merged so that only one support bundle archive is generated.
+Many applications already rely on this behavior. For example, the Replicated SDK deploys its own support bundle spec in a separate Secret, and that spec is combined with yours to add application and license information to the bundle. Embedded Cluster also combines its default host and cluster spec with the specs in your release. For more information, see [RBAC requirements for exec collectors](/vendor/support-bundle-customizing#exec-rbac) and [Generate support bundles for Embedded Cluster](/vendor/support-bundle-embedded).
+
+Because specs are combined, you can split your collectors and analyzers across multiple specs instead of maintaining one large spec. Common ways to organize specs include:
+
+* One spec for each component or subchart. For applications that are deployed as multiple Helm charts, you can add a spec to the `templates` directory of the parent chart and of each subchart.
+* One spec for each third-party dependency that your application runs alongside, such as a database or a Prometheus server. See [Collect Prometheus metrics](/vendor/support-bundle-examples#prometheus) in _Example support bundle specs_.
+* Specs that are included only when a component is enabled, using Helm template conditionals. See [Use Helm templates in specifications](/vendor/preflight-sb-helm-templates-about).
+
+Smaller specs are easier to maintain, and teams are less likely to have merge conflicts than when they all edit one large spec. You can also include the same collector type as many times as needed, in one spec or across several. For example, use one `logs` collector for each label selector, or one collector for each query that you want to run.
 
 ## Example: Support bundle specifications by component {#component}
 
-Using a modular approach for an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers in using a separate support bundle specification for each component.
+For an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers using a separate support bundle spec for each component.
 
 `manifests/nginx/troubleshoot.yaml`
 

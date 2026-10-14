@@ -14,7 +14,7 @@ This topic describes how to customize the graphs that are displayed on the Repli
 
 ## About customizing graphs
 
-If your application exposes Prometheus metrics, you can add custom graphs to the Admin Console dashboard to expose these metrics to your users. You can also modify or remove the default graphs.
+If your application exposes Prometheus metrics, you can add custom graphs to the Admin Console dashboard to expose these metrics to your users. You can also modify or remove the default graphs. To include Prometheus query results in support bundles, see [Collect Prometheus metrics](/vendor/support-bundle-examples#prometheus) in _Example support bundle specs_.
 
 To customize the graphs that are displayed on the Admin Console, edit the [`graphs`](/reference/custom-resource-application#graphs) property in the Replicated Application custom resource manifest file. At a minimum, each graph in the `graphs` property must include the following fields:
 * `title`: Defines the graph title that is displayed on the Admin Console.
