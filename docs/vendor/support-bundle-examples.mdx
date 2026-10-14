@@ -15,7 +15,7 @@ import PrometheusRunPodSecret from "../partials/support-bundles/_prometheus-run-
 
 This topic includes example support bundle specifications. For more, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
-Each example is a self-contained spec. You can copy the collectors and analyzers from an example into your existing spec, or add the example to your release as its own Secret. When a support bundle is generated from the KOTS Admin Console or with `kubectl support-bundle --load-cluster-specs`, all of the labeled specs in the cluster are combined into a single bundle. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).
+Each example is a self-contained spec. You can copy the collectors and analyzers from an example into your existing spec, or add the example to your release as its own Secret. When a support bundle is generated from a Replicated installer's Admin Console or with `kubectl support-bundle --load-cluster-specs`, all of the labeled specs in the cluster are combined into a single bundle. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).
 
 ## Check application health
 
@@ -97,7 +97,7 @@ For more information, see [Run Pods](https://troubleshoot.sh/docs/collect/run-po
 
 ### Alternatives to the `runPod` collector
 
-You can also query Prometheus with the `http` collector, but only when the support bundle is generated from inside the cluster, such as from the KOTS Admin Console. The `http` collector sends the request from wherever the support bundle is generated. When a customer runs `kubectl support-bundle` from a workstation, a cluster-internal address such as `http://prometheus-server.monitoring.svc` does not resolve. The bundle is still generated, but the collector output contains a `no such host` error instead of metrics.
+You can also query Prometheus with the `http` collector, but only when the Prometheus URL is reachable from wherever the support bundle is generated. The `http` collector sends the request from the machine or process that generates the bundle, not from a Pod in the cluster. For example, when a customer runs `kubectl support-bundle` from a workstation, a cluster-internal address such as `http://prometheus-server.monitoring.svc` does not resolve. The bundle is still generated, but the collector output contains a `no such host` error instead of metrics.
 
 If the cluster runs [prometheus-adapter](https://github.com/kubernetes-sigs/prometheus-adapter) or a similar adapter that serves the `custom.metrics.k8s.io` API, you can use the `customMetrics` collector to read metrics through the Kubernetes API without running a Pod. The collector writes each metric to `metrics/<resource kind>/<metric name>/` in the bundle. The metric names that are available depend on the adapter configuration. To list them, run `kubectl get --raw /apis/custom.metrics.k8s.io/v1beta1`. For more information, see [Kubernetes Custom Metrics](https://troubleshoot.sh/docs/collect/custom-metrics/) in the Troubleshoot documentation.
 

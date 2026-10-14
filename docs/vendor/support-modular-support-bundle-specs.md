@@ -6,7 +6,7 @@ This topic describes how support bundle specs are combined, and how to use multi
 
 ## Overview
 
-Support bundles are often generated from more than one spec. When a customer generates a support bundle from the KOTS Admin Console or with `kubectl support-bundle --load-cluster-specs`, every Secret or ConfigMap in the cluster with the `troubleshoot.sh/kind: support-bundle` label is discovered, and the specs are combined into one support bundle archive.
+Support bundles are often generated from more than one spec. When a customer generates a support bundle from a Replicated installer's Admin Console or with `kubectl support-bundle --load-cluster-specs`, every Secret or ConfigMap in the cluster with the `troubleshoot.sh/kind: support-bundle` label is discovered, and the specs are combined into one support bundle archive.
 
 Many applications already rely on this behavior. For example, the Replicated SDK deploys its own support bundle spec in a separate Secret, and that spec is combined with yours to add application and license information to the bundle. Embedded Cluster also combines its default host and cluster spec with the specs in your release. For more information, see [RBAC requirements for exec collectors](/vendor/support-bundle-customizing#exec-rbac) and [Generate support bundles for Embedded Cluster](/vendor/support-bundle-embedded).
 
