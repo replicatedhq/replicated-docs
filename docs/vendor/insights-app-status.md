@@ -26,6 +26,7 @@ Status informers determine what the Vendor Portal shows, and the same informers 
 * **Vendor Portal.** Instance status and per-resource status insights, described on this page.
 * **Replicated KOTS Admin Console.** End customers see the aggregate status and per-resource details on the dashboard. See [Understand application status details in the Admin Console](/enterprise/status-viewing-details).
 * **Embedded Cluster v2.** Includes the KOTS Admin Console, so application status displays the same way as an existing cluster KOTS installation.
+* **Embedded Cluster v3.** End customers see the aggregate status and the components that are not ready on the install and upgrade completion screens, and on the dashboard of the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console#application-status). The status displays only when your release includes the Replicated SDK. If the SDK has no resources to report on, the status displays as Unknown rather than Ready.
 
 ## Enable application status insights
 

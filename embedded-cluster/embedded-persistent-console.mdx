@@ -7,6 +7,7 @@ This topic describes the persistent admin console for Embedded Cluster 3.x — a
 The persistent admin console is an opt-in web service that runs on a controller node and exposes a dashboard at `https://<controller-hostname>:30080/console`. From the dashboard, end users can:
 
 - View the currently installed application version and open configured application links
+- Check application status
 - See available updates, view release notes, and trigger an upgrade with a single click
 - Upload air gap release archives directly through the browser (no SSH required)
 - Generate a support bundle and download it for sharing with the vendor's support team
@@ -28,6 +29,7 @@ Installing and upgrading already happen in a browser. The installer serves a wiz
 Enabling the persistent admin console adds a dashboard that is always there. From it, an end user can:
 
 * Check the installed version and channel, and open application links
+* Check application status
 * See available updates and read release notes
 * Upload an air gap release archive
 * Generate a support bundle and download it
@@ -80,6 +82,10 @@ If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec
 :::note
 If you are upgrading from Embedded Cluster v2, any existing Application links carry over automatically.
 :::
+
+## Application status
+
+The dashboard shows the application status that the Replicated SDK reports, along with the components that are not ready. The status displays only when the release includes the SDK. For how the status is calculated and how to control which resources are reported, see [Enable and understand application status](/vendor/insights-app-status).
 
 ## Support bundles
 
