@@ -147,7 +147,7 @@ For kURL installations, vendors can customize a host support bundle spec for the
 
 ### Customizing the support bundle spec for your application {#customize}
 
-To enable customers to collect support bundles for your application, add a support bundle YAML specification to an application release. An empty support bundle specification automatically includes default [redactors](#redact), as well as several default [collectors](#collect) and [analzyers](#analyze). You can also optionally customize the support bundle specification by adding, removing, or editing collectors and analyzers.
+To enable customers to collect support bundles for your application, add a support bundle YAML specification to an application release. An empty support bundle specification automatically includes default [redactors](#redact), as well as several default [collectors](#collect) and [analzyers](#analyze). You can also optionally customize the support bundle specification by adding, removing, or editing collectors and analyzers. Your application can include more than one support bundle spec, such as one for each component, and the specs are combined when a bundle is generated from a Replicated installer's Admin Console or with `kubectl support-bundle --load-cluster-specs`. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs). For example specs, see [Example support bundle specs](/vendor/support-bundle-examples).
 
 Support bundles can collect a variety of important cluster-level data from customer environments, such as:
 * Pod logs

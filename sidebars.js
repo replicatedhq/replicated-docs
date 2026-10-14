@@ -528,9 +528,9 @@ const sidebars = {
           label: "Support bundles",
           items: [
             "vendor/support-bundle-customizing",
+            "vendor/support-modular-support-bundle-specs",
             "vendor/support-bundle-examples",
             "vendor/support-online-support-bundle-specs",
-            "vendor/support-modular-support-bundle-specs",
             {
               type: "category",
               label: "Generate support bundles",
