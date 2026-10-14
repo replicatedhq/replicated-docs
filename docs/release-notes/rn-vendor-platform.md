@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.14-3
+
+Released on October 14, 2026
+
+### New Features {#new-features-v2026-10-14-3}
+* Added a label to the Enterprise Portal page for teams with both Classic and New Portal that shows how an app's Enterprise Portal customers are split between the two portals, and whether New Portal has a content repository connected.
 ## v2026.10.14-1
 
 Released on October 14, 2026
