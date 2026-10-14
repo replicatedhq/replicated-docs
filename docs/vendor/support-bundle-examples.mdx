@@ -87,7 +87,7 @@ For more information, see [Pod Logs](https://troubleshoot.sh/docs/collect/logs/)
 
 If your application runs alongside a Prometheus server, you can include the results of PromQL queries in the support bundle.
 
-The following example uses a `runPod` collector to run `curl` against the Prometheus query API from inside the cluster. The JSON response from Prometheus is saved to `prometheus-up/prometheus-up.log` in the bundle, and the `textAnalyze` analyzer checks that the query succeeded. Update the URL to match the Prometheus service name, namespace, and port in your environment, and add a collector for each query that you want to include.
+The following example uses a `runPod` collector to run `curl` against the Prometheus query API from inside the cluster. The JSON response from Prometheus is saved to `prometheus-up/prometheus-up.log` in the bundle, and the `textAnalyze` analyzer checks that the query succeeded. Update the URL to match the Prometheus service name, namespace, and port in your environment, and add a collector for each query that you want to include. Set `namespace` to a namespace where the support bundle can create Pods, such as your application's namespace. The Pod does not need to run in the same namespace as Prometheus because the URL uses the full service name.
 
 This approach works for every installation method because the request is sent from a Pod in the cluster. It requires `pods/create` RBAC. In air-gapped environments, the `curl` image must be available to the cluster.
 
