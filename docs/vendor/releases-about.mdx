@@ -153,7 +153,7 @@ You can enable the **Prevent this release from being skipped during upgrades** r
 
   In the persistent admin console, required releases are labeled "Required" in the list of available updates. For air gap upgrades, the **Upgrade** button for a later version is disabled until the required version is deployed. For online upgrades, the **Upgrade** button is available, but the upgrade stops with the same error after the release is downloaded.
 
-* In the Enterprise Portal, required releases are indicated in the list of available application versions. If the user is performing an upgrade and the Enterprise Portal has awareness of the currently-installed version, then the customer is prevented from selecting any version later than the required version. For new installations, the list allows any version to be selected.
+* The Enterprise Portal labels required releases in the list of available application versions. When a customer upgrades an instance and the Enterprise Portal knows the installed version, it selects the next required version by default. The customer can still choose a later version. For new installations, the customer can choose any version.
 
   :::note
   The Enterprise Portal does _not_ prevent users from skipping a required version.
