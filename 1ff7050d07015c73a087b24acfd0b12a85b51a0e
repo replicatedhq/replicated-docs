@@ -1,0 +1,23 @@
+docs/partials/support-bundles/_prometheus-run-pod-secret.mdx
+  s_88801cd9c9fd10::t_bea3368876c482 42
+docs/vendor/preflight-support-bundle-about.mdx
+  s_88801cd9c9fd10::t_44f781fafa7f83 150
+docs/vendor/support-bundle-examples.mdx
+  s_88801cd9c9fd10::t_0c05f991d968e6 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1ff7050d07015c73a087b24acfd0b12a85b51a0e",
+  "prompts": {},
+  "sessions": {
+    "s_88801cd9c9fd10": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_88801cd9c9fd10",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
