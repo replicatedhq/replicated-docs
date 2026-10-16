@@ -1,0 +1,16 @@
+embedded-cluster/embedded-manage-nodes.mdx
+  h_4fb87d7c7fffe5 31,35,37
+embedded-cluster/embedded-persistent-console.mdx
+  h_4fb87d7c7fffe5 14,37,112-133,162-163
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "49a9c261cde9a980c325046b75572f1764005e20",
+  "prompts": {},
+  "humans": {
+    "h_4fb87d7c7fffe5": {
+      "author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}
