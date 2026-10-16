@@ -10,7 +10,8 @@
         "installing-embedded-requirements",
         "installing-embedded",
         "installing-embedded-air-gap",
-        "installing-embedded-automation"
+        "installing-embedded-automation",
+        "installing-embedded-selinux"
       ]
     },
     "embedded-manage-nodes",
