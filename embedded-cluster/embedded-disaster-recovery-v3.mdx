@@ -5,10 +5,6 @@ description: Configure Velero backups and recover an Embedded Cluster v3 applica
 
 # Back up and restore Embedded Cluster v3
 
-:::note Draft for release preparation
-This page consolidates disaster recovery functionality and remaining verification in one draft. It does not announce general availability or establish a production support matrix. Confirm release availability and complete the checklist at the end before publishing.
-:::
-
 This topic describes disaster recovery for **Embedded Cluster v3 only**. It covers how application vendors package recovery infrastructure and how operators configure backups and restore an application on replacement hosts.
 
 Embedded Cluster coordinates recovery using Velero backups. Velero stores application resources and volume backups in the configured backup location. During recovery, Embedded Cluster creates a new Kubernetes cluster, restores saved installation state, waits for replacement hosts, and restores the application through Velero.
@@ -184,10 +180,10 @@ The example uses a 30-day retention period and file-system volume backups. It di
 
 For file-system backups, `repository-password` protects access to Velero's encrypted backup repository. It does not encrypt the live PVC. Set it before the first volume backup creates the repository, store it outside the cluster, and supply the same value during recovery. Changing it after repository creation does not change the existing repository password and can make those backups inaccessible. See [Velero repository credentials](https://velero.io/docs/v1.18/file-system-backup/#prerequisites).
 
-## NFS backup storage (prototype)
+## NFS backup storage
 
 :::note
-NFS backup storage for Embedded Cluster v3 is being prototyped. The configuration forms are implemented; the storage durability and recovery support matrix still require verification before production use.
+The storage durability and recovery support matrix for NFS backup storage still require verification before production use.
 :::
 
 The configuration uses a dedicated SeaweedFS deployment to expose external NFS storage through an S3-compatible endpoint. Velero accesses that endpoint using its AWS plugin. All persistent SeaweedFS state must reside on the external storage so that a replacement instance can read the backups after the original cluster is lost.
@@ -211,7 +207,7 @@ A new destination must be empty. Initialization writes a destination marker. Dur
 
 Stop or fence the original backup-storage SeaweedFS instance before restoring against the same directory. `Recreate` does not prevent two separate clusters from writing concurrently.
 
-The forms prefill saved destination settings; managed SeaweedFS credentials do not appear in the form. Changed connection settings update the existing backup location; existing repository passwords must be preserved. Automated failover for an existing NFS-mounted directory is not supported by the prototype. Generated restore configuration is retained locally for resume. Headless restore continues to accept Kubernetes YAML through `--velero-config`; it does not provide an interactive NFS form.
+The forms prefill saved destination settings; managed SeaweedFS credentials do not appear in the form. Changed connection settings update the existing backup location; existing repository passwords must be preserved. Automated failover for an existing NFS-mounted directory is not supported. Generated restore configuration is retained locally for resume. Headless restore continues to accept Kubernetes YAML through `--velero-config`; it does not provide an interactive NFS form.
 
 ### Prerequisites
 
@@ -219,7 +215,7 @@ Before configuring an NFS destination:
 
 * Provide an external NFS server that remains available independently of the Embedded Cluster hosts. Use a dedicated export or directory for this installation's backup storage.
 * Install NFS client utilities on every host eligible to run the backup SeaweedFS pod, including the first replacement controller used for recovery. Common package names are `nfs-common` on Ubuntu/Debian and `nfs-utils` on RHEL-based systems. The hosts must also have kernel support for NFS.
-* Allow those hosts to reach the NFS server through the network and firewall. Required ports depend on the NFS protocol version and server configuration; the tested versions and network requirements will be documented during the prototype.
+* Allow those hosts to reach the NFS server through the network and firewall. Required ports depend on the NFS protocol version and server configuration; the tested versions and network requirements still require verification.
 * Configure the NFS export to allow access from the eligible hosts. Grant the directory permissions required by SeaweedFS's runtime UID/GID, accounting for root squashing. The specific UID/GID will be documented after the deployment configuration is validated.
 * Retain the destination configuration and Velero repository password outside the cluster so they are available during recovery.
 
@@ -252,7 +248,7 @@ Some minimal VM platforms supply the kernel externally instead of booting one fr
 
 The Kubernetes NFS volume configuration accepts a server, exported path, and read-only setting. It does not accept a username or password. See the [NFS volume API](https://kubernetes.io/docs/reference/kubernetes-api/core/persistent-volume-v1/#nfsvolumesource).
 
-The initial prototype targets NFS access controlled by server export rules and filesystem UID/GID permissions. Kerberos-authenticated NFS requires additional host configuration and credentials; support for it has not been validated. See [NFS authentication options](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_file_systems/mounting-nfs-shares).
+NFS access is controlled by server export rules and filesystem UID/GID permissions. Kerberos-authenticated NFS requires additional host configuration and credentials; support for it has not been validated. See [NFS authentication options](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/managing_file_systems/mounting-nfs-shares).
 
 NFS access controls are separate from the S3 credentials used by Velero to access SeaweedFS and from the Velero repository password.
 
@@ -264,7 +260,7 @@ SeaweedFS is pinned to the controller serving the configuration request. Prepare
 
 ### Validation still in progress
 
-The prototype will establish the supported NFS versions and mount settings, SeaweedFS permissions and persistent directory layout, behavior after storage interruptions, and recovery using only the retained external storage. Until that testing is complete, this section is not a declaration of production support.
+Validation is ongoing for supported NFS versions and mount settings, SeaweedFS permissions and persistent directory layout, behavior after storage interruptions, and recovery using only the retained external storage. Until that testing is complete, this section is not a declaration of production support.
 
 ## Airgap packaging and registry data
 
@@ -486,7 +482,7 @@ Run `sudo ./APP_SLUG restore --help` for the full list of options. The applicati
 
 Keep these items in this draft until the release documentation and support matrix are finalized:
 
-* Confirm the first supported EC version and availability of browser, headless, airgap, BYO registry, and prototype filesystem destinations. Backups must be created with a backup-capable release; there is no earlier EC backup format to support.
+* Confirm the first supported EC version and availability of browser, headless, airgap, BYO registry, and NFS destinations. Backups must be created with a backup-capable release; there is no earlier EC backup format to support.
 * Verify vendor packaging with bootstrap-safe image templates, separate recovery charts, node-agent paths, plugins, and disabled recovery-time schedules. Exercise explicit digests as well as image tags.
 * Test single-node and multi-node restore with external network access blocked, including metadata retrieval before joins, registry credential recovery, fresh pulls on every host, and the transition to HA storage.
 * Test registry-data exclusions under broad backup scopes with both file-system backups and snapshots, retaining unrelated data and objects.
@@ -496,4 +492,4 @@ Keep these items in this draft until the release documentation and support matri
 * Verify recovery using **NFS server and export** and **Existing NFS-mounted directory** from retained external storage, kernel and mount requirements, permissions, single-writer fencing, larger backups, interruption recovery, retention/deletion, and repository maintenance. Confirm disconnected image availability separately; do not imply production support from a successful backup alone.
 * Confirm host CA trust requirements before bootstrap and backup-storage access. Test private registry CA and client certificates separately from console TLS.
 
-These are release checks, not claims that every scenario has been validated. Before publication, replace prototype wording with the verified support boundaries and remove this draft checklist as appropriate.
+These are release checks, not claims that every scenario has been validated. Before publication, document the verified support boundaries and remove this draft checklist as appropriate.
