@@ -28,13 +28,13 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 To deploy multi-node clusters with Embedded Cluster, you must enable the **Multi-node Cluster (Embedded Cluster only)** license field for the customer. For more information about managing customer licenses, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
-You can enable this field for a customer whose instance is already installed, and the instance does not need to be reinstalled. However, the change does not take effect right away. Embedded Cluster reads the license that was written to disk by the last install or upgrade, and checking for updates does not refresh it. Until the license on the instance is refreshed, `create-join-bundle` fails and the Embedded Cluster UI does not offer to join nodes.
+You can enable this field for a customer whose instance is already installed, and the instance does not need to be reinstalled. However, the change does not take effect right away. Embedded Cluster uses the license saved on the instance. Checking for updates alone does not apply a newer license. Until the license on the instance is refreshed, `create-join-bundle` fails and the Embedded Cluster UI does not offer to join nodes.
 
 How the user refreshes the license depends on the installation type:
 
-* **Online installations:** The user redeploys the current version from the Embedded Cluster UI. Embedded Cluster downloads the release again, and the downloaded release carries a current copy of the license. Upgrading to a newer version has the same effect.
+* **Online installations:** In the persistent console, the user opens **License**, clicks **Check for license updates**, then clicks **Update license and deploy** when an update is available. Embedded Cluster syncs the license and deploys the current application version with the saved configuration, without downloading a release bundle. Online CLI upgrades also sync the license; if syncing fails, they use the newest verified license already available locally.
 
-* **Air gap installations:** The license is refreshed only when a release is installed from a bundle that was downloaded after you enabled the field. There is currently no way to refresh the license without installing from a release bundle.
+* **Air gap installations:** The user downloads an updated license file from the vendor, opens **License** in the persistent console, selects the file, and clicks **Upload license and deploy**. Embedded Cluster verifies the license and deploys the current application version with the saved configuration. A release bundle is not required. The same upload path is available for online installations configured to use offline updates. If the updated license enables required configuration, the console directs the user to **Config** to complete it before deployment. Later upgrades keep the newest license sequence, so an older bundle cannot revert the refreshed license.
 
 ### Join nodes {#add-nodes}
 

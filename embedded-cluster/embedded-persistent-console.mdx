@@ -11,6 +11,7 @@ The persistent admin console is an opt-in web service that runs on a controller 
 - See available updates, view release notes, and trigger an upgrade with a single click
 - Upload air gap release archives directly through the browser (no SSH required)
 - Generate a support bundle and download it for sharing with the vendor's support team
+- View node status, generate commands to add nodes, and remove nodes from the cluster
 
 All of this works without SSH access to the controller.
 
@@ -33,6 +34,7 @@ Enabling the persistent admin console adds a dashboard that is always there. Fro
 * See available updates and read release notes
 * Upload an air gap release archive
 * Generate a support bundle and download it
+* View node roles and readiness, generate commands to add nodes, and remove nodes
 * Start an upgrade, or change configuration values at the current version with **Redeploy**
 
 Upgrades and configuration changes started from the console hand off to the same wizard, so the console does not duplicate it. The practical difference is that nobody has to be at a terminal to begin.
@@ -107,6 +109,33 @@ The **Share** button appears in the console only when all of the following are t
 
 If any of these requirements are not met, the **Share** button is hidden and the bundle can still be downloaded from the console for manual sharing.
 
+## Add nodes
+
+Open **Nodes** in the console to see the cluster's hosts, roles, readiness, and internal IP addresses. Select **Add node**, choose one or more configured roles, and copy the commands that appear automatically. Run the generated download, extraction, and join commands on the new host. You need command-line access to the new host, but not to an existing controller.
+
+The host list updates automatically while the node joins. There is no completion action in the console: after running the commands, you can navigate to another tab. A cluster with exactly two primary hosts is not supported; add another primary host. Adding primary hosts does not enable high availability automatically.
+
+Join commands expire at the time shown below them. The console automatically refreshes expired commands while this page is open. Changing the selected roles automatically generates new commands for the new selection.
+
+Adding nodes requires the **Multi-node Cluster** license field to be enabled in the license stored on the cluster. The **Add node** button remains visible but disabled when this entitlement is missing. If the vendor has enabled the field, open **License** in the console to refresh the cluster's license before adding nodes:
+
+* **Online installations:** Click **Check for license updates**, then **Update license and deploy** when an update is available.
+* **Air gap installations or online installations configured to use offline updates:** Select the updated license file from the vendor, then click **Upload license and deploy**. A release bundle is not required.
+
+Both flows deploy the current application version with the saved configuration. If the updated license enables required configuration, complete it on **Config** before deployment. For more information, see [Multi-node license requirements](embedded-manage-nodes#requirement). To join nodes after refreshing the license, see [Join nodes](embedded-manage-nodes#add-nodes).
+
+## Remove nodes
+
+On **Nodes**, select **Delete** for a host. Review the warnings and select **Delete node** to confirm. The console uses the same removal routine as the `remove-node` CLI command: it drains healthy hosts, removes controller membership from etcd, cleans up the controller's autopilot ControlNode object, and deletes the Kubernetes Node object. Drain failure stops removal; force does not bypass a failed drain. NotReady hosts skip draining, as they do in the CLI.
+
+The confirmation includes the CLI's controller-count warnings. When the CLI would require `--force`, the **Delete node** button stays disabled until you explicitly acknowledge **Force removal**. Force can bypass controller-count safety checks and, when cleaning up an already missing node, allow deletion of stuck Pods or orphaned PVCs. Deleting orphaned PVCs discards local data. Removing a controller can affect quorum and application availability; maintain at least three controllers for production HA.
+
+A surviving, ready controller with the current cluster version executes the removal. It cannot remove itself, and the last controller cannot be removed through the console. To remove the last controller, run `reset` locally. The host serving your browser requests can be removed if another eligible controller can execute the operation; move the console or ensure another console is available before removing its host.
+
+Only one console removal can run at a time across the cluster. The operation and progress are stored in Kubernetes, so refreshing the page or reaching another console instance does not restart the removal. If dispatch is pending, **Retry dispatch** sends the same operation to its assigned controller. The console does not transfer a running removal to another controller when it becomes unreachable. If the executing daemon restarts, the operation is marked failed; review the cluster state and current warnings before retrying. This shared removal state does not add load-balancer support to other console workflows.
+
+Removal does not stop or reset the removed host. If it is reachable, run `reset` on it to clean up its local data before rejoining. If SeaweedFS is installed, follow the operator runbook's volume rebalancing procedures after removal. See [Remove a node](embedded-manage-nodes#remove-a-node).
+
 ## Recover or move the console
 
 The console is hosted by a single controller. If the controller hosting the console is lost or the `<app-slug>-console-web.service` becomes unhealthy, rerun the install command on any controller node to bring it back up:
@@ -134,5 +163,7 @@ The persistent admin console has the following limitations:
 * The console can only be installed on a single controller node at a time. Reinstall on a different controller to move it.
 
 * The console must be installed on a controller node; it cannot run on a worker node.
+
+* The console can add and remove cluster members. Running join commands or resetting a removed host still requires command-line access to that host. Removing the last controller and enabling high availability require command-line access. See [Manage nodes](embedded-manage-nodes).
 
 * The cluster must have TLS configured at install time. The console reuses the cluster's TLS certificate to serve HTTPS on its port.
