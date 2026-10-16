@@ -29,7 +29,7 @@ Package Velero as an application `HelmChart` or an Embedded Cluster Helm chart e
 
 Embedded Cluster installs the entire Velero chart, including its wrapper if present, before restoring the application. Keep ordinary application workloads in separate charts. Mark other charts required during recovery with `spec.recovery: true` on an application `HelmChart`, or `recovery: true` on an Embedded Cluster extension chart entry. Chart weights control installation order.
 
-Recovery charts can use image template functions and other template context available during bootstrap. Templates that depend on saved application configuration are unavailable until the recovery Secret is restored. Keep recovery charts independently installable with those bootstrap inputs. Recovery charts must not create active Velero schedules during restore; let operators supply schedules with their backup configuration.
+Recovery charts can use image template functions and other template context available during bootstrap. Templates that depend on saved application configuration are unavailable until the recovery Secret is restored. Keep recovery charts independently installable with those bootstrap inputs. Recovery charts must not create active Velero schedules during restore; operators configure schedules separately or supply them in custom YAML.
 
 The application vendor is responsible for choosing compatible Velero, chart, and plugin versions and configuring the backup method. For example:
 
@@ -41,9 +41,9 @@ Embedded Cluster does not install a fixed set of provider plugins or select a vo
 
 ### Include recovery metadata in backups
 
-Embedded Cluster maintains a Secret named `embedded-cluster-recovery` in the application namespace. It contains the installation state needed to recover, including release identity, node topology, saved application configuration, license, and console password hash. It does not contain application volume data.
+Embedded Cluster maintains a Secret named `embedded-cluster-recovery` in the `embedded-cluster` namespace. It contains the installation state needed to recover, including release identity, node topology, saved application configuration, license, and console password hash. It does not contain application volume data.
 
-Every backup must include this Secret and the application's required resources and volumes. Include the application namespace and Secrets in the backup scope. Any resource filters or label selectors must also include the recovery Secret, which has this label:
+Every backup must include this Secret and the application's required resources and volumes. Include `embedded-cluster`, the required application namespaces, and Secrets in the backup scope. Embedded Cluster adds `embedded-cluster` to vendor backup policies and guided schedule templates; custom YAML must include it explicitly. Any resource filters or label selectors must also include the recovery Secret, which has this label:
 
 ```yaml
 embeddedcluster.replicated.com/recovery: "true"
@@ -62,16 +62,18 @@ Embedded Cluster updates the Secret as installation state changes and refreshes 
    Replace `APP_SLUG` with the application slug.
 
 1. Open **Disaster Recovery**.
-1. In **Configuration**, choose **Velero YAML** and paste the configuration supplied for the application, replacing the storage settings and credentials for your environment. The prototype NFS and host-path forms are described below.
+1. In **Configuration**, choose **Guided configuration**, then select **S3** or **NFS** and enter the destination settings and repository password. For S3, choose **Access keys**, **IAM (keyless access)** for an AWS host role, or **OIDC** for federated access. OIDC currently supports AWS and requires issuer and trust setup. Alternatively, choose **Use custom Velero YAML** and paste the configuration supplied for the application.
 1. Click **Apply configuration**.
 
 The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
 
-Embedded Cluster passes provider-specific configuration to Kubernetes without restricting it to a predefined storage form. Kubernetes and Velero validate the resources. Include at least one Schedule: schedules provide both automatic backups and templates for manual backups.
+Custom YAML supports provider-specific configuration. Configure schedules separately after connecting backup storage; a schedule is required for both automatic backups and manual backup templates. Custom YAML can also include Schedule resources.
 
-The page shows **Velero is configured** when the recovery workloads, backup locations, and existing backup repositories are ready and schedules are present without validation errors. Otherwise, it displays errors and keeps the editor available. These readiness checks do not replace testing a backup and restore.
+Guided configuration remains open while Velero validates the backup storage location and closes after successful validation. Errors appear below the configuration form. Custom YAML remains editable and can be reapplied during validation. These checks do not replace testing a backup and restore.
 
-To change the configuration, click **Update configuration** and submit the updated manifests. The editor does not prefill saved credentials. Use **Cancel** to close it without applying changes.
+To change the configuration, click **Update configuration**. Guided settings are prefilled without exposing saved credentials. All guided storage types update the same backup location, `default`. Use **Cancel editing** to close the form without applying changes.
+
+After successful guided configuration, **Download restore configuration** saves Kubernetes YAML for `restore --velero-config`, including headless restore. The download remains available in the console after navigation or reload. Store it securely outside the cluster and run `chmod 600` on the file before using it. Downloads are not offered for custom YAML or in Restore Wizard; retain your original custom YAML.
 
 ### Example: Amazon S3 with file-system backups
 
@@ -128,6 +130,7 @@ spec:
   template:
     includedNamespaces:
       - APP_NAMESPACE
+      - embedded-cluster
     storageLocation: default
     ttl: 720h
     defaultVolumesToFsBackup: true
@@ -140,7 +143,7 @@ The example uses a 30-day retention period and file-system volume backups. It di
 
 For file-system backups, `repository-password` protects access to Velero's encrypted backup repository. It does not encrypt the live PVC. Set it before the first volume backup creates the repository, store it outside the cluster, and supply the same value during recovery. Changing it after repository creation does not change the existing repository password and can make those backups inaccessible. See [Velero repository credentials](https://velero.io/docs/v1.18/file-system-backup/#prerequisites).
 
-## NFS and host-path backup storage (prototype)
+## NFS backup storage (prototype)
 
 :::note
 NFS backup storage for Embedded Cluster v3 is being prototyped. The configuration forms are implemented; the storage durability and recovery support matrix still require verification before production use.
@@ -150,27 +153,24 @@ The configuration uses a dedicated SeaweedFS deployment to expose external NFS s
 
 ### Configure a managed destination
 
-In the console configuration editor or restore wizard, choose **NFS (prototype)** or **Host path (prototype)**. These modes require packaged Velero in the `velero` namespace, its AWS plugin and node agent, and no other configured backup storage location.
+In the console configuration editor or restore wizard, choose **Guided configuration**, then **NFS**. Select **NFS server and export** or **Existing NFS-mounted directory**. These modes require packaged Velero in the `velero` namespace, its AWS plugin and node agent. Guided configuration uses one backup storage location named `default`.
 
 Supply:
 
 | Field | Value to retain outside the cluster |
 | --- | --- |
-| NFS server and path | Server hostname or IP and dedicated exported directory; required for NFS mode |
-| Host path | Existing absolute directory backed by an NFS mount on the controller serving the request; required for host-path mode |
+| NFS server and path | Server hostname or IP and dedicated exported directory; required for **NFS server and export** |
+| Existing NFS-mounted directory | Existing absolute directory backed by an NFS mount on the controller serving the request; required for **Existing NFS-mounted directory** |
 | Backup prefix | DNS-style name identifying this installation's backups |
-| S3 access and secret keys | Credentials for Velero's access to the dedicated SeaweedFS endpoint |
 | Repository password | Persistent password used for volume backup and restore |
-| Schedule | Five-field cron expression |
-| Retention | Positive duration, such as `720h` for 30 days |
 
-Embedded Cluster creates the SeaweedFS resources, credentials, backup location, and schedule. The bucket is `ec-backups`; the generated backup location and schedule are named `ec-filesystem`. The dedicated SeaweedFS instance runs with one replica and the `Recreate` deployment strategy, separately from any airgap registry storage. Its internal S3 endpoint uses authenticated HTTP. All master state, volume data, and filer database files reside on the external storage; preserve the entire directory.
+Embedded Cluster creates the SeaweedFS resources, generates its access credentials, and configures the `default` backup location with bucket `ec-backups`. These credentials authenticate Velero to SeaweedFS; they are not encryption keys and are regenerated during restore. Operators do not enter or retain them. Configure schedules separately. The dedicated SeaweedFS instance runs with one replica and the `Recreate` deployment strategy, separately from any airgap registry storage. Its internal S3 endpoint uses authenticated HTTP. All master state, volume data, and filer database files reside on the external storage; preserve the entire directory.
 
-A new destination must be empty. Initialization writes a destination marker. During restore, supply the retained destination, prefix, credentials, and repository password. Recovery requires the existing marker and storage layout and does not initialize a missing bucket as a new destination.
+A new destination must be empty. Initialization writes a destination marker. During restore, supply the retained destination, prefix, and original repository password. Recovery requires the existing marker and storage layout and does not initialize a missing bucket as a new destination.
 
 Stop or fence the original backup-storage SeaweedFS instance before restoring against the same directory. `Recreate` does not prevent two separate clusters from writing concurrently.
 
-The forms do not return saved credentials to the browser. Reenter credentials when updating configuration. Destination changes, credential rotation, and automated host-path failover are not supported by the prototype. Generated restore configuration is retained locally for resume. Headless restore continues to accept Kubernetes YAML through `--velero-config`; it does not provide an interactive NFS form.
+The forms prefill saved destination settings; managed SeaweedFS credentials do not appear in the form. Changed connection settings update the existing backup location; existing repository passwords must be preserved. Automated failover for an existing NFS-mounted directory is not supported by the prototype. Generated restore configuration is retained locally for resume. Headless restore continues to accept Kubernetes YAML through `--velero-config`; it does not provide an interactive NFS form.
 
 ### Prerequisites
 
@@ -186,7 +186,7 @@ The NFS option uses Kubernetes' built-in `nfs` volume type. Kubelet mounts the e
 
 ### Host kernel requirements
 
-Every host eligible to run SeaweedFS, including replacement hosts used for restore, must have NFS client support in its running Linux kernel. This applies to both the NFS and host-path options. Install the client utilities (`nfs-common` on Ubuntu/Debian or `nfs-utils` on RHEL-based systems) as well; these packages do not add missing kernel support.
+Every host eligible to run SeaweedFS, including replacement hosts used for restore, must have NFS client support in its running Linux kernel. This applies to both **NFS server and export** and **Existing NFS-mounted directory**. Install the client utilities (`nfs-common` on Ubuntu/Debian or `nfs-utils` on RHEL-based systems) as well; these packages do not add missing kernel support.
 
 For an NFSv4 server, the kernel must support the server's NFSv4 protocol version. Support can be built into the kernel or provided by loadable modules matching the running kernel. If it is modular, load it with:
 
@@ -217,9 +217,9 @@ NFS access controls are separate from the S3 credentials used by Velero to acces
 
 ### Existing host mounts
 
-The **Host path (prototype)** option uses an existing NFS-backed directory. Operators are responsible for configuring that mount and making it persistent across host reboots. Embedded Cluster checks that the path is NFS-backed, and an init container checks the filesystem again before SeaweedFS starts to prevent fallback to a local directory. Embedded Cluster does not mount or unmount this operator-managed path.
+The **Existing NFS-mounted directory** option uses an existing NFS-backed directory. Operators are responsible for configuring that mount and making it persistent across host reboots. An init container checks that the directory is NFS-backed before SeaweedFS starts to prevent fallback to a local directory. Embedded Cluster does not mount or unmount this operator-managed path.
 
-SeaweedFS is pinned to the controller serving the configuration request. Prepare the mount on the first replacement controller before recovery; automatic host-path failover is not provided. A matching directory name on two hosts does not establish that both paths refer to the same storage.
+SeaweedFS is pinned to the controller serving the configuration request. Prepare the mount on the first replacement controller before recovery; automatic failover for an existing NFS-mounted directory is not provided. A matching directory name on two hosts does not establish that both paths refer to the same storage.
 
 ### Validation still in progress
 
@@ -261,7 +261,7 @@ The exclusion covers both file-system backups and snapshots of the labeled volum
 
 ## Create and manage backups
 
-Velero runs each enabled schedule using its cron expression. In **Schedule**, pause or enable schedules as needed. Pausing a schedule stops its automatic backups; it can still serve as a template for a manual backup.
+Velero runs each enabled schedule using its cron expression. In **Schedule**, add or edit the schedule name, cron expression, retention, and paused state, or pause and enable existing schedules. Without a schedule, automatic backups do not run and the manual backup form is hidden. Pausing a schedule stops its automatic backups; it can still serve as a template for a manual backup.
 
 To create a manual backup:
 
@@ -309,13 +309,13 @@ The bootstrap license must enable disaster recovery and match the installer appl
 
 ### Configure Velero and select a backup
 
-1. Supply compatible Velero configuration, including the same storage bucket, prefix, and repository password used for the backup. Storage credentials must permit access to that backup.
+1. Use the same guided storage form as the console, or supply compatible Velero YAML. Use the existing backup destination, prefix, and original repository password. S3 credentials or host IAM roles must permit access to the backup; NFS-backed SeaweedFS credentials are generated automatically.
 1. Apply the configuration and wait for Velero to synchronize its backup list.
 1. Select a backup with status **Completed**.
 
 You can reuse configuration containing Schedule resources. Embedded Cluster automatically pauses submitted schedules during recovery. They remain paused until you explicitly enable them after recovery.
 
-Embedded Cluster first restores only the recovery Secret. It checks the installation namespace and `kotsadm`, the namespace used by v2-migrated installations, and requires exactly one matching recovery Secret. It validates the saved release identity and then uses the recovered application namespace, topology, and configuration. No namespace argument is needed.
+Embedded Cluster first restores only the recovery Secret. It reads `embedded-cluster-recovery` from the `embedded-cluster` namespace. It validates the saved release identity and then uses the recovered application namespace, topology, and configuration. No namespace argument is needed.
 
 The bootstrap controller automatically receives the first saved controller role set. Restore does not accept `--roles`; additional hosts use the role combinations shown in the join instructions.
 
@@ -434,7 +434,7 @@ Run `sudo ./APP_SLUG restore --help` for the full list of options. The applicati
 | Symptom | What to check |
 | --- | --- |
 | The Disaster Recovery tab is missing | Confirm that the installed license enables disaster recovery and the deployed release packages a Velero chart. |
-| Configuration is unhealthy | Read the displayed error. Check recovery workload readiness, backup storage access, repository readiness, and Schedule validation errors. Missing schedules are configuration errors. |
+| Configuration is unhealthy | Read the displayed error. Check recovery workload readiness, backup storage access, repository readiness, and Schedule validation errors. Without a schedule, automatic and manual backups are unavailable; storage configuration can still succeed. |
 | Existing backups are not listed | Check the synchronization status under the table, the configured bucket and prefix, storage access, and whether backup synchronization is disabled for a location. |
 | A backup is partially failed or failed | Inspect its errors and the Velero logs before attempting recovery. Recovery requires a completed backup. |
 | Volume recovery cannot access the repository | Confirm that the supplied repository password matches the password used when the repository was created, and check storage credentials. |
@@ -452,7 +452,7 @@ Keep these items in this draft until the release documentation and support matri
 * Verify recovery of saved CIDR, data directory, and API port; explicit overrides; one combined rebuild; and restored Services and volume data with changed networks and paths.
 * Verify new-install and v2-migrated namespace recovery, automatic first-controller roles, and correct join requirements.
 * Test browser and headless selection, unattended inputs, authenticated join downloads, redirected progress, terminal restore failures, resume, reselection before state import, and schedule re-enablement.
-* Verify NFS and host-path recovery from retained external storage, kernel and mount requirements, permissions, single-writer fencing, larger backups, interruption recovery, retention/deletion, and repository maintenance. Confirm disconnected image availability separately; do not imply production support from a successful backup alone.
+* Verify recovery using **NFS server and export** and **Existing NFS-mounted directory** from retained external storage, kernel and mount requirements, permissions, single-writer fencing, larger backups, interruption recovery, retention/deletion, and repository maintenance. Confirm disconnected image availability separately; do not imply production support from a successful backup alone.
 * Confirm host CA trust requirements before bootstrap and backup-storage access. Test private registry CA and client certificates separately from console TLS.
 
 These are release checks, not claims that every scenario has been validated. Before publication, replace prototype wording with the verified support boundaries and remove this draft checklist as appropriate.
