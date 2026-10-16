@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.16-3
+
+Released on October 16, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-16-3}
+* Fixed Enterprise Portal users on hybrid teams sometimes landing in a different customer than the one they selected when moving between the Classic and new portals.
+* Fixed Enterprise Portal invite links sent before a customer moved between the Classic and new portals so they now open the portal the customer is on.
 ## v2026.10.15-2
 
 Released on October 15, 2026
