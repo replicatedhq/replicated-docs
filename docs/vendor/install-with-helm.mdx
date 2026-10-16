@@ -50,7 +50,7 @@ For releases that contain more than one Helm chart, the `weight` property of the
 The same ordering is used for the install and update instructions in the Replicated Enterprise Portal. For more information, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log in to and use the Enterprise Portal_. For the new Enterprise Portal, see [Installing and upgrading](/vendor/enterprise-portal-v2-use#installing-and-upgrading) in _Log in to and Use the Enterprise Portal_.
 
 :::note
-The `weight` property only controls the order in which the commands are listed. Unlike installations with a Replicated installer, the Helm CLI install instructions do not wait for one chart to be deployed and ready before the next chart is installed. If your application requires that a chart is ready before another chart is installed, include this requirement in the documentation that you provide to your customers.
+The `weight` property only controls the order in which the commands are listed. The Helm CLI install instructions do not wait for one chart to be deployed and ready before the next chart is installed. If your application requires that a chart is ready before another chart is installed, include this requirement in the documentation that you provide to your customers.
 :::
 
 For more information about how `weight` controls the deployment order for installations with a Replicated installer, see [Helm chart deployment order with `weight`](/vendor/orchestrating-resource-deployment#weight) in _Orchestrate resource deployment_.

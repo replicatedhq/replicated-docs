@@ -10,7 +10,9 @@ For more information, see [About Replicated template functions](/reference/templ
 For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array.
 
 :::note
-KOTS passes `--wait` to Helm by default, which means Helm waits for all non-hook resources to reach a Ready state before running post-install or post-upgrade hooks. If a non-hook resource depends on a resource created by a hook (for example, a Deployment with an init container that waits for a database custom resource created by a post-install hook), this creates a circular deadlock. To avoid this, add `--wait=false` and `--wait-for-jobs=false` to `helmUpgradeFlags`. These flags are appended after the defaults and override them.
+KOTS does not pass `--wait` to Helm by default. KOTS installs charts in the order set by [`weight`](#weight), and starts the next chart as soon as Helm returns for the previous one, without waiting for its resources to be ready. If a chart depends on resources from an earlier chart being ready (for example, an operator that must be running before a later chart creates its custom resources), add `--wait` to the `helmUpgradeFlags` of the earlier chart. If the later chart also depends on Jobs in the earlier chart completing, add `--wait-for-jobs` as well.
+
+With `--wait`, Helm waits for all non-hook resources to be ready before it runs post-install or post-upgrade hooks. Do not add `--wait` to a chart where a non-hook resource depends on a resource created by a hook (for example, a Deployment with an init container that waits for a database custom resource created by a post-install hook). This creates a deadlock where the install times out.
 :::
 
 #### Examples
@@ -22,10 +24,10 @@ helmUpgradeFlags:
   - --history-max=15
 ```
 
-Disable the default `--wait` behavior to prevent deadlocks with post-install hooks:
+Wait for the chart's resources to be ready and its Jobs to complete before the next chart installs:
 
 ```yaml
 helmUpgradeFlags:
-  - --wait=false
-  - --wait-for-jobs=false
+  - --wait
+  - --wait-for-jobs
 ```

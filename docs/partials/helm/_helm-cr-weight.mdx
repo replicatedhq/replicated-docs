@@ -4,6 +4,8 @@ Charts are installed by weight in ascending order with lower weights first.
 `weight` also determines the uninstall order,
 where charts are uninstalled by weight in descending order with higher weights first.
 
+For installations with KOTS, `weight` controls only the order in which charts are installed. KOTS does not wait for a chart's resources to be ready before it installs the next chart. To wait for readiness, add `--wait` to the chart's [`helmUpgradeFlags`](#helmupgradeflags).
+
 For installations with the Helm CLI, the Vendor Portal and the Replicated Enterprise Portal use the `weight` property to order the list of charts in the installation and update instructions.
 For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_
 and [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log in to and use the Enterprise Portal_.
