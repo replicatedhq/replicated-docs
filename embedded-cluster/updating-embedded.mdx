@@ -187,11 +187,9 @@ If the [persistent admin console](embedded-persistent-console) is installed on a
 
 #### Re-upload the current release
 
-The currently-installed release can also be updated from the dashboard. Two common reasons to do this:
+Redeploy requires a local copy of the release archive. If that copy is missing, re-upload the currently-installed release archive from the dashboard to restore it.
 
-* **To update the license.** Re-upload the release archive containing the new license, then click **Redeploy** to apply it.
-
-* **To enable redeploy.** Redeploy requires a local copy of the release archive. If that copy is missing, re-upload to restore it.
+To update only the license, open **License** in the console, select the updated license file from the vendor, and click **Upload license and deploy**. This deploys the current application version with the saved configuration; a release bundle is not required. If the updated license enables required configuration, complete it on **Config** before deployment. See [Multi-node license requirements](embedded-manage-nodes#requirement) for details about refreshing the license.
 
 ### Headless air-gapped upgrade
 
