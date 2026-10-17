@@ -364,7 +364,7 @@ CMX supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kub
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>{/* START_aks_VERSIONS */}1.34, 1.35, 1.36{/* END_aks_VERSIONS */}</td>
+    <td>{/* START_aks_VERSIONS */}1.34, 1.35, 1.36, 1.37{/* END_aks_VERSIONS */}</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
