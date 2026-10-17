@@ -25,15 +25,26 @@ For applications deployed with KOTS, you can manage the order in which resources
 
 You can configure the [`weight`](/reference/custom-resource-helmchart-v2#weight) property of the Replicated HelmChart custom resource to define the order in which the Helm charts in your release are installed.
 
-KOTS directs Helm to install the Helm charts based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. Any dependencies are installed along with the parent chart. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`. 
+KOTS directs Helm to install the Helm charts based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. Any dependencies are installed along with the parent chart. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`.
 
-The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a Helm chart, the `weight` is `0`.
-
-The `weight` property is also used for installations with the Helm CLI, where it determines the order in which the charts are listed in the install and update instructions in the Vendor Portal and the Enterprise Portal. For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_.
+`weight` controls only the order in which KOTS starts each chart install. KOTS does not pass `--wait` to Helm by default, so it starts the next chart as soon as Helm returns for the previous one, which is usually before the previous chart's Pods are running. If a chart can install only after an earlier chart is ready (for example, a chart that creates cert-manager `Certificate` resources depends on cert-manager already running), add `--wait` to the [`helmUpgradeFlags`](/reference/custom-resource-helmchart-v2#helmupgradeflags) of the earlier chart. Add `--wait-for-jobs` as well if the later chart depends on Jobs in the earlier chart completing.
 
 For example:
 
 ```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: cert-manager
+spec:
+  chart:
+    name: cert-manager
+    chartVersion: 1.16.2
+  weight: 1
+  # wait for cert-manager to be ready before installing charts with a higher weight
+  helmUpgradeFlags:
+    - --wait
+---
 apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
@@ -42,10 +53,13 @@ spec:
   chart:
     name: samplechart
     chartVersion: 3.1.7
-  releaseName: samplechart-release-1
-  # weight determines the order that charts are applied, with lower weights first.
-  weight: 4
+  # creates cert-manager Certificate resources
+  weight: 2
 ```
+
+The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a Helm chart, the `weight` is `0`.
+
+The `weight` property is also used for installations with the Helm CLI, where it determines the order in which the charts are listed in the install and update instructions in the Vendor Portal and the Enterprise Portal. For more information, see [Chart installation order](/vendor/install-with-helm#order) in _Install with Helm_.
 
 #### Limitations
 

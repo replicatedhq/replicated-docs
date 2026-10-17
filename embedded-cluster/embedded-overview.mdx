@@ -54,7 +54,11 @@ During both installation and upgrade, Embedded Cluster deploys components in a f
 1. **Application preflight checks:** Runs vendor-defined preflight checks against the cluster.
 1. **Application charts:** Installs the application's HelmChart custom resources, sorted by `weight` (ascending).
 
-Each Helm chart (addons, extensions, and application charts) is installed with `--wait` and `--wait-for-jobs`, which means Helm hooks (`pre-install`, `post-install`, `pre-upgrade`, `post-upgrade`) run and must succeed before the next chart begins. This enables patterns like running database migrations in a Helm pre-upgrade hook Job.
+For every Helm chart, Helm hooks (`pre-install`, `post-install`, `pre-upgrade`, `post-upgrade`) run and must succeed before the next chart begins. This enables patterns like running database migrations in a Helm pre-upgrade hook Job.
+
+Built-in addons and extensions are installed with `--wait` and `--wait-for-jobs`, so each one is ready before the next begins. Application charts are not. Embedded Cluster installs them in `weight` order, but starts the next chart as soon as Helm returns for the previous one, without waiting for its workloads to be ready. This matches Embedded Cluster v2. A successful deployment does not mean the application's Pods are healthy. Application readiness is reported separately through [app status](/vendor/insights-app-status).
+
+If an application chart depends on an earlier application chart being ready (for example, an operator that must be running before a later chart creates its custom resources), add `--wait` to the `helmUpgradeFlags` of the earlier chart, and `--wait-for-jobs` if the later chart depends on its Jobs completing. Application charts use a default Helm timeout of `5m`, so also add `--timeout` if the chart can take longer to become ready. See [`helmUpgradeFlags`](/reference/custom-resource-helmchart-v2#helmupgradeflags).
 
 Extensions install after built-in addons and before application charts. This provides a platform-then-infrastructure-then-application deployment order when combined with `weight`-based sorting within each tier.
 
