@@ -145,12 +145,6 @@ Released on October 9, 2026
 
 ### Improvements {#improvements-v2026-10-09-1}
 * Security Center now shows release architecture context and lets vendors view architecture-specific vulnerability results.
-## v2026.10.09-0
-
-Released on October 9, 2026
-
-### Bug Fixes {#bug-fixes-v2026-10-09-0}
-* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads.
 ## v2026.10.08-12
 
 Released on October 8, 2026
