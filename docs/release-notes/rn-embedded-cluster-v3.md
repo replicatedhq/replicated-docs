@@ -16,33 +16,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 Released on October 17, 2026
 
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
-
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">3.15.0-beta.1+k8s-1.36</td>
+    <td id="center">3.15.0-beta.1+k8s-1.35</td>
+    <td id="center">3.15.0-beta.1+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
   </tr>
 </table>
--->
-### New Features {#new-features-3-15-0-beta-1}
+
+### New features {#new-features-3-15-0}
+
 * Adds support for Backup and Restore custom resources in application specs.
 * Configure web identity for S3 backups through the Disaster recovery page and restore wizard, including a custom service account issuer and public OIDC discovery endpoints.
 * Adds support for cluster management in Admin Console.
 * Adds ability to update config and redeploy the app from Admin Console.
 * Adds ability to view and update license in Admin Console.
 
-### Improvements {#improvements-3-15-0-beta-1}
+### Improvements {#improvements-3-15-0}
+
 * Added NODE_MANAGEMENT.md guide documenting single-node and multi-node node removal workflows, including quorum implications and handling unreachable nodes.
 
-### Bug Fixes {#bug-fixes-3-15-0-beta-1}
+### Bug fixes {#bug-fixes-3-15-0}
+
 * Improved error messages for reset and remove-node commands to clarify when to run which command and from which node.
 * Clarified --force flag behavior: reset --force only skips confirmation (never bypasses etcd safety check), while remove-node --force bypasses quorum check (but never applies to self-removal).
 * Fix unreadable text in disaster recovery and restore screens.
