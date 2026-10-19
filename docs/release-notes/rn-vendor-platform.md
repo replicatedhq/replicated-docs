@@ -9,6 +9,14 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.19-2
+
+Released on October 19, 2026
+
+### Improvements {#improvements-v2026-10-19-2}
+* New exported \`HelmCommandOptions\` type; \`GetInstallOptionsInput\`, \`UpdateInstallOptionsInput\` and \`GetUpdateInstructionsInput\` extend it, so their shape is unchanged.
+* \`appendHelmChartFilterParams\` is now \`appendHelmCommandParams\`; \`helmChartFilters.ts\` is now \`helmCommandOptions.ts\`.
+* The install/update hooks take one \`helm\` filter instead of loose \`charts\`/\`exclude\`. Request URLs and cache keys are unchanged.
 ## v2026.10.19-0
 
 Released on October 19, 2026
