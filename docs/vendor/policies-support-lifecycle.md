@@ -98,7 +98,7 @@ Replicated aims to add support for new upstream Kubernetes minor versions within
     <td>1.37</td>
     <td>NA</td>
     <td>1.132.0 and later</td>
-    <td>NA</td>
+    <td>v2026.10.13-0 and later</td>
     <td>2027 October 28</td>
   </tr>
   <tr>
@@ -129,4 +129,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 October 9.
+Last modified 2026 October 19.
