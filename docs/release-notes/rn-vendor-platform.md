@@ -9,6 +9,16 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.19-0
+
+Released on October 19, 2026
+
+### Improvements {#improvements-v2026-10-19-0}
+* EP v2 install-options endpoints drop an invalid Helm \`namespace\` with a \`namespace_warnings\` entry instead of returning 400, and accept \`createNamespace\` (update instructions ignore it; upgrades never create a namespace).
+* \`namespace_warnings\` only appears for Helm installs with \`includeInstructions=true\`, including the release-unavailable response; never on non-Helm installs or error bodies.
+* No namespace means no warnings, even if \`createNamespace\` is sent.
+* The install-instructions cache key now includes the resolved \`createNamespace\`.
+* The service-account API keeps its 400 for an invalid \`namespace\`.
 ## v2026.10.16-4
 
 Released on October 16, 2026
