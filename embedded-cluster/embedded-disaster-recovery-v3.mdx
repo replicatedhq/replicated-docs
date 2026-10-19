@@ -11,8 +11,8 @@ Embedded Cluster coordinates recovery using Velero backups. Velero stores applic
 
 ## Requirements
 
-* The application release must include a Velero Helm chart and the plugins and recovery infrastructure required by its backup configuration. For NFS and S3 backups, the default Velero Helm chart is sufficient without modifications. For the chart updates required for OIDC support, see [Configure the Velero chart for OIDC](#configure-the-velero-chart-for-oidc) below.
-* Enable disaster recovery for the customer license by selecting the **Disaster Recovery** checkbox on the customer's **Manage** page. If the checkbox is missing, contact Replicated to enable this feature. If the **Disaster Recovery** tab is missing from the console, first verify that the installed application release includes Velero and that disaster recovery is enabled on the customer license. Contact Replicated if the tab is still missing after these checks.
+* The application release must include a Velero Helm chart with the provider plugins required by its backup storage. Both guided S3 and NFS backups require the `velero-plugin-for-aws` init container in the Velero `HelmChart` resource. For an example, see [Package the Velero chart](#package-the-velero-chart) below.
+* Enable the **Embedded Cluster** install type for the customer, then select the **Disaster Recovery (Alpha)** checkbox on the customer's **Manage** page. The checkbox is disabled until the Embedded Cluster install type is enabled. If the checkbox is missing, contact Replicated to enable this feature. If the **Disaster recovery** tab is missing from the console, first verify that the installed application release includes Velero and that disaster recovery is enabled on the customer license. Contact Replicated if the tab is still missing after these checks.
 * Operators must have backup storage and the credentials required by the application's Velero configuration.
 * Recovery requires the **same application release and Embedded Cluster installer bundle used for the backup**, a signed license matching the application's channel, and empty replacement hosts that meet the [installation requirements](installing-embedded-requirements).
 * Keep the installer bundle, Velero configuration, storage credentials, and any backup repository password accessible outside the cluster being backed up.
@@ -25,17 +25,43 @@ Package Velero as an application `HelmChart` or an Embedded Cluster Helm chart e
 
 Embedded Cluster installs the entire Velero chart, including its wrapper if present, before restoring the application. Keep ordinary application workloads in separate charts. Mark other charts required during recovery with `spec.recovery: true` on an application `HelmChart`, or `recovery: true` on an Embedded Cluster extension chart entry. Chart weights control installation order.
 
-Recovery charts can use image template functions and other template context available during bootstrap. Recovery charts must be installable before saved application configuration is available. Keep recovery charts independently installable with those bootstrap inputs. Recovery charts must not create active Velero schedules during restore; operators configure schedules separately or supply them in custom YAML.
+Recovery charts can use image template functions and other template context available during bootstrap. Recovery charts must be installable before saved application configuration is available. Keep recovery charts independently installable with those bootstrap inputs. Recovery charts must not create Velero `Backup` objects or active Velero schedules during restore; operators configure schedules separately or supply them in custom YAML.
 
-The application vendor is responsible for choosing compatible Velero, chart, and plugin versions and configuring the backup method. For example:
-
-* File-system backups require the Velero node agent and host paths that match the Embedded Cluster kubelet. With the default data directory, these paths are `/var/lib/ec/kubelet/pods` and `/var/lib/ec/kubelet/plugins`. Account for custom data directories in deployments that use them.
-* Object storage requires the corresponding Velero provider plugin and credentials.
-* Snapshots and snapshot data movement require the appropriate snapshot plugins, CSI components, and storage infrastructure.
-
-Embedded Cluster does not install a fixed set of provider plugins or select a volume backup method. Validate the complete backup and restore workflow with the versions and infrastructure packaged by the application. For file-system backup requirements, see the [Velero documentation](https://velero.io/docs/v1.18/file-system-backup/).
+The application vendor selects compatible Velero chart and provider plugin versions and defines the application's backup and restore policies. Other backup methods, such as snapshots, require the corresponding plugins and storage infrastructure. Validate the complete backup and restore workflow with the versions and infrastructure packaged by the application.
 
 Protect access to backup storage because backups contain application data and credentials.
+
+### Package the Velero chart
+
+For guided S3 or NFS backups, include the AWS plugin in `spec.values.initContainers`. For example:
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: velero
+spec:
+  chart:
+    name: velero
+    chartVersion: 12.1.0
+  releaseName: velero
+  namespace: velero
+  weight: -100
+  values:
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: docker.io/velero/velero-plugin-for-aws:v1.14.2
+  builder:
+    initContainers:
+      - name: velero-plugin-for-aws
+        image: docker.io/velero/velero-plugin-for-aws:v1.14.2
+```
+
+Include the matching Velero chart archive in the application release. This example uses chart version `12.1.0` and AWS plugin version `v1.14.2`; keep the chart and plugin versions compatible when updating them.
+
+**For air gap installations, the `spec.builder` entry is required.** It ensures that the air gap builder discovers and includes the plugin image in the bundle. Keep its plugin image reference identical to the one in `spec.values.initContainers`. The `builder` entry does not replace the installation settings in `values`.
+
+For other storage providers, specify the corresponding plugin containers and include their images in `builder` for air gap installations.
 
 ### Define application backup and restore policies
 
@@ -78,49 +104,9 @@ If a `Restore` template uses `spec.resourceModifier`, package its ConfigMap in t
 
 When an application update changes the backup policy, Embedded Cluster updates schedules managed by that policy while preserving the operator's schedule, retention, destination, and pause settings. Existing backups retain their original restore policy.
 
-### Configure the Velero chart for OIDC
+### Configure OIDC authentication
 
-To support OIDC authentication for S3 backups, add the following Helm values to the application's Velero chart. These values supplement the required AWS plugin and node-agent configuration; they are not Kubernetes manifests for the console's custom YAML editor.
-
-```yaml
-serviceAccount:
-  server:
-    create: true
-    name: velero
-credentials:
-  useSecret: false
-configuration:
-  extraEnvVars:
-    - name: AWS_EC2_METADATA_DISABLED
-      value: "true"
-extraVolumes:
-  - name: web-identity
-    projected:
-      sources:
-        - serviceAccountToken:
-            expirationSeconds: 3600
-            path: token
-extraVolumeMounts:
-  - name: web-identity
-    mountPath: /var/run/secrets/aws
-    readOnly: true
-nodeAgent:
-  extraVolumes:
-    - name: web-identity
-      projected:
-        sources:
-          - serviceAccountToken:
-              expirationSeconds: 3600
-              path: token
-  extraVolumeMounts:
-    - name: web-identity
-      mountPath: /var/run/secrets/aws
-      readOnly: true
-```
-
-Both Velero and its node agent must mount the projected service account token. Keep the volume name `web-identity`, mount path `/var/run/secrets/aws`, and token path `token` as shown. Merge these entries with any existing extra volumes and mounts required by the chart.
-
-Omit `audience` from the token projections. Embedded Cluster applies the customer's **Token audience** setting. The issuer URL, IAM role ARN, AWS region, bucket, and backup prefix are also supplied through the configuration form rather than fixed in the vendor chart. The AWS IAM role's trust policy must allow the service account used by Velero and its node agent; for the service account above in the `velero` namespace, the subject is `system:serviceaccount:velero:velero`.
+OIDC authentication for S3 backups requires an AWS IAM role and a publicly accessible HTTPS issuer URL. Operators supply the issuer URL, token audience, IAM role ARN, AWS region, bucket, and backup prefix through the configuration form. Configure the IAM role's trust policy to allow the issuer, audience, and service account subject shown during setup.
 
 ## Configure backups
 
@@ -132,8 +118,8 @@ Omit `audience` from the token projections. Embedded Cluster applies the custome
 
    Replace `APP_SLUG` with the application slug.
 
-1. Open **Disaster Recovery**.
-1. In **Configuration**, choose **Guided configuration**, then select **S3** or **NFS** and enter the destination settings and repository password. For S3, choose **Access keys**, **IAM (keyless access)** for an AWS host role, or **OIDC** for federated access. OIDC currently supports AWS and requires issuer and trust setup, plus the [Velero chart configuration for OIDC](#configure-the-velero-chart-for-oidc). Alternatively, choose **Use custom Velero YAML** and paste the configuration supplied for the application.
+1. Open **Disaster recovery**.
+1. In **Configuration**, choose **Guided configuration**, then select **S3** or **NFS** and enter the destination settings and repository password. For S3, choose **Access keys**, **IAM (keyless access)** for an AWS host role, or **OIDC** for federated access. OIDC currently supports AWS. For issuer and trust setup, see [Configure OIDC authentication](#configure-oidc-authentication) above. Alternatively, choose **Use custom Velero YAML** and paste the configuration supplied for the application.
 1. Click **Apply configuration**.
 
 The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
@@ -148,7 +134,7 @@ After completing guided configuration in the console, click **Download restore c
 
 ### Example: Amazon S3 with file-system backups
 
-This example assumes the application already packages the AWS plugin and a correctly configured Velero node agent. It creates credentials, a backup location, and a daily backup schedule. It does not install Velero or its plugins.
+This example assumes the application already packages Velero and the AWS plugin as described in [Package the Velero chart](#package-the-velero-chart) above. It creates credentials, a backup location, and a daily backup schedule. It does not install Velero or its plugins.
 
 Replace `APP_NAMESPACE`, `BUCKET_NAME`, `AWS_REGION`, and the credential placeholders. `APP_NAMESPACE` is the application slug for new installations and `kotsadm` for installations migrated from Embedded Cluster v2. Choose a prefix for this installation's backups and retain it for restore.
 
@@ -224,7 +210,7 @@ Use an external NFS destination that remains available if the Embedded Cluster h
 
 ### Configure a managed destination
 
-In the console configuration editor or restore wizard, choose **Guided configuration**, then **NFS**. Select **NFS server and export** or **Existing NFS-mounted directory**. These modes require packaged Velero in the `velero` namespace, its AWS plugin and node agent.
+In the console configuration editor or restore wizard, choose **Guided configuration**, then **NFS**. Select **NFS server and export** or **Existing NFS-mounted directory**. These modes require Velero and the AWS plugin as described in [Package the Velero chart](#package-the-velero-chart) above.
 
 Supply:
 
@@ -302,7 +288,7 @@ To create a manual backup:
 1. Review the displayed YAML. The backup uses the schedule's scope and settings, including its storage location, volume backup options, and retention period.
 1. Enter a backup name, or leave it blank for an automatically generated name.
 1. Click **Create backup**.
-1. In the **Backups** table on the **Disaster Recovery** dashboard, wait for Velero to report **Completed** with no errors. This indicates that the backup succeeded. A **Failed** or **PartiallyFailed** backup is not successful.
+1. In the **Backups** table on the **Disaster recovery** dashboard, wait for Velero to report **Completed** with no errors. This indicates that the backup succeeded. A **Failed** or **PartiallyFailed** backup is not successful.
 
 After connecting backup storage, allow time for Velero to synchronize existing backups before selecting one for recovery.
 
@@ -355,7 +341,7 @@ Embedded Cluster automatically recovers the saved network settings, data directo
 | `--headless`, `--yes`, `--ignore-host-preflights` | Apply only to this invocation. Headless mode and preflight bypasses are not recovered from backup or inherited on resume. |
 | `--restore-timeout`, `--topology-timeout` | Limit each Velero restore phase and the wait for replacement hosts; defaults are four and 24 hours, respectively. |
 
-Saved application configuration is restored without a `--config-values` argument. Recovery does not install application updates. Release-provided overrides and worker profiles remain part of the recovered configuration; CIDR customization through unsupported k0s overrides is not supported by this workflow.
+Saved application configuration is restored without a `--config-values` argument. Recovery does not install application updates. Release-provided overrides and worker profiles remain part of the recovered configuration; CIDR customization through unsupported overrides is not supported by this workflow.
 
 Keep the restore process running and the installer assets accessible while Embedded Cluster applies the recovered settings. Wait for the join instructions before adding replacement hosts.
 
@@ -413,7 +399,7 @@ After the hosts and storage infrastructure are ready, Embedded Cluster restores 
 
 On **Enable backup schedules**, enable the schedules you want to run. If you configured a backup location as `ReadOnly` during recovery, change it to `ReadWrite` before resuming backups.
 
-After recovery completes, press **Ctrl+C** to stop the restore command. You can also manage schedules later from **Disaster Recovery** in the persistent admin console. Install the console on a recovered controller with `sudo ./APP_SLUG console install` if needed. The recovered installation uses the console password saved in the backup.
+After recovery completes, press **Ctrl+C** to stop the restore command. You can also manage schedules later from **Disaster recovery** in the persistent admin console. Install the console on a recovered controller with `sudo ./APP_SLUG console install` if needed. The recovered installation uses the console password saved in the backup.
 
 ### Resume an interrupted restore
 
