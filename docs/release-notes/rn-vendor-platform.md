@@ -9,16 +9,6 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
-## v2026.10.19-0
-
-Released on October 19, 2026
-
-### Improvements {#improvements-v2026-10-19-0}
-* EP v2 install-options endpoints drop an invalid Helm \`namespace\` with a \`namespace_warnings\` entry instead of returning 400, and accept \`createNamespace\` (update instructions ignore it; upgrades never create a namespace).
-* \`namespace_warnings\` only appears for Helm installs with \`includeInstructions=true\`, including the release-unavailable response; never on non-Helm installs or error bodies.
-* No namespace means no warnings, even if \`createNamespace\` is sent.
-* The install-instructions cache key now includes the resolved \`createNamespace\`.
-* The service-account API keeps its 400 for an invalid \`namespace\`.
 ## v2026.10.16-4
 
 Released on October 16, 2026
@@ -145,18 +135,12 @@ Released on October 9, 2026
 
 ### Improvements {#improvements-v2026-10-09-1}
 * Security Center now shows release architecture context and lets vendors view architecture-specific vulnerability results.
-## v2026.10.09-0
-
-Released on October 9, 2026
-
-### Bug Fixes {#bug-fixes-v2026-10-09-0}
-* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads. https://app.shortcut.com/replicated/story/139994.
 ## v2026.10.08-12
 
 Released on October 8, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-08-12}
-* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads. https://app.shortcut.com/replicated/story/139994.
+* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads.
 ## v2026.10.08-8
 
 Released on October 8, 2026
@@ -262,10 +246,10 @@ Released on October 2, 2026
 Released on October 1, 2026
 
 ### New Features {#new-features-v2026-10-01-2}
-* SC-138994: Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules. https://app.shortcut.com/replicated/story/138994.
+* Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules.
 
 ### Improvements {#improvements-v2026-10-01-2}
-* SC-138994: Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
+* Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
 ## v2026.10.01-1
 
 Released on October 1, 2026
@@ -280,7 +264,7 @@ Released on September 30, 2026
 * Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
 
 ### Improvements {#improvements-v2026-09-30-1}
-* SC-138994: KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle. https://app.shortcut.com/replicated/story/138994.
+* KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle.
 
 ### Bug Fixes {#bug-fixes-v2026-09-30-1}
 * Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
