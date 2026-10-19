@@ -11,7 +11,7 @@ Embedded Cluster coordinates recovery using Velero backups. Velero stores applic
 
 ## Requirements
 
-* The application release must include a Velero Helm chart and the plugins and recovery infrastructure required by its backup configuration. For NFS and S3 backups, the default Velero Helm chart is sufficient without modifications.
+* The application release must include a Velero Helm chart and the plugins and recovery infrastructure required by its backup configuration. For NFS and S3 backups, the default Velero Helm chart is sufficient without modifications. For the chart updates required for OIDC support, see [Configure the Velero chart for OIDC](#configure-the-velero-chart-for-oidc) below.
 * Enable disaster recovery for the customer license by selecting the **Disaster Recovery** checkbox on the customer's **Manage** page. If the checkbox is missing, contact Replicated to enable this feature. If the **Disaster Recovery** tab is missing from the console, first verify that the installed application release includes Velero and that disaster recovery is enabled on the customer license. Contact Replicated if the tab is still missing after these checks.
 * Operators must have backup storage and the credentials required by the application's Velero configuration.
 * Recovery requires the **same application release and Embedded Cluster installer bundle used for the backup**, a signed license matching the application's channel, and empty replacement hosts that meet the [installation requirements](installing-embedded-requirements).
