@@ -150,13 +150,13 @@ Released on October 9, 2026
 Released on October 9, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-09-0}
-* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads. https://app.shortcut.com/replicated/story/139994.
+* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads.
 ## v2026.10.08-12
 
 Released on October 8, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-08-12}
-* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads. https://app.shortcut.com/replicated/story/139994.
+* Vendor Portal Content tab no longer hides all template-update banners when one updates file fails to load. Parsed updates still show; Mark as seen stays blocked until the full list loads.
 ## v2026.10.08-8
 
 Released on October 8, 2026
@@ -262,10 +262,10 @@ Released on October 2, 2026
 Released on October 1, 2026
 
 ### New Features {#new-features-v2026-10-01-2}
-* SC-138994: Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules. https://app.shortcut.com/replicated/story/138994.
+* Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules.
 
 ### Improvements {#improvements-v2026-10-01-2}
-* SC-138994: Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
+* Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
 ## v2026.10.01-1
 
 Released on October 1, 2026
@@ -280,7 +280,7 @@ Released on September 30, 2026
 * Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
 
 ### Improvements {#improvements-v2026-09-30-1}
-* SC-138994: KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle. https://app.shortcut.com/replicated/story/138994.
+* KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle.
 
 ### Bug Fixes {#bug-fixes-v2026-09-30-1}
 * Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
