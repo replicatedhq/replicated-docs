@@ -39,6 +39,47 @@ The application vendor is responsible for choosing compatible Velero, chart, and
 
 Embedded Cluster does not install a fixed set of provider plugins or select a volume backup method. Validate the complete backup and restore workflow with the versions and infrastructure packaged by the application. For file-system backup requirements, see the [Velero documentation](https://velero.io/docs/v1.18/file-system-backup/).
 
+### Define application backup and restore policies
+
+Application vendors can include Velero `Backup` and `Restore` custom resources (`apiVersion: velero.io/v1`) as YAML files in the application release alongside the other Replicated manifests. Embedded Cluster uses these resources as policy templates for backups and restores. Including them in the release does not start a backup or restore during installation.
+
+A release can contain one `Backup` template and, optionally, one `Restore` template. A `Restore` template requires a `Backup` template.
+
+The `Backup` template defines what to back up and how, including namespace and resource filters, backup hooks, resource ordering, and volume backup settings. Operators configure the schedule, retention period, and storage destination separately. The vendor policy applies to both scheduled and manual backups. When a vendor policy is present, application backup settings in a submitted `Schedule` are taken from that policy; operators can override `ttl` and `storageLocation` in `spec.template`.
+
+The optional `Restore` template defines application restore settings, such as resource filters, restore hooks, and resource modifiers. Recovery uses the restore policy associated with the selected backup. Embedded Cluster supplies `spec.backupName` from the backup selected for recovery, so omit it from the template. Without a `Restore` template, Embedded Cluster restores the backup using Velero's default restore behavior.
+
+For example, include a file named `backup-restore.yaml` in the release:
+
+```yaml
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: application-backup
+spec:
+  includedNamespaces:
+    - 'repl{{ Namespace }}'
+  defaultVolumesToFsBackup: true
+  snapshotVolumes: false
+---
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: application-restore
+spec:
+  includedNamespaces:
+    - 'repl{{ Namespace }}'
+  restorePVs: true
+```
+
+This example uses file-system backups and restores the application's namespace and volume data. Add any additional namespaces required by the application to both templates. Embedded Cluster automatically includes the `embedded-cluster` namespace in vendor backup policies.
+
+Templates can use Embedded Cluster template functions, such as `Namespace` and `ConfigOption`, to resolve settings for the installed application. Use the image template functions for images referenced by restore hooks.
+
+If a `Restore` template uses `spec.resourceModifier`, package its ConfigMap in the Velero chart or an application Helm chart marked `spec.recovery: true`. The ConfigMap must be available in the Velero namespace before application restore begins and must contain exactly one data key. It cannot depend on being restored from the backup first.
+
+When an application update changes the backup policy, Embedded Cluster updates schedules managed by that policy while preserving the operator's schedule, retention, destination, and pause settings. Existing backups retain their original restore policy.
+
 ### Include recovery metadata in backups
 
 Embedded Cluster maintains a Secret named `embedded-cluster-recovery` in the `embedded-cluster` namespace. It contains the installation state needed to recover, including release identity, node topology, saved application configuration, license, and console password hash. It does not contain application volume data.
