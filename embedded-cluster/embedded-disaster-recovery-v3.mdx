@@ -14,7 +14,7 @@ Embedded Cluster coordinates recovery using Velero backups. Velero stores applic
 * The application release must include a Velero Helm chart with the provider plugins required by its backup storage. Both guided S3 and NFS backups require the `velero-plugin-for-aws` init container in the Velero `HelmChart` resource. For an example, see [Package the Velero chart](#package-the-velero-chart) below.
 * Enable the **Embedded Cluster** install type for the customer, then select the **Disaster Recovery (Alpha)** checkbox on the customer's **Manage** page. The checkbox is disabled until the Embedded Cluster install type is enabled. If the checkbox is missing, contact Replicated to enable this feature. If the **Disaster recovery** tab is missing from the console, first verify that the installed application release includes Velero and that disaster recovery is enabled on the customer license. Contact Replicated if the tab is still missing after these checks.
 * Operators must have backup storage and the credentials required by the application's Velero configuration.
-* Recovery requires the **same application release and Embedded Cluster installer bundle used for the backup**, a signed license matching the application's channel, and empty replacement hosts that meet the [installation requirements](installing-embedded-requirements).
+* Recovery requires the **complete installer bundle for the same application release and Embedded Cluster version used for the backup**, a signed license matching the application's channel, and empty replacement hosts that meet the [installation requirements](installing-embedded-requirements).
 * Keep the installer bundle, Velero configuration, storage credentials, and any backup repository password accessible outside the cluster being backed up.
 
 ## Package recovery infrastructure
@@ -69,6 +69,8 @@ Application vendors can include Velero `Backup` and `Restore` custom resources (
 
 A release can contain one `Backup` template and, optionally, one `Restore` template. A `Restore` template requires a `Backup` template.
 
+Without a `Backup` template, guided configuration backs up the application namespace and the recovery metadata needed by Embedded Cluster using file-system backups. Vendors with application workloads in additional namespaces must provide a `Backup` template that includes those namespaces.
+
 The `Backup` template defines what to back up and how, including namespace and resource filters, backup hooks, resource ordering, and volume backup settings. Operators configure the schedule, retention period, and storage destination separately. The vendor policy applies to both scheduled and manual backups. When a vendor policy is present, application backup settings in a submitted `Schedule` are taken from that policy; operators can override `ttl` and `storageLocation` in `spec.template`.
 
 The optional `Restore` template defines application restore settings, such as resource filters, restore hooks, and resource modifiers. Recovery uses the restore policy associated with the selected backup. Embedded Cluster supplies `spec.backupName` from the backup selected for recovery, so omit it from the template. Without a `Restore` template, Embedded Cluster restores the backup using Velero's default restore behavior.
@@ -96,7 +98,13 @@ spec:
   restorePVs: true
 ```
 
-This example uses file-system backups and restores the application's namespace and volume data. Add any additional namespaces required by the application to both templates. Embedded Cluster automatically includes the `embedded-cluster` namespace in vendor backup policies.
+This example uses file-system backups and restores the application's namespace and volume data. Add any additional namespaces required by the application to both templates. Embedded Cluster automatically includes the `embedded-cluster` namespace in vendor backup policies. Resource and label filters must also allow recovery metadata:
+
+* If `includedResources` or `includedNamespaceScopedResources` is set, include `secrets` or `*`.
+* Do not exclude `secrets` through `excludedResources` or `excludedNamespaceScopedResources`.
+* A `labelSelector` must match `embeddedcluster.replicated.com/recovery: "true"`. If using `orLabelSelectors`, at least one selector must match that label.
+
+These requirements also apply to custom `Schedule` resources. Backup configurations that exclude recovery metadata are rejected.
 
 Templates can use Embedded Cluster template functions, such as `Namespace` and `ConfigOption`, to resolve settings for the installed application. Use the image template functions for images referenced by restore hooks.
 
@@ -106,7 +114,9 @@ When an application update changes the backup policy, Embedded Cluster updates s
 
 ### Configure OIDC authentication
 
-OIDC authentication for S3 backups requires an AWS IAM role and a publicly accessible HTTPS issuer URL. Operators supply the issuer URL, token audience, IAM role ARN, AWS region, bucket, and backup prefix through the configuration form. Configure the IAM role's trust policy to allow the issuer, audience, and service account subject shown during setup.
+OIDC authentication for S3 backups requires an AWS IAM role and a publicly accessible HTTPS issuer URL. Operators supply the issuer URL, token audience, IAM role ARN, AWS region, bucket, and backup prefix through the configuration form. Configure the IAM role's trust policy to allow the issuer, audience, and service account subject shown during setup. **Token audience** defaults to `sts.amazonaws.com` and can be changed to match the trust policy.
+
+Route the public HTTPS issuer hostname to the Kubernetes API on the controllers. Applying issuer configuration makes issuer discovery publicly accessible and may restart Kubernetes on each controller, then Velero. Wait for setup to finish before continuing; temporary connection and readiness errors can occur during this step.
 
 ## Configure backups
 
@@ -124,13 +134,13 @@ OIDC authentication for S3 backups requires an AWS IAM role and a publicly acces
 
 The editor accepts Kubernetes resource manifests, **not Helm values**. Use `---` to separate YAML documents. Each document must have `apiVersion`, `kind`, and `metadata.name`. Duplicate YAML mapping keys are rejected. For namespaced resources, omit `metadata.namespace` or set it to `velero`. Use separate documents instead of a Kubernetes `List`.
 
-Custom YAML supports provider-specific configuration. Configure schedules separately after connecting backup storage; a schedule is required for both automatic backups and manual backup templates. Custom YAML can also include Schedule resources.
+Custom YAML supports provider-specific configuration. A schedule is required for both automatic backups and manual backup templates. After guided configuration, or when the application provides a `Backup` template, use the **Schedule** form to add or edit schedules. With custom YAML and no application `Backup` template, include a Velero `Schedule` resource in the YAML; the console offers pause and enable controls for these schedules.
 
 Test a backup and restore after configuring backup storage.
 
 To change the configuration, click **Update configuration**.
 
-After completing guided configuration in the console, click **Download restore configuration** to save the YAML for `restore --velero-config`, including headless restore. Store it securely outside the cluster and run `chmod 600` on the file before using it. If you supply custom YAML, retain that file for recovery.
+After completing guided configuration in the console, click **Download restore configuration** to save the YAML for `restore --velero-config`, including headless restore. Store it securely outside the cluster and run `chmod 600` on the file before using it. If you supply custom YAML, retain that file for recovery. Files supplied with `--velero-config` must be regular files no larger than 1 MiB, with permissions `0600` or stricter.
 
 ### Example: Amazon S3 with file-system backups
 
@@ -195,7 +205,7 @@ spec:
 ```
 
 :::important
-In custom backup YAML, every `Schedule` object that explicitly lists namespaces in `spec.template.includedNamespaces` must include `embedded-cluster` in that list, as shown above. An omitted or empty list includes all namespaces. Do not exclude `embedded-cluster` with `spec.template.excludedNamespaces`.
+In custom backup YAML, set `spec.template.includedNamespaces` on each `Schedule` to list the application namespaces and `embedded-cluster`, as shown above. Do not exclude `embedded-cluster` with `spec.template.excludedNamespaces`. Resource and label filters must also allow recovery metadata, as described in [Define application backup and restore policies](#define-application-backup-and-restore-policies) above.
 :::
 
 The example uses a 30-day retention period and file-system volume backups. It disables volume snapshots for this schedule. For required storage permissions and configuration for S3-compatible endpoints, see the [AWS plugin backup location documentation](https://github.com/velero-io/velero-plugin-for-aws/blob/main/backupstoragelocation.md). Other storage providers require their own plugins and configuration.
@@ -216,8 +226,9 @@ Supply:
 
 | Field | Value to retain outside the cluster |
 | --- | --- |
-| NFS server and path | Server hostname or IP and dedicated exported directory; required for **NFS server and export** |
-| Existing NFS-mounted directory | Existing absolute directory backed by an NFS mount on the controller serving the request; required for **Existing NFS-mounted directory** |
+| NFS server | Server hostname or IP; required for **NFS server and export** |
+| Exported directory | Dedicated exported directory; required for **NFS server and export** |
+| Existing NFS-mounted host directory | Existing absolute directory backed by an NFS mount on the controller serving the request; required for **Existing NFS-mounted directory** |
 | Backup prefix | DNS-style name identifying this installation's backups |
 | Repository password | Persistent password used for volume backup and restore |
 
@@ -280,7 +291,7 @@ Prepare the same NFS mount on the first replacement controller before recovery. 
 
 ## Create and manage backups
 
-Velero runs each enabled schedule using its cron expression. In **Schedule**, add or edit the schedule name, cron expression, retention, and paused state, or pause and enable existing schedules. A schedule is required for both automatic and manual backups. Pausing a schedule stops its automatic backups; it can still serve as a template for a manual backup.
+Velero runs each enabled schedule using its cron expression. After guided configuration, or when the application provides a `Backup` template, use **Schedule** to add or edit the schedule name, cron expression, retention, and paused state. With custom YAML and no application `Backup` template, create and edit schedules in the YAML. You can pause and enable existing schedules in the console. A schedule is required for both automatic and manual backups. Pausing a schedule stops its automatic backups; it can still serve as a template for a manual backup.
 
 To create a manual backup:
 
@@ -300,7 +311,7 @@ Restore creates a new cluster. Do not install the application on the replacement
 
 ### Start recovery
 
-1. Download and extract the installer bundle matching the backed-up application release and Embedded Cluster version onto the first replacement controller. Keep the extracted `assets` directory alongside the application binary.
+1. Download and extract the complete installer bundle matching the backed-up application release, channel, and Embedded Cluster version onto the first replacement controller, just as for installation or upgrade. The application binary alone is not sufficient. Keep the extracted `assets` directory alongside it.
 1. Copy the signed license to that host.
 1. Run:
 
@@ -313,13 +324,13 @@ Restore creates a new cluster. Do not install the application on the replacement
 
 Embedded Cluster runs host preflight checks before installing Kubernetes. The `--ignore-host-preflights` option bypasses non-strict failures only; strict failures and errors executing the checks still stop recovery.
 
-The bootstrap license must enable disaster recovery and match the installer application and channel. Its license ID does not have to match the backed-up license ID. The saved license is recovered with the installation state.
+Use a signed license with disaster recovery enabled for the application and channel of the backed-up release. If the customer has moved to another channel since the backup, have the application vendor restore access to the original channel before recovery. Retain the complete matching installer bundle, including all required air gap bundles for an air gap installation.
 
 ### Configure Velero and select a backup
 
 1. Use the same guided storage form as the console, or supply compatible Velero YAML. Use the existing backup destination, prefix, and original repository password. S3 credentials or host IAM roles must permit access to the backup.
 1. Apply the configuration and wait for Velero to synchronize its backup list.
-1. Select a backup with status **Completed**.
+1. Select a backup with status **Completed** and no errors.
 
 You can reuse configuration containing Schedule resources. Embedded Cluster automatically pauses submitted schedules during recovery. They remain paused until you explicitly enable them after recovery.
 
@@ -335,7 +346,7 @@ Embedded Cluster automatically recovers the saved network settings, data directo
 | `--data-dir` | Use the saved directory unless explicitly overridden. The flag takes a parent directory; Embedded Cluster appends the application slug once. `EC_DATA_DIR` supplies the initial bootstrap default, not an override of the saved directory. |
 | `--api-port` | Use the saved daemon API port unless explicitly overridden. |
 | `--network-interface` | Use the supplied interface or detect one on the replacement host. Do not recover the old interface name. Joining hosts can supply their own interface. |
-| `--http-proxy`, `--https-proxy`, `--no-proxy` | Supply the replacement environment's settings. Saved proxy values are not adopted. Automatic exclusions are recalculated for the final networks. Proxy flags cannot be used with airgap recovery. |
+| `--http-proxy`, `--https-proxy`, `--no-proxy` | Supply the replacement environment's settings. Saved proxy values are not adopted. Automatic exclusions are recalculated for the final networks. Proxy flags cannot be used with air gap recovery. |
 | `--hostname`, `--tls-cert`, `--tls-key` | Configure the replacement interface and TLS; supply certificate and key together or use the self-signed flow. Saved console hostname and certificates are not adopted. |
 | `--installer-port`, `--installer-password` | Configure this recovery session. The port defaults to `30080`; the recovered console uses the password saved in the backup. |
 | `--headless`, `--yes`, `--ignore-host-preflights` | Apply only to this invocation. Headless mode and preflight bypasses are not recovered from backup or inherited on resume. |
@@ -345,24 +356,26 @@ Saved application configuration is restored without a `--config-values` argument
 
 Keep the restore process running and the installer assets accessible while Embedded Cluster applies the recovered settings. Wait for the join instructions before adding replacement hosts.
 
-### Airgap recovery
+### Air gap recovery
 
 Place the matching bundles alongside the installer in the same layout used for installation, then run:
 
 ```bash
+chmod 600 ./velero.yaml
 sudo ./APP_SLUG restore --license ./license.yaml --airgap \
   --velero-config ./velero.yaml
 ```
 
-Embedded Cluster automatically prepares the internal registry and loads images from the matching airgap bundles during recovery.
+Embedded Cluster automatically prepares the internal registry and loads images from the matching air gap bundles during recovery.
 
-The supplied airgap mode must match the backup. Airgap mode is retained on resume. Retain both bundles outside the cluster; a backup does not replace them.
+The supplied air gap mode must match the backup. Air gap mode is retained on resume. Retain both bundles outside the cluster; a backup does not replace them.
 
 ### Bring your own registry
 
-Supply the registry address and the authentication and trust settings needed before Velero starts. For example, for an airgap registry using a private CA:
+Supply the registry address and the authentication and trust settings needed before Velero starts. For example, for an air gap registry using a private CA:
 
 ```bash
+chmod 600 ./velero.yaml
 sudo ./APP_SLUG restore --license ./license.yaml --airgap \
   --velero-config ./velero.yaml \
   --registry registry.example.com/application \
@@ -373,23 +386,23 @@ sudo ./APP_SLUG restore --license ./license.yaml --airgap \
 
 Use `--registry-tls-cert` and `--registry-tls-key` together if client authentication is required. Anonymous registries need no username or password; standard trusted certificates need no custom CA. BYO registry access uses verified HTTPS; HTTP is not supported.
 
-Airgap install and restore upload infrastructure, application, and extension images from the matching bundles without requiring external image-copying tools. Credentials must permit those uploads as well as pulls. Online recovery requires the images to be present already.
+Air gap install and restore upload infrastructure, application, and extension images from the matching bundles without requiring external image-copying tools. Credentials must permit those uploads as well as pulls. Online recovery requires the images to be present already.
 
 After metadata recovery, Embedded Cluster also checks the backed-up registry credentials needed for restored image references. Invalid access stops recovery. A registry address or namespace-path mismatch produces a warning but does not itself stop recovery. Restored images still refer to the original registry; the warning is not an automatic image-reference rewrite. Keep that registry accessible to restored workloads.
 
 ### Join replacement hosts
 
-For a multi-node backup, join enough replacement hosts to match the roles and host counts required by the backup. The first controller is already running; do not join it again.
+For a multi-node backup, join replacement hosts to match the saved roles and host counts exactly. The first controller is already running; do not join it again.
 
 1. In **Add Hosts**, select the roles for the replacement host.
 1. On that replacement host, run the displayed `curl` command to download its join bundle.
 1. Run the displayed `tar` command to extract the bundle.
 1. Run the displayed `node join` command from the extracted directory.
-1. Repeat for the remaining hosts. Join controller nodes one at a time.
+1. Repeat for the remaining hosts.
 
 The replacement hosts must be able to reach the first controller at the address shown in the download command.
 
-Recovery continues automatically when the joined hosts match the saved counts and all required hosts are ready and running the matching release.
+Recovery continues automatically when the host counts for each role match the backup exactly and every joined host is ready and running the matching release. Extra hosts block recovery; remove them if the counts exceed those shown in the wizard.
 
 The replacement cluster can use different network interfaces and pod/service CIDRs. Configure them with `--network-interface` and `--cidr` when starting recovery if necessary. Joining hosts receive the replacement cluster's network settings. Application settings containing old addresses might still require application-specific changes.
 
@@ -403,13 +416,15 @@ After recovery completes, press **Ctrl+C** to stop the restore command. You can 
 
 ### Resume an interrupted restore
 
-On the first replacement controller, run:
+If an interactive restore fails, press **Ctrl+C** to stop the restore command before resuming. On the first replacement controller, run:
 
 ```bash
 sudo ./APP_SLUG restore --resume --license ./license.yaml
 ```
 
-The license is required on every invocation, including resume. Repeat `--headless` and any invocation-specific preflight bypass when needed. Previously resolved persistent settings are retained; conflicting replacement settings are rejected. Embedded Cluster continues from saved progress and can retry failed restore attempts. For interactive recovery, check `restore.log` for progress and errors.
+The license is required on every invocation, including resume. Repeat `--headless` and any invocation-specific preflight bypass when needed. Previously resolved persistent settings are retained; conflicting replacement settings are rejected. Embedded Cluster continues from saved progress and can retry failed restore attempts. Each interactive invocation, including `--resume`, asks you to set the restore UI password unless you supply `--installer-password`. This password is separate from the recovered admin console password.
+
+For interactive recovery, check `/var/log/APP_SLUG/restore.log` for progress and errors, replacing `APP_SLUG` with the application slug. Headless recovery writes progress and errors to the terminal.
 
 Reuse the same backup and storage configuration when resuming. If you need to change either, Embedded Cluster checks whether recovery has progressed too far to allow the change and reports any restrictions.
 
