@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.15.1-beta.1
+
+Released on October 19, 2026
+
+<!-- VERSION TABLE PLACEHOLDER
+Please manually replace this placeholder with a version table in the format:
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.XX.Y</td>
+    <td id="center">1.XX.Y</td>
+  </tr>
+</table>
+-->
+### Improvements {#improvements-3-15-1-beta-1}
+* Velero plugin configuration needed for S3 backups no longer needs to be included in Velero's HelmChart spec.
+
+### Bug Fixes {#bug-fixes-3-15-1-beta-1}
+* Fixes stalled pod traffic between nodes on networks with an MTU below 1500 by sizing the Calico overlay MTU to the host network interface at install.
+
 ## 3.15.0-beta.1
 
 Released on October 17, 2026
