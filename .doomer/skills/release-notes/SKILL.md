@@ -7,7 +7,7 @@ description: Review entries in docs/release-notes/rn-*.md against the customer-f
 
 Everything in `docs/release-notes/rn-*.md` publishes to the public release notes on docs.replicated.com. It is customer-facing product surface and reaches customers on merge, with no deploy and no rollback. Review it the same way you review code.
 
-Most entries arrive through automated pull requests from the release-notes workflow, carrying text an engineer wrote in the `release-notes-features`, `release-notes-fixes` or `release-notes-improvements` block of a pull request in the producing repository. Those three blocks become the `### New Features`, `### Improvements` and `### Bug Fixes` sections under a version heading. The author is usually gone by this point, so a finding needs to be actionable by whoever is reading the docs pull request.
+Most entries arrive through automated pull requests from the release-notes workflow, carrying text an engineer wrote in the `release-notes-features`, `release-notes-fixes` or `release-notes-improvements` block of a pull request in the producing repository. Those three blocks become the `### New features`, `### Improvements` and `### Bug fixes` sections under a version heading. Match those headings case-insensitively; the repository contains both sentence case and title case variants. The author is usually gone by this point, so a finding needs to be actionable by whoever is reading the docs pull request.
 
 ## What to flag
 
