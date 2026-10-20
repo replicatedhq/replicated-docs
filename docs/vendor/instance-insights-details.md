@@ -2,6 +2,12 @@
 
 This topic describes using the Replicated Vendor Portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
 
+## How instances are identified {#instance-identity}
+
+Each instance reports both an instance ID and a cluster ID. The instance ID is typically unique. However, when a new instance is created from an existing one, such as when restoring from a backup, the new instance can keep the original instance ID while reporting a new cluster ID.
+
+Replicated identifies an instance by the combination of its instance ID and cluster ID. Instances that share an instance ID but have different cluster IDs are tracked as separate instances in the Vendor Portal and the new Enterprise Portal, each with its own status, version, and updates.
+
 ## About the instance details page {#about-page}
 
 The Vendor Portal provides insights about the health, status, and performance of the active application instances associated with each customer license on the **Instance details** page. You can use these insights to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden.
