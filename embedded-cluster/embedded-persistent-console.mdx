@@ -11,6 +11,7 @@ The persistent admin console is an opt-in web service that runs on a controller 
 - See available updates, view release notes, and trigger an upgrade with a single click
 - Upload air gap release archives directly through the browser (no SSH required)
 - Generate a support bundle and download it for sharing with the vendor's support team
+- View node status, generate commands to add nodes, and remove nodes from the cluster
 
 All of this works without SSH access to the controller.
 
@@ -33,6 +34,7 @@ Enabling the persistent admin console adds a dashboard that is always there. Fro
 * See available updates and read release notes
 * Upload an air gap release archive
 * Generate a support bundle and download it
+* View node roles and readiness, generate commands to add nodes, and remove nodes
 * Start an upgrade, or change configuration values at the current version with **Redeploy**
 
 Upgrades and configuration changes started from the console hand off to the same wizard, so the console does not duplicate it. The practical difference is that nobody has to be at a terminal to begin.
@@ -107,6 +109,22 @@ The **Share** button appears in the console only when all of the following are t
 
 If any of these requirements are not met, the **Share** button is hidden and the bundle can still be downloaded from the console for manual sharing.
 
+## Manage nodes
+
+The **Nodes** page shows hosts, roles, and readiness. To add a node, select **Add node** and follow the instructions. Adding nodes requires a license with multi-node support enabled. For more information about applying license changes, see [Refresh the license](embedded-manage-nodes#refresh-license) in _Access and manage embedded clusters_.
+
+You can remove all non-controller nodes and all but one controller host. To remove a node:
+
+1. Select **Delete** for the host.
+1. Review the warnings. If required, select **Force removal** to acknowledge the risks of bypassing safety checks.
+1. Select **Delete node**.
+
+Only one removal can run at a time. While removal is pending, you can select **Cancel removal**. If dispatch fails, use **Retry dispatch to \{controller\}** when available. If the controller executing the removal is permanently lost, contact Replicated support.
+
+Before joining a removed node back into the cluster, run `reset` on that node. For more information about resetting a node, see [Reset a machine](embedded-manage-nodes#reset-a-node) in _Access and manage embedded clusters_.
+
+For more information about adding nodes, see [Configure multi-node clusters](embedded-manage-nodes#configure-multi-node-clusters) in _Access and manage embedded clusters_. For more information about removing nodes, see [Remove nodes and reset machines](embedded-manage-nodes#remove-nodes-and-reset-machines) in _Access and manage embedded clusters_.
+
 ## Recover or move the console
 
 The console is hosted by a single controller. If the controller hosting the console is lost or the `<app-slug>-console-web.service` becomes unhealthy, rerun the install command on any controller node to bring it back up:
@@ -134,5 +152,7 @@ The persistent admin console has the following limitations:
 * The console can only be installed on a single controller node at a time. Reinstall on a different controller to move it.
 
 * The console must be installed on a controller node; it cannot run on a worker node.
+
+* Running join commands, resetting a removed host, removing the last controller, and enabling HA for an existing air gap installation require command-line access. For more information about these operations, see [Access and manage embedded clusters](embedded-manage-nodes).
 
 * The cluster must have TLS configured at install time. The console reuses the cluster's TLS certificate to serve HTTPS on its port.

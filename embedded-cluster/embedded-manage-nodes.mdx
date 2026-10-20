@@ -22,19 +22,15 @@ Multi-node clusters with Embedded Cluster have the following limitations:
 
 * You should not join more than one controller node at the same time. When joining a controller node, Embedded Cluster prints a warning explaining that you should not attempt to join another node until the controller node joins successfully.
 
+* Use one primary host (controller node) or at least three. Installation and upgrades are blocked while a cluster has exactly two primary hosts. After adding or removing primary hosts, finish with one or with three or more. When adding primary hosts, join the third after the second finishes joining.
+
 * You cannot change a node's role assignment after you join the node. To change a node's roles, reset the node and add it again with the new role selection. For more information about customizing node roles, see [roles](embedded-config#roles) in _Embedded Cluster Config_.
 
 ### Requirement
 
 To deploy multi-node clusters with Embedded Cluster, you must enable the **Multi-node Cluster (Embedded Cluster only)** license field for the customer. For more information about managing customer licenses, see [Create and Manage Customers](/vendor/releases-creating-customer).
 
-You can enable this field for a customer whose instance is already installed, and the instance does not need to be reinstalled. However, the change does not take effect right away. Embedded Cluster reads the license that was written to disk by the last install or upgrade, and checking for updates does not refresh it. Until the license on the instance is refreshed, `create-join-bundle` fails and the Embedded Cluster UI does not offer to join nodes.
-
-How the user refreshes the license depends on the installation type:
-
-* **Online installations:** The user redeploys the current version from the Embedded Cluster UI. Embedded Cluster downloads the release again, and the downloaded release carries a current copy of the license. Upgrading to a newer version has the same effect.
-
-* **Air gap installations:** The license is refreshed only when a release is installed from a bundle that was downloaded after you enabled the field. There is currently no way to refresh the license without installing from a release bundle.
+You can enable this field after installation without reinstalling the instance. Refresh the license before adding nodes. For more information about applying entitlement changes, see [Refresh the license](#refresh-license) in this document.
 
 ### Join nodes {#add-nodes}
 
@@ -108,11 +104,42 @@ For automation and orchestrated deployments, you can join nodes without going th
 
 For the full set of endpoints and response schemas, see [External API](embedded-cluster-external-api).
 
+## Refresh the license {#refresh-license}
+
+License refresh through the persistent console and selection of the newest license during `upgrade --license` require Embedded Cluster 3.15.0-beta.1 or later. Earlier versions require an installation or upgrade using a release bundle and the updated license.
+
+Use an updated license for the same license ID, application, and customer. License refresh cannot change that identity. The console rejects a license older than the installed license.
+
+### Refresh from the persistent console
+
+1. Open **License** in the persistent console.
+1. Apply the license using the option for your environment:
+   * For online installations, the page checks for license updates automatically. If an update is available, click **Update license and deploy**. Otherwise, click **Check for license updates** to check again. Checking for updates alone does not apply the license.
+   * For air gap installations or online installations using offline updates, select the updated license file, then click **Upload license and deploy**. No release bundle is required for this console operation.
+
+Both options deploy the current application version with the saved configuration. If the license requires additional configuration, the console saves the license pending deployment. Select **Review required configuration and deploy**, complete the required fields, and deploy.
+
+### Refresh from the command line
+
+Without the persistent console, obtain the updated license file and run the following command on the primary controller (the first controller installed). Use the installer and assets for the installed application version:
+
+```bash
+sudo ./APP_SLUG upgrade --license /path/to/updated-license.yaml
+```
+
+Replace `APP_SLUG` with the application slug. For air gap installations, keep the matching air gap bundles alongside the installer. Add `--headless` to run without the browser.
+
+This redeploys the installed version and preserves saved configuration when `--config-values` is omitted. If supplied, `--config-values` replaces the configuration; omitted overrides are discarded.
+
+Online upgrades check for a newer license. If that check fails, the command warns and uses the newest verified local license. Offline upgrades use the newer of the supplied and installed licenses. An older bundle cannot revert a newer installed license.
+
+Upgrades, including license refresh through `upgrade --license`, are blocked while the cluster has exactly two primary hosts. For more information about host counts, see [Limitations](#limitations) in this document.
+
 ## High availability for multi-node clusters {#ha}
 
-Embedded Cluster automatically enables high availability (HA) when at least three `controller` nodes are present in the cluster.
+The Kubernetes control plane becomes highly available (HA) with at least three controller nodes. Existing air gap installations require an additional step to complete HA setup. For more information about completing HA setup, see [Enable HA for an existing cluster](#enable-ha-existing) in this document.
 
-In HA installations, Embedded Cluster deploys multiple replicas of the OpenEBS and image registry built-in extensions. Also, any Helm [extensions](embedded-config#extensions) that you include in the Embedded Cluster Config are installed in the cluster depending on the given chart and whether or not it is configured to be deployed with high availability.
+Application workloads and Helm [extensions](embedded-config#extensions) must also be configured for high availability.
 
 ### Best practices for high availability
 
@@ -134,11 +161,11 @@ To create a multi-node cluster with HA:
 
 ### Enable HA for an existing cluster {#enable-ha-existing}
 
-The Kubernetes control plane becomes highly available on its own once three controller nodes are present. The `enable-ha` command covers the remaining work in air gap installations, where it deploys SeaweedFS and reconfigures the image registry to run with multiple replicas. The existing registry data is migrated into SeaweedFS, and the registry is unavailable while that migration runs.
+For online installations, the Kubernetes control plane becomes highly available once three controller nodes are present. For existing air gap installations, also run `enable-ha` to complete HA setup. Schedule a maintenance window because the internal registry is unavailable while its data is migrated. Air gap upgrades are blocked until this HA setup is complete.
 
-To enable HA for an existing Embedded Cluster installation with three or more controller nodes:
+To enable HA for an existing air gap installation with three or more controller nodes:
 
-* On one of the controller nodes, run this command:
+* On the controller named in the join output, which holds the registry data, run this command:
 
    ```bash
    sudo ./APP_SLUG enable-ha
@@ -172,9 +199,9 @@ To remove a node from a multi-node cluster, run the `remove-node` command from a
 
 Run the `remove-node` command from a controller node other than the node that you want to remove. The command performs the following steps:
 
-1. Drain workloads from the node so that they reschedule onto other nodes in the cluster
-1. For controller nodes, remove the node from the etcd cluster
-1. Delete the node from Kubernetes
+1. Drain workloads from the node if it is healthy so that they reschedule onto other nodes in the cluster
+1. For controller nodes, remove the node from the control plane
+1. Remove the node from the cluster
 
 The `reset` command removes Embedded Cluster and your application from the machine where it is run. This is useful for iteration, development, and when you make mistakes because you can reuse the machine instead of having to procure a new one.
 
@@ -205,7 +232,7 @@ To remove a node from a multi-node cluster:
     * `NODE_NAME` is the Kubernetes node name of the node to remove. To list the node names in the cluster, run `sudo ./APP_SLUG shell -c "kubectl get nodes"`.
 
     :::note
-    If the node is unreachable, include the `--skip-drain` flag to skip draining workloads from the node. If the node's Kubernetes object is already gone, `remove-node` skips directly to the etcd cleanup.
+    Nodes that are `NotReady` skip draining automatically. Use `--skip-drain` to explicitly skip draining. If the node is already missing from the cluster, the CLI can clean up remaining records. It requires `--force` to delete stuck Pods or orphaned PVCs; deleting orphaned PVCs discards local data.
     :::
 
 1. (Optional) Reset the machine that you removed so that you can reuse it. See [Reset a machine](#reset-a-node) in this document.

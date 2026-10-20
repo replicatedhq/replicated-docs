@@ -12,9 +12,11 @@ Each Embedded Cluster binary that you download targets a particular application 
 
 You can upgrade interactively in the browser or headlessly from the command line. To change configuration or redeploy without moving to a newer application version, run `upgrade` using the binary for the version that is already installed.
 
-An upgrade preserves the application configuration from the installed version. To change configuration during an upgrade, edit the values on the **Configure** page in the UI, or pass `--config-values` when you upgrade headlessly. Configuration items that are new in the target version take that version's default value. For items whose `value` uses a template function such as `RandomString`, the `readonly` and `hidden` properties determine whether the generated value persists or is regenerated. See [Generating Persistent and Ephemeral Strings](/reference/template-functions-static-context#generating-persistent-and-ephemeral-strings).
+An upgrade preserves the application configuration from the installed version. To change configuration during an upgrade, edit the values on the **Configure** page in the UI, or pass `--config-values` when you upgrade headlessly. The file replaces the saved configuration; omitted overrides are discarded. Configuration items that are new in the target version take that version's default value. For items whose `value` uses a template function such as `RandomString`, the `readonly` and `hidden` properties determine whether the generated value persists or is regenerated. See [Generating Persistent and Ephemeral Strings](/reference/template-functions-static-context#generating-persistent-and-ephemeral-strings).
 
 ## Multi-node clusters
+
+Upgrades are blocked while a cluster has exactly two primary hosts (controller nodes). After adding or removing primary hosts, finish with one or with at least three before upgrading.
 
 In multi-node clusters, run the `upgrade` command on the primary controller (the first controller installed). The upgrade proceeds in two stages:
 
@@ -105,7 +107,7 @@ To perform a headless upgrade from the CLI:
 
    * Use `upgrade` instead of `install`.
    * Pass `--headless` to run without the interactive installer UI.
-   * (Optional) Pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration. If you omit this flag, the existing configuration is preserved.
+   * (Optional) Pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to replace configuration; omitted overrides are discarded. If you omit this flag, the existing configuration is preserved.
    * (Optional) Pass `--installer-password` to change the installer password.
 
    Example:
@@ -149,13 +151,15 @@ To change an application's configuration without upgrading the application versi
 To change an application's configuration without upgrading the application version:
 
 1. Update the ConfigValues to make the application configuration changes.
-1. Run the `upgrade` command using the binary for the application version that you already have installed. For example, if you installed version 1.2.3, download and run `upgrade` with the assets for version 1.2.3. Pass the updated configuration values with `--config-values`.
+1. Run the `upgrade` command using the binary for the application version that you already have installed. For example, if you installed version 1.2.3, download and run `upgrade` with the assets for version 1.2.3. Pass the complete configuration with `--config-values`; omitted overrides are discarded.
 
 ## Change the customer-managed (BYO) registry configuration
 
 The `upgrade` command can also enable a [customer-managed (BYO) registry](installing-embedded-byo-registry) on an existing cluster, rotate the registry credentials or certificates, switch to a different BYO registry, or revert to the default registry. See [Change BYO registry configuration on upgrade](installing-embedded-byo-registry#upgrade-byo).
 
 ## Upgrade in air-gapped environments
+
+For an existing air gap installation with three or more primary hosts, complete HA setup before upgrading. The internal registry is unavailable during that setup. For more information about the required command and controller, see [Enable HA for an existing cluster](embedded-manage-nodes#enable-ha-existing) in _Access and manage embedded clusters_.
 
 To perform an upgrade with Embedded Cluster in air-gapped environments:
 
@@ -187,11 +191,13 @@ If the [persistent admin console](embedded-persistent-console) is installed on a
 
 #### Re-upload the current release
 
-The currently-installed release can also be updated from the dashboard. Two common reasons to do this:
+Redeploy requires a local copy of the release archive. If that copy is missing, re-upload the currently-installed release archive from the dashboard to restore it.
 
-* **To update the license.** Re-upload the release archive containing the new license, then click **Redeploy** to apply it.
+#### Refresh the license
 
-* **To enable redeploy.** Redeploy requires a local copy of the release archive. If that copy is missing, re-upload to restore it.
+In Embedded Cluster 3.15.0-beta.1 or later, use **License** to update the license without uploading a release bundle. Select the updated license file and click **Upload license and deploy**. This redeploys the installed application version. If additional configuration is required, select **Review required configuration and deploy**, complete the required fields, and deploy.
+
+Without the console, use the installed version's installer and air gap bundles with `upgrade --license /path/to/updated-license.yaml`. For more information about version requirements, license validation, and both refresh methods, see [Refresh the license](embedded-manage-nodes#refresh-license) in _Access and manage embedded clusters_.
 
 ### Headless air-gapped upgrade
 
@@ -201,7 +207,7 @@ To perform a headless upgrade in an air-gapped environment, pass `--headless` al
 sudo ./APP_SLUG upgrade --license LICENSE_FILE --headless
 ```
 
-Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to change configuration during the upgrade. If you omit this flag, the existing configuration is preserved. Embedded Cluster automatically detects the air gap installation.
+Optionally pass `--config-values` with the path to your [ConfigValues](/reference/custom-resource-configvalues) file to replace configuration during the upgrade; omitted overrides are discarded. If you omit this flag, the existing configuration is preserved. Embedded Cluster automatically detects the air gap installation.
 
 ## Upgrade failure handling {#upgrade-failures}
 
@@ -223,6 +229,4 @@ Embedded Cluster handles infrastructure and chart deployment. Application-level 
 
 ### Disaster recovery {#upgrade-dr}
 
-For cases where an upgrade fails and cannot be recovered by retrying, treat the situation as a disaster recovery scenario. Replicated recommends bundling a backup solution like [Velero](https://velero.io/) as a Helm chart extension in your application package. This gives your customers a backup and restore path that you control, including the Velero version, backup scope, and upgrade cadence.
-
-When you bundle a backup solution this way, backups cover your application data only. Embedded Cluster infrastructure state is not included in application backups because it is rebuilt from the install artifacts during a restore, so a restore onto a fresh machine recovers the full environment.
+If an upgrade cannot be recovered by retrying, restore a successful backup onto replacement hosts using the application release and installer that created it. For more information about recovery, see [Back up and restore Embedded Cluster v3](embedded-disaster-recovery-v3).
