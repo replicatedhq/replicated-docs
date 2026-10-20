@@ -12,6 +12,34 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.15+k8s-1.36
+
+Released on October 20, 2026
+
+<!-- VERSION TABLE PLACEHOLDER
+Please manually replace this placeholder with a version table in the format:
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.XX.Y</td>
+    <td id="center">1.XX.Y</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="2">1.XXX.Y</td>
+  </tr>
+</table>
+-->
+### Bug Fixes {#bug-fixes-2-19-15+k8s-1-36}
+* Fixes stalled pod traffic between nodes on networks with an MTU below 1500 by sizing the Calico overlay MTU to the host network interface at install.
+* Fixes truncated image layers after a transient storage error during the registry data migration for high availability.
+
 ## 2.19.14
 
 Released on September 25, 2026
