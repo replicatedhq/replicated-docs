@@ -9,6 +9,20 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.99-0
+
+Released on October 20, 2026
+
+### New Features {#new-features-v2026-10-99-0}
+
+* Fixed Enterprise Portal v2 domains not loading on an app with no content repository (SC-12345).
+* New exported `HelmCommandOptions` type; `GetInstallOptionsInput` extends it, so their shape is unchanged.
+
+### Bug fixes {#bug-fixes-v2026-10-99-0}
+
+* Rate limit unauthenticated GET /v3/metadata to slow app slug enumeration.
+* See https://app.shortcut.com/replicated/story/12345 for details on the slice 5 rollout.
+
 ## v2026.10.19-4
 
 Released on October 19, 2026
