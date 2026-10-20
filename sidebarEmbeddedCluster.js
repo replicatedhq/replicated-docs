@@ -17,6 +17,7 @@ module.exports = {
     "embedded-manage-nodes",
     "updating-embedded",
     "embedded-persistent-console",
+    "embedded-disaster-recovery-v3",
     "embedded-troubleshooting",
     //REFERENCE DOCS
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
