@@ -867,7 +867,7 @@ Released on August 10, 2026
 Released on August 10, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-10-0}
-* Non-admin RBAC users can now see the Enterprise Portal version toggle when they have read access; the toggle remains disabled unless they are admins.
+* Non-admin RBAC users can now see the portal-version toggle for the new Enterprise Portal when they have read access; the toggle remains disabled unless they are admins.
 
 ## v2026.08.07-2
 
@@ -1373,7 +1373,7 @@ Released on June 11, 2026
 Released on June 9, 2026
 
 ### New Features {#new-features-v2026-06-09-3}
-* The new Enterprise Portal is now the default Enterprise Portal experience for new vendor teams. Existing teams that use the GitHub integration for Enterprise Portal content now have access to the new Enterprise Portal.
+* Enterprise Portal v2 is now the default Enterprise Portal experience for new vendor teams. Existing teams with GitHub-backed Enterprise Portal content are migrated to the EP v2 flag model.
 
 ## v2026.06.08-2
 
