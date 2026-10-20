@@ -14,8 +14,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 19, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-19-4}
-* Fixed Enterprise Portal v2 sign-in error links reopening a previous session for a different customer instead of returning to the login form.
-* Fixed Enterprise Portal v2 hiding failed team logins, team switches and team list loads instead of showing an error.
+* Fixed sign-in error links in the new Enterprise Portal reopening a previous session for a different customer instead of returning to the login form.
+* Fixed the new Enterprise Portal hiding failed team logins, team switches, and team list loads instead of showing an error.
 ## v2026.10.16-4
 
 Released on October 16, 2026
