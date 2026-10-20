@@ -39,8 +39,8 @@ Released on October 15, 2026
 Released on October 14, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-14-7}
-* Fixed instance cards and Security Center dropdown options in Enterprise Portal v2 becoming unreadable on hover in dark mode.
-* Fixed unreadable note callouts on Terraform module reference pages in Enterprise Portal v2 dark mode.
+* Fixed instance cards and Security Center dropdown options in the new Enterprise Portal becoming unreadable on hover in dark mode.
+* Fixed unreadable note callouts on Terraform module reference pages in the new Enterprise Portal in dark mode.
 ## v2026.10.14-6
 
 Released on October 14, 2026
@@ -52,13 +52,13 @@ Released on October 14, 2026
 Released on October 14, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-14-5}
-* Enterprise Portal v2 Domains no longer looks ready on an app with no content repository.
+* The Domains page for the new Enterprise Portal no longer looks ready on an app with no content repository.
 ## v2026.10.14-4
 
 Released on October 14, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-14-4}
-* Enterprise Portal v2 labels the header docs picker and the install release picker as different controls, and explains when those versions differ.
+* The new Enterprise Portal labels the header docs picker and the install release picker as different controls, and explains when those versions differ.
 ## v2026.10.14-3
 
 Released on October 14, 2026
@@ -82,7 +82,7 @@ Released on October 14, 2026
 Released on October 13, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-13-5}
-* Enterprise Portal now enforces pinned-release access in install options, update instructions, Helm references and diffs, PDF exports, and Security Center. EP v2 now shows only the assigned channel on multi-channel licenses; previously selectable secondary channels are no longer available there. The stale-mapping correction is hardening, not an observed production mismatch.
+* Enterprise Portal now enforces pinned-release access in install options, update instructions, Helm references and diffs, PDF exports, and Security Center. The new Enterprise Portal now shows only the assigned channel on multi-channel licenses; previously selectable secondary channels are no longer available there. The stale-mapping correction is hardening, not an observed production mismatch.
 ## v2026.10.13-3
 
 Released on October 13, 2026
@@ -113,7 +113,7 @@ Released on October 12, 2026
 Released on October 12, 2026
 
 ### New Features {#new-features-v2026-10-12-0}
-* Enterprise Portal v2 KOTS and kURL upgrade guidance accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
+* KOTS and kURL upgrade guidance in the new Enterprise Portal accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
 ## v2026.10.09-4
 
 Released on October 9, 2026
@@ -164,11 +164,11 @@ Released on October 8, 2026
 Released on October 8, 2026
 
 ### Improvements {#improvements-v2026-10-08-4}
-* Increased the vendor logo on the Enterprise Portal v2 sign-in, Select Team, and sign-in status screens to 64px tall.
+* Increased the vendor logo on the new Enterprise Portal sign-in, Select Team, and sign-in status screens to 64px tall.
 
 ### Bug Fixes {#bug-fixes-v2026-10-08-4}
-* Fixed the vendor logo appearing off-center in a separate white strip on the Enterprise Portal v2 Select Team screen.
-* Fixed the Enterprise Portal v2 Select Team screen not showing the vendor logo for users who signed in with a magic link.
+* Fixed the vendor logo appearing off-center in a separate white strip on the Select Team screen in the new Enterprise Portal.
+* Fixed the Select Team screen in the new Enterprise Portal not showing the vendor logo for users who signed in with a magic link.
 ## v2026.10.08-2
 
 Released on October 8, 2026
@@ -268,7 +268,7 @@ Released on September 30, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-30-1}
 * Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
-* Prevented vendor invitations and customer login links for Enterprise Portal v2 sites that are not configured, while preserving v1 access and showing warnings when automatic invitations are skipped.
+* Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
 * Fixed Enterprise Portal customer-user totals when filtering by email.
 
 ## v2026.09.30-0
@@ -280,7 +280,7 @@ Released on September 30, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-30-0}
 * Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
-* Prevented vendor invitations and customer login links for Enterprise Portal v2 sites that are not configured, while preserving v1 access and showing warnings when automatic invitations are skipped.
+* Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
 * Fixed Enterprise Portal customer-user totals when filtering by email.
 ## v2026.09.29-2
 
@@ -291,7 +291,7 @@ Released on September 29, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-29-2}
 * Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
-* Prevented vendor invitations and customer login links for Enterprise Portal v2 sites that are not configured, while preserving v1 access and showing warnings when automatic invitations are skipped.
+* Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
 * Fixed Enterprise Portal customer-user totals when filtering by email.
 ## v2026.09.29-1
 
@@ -308,7 +308,7 @@ Released on September 29, 2026
 Released on September 29, 2026
 
 ### Improvements {#improvements-v2026-09-29-0}
-* Enterprise Portal v2 now guides KOTS and kURL customers through target-specific Admin Console application upgrades and provides the selected application bundle for entitled air gap instances.
+* The new Enterprise Portal now guides KOTS and kURL customers through target-specific Admin Console application upgrades and provides the selected application bundle for entitled air gap instances.
 ## v2026.09.25-0
 
 Released on September 25, 2026
@@ -340,7 +340,7 @@ Released on September 24, 2026
 Released on September 23, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-23-0}
-* Restored per-customer Enterprise Portal management selection for vendors with Download Portal and Enterprise Portal v2, while keeping Enterprise Portal management available for vendors without Download Portal.
+* Restored per-customer Enterprise Portal management selection for vendors with Download Portal and the new Enterprise Portal, while keeping Enterprise Portal management available for vendors without Download Portal.
 
 ## v2026.09.22-5
 
@@ -354,7 +354,7 @@ Released on September 22, 2026
 Released on September 22, 2026
 
 ### New Features {#new-features-v2026-09-22-3}
-* Enterprise Portal v2: KotsDownloadAssets and KurlDownloadAssets accept cliOnly so online pages can show KOTS/Preflight/Support Bundle CLIs without Admin Console or air-gap bundles.
+* In the new Enterprise Portal, KotsDownloadAssets and KurlDownloadAssets accept cliOnly so online pages can show KOTS/Preflight/Support Bundle CLIs without Admin Console or air-gap bundles.
 
 ## v2026.09.22-2
 
@@ -377,20 +377,20 @@ Released on September 22, 2026
 Released on September 21, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-21-1}
-* Enterprise Portal v2: if a page mounts KotsDownloadAssets or KurlDownloadAssets, KOTS CLI, Preflight CLI, and Support Bundle CLI now appear for customers entitled to that install method even when air gap is disabled. Admin Console bundle, application air-gap bundle, and the kURL air-gap installer tarball remain air-gap-only. Default KOTS online install commands (KotsInstallAssets) are unchanged.
+* In the new Enterprise Portal, if a page mounts KotsDownloadAssets or KurlDownloadAssets, KOTS CLI, Preflight CLI, and Support Bundle CLI now appear for customers entitled to that install method even when air gap is disabled. Admin Console bundle, application air-gap bundle, and the kURL air-gap installer tarball remain air-gap-only. Default KOTS online install commands (KotsInstallAssets) are unchanged.
 ## v2026.09.21-0
 
 Released on September 21, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-21-0}
-* Custom Domains directs Enterprise Portal v2 vendors to content setup when no content repository is linked, and to Domains when one is linked.
+* Custom Domains directs vendors using the new Enterprise Portal to content setup when no content repository is linked, and to Domains when one is linked.
 * Registry connection tests now explain whether an image was not found, access was denied, rate limited, or temporarily unavailable.
 ## v2026.09.18-2
 
 Released on September 18, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-18-2}
-* Explains why Enterprise Portal v2 setup appears when vendors open a deep link before setup is complete.
+* Explains why setup for the new Enterprise Portal appears when vendors open a deep link before setup is complete.
 
 ## v2026.09.18-1
 
@@ -428,7 +428,7 @@ Released on September 17, 2026
 Released on September 16, 2026
 
 ### New Features {#new-features-v2026-09-16-0}
-* Enterprise Portal v2 now shows customer-runnable KOTS and kURL install commands (online, proxy, and kURL air gap cluster bootstrap). KOTS existing-cluster air gap is download-only until a default content procedure ships.
+* The new Enterprise Portal now shows customer-runnable KOTS and kURL install commands (online, proxy, and kURL air gap cluster bootstrap). KOTS existing-cluster air gap is download-only until a default content procedure ships.
 
 ## v2026.09.15-7
 
@@ -505,7 +505,7 @@ Released on September 10, 2026
 Released on September 9, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-09-0}
-* Fixes EP v2 dashboard update availability calculations for pinned channels and mixed install-type fleets.
+* Fixes dashboard update availability calculations in the new Enterprise Portal for pinned channels and mixed install-type fleets.
 ## v2026.09.08-0
 
 Released on September 8, 2026
@@ -517,13 +517,13 @@ Released on September 8, 2026
 Released on September 4, 2026
 
 ### New Features {#new-features-v2026-09-04-2}
-* Enterprise Portal v2 is now available to vendors who already use Enterprise Portal v1, alongside their existing portal. Existing customers stay on Enterprise Portal v1 until they are moved explicitly.
+* The new Enterprise Portal is now available to vendors who already use Enterprise Portal (Classic), alongside their existing portal. Existing customers stay on Enterprise Portal (Classic) until they are moved explicitly.
 ## v2026.09.04-1
 
 Released on September 4, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-04-1}
-* Enterprise Portal v2 docs: tables inside Warning, Note, and Tip callouts no longer render a disconnected header bar.
+* Tables inside Warning, Note, and Tip callouts on docs pages in the new Enterprise Portal no longer render a disconnected header bar.
 ## v2026.09.04-0
 
 Released on September 4, 2026
@@ -535,7 +535,7 @@ Released on September 4, 2026
 Released on September 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-03-3}
-* The Enterprise Portal per-customer Portal Version control is now hidden for apps that have no Enterprise Portal v2 site deployed, instead of offering a switch to a portal that is not reachable.
+* The Enterprise Portal per-customer Portal Version control is now hidden for apps that do not have the new Enterprise Portal deployed, instead of offering a switch to a portal that is not reachable.
 ## v2026.09.03-2
 
 Released on September 3, 2026
@@ -565,7 +565,7 @@ Released on September 2, 2026
 Released on September 2, 2026
 
 ### Improvements {#improvements-v2026-09-02-1}
-* Enterprise Portal v2 portals are now provisioned when you connect a content repository, rather than when an application is created.
+* The new Enterprise Portal is now provisioned for an application when you connect a content repository, rather than when the application is created.
 ## v2026.09.02-0
 
 Released on September 2, 2026
@@ -578,7 +578,7 @@ Released on September 2, 2026
 Released on September 1, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-01-0}
-* EPv2 Container Images modals now follow the active light or dark theme.
+* Container Images modals in the new Enterprise Portal now follow the active light or dark theme.
 * Security Center now displays one consistent loading state while security report data is fetched.
 ## v2026.08.31-2
 
@@ -597,7 +597,7 @@ Released on August 31, 2026
 Released on August 31, 2026
 
 ### New Features {#new-features-v2026-08-31-0}
-* Enterprise Portal v2: add \`hidden: true\` page frontmatter to keep a docs page in the repo and \`toc.yaml\` without showing it to customers until it is unpublished.
+* In the new Enterprise Portal, add \`hidden: true\` page frontmatter to keep a docs page in the repo and \`toc.yaml\` without showing it to customers until it is unpublished.
 ## v2026.08.28-0
 
 Released on August 28, 2026
@@ -609,7 +609,7 @@ Released on August 28, 2026
 Released on August 27, 2026
 
 ### Improvements {#improvements-v2026-08-27-4}
-* Improved Enterprise Portal v2 settings copy for clearer labels, descriptions, links, and loading states.
+* Improved settings copy for the new Enterprise Portal with clearer labels, descriptions, links, and loading states.
 
 ## v2026.08.27-3
 
@@ -817,7 +817,7 @@ Released on August 19, 2026
 Released on August 19, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-19-2}
-* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
+* Removed the app-wide Security Center enable switch from the new Enterprise Portal and moved its display controls to Content > Portal Features.
 * Show channel names alongside channel IDs in release promotion audit log descriptions.
 
 ## v2026.08.18-1
@@ -825,7 +825,7 @@ Released on August 19, 2026
 Released on August 18, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-18-1}
-* Removed the app-wide Security Center enable switch from Enterprise Portal v2 and moved its display controls to Content > Portal Features.
+* Removed the app-wide Security Center enable switch from the new Enterprise Portal and moved its display controls to Content > Portal Features.
 * Show channel names alongside channel IDs in release promotion audit log descriptions.
 
 ## v2026.08.13-2
@@ -849,25 +849,25 @@ Released on August 12, 2026
 ### Improvements {#improvements-v2026-08-12-0}
 * Closing the vulnerable-password banner now permanently hides it for that account.
 * Updated Enterprise Portal template update copy to clarify that newly published template changes are informational and can be marked as seen.
-* Enterprise Portal v2 now shows release notes in Release History and during the upgrade flow.
+* The new Enterprise Portal now shows release notes in Release History and during the upgrade flow.
 
 ## v2026.08.10-1
 
 Released on August 10, 2026
 
 ### Improvements {#improvements-v2026-08-10-1}
-* Removed the non-actionable Issues column from Enterprise Portal v2 support bundle history.
+* Removed the non-actionable Issues column from support bundle history in the new Enterprise Portal.
 * Changed the Enterprise Portal local preview command to use the current directory so it can be copied and run as-is.
 
 ### Bug Fixes {#bug-fixes-v2026-08-10-1}
-* Fixed Enterprise Portal v2 support bundle history showing a blank area when no bundles had been uploaded.
+* Fixed support bundle history in the new Enterprise Portal showing a blank area when no bundles had been uploaded.
 
 ## v2026.08.10-0
 
 Released on August 10, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-10-0}
-* Non-admin RBAC users can now see the Enterprise Portal v2 portal-version toggle when they have read access; the toggle remains disabled unless they are admins.
+* Non-admin RBAC users can now see the portal-version toggle for the new Enterprise Portal when they have read access; the toggle remains disabled unless they are admins.
 
 ## v2026.08.07-2
 
@@ -903,7 +903,7 @@ Released on August 7, 2026
 Released on August 5, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-05-6}
-* Existing Enterprise Portal v2 users with pending team invites can now discover and accept those invites from login/team selection and the authenticated change-team menu.
+* Existing users of the new Enterprise Portal with pending team invites can now discover and accept those invites from login/team selection and the authenticated change-team menu.
 
 ## v2026.08.05-5
 
@@ -950,7 +950,7 @@ Released on August 5, 2026
 Released on August 4, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-04-0}
-* Enterprise Portal v2 customers now see an actionable error page when SAML login fails to start, instead of being silently returned to a blank login form.
+* Customers using the new Enterprise Portal now see an actionable error page when SAML login fails to start, instead of being silently returned to a blank login form.
 
 ## v2026.08.03-1
 
@@ -964,7 +964,7 @@ Released on August 3, 2026
 Released on August 3, 2026
 
 ### New Features {#new-features-v2026-08-03-0}
-* Vendors can configure Enterprise Portal v2 Security Center display preferences from a new Settings tab.
+* Vendors can configure Security Center display preferences for the new Enterprise Portal from a new Settings tab.
 
 ### Improvements {#improvements-v2026-08-03-0}
 * Added an API foundation for controlling Security Center visibility, unfixable CVEs, and raw scan downloads per application.
@@ -1002,7 +1002,7 @@ Released on July 29, 2026
 Released on July 28, 2026
 
 ### Improvements {#improvements-v2026-07-28-0}
-* Updated Enterprise Portal access messaging in Vendor Portal to reflect KOTS and kURL support in Enterprise Portal v2.
+* Updated Enterprise Portal access messaging in Vendor Portal to reflect KOTS and kURL support in the new Enterprise Portal.
 
 ## v2026.07.27-1
 
@@ -1016,7 +1016,7 @@ Released on July 27, 2026
 Released on July 24, 2026
 
 ### New Features {#new-features-v2026-07-24-6}
-* Added version-filtered downloads for KOTS and kURL instances in the Enterprise Portal v2 Instances & Updates card, so those customers can browse releases newer than their current version and download the correct artifacts for their install type.
+* Added version-filtered downloads for KOTS and kURL instances in the Instances & Updates card in the new Enterprise Portal, so those customers can browse releases newer than their current version and download the correct artifacts for their install type.
 
 ## v2026.07.24-5
 
@@ -1044,7 +1044,7 @@ Released on July 23, 2026
 Released on July 23, 2026
 
 ### New Features {#new-features-v2026-07-23-3}
-* Restored the ability to discard pending installations in Enterprise Portal v2.
+* Restored the ability to discard pending installations in the new Enterprise Portal.
 
 ## v2026.07.23-2
 
@@ -1072,7 +1072,7 @@ Released on July 22, 2026
 Released on July 21, 2026
 
 ### New Features {#new-features-v2026-07-21-4}
-* Enterprise Portal v2 can now create air gap KOTS and kURL installations.
+* The new Enterprise Portal can now create air gap KOTS and kURL installations.
 
 ### Improvements {#improvements-v2026-07-21-4}
 * Clarified the Security Center copy shown for KOTS and kURL installations.
@@ -1096,14 +1096,14 @@ Released on July 20, 2026
 Released on July 20, 2026
 
 ### New Features {#new-features-v2026-07-20-1}
-* Enterprise Portal v2 now displays KOTS and kURL instances.
+* The new Enterprise Portal now displays KOTS and kURL instances.
 
 ## v2026.07.20-0
 
 Released on July 20, 2026
 
 ### New Features {#new-features-v2026-07-20-0}
-* Enterprise Portal v2 now supports downloads for KOTS and kURL installations.
+* The new Enterprise Portal now supports downloads for KOTS and kURL installations.
 
 ## v2026.07.17-7
 
@@ -1456,7 +1456,7 @@ Released on May 18, 2026
 Released on May 15, 2026
 
 ### New Features {#new-features-v2026-05-15-3}
-* Update Enterprise Portal V2 doc links.
+* Updated links to the new Enterprise Portal documentation.
 
 ## v2026.04.16-2
 
