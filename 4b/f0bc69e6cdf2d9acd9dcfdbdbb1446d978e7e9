@@ -1,0 +1,21 @@
+docs/vendor/insights-app-status.md
+  s_fb1f44c45f88e4::t_7341bb7e3d1c1a 29
+embedded-cluster/embedded-persistent-console.mdx
+  s_fb1f44c45f88e4::t_12fbfc45bef762 10,86-89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4bf0bc69e6cdf2d9acd9dcfdbdbb1446d978e7e9",
+  "prompts": {},
+  "sessions": {
+    "s_fb1f44c45f88e4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_fb1f44c45f88e4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

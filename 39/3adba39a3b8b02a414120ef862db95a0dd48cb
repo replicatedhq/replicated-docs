@@ -1,0 +1,23 @@
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_ff29b14fe8ae27::t_407ca967503e82 14
+  s_ff29b14fe8ae27::t_ff060a07504393 15
+  s_ff29b14fe8ae27::t_be9adf54f4f5df 28,38,40,42,45-77,80-82,95,102,104,106,170-173,182,186,197,199,201,203,210-212,215,219,242,246,250,252,256,264,266,268,293,299,303,309,313,319,330,349,355,363,365,375,385,387,389,405,407
+embedded-cluster/embedded-overview.mdx
+  s_ff29b14fe8ae27::t_175ae1e059cb3a 65-70
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "393adba39a3b8b02a414120ef862db95a0dd48cb",
+  "prompts": {},
+  "sessions": {
+    "s_ff29b14fe8ae27": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14705-9197-71e0-966c-c99e7978d821",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}

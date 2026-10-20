@@ -1,0 +1,21 @@
+docs/reference/custom-resource-application.mdx
+  s_77b2505fa6e6c4::t_adb9ff9f3d9af7 442-443,464-465
+docs/vendor/packaging-kots-versions.md
+  s_77b2505fa6e6c4::t_bcb3981a643ba1 46-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b448415874ce7b909b99c942d0746491e065f03c",
+  "prompts": {},
+  "sessions": {
+    "s_77b2505fa6e6c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_77b2505fa6e6c4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

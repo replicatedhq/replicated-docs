@@ -1,0 +1,19 @@
+docs/vendor/using-third-party-registry-proxy.mdx
+  s_2687d5e5d6fb92::t_5da202f6a60f55 35-36,74-88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "243e63b4999c17470f7b060e8aa36c20f6e893bb",
+  "prompts": {},
+  "sessions": {
+    "s_2687d5e5d6fb92": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_2687d5e5d6fb92",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+embedded-cluster/updating-embedded.mdx
+  s_1ea129d5fb4268::t_d04474a97d4af5 15,19-20,110,154,162-163,196-199
+  s_ff29b14fe8ae27::t_5b39f8519ee3b4 200,210,232
+embedded-cluster/embedded-manage-nodes.mdx
+  s_1ea129d5fb4268::t_823c54b927d532 168,202-204,235
+  s_ff29b14fe8ae27::t_87c744574b954c 25-26,33,107-137,140,142,164,166
+embedded-cluster/embedded-persistent-console.mdx
+  s_1ea129d5fb4268::t_0cdc7fae0510a0 112,114
+  h_4fb87d7c7fffe5 116,118,148
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7179e3e65efdd85104d510f38feaddde9ab33529",
+  "prompts": {},
+  "humans": {
+    "h_4fb87d7c7fffe5": {
+      "author": "divolgin <dmitriy@replicated.com>"
+    }
+  },
+  "sessions": {
+    "s_1ea129d5fb4268": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a15592-d2b3-7b42-b601-d81594c41d0c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    },
+    "s_ff29b14fe8ae27": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14705-9197-71e0-966c-c99e7978d821",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}

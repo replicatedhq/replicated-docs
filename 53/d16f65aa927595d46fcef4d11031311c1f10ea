@@ -1,0 +1,19 @@
+docs/vendor/vendor-portal-application-settings.md
+  s_bea03327a3043c::t_4d89b7a0b6df99 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "53d16f65aa927595d46fcef4d11031311c1f10ea",
+  "prompts": {},
+  "sessions": {
+    "s_bea03327a3043c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a50d931c0a648f3c3",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

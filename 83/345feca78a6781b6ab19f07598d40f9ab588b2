@@ -1,0 +1,21 @@
+docs/vendor/image-provenance-validating.md
+  s_21eb6f581d208c::t_bb86cc69e3d015 1,5-7
+docs/vendor/troubleshoot-cli-provenance-validating.md
+  s_21eb6f581d208c::t_4eca6fa2356012 5-8,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "83345feca78a6781b6ab19f07598d40f9ab588b2",
+  "prompts": {},
+  "sessions": {
+    "s_21eb6f581d208c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_21eb6f581d208c",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

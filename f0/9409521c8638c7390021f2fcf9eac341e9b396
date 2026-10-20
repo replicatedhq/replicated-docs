@@ -1,0 +1,19 @@
+docs/vendor/policies-vulnerability-patch.md
+  s_ac0a792555c24e::t_d721f151529e85 55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f09409521c8638c7390021f2fcf9eac341e9b396",
+  "prompts": {},
+  "sessions": {
+    "s_ac0a792555c24e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ac0a792555c24e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+docs/release-notes/rn-vendor-platform.md
+  s_cbe359f47507df::t_8ee0e8f428fe6c 153,159,265,268,283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b39da5e44af277a269a187900a38ff27afc2d36c",
+  "prompts": {},
+  "sessions": {
+    "s_cbe359f47507df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_cbe359f47507df",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
