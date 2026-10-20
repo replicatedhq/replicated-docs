@@ -21,7 +21,7 @@ Released on October 19, 2026
 Released on October 19, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-19-3}
-* The new Enterprise Portal now shows a separate card and a separate update for each cluster that shares an instance ID. For more information, see [How instances are identified](/vendor/instance-insights-details#instance-identity).
+* The new Enterprise Portal now shows a separate card and a separate update for each cluster that shares an instance ID. For more information, see [How instances are identified](/vendor/instance-insights-details#instance-identity) in _Instance details_.
 * When you request update instructions from the Vendor API by instance ID, and more than one cluster shares that instance ID, you must include the `cluster_id` query parameter. Otherwise, the request returns a 400 error.
 ## v2026.10.16-4
 
