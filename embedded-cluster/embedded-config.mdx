@@ -318,6 +318,10 @@ For more information, see [spec.workerProfiles](https://docs.k0sproject.io/stabl
 
 You can combine worker profiles with other k0s settings in the same `k0s` string (for example, `metadata`, `telemetry`, or `network`).
 
+Embedded Cluster supplies `<data-dir>/k0s/pod-logs` as the pod log directory unless you explicitly set `podLogsDir` in the profile. Earlier v3 beta installations retain their configured log location.
+
+Keep any custom log directory on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn about different filesystems because Kubernetes might not account for those logs during disk-pressure eviction.
+
 #### Limitations
 
 * Embedded Cluster sets the worker profile during initial installation. You cannot change or add worker profiles on upgrade.
