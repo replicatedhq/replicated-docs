@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.15.2-beta.1
+
+Released on October 20, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.15.2-beta.1+k8s-1.36</td>
+    <td id="center">3.15.2-beta.1+k8s-1.35</td>
+    <td id="center">3.15.2-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.3</td>
+    <td id="center">1.35.7</td>
+    <td id="center">1.34.10</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-3-15-2-beta-1}
+* Adds `Schedules` to the saved Velero config so existing schedules are also restored with the cluster.
+* Excludes infrastructure namespaces, which are created outside of the restore process, from backups.
+
+### Bug fixes {#bug-fixes-3-15-2-beta-1}
+* Fixed Embedded Cluster skipping HelmCharts when multiple charts were defined in one YAML file or an unsupported API version was used. Unsupported versions now report an error.
+
 ## 3.15.1-beta.1
 
 Released on October 19, 2026
