@@ -1,0 +1,29 @@
+embedded-cluster/embedded-manage-nodes.mdx
+  h_4fb87d7c7fffe5 31,35,37
+embedded-cluster/updating-embedded.mdx
+  s_f8f08a80d847ef::t_fe8254eaaea633 190,192
+embedded-cluster/embedded-persistent-console.mdx
+  h_4fb87d7c7fffe5 14,37,112-119,126-138,167-168
+  s_f8f08a80d847ef::t_fe8254eaaea633 120-125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "542f29592f9484bb6cba2c503d5bb37563f3480d",
+  "prompts": {},
+  "humans": {
+    "h_4fb87d7c7fffe5": {
+      "author": "divolgin <dmitriy@replicated.com>"
+    }
+  },
+  "sessions": {
+    "s_f8f08a80d847ef": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14700-479d-7a00-b8d3-73766b1eda39",
+        "model": "gpt-6-astra"
+      },
+      "human_author": null
+    }
+  }
+}

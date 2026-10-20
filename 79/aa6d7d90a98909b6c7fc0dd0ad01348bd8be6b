@@ -1,0 +1,25 @@
+docs/partials/helm/_helm-cr-upgrade-flags.mdx
+  s_20b3053981774b::t_50139f5868786f 13-15,27,31-33
+docs/partials/helm/_helm-cr-weight.mdx
+  s_20b3053981774b::t_d822a426250424 7-8
+docs/vendor/install-with-helm.mdx
+  s_20b3053981774b::t_52f24151545ff8 53
+docs/vendor/orchestrating-resource-deployment.md
+  s_20b3053981774b::t_07d1850ec51778 28,30,37-49,56-57,60-63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "79aa6d7d90a98909b6c7fc0dd0ad01348bd8be6b",
+  "prompts": {},
+  "sessions": {
+    "s_20b3053981774b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_20b3053981774b",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
