@@ -119,7 +119,7 @@ By default, when namespace-scoped access is enabled, KOTS attempts to automatica
   rules:
     - apiGroups: ["*"]
       resources: ["*"]
-      verb: "*"
+      verbs: ["*"]
   ```
 
    To support this default behavior, the user must also have `* * *` permissions in the target namespace.
@@ -162,7 +162,12 @@ In some cases, it is not possible to grant the user `* * *` permissions in the t
       - apiGroups: ["batch"]
         resources: ["jobs/status"]
         verbs: ["get", "list", "watch"]
+      - apiGroups: [""]
+        resources: ["pods/portforward"]
+        verbs: ["create"]
      ```
+
+     The `pods/portforward` permission is required because the KOTS CLI port-forwards to the Admin Console to complete installation and upgrade tasks. Only the user running the KOTS CLI needs this permission. It is not included in the KOTS Role in the next step.
 
      :::note
      The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of KOTS. Contact your software vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
