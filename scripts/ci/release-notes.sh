@@ -5,7 +5,7 @@ set -euo pipefail
 : "${EVENT_TYPE:?EVENT_TYPE is required}"
 : "${VERSION:?VERSION is required}"
 
-generator_ref="942ca6279047ce728af73d2c30bc73c946a48476"
+generator_ref="ad1a0f7b9ff8cb2669aaae968fd4de51d825ab40"
 base_version=""
 description=""
 feature_labels="type::feature"
