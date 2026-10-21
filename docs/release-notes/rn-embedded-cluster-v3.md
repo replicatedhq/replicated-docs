@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.15.3-beta.1
+
+Released on October 21, 2026
+
+<!-- VERSION TABLE PLACEHOLDER
+Please manually replace this placeholder with a version table in the format:
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">X.Y.Z+k8s-1.XX</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.XX.Y</td>
+    <td id="center">1.XX.Y</td>
+  </tr>
+</table>
+-->
+### Improvements {#improvements-3-15-3-beta-1}
+* Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11 (k0s v1.36.4+k0s.1, v1.35.8+k0s.1, v1.34.11+k0s.1).
+
+### Bug Fixes {#bug-fixes-3-15-3-beta-1}
+* Resetting a controller node no longer assumes it was removed from etcd when it can't tell. It now warns and shows the remove-node command to clean up a possible stale etcd member from a surviving controller.
+
 ## 3.15.2-beta.1
 
 Released on October 20, 2026
