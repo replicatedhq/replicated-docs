@@ -14,9 +14,8 @@ This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) 
 Released on October 18, 2026
 
 ### Improvements {#improvements-v2026-10-18-1}
-* The replicated/kurl-util image is now built with Go 1.27.2 and golang.org/x/net v0.60.0, resolving all currently fixable critical and high vulnerabilities reported by Grype.
-* kURL's Go components are now built with Go 1.27.2.
-* The latest Prometheus, Rook, Cert Manager, Contour, Metrics Server, Sonobuoy, EKCO HAProxy, and Containerd pause images now use SecureBuild images. Kubernetes 1.36.5 and 1.37.1 also use the SecureBuild pause image.
+* Builds kURL's Go components and the replicated/kurl-util image with Go 1.27.2 and golang.org/x/net v0.60.0 to address all currently fixable critical and high severity CVEs in the kurl-util image.
+* Uses published SecureBuild images for the latest versions of Prometheus, Rook, Cert Manager, Contour, Metrics Server, Sonobuoy, and EKCO HAProxy, and for the pause image used by Containerd and by Kubernetes 1.36.5 and 1.37.1.
 
 ### Bug Fixes {#bug-fixes-v2026-10-18-1}
 * Fixes upgrades on clusters with the EKCO internal load balancer enabled losing API access through localhost:6444 after the kubeadm init re-application removed the HAProxy static pod manifest.
@@ -30,8 +29,7 @@ Released on October 13, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-13-0}
 * Fixes a false failure in the Rook health precheck, used during Rook to OpenEBS and MinIO migrations, where a transient delay in Ceph tagging RGW object store pools could report the cluster as unhealthy and block the upgrade.
-* Fixes a race where upgrading Kubernetes could fail midway when the kubelet restart recreated the etcd and API server static pod containers before the old containers released their host ports, causing them to crashloop with "bind: address already in use".
-* Fixes a failure where re-applying the installer, including Kubernetes upgrades, could fail midway because control plane static pods were recreated while their previous containers still held their host ports.
+* Fixes an issue where upgrading Kubernetes or re-applying the installer could fail midway because control plane static pods were recreated before their previous containers released their host ports, causing them to crashloop with "bind: address already in use".
 
 ## v2026.10.07-0
 
@@ -39,7 +37,7 @@ Released on October 7, 2026
 
 ### Improvements {#improvements-v2026-10-07-0}
 * Uses published SecureBuild images for Registry, Flannel, Goldpinger, OpenEBS, CoreDNS, Kubernetes control plane components, kube-proxy, etcd, and Velero with its AWS, GCP, and Azure plugins.
-* Kubernetes 1.36.5 now uses the SecureBuild CoreDNS 1.14.2 image, matching the version kubeadm expects.
+* Uses the SecureBuild CoreDNS 1.14.2 image for Kubernetes 1.36.5, matching the version kubeadm expects.
 
 ## v2026.10.01-0
 
@@ -81,10 +79,10 @@ Released on August 31, 2026
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.15.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.6.0.
 * Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.21.1.
-* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.33.6.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.33.6 to address CVE-2026-28390.
 
-### Bug Fixes {#bug-fixes-v2026-08-31-0}
-* Updates the Registry add-on to a rebuilt `s3cmd` image, resolving CVE-2026-28390.
+### Improvements {#improvements-v2026-08-31-0}
+* Updates the [Registry add-on](https://kurl.sh/docs/add-ons/registry) with a rebuilt s3cmd image to address CVE-2026-28390.
 
 ## v2026.08.09-0
 
