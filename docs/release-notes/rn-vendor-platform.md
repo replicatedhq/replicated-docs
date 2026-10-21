@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.21-3
+
+Released on October 21, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-21-3}
+* Promoting an Embedded Cluster release now reports incompatible air gap bundle settings instead of letting the build fail later.
 ## v2026.10.21-0
 
 Released on October 21, 2026
