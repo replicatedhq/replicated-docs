@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.15.3-beta.1
+
+Released on October 21, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.15.3-beta.1+k8s-1.36</td>
+    <td id="center">3.15.3-beta.1+k8s-1.35</td>
+    <td id="center">3.15.3-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-3-15-3-beta-1}
+* Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11.
+
+### Bug Fixes {#bug-fixes-3-15-3-beta-1}
+* Resetting a controller node no longer assumes the node was removed from etcd when reset cannot read the etcd member list. Reset now warns that it could not confirm the removal and shows the `remove-node` command to run from a remaining controller to remove any stale etcd member.
+* Fixed installs failing when a chart uses a resource kind whose CRD is installed by an earlier chart. This issue was introduced in 3.12.0-beta.1.
+
 ## 3.15.2-beta.1
 
 Released on October 20, 2026
