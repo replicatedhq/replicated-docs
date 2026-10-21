@@ -102,34 +102,37 @@ if [[ -z "$base_version" && "$lookup_base" == "true" ]]; then
   # The previous stable release, by version order. Without an explicit base the
   # generator uses the latest release, which is this one if its GitHub release
   # was published before this job ran, and the diff comes back empty.
-  # Embedded Cluster v2 tags carry a +k8s-1.XX suffix per build, so compare
-  # only tags with the same suffix (or no suffix when the version has none).
+  #
+  # Embedded Cluster v2 tags carry a +k8s-1.XX suffix per build. Compare the
+  # version without the suffix, and prefer the previous version's tag on the
+  # same build line. The first release on a new build line has no earlier tag
+  # with its suffix, so it uses any build of the previous version.
+  version_core="${VERSION%%+*}"
   version_suffix=""
   if [[ "$VERSION" == *+* ]]; then
     version_suffix="+${VERSION#*+}"
   fi
+  # A failed lookup stops the job instead of falling back, so an API error
+  # isn't mistaken for a repository with no earlier releases.
   stable_tags="$(
-    GH_TOKEN="$source_token" gh api "repos/$source_repo/releases?per_page=100" \
+    GH_TOKEN="$source_token" gh api --paginate "repos/$source_repo/releases?per_page=100" \
       --jq '.[] | select(.draft | not) | select(.prerelease | not) | .tag_name'
-  )" || stable_tags=""
-  if [[ -n "$version_suffix" ]]; then
-    stable_tags="$(
-      printf '%s\n' "$stable_tags" \
-        | awk -v suffix="$version_suffix" 'substr($0, length($0) - length(suffix) + 1) == suffix'
-    )"
-  else
-    stable_tags="$(printf '%s\n' "$stable_tags" | grep -v '+')" || stable_tags=""
-  fi
-  base_version="$(
-    printf '%s\n%s\n' "$stable_tags" "$VERSION" \
+  )"
+  previous_core="$(
+    { printf '%s\n' "$stable_tags" | sed 's/+.*//'; printf '%s\n' "$version_core"; } \
       | grep -v '^$' \
       | sort -uV \
-      | grep -B1 -xF "$VERSION" \
-      | grep -vxF "$VERSION" \
+      | grep -B1 -xF "$version_core" \
+      | grep -vxF "$version_core" \
       | tail -n 1
-  )" || base_version=""
+  )" || previous_core=""
+  if [[ -n "$previous_core" ]]; then
+    base_version="$(printf '%s\n' "$stable_tags" | grep -xF "${previous_core}${version_suffix}")" \
+      || base_version="$(printf '%s\n' "$stable_tags" | grep -E "^${previous_core//./\\.}(\\+|\$)" | head -n 1)" \
+      || base_version=""
+  fi
   if [[ -z "$base_version" ]]; then
-    echo "Could not find the release before $VERSION; using the generator default base." >&2
+    echo "No stable release before $VERSION; using the generator default base."
   else
     echo "Using $base_version as the base for $VERSION."
   fi
