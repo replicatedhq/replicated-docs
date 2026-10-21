@@ -1,0 +1,19 @@
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  s_f22df7b173be42::t_beceb8cd25a756 85,100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "200f10a00996d398d2420486388d40e83d186f27",
+  "prompts": {},
+  "sessions": {
+    "s_f22df7b173be42": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f308-06ea-7c70-ac29-b92872b15a43",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Mikhail Swift <mikhail@replicated.com>"
+    }
+  }
+}

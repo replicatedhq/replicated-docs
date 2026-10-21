@@ -1,0 +1,14 @@
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  h_9c4428928069f1 39-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f90586c38edcdd2fc5cd7915d6ca6c01f916a696",
+  "prompts": {},
+  "humans": {
+    "h_9c4428928069f1": {
+      "author": "Mikhail Swift <mikhail@replicated.com>"
+    }
+  }
+}
