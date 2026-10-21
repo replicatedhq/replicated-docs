@@ -24,6 +24,13 @@ Released on August 18, 2026
 ### Improvements {#improvements-1-19-10}
 * Resolves GO-2026-6180 and GO-2026-6179 CVEs.
 
+## 1.19.9
+
+Released on August 14, 2026
+
+### Improvements {#improvements-1-19-9}
+* Updates Go dependencies to address several CVEs.
+
 ## 1.19.8
 
 Released on July 31, 2026
