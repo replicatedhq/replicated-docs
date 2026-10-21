@@ -1,0 +1,19 @@
+docs/release-notes/rn-vendor-platform.md
+  s_9dd637d4a22bd4::t_30272fce2014d3 42-43,55,61,85,116,167,170-171,271,283,294,311,343,357,380,386,393,431,508,520,526,538,568,581,600,612,820,828,852,859,863,870,906,953,967,1005,1019,1047,1075,1099,1106,1376,1459
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eec7885f2d21a1e84a6845b9e023866a93c07ae4",
+  "prompts": {},
+  "sessions": {
+    "s_9dd637d4a22bd4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9dd637d4a22bd4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

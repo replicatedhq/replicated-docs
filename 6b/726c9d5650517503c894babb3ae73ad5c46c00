@@ -1,0 +1,21 @@
+docs/release-notes/rn-vendor-platform.md
+  s_8ec4496cefafa4::t_991464ec7d9314 24-25
+docs/vendor/instance-insights-details.md
+  s_8ec4496cefafa4::t_da07d0aea4ce66 5-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6b726c9d5650517503c894babb3ae73ad5c46c00",
+  "prompts": {},
+  "sessions": {
+    "s_8ec4496cefafa4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_8ec4496cefafa4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

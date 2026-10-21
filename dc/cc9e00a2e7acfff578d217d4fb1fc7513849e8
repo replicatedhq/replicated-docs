@@ -1,0 +1,19 @@
+docs/enterprise/installing-general-requirements.mdx
+  s_d6688574167179::t_78b313a3b215a0 122,165-167,170-171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dccc9e00a2e7acfff578d217d4fb1fc7513849e8",
+  "prompts": {},
+  "sessions": {
+    "s_d6688574167179": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d6688574167179",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
