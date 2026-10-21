@@ -1,0 +1,19 @@
+scripts/ci/release-notes.sh
+  s_32739c5b3dae43::t_d5b9576b34aa3e 104-121,309-317,330,337-354
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "89140a3edd7a35b227d70c79dfca7f75df865d58",
+  "prompts": {},
+  "sessions": {
+    "s_32739c5b3dae43": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_32739c5b3dae43",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
