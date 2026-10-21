@@ -35,7 +35,7 @@ Released on October 21, 2026
 * Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11.
 
 ### Bug Fixes {#bug-fixes-3-15-3-beta-1}
-* Resetting a controller node no longer assumes it was removed from etcd when it can't tell. It now warns and shows the remove-node command to clean up a possible stale etcd member from a surviving controller.
+* Resetting a controller node no longer assumes the node was removed from etcd when reset cannot read the etcd member list. Reset now warns that it could not confirm the removal and shows the `remove-node` command to run from a remaining controller to remove any stale etcd member.
 * Fixed installs failing when a chart uses a resource kind whose CRD is installed by an earlier chart. This issue was introduced in 3.12.0-beta.1.
 
 ## 3.15.2-beta.1
