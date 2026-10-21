@@ -302,10 +302,20 @@ git commit -m "$commit_title"
 
 remote_sha="$(git ls-remote --heads origin "refs/heads/$branch" | awk '{print $1}')"
 if [[ -n "$remote_sha" ]]; then
-  git push \
+  if ! git push \
     --force-with-lease="refs/heads/$branch:$remote_sha" \
     origin \
-    "HEAD:refs/heads/$branch"
+    "HEAD:refs/heads/$branch"; then
+    # The lease fails when another run updated the branch after it was read,
+    # for example a concurrent build of the same Embedded Cluster v2 version.
+    current_sha="$(git ls-remote --heads origin "refs/heads/$branch" | awk '{print $1}')"
+    if [[ -n "$current_sha" && "$current_sha" != "$remote_sha" ]]; then
+      echo "Another run updated $branch first; it opens the release-notes PR. Nothing to do."
+      exit 0
+    fi
+    echo "Failed to push $branch" >&2
+    exit 1
+  fi
 elif ! git push origin "HEAD:refs/heads/$branch"; then
   # Builds of the same Embedded Cluster v2 version can run at the same time.
   # If another one created the branch first, it opens the PR.
