@@ -101,20 +101,24 @@ fi
 branch_version="$(printf '%s' "$release_label" | tr -c 'A-Za-z0-9._+-' '-')"
 branch="automation/${EVENT_TYPE}-${branch_version}"
 
-# Another build of the same version may already have opened the PR, and
-# someone may have edited it since. Leave it alone.
-open_pr_url="$(
-  gh pr list \
-    --repo "${GITHUB_REPOSITORY:-replicatedhq/replicated-docs}" \
-    --head "$branch" \
-    --base main \
-    --state open \
-    --json url \
-    --jq '.[0].url // empty'
-)"
-if [[ -n "$open_pr_url" ]]; then
-  echo "A release-notes PR for $release_label is already open: $open_pr_url; nothing to do."
-  exit 0
+# Embedded Cluster v2 dispatches once per +k8s build, and every build shares
+# one PR. When an earlier build already opened it, leave it alone so later
+# builds don't overwrite edits to it. Other products regenerate an open PR on
+# a rerun, as before.
+if [[ "$release_label" != "$VERSION" ]]; then
+  open_pr_url="$(
+    gh pr list \
+      --repo "${GITHUB_REPOSITORY:-replicatedhq/replicated-docs}" \
+      --head "$branch" \
+      --base main \
+      --state open \
+      --json url \
+      --jq '.[0].url // empty'
+  )"
+  if [[ -n "$open_pr_url" ]]; then
+    echo "Another build already opened the release-notes PR for $release_label: $open_pr_url. Nothing to do. Close that PR to regenerate it."
+    exit 0
+  fi
 fi
 
 tmp_dir="$(mktemp -d)"
@@ -302,8 +306,15 @@ if [[ -n "$remote_sha" ]]; then
     --force-with-lease="refs/heads/$branch:$remote_sha" \
     origin \
     "HEAD:refs/heads/$branch"
-else
-  git push origin "HEAD:refs/heads/$branch"
+elif ! git push origin "HEAD:refs/heads/$branch"; then
+  # Builds of the same Embedded Cluster v2 version can run at the same time.
+  # If another one created the branch first, it opens the PR.
+  if [[ -n "$(git ls-remote --heads origin "refs/heads/$branch")" ]]; then
+    echo "Another run pushed $branch first; it opens the release-notes PR. Nothing to do."
+    exit 0
+  fi
+  echo "Failed to push $branch" >&2
+  exit 1
 fi
 
 pr_url="$(
@@ -316,14 +327,31 @@ pr_url="$(
     --jq '.[0].url // empty'
 )"
 if [[ -z "$pr_url" ]]; then
-  pr_url="$(
+  if ! pr_url="$(
     gh pr create \
       --repo "$GITHUB_REPOSITORY" \
       --base main \
       --head "$branch" \
       --title "$commit_title" \
       --body "$pr_body"
-  )"
+  )"; then
+    # Another run may have opened the PR for this branch in the meantime.
+    pr_url="$(
+      gh pr list \
+        --repo "$GITHUB_REPOSITORY" \
+        --head "$branch" \
+        --base main \
+        --state open \
+        --json url \
+        --jq '.[0].url // empty'
+    )"
+    if [[ -z "$pr_url" ]]; then
+      echo "Failed to create the release-notes PR for $branch" >&2
+      exit 1
+    fi
+    echo "Another run opened the release-notes PR for $branch: $pr_url. Nothing to do."
+    exit 0
+  fi
 fi
 
 jq -n \
