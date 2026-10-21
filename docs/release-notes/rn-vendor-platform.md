@@ -15,6 +15,12 @@ Released on October 21, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-21-3}
 * Promoting an Embedded Cluster release now reports incompatible air gap bundle settings instead of letting the build fail later.
+## v2026.10.21-2
+
+Released on October 21, 2026
+
+### New Features {#new-features-v2026-10-21-2}
+* Vendors can switch the Enterprise Portal Content tab to a release-version list that shows which content branch each release serves and which release versions are hidden from the customer docs picker.
 ## v2026.10.21-0
 
 Released on October 21, 2026
