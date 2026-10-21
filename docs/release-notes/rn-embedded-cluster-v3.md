@@ -36,6 +36,7 @@ Released on October 21, 2026
 
 ### Bug Fixes {#bug-fixes-3-15-3-beta-1}
 * Resetting a controller node no longer assumes it was removed from etcd when it can't tell. It now warns and shows the remove-node command to clean up a possible stale etcd member from a surviving controller.
+* Fixed installs failing when a chart uses a resource kind whose CRD is installed by an earlier chart. This issue was introduced in 3.12.0-beta.1.
 
 ## 3.15.2-beta.1
 
