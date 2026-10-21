@@ -16,6 +16,8 @@
 
    Pod logs are stored in `<data-dir>/k0s/pod-logs` by default and count toward data directory disk usage. Installations created before Embedded Cluster VERSION and installations migrated from Embedded Cluster v2 continue to store pod logs in `/var/log/pods`, unless overridden by a worker profile.
 
+   For new installations of Embedded Cluster VERSION and later, the data directory path must contain only ASCII characters unless every worker profile, including `default`, explicitly sets `podLogsDir` to a non-empty, ASCII-only path. Kubernetes requires ASCII-only pod log paths; an empty `podLogsDir` uses the data directory default.
+
    Keep pod logs on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn if the filesystems differ or if the paths cannot be resolved or inspected. Kubernetes might not account for logs on a different filesystem during disk-pressure eviction.
 
    Note that in addition to the primary data directory, Embedded Cluster creates directories and files in the following locations:
