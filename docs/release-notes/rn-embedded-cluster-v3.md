@@ -32,7 +32,7 @@ Released on October 21, 2026
 </table>
 
 ### Improvements {#improvements-3-15-3-beta-1}
-* Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11 (k0s v1.36.4+k0s.1, v1.35.8+k0s.1, v1.34.11+k0s.1).
+* Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11.
 
 ### Bug Fixes {#bug-fixes-3-15-3-beta-1}
 * Resetting a controller node no longer assumes it was removed from etcd when it can't tell. It now warns and shows the remove-node command to clean up a possible stale etcd member from a surviving controller.
