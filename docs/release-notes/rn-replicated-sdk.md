@@ -17,13 +17,6 @@ Released on October 12, 2026
 * Updates Helm from v3.21.4 to v3.22.0 and Kubernetes libraries from v0.37.0 to v0.37.1.
 * Updates Go dependencies.
 
-## 1.19.11
-
-Released on September 9, 2026
-
-### Improvements {#improvements-1-19-11}
-* Updates Go dependencies.
-
 ## 1.19.10
 
 Released on August 18, 2026
