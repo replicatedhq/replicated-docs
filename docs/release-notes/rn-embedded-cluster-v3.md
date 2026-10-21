@@ -16,22 +16,21 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 Released on October 21, 2026
 
-<!-- VERSION TABLE PLACEHOLDER
-Please manually replace this placeholder with a version table in the format:
-
 <table>
   <tr>
     <th>Version</th>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
-    <td id="center">X.Y.Z+k8s-1.XX</td>
+    <td id="center">3.15.3-beta.1+k8s-1.36</td>
+    <td id="center">3.15.3-beta.1+k8s-1.35</td>
+    <td id="center">3.15.3-beta.1+k8s-1.34</td>
   </tr>
   <tr>
     <th>Kubernetes Version</th>
-    <td id="center">1.XX.Y</td>
-    <td id="center">1.XX.Y</td>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
   </tr>
 </table>
--->
+
 ### Improvements {#improvements-3-15-3-beta-1}
 * Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11 (k0s v1.36.4+k0s.1, v1.35.8+k0s.1, v1.34.11+k0s.1).
 
