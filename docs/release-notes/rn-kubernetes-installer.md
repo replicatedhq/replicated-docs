@@ -79,10 +79,10 @@ Released on August 31, 2026
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.15.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 4.6.0.
 * Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.21.1.
-* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.33.6 to address CVE-2026-28390.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.33.6.
 
 ### Improvements {#improvements-v2026-08-31-0}
-* Updates the [Registry add-on](https://kurl.sh/docs/add-ons/registry) with a rebuilt s3cmd image to address CVE-2026-28390.
+* Addresses CVE-2026-28390 in the [Contour](https://kurl.sh/docs/add-ons/contour) and [Registry](https://kurl.sh/docs/add-ons/registry) add-ons, through Contour version 1.33.6 and a rebuilt s3cmd image for Registry.
 
 ## v2026.08.09-0
 
