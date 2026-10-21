@@ -1,0 +1,21 @@
+docs/release-notes/rn-kubernetes-installer.md
+  s_915e4039017956::t_0c27c494b9a15e 12-43,73-88
+docs/release-notes/rn-replicated-sdk.md
+  s_915e4039017956::t_a0e4394573f77e 20-26,34-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3e36ab638b695e351ba2fb7846b5914724a5af13",
+  "prompts": {},
+  "sessions": {
+    "s_915e4039017956": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_915e4039017956",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
