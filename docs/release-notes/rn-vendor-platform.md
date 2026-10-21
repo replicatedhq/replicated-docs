@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 21, 2026
 
 ### New Features {#new-features-v2026-10-21-0}
-* New enterprise portal support-bundle history updates without a manual page reload.
+* New Enterprise Portal support-bundle history updates without a manual page reload.
 
 ### Improvements {#improvements-v2026-10-21-0}
 * Support-bundle upload confirmation now clears automatically after five seconds.
