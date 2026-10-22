@@ -1,0 +1,20 @@
+### Executable paths
+
+Security tools that control which binaries can run must allow execution in the following paths, where `DATA_DIR` is the Embedded Cluster data directory:
+
+* `/usr/local/bin`: The Embedded Cluster CLI and its services
+* `DATA_DIR/bin`: Kubernetes and the tools that Embedded Cluster uses to install and support the cluster
+* `DATA_DIR/k0s`: Kubernetes components and the container runtime
+* `DATA_DIR/tmp`: Scripts that Embedded Cluster runs during installation and upgrade
+* `/opt/cni`: Calico networking binaries
+
+Before it installs or upgrades, Embedded Cluster checks that the first four paths allow execution. If a path does not, Embedded Cluster stops with an error that names the blocked path.
+
+### Data directory contents
+
+Security tools often flag unfamiliar binaries and certificates in `/var/lib`. Knowing what each directory holds helps security teams write narrow exceptions instead of broad ones, which are easier to approve. The data directory contains the following:
+
+* `bin`: Kubernetes and the tools that Embedded Cluster uses to install and support the cluster
+* `k0s`: Kubernetes components and their data, including the container runtime and every container image and container filesystem on the node. This includes the application images. The `pki` subdirectory holds certificates that cluster components use only to communicate with each other.
+* `openebs-local`: Persistent storage for the application
+* `tmp`: Temporary files that Embedded Cluster uses during installation and upgrade
