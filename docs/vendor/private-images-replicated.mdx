@@ -33,6 +33,10 @@ The card displays the selected applications. To restore team-wide customer acces
 
 The setting applies to customer image and Helm chart pulls authenticated using a license ID or an Enterprise Portal service account token. It covers both direct pulls from `registry.replicated.com` and pulls through `proxy.replicated.com/registry`. Vendor pushes and pulls are unchanged.
 
+Changes apply when a customer next authenticates to the registry. Customers who already have a registry token can continue to pull until that token expires.
+
+Blocked customers receive a `403 Forbidden` error with the message `Customers of this app are not allowed to pull images from app "<slug>"`.
+
 ## Limitations
 
 The Replicated registry has the following limitations:
