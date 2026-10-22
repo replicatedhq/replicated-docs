@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 22, 2026
 
 ### New Features {#new-features-v2026-10-22-1}
-* Adds a feature that allows controlling access to images hosted in Replicated registry on application level.
+* Adds the capability to control access to images hosted in Replicated registry on a per-application basis.
 ## v2026.10.22-0
 
 Released on October 22, 2026
