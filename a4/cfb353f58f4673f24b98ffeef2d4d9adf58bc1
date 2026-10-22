@@ -1,0 +1,19 @@
+docs/release-notes/rn-kubernetes-installer.md
+  s_df227800a24431::t_15c7b18097e1a6 82,85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a4cfb353f58f4673f24b98ffeef2d4d9adf58bc1",
+  "prompts": {},
+  "sessions": {
+    "s_df227800a24431": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_df227800a24431",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+embedded-cluster/embedded-web-identity.mdx
+  s_88de4b7ef5d3b5::t_d6358065a73db0 58-59,61-76,78,80-90,93,95,97,245
+  s_88de4b7ef5d3b5::t_e27eca03f49217 2
+  s_88de4b7ef5d3b5::t_5a13f1b16b334b 79
+  s_88de4b7ef5d3b5::t_ebddce91c47673 15
+  s_88de4b7ef5d3b5::t_b66038fc5c39d4 8,10,12,14,19-21,23,25,29,39,41,43,52,54,60,77,91-92,94,96,98-99,102,104,106,108,110,161,163,165,167,169,171,173,183,187,216,223,231,237,239,241,247,262,266,268,270
+  s_88de4b7ef5d3b5::t_a7adba4c3cd261 56
+  s_88de4b7ef5d3b5::t_f624d96e6e7d5a 18
+  s_88de4b7ef5d3b5::t_1119237d991e4f 1,3-7,9,11,13,16-17,22,24,26-28,30-38,40,42,44-51,53,55,57,100-101,103,105,107,109,111-160,162,164,166,168,170,172,174-182,184-186,188-215,217-222,224-230,232-236,238,240,242-244,246,248-261,263-265,267,269
+sidebarEmbeddedCluster.js
+  s_88de4b7ef5d3b5::t_aecb2fc1924f1b 21
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_88de4b7ef5d3b5::t_43cf738d2df882 200,209
+embedded-cluster/embedded-persistent-console.mdx
+  s_88de4b7ef5d3b5::t_aecb2fc1924f1b 84-89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8df1202fec9e92de3491aa1beb8c55b7a38559d9",
+  "prompts": {},
+  "sessions": {
+    "s_88de4b7ef5d3b5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10cfc-0b13-7b93-96c2-4ad578d6bea5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": null
+    }
+  }
+}
