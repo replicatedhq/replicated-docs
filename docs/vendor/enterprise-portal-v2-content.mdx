@@ -245,7 +245,7 @@ Always create a backup before applying updates.
 </Warning>
 ```
 
-**`<Tabs>` / `<Tab>`**: Tabbed content sections.
+**`<Tabs>` / `<Tab>`**: Local tabbed content sections. The active tab is not remembered across reloads and is not shared with `<OptionSelector>`. Use this for page-local sections such as entitlement-gated support bundle methods.
 
 ```markdown
 <Tabs>
@@ -270,22 +270,22 @@ Detailed configuration options...
 
 Props: `title` (required), `defaultOpen` (optional, defaults to false).
 
-**`<OptionSelector>` / `<Option>`**: Persistent option picker that remembers the customer's selection across page loads.
+**`<OptionSelector>` / `<Option>`**: Option picker that remembers the customer's selection in `sessionStorage` for the browser session. Reloading the page restores the saved value for every selector that uses the same `storageKey`. Logout and switching teams clear it. Use this when the choice should survive a reload. The default home page uses it for Linux / Helm quick links. Do not reuse `storageKey="install-method"` on unrelated groups, and do not convert support bundle `<Tabs>` to `<OptionSelector>` to share that home-page choice.
 
 ```markdown
 <OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
 <Option value="Linux">
 - [Linux Installation](/installation/linux)
-- [Linux Support Bundles](/operations/bundles/linux)
+- [Support Bundles](/support/bundles)
 </Option>
 <Option value="Helm">
 - [Helm Installation](/installation/helm)
-- [Helm Support Bundles](/operations/bundles/helm)
+- [Support Bundles](/support/bundles)
 </Option>
 </OptionSelector>
 ```
 
-Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting selection in browser storage).
+Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting the selection in session storage). Omit `storageKey` and `label` to keep the selection in memory only.
 
 ### Display
 
