@@ -29,7 +29,7 @@ End customer access to the registry is read-only (pull access only). The specifi
 
 - **Helm CLI and Embedded Cluster v3 installations**: Customers authenticate using either a license ID or an enterprise portal service account token. The credentials are provided during `helm registry login` or `docker login` before installation.
 
-In all cases, pull access is scoped to images belonging to the vendor's account. All requests to pull images are denied when a customer's license expires or the expiration date is changed to a past date.
+In all cases, pull access is scoped to images belonging to the vendor's account. Vendors can further limit which applications' customers can pull an application's Replicated registry images using **App Access** on its **Replicated Private Registry** card. The default is **All apps**, and the current application is always included. For details, see [Limit image access to specific applications](/vendor/private-images-replicated#limit-image-access). All requests to pull images are denied when a customer's license expires or the expiration date is changed to a past date.
 
 
 ## Networking and infrastructure

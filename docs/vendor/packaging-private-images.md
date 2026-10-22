@@ -274,6 +274,8 @@ replicated registry test index.docker.io --image my-company/my-image:v1.2.3
 
 You can scope each external registry to one or more applications in your Vendor Portal team.
 
+This section covers external registries. For images hosted in the Replicated registry, edit **App Access** on the application's **Replicated Private Registry** card instead. See [Limit image access to specific applications](/vendor/private-images-replicated#limit-image-access).
+
 When the registry is scoped to specific applications, only customers with a valid license for the specified applications have pull-through access to the images in the registry. Additionally, when you add new applications to your team, those applications do not automatically get access to the registry.
 
 To scope a registry to specific applications:
