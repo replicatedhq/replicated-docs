@@ -12,6 +12,30 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.16.0-beta.1
+
+Released on October 23, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.16.0-beta.1+k8s-1.36</td>
+    <td id="center">3.16.0-beta.1+k8s-1.35</td>
+    <td id="center">3.16.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+
+### New features {#new-features-3-16-0-beta-1}
+* Adds support for KOTS template functions which can be used by applications that support KOTS and Embedded Cluster installations. See [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) for the list of added functions and their behavior in Embedded Cluster.
+* Upgrades now apply a release's new config `default` values to any field the end user hasn't set, matching KOTS. This applies to installations created on 3.16.0-beta.1 or later and to installations migrated from Embedded Cluster v2. Installations created on an earlier v3 version keep their saved defaults until the end user clears the field.
+* `RandomString` in a config `default` now generates a new value each time instead of being saved once. If your application keeps a generated value, such as a password, in `default`, move it to `value` so it persists.
+
 ## 3.15.3-beta.1
 
 Released on October 21, 2026
@@ -34,7 +58,7 @@ Released on October 21, 2026
 ### Improvements {#improvements-3-15-3-beta-1}
 * Updated bundled Kubernetes to patch releases 1.36.4, 1.35.8, and 1.34.11.
 
-### Bug Fixes {#bug-fixes-3-15-3-beta-1}
+### Bug fixes {#bug-fixes-3-15-3-beta-1}
 * Resetting a controller node no longer assumes the node was removed from etcd when reset cannot read the etcd member list. Reset now warns that it could not confirm the removal and shows the `remove-node` command to run from a remaining controller to remove any stale etcd member.
 * Fixed installs failing when a chart uses a resource kind whose CRD is installed by an earlier chart. This issue was introduced in 3.12.0-beta.1.
 
