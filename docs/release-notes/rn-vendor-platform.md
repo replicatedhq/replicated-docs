@@ -16,6 +16,12 @@ Released on October 23, 2026
 ### Bug Fixes {#bug-fixes-v2026-10-23-1}
 * Customers who open an Enterprise Portal address that is not ready, is no longer available, or cannot be reached now see a short message instead of a blank error. In the Vendor Portal, a failed publish is shown on the Enterprise Portal Content tab, and the default address is no longer described as always available when the portal is not available.
 * Creating Enterprise Portal install options through the Vendor API now fails, without creating a service account, when the chosen release does not support the requested install type (Helm, Embedded Cluster, KOTS, or kURL). Choose a release that supports that install type and submit the request again. When the request fails because the release does not support that install type, the instance name stays available.
+## v2026.10.23-0
+
+Released on October 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-23-0}
+* License details in the new Enterprise Portal now refresh automatically when the vendor updates the customer's license.
 ## v2026.10.22-1
 
 Released on October 22, 2026
