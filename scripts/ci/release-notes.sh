@@ -5,16 +5,13 @@ set -euo pipefail
 : "${EVENT_TYPE:?EVENT_TYPE is required}"
 : "${VERSION:?VERSION is required}"
 
-generator_ref="ad1a0f7b9ff8cb2669aaae968fd4de51d825ab40"
+generator_ref="024477937d8136f703ebc343777325ece1307ec0"
 base_version=""
 description=""
 feature_labels="type::feature"
 improvement_labels="type::improvement"
 bug_labels="type::bug,bug::normal,bug::regression"
 manual_table="none"
-# Products that don't pass a base get the previous stable release looked up,
-# so the diff never resolves to the release itself.
-lookup_base="true"
 clean_version="${VERSION#v}"
 # The version used in the PR title and branch name.
 release_label="$VERSION"
@@ -126,44 +123,11 @@ trap 'rm -rf "$tmp_dir"' EXIT
 generated_file="$tmp_dir/generated.md"
 insert_file="$tmp_dir/insert.md"
 
-if [[ -z "$base_version" && "$lookup_base" == "true" ]]; then
-  # The previous stable release, by version order. Without an explicit base the
-  # generator uses the latest release, which is this one if its GitHub release
-  # was published before this job ran, and the diff comes back empty.
-  #
-  # Embedded Cluster v2 tags carry a +k8s-1.XX suffix per build. Compare the
-  # version without the suffix, and prefer the previous version's tag on the
-  # same build line. The first release on a new build line has no earlier tag
-  # with its suffix, so it uses any build of the previous version.
-  version_core="${VERSION%%+*}"
-  version_suffix=""
-  if [[ "$VERSION" == *+* ]]; then
-    version_suffix="+${VERSION#*+}"
-  fi
-  # A failed lookup stops the job instead of falling back, so an API error
-  # isn't mistaken for a repository with no earlier releases.
-  stable_tags="$(
-    GH_TOKEN="$source_token" gh api --paginate "repos/$source_repo/releases?per_page=100" \
-      --jq '.[] | select(.draft | not) | select(.prerelease | not) | .tag_name'
-  )"
-  previous_core="$(
-    { printf '%s\n' "$stable_tags" | sed 's/+.*//'; printf '%s\n' "$version_core"; } \
-      | grep -v '^$' \
-      | sort -uV \
-      | grep -B1 -xF "$version_core" \
-      | grep -vxF "$version_core" \
-      | tail -n 1
-  )" || previous_core=""
-  if [[ -n "$previous_core" ]]; then
-    base_version="$(printf '%s\n' "$stable_tags" | grep -xF "${previous_core}${version_suffix}")" \
-      || base_version="$(printf '%s\n' "$stable_tags" | grep -E "^${previous_core//./\\.}(\\+|\$)" | head -n 1)" \
-      || base_version=""
-  fi
-  if [[ -z "$base_version" ]]; then
-    echo "$EVENT_TYPE: no stable release before $VERSION in $source_repo; using the generator default base." >&2
-  else
-    echo "Using $base_version as the base for $VERSION."
-  fi
+# The release workflow that dispatched this run knows its previous tag, so use
+# it as the base when it's passed. Without one, the generator diffs against
+# the latest stable GitHub release.
+if [[ -z "$base_version" && -n "${PREV_VERSION:-}" ]]; then
+  base_version="$PREV_VERSION"
 fi
 
 generator_args=(

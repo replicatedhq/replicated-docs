@@ -27,7 +27,7 @@ on:
         required: true
         type: string
       prev_version:
-        description: Previous version (Replicated SDK only)
+        description: Previous released version, used as the release notes diff base (required for Replicated SDK)
         required: false
         type: string
       dry_run:
