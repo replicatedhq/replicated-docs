@@ -1,0 +1,23 @@
+#### Symptom
+
+Symptoms can include:
+
+* The kube-proxy or calico-node pods restart repeatedly.
+
+* Pod logs contain I/O timeouts when connecting to the Kubernetes API service IP address. This is the first address in the service CIDR, which is `10.244.128.1` by default.
+
+* Embedded Cluster binaries or systemd units are missing or fail to run.
+
+* Containers fail to restart.
+
+These symptoms often appear during a new installation, or after a security tool restarts, receives a policy update, or the host reboots.
+
+#### Cause
+
+A security tool on the host is blocking or removing firewall rules, binaries, or files that Embedded Cluster needs. This includes firewall management, endpoint protection, and application control tools.
+
+#### Solution
+
+Disable the tool on Embedded Cluster hosts. If disabling the tool is not an option, work with the security team to update the tool's policy so that it allows what Embedded Cluster needs. For more information about the requirements, see [Security tools on the host](installing-embedded-requirements#security-agents) in _Embedded Cluster installation requirements_.
+
+Disabling a tool or updating its policy does not undo changes that the tool already made. You might also need to reboot the host to reset the firewall and restore any kernel parameters that the tool changed. In some cases, you also need to remove `ebtables` rules that the tool added.

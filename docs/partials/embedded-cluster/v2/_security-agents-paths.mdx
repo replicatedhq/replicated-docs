@@ -1,0 +1,21 @@
+### Executable paths
+
+Security tools that control which binaries can run must allow execution in the following paths, where `DATA_DIR` is the Embedded Cluster data directory:
+
+* `/usr/local/bin/k0s`: The Kubernetes distribution that Embedded Cluster installs
+* `DATA_DIR/bin`: Tools that Embedded Cluster uses to install and support the cluster
+* `DATA_DIR/k0s`: Kubernetes components and the container runtime
+* `/opt/cni`: Calico networking binaries
+
+### Data directory contents
+
+Security tools often flag unfamiliar binaries and certificates in `/var/lib`. Knowing what each directory holds helps security teams write narrow exceptions instead of broad ones, which are easier to approve. The data directory contains the following:
+
+* `bin`: Tools that Embedded Cluster uses to install and support the cluster
+* `charts`: Helm charts for the components that Embedded Cluster installs
+* `images`: Container image archives that Embedded Cluster uses during installation
+* `k0s`: Kubernetes components and their data, including pod logs, the container runtime, and every container image and container filesystem on the node. This includes the application images. The `pki` subdirectory holds certificates that cluster components use only to communicate with each other.
+* `openebs-local`: Persistent storage for the application
+* `seaweedfs`: Storage for the internal registry in high availability air gap installations
+* `support`: Files used for troubleshooting, such as support bundle specifications
+* `tmp`: Temporary files that Embedded Cluster uses during installation and upgrade

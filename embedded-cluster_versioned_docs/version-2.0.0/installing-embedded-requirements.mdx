@@ -1,5 +1,8 @@
 import EmbeddedClusterRequirements from "../../docs/partials/embedded-cluster/v2/_requirements.mdx"
 import EmbeddedClusterPortRequirements from "../../docs/partials/embedded-cluster/v2/_port-reqs.mdx"
+import EmbeddedClusterHostConfig from "../../docs/partials/embedded-cluster/v2/_host-config-reqs.mdx"
+import SecurityAgents from "../../docs/partials/embedded-cluster/_security-agents.mdx"
+import SecurityAgentsPaths from "../../docs/partials/embedded-cluster/v2/_security-agents-paths.mdx"
 import FirewallOpeningsIntro from "../../docs/partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsEc from "../../docs/partials/install/_firewall-openings-embedded-cluster.mdx"
 
@@ -10,6 +13,10 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 ## System requirements
 
 <EmbeddedClusterRequirements/>
+
+## Host configuration
+
+<EmbeddedClusterHostConfig/>
 
 ## Port requirements
 
@@ -88,3 +95,9 @@ The following ports are opened in the default zone:
   <td>UDP</td>
 </tr>
 </table>
+
+## Security tools on the host {#security-agents}
+
+<SecurityAgents/>
+
+<SecurityAgentsPaths/>
