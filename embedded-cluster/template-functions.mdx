@@ -4,7 +4,35 @@ toc_max_heading_level: 2
 
 # Template Functions for Embedded Cluster (Beta)
 
-This topic lists the Replicated template functions for Embedded Cluster. For more imformation about how to use Replicated template functions, including a list of all available template functions, see [About Template Functions](/reference/template-functions-about).
+This topic lists the Replicated template functions for Embedded Cluster. For more information about how to use Replicated template functions, including a list of all available template functions, see [About Template Functions](/reference/template-functions-about).
+
+## KOTS template functions
+
+The following KOTS template functions are supported only in Embedded Cluster 3.16.0-beta.1 and later. These functions let applications share templates across KOTS and Embedded Cluster installations. Functions for services that Embedded Cluster does not provide return the default values listed below.
+
+| Function | Behavior in Embedded Cluster |
+| --- | --- |
+| `HasLocalRegistry` | Returns whether a local or customer-managed registry is configured. |
+| `LocalImageName` | Returns an image reference using the installation's registry layout. With a local or customer-managed registry, preserves repository paths. Online, routes eligible images through the Replicated proxy and leaves other references unchanged. |
+| `LocalRegistryAddress` | Returns the local registry host and repository namespace/path, or an empty string. |
+| `LocalRegistryHost` | Returns the local registry host, including its port, or an empty string. |
+| `LocalRegistryNamespace` | Returns the local registry's repository namespace/path, or an empty string. This is not a Kubernetes namespace. |
+| `LocalRegistryImagePullSecret` | Returns base64-encoded dockerconfigjson for the local or customer-managed registry, or for the Replicated proxy when online. |
+| `IdentityServiceEnabled` | Returns `false` because Embedded Cluster does not provide the identity service. |
+| `IdentityServiceClientID` | Returns an empty string. |
+| `IdentityServiceClientSecret` | Returns an empty string. |
+| `IdentityServiceName` | Returns an empty string. |
+| `IdentityServicePort` | Returns an empty string. |
+| `IdentityServiceRoles` | Returns an empty map. |
+| `KotsVersion` | Returns an empty string because Embedded Cluster does not install KOTS. |
+| `KurlAll` | Returns an empty string because Embedded Cluster does not use kURL. |
+| `KurlString` | Returns an empty string. |
+| `KurlOption` | Returns an empty string. |
+| `KurlBool` | Returns `false`. |
+| `KurlInt` | Returns `0`. |
+| `NodeCount` | Returns the live cluster node count, or `0` when unavailable. |
+
+For more information about template syntax, parameters, and function contexts, see [About Replicated template functions](/reference/template-functions-about).
 
 ## Image rewriting
 

@@ -24,7 +24,7 @@ To configure a release to support installations with HelmChart v2:
 1. For each HelmChart resource in the release, configure the [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) key so that KOTS rewrites any application image references in your Helm values when a local image registry is used.
 
     :::note
-    The `HasLocalRegistry`, `LocalRegistryHost`, and `LocalRegistryNamespace` template functions used below are not supported in Embedded Cluster v3. For v3, rewrite image references using the `ReplicatedImageName` and `ReplicatedImageRegistry` template functions instead. See [Template Functions for Embedded Cluster](/embedded-cluster/v3/template-functions).
+    The template functions in this example require Embedded Cluster 3.16.0-beta.1 or later for Embedded Cluster v3 installations. For more information about support in Embedded Cluster, see [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) in _Template Functions for Embedded Cluster (Beta)_.
     :::
 
     **Example:**

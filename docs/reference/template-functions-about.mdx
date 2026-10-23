@@ -50,15 +50,7 @@ For examples of this, see [Template function examples](/reference/template-funct
 
 * Replicated template functions are not directly supported in Helm charts. For more information, see [Supported file types](#supported-file-types) on this page.
 
-* For installations with Embedded Cluster v3, the following template functions aren't supported:
-  * HasLocalRegistry
-  * LocalRegistryAddress
-  * LocalRegistryHost
-  * LocalRegistryNamespace
-  * LocalImageName
-
-  These template functions are typically used to conditionally rewrite image references in air gap installations to reference the local image registry.
-  For Embedded Cluster v3 installations, use the ReplicatedImageName and ReplicatedImageRegistry template functions instead. For more information, see [Template Functions for Embedded Cluster](/embedded-cluster/v3/template-functions).
+* Some KOTS template functions require Embedded Cluster 3.16.0-beta.1 or later. For more information about these functions and their behavior in Embedded Cluster, see [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) in _Template Functions for Embedded Cluster (Beta)_.
 
 ## Syntax {#syntax}
 
