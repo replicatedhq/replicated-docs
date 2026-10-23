@@ -1,0 +1,14 @@
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  h_a187b1a47af8c8 125-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "72a7ea6580989f66e3ee70891f1f794b8db09a9d",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}
