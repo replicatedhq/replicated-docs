@@ -137,9 +137,9 @@ If your application uses the Replicated proxy registry, Embedded Cluster v3 conf
 
 ### Templates that reference removed config items
 
-In Embedded Cluster v2, a template that references a config item no longer defined in your Config custom resource can still resolve to the last value saved for that item. For example, `repl{{ ConfigOptionEquals "nats.enabled" "1" }}` evaluates to true if the installation saved `1` for `nats.enabled` before the item was removed.
+In Embedded Cluster v2, a template that references a config item no longer defined in your Config custom resource can still resolve. The value and default saved for an item are kept on the installation after the item is removed from the Config, and templates continue to read them. For example, `repl{{ ConfigOptionEquals "nats.enabled" "1" }}` still evaluates to true if `1` was saved for `nats.enabled` before the item was removed.
 
-In Embedded Cluster v3, a reference to a config item that the Config custom resource does not define always resolves to an empty string, and ConfigOptionEquals evaluates to false. In the `statusInformers` field of the Application custom resource, this doesn't cause the install or upgrade to fail. Instead, the informer is silently dropped. For example, a status informer wrapped in a condition on a removed item is no longer tracked, and the [persistent admin console](embedded-persistent-console) reports that the application did not provide resources to verify.
+In Embedded Cluster v3, a reference to a config item that the Config custom resource does not define always resolves to an empty string, and ConfigOptionEquals evaluates to false. In the `statusInformers` field of the Application custom resource, this doesn't cause the install or upgrade to fail. Instead, the informer is silently dropped, and the Replicated SDK does not report status for that resource. If every informer is dropped, the application status at the end of the install wizard and in the [persistent admin console](embedded-persistent-console) reports that the application did not provide resources to verify.
 
 Before you upgrade, remove or update any template references to config items that your Config custom resource no longer defines.
 
