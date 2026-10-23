@@ -59,10 +59,6 @@ These are the ongoing differences after the upgrade.
 
 **Cluster settings are collected in the wizard.** The v3 wizard includes a *Set Up* page where end users provide cluster-level settings such as proxy configuration. In v2 these were passed as CLI flags at install time.
 
-:::note
-Config value defaults behave differently in v3. All config values, including those that use spec defaults, are resolved and persisted at install time, and previously persisted values take precedence over new defaults on upgrade. Changing a `default` field in a later release won't reach existing installations. See [Config value defaults are persisted at install time](#config-value-defaults-are-persisted-at-install-time).
-:::
-
 ## Comparison to Embedded Cluster v2
 
 This section describes the key differences between Embedded Cluster v2 and v3. 
@@ -122,14 +118,6 @@ In Embedded Cluster v2, Helm extensions defined under `extensions.helm.charts` w
 Embedded Cluster v3 does not pull extension charts at install time from any source, whether an HTTP Helm repository or an OCI registry. Instead, it resolves each extension chart from a `.tgz` chart archive that is bundled in the release, matching by chart name and version. The v3 `extensions.helmCharts` schema has no repository or registry field.
 
 As a result, upgrading a repo-sourced or OCI-sourced v2 extension is not only a change to the Config YAML shape. You must also package the chart as a `.tgz` archive and include it in the release. For the steps, see [Update your release to Embedded Cluster v3](#update-your-release-to-embedded-cluster-v3) below.
-
-### Config value defaults are persisted at install time
-
-In Embedded Cluster v2 (KOTS), only config values explicitly set by the end customer were persisted. Default values from the Config spec were re-evaluated on each release, so changing a `default` field in a new release would take effect for any field the customer hadn't explicitly set.
-
-In Embedded Cluster v3, all config values, including those using spec defaults, are resolved and persisted at install time. On upgrade, previously persisted values take precedence over new defaults in the release. This means changing a `default` field in a new release will **not** take effect on existing installations.
-
-If you have config fields that need to be vendor-controlled and updateable across releases, use the `value` field on readonly or disabled items instead of `default`. The `value` field is re-evaluated from the Config spec on each release.
 
 ### Automatic authentication to the Replicated proxy registry
 
