@@ -122,8 +122,8 @@ Linux installations require Embedded Cluster download access.
 Air gap Linux installations require general air gap access.
 The selected channel must be available to the customer, and the release sequence must exist in that channel.
 The release must also support the selected install type.
-A request fails, and does not create a service account, when the release does not support that type.
-You can submit the request again with the same `instance_name`.
+If it does not, the request returns a 400 error and does not create a service account.
+Choose a release that supports that install type and submit the request again. You can reuse the same `instance_name`.
 The `instance_name` is also the service account name and must be unique for the customer.
 
 ```shell
