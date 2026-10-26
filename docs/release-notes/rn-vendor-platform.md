@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.26-0
+
+Released on October 26, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-26-0}
+* In the Enterprise Portal, reloading a page now restores a customer's saved OptionSelector choice for every OptionSelector on that page with the same storageKey, when that choice is one of its options.
 ## v2026.10.23-2
 
 Released on October 23, 2026
