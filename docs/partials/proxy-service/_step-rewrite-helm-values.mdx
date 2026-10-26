@@ -1,4 +1,4 @@
-For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry for any private or third-party images to use the Replicated proxy registry URL.
+For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry for any private or third-party images to use the Replicated proxy registry URL. The upstream registry for each image, including public registries such as Docker Hub, must already be added as an external registry in the Vendor Portal.
 
     The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
 
