@@ -212,6 +212,46 @@ replicated api post /v3/customer/CUSTOMER_ID/unarchive
 
 An unarchived customer keeps their original license ID, so their existing credentials and install commands work again. Creating a new customer instead gives the customer a new license ID.
 
+## Delete a customer
+
+Use archive for customers who stop using your application. Archiving can be undone, and the customer's license ID, instance history, and reporting data are kept. Delete a customer only when you need the record itself gone, such as test customers that your CI pipelines create.
+
+Deleting a customer is permanent. It removes the customer, their license and license field values, their instance records and install history, and their access to the Replicated registry. You can't restore a deleted customer. If the same customer returns, you must create a new customer, which gets a new license ID.
+
+Only customers with the `dev` license type can be deleted. Replicated rejects a delete request for any other type. This check is a safeguard against deleting a production customer by mistake. To delete a customer of another type, change the type to `dev` first:
+
+```bash
+replicated customer update --customer CUSTOMER_ID --type dev
+```
+
+The Replicated CLI doesn't have a delete command. To delete the customer, call the Vendor API:
+
+```bash
+curl --request DELETE \
+  --url https://api.replicated.com/vendor/v3/customer/CUSTOMER_ID \
+  --header "Authorization: $REPLICATED_API_TOKEN"
+```
+
+A successful delete returns `204 No Content`. The token must have the `kots/license/[:customerid]/delete` and `kots/app/[:appid]/license/[:customerid]/delete` permissions. For more information, see [Delete a customer](https://replicated-vendor-api.readme.io/reference/deletecustomer) in the Vendor API v3 documentation.
+
+## Archive instances
+
+When a customer uninstalls your application or tears down an environment, the instance stops checking in but stays in the customer's instance list. Archive these instances to remove them from instance counts and from the Vendor Portal. You can't delete an instance.
+
+You can archive an online instance only after it has gone 24 hours without checking in. Air gap instances and instances installed with a `dev` license can be archived at any time. This keeps a running instance from being hidden by mistake.
+
+To archive an instance, pass the instance ID:
+
+```bash
+replicated api put /v3/instance/INSTANCE_ID/archive
+```
+
+If the same instance ID is recorded on more than one cluster, such as after a restore to a new cluster, the request returns an error that asks for the cluster ID. Add `?cluster_id=CLUSTER_ID` to the path to choose the cluster.
+
+An archived instance stays archived even if it checks in again. To restore it, call `/v3/instance/INSTANCE_ID/unarchive`.
+
+To archive instances automatically, subscribe a webhook to the `instance.inactive` event. Replicated sends this event when an online instance has gone 24 hours without checking in, which is when the instance becomes eligible for archiving. Your webhook endpoint can call the archive API when it receives the event. See [Send events to your systems](#send-events-to-your-systems).
+
 ## Look up customers {#look-up}
 
 To list customers as JSON, run:
@@ -256,6 +296,7 @@ The following events are commonly used to keep external records in sync:
 * `customer.license_expiring`, to start a renewal before a license expires. The `daysUntilExpiry` filter accepts `0`, `1`, `7`, `14`, `30`, `60`, and `90`.
 * `release.asset_downloaded`, filtered to the first pull for a license type, to record when a customer first pulls the software
 * `instance.ready`, to record when an instance reports a Ready status for the first time
+* `instance.inactive`, to archive instances or update your records when an online instance stops checking in for 24 hours
 
 For example, to send an email to your renewals team 90, 30, and 7 days before any license expires, create a file named `expiring.json`:
 
