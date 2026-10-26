@@ -1,3 +1,5 @@
-In the Vendor Portal, go to **Images > Add external registry** and provide read-only credentials for your registry. This allows Replicated to access the images through the proxy registry. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
+In the Vendor Portal, go to **Image Registries > Add external registry** and provide read-only credentials for each registry that hosts images your application uses. This allows Replicated to access the images through the proxy registry.
+
+    This includes public registries such as Docker Hub (`docker.io`), `quay.io`, and `public.ecr.aws`. The proxy registry only pulls from upstream registries that you add, so pulls from any registry that you haven't added fail. See [Add Credentials for an External Registry](packaging-private-images#add-credentials-for-an-external-registry) in _Connecting to an External Registry_.
 
 <img alt="Link a new registry in the Vendor Portal" src="../images/add-external-registry.png" width="500"/>

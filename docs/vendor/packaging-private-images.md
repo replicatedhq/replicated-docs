@@ -1,6 +1,6 @@
 # Add and manage external registries
 
-This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy registry. For more information, see [About the Replicated Proxy Registry](private-images-about).
+This topic describes how to add credentials for an external private registry using the Replicated Vendor Portal or Replicated CLI. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy registry. You also need to add any public registry, such as Docker Hub, that you pull images from through the proxy registry. For more information, see [About the Replicated Proxy Registry](private-images-about).
 
 For information about adding a registry with the Vendor API v3, see [Create an external registry with the specified parameters](https://replicated-vendor-api.readme.io/reference/createexternalregistry) in the Vendor API v3 documentation.
 
