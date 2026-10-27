@@ -1,0 +1,23 @@
+docs/release-notes/rn-app-manager.md
+  s_b4b5e8e087b78b::t_b6c63bfd589f11 61,70,91
+docs/release-notes/rn-vendor-platform.md
+  s_b4b5e8e087b78b::t_198cffcbd3e677 230,291,366,714,772
+scripts/ci/release-notes.sh
+  s_b4b5e8e087b78b::t_576005e2c97127 121-126
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eb565bbff560ef1356da61a3b3a3274cb030ccec",
+  "prompts": {},
+  "sessions": {
+    "s_b4b5e8e087b78b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_b4b5e8e087b78b",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
