@@ -421,6 +421,7 @@ const sidebars = {
             "enterprise/snapshots-velero-upgrading",
           ],
         },
+        "reference/cron-expressions",
         {
           type: "category",
           label: "Manage Admin Console User Access",
@@ -585,7 +586,6 @@ const sidebars = {
         "reference/template-functions-static-context",
       ],
     },
-    "reference/cron-expressions",
     "reference/replicated-sdk-apis",
     {
       type: "category",
