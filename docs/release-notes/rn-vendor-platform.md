@@ -14,7 +14,13 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 27, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-27-2}
-* Air gap support bundle analysis now avoids assigning bundles to ambiguous or unrelated Enterprise Portal instances.
+* Fixed an issue where a support bundle from an air gap installation created through the Enterprise Portal could be assigned to the wrong instance when multiple instances share the same license.
+## v2026.10.27-1
+
+Released on October 27, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-27-1}
+* Fixed the kURL Installers page never loading for applications with a large number of installers and channels.
 ## v2026.10.26-0
 
 Released on October 26, 2026
