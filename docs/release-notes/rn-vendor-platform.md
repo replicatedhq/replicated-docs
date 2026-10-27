@@ -15,6 +15,15 @@ Released on October 27, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-27-4}
 * Documentation page titles and section headings now remain visible below the navigation header when you follow a link, including in portals with taller custom headers.
+## v2026.10.27-3
+
+Released on October 27, 2026
+
+### Improvements {#improvements-v2026-10-27-3}
+* Enterprise Portal install profiles expose recorded deployment IDs, and the workflow guide explains how to automate existing installations using their service account.
+
+### Bug Fixes {#bug-fixes-v2026-10-27-3}
+* Headless upgrade instructions and personalized downloads preserve the installation credential when requested with a separate CI token, including explicit recovery after token revocation and compatibility with historical deployment reporting.
 ## v2026.10.27-2
 
 Released on October 27, 2026
