@@ -13,19 +13,19 @@ The following table lists where you can use cron expressions:
       <th width="35%">Not supported</th>
     </tr>
     <tr>
-      <td>Automatic update checks. See [Configure automatic updates](/enterprise/updating-apps).</td>
+      <td>Automatic update checks. For more information, see [Configure automatic updates](/enterprise/updating-apps).</td>
       <td>KOTS in an existing cluster and kURL installations with outbound internet access</td>
       <td>Embedded Cluster v2 and v3, and air gap installations</td>
     </tr>
     <tr>
-      <td>Automatic backups. See [Schedule automatic backups](/enterprise/snapshots-creating#schedule-automatic-backups).</td>
+      <td>Automatic backups. For more information, see [Schedule automatic backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Create and schedule backups_.</td>
       <td>KOTS in an existing cluster, kURL, and Embedded Cluster v2</td>
       <td>Embedded Cluster v3</td>
     </tr>
 </table>
 
 :::note
-Embedded Cluster v3 does not use the KOTS Admin Console. To schedule backups for Embedded Cluster v3, see [Create and manage backups](/embedded-cluster/v3/embedded-disaster-recovery-v3#create-and-manage-backups).
+Embedded Cluster v3 does not use the KOTS Admin Console. For more information about scheduling backups for Embedded Cluster v3, see [Create and manage backups](/embedded-cluster/v3/embedded-disaster-recovery-v3#create-and-manage-backups) in _Back up and restore Embedded Cluster v3_.
 :::
 
 ## Syntax
