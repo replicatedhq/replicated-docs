@@ -84,6 +84,7 @@ For an up-to-date list of the available custom GitHub actions, see the [replicat
     <td>
       <p>In release workflows, use this action to create a release to be installed and tested, and optionally to be promoted to a shared channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-release">Create a release and promote to a temporary channel</a> in <em>Recommended CI/CD Workflows</em>. </p>
+      <p>If your repository has a <code>.replicated</code> file, this action can read the app slug, charts, and manifests from it instead of from inputs. See <a href="/reference/replicated-config-file#github-action">Use with the create-release GitHub action</a>.</p>
     </td>
     <td><a href="/reference/replicated-cli-release-create"><code>release create</code></a></td>
   </tr>
