@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.27-2
+
+Released on October 27, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-27-2}
+* Fixed an issue where a support bundle from an air gap installation created through the Enterprise Portal could be assigned to the wrong instance when multiple instances share the same license.
 ## v2026.10.27-1
 
 Released on October 27, 2026
