@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.27-5
+
+Released on October 27, 2026
+
+### New Features {#new-features-v2026-10-27-5}
+* Enterprise Portal Helm install and update instructions can now target a Kubernetes namespace. Add \`namespace="my-namespace"\` to \`HelmInstallAssets\`, \`HelmAirgapInstallAssets\`, \`HelmInstallStep\`, \`HelmAirgapInstallStep\`, or \`HelmUpdateAssets\`, and the generated \`helm install\`, \`helm upgrade\`, and preflight commands include \`--namespace\`. Install commands also include \`--create-namespace\`; set \`createNamespace="false"\` if your customers create the namespace themselves. An invalid namespace is ignored and flagged on the page while you preview it.
 ## v2026.10.27-4
 
 Released on October 27, 2026
