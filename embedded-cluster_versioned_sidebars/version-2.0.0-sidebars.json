@@ -21,12 +21,6 @@
     {
       "type": "category",
       "label": "Embedded Cluster Commands",
-      "link": {
-        "type": "generated-index",
-        "title": "Embedded Cluster v2 commands",
-        "description": "Reference for the Embedded Cluster v2 binary that installs and manages an embedded cluster.",
-        "slug": "/embedded-cluster-commands"
-      },
       "items": [
         "embedded-cluster-admin-console",
         "embedded-cluster-completion",

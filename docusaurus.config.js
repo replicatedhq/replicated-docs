@@ -260,11 +260,11 @@ const config = {
                 className: 'dropdown__heading',
               },
               {
-                to: '/embedded-cluster/v3/embedded-cluster-commands',
+                to: '/embedded-cluster/v3/embedded-cluster-completion',
                 label: 'Embedded Cluster v3',
               },
               {
-                to: '/embedded-cluster/v2/embedded-cluster-commands',
+                to: '/embedded-cluster/v2/embedded-cluster-admin-console',
                 label: 'Embedded Cluster v2',
               },
               {
