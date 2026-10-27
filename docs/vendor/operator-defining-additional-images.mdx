@@ -4,7 +4,7 @@ This topic describes how to use the `additionalImages` field in the Replicated A
 
 ## Overview
 
-When you promote a release, the Replicated Vendor Portal builds the release's image list from the images defined in the Pod specs for the release. Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the Replicated Application custom resource. One common use case is Kubernetes Operators, which might pull images at runtime that are not referenced in any manifest.
+When you promote a release, the Replicated Vendor Portal builds the release's image list from the images defined in the Pod specs for the release. You must list any required images that are _not_ defined in your application manifests in the `additionalImages` attribute of the Replicated Application custom resource. One common use case is Kubernetes Operators, which might pull images at runtime that are not referenced in any manifest.
 
 How the Vendor Portal uses `additionalImages` depends on the installation type:
 
@@ -12,7 +12,7 @@ How the Vendor Portal uses `additionalImages` depends on the installation type:
 
 * **Helm CLI installations**: There is no `.airgap` bundle for Helm installations. Instead, the Vendor Portal adds the images listed in `additionalImages` to the image list for the release, rewritten to use the Replicated proxy registry. The Enterprise Portal and Download Portal use this list to generate the commands that customers run to pull, tag, and push images to their own registry. For more information, see [Install and update with Helm in air gap environments](/vendor/helm-install-airgap).
 
-  The rest of the image list for Helm installations comes from the HelmChart custom resources in the release, so include a HelmChart custom resource for each chart in addition to the Application custom resource. For more information, see [Prerequisites](/vendor/helm-install-airgap#prerequisites) in _Install and update with Helm in air gap environments_.
+  The rest of the Helm image list comes from the HelmChart custom resources in the release. Include a HelmChart custom resource for each chart in addition to the Application custom resource. For more information, see [Prerequisites](/vendor/helm-install-airgap#prerequisites) in _Install and update with Helm in air gap environments_.
 
 ## Define additional images
 
@@ -38,4 +38,4 @@ spec:
 
 ## Images used only by Replicated installers
 
-If an image listed in `additionalImages` is also referenced by a Helm chart or resource that has the `kots.io/installer-only` annotation, and is not referenced anywhere else in the release, the image is left out of the Helm CLI installation instructions. It is still included in the `.airgap` bundle for Embedded Cluster, KOTS, and kURL installations. This lets you ship images for components that only Replicated installers deploy, such as a database chart that is needed only for Embedded Cluster installations. For more information, see [Exclude certain images from Helm CLI install instructions](/vendor/enterprise-portal-configure#installer-only).
+A Helm chart or resource that has the `kots.io/installer-only` annotation might also reference an image listed in `additionalImages`. If nothing else in the release references that image, the Vendor Portal omits it from the Helm CLI installation instructions. The `.airgap` bundle for Embedded Cluster, KOTS, and kURL installations still includes the image. This lets you ship images for components that only Replicated installers deploy, such as a database chart that only Embedded Cluster installations need. For more information, see [Exclude certain images from Helm CLI install instructions](/vendor/enterprise-portal-configure#installer-only).

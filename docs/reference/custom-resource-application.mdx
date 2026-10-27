@@ -187,7 +187,7 @@ spec:
 
 ### `additionalImages`
 
-An array of strings that reference images to include in air gap bundles and push to the local registry during installation. For Helm CLI installations, these images are added to the image list used to generate the air gap install instructions. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
+An array of strings that reference images to include in air gap bundles and push to the local registry during installation. For Helm CLI installations, the Vendor Portal adds these images to the image list that it uses to generate the air gap install instructions. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
 
 For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, kURL, or Helm CLI installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
 
