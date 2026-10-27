@@ -227,7 +227,7 @@ Released on October 12, 2026
 Released on October 12, 2026
 
 ### New Features {#new-features-v2026-10-12-0}
-* KOTS and kURL upgrade guidance in the new Enterprise Portal accepts optional MDX \`kotsNamespace\` and \`kurlNamespace\` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
+* KOTS and kURL upgrade guidance in the new Enterprise Portal accepts optional MDX `kotsNamespace` and `kurlNamespace` props for the Admin Console reopen command. See [Default KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides).
 ## v2026.10.09-4
 
 Released on October 9, 2026
@@ -288,7 +288,7 @@ Released on October 8, 2026
 Released on October 8, 2026
 
 ### Improvements {#improvements-v2026-10-08-2}
-* \`GET /v3/supportbundles\` accepts optional \`pageSize\` and \`currentPage\` query parameters to return one page of bundles.
+* `GET /v3/supportbundles` accepts optional `pageSize` and `currentPage` query parameters to return one page of bundles.
 
 ### Bug Fixes {#bug-fixes-v2026-10-08-2}
 * The Support Bundles page in the Vendor Portal no longer times out for teams with many support bundles. Bundles are now shown 20 per page.
@@ -363,7 +363,7 @@ Released on October 1, 2026
 * Vendor API can create Enterprise Portal install options for KOTS and kURL. The in-portal headless workflow guide shows create examples for the customer's install types and the download href rules.
 
 ### Improvements {#improvements-v2026-10-01-2}
-* Service account swagger documents \`proxyUrl\` as the HTTP proxy for generated install and update commands, and create \`install_type\` includes kots and kurl.
+* Service account swagger documents `proxyUrl` as the HTTP proxy for generated install and update commands, and create `install_type` includes kots and kurl.
 ## v2026.10.01-1
 
 Released on October 1, 2026
@@ -711,7 +711,7 @@ Released on August 31, 2026
 Released on August 31, 2026
 
 ### New Features {#new-features-v2026-08-31-0}
-* In the new Enterprise Portal, add \`hidden: true\` page frontmatter to keep a docs page in the repo and \`toc.yaml\` without showing it to customers until it is unpublished.
+* In the new Enterprise Portal, add `hidden: true` page frontmatter to keep a docs page in the repo and `toc.yaml` without showing it to customers until it is unpublished.
 ## v2026.08.28-0
 
 Released on August 28, 2026
@@ -769,7 +769,7 @@ Released on August 25, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-25-5}
 * Fixed a brief loading-state flash where the Embedded Cluster install modal could show the wrong air-gap disabled reason before release versions finished loading.
-* Clarified the error shown when a release promotion version does not match a Helm chart's \`Chart.yaml\` version.
+* Clarified the error shown when a release promotion version does not match a Helm chart's `Chart.yaml` version.
 
 ## v2026.08.25-3
 

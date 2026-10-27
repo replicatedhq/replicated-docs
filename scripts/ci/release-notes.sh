@@ -118,6 +118,12 @@ else
       "${generator_args[@]}" > "$generated_file"
 fi
 
+# The generator escapes backticks for shell consumers of its GitHub Action
+# output. These notes go straight into Markdown, where the escapes print
+# literal backticks instead of code spans.
+sed 's/\\`/`/g' "$generated_file" > "$tmp_dir/unescaped.md"
+mv "$tmp_dir/unescaped.md" "$generated_file"
+
 if [[ "$manual_table" == "none" && ! -s "$generated_file" ]]; then
   echo "The release-notes generator returned no notes; no PR is needed."
   exit 0
