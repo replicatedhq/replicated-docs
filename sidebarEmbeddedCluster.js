@@ -27,6 +27,12 @@ module.exports = {
     {
       type: "category",
       label: "Embedded Cluster Commands",
+      link: {
+        type: "generated-index",
+        title: "Embedded Cluster v3 commands",
+        description: "Reference for the Embedded Cluster v3 binary that installs and manages an embedded cluster.",
+        slug: "/embedded-cluster-commands",
+      },
       items: [
         "embedded-cluster-completion",
         "embedded-cluster-console",

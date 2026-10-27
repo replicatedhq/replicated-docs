@@ -22,6 +22,21 @@
   background-color: transparent;
 }
 
+.dropdown__heading {
+  padding: 0.5rem 0.75rem 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.dropdown__heading:not(:first-child) {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding-top: 0.75rem;
+}
+
 .dropdown__link--active,
 .navbar__link--active {
   background-color: transparent;
