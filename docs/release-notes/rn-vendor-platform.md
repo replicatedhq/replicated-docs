@@ -14,13 +14,28 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 27, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-27-6}
-* Assistant links in Enterprise Portal (New) open the documentation page for the version the customer is viewing.
+* Assistant links in the new Enterprise Portal open the documentation page for the version the customer is viewing.
+## v2026.10.27-5
+
+Released on October 27, 2026
+
+### New Features {#new-features-v2026-10-27-5}
+* Enterprise Portal Helm install and update instructions can now target a Kubernetes namespace. Add `namespace="my-namespace"` to `HelmInstallAssets`, `HelmAirgapInstallAssets`, `HelmInstallStep`, `HelmAirgapInstallStep`, or `HelmUpdateAssets`, and the generated `helm install`, `helm upgrade`, and preflight commands include `--namespace`. Install commands also include `--create-namespace`; set `createNamespace="false"` if your customers create the namespace themselves. An invalid namespace is ignored and flagged on the page while you preview it.
 ## v2026.10.27-4
 
 Released on October 27, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-10-27-4}
 * Documentation page titles and section headings now remain visible below the navigation header when you follow a link, including in portals with taller custom headers.
+## v2026.10.27-3
+
+Released on October 27, 2026
+
+### Improvements {#improvements-v2026-10-27-3}
+* Enterprise Portal install profiles expose recorded deployment IDs, and the workflow guide explains how to automate existing installations using their service account.
+
+### Bug Fixes {#bug-fixes-v2026-10-27-3}
+* Headless upgrade instructions and personalized downloads preserve the installation credential when requested with a separate CI token, including explicit recovery after token revocation and compatibility with historical deployment reporting.
 ## v2026.10.27-2
 
 Released on October 27, 2026
