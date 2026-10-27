@@ -2,6 +2,10 @@
 
 Users can interact with the Replicated KOTS CLI to install and manage applications with Replicated KOTS. The KOTS CLI is a kubectl plugin that runs locally on any computer.
 
+:::note
+The KOTS CLI applies only to installations with KOTS in an existing cluster and to Replicated kURL installations, which include KOTS. It does not apply to Embedded Cluster or Helm CLI installations. For Embedded Cluster commands, see [Embedded Cluster v3 commands](/embedded-cluster/v3/embedded-cluster-completion) or [Embedded Cluster v2 commands](/embedded-cluster/v2/embedded-cluster-admin-console).
+:::
+
 
 ## Prerequisite
 
