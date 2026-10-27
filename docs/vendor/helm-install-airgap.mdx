@@ -16,7 +16,9 @@ Before you install, complete the following prerequisites:
 
 * For each Helm chart in your release, add the Replicated HelmChart custom resource. Additionally, if the chart's default values do not expose all the required and optional images that might be needed to install in air-gapped environments, configure the HelmChart resource's `builder` key. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-   The HelmChart custom resource is what the Vendor Portal uses to build the release's image list. Releases that do not include one have an empty image list, so the air gap install instructions render no image relocation commands and the `.airgap` bundle is built without application images. Configuring the `builder` key ensures that this list includes every image an air-gapped environment needs, including any that the chart's default values do not expose.
+   The HelmChart custom resource is what the Vendor Portal uses to build the release's image list. Releases that do not include one have an empty image list, so the air gap install instructions render no image relocation commands. Configuring the `builder` key ensures that this list includes every image an air-gapped environment needs, including any that the chart's default values do not expose.
+
+* If your application uses any images that are not referenced in your Helm charts, such as images that a Kubernetes Operator pulls at runtime, list them in the `additionalImages` field of the Replicated Application custom resource. The Vendor Portal adds these images to the release's image list so that they are included in the image relocation commands. For more information, see [Define additional images](/vendor/operator-defining-additional-images).
 
 * The customer record in the Vendor Portal must have the following:
 
