@@ -1,0 +1,31 @@
+#### Symptom
+
+Symptoms can include:
+
+* Pods fail to connect to an external service, such as a database, by host name, but the same host name resolves on the host.
+
+* Name lookups from pods are slow or time out intermittently.
+
+* Only some pods fail to resolve a name, even though all nodes have the same DNS settings.
+
+* A change to the CoreDNS ConfigMap fixes name resolution, but the problem returns later.
+
+#### Cause
+
+Pods get their DNS settings from CoreDNS and from the host's DNS configuration. Common causes include the following:
+
+* Pods inherit the host's DNS search domains, and Kubernetes sets `ndots:5` by default. A name with fewer than five dots is tried against every cluster and host search domain before it is tried as written. With many host search domains, each lookup sends many queries. Container images based on musl libc, such as Alpine images, handle search domains differently from other images, and can fail to resolve a name that resolves in other pods.
+
+* Pods read their DNS settings only when they start. A pod that started before a change to the host's DNS settings keeps the old settings.
+
+* Embedded Cluster manages the CoreDNS configuration. It can overwrite direct edits to the CoreDNS ConfigMap at any time, such as when the host reboots, the cluster is upgraded, or nodes are added or removed.
+
+#### Solution
+
+To resolve DNS issues in pods, try the following:
+
+* To compare a pod's DNS settings with the host's, run `cat /etc/resolv.conf` on the host and in the pod. If the pod's settings are out of date, restart the pod.
+
+* If the host has many search domains, remove the ones that the host does not need. Alternatively, the application vendor can lower `ndots` for the affected workloads using `dnsConfig` in the pod spec. For more information, see [Pod's DNS Config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) in the Kubernetes documentation.
+
+* If a name must resolve through a private DNS zone, configure the host's nameservers to resolve that zone. CoreDNS forwards these names to the host's nameservers, so the change persists across reboots and upgrades. Do not rely on edits to the CoreDNS ConfigMap.

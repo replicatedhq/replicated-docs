@@ -1,0 +1,12 @@
+Security teams often scan hosts against an operating system benchmark, such as a CIS Benchmark for the Linux distribution or a DISA STIG for the operating system. These benchmarks are written for general-purpose servers and do not account for Kubernetes. On an Embedded Cluster host, they flag settings and files that Kubernetes needs. To assess the cluster itself, use a Kubernetes benchmark, such as the [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes).
+
+The following table lists findings that operating system benchmarks commonly report on Embedded Cluster hosts, and the reason for each. Do not change these settings or files to satisfy a scan. The usual approach is to record an exception for the finding or exclude the Embedded Cluster paths from the check.
+
+| Finding | Reason |
+|---|---|
+| Reverse path filtering (`net.ipv4.conf.all.rp_filter` and `net.ipv4.conf.default.rp_filter`) is not set to `1` | Embedded Cluster sets these parameters to `2` (loose mode), and the host preflight checks fail if they are set to `1`. Strict mode drops pod traffic. Loose mode still drops packets from source addresses that have no route back. For more information, see [Host configuration](#host-configuration) in this document. |
+| World-writable files, and world-writable directories without the sticky bit, under `DATA_DIR/k0s/kubelet` | The kubelet creates these as part of standard Kubernetes behavior. It creates each container's termination message file with mode `0666` so that a container running as any user can write it, and creates pod volumes with mode `0777` so that containers that do not run as root can use them. Changing these permissions can break the pods that use them. |
+| Files with no owner or group | Files that containers create, such as files in persistent volumes, are owned by the user and group IDs that the container runs as. The host does not need accounts for these IDs. |
+| A user's group in `/etc/passwd` does not exist in `/etc/group` | Embedded Cluster creates the Kubernetes system accounts with the host's `useradd` command and does not set a group. The account's group comes from the host's defaults for `useradd`. For more information about the accounts, see [Unix accounts for Kubernetes components](#unix-accounts-for-kubernetes-components) in this document. |
+
+In this table, `DATA_DIR` is the Embedded Cluster data directory.

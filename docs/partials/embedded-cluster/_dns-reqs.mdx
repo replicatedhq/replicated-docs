@@ -1,0 +1,9 @@
+Embedded Cluster runs CoreDNS to resolve names inside the cluster. CoreDNS forwards names that it cannot resolve itself, such as the host name of an external database, to the nameservers configured on the host. The host must meet the following requirements, which the host preflight checks verify:
+
+* `/etc/resolv.conf` lists at least one nameserver.
+
+* `/etc/resolv.conf` does not list a loopback address, such as `localhost` or `127.0.0.1`, as a nameserver. Inside the cluster, a loopback address points CoreDNS back to itself, so queries loop instead of reaching a real nameserver.
+
+   Hosts that use systemd-resolved list its local stub resolver, `127.0.0.53`, in `/etc/resolv.conf`. This is supported. Embedded Cluster detects systemd-resolved and uses the upstream nameservers from `/run/systemd/resolve/resolv.conf` instead.
+
+Pods also inherit the host's DNS search domains, in addition to the cluster's own search domains. Kubernetes sets the `ndots:5` resolver option in pods, so a name with fewer than five dots is tried against every search domain before it is tried as written. On hosts with many search domains, this can make lookups slow, and some container images fail to resolve names that work on the host. For more information, see [Pods cannot resolve names that resolve on the host](embedded-troubleshooting#dns) in _Troubleshoot Embedded Cluster_.

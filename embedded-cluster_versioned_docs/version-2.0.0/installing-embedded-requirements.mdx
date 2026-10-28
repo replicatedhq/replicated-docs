@@ -2,6 +2,8 @@ import EmbeddedClusterRequirements from "../../docs/partials/embedded-cluster/v2
 import EmbeddedClusterPortRequirements from "../../docs/partials/embedded-cluster/v2/_port-reqs.mdx"
 import EmbeddedClusterHostConfig from "../../docs/partials/embedded-cluster/v2/_host-config-reqs.mdx"
 import SecurityAgents from "../../docs/partials/embedded-cluster/_security-agents.mdx"
+import DnsRequirements from "../../docs/partials/embedded-cluster/_dns-reqs.mdx"
+import ComplianceScans from "../../docs/partials/embedded-cluster/_compliance-scans.mdx"
 import SecurityAgentsPaths from "../../docs/partials/embedded-cluster/v2/_security-agents-paths.mdx"
 import FirewallOpeningsIntro from "../../docs/partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsEc from "../../docs/partials/install/_firewall-openings-embedded-cluster.mdx"
@@ -22,6 +24,10 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 <EmbeddedClusterPortRequirements/>
 
+## DNS on the host {#dns}
+
+<DnsRequirements/>
+
 ## Unix accounts for Kubernetes components
 
 During installation, Embedded Cluster automatically creates the following Unix accounts that are required by internal Kubernetes components:
@@ -31,7 +37,7 @@ During installation, Embedded Cluster automatically creates the following Unix a
 * **kube-apiserver**: Used by the Kubernetes API server.
 * **kube-scheduler**: Used by the Kubernetes scheduler to schedule workloads such as pods.
 
-No action is required to create these roles. Removing them will make the cluster non-functional.
+Embedded Cluster creates these accounts with the host's `useradd` command, so their group follows the host's defaults for new system accounts. No action is required to create these roles. Removing them will make the cluster non-functional.
 
 For more information about the internal Kubernetes components, see [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/) in the Kubernetes documentation.
 
@@ -101,3 +107,7 @@ The following ports are opened in the default zone:
 <SecurityAgents/>
 
 <SecurityAgentsPaths/>
+
+## Compliance scans on the host {#compliance-scans}
+
+<ComplianceScans/>
