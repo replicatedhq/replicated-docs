@@ -1,0 +1,19 @@
+docs/reference/replicated-cli-installing.mdx
+  s_369b4264837057::t_704da04db7098f 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "785b019101b83f19a6f188e5772243d57655bea7",
+  "prompts": {},
+  "sessions": {
+    "s_369b4264837057": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_369b4264837057",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+docs/reference/custom-resource-about.md
+  s_ea1da16c2100cd::t_e3777739c7a041 109
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "01c55e8eeeb73b8e60d32b2cdcf149a8eba57304",
+  "prompts": {},
+  "sessions": {
+    "s_ea1da16c2100cd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ea1da16c2100cd",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

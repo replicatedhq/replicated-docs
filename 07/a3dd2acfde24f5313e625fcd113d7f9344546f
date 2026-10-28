@@ -1,0 +1,19 @@
+docs/reference/cron-expressions.md
+  s_70e0b8593defad::t_faba80e7b7ab9f 16,21,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "07a3dd2acfde24f5313e625fcd113d7f9344546f",
+  "prompts": {},
+  "sessions": {
+    "s_70e0b8593defad": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_70e0b8593defad",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

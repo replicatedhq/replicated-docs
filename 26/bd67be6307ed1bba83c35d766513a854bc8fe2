@@ -1,0 +1,21 @@
+docs/reference/replicated-config-file.mdx
+  s_3c8b27a37af616::t_cf4286d8ce724d 7-8,92-100,246-272
+docs/vendor/ci-workflows-github-actions.md
+  s_3c8b27a37af616::t_0a39ed554040b3 87
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "26bd67be6307ed1bba83c35d766513a854bc8fe2",
+  "prompts": {},
+  "sessions": {
+    "s_3c8b27a37af616": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_3c8b27a37af616",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

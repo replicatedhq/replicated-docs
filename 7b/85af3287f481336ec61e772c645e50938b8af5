@@ -1,0 +1,19 @@
+docs/reference/custom-resource-about.md
+  s_068b5a7736bd36::t_41d2b7a4c2341f 109-110
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7b85af3287f481336ec61e772c645e50938b8af5",
+  "prompts": {},
+  "sessions": {
+    "s_068b5a7736bd36": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_068b5a7736bd36",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
