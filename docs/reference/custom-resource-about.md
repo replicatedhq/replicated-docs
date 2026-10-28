@@ -106,7 +106,7 @@ The following table shows which custom resources apply to each installation meth
     </tr>
     <tr>
         <td>Application</td>
-        <td>No</td>
+        <td>Partial. Optional: use <code>additionalImages</code> to add images that the HelmChart <code>builder</code> key can't render, such as images that a Kubernetes Operator pulls at runtime, to the list of images for air gap installations. Use <code>excludedImages</code> to remove images from that list. See [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages).</td>
         <td>Partial. Uses the <code>title</code>, <code>icon</code>, <code>releaseNotes</code>, <code>statusInformers</code>, <code>additionalNamespaces</code>, <code>additionalImages</code>, and <code>excludedImages</code> fields.</td>
         <td>Yes</td>
         <td>Yes</td>
