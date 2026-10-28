@@ -852,6 +852,53 @@ const sidebars = {
       ],
     },
 
+    // PLATFORM SECURITY AND TRUST
+    { type: "html", value: "<h5>Platform security and trust</h5>", defaultStyle: true },
+    {
+      type: "link",
+      label: "Status Page",
+      href: "https://status.replicated.com/",
+    },
+    {
+      type: "link",
+      label: "Trust Center",
+      href: "https://trust.replicated.com/",
+    },
+    {
+      type: "link",
+      label: "Security Development Lifecycle",
+      href: "https://www.replicated.com/security/",
+    },
+    "vendor/policies-infrastructure-and-subprocessors",
+    "vendor/data-availability",
+    "vendor/policies-support-lifecycle",
+    "vendor/firewall-openings",
+    {
+      type: "category",
+      label: "Product security",
+      items: [
+        "vendor/policies-vulnerability-patch",
+        "vendor/policies-data-transmission",
+        "vendor/packaging-private-registry-security",
+        "vendor/vendor-password-integrity",
+        {
+          type: "category",
+          label: "Verify Replicated component artifacts",
+          items: [
+            {
+              type: "doc",
+              id: "vendor/replicated-artifacts-validating",
+              label: "Overview",
+            },
+            "vendor/sbom-validating",
+            "vendor/image-provenance-validating",
+            "vendor/embedded-cluster-v3-release-files-validating",
+            "vendor/troubleshoot-cli-provenance-validating",
+          ],
+        },
+      ],
+    },
+
     //OPEN SOURCE DOCS
     { type: "html", value: "<h5>Open source docs</h5>", defaultStyle: true },
     {
@@ -863,52 +910,6 @@ const sidebars = {
       type: "link",
       href: "https://troubleshoot.sh/docs/collect/",
       label: "Troubleshoot.sh",
-    },
-
-    // POLICIES
-    { type: "html", value: "<h5>Platform overview</h5>", defaultStyle: true },
-    'vendor/firewall-openings',
-    {
-      type: "category",
-      label: "Replicated policies",
-      items: [
-        "vendor/policies-vulnerability-patch",
-        "vendor/policies-support-lifecycle",
-        "vendor/policies-data-transmission",
-        "vendor/policies-infrastructure-and-subprocessors",
-      ],
-    },
-    {
-      type: "category",
-      label: "Replicated data storage",
-      items: ["vendor/data-availability"],
-    },
-    {
-      type: "category",
-      label: "Security at Replicated",
-      items: [
-        {
-          type: "link",
-          label: "Trust Center",
-          href: "https://trust.replicated.com/",
-        },
-        {
-          type: "link",
-          label: "Status Page",
-          href: "https://status.replicated.com/",
-        },
-        {
-          type: "link",
-          label: "Security at Replicated",
-          href: "https://www.replicated.com/security/",
-        },
-        "vendor/sbom-validating",
-        "vendor/image-provenance-validating",
-        "vendor/embedded-cluster-v3-release-files-validating",
-        "vendor/troubleshoot-cli-provenance-validating",
-        "vendor/vendor-password-integrity",
-        "vendor/packaging-private-registry-security",
-      ],
     },
   ],
 
