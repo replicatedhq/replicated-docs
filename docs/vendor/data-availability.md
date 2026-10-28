@@ -6,7 +6,7 @@ Replicated uses redundancy and a cloud-native architecture in support of availab
 
 To ensure availability and continuity of necessary vendor data, Replicated uses a cloud-native architecture. This cloud-native architecture includes clustering and network redundancies to eliminate single point of failure.
 
-Replicated stores vendor data in various Amazon Web Services (AWS) S3 buckets and multiple databases. Data stored in the AWS S3 buckets includes registry images and air gap build data.
+Replicated stores vendor data in Amazon Web Services (AWS) S3 buckets and in databases managed by Replicated on Latitude infrastructure. Data stored in the AWS S3 buckets includes registry images and air gap build data.
 
 The following diagram shows the flow of air gap build data and registry images from vendors to enterprise customers.
 
@@ -22,7 +22,7 @@ The diagram also shows how enterprise customers access air gap build data from t
 
 ## Data recovery
 
-Our service provider's platform automatically restores customer applications and databases in the case of an outage. The provider's platform is designed to dynamically deploy applications within its cloud, monitor for failures, and recover failed platform components including customer applications and databases.
+Replicated automatically takes frequent full database backups and captures binary logs, retaining multiple copies to protect vendor data. When database recovery is required, Replicated personnel initiate and manage the process of restoring a full backup and replaying binary logs.
 
 For more information, see the [Replicated Trust Center](https://trust.replicated.com/).
 
