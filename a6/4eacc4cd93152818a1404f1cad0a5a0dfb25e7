@@ -1,0 +1,19 @@
+docusaurus.config.js
+  s_cc7e29b09ad65a::t_013d3959764ddb 263,267
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a64eacc4cd93152818a1404f1cad0a5a0dfb25e7",
+  "prompts": {},
+  "sessions": {
+    "s_cc7e29b09ad65a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_cc7e29b09ad65a",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
