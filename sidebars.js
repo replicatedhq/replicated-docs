@@ -885,6 +885,11 @@ const sidebars = {
           type: "category",
           label: "Verify Replicated component artifacts",
           items: [
+            {
+              type: "doc",
+              id: "vendor/replicated-artifacts-validating",
+              label: "Overview",
+            },
             "vendor/sbom-validating",
             "vendor/image-provenance-validating",
             "vendor/embedded-cluster-v3-release-files-validating",
