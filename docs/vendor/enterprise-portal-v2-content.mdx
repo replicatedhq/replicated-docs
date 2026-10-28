@@ -245,20 +245,20 @@ Always create a backup before applying updates.
 </Warning>
 ```
 
-**`<Tabs>` / `<Tab>`**: Local tabbed content sections. The active tab is not remembered across reloads and is not shared with `<OptionSelector>`. Use this for page-local sections such as entitlement-gated support bundle methods.
+**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` when the customer should keep that tab after a reload in the same session. Every `<Tabs>` with the same `groupId` restores the same saved tab. Logout and switching teams clear it. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs are entitlement-gated, and they are not the home page's Linux / Helm choice.
 
 ```markdown
-<Tabs>
+<Tabs groupId="install-method">
 <Tab title="Linux">
-Linux-specific instructions here...
+- [Linux Installation](/installation/linux)
 </Tab>
 <Tab title="Helm">
-Helm-specific instructions here...
+- [Helm Installation](/installation/helm)
 </Tab>
 </Tabs>
 ```
 
-Props: `<Tabs>` accepts `defaultActiveTab`. `<Tab>` requires `title`.
+Props: `<Tabs>` accepts `groupId` and `defaultActiveTab`. `<Tab>` requires `title`. A `<Tabs>` with no `groupId` stays local to the page. Nested `<Tabs>` stay independent unless they share a `groupId`.
 
 **`<Accordion>`**: Collapsible content section.
 
@@ -270,7 +270,7 @@ Detailed configuration options...
 
 Props: `title` (required), `defaultOpen` (optional, defaults to false).
 
-**`<OptionSelector>` / `<Option>`**: Option picker that remembers the customer's selection in `sessionStorage` for the browser session. Reloading the page restores the saved value for every selector that uses the same `storageKey`. Logout and switching teams clear it. Use this when the choice should survive a reload. The default home page uses it for Linux / Helm quick links. Do not reuse `storageKey="install-method"` on unrelated groups, and do not convert support bundle `<Tabs>` to `<OptionSelector>` to share that home-page choice.
+**`<OptionSelector>` / `<Option>`**: Supported option picker with its own look. `storageKey` is the same session key as `<Tabs>` `groupId`. Reloading the page restores the saved value for every selector that uses the same `storageKey`, including two selectors on one page. Logout and switching teams clear it. Existing `<OptionSelector>` pages keep working. New pages should use `<Tabs>` with `groupId`. `<OptionSelector>` stays supported.
 
 ```markdown
 <OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
@@ -630,7 +630,7 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<KotsBundles />`**: KOTS-specific support bundle generation instructions for an existing cluster. No props.
 
-Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method.
+Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
