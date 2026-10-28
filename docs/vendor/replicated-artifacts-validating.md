@@ -73,6 +73,9 @@ What Replicated publishes depends on the component and the type of artifact. Use
 
 The verification steps are grouped by type of artifact:
 
-* **Release archives and files that you download:** To verify the signatures and SLSA provenance for Embedded Cluster v3 release files, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-release-files-validating). To verify SLSA provenance for the Troubleshoot CLI archives, see [Validate Troubleshoot CLI provenance](/vendor/troubleshoot-cli-provenance-validating). To verify the SBOM signature for an Embedded Cluster v3, Troubleshoot, KOTS, or kURL release, see [Validate SBOM signatures](/vendor/sbom-validating).
+* **Release archives and files that you download:**
+   * For more information about verifying the signatures and SLSA provenance of Embedded Cluster v3 release files, see [Validate Embedded Cluster v3 release files](/vendor/embedded-cluster-v3-release-files-validating).
+   * For more information about verifying SLSA provenance for the Troubleshoot CLI archives, see [Validate Troubleshoot CLI provenance](/vendor/troubleshoot-cli-provenance-validating).
+   * For more information about verifying the SBOM signature for an Embedded Cluster v3, Troubleshoot, KOTS, or kURL release, see [Validate SBOM signatures](/vendor/sbom-validating).
 
-* **Container images:** To verify SLSA provenance, image signatures, and SBOM attestations for Replicated SDK, Troubleshoot, and KOTS images, see [Validate container image provenance](/vendor/image-provenance-validating).
+* **Container images:** For more information about verifying SLSA provenance, image signatures, and SBOM attestations for Replicated SDK, Troubleshoot, and KOTS images, see [Validate container image provenance](/vendor/image-provenance-validating).
