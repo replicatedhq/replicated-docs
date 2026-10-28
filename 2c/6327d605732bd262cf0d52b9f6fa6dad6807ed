@@ -1,0 +1,32 @@
+docs/partials/helm/_helm-builder-requirements.mdx
+  h_6bd1a2fe251981 5-9
+docs/reference/cron-expressions.md
+  h_6bd1a2fe251981 3,5-29,50,55,60,65,69-70,76,97-100,103,129,144-145,149-150,168,176-181
+docs/reference/custom-resource-application.mdx
+  h_6bd1a2fe251981 190,192,218-219
+docs/reference/replicated-config-file.mdx
+  h_6bd1a2fe251981 7-8,92-100,246-272
+docs/release-notes/rn-replicated-sdk.md
+  h_6bd1a2fe251981 12-17
+docs/vendor/ci-workflows-github-actions.md
+  h_6bd1a2fe251981 87
+docs/vendor/data-availability.md
+  h_6bd1a2fe251981 9,25
+docs/vendor/helm-install-airgap.mdx
+  h_6bd1a2fe251981 19-23
+docs/vendor/operator-defining-additional-images.mdx
+  h_6bd1a2fe251981 3,7-19,21,23,25,27-37,55-59
+sidebars.js
+  h_6bd1a2fe251981 135,424
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2c6327d605732bd262cf0d52b9f6fa6dad6807ed",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
