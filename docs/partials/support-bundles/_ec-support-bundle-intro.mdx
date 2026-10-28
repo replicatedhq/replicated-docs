@@ -3,4 +3,9 @@ Embedded Cluster includes a default support bundle spec that collects both host-
 * The host-level information is useful for troubleshooting failures related to host configuration like DNS, networking, or storage problems.
 * Cluster-level information includes details about the components provided by Replicated, such as the Admin Console and Embedded Cluster Operator that manage install and upgrade operations. If the cluster has not installed successfully and cluster-level information is not available, then it is excluded from the bundle.
 
-In addition to the host- and cluster-level details provided by the default Embedded Cluster spec, support bundles generated for Embedded Cluster installations also include app-level details provided by any custom support bundle specs that you included in the application release. For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).
+Support bundles also include application details from custom support bundle specs:
+
+* **Embedded Cluster v3:** Deploy each custom spec in a Kubernetes Secret labeled `troubleshoot.sh/kind: support-bundle` through your Helm chart. Embedded Cluster discovers these specs in the cluster when generating a bundle. Standalone `kind: SupportBundle` files included in the application release are not collected. For a Secret example, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
+* **Embedded Cluster v2:** Custom support bundle specs included in the application release are collected.
+
+For more information, see [Combine support bundle specs](/vendor/support-modular-support-bundle-specs).

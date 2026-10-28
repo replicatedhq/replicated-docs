@@ -46,7 +46,7 @@ For examples of this, see [Template function examples](/reference/template-funct
 
 * Not all fields in the Config and Application custom resources support templating. For more information, see [Application](/reference/custom-resource-application) and [Config](/reference/custom-resource-config).
 
-* The [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) resource doesn't support Go templating in any fields.
+* In Embedded Cluster v3, the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) resource supports Replicated template functions, including HelmValue, in `spec.extensions.helmCharts`. Other spec fields, including `version`, `roles`, `domains`, and `unsupportedOverrides`, do not support templating. Embedded Cluster v2 does not support templating in the Embedded Cluster Config.
 
 * Replicated template functions are not directly supported in Helm charts. For more information, see [Supported file types](#supported-file-types) on this page.
 

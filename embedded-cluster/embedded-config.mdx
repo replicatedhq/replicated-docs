@@ -6,7 +6,7 @@ This topic is a reference for the Replicated Embedded Cluster Config custom reso
 
 ## Limitations
 
-* Most of the fields in the Config spec are plain YAML and do not support Go template functions, including [Replicated template functions](/reference/template-functions-about). The `values` field for each entry in `extensions.helmCharts` does support the use of template functions.
+* The entries in `spec.extensions.helmCharts` support [Replicated template functions](/reference/template-functions-about), including [HelmValue](template-functions#helmvalue-func). Other spec fields, including `version`, `roles`, `domains`, and `unsupportedOverrides`, are plain YAML and do not support Go template functions.
 
 * There are additional, property-specific limitations. For more information, see the following sections.
 
