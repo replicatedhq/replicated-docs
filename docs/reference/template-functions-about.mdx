@@ -18,6 +18,33 @@ Replicated provides a set of custom template functions based on the Go text/temp
 Replicated template functions support all functionality of the Go templating language, including if statements, loops, and variables.
 For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation.
 
+## Supported installation methods
+
+Replicated template functions are rendered by the Replicated installers. Whether they are rendered depends on how your customers install your application:
+
+<table>
+    <tr>
+      <th width="25%">Installation method</th>
+      <th width="75%">Template function support</th>
+    </tr>
+    <tr>
+      <td>Helm CLI</td>
+      <td>Not supported. Replicated template functions are not rendered for Helm CLI installations, including in the HelmChart custom resource <code>builder</code> key. To provide customer-specific values in Helm CLI installations, use Helm values and the Replicated SDK. For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).</td>
+    </tr>
+    <tr>
+      <td>Embedded Cluster v3</td>
+      <td>Supported. Embedded Cluster v3 implements the KOTS template functions, but some functions behave differently or return empty values. For more information, see [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).</td>
+    </tr>
+    <tr>
+      <td>Embedded Cluster v2</td>
+      <td>Supported</td>
+    </tr>
+    <tr>
+      <td>KOTS in an existing cluster and kURL</td>
+      <td>Supported. The functions in the [kURL context](#kurl-context) return values only in kURL installations.</td>
+    </tr>
+</table>
+
 ## Supported file types
 
 You can use Replicated template functions in Kubernetes manifest files, such as:
