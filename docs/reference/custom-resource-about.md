@@ -106,8 +106,8 @@ The following table shows which custom resources apply to each installation meth
     </tr>
     <tr>
         <td>Application</td>
-        <td>Partial. The <code>additionalImages</code> and <code>excludedImages</code> fields are used to build the list of images for air gap installations.</td>
-        <td>Partial. Uses the <code>title</code>, <code>icon</code>, <code>releaseNotes</code>, <code>additionalNamespaces</code>, and <code>statusInformers</code> fields.</td>
+        <td>No</td>
+        <td>Partial. Uses the <code>title</code>, <code>icon</code>, <code>releaseNotes</code>, <code>statusInformers</code>, <code>additionalNamespaces</code>, <code>additionalImages</code>, and <code>excludedImages</code> fields.</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
