@@ -1,0 +1,19 @@
+sidebars.js
+  s_06872b2cda0c73::t_68003d5a133f79 855-856,859-860,864-865,867-875,878,882-893,896-898,900-902,905-907
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4dfcd913943cf54eefa4f6f22109013007470ad0",
+  "prompts": {},
+  "sessions": {
+    "s_06872b2cda0c73": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_06872b2cda0c73",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
