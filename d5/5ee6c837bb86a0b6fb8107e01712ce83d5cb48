@@ -1,0 +1,20 @@
+docs/release-notes/rn-app-manager.md
+  h_6bd1a2fe251981 27-34
+docs/release-notes/rn-vendor-platform.md
+  h_6bd1a2fe251981 19-24
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  h_6bd1a2fe251981 124-126
+embedded-cluster/embedded-v3-migrate.mdx
+  h_6bd1a2fe251981 138-147
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d55ee6c837bb86a0b6fb8107e01712ce83d5cb48",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

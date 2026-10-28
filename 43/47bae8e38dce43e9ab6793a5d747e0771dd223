@@ -1,0 +1,19 @@
+embedded-cluster/embedded-config.mdx
+  s_ce22b15bdd3d1e::t_f835b7ca457102 314,323,325-328,333,353
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4347bae8e38dce43e9ab6793a5d747e0771dd223",
+  "prompts": {},
+  "sessions": {
+    "s_ce22b15bdd3d1e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ce22b15bdd3d1e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

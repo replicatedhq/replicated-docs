@@ -1,0 +1,25 @@
+docs/partials/proxy-service/_step-creds.mdx
+  s_bc94ecfd2cf1a6::t_ff8c7a081d18b9 1-3
+docs/partials/proxy-service/_step-rewrite-helm-values.mdx
+  s_bc94ecfd2cf1a6::t_b696806d621930 1
+docs/vendor/packaging-private-images.md
+  s_bc94ecfd2cf1a6::t_b7f55a403f3a6a 3
+docs/vendor/packaging-public-images.mdx
+  s_bc94ecfd2cf1a6::t_3cc66dc2b2f57f 11-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "715a177b29d48debf29d04f8aab6e58463822363",
+  "prompts": {},
+  "sessions": {
+    "s_bc94ecfd2cf1a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_bc94ecfd2cf1a6",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

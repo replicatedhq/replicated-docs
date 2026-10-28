@@ -1,0 +1,14 @@
+docs/release-notes/rn-vendor-platform.md
+  h_6bd1a2fe251981 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2d9ef79aa48aa1304b62789e820255915368179d",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
