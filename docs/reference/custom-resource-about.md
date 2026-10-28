@@ -107,7 +107,7 @@ The following table shows which custom resources apply to each installation meth
     <tr>
         <td>Application</td>
         <td>Partial. Optional: use <code>additionalImages</code> to add images that the HelmChart <code>builder</code> key can't render, such as images that a Kubernetes Operator pulls at runtime, to the list of images for air gap installations. Use <code>excludedImages</code> to remove images from that list. See [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages).</td>
-        <td>Partial. Uses the <code>title</code>, <code>icon</code>, <code>releaseNotes</code>, <code>statusInformers</code>, <code>additionalNamespaces</code>, <code>additionalImages</code>, and <code>excludedImages</code> fields.</td>
+        <td>Partial. Uses the <code>title</code>, <code>icon</code>, <code>releaseNotes</code>, <code>statusInformers</code>, <code>additionalNamespaces</code>, <code>additionalImages</code>, <code>excludedImages</code>, and <code>proxyPublicImages</code> fields. <code>additionalNamespaces</code> requires explicit namespace names; <code>"*"</code> is not supported. See [Changes to Application custom resource fields](/embedded-cluster/v3/embedded-v3-migrate#application-cr-changes) in <em>Upgrade from Embedded Cluster v2</em>.</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
