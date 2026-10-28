@@ -1,23 +1,40 @@
-import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
-import KotsAvailability from "../partials/kots/_kots-availability.mdx"
-
 # Define additional images
 
-This topic describes how to define additional images to be included in the `.airgap` bundle for a release.
-
-<KotsAvailability/>
+This topic describes how to use the `additionalImages` field in the Replicated Application custom resource to include images that are not defined in your application manifests.
 
 ## Overview
 
-<AirGapBundle/>
+When you promote a release, the Replicated Vendor Portal builds the release's image list. The Vendor Portal finds images only in the container image fields of the workloads in your release: the `containers` and `initContainers` of Pods, and of the Pod templates in resources such as Deployments, StatefulSets, DaemonSets, Jobs, and CronJobs. For Helm charts, this includes only the templates that render with the values in the HelmChart custom resource `builder` key. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-When building the `.airgap` bundle for a release, the Replicated Vendor Portal finds and includes all images defined in the Pod specs for the release. During installation or upgrade, KOTS retags images from the `.airgap` bundle and pushes them to the registry configured in KOTS.
+Use the `additionalImages` field of the Replicated Application custom resource to add any required images that the Vendor Portal can't find this way.
 
-Any required images that are _not_ defined in your application manifests must be listed in the `additionalImages` attribute of the Replicated Application custom resource. This ensures that the images are included in the `.airgap` bundle for the release.
+## When to use additionalImages
 
-## Define additional images for air gap bundles
+The `additionalImages` field is optional. If every image that your application uses appears in a container image field of a rendered workload, you don't need `additionalImages`. For Helm CLI installations, this means that the Replicated SDK and the HelmChart custom resource `builder` key are enough.
 
-KOTS supports including the following types of images in the `additionalImages` field:
+Use `additionalImages` when your application needs an image that isn't in a container image field after rendering. For example:
+
+* **A Kubernetes Operator or controller pulls the image at runtime.** Your chart deploys an Operator, and the Operator creates Pods later from a custom resource, such as a `Database` custom resource with the image in a `spec.image` field. The Vendor Portal doesn't read custom resource fields.
+
+* **Your application passes the image reference as data.** The image is in a ConfigMap, an environment variable, a command-line argument, or a value that your application reads to create its own workloads.
+
+* **The image is in a template that can't render with the `builder` values.** For example, if a chart deploys either an embedded database or a connector image depending on one value, the `builder` key can render only one of the two branches. Set the `builder` key to render one branch, and list the images from the other branch in `additionalImages`.
+
+If you don't list an image that falls into one of these cases, the Vendor Portal omits it from the release's image list. The release builds successfully without a warning, and installations succeed. When a customer enables the feature that uses the image, the Pods for that feature fail to start with an image pull error. This affects air gap installations and installations where the customer pushes images to their own registry. Security Center also doesn't scan images that are missing from the image list.
+
+## How the Vendor Portal uses additionalImages
+
+How the Vendor Portal uses `additionalImages` depends on the installation type:
+
+* **Embedded Cluster, KOTS existing cluster, and kURL installations**: The Vendor Portal includes the images listed in `additionalImages` in the `.airgap` bundle for the release. During installation or upgrade, the installer retags the images from the bundle and pushes them to the customer's registry, or to the local registry that Embedded Cluster or kURL provides.
+
+* **Helm CLI installations**: There is no `.airgap` bundle for Helm installations. Instead, the Vendor Portal adds the images listed in `additionalImages` to the image list for the release, rewritten to use the Replicated proxy registry. The Enterprise Portal and Download Portal use this list to generate the commands that customers run to pull, tag, and push images to their own registry. For more information about Helm air gap installations, see [Install and update with Helm in air gap environments](/vendor/helm-install-airgap).
+
+  The rest of the Helm image list comes from the HelmChart custom resources in the release. Include a HelmChart custom resource for each chart in addition to the Application custom resource. For more information about the requirements for Helm air gap installations, see [Prerequisites](/vendor/helm-install-airgap#prerequisites) in _Install and update with Helm in air gap environments_.
+
+## Define additional images {#define-additional-images-for-air-gap-bundles}
+
+You can include the following types of images in the `additionalImages` field:
 
 * Public images referenced by the docker pullable image name.
 * Images pushed to a private registry that was configured in the Vendor Portal, referenced by the docker-pullable, upstream image name. For more information about configuring private registries, see [Add and Manage External Registries](/vendor/packaging-private-images).
@@ -36,3 +53,7 @@ spec:
     - quay.io/orgname/private-image:v1.2.3
     - registry.replicated.com/my-operator/my-private-image:abd123f
 ```
+
+## Images used only by Replicated installers
+
+A Helm chart or resource that has the `kots.io/installer-only` annotation might also reference an image listed in `additionalImages`. If nothing else in the release references that image, the Vendor Portal omits it from the Helm CLI installation instructions. The `.airgap` bundle for Embedded Cluster, KOTS, and kURL installations still includes the image. This lets you ship images for components that only Replicated installers deploy, such as a database chart that only Embedded Cluster installations need. For more information about the `kots.io/installer-only` annotation, see [Exclude certain images from Helm CLI install instructions](/vendor/enterprise-portal-configure#installer-only).

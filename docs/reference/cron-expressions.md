@@ -1,8 +1,32 @@
 # Cron expressions
 
-This topic describes the supported cron expressions that you can use to schedule automatic application update checks and automatic backups in the Replicated Admin Console. The information in this topic applies to applications installed with a Replicated installer (Embedded Cluster, KOTS, kURL).
+This topic describes the cron expressions that you can use in the Replicated KOTS Admin Console to schedule automatic update checks and automatic backups.
 
-For more information, see [Configure Automatic Updates](/enterprise/updating-apps) and [Schedule Automatic Backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Creating and Scheduling Backups_.
+## Supported installations
+
+The following table lists where you can use cron expressions:
+
+<table>
+    <tr>
+      <th width="30%">Feature</th>
+      <th width="35%">Supported</th>
+      <th width="35%">Not supported</th>
+    </tr>
+    <tr>
+      <td>Automatic update checks. For more information, see [Configure automatic updates](/enterprise/updating-apps).</td>
+      <td>KOTS in an existing cluster and kURL installations with outbound internet access</td>
+      <td>Embedded Cluster v2 and v3, and air gap installations</td>
+    </tr>
+    <tr>
+      <td>Automatic backups. For more information, see [Schedule automatic backups](/enterprise/snapshots-creating#schedule-automatic-backups) in _Create and schedule backups_.</td>
+      <td>KOTS in an existing cluster, kURL, and Embedded Cluster v2</td>
+      <td>Embedded Cluster v3</td>
+    </tr>
+</table>
+
+:::note
+Embedded Cluster v3 does not use the KOTS Admin Console. For more information about scheduling backups for Embedded Cluster v3, see [Create and manage backups](/embedded-cluster/v3/embedded-disaster-recovery-v3#create-and-manage-backups) in _Back up and restore Embedded Cluster v3_.
+:::
 
 ## Syntax
 
@@ -23,33 +47,33 @@ The following table lists the required cron fields and supported values:
     <tr>
       <td>Minute</td>
       <td>0 through 59</td>
-      <td>, - * </td>
+      <td>, - * /</td>
     </tr>
     <tr>
       <td>Hour</td>
       <td>0 through 23</td>
-      <td>, - * </td>
+      <td>, - * /</td>
     </tr>
     <tr>
       <td>Day-of-month</td>
       <td>1 through 31</td>
-      <td>, - * ? </td>
+      <td>, - * ? /</td>
     </tr>
     <tr>
       <td>Month</td>
       <td>1 through 12 or JAN through DEC</td>
-      <td>, - * </td>
+      <td>, - * /</td>
     </tr>
     <tr>
       <td>Day-of-week</td>
-      <td>1 through 7 or SUN through SAT</td>
-      <td>, - * ?</td>
+      <td>0 through 6 or SUN through SAT, where 0 is Sunday</td>
+      <td>, - * ? /</td>
     </tr>
   </table>
 
 ## Special characters
 
-Replicated uses an external cron Go library. For more information about it's usage, see [cron](https://pkg.go.dev/github.com/robfig/cron/v3). 
+KOTS uses the [robfig/cron](https://pkg.go.dev/github.com/robfig/cron/v3) Go library to parse cron expressions.
 
 The following table describes the supported special characters:
 
@@ -71,8 +95,12 @@ The following table describes the supported special characters:
       <td>Specifies that all of the values for the field are used. For example, using <code>*</code> in the Month field means that all of the months are included in the schedule.</td>
     </tr>
     <tr>
+      <td>Slash (/)</td>
+      <td>Specifies increments. For example, <code>*/15</code> in the Minute field signifies every 15 minutes, and <code>0/4</code> in the Hour field signifies every 4 hours starting at midnight.</td>
+    </tr>
+    <tr>
       <td>Question mark (?)</td>
-      <td> Specifies that one or another value can be used. For example, enter <code>5</code> for Day-of-the-month and <code>?</code> for Day-of-the-week to check for updates on the 5th day of the month, regardless of which day of the week it is.</td>
+      <td>Equivalent to the asterisk (&#42;). By convention, use <code>?</code> in the Day-of-month or Day-of-week field to leave that field unrestricted. For example, enter <code>5</code> for Day-of-month and <code>?</code> for Day-of-week to run on the 5th day of the month, regardless of which day of the week it is.</td>
     </tr>
 </table>
 
@@ -98,7 +126,7 @@ You can use one of the following predefined schedule values instead of a cron ex
     </tr>
     <tr>
       <td>@weekly</td>
-      <td>Run once a week, at midnight on Saturday.</td>
+      <td>Runs once a week, at midnight on Sunday.</td>
       <td>0 0 * * 0</td>
     </tr>
     <tr>
@@ -113,13 +141,13 @@ You can use one of the following predefined schedule values instead of a cron ex
     </tr>
     <tr>
       <td>@never</td>
-      <td><p>Disables the schedule completely. Only used by KOTS.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
-      <td>0 * * * *</td>
+      <td><p>Disables automatic update checks. Supported for automatic update checks only.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
+      <td>Not applicable</td>
     </tr>
     <tr>
       <td>@default</td>
-      <td><p>Selects the default schedule option (every 4 hours). Begins when the Admin Console starts up.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
-      <td>0 * * * *</td>
+      <td><p>Checks for updates every 4 hours, starting from when the Admin Console starts. This is the default schedule for automatic update checks. Supported for automatic update checks only.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
+      <td>Not applicable</td>
     </tr>
 </table>
 
@@ -137,12 +165,18 @@ As with standard cron expressions, the interval does not include the job runtime
 
 ## Examples
 
-The following examples show valid cron expressions to schedule checking for updates:
+The following examples show valid cron expressions:
 
 - At 11:30 AM every day:
 
     ```
     30 11 * * *
+    ```
+
+- At 2:00 AM every Sunday:
+
+    ```
+    0 2 * * 0
     ```
 
 - After 1 hour and 45 minutes, and then every interval following that:
