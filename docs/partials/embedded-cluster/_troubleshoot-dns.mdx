@@ -26,6 +26,6 @@ To resolve DNS issues in pods, try the following:
 
 * To compare a pod's DNS settings with the host's, run `cat /etc/resolv.conf` on the host and in the pod. If the pod's settings are out of date, restart the pod.
 
-* If the host has many search domains, remove the ones that the host does not need. Alternatively, the application vendor can lower `ndots` for the affected workloads using `dnsConfig` in the pod spec. For more information, see [Pod's DNS Config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) in the Kubernetes documentation.
+* If the host has many search domains, remove the ones that the host does not need. Alternatively, the application vendor can lower `ndots` for the affected workloads using `dnsConfig` in the pod spec. For more information about setting `dnsConfig`, see [Pod's DNS Config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) in the Kubernetes documentation.
 
 * If a name must resolve through a private DNS zone, configure the host's nameservers to resolve that zone. CoreDNS forwards these names to the host's nameservers, so the change persists across reboots and upgrades. Do not rely on edits to the CoreDNS ConfigMap.
