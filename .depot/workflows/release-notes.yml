@@ -27,7 +27,7 @@ on:
         required: true
         type: string
       prev_version:
-        description: Previous version (Replicated SDK only)
+        description: Previous version (required for Embedded Cluster v2 and Replicated SDK; optional for other products)
         required: false
         type: string
       dry_run:

@@ -6,7 +6,7 @@ set -euo pipefail
 : "${VERSION:?VERSION is required}"
 
 generator_ref="024477937d8136f703ebc343777325ece1307ec0"
-base_version=""
+base_version="${PREV_VERSION:-}"
 description=""
 feature_labels="type::feature"
 manual_table="none"
@@ -23,6 +23,7 @@ case "$EVENT_TYPE" in
     slack_webhook="${KOTS_RELEASE_NOTES_SLACK_WEBHOOK:-}"
     ;;
   embedded-cluster-release-notes)
+    : "${PREV_VERSION:?PREV_VERSION is required for Embedded Cluster release notes}"
     source_repo="replicatedhq/embedded-cluster"
     target_file="docs/release-notes/rn-embedded-cluster.md"
     title="$clean_version"
@@ -55,7 +56,6 @@ case "$EVENT_TYPE" in
     target_file="docs/release-notes/rn-replicated-sdk.md"
     title="$VERSION"
     product_name="Replicated SDK"
-    base_version="$PREV_VERSION"
     source_token="${PUBLIC_REPO_TOKEN:-}"
     slack_webhook="${REPLICATED_SDK_RELEASE_NOTES_SLACK_WEBHOOK:-}"
     ;;
