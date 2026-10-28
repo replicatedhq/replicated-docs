@@ -132,6 +132,7 @@ const sidebars = {
             "vendor/releases-creating-releases",
             "vendor/releases-creating-cli",
             "vendor/helm-install-release",
+            "vendor/operator-defining-additional-images",
             "vendor/releases-sharing-license-install-script",
             "reference/linter",
           ],
@@ -352,7 +353,6 @@ const sidebars = {
               label: "Distribute Kubernetes Operators with KOTS",
               items: [
                 "vendor/operator-packaging-about",
-                "vendor/operator-defining-additional-images",
                 "vendor/operator-referencing-images",
               ],
             },
@@ -421,6 +421,7 @@ const sidebars = {
             "enterprise/snapshots-velero-upgrading",
           ],
         },
+        "reference/cron-expressions",
         {
           type: "category",
           label: "Manage Admin Console User Access",
@@ -585,7 +586,6 @@ const sidebars = {
         "reference/template-functions-static-context",
       ],
     },
-    "reference/cron-expressions",
     "reference/replicated-sdk-apis",
     {
       type: "category",
