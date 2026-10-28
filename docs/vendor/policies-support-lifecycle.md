@@ -115,13 +115,6 @@ Replicated aims to add support for new upstream Kubernetes minor versions within
     <td>v2026.05.18-0 and later</td>
     <td>2027 February 28</td>
   </tr>
-  <tr>
-    <td>1.34</td>
-    <td>3.0.0-beta.1 and later, and 2.14.0 and later</td>
-    <td>1.128.3 to 1.131.8</td>
-    <td>v2025.10.08-0 and later</td>
-    <td>2026 October 27</td>
-  </tr>
 </table>
 
 Replicated support for end-customer installations is limited to those installs using a Replicated provided installer product, such as KOTS, kURL or Embedded Cluster, available with the [Business or Enterprise plans](https://www.replicated.com/pricing). Replicated support for direct Helm CLI installs or other vendor provided installers is limited to the successful distribution of the software to the end-customer, as well as any issues with the Replicated SDK if included with the installation. 
@@ -129,4 +122,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 October 19.
+Last modified 2026 October 28.
