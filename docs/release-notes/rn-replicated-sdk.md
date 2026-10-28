@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.19.14
+
+Released on October 28, 2026
+
+### Bug Fixes {#bug-fixes-1-19-14}
+* Fixes an issue where the Replicated SDK pod could exit with "concurrent map iteration and map write" when instance reports ran during pod churn, such as node loss, rollouts or upgrades.
 ## 1.19.12
 
 Released on October 12, 2026
