@@ -189,7 +189,7 @@ spec:
 
 An array of strings that reference images to include in air gap bundles and push to the local registry during installation. For Helm CLI installations, the Vendor Portal adds these images to the image list that it uses to generate the air gap install instructions. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
 
-For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, kURL, or Helm CLI installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
+`additionalImages` is optional. You need it only for images that the Vendor Portal can't find in the container image fields of your rendered workloads, such as images that a Kubernetes Operator pulls at runtime. For more information about when to use `additionalImages` for Embedded Cluster, KOTS existing cluster, kURL, or Helm CLI installations, see [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages) in _Define additional images_.
 
 For Embedded Cluster v3, `additionalImages` is also used to include images in air gap bundles when those images are not directly referenced in your Helm chart templates. This includes images used by preflight checks, such as the Troubleshoot image used to run checks inside the cluster. See [Include preflight images in air gap bundles](/embedded-cluster/v3/embedded-using#preflight-air-gap-images).
 
