@@ -1,0 +1,35 @@
+docs/partials/embedded-cluster/_compliance-scans.mdx
+  s_c9cc987c67d194::t_6e4284fbb9ab32 1-12
+docs/partials/embedded-cluster/_dns-reqs.mdx
+  s_c9cc987c67d194::t_1759b54b1e1de3 1-9
+docs/partials/embedded-cluster/_troubleshoot-dns.mdx
+  s_c9cc987c67d194::t_49caab5135b21f 1-31
+docs/partials/embedded-cluster/v2/_requirements.mdx
+  s_c9cc987c67d194::t_2343cc0226cb8f 15
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_c9cc987c67d194::t_268bfcbbb7242d 15
+embedded-cluster/embedded-troubleshooting.mdx
+  s_c9cc987c67d194::t_044fc0d64280fa 4,222-225
+embedded-cluster/installing-embedded-requirements.mdx
+  s_c9cc987c67d194::t_3664ac8ff27b1a 5-6,27-30,40,110-113
+embedded-cluster_versioned_docs/version-2.0.0/embedded-troubleshooting.mdx
+  s_c9cc987c67d194::t_ab1935886c65bc 4,212-215
+embedded-cluster_versioned_docs/version-2.0.0/installing-embedded-requirements.mdx
+  s_c9cc987c67d194::t_6bf240517927d9 5-6,27-30,40,110-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6b78d2450fd5bc77f067667a385b16c37884157e",
+  "prompts": {},
+  "sessions": {
+    "s_c9cc987c67d194": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_c9cc987c67d194",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
