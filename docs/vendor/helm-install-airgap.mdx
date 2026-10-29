@@ -16,7 +16,11 @@ Before you install, complete the following prerequisites:
 
 * For each Helm chart in your release, add the Replicated HelmChart custom resource. Additionally, if the chart's default values do not expose all the required and optional images that might be needed to install in air-gapped environments, configure the HelmChart resource's `builder` key. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
-   The HelmChart custom resource is what the Vendor Portal uses to build the release's image list. Releases that do not include one have an empty image list, so the air gap install instructions render no image relocation commands and the `.airgap` bundle is built without application images. Configuring the `builder` key ensures that this list includes every image an air-gapped environment needs, including any that the chart's default values do not expose.
+   The HelmChart custom resource is what the Vendor Portal uses to build the release's image list. Releases that do not include one have no chart images in the image list, so the air gap install instructions render no image relocation commands for them. Configuring the `builder` key ensures that this list includes every image an air-gapped environment needs, including any that the chart's default values do not expose.
+
+* (Optional) If your application uses any images that the Vendor Portal can't find in your rendered Helm charts, list them in the `additionalImages` field of the Replicated Application custom resource. This includes images that a Kubernetes Operator pulls at runtime, images passed as data such as in a ConfigMap or an environment variable, and images in templates that can't render with the `builder` values. The Vendor Portal adds these images to the release's image list so that the image relocation commands include them.
+
+   You don't need `additionalImages` if every image appears in a container image field of a template that renders with the `builder` values. For more information, see [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages) in _Define additional images_.
 
 * The customer record in the Vendor Portal must have the following:
 

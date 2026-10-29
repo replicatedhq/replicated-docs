@@ -151,7 +151,7 @@ spec:
 
 An array of additional namespaces as strings that the installer creates in the cluster. One common use case for `additionalNamespaces` is Operators, which often need to be able to manage resources in multiple namespaces in the cluster. 
 
-For Embedded Cluster v3 installations, Embedded Cluster ensures that the private CA ConfigMap exists in each additional namespace. This allows Embedded Cluster to manage resources in the namespace. For more information about the ConfigMap, see [PrivatCACert](/reference/template-functions-static-context#privatecacert).
+For Embedded Cluster v3 installations, Embedded Cluster creates each additional namespace and provisions the registry image pull secret and, when a custom CA bundle is configured, the private CA ConfigMap in each. These resources allow workloads in the namespace to pull application images and trust the custom CA. Embedded Cluster also provisions these resources in the application namespace and namespaces specified by HelmChart resources. Use `additionalNamespaces` for other namespaces your application uses, such as those where an Operator creates workloads. For more information about the ConfigMap, see [PrivateCACert](/reference/template-functions-static-context#privatecacert).
 
 For Embedded Cluster v2, KOTS existing cluster, and kURL installations, KOTS creates a Role and RoleBinding in each namespace. This ensures that the Admin Console has full access to manage resources in the namespace. KOTS also ensures that the application pull secret exists in each namespace, and that this secret has access to pull application images.
 
@@ -174,7 +174,7 @@ spec:
     - namespace2
 ```
 ##### Dynamically-created namespaces
-For dynamically-created namespaces, specify `"*"`.
+For Embedded Cluster v2, KOTS existing cluster, and kURL installations, specify `"*"` for dynamically-created namespaces. Embedded Cluster v3 requires explicit namespace names and skips `"*"`.
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -187,9 +187,9 @@ spec:
 
 ### `additionalImages`
 
-An array of strings that reference images to include in air gap bundles and push to the local registry during installation. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
+An array of strings that reference images to include in air gap bundles and push to the local registry during installation. For Helm CLI installations, the Vendor Portal adds these images to the image list that it uses to generate the air gap install instructions. One common use case for `additionalImages` is Operators, which might need to include additional images that are not referenced until runtime.
 
-For more information about setting `additionalImages` for Embedded Cluster v2, KOTS existing cluster, or kURL installations, see [Defining Additional Images](/vendor/operator-defining-additional-images).
+`additionalImages` is optional. You need it only for images that the Vendor Portal can't find in the container image fields of your rendered workloads, such as images that a Kubernetes Operator pulls at runtime. For more information about when to use `additionalImages` for Embedded Cluster, KOTS existing cluster, kURL, or Helm CLI installations, see [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages) in _Define additional images_.
 
 For Embedded Cluster v3, `additionalImages` is also used to include images in air gap bundles when those images are not directly referenced in your Helm chart templates. This includes images used by preflight checks, such as the Troubleshoot image used to run checks inside the cluster. See [Include preflight images in air gap bundles](/embedded-cluster/v3/embedded-using#preflight-air-gap-images).
 
@@ -214,6 +214,8 @@ spec:
 ### `excludedImages`
 
 An array of strings that reference images to exclude from air gap bundles. Supported for Embedded Cluster v2, Embedded Cluster v3, KOTS existing cluster, and kURL installations.
+
+For Embedded Cluster, `excludedImages` applies only to your application images. It does not exclude images from the Helm charts listed in the Embedded Cluster Config `extensions` field.
 
 #### Limitations
 
