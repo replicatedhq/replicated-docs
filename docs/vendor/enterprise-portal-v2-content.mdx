@@ -245,7 +245,7 @@ Always create a backup before applying updates.
 </Warning>
 ```
 
-**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` when the customer should keep that tab for the browser session. Every `<Tabs>` with the same `groupId` restores that tab after a reload and on other pages. Logout and switching teams clear it. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs are entitlement-gated, and they are not the home page's Linux / Helm choice.
+**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` when the customer should keep that tab for the browser session. A click selects that title on every other `<Tabs>` with the same `groupId` that is already on the page. The same choice is restored after a reload and on other pages. The match is the tab title. Logout and switching teams clear it. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs are entitlement-gated, and they are not the home page's Linux / Helm choice.
 
 ```markdown
 <Tabs groupId="install-method">
