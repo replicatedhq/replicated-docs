@@ -12,6 +12,37 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.19.16
+
+Released on October 29, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.19.16+k8s-1.36</td>
+    <td id="center">2.19.16+k8s-1.35</td>
+    <td id="center">2.19.16+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td colspan="3" id="center">1.134.0</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-19-16}
+
+* Updates KOTS to 1.134.0.
+* Updates SeaweedFS to 4.51.0.
+* Updates the OpenEBS Helm chart to 4.6.2 and the Velero Helm chart to 12.2.1.
+* Updates the OpenEBS, Velero, Velero AWS plugin, and registry container images.
+* Updates internal dependencies, including the Troubleshoot Go library to 0.134.2, the Helm Go library to 3.22.1, and the ORAS Go library to 2.6.4.
+
 ## 2.19.15
 
 Released on October 20, 2026
