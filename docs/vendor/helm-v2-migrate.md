@@ -4,13 +4,13 @@ import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 This topic describes how to migrate existing Replicated KOTS installations to the Replicated HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
 
-<KotsAvailability/>
-
 :::note
 This topic applies only to existing KOTS and Embedded Cluster v2 installations that use HelmChart v1 or standard Kubernetes manifests. If you distribute your application with the Helm CLI or Embedded Cluster v3 and your releases use HelmChart v2, you don't need to complete this migration.
 
 Embedded Cluster v3 supports only HelmChart v2. If you plan to upgrade customers from Embedded Cluster v2 to Embedded Cluster v3, complete this migration on Embedded Cluster v2 first. For more information, see [HelmChart v2 required](/embedded-cluster/v3/embedded-v3-migrate#helmchart-v2-required) in _Upgrade from Embedded Cluster v2_.
 :::
+
+<KotsAvailability/>
 
 ## Migrate to HelmChart v2
 
