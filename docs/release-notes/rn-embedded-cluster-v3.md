@@ -12,6 +12,39 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.17.0-beta.1
+
+Released on October 29, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.17.0-beta.1+k8s-1.36</td>
+    <td id="center">3.17.0-beta.1+k8s-1.35</td>
+    <td id="center">3.17.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+### New Features {#new-features-3-17-0-beta-1}
+* Adds ability to view version history in the Admin Console.
+* Adds support for wildcard (`*`) in the additionalNamespaces list.
+
+### Improvements {#improvements-3-17-0-beta-1}
+* Removes daemon and console services from ports 30080 and 30081 and replaces them with a unified service on port 30000.
+* Clarified why upgrades that skip Kubernetes versions are blocked and how to resolve them in Embedded Cluster.
+
+### Bug Fixes {#bug-fixes-3-17-0-beta-1}
+* New Embedded Cluster installations store pod logs under the configured data directory instead of /var/log/pods.
+* Fixed airgap installation help to show the correct bundle location.
+* The installer now reports missing bundles before making changes.
+* Fixed missing app preflight error details and warnings in the upgrade wizard.
+* Fixes a bug that allowed application using unknown template functions to install instead of failing.
+
 ## 3.16.0-beta.1
 
 Released on October 23, 2026
