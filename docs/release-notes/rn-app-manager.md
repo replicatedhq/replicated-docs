@@ -24,6 +24,18 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.134.0
+
+Released on October 28, 2026
+
+Support for Kubernetes: 1.35, 1.36, and 1.37
+
+### Improvements {#improvements-1-134-0}
+* KOTS now runs supported v1beta3 Troubleshoot specs and warns when a spec cannot run, improving compatibility with releases shared with Embedded Cluster v3.
+* Clarified why upgrades that skip Kubernetes versions are blocked and how to resolve them in Embedded Cluster.
+
+### Bug Fixes {#bug-fixes-1-134-0}
+* Fixes the certificate fingerprint command on the Admin Console TLS warning page, which included the page path and failed to return a fingerprint.
 ## 1.133.0
 
 Released on October 23, 2026

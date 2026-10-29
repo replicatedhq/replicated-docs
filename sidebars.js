@@ -562,31 +562,19 @@ const sidebars = {
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
     {
       type: "category",
-      label: "Custom resources",
+      label: "Vendor API v3",
       items: [
-        "reference/custom-resource-about",
-        "reference/custom-resource-application",
-        "reference/custom-resource-config",
-        "reference/custom-resource-configvalues",
-        // "reference/embedded-config",
-        "reference/custom-resource-helmchart-v2",
-        "reference/custom-resource-helmchart",
-        "reference/custom-resource-lintconfig",
+        {
+          type: "doc",
+          id: "reference/vendor-api-using",
+        },
+        {
+          type: "link",
+          label: "Vendor API v3 Documentation",
+          href: "https://replicated-vendor-api.readme.io/v3/",
+        },
       ],
     },
-    {
-      type: "category",
-      label: "Replicated template functions",
-      items: [
-        "reference/template-functions-about",
-        "reference/template-functions-examples",
-        "reference/template-functions-config-context",
-        "reference/template-functions-kurl-context",
-        "reference/template-functions-license-context",
-        "reference/template-functions-static-context",
-      ],
-    },
-    "reference/replicated-sdk-apis",
     {
       type: "category",
     label: "Replicated CLI", // This label is generated. Do not edit.
@@ -740,9 +728,36 @@ const sidebars = {
         // This list is generated. Do not edit.
       ],
     },
+    "reference/replicated-sdk-apis",
     {
       type: "category",
-      label: "KOTS CLI",
+      label: "Custom resources",
+      items: [
+        "reference/custom-resource-about",
+        "reference/custom-resource-application",
+        "reference/custom-resource-config",
+        "reference/custom-resource-configvalues",
+        // "reference/embedded-config",
+        "reference/custom-resource-helmchart-v2",
+        "reference/custom-resource-helmchart",
+        "reference/custom-resource-lintconfig",
+      ],
+    },
+    {
+      type: "category",
+      label: "Replicated template functions",
+      items: [
+        "reference/template-functions-about",
+        "reference/template-functions-examples",
+        "reference/template-functions-config-context",
+        "reference/template-functions-kurl-context",
+        "reference/template-functions-license-context",
+        "reference/template-functions-static-context",
+      ],
+    },
+    {
+      type: "category",
+      label: "KOTS CLI (existing cluster and kURL)",
       items: [
         "reference/kots-cli-getting-started",
         "reference/kots-cli-global-flags",
@@ -836,18 +851,50 @@ const sidebars = {
         },
       ],
     },
+
+    // PLATFORM SECURITY AND TRUST
+    { type: "html", value: "<h5>Platform security and trust</h5>", defaultStyle: true },
+    {
+      type: "link",
+      label: "Status Page",
+      href: "https://status.replicated.com/",
+    },
+    {
+      type: "link",
+      label: "Trust Center",
+      href: "https://trust.replicated.com/",
+    },
+    {
+      type: "link",
+      label: "Security Development Lifecycle",
+      href: "https://www.replicated.com/security/",
+    },
+    "vendor/policies-infrastructure-and-subprocessors",
+    "vendor/data-availability",
+    "vendor/policies-support-lifecycle",
+    "vendor/firewall-openings",
     {
       type: "category",
-      label: "Vendor API v3",
+      label: "Product security",
       items: [
+        "vendor/policies-vulnerability-patch",
+        "vendor/policies-data-transmission",
+        "vendor/packaging-private-registry-security",
+        "vendor/vendor-password-integrity",
         {
-          type: "doc",
-          id: "reference/vendor-api-using",
-        },
-        {
-          type: "link",
-          label: "Vendor API v3 Documentation",
-          href: "https://replicated-vendor-api.readme.io/v3/",
+          type: "category",
+          label: "Verify Replicated component artifacts",
+          items: [
+            {
+              type: "doc",
+              id: "vendor/replicated-artifacts-validating",
+              label: "Overview",
+            },
+            "vendor/sbom-validating",
+            "vendor/image-provenance-validating",
+            "vendor/embedded-cluster-v3-release-files-validating",
+            "vendor/troubleshoot-cli-provenance-validating",
+          ],
         },
       ],
     },
@@ -863,52 +910,6 @@ const sidebars = {
       type: "link",
       href: "https://troubleshoot.sh/docs/collect/",
       label: "Troubleshoot.sh",
-    },
-
-    // POLICIES
-    { type: "html", value: "<h5>Platform overview</h5>", defaultStyle: true },
-    'vendor/firewall-openings',
-    {
-      type: "category",
-      label: "Replicated policies",
-      items: [
-        "vendor/policies-vulnerability-patch",
-        "vendor/policies-support-lifecycle",
-        "vendor/policies-data-transmission",
-        "vendor/policies-infrastructure-and-subprocessors",
-      ],
-    },
-    {
-      type: "category",
-      label: "Replicated data storage",
-      items: ["vendor/data-availability"],
-    },
-    {
-      type: "category",
-      label: "Security at Replicated",
-      items: [
-        {
-          type: "link",
-          label: "Trust Center",
-          href: "https://trust.replicated.com/",
-        },
-        {
-          type: "link",
-          label: "Status Page",
-          href: "https://status.replicated.com/",
-        },
-        {
-          type: "link",
-          label: "Security at Replicated",
-          href: "https://www.replicated.com/security/",
-        },
-        "vendor/sbom-validating",
-        "vendor/image-provenance-validating",
-        "vendor/embedded-cluster-v3-release-files-validating",
-        "vendor/troubleshoot-cli-provenance-validating",
-        "vendor/vendor-password-integrity",
-        "vendor/packaging-private-registry-security",
-      ],
     },
   ],
 

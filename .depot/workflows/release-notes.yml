@@ -27,7 +27,11 @@ on:
         required: true
         type: string
       prev_version:
-        description: Previous version (Replicated SDK only)
+        description: Previous version (required for Embedded Cluster v2 and Replicated SDK; optional for other products)
+        required: false
+        type: string
+      custom_params:
+        description: 'Product-specific release-notes parameters as a JSON object, e.g. {"kubernetes_versions":["1.36.4","1.35.8"],"kots_version":"1.134.0"}'
         required: false
         type: string
       dry_run:
@@ -58,6 +62,8 @@ jobs:
       EVENT_TYPE: ${{ github.event.action || inputs.event_type }}
       VERSION: ${{ github.event.client_payload.version || inputs.version }}
       PREV_VERSION: ${{ github.event.client_payload.prev_version || inputs.prev_version }}
+      # Serialize dispatch objects; manual dispatch supplies a JSON string.
+      CUSTOM_PARAMS: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload.custom_params) || inputs.custom_params }}
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
       GH_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
       PUBLIC_REPO_TOKEN: ${{ secrets.REPLICATED_GH_PAT }}
