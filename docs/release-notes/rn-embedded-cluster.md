@@ -791,8 +791,7 @@ Released on December 17, 2025
   </tr>
 </table>
 
-### Improvements {#improvements-2-13-0}
-* Disable outbound traffic attempts from k0s to `updates.k0sproject.io`.
+### Improvements {#improvements-2-13-2}
 * Add a new `<installer> admin-console update-tls` CLI subcommand to update Admin Console TLS certificate and key.
 
 ### Bug fixes {#bug-fixes-2-13-2}
@@ -823,6 +822,9 @@ Released on December 9, 2025
 
 ### New features {#new-features-2-13-0}
 * Adds the ability to configure custom Velero plugins through the Embedded Cluster config specification.
+
+### Improvements {#improvements-2-13-0}
+* Disables outbound traffic attempts from k0s to `updates.k0sproject.io` on installations that use Kubernetes 1.32 or later.
 
 ### Bug fixes {#bug-fixes-2-13-0}
 * Fixes an issue where YAML files with a leading document separator fail to parse.
