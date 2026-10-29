@@ -147,8 +147,8 @@ The following table shows which custom resources apply to each installation meth
         <td>Preflight</td>
         <td>Yes. Customers run preflight checks with the preflight kubectl plugin.</td>
         <td><code>v1beta3</code> only</td>
-        <td><code>v1beta2</code>. <code>v1beta3</code> is supported in Embedded Cluster v2 [EC_V2_VERSION] and later.</td>
-        <td><code>v1beta2</code>. <code>v1beta3</code> is supported in KOTS [KOTS_VERSION] and later.</td>
+        <td><code>v1beta2</code>. <code>v1beta3</code> is supported in Embedded Cluster v2 2.19.16 and later.</td>
+        <td><code>v1beta2</code>. <code>v1beta3</code> is supported in KOTS v1.134.0 and later.</td>
     </tr>
     <tr>
         <td>Redactor</td>

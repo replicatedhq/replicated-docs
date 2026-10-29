@@ -189,12 +189,12 @@ To update a release from Embedded Cluster v2 to v3:
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
    - You do not need to update the API version of support bundle or Redactor specs. They continue to work with `v1beta2` in Embedded Cluster v3.
 
-   Replicated recommends that you use a single `troubleshoot.sh/v1beta3` preflight spec. `v1beta3` is the latest preflight API version. Embedded Cluster v3 requires it, and KOTS [KOTS_VERSION] and later and Embedded Cluster v2 [EC_V2_VERSION] and later also support it.
+   Replicated recommends that you use a single `troubleshoot.sh/v1beta3` preflight spec. `v1beta3` is the latest preflight API version. Embedded Cluster v3 requires it, and KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support it.
 
-   If your release supports both KOTS and Embedded Cluster v3 installations, a release that includes both a `v1beta2` spec and a `v1beta3` spec also works. Embedded Cluster v3 runs only the `v1beta3` spec. KOTS [KOTS_VERSION] and later run the checks from both specs. Earlier KOTS versions run only the `v1beta2` spec.
+   If your release supports both KOTS and Embedded Cluster v3 installations, a release that includes both a `v1beta2` spec and a `v1beta3` spec also works. Embedded Cluster v3 runs only the `v1beta3` spec. KOTS v1.134.0 and later run the checks from both specs. Earlier KOTS versions run only the `v1beta2` spec.
 
    :::note
-   KOTS versions earlier than [KOTS_VERSION] and Embedded Cluster v2 versions earlier than [EC_V2_VERSION] skip `v1beta3` preflight specs. If your customers use those versions, keep a `v1beta2` spec in the release until they upgrade.
+   KOTS versions earlier than v1.134.0 and Embedded Cluster v2 versions earlier than 2.19.16 skip `v1beta3` preflight specs. If your customers use those versions, keep a `v1beta2` spec in the release until they upgrade.
    :::
 
    For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
