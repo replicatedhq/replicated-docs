@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.29-1
+
+Released on October 29, 2026
+
+### New Features {#new-features-v2026-10-29-1}
+* The Enterprise Portal Instances and Updates page can now show Helm upgrade commands for a specific Kubernetes namespace. Add `helmNamespace="my-namespace"` to `<InstancesAndUpdates>` and the `helm upgrade` commands on Helm instance cards include `--namespace`.
 ## v2026.10.28-1
 
 Released on October 28, 2026
