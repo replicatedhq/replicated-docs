@@ -1,0 +1,31 @@
+docs/partials/embedded-cluster/_compliance-scans.mdx
+  s_c4095d7bd73e5b::t_b8a16a34b407d9 7
+docs/partials/embedded-cluster/_dns-reqs.mdx
+  s_c4095d7bd73e5b::t_991686b5392829 1,5,7-9
+docs/partials/embedded-cluster/_troubleshoot-dns.mdx
+  s_c4095d7bd73e5b::t_6cedd53164c662 1,11,15,17,19,25,27,29,31-33,37-43,47
+docs/partials/embedded-cluster/_troubleshoot-security-agents.mdx
+  s_c4095d7bd73e5b::t_89aafe02954023 1,15,19
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_c4095d7bd73e5b::t_ae07256200488d 33
+embedded-cluster/embedded-troubleshooting.mdx
+  s_c4095d7bd73e5b::t_1d033a369af87f 222-223
+embedded-cluster/installing-embedded-requirements.mdx
+  s_c4095d7bd73e5b::t_e3fe1511a51c75 114-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8a7ce0286a64b61e8a62552dec46e69aa937e589",
+  "prompts": {},
+  "sessions": {
+    "s_c4095d7bd73e5b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_c4095d7bd73e5b",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
