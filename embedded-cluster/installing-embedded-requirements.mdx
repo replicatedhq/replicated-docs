@@ -111,3 +111,5 @@ Embedded Cluster opens the following ports in the default zone:
 ## Compliance scans on the host {#compliance-scans}
 
 <ComplianceScans/>
+
+Embedded Cluster v3 also links `/var/lib/ec/kubelet` to `DATA_DIR/k0s/kubelet`, so scanners might report the same kubelet files under `/var/lib/ec/kubelet`.
