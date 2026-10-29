@@ -104,8 +104,8 @@ The following table shows which custom resources apply to each installation meth
     </tr>
     <tr>
         <td>[Application](custom-resource-application)</td>
-        <td>Optional (<a href="#cr-note-1">note 1</a>)</td>
-        <td>Partial (<a href="#cr-note-2">note 2</a>)</td>
+        <td>Optional. See [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages).</td>
+        <td>Partial. See [Changes to Application custom resource fields](/embedded-cluster/v3/embedded-v3-migrate#application-cr-changes).</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
@@ -119,13 +119,13 @@ The following table shows which custom resources apply to each installation meth
     <tr>
         <td>[ConfigValues](custom-resource-configvalues)</td>
         <td>No</td>
-        <td>With the <code>--config-values</code> flag (<a href="#cr-note-3">note 3</a>)</td>
+        <td>With the <code>--config-values</code> flag only</td>
         <td>With the <code>--config-values</code> flag</td>
         <td>Yes</td>
     </tr>
     <tr>
         <td>[HelmChart v2](custom-resource-helmchart-v2)</td>
-        <td>Recommended (<a href="#cr-note-4">note 4</a>)</td>
+        <td>Recommended. See [builder](custom-resource-helmchart-v2#builder).</td>
         <td>Required</td>
         <td>Yes</td>
         <td>Yes</td>
@@ -139,29 +139,29 @@ The following table shows which custom resources apply to each installation meth
     </tr>
     <tr>
         <td>[Preflight](custom-resource-preflight)</td>
-        <td>Yes (<a href="#cr-note-5">note 5</a>)</td>
+        <td>Yes</td>
         <td><code>v1beta3</code> only</td>
         <td><code>v1beta2</code>, and <code>v1beta3</code> in 2.19.16 and later</td>
         <td><code>v1beta2</code>, and <code>v1beta3</code> in v1.134.0 and later</td>
     </tr>
     <tr>
         <td>[Redactor](custom-resource-redactor)</td>
-        <td>In a labeled Secret (<a href="#cr-note-6">note 6</a>)</td>
+        <td>In a labeled Secret. See [Redactor](custom-resource-redactor).</td>
         <td>Yes</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
     <tr>
         <td>[Support Bundle](custom-resource-preflight)</td>
-        <td>In a labeled Secret (<a href="#cr-note-6">note 6</a>)</td>
-        <td>In a labeled Secret (<a href="#cr-note-6">note 6</a>)</td>
+        <td>In a labeled Secret. See [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).</td>
+        <td>In a labeled Secret. See [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
     <tr>
         <td>[Backup](https://velero.io/docs/v1.17/api-types/backup/)</td>
         <td>No</td>
-        <td>Yes (<a href="#cr-note-7">note 7</a>)</td>
+        <td>Yes. See [Back up and restore Embedded Cluster v3](/embedded-cluster/v3/embedded-disaster-recovery-v3).</td>
         <td>Yes</td>
         <td>Yes</td>
     </tr>
@@ -169,7 +169,7 @@ The following table shows which custom resources apply to each installation meth
         <td>[Restore](https://velero.io/docs/v1.17/api-types/restore/)</td>
         <td>No</td>
         <td>Yes</td>
-        <td>With a Backup (<a href="#cr-note-8">note 8</a>)</td>
+        <td>Only when the release also includes a Backup</td>
         <td>No</td>
     </tr>
     <tr>
@@ -197,20 +197,3 @@ The following table shows which custom resources apply to each installation meth
 
 The LintConfig custom resource applies to release linting, not to installation, so it isn't included in this table. For more information, see [LintConfig](custom-resource-lintconfig).
 
-### Notes {#notes}
-
-1. <a id="cr-note-1"></a>**Application for Helm CLI:** Optional. Use `additionalImages` to add images that the HelmChart `builder` key can't render, such as images that a Kubernetes Operator pulls at runtime, to the list of images for air gap installations. Use `excludedImages` to remove images from that list. For more information, see [When to use additionalImages](/vendor/operator-defining-additional-images#when-to-use-additionalimages) in _Define additional images_.
-
-1. <a id="cr-note-2"></a>**Application for Embedded Cluster v3:** Embedded Cluster v3 uses the `title`, `icon`, `releaseNotes`, `statusInformers`, `additionalNamespaces`, `additionalImages`, `excludedImages`, and `proxyPublicImages` fields. `additionalNamespaces` requires explicit namespace names; `"*"` is not supported. For more information, see [Changes to Application custom resource fields](/embedded-cluster/v3/embedded-v3-migrate#application-cr-changes) in _Upgrade from Embedded Cluster v2_.
-
-1. <a id="cr-note-3"></a>**ConfigValues for Embedded Cluster v3:** Embedded Cluster v3 reads ConfigValues only from the `--config-values` flag. A ConfigValues file in the release is not used.
-
-1. <a id="cr-note-4"></a>**HelmChart v2 for Helm CLI:** Recommended. The Vendor Portal uses the `builder` key to build the list of images for air gap installations, and uses `weight` to order the Helm installation steps in the Enterprise Portal. Template functions in the HelmChart custom resource are not rendered for Helm CLI installations. For more information, see [builder](custom-resource-helmchart-v2#builder) in _HelmChart v2_.
-
-1. <a id="cr-note-5"></a>**Preflight for Helm CLI:** Customers run preflight checks with the preflight kubectl plugin.
-
-1. <a id="cr-note-6"></a>**Labeled Secret:** Package the spec in a Secret in your Helm chart, labeled `troubleshoot.sh/kind: support-bundle`. Put a Redactor spec in the `redactor-spec` data key. For more information, see [Redactor](custom-resource-redactor) and [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
-
-1. <a id="cr-note-7"></a>**Backup for Embedded Cluster v3:** The Backup custom resource defines the application backup policy. For more information, see [Back up and restore Embedded Cluster v3](/embedded-cluster/v3/embedded-disaster-recovery-v3).
-
-1. <a id="cr-note-8"></a>**Restore for Embedded Cluster v2:** Embedded Cluster v2 uses the Restore custom resource only when the release also includes a Backup custom resource.
