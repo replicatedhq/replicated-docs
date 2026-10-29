@@ -44,7 +44,7 @@ For more information about the Konnectivity service, see [Set up Konnectivity se
 <FirewallOpeningsEc/>
 
 :::note
-If you monitor the outbound traffic attempts made by Embedded Cluster, you might see an attempted call to `updates.k0sproject.io` approximately every 30 minutes. These calls are made by a feature of the upstream k0s project called `update-prober`, which checks for k0s updates. Embedded Cluster does not use the `update-prober` feature and blocking it in your firewall rules will not affect Replicated product functionality.
+Embedded Cluster 2.13.0 and later disable the k0s `update-prober` feature, which checks `updates.k0sproject.io` for k0s updates, on installations that use Kubernetes 1.32 or later. The feature is disabled only on nodes that are installed or joined with one of these versions. Upgrading does not disable it on existing nodes. Nodes where the feature is still enabled call `updates.k0sproject.io` approximately every 30 minutes. Embedded Cluster does not use the `update-prober` feature, and blocking these calls in your firewall does not affect Replicated product functionality.
 :::
 
 ## About firewalld configuration
