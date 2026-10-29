@@ -225,19 +225,14 @@ const config = {
             position: 'left',
             items: [
               {
-                type: 'doc',
-                docId: 'reference/custom-resource-about',
-                label: 'Custom resources',
+                type: 'html',
+                value: 'For vendors',
+                className: 'dropdown__heading',
               },
               {
                 type: 'doc',
-                docId: 'reference/template-functions-about',
-                label: 'Template functions',
-              },
-              {
-                type: 'doc',
-                docId: 'reference/kots-cli-getting-started',
-                label: 'KOTS CLI',
+                docId: 'reference/vendor-api-using',
+                label: 'Vendor API v3',
               },
               {
                 type: 'doc',
@@ -251,10 +246,33 @@ const config = {
               },
               {
                 type: 'doc',
-                docId: 'reference/vendor-api-using',
-                label: 'Vendor API v3',
+                docId: 'reference/custom-resource-about',
+                label: 'Custom resources',
               },
-            ],  
+              {
+                type: 'doc',
+                docId: 'reference/template-functions-about',
+                label: 'Template functions',
+              },
+              {
+                type: 'html',
+                value: 'Installer CLIs',
+                className: 'dropdown__heading',
+              },
+              {
+                to: '/embedded-cluster/v3/embedded-cluster-completion',
+                label: 'Embedded Cluster v3',
+              },
+              {
+                to: '/embedded-cluster/v2/embedded-cluster-admin-console',
+                label: 'Embedded Cluster v2',
+              },
+              {
+                type: 'doc',
+                docId: 'reference/kots-cli-getting-started',
+                label: 'KOTS (existing cluster and kURL)',
+              },
+            ],
           },
         ],
       },

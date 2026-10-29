@@ -562,31 +562,19 @@ const sidebars = {
     { type: "html", value: "<h5>Reference</h5>", defaultStyle: true },
     {
       type: "category",
-      label: "Custom resources",
+      label: "Vendor API v3",
       items: [
-        "reference/custom-resource-about",
-        "reference/custom-resource-application",
-        "reference/custom-resource-config",
-        "reference/custom-resource-configvalues",
-        // "reference/embedded-config",
-        "reference/custom-resource-helmchart-v2",
-        "reference/custom-resource-helmchart",
-        "reference/custom-resource-lintconfig",
+        {
+          type: "doc",
+          id: "reference/vendor-api-using",
+        },
+        {
+          type: "link",
+          label: "Vendor API v3 Documentation",
+          href: "https://replicated-vendor-api.readme.io/v3/",
+        },
       ],
     },
-    {
-      type: "category",
-      label: "Replicated template functions",
-      items: [
-        "reference/template-functions-about",
-        "reference/template-functions-examples",
-        "reference/template-functions-config-context",
-        "reference/template-functions-kurl-context",
-        "reference/template-functions-license-context",
-        "reference/template-functions-static-context",
-      ],
-    },
-    "reference/replicated-sdk-apis",
     {
       type: "category",
     label: "Replicated CLI", // This label is generated. Do not edit.
@@ -740,9 +728,36 @@ const sidebars = {
         // This list is generated. Do not edit.
       ],
     },
+    "reference/replicated-sdk-apis",
     {
       type: "category",
-      label: "KOTS CLI",
+      label: "Custom resources",
+      items: [
+        "reference/custom-resource-about",
+        "reference/custom-resource-application",
+        "reference/custom-resource-config",
+        "reference/custom-resource-configvalues",
+        // "reference/embedded-config",
+        "reference/custom-resource-helmchart-v2",
+        "reference/custom-resource-helmchart",
+        "reference/custom-resource-lintconfig",
+      ],
+    },
+    {
+      type: "category",
+      label: "Replicated template functions",
+      items: [
+        "reference/template-functions-about",
+        "reference/template-functions-examples",
+        "reference/template-functions-config-context",
+        "reference/template-functions-kurl-context",
+        "reference/template-functions-license-context",
+        "reference/template-functions-static-context",
+      ],
+    },
+    {
+      type: "category",
+      label: "KOTS CLI (existing cluster and kURL)",
       items: [
         "reference/kots-cli-getting-started",
         "reference/kots-cli-global-flags",
@@ -833,21 +848,6 @@ const sidebars = {
             "reference/kots-cli-velero-index",
             "reference/kots-cli-velero-print-fs-instructions",
           ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Vendor API v3",
-      items: [
-        {
-          type: "doc",
-          id: "reference/vendor-api-using",
-        },
-        {
-          type: "link",
-          label: "Vendor API v3 Documentation",
-          href: "https://replicated-vendor-api.readme.io/v3/",
         },
       ],
     },
