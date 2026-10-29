@@ -7,6 +7,8 @@ This topic describes how to migrate existing Replicated KOTS installations to th
 <KotsAvailability/>
 
 :::note
+This topic applies only to existing KOTS and Embedded Cluster v2 installations that use HelmChart v1 or standard Kubernetes manifests. If you distribute your application with the Helm CLI or Embedded Cluster v3 and your releases use HelmChart v2, you don't need to complete this migration.
+
 Embedded Cluster v3 supports only HelmChart v2. If you plan to upgrade customers from Embedded Cluster v2 to Embedded Cluster v3, complete this migration on Embedded Cluster v2 first. For more information, see [HelmChart v2 required](/embedded-cluster/v3/embedded-v3-migrate#helmchart-v2-required) in _Upgrade from Embedded Cluster v2_.
 :::
 

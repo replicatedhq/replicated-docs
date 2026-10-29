@@ -111,6 +111,8 @@ To use Embedded Cluster v3, package your application as one or more Helm charts.
 
 Embedded Cluster v3 supports installing Helm charts with a corresponding HelmChart v2 custom resource (API version `v1beta2`). It does not support HelmChart v1. Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR — the extension schema in the Config serves the same purpose.
 
+If your releases already use HelmChart v2, or you are starting with Embedded Cluster v3 or the Helm CLI, no migration is required. The rest of this section applies only to existing releases that use HelmChart v1.
+
 HelmChart v1 (`kots.io/v1beta1`) is deprecated. HelmChart v2 has been available since KOTS v1.99.0. If your release still uses HelmChart v1, migrate to HelmChart v2 on Embedded Cluster v2 before you upgrade any installation to Embedded Cluster v3. Every customer must upgrade to a release that uses HelmChart v2 before they upgrade to Embedded Cluster v3.
 
 If your HelmChart v1 custom resources use `useHelmInstall: false`, the migration requires two required releases: one that adds the `kots.io/keep` annotation to your resources, and one that switches to HelmChart v2 with the Helm `--take-ownership` flag. Customers must upgrade to both releases in order.
