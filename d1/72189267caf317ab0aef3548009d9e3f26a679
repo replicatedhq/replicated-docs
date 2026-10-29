@@ -1,0 +1,19 @@
+docs/vendor/replicated-artifacts-validating.md
+  s_7278a943343d64::t_85838ae43bebbf 22-23,29-33,39,50-58,63-69,76,78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d172189267caf317ab0aef3548009d9e3f26a679",
+  "prompts": {},
+  "sessions": {
+    "s_7278a943343d64": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_7278a943343d64",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

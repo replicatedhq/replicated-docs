@@ -1,0 +1,21 @@
+docs/vendor/replicated-artifacts-validating.md
+  s_5f23bef34dc6ed::t_63004c1fa4c24f 1-78
+sidebars.js
+  s_5f23bef34dc6ed::t_b0a426a933cf2c 888-892
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7346a9f4a368a97476118a63c7794826e37ac185",
+  "prompts": {},
+  "sessions": {
+    "s_5f23bef34dc6ed": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5f23bef34dc6ed",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
