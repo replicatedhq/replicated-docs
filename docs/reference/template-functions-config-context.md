@@ -402,7 +402,7 @@ For more information, see [values](/reference/custom-resource-helmchart-v2#value
 
 ## HelmValue
 
-> Introduced in KOTS v1.133.0
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
 
 ```go
 func HelmValue(path string) string
@@ -445,7 +445,7 @@ spec:
 
 ## ReplicatedImageName
 
-> Introduced in KOTS v1.133.0
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
 
 ```go
 func ReplicatedImageName(image string, noProxy ...bool) string
@@ -484,7 +484,7 @@ spec:
 
 ## ReplicatedImageRegistry
 
-> Introduced in KOTS v1.133.0
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
 
 ```go
 func ReplicatedImageRegistry(registry string, noProxy ...bool) string
