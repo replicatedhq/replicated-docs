@@ -7,7 +7,7 @@ You can include custom resources in your releases to configure how Replicated bu
 Custom resources are packaged with your release but are _not_ deployed to the cluster. They are read by the Replicated Vendor Portal, the Replicated installers (Embedded Cluster, KOTS, and kURL), and the Troubleshoot kubectl plugins. Which custom resources apply depends on how your customers install your application. See [Supported installation methods](#supported-installation-methods).
 
 :::note
-Several custom resources use the `kots.io` API group, such as the `kots.io/v1beta2` HelmChart custom resource. The `kots.io` name is historical. These custom resources are not limited to KOTS installations. For example, Embedded Cluster v3 requires the HelmChart custom resource, and the Vendor Portal uses the HelmChart `builder` key to generate the list of images for Helm air gap installations.
+Several custom resources use the `kots.io` API group, such as the `kots.io/v1beta2` HelmChart custom resource. The `kots.io` name is a historical naming convention. These custom resources are not limited to KOTS installations. For example, Embedded Cluster v3 requires the HelmChart custom resource, and the Vendor Portal uses the HelmChart `builder` key to generate the list of images for Helm air gap installations.
 :::
 
 ## Custom resources
