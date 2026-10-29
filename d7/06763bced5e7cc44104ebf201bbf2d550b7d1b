@@ -1,0 +1,27 @@
+docs/partials/embedded-cluster/_compliance-scans.mdx
+  s_9e6288c22a2858::t_c2b4eed5326460 1
+docs/partials/embedded-cluster/_dns-reqs.mdx
+  s_9e6288c22a2858::t_bb681b6ef9085b 7
+docs/partials/embedded-cluster/_troubleshoot-dns.mdx
+  s_9e6288c22a2858::t_43399e5ab24e22 13-14,19-24,35-38
+embedded-cluster/installing-embedded-requirements.mdx
+  s_9e6288c22a2858::t_20e283427f508c 40
+embedded-cluster_versioned_docs/version-2.0.0/installing-embedded-requirements.mdx
+  s_9e6288c22a2858::t_ed2884e6b05a9e 40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d706763bced5e7cc44104ebf201bbf2d550b7d1b",
+  "prompts": {},
+  "sessions": {
+    "s_9e6288c22a2858": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9e6288c22a2858",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
