@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.30-0
+
+Released on October 30, 2026
+
+### New Features {#new-features-v2026-10-30-0}
+* In the Enterprise Portal, a Tabs groupId selects that tab title on every other Tabs with the same id already on the page, and restores it for the browser session on other pages. The match is the tab title. OptionSelectors with the same storageKey switch together on the page when either is clicked.
 ## v2026.10.28-1
 
 Released on October 28, 2026
