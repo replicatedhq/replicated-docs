@@ -21,6 +21,12 @@ Released on October 30, 2026
 
 ### New Features {#new-features-v2026-10-30-1}
 * Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in.
+## v2026.10.30-0
+
+Released on October 30, 2026
+
+### New Features {#new-features-v2026-10-30-0}
+* In the new Enterprise Portal, `<Tabs>` accepts a `groupId`. Tabs that share a `groupId` switch together, and the customer's choice carries to other pages in the same browser tab. `<OptionSelector>` components that share a `storageKey` also switch together on the page.
 ## v2026.10.28-1
 
 Released on October 28, 2026
