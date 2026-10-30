@@ -124,18 +124,17 @@ Secrets include the license, the application's configuration values (including g
 
 * The Kubernetes datastore under `DATA_DIR/k0s`, which holds Kubernetes Secrets. After installation, Embedded Cluster keeps the application's configuration values in Secrets, including the values used for each earlier deployment.
 * `/etc/embedded-cluster`, which holds installation settings, including registry credentials and the admin console TLS private key.
-* `DATA_DIR`, which holds the admin console password hash and a key that nodes use to authenticate to each other.
+* `DATA_DIR`, which holds the admin console password hash and the key that signs Embedded Cluster API tokens.
 * `DATA_DIR/revisions`, which holds the license and the configuration values that Embedded Cluster saved during installation, before Kubernetes was running.
 
 In this list, `DATA_DIR` is the Embedded Cluster data directory.
 
-### Join and upgrade bundles
+### Files left on a node after it joins
 
-Join and upgrade bundles contain the license, the application's configuration values, the admin console password hash, and the key that nodes use to authenticate to each other. A join bundle also contains a token that lets a host join the cluster until the token expires. Treat bundles as secrets:
+To add a node, you run commands on the new node that download a `.tar.gz` file and extract it. The file contains the license, the application's configuration values, the admin console password hash and TLS private key, the key that signs Embedded Cluster API tokens, installation settings including registry credentials, and a token for joining the cluster.
 
-* Store each bundle where only the administrators who use it can read it.
-* Delete the bundle after the node joins or upgrades.
+When `node join` succeeds, it removes the files it extracted, but not the `.tar.gz` file. Delete the `.tar.gz` file after the node joins. If `node join` fails, also delete the extracted `assets` directory once you no longer need to retry.
 
 ### Backups
 
-When disaster recovery is configured, backups include Kubernetes Secrets, both the application's own Secrets and the Secrets that Embedded Cluster uses to restore the installation. Those hold the license, the application's configuration values, the admin console password hash, and installation settings. The repository password encrypts the volume data in a backup, but not the Kubernetes resources, so these Secrets are stored in the backup storage without encryption. Restrict access to the backup storage, and use the storage provider's encryption if your security policy requires backups to be encrypted. For more information about the repository password, see [Preserve the repository password](embedded-disaster-recovery-v3#preserve-the-repository-password).
+When disaster recovery is configured, backups include Kubernetes Secrets, both the application's own Secrets and the Secrets that Embedded Cluster uses to restore the installation. Those hold the license, the application's configuration values, the admin console password hash, and installation settings. The repository password encrypts the volume data in a backup, but not the Kubernetes resources, so these Secrets are stored in the backup storage without encryption. Restrict access to the backup storage, and use the storage provider's encryption if your security policy requires backups to be encrypted. For more information about the repository password, see [Preserve the repository password](embedded-disaster-recovery-v3#preserve-the-repository-password) in _Back up and restore Embedded Cluster v3_.
