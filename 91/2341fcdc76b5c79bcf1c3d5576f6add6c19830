@@ -1,0 +1,23 @@
+docs/release-notes/rn-embedded-cluster.md
+  s_018664af94d7d2::t_4a107d56ef3792 794,826-828
+embedded-cluster/installing-embedded-requirements.mdx
+  s_018664af94d7d2::t_6e62c465f09618 47
+embedded-cluster_versioned_docs/version-2.0.0/installing-embedded-requirements.mdx
+  s_018664af94d7d2::t_14a8260d2cd292 47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "912341fcdc76b5c79bcf1c3d5576f6add6c19830",
+  "prompts": {},
+  "sessions": {
+    "s_018664af94d7d2": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_018664af94d7d2",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

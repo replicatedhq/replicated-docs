@@ -1,0 +1,19 @@
+docs/reference/template-functions-config-context.md
+  s_19a4c1eeb1b3df::t_1e04d631aef83b 405,448,487
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7274f0f4c16641cfbc426f0b4a581a9d0081e35d",
+  "prompts": {},
+  "sessions": {
+    "s_19a4c1eeb1b3df": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_19a4c1eeb1b3df",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

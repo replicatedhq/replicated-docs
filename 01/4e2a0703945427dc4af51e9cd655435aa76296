@@ -1,0 +1,21 @@
+docs/vendor/helm-v2-migrate.md
+  s_1a884f9a45a0a6::t_800fdc5f268c83 13-14
+embedded-cluster/embedded-v3-migrate.mdx
+  s_1a884f9a45a0a6::t_8648836d43bfed 112,114,116
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "014e2a0703945427dc4af51e9cd655435aa76296",
+  "prompts": {},
+  "sessions": {
+    "s_1a884f9a45a0a6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_1a884f9a45a0a6",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

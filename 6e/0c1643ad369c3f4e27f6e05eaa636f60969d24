@@ -1,0 +1,25 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  s_6e95ab71cc9004::t_68355c6adfeff6 2
+docs/reference/custom-resource-about.md
+  s_6e95ab71cc9004::t_640a57c5a10714 150-151
+docs/vendor/preflight-support-bundle-about.mdx
+  s_6e95ab71cc9004::t_a8bf2d4362d624 79
+embedded-cluster/embedded-v3-migrate.mdx
+  s_6e95ab71cc9004::t_0ceec201015b0b 192,194,197
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6e0c1643ad369c3f4e27f6e05eaa636f60969d24",
+  "prompts": {},
+  "sessions": {
+    "s_6e95ab71cc9004": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_6e95ab71cc9004",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
