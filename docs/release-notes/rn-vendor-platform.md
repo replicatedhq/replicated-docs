@@ -9,6 +9,24 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.10.30-2
+
+Released on October 30, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-30-2}
+* Helm install instructions now use the proxy URL entered for a proxy install.
+## v2026.10.30-1
+
+Released on October 30, 2026
+
+### New Features {#new-features-v2026-10-30-1}
+* Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in.
+## v2026.10.30-0
+
+Released on October 30, 2026
+
+### New Features {#new-features-v2026-10-30-0}
+* In the new Enterprise Portal, `<Tabs>` accepts a `groupId`. Tabs that share a `groupId` switch together, and the customer's choice carries to other pages in the same browser tab. `<OptionSelector>` components that share a `storageKey` also switch together on the page.
 ## v2026.10.29-4
 
 Released on October 29, 2026
@@ -392,37 +410,14 @@ Released on October 1, 2026
 
 Released on September 30, 2026
 
-### New Features {#new-features-v2026-09-30-1}
-* Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
-
 ### Improvements {#improvements-v2026-09-30-1}
 * KOTS and kURL headless install and update instructions now include downloadable command-line tools, and a service account can download the application air gap bundle.
 
-### Bug Fixes {#bug-fixes-v2026-09-30-1}
-* Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
-* Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
-* Fixed Enterprise Portal customer-user totals when filtering by email.
-
-## v2026.09.30-0
-
-Released on September 30, 2026
-
-### New Features {#new-features-v2026-09-30-0}
-* Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
-
-### Bug Fixes {#bug-fixes-v2026-09-30-0}
-* Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
-* Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
-* Fixed Enterprise Portal customer-user totals when filtering by email.
 ## v2026.09.29-2
 
 Released on September 29, 2026
 
-### New Features {#new-features-v2026-09-29-2}
-* Self-Service Sign-Ups can now enable Multi-node Cluster and Embedded Cluster Air Gap for trial licenses created through Enterprise Portal signup.
-
 ### Bug Fixes {#bug-fixes-v2026-09-29-2}
-* Self-serve trial licenses now enable installer support, matching licenses created in the Vendor Portal.
 * Prevented vendor invitations and customer login links for new Enterprise Portal sites that are not configured, while preserving Enterprise Portal (Classic) access and showing warnings when automatic invitations are skipped.
 * Fixed Enterprise Portal customer-user totals when filtering by email.
 ## v2026.09.29-1
@@ -497,13 +492,6 @@ Released on September 22, 2026
 * Fixed failed customer access saves leaving incorrect toggle state or an empty invitation dialog.
 * Prevented management actions from becoming available before customer access settings finish saving.
 
-## v2026.09.22-0
-
-Released on September 22, 2026
-
-### Bug Fixes {#bug-fixes-v2026-09-22-0}
-* Hide the Embedded Cluster multi-node restriction control from teams without the corresponding feature flag while keeping multi-node installations enabled by default.
-
 ## v2026.09.21-1
 
 Released on September 21, 2026
@@ -562,15 +550,6 @@ Released on September 16, 2026
 ### New Features {#new-features-v2026-09-16-0}
 * The new Enterprise Portal now shows customer-runnable KOTS and kURL install commands (online, proxy, and kURL air gap cluster bootstrap). KOTS existing-cluster air gap is download-only until a default content procedure ships.
 
-## v2026.09.15-7
-
-Released on September 15, 2026
-
-### New Features {#new-features-v2026-09-15-7}
-* Adds ability to filter custom metrics by name when setting up [Event Notifications](/vendor/event-notifications-manage).
-
-### Improvements {#improvements-v2026-09-15-7}
-* Team invite emails are now rate-limited, and the Reinvite action shows when an invite can be sent again.
 ## v2026.09.15-6
 
 Released on September 15, 2026
@@ -674,12 +653,6 @@ Released on September 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-09-03-2}
 * Fix footer styling on the team selection and team creation pages.
-## v2026.09.03-0
-
-Released on September 3, 2026
-
-### Bug Fixes {#bug-fixes-v2026-09-03-0}
-* Fixed self-service signup storage so newly submitted non-ASCII company names, custom field values, and custom signup field labels/placeholders are preserved instead of being written as question marks.
 ## v2026.09.02-5
 
 Released on September 2, 2026
@@ -811,15 +784,7 @@ Released on August 25, 2026
 Released on August 25, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-08-25-1}
-* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
 * Improved notification webhook validation to prevent requests to private and special-purpose network destinations.
-
-## v2026.08.25-0
-
-Released on August 25, 2026
-
-### Bug Fixes {#bug-fixes-v2026-08-25-0}
-* Fixed excessive account unlock emails. An unlock message is sent when an account first locks, and resending the link is limited to once every 10 minutes.
 
 ## v2026.08.24-9
 
@@ -943,14 +908,6 @@ Released on August 19, 2026
 
 ### New Features {#new-features-v2026-08-19-4}
 * Improved Enterprise Portal content branch management for apps with many synced branches, including search, pagination, and grouped branch lists.
-
-## v2026.08.19-2
-
-Released on August 19, 2026
-
-### Bug Fixes {#bug-fixes-v2026-08-19-2}
-* Removed the app-wide Security Center enable switch from the new Enterprise Portal and moved its display controls to Content > Portal Features.
-* Show channel names alongside channel IDs in release promotion audit log descriptions.
 
 ## v2026.08.18-1
 
@@ -2365,13 +2322,6 @@ Released on November 13, 2024
 
 ### Bug fixes {#bug-fixes-v2024-11-13-0}
 * Fixes a bug that could cause an error message similar to the following to display when attempting to update an existing customer: "This team cannot create customers with kurl install enabled".
-
-## V2024.11.12-4
-
-Released on November 12, 2024
-
-### Bug fixes {#bug-fixes-v2024-11-12-4}
-* Fixes a bug on the **Customer** page that caused the **Embedded Cluster Install Instructions** to be hidden when the Embedded Cluster install type was enabled for the license.
 
 ## V2024.11.12-4
 
@@ -3809,13 +3759,6 @@ Released on December 11, 2023
 
 ### Improvements {#improvements-v2023-12-11-0}
 * Re-orders the support request form to ensure that the customer (or "no customer") is selected prior to the selection of the product area, and auto fill the form smartly.
-
-## V2023.12.09-0
-
-Released on December 9, 2023
-
-### Improvements {#improvements-v2023-12-09-0}
-* Adds ability to upload multiple support bundles when opening a support issue on the **Troubleshoot** or **Support** page.
 
 ## V2023.12.08-4
 
