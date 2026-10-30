@@ -12,6 +12,37 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.18.0-beta.1
+
+Released on October 30, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.18.0-beta.1+k8s-1.36</td>
+    <td id="center">3.18.0-beta.1+k8s-1.35</td>
+    <td id="center">3.18.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+### New Features {#new-features-3-18-0-beta-1}
+* Adds support for adding a custom root CA when configuring S3 compatible backup location.
+
+### Improvements {#improvements-3-18-0-beta-1}
+* When upgrading multi-node Embedded Cluster v2 to v3, user is no longer required to copy upgrade bundles manually between nodes.
+
+### Bug Fixes {#bug-fixes-3-18-0-beta-1}
+* Fixes a bug that could cause Velero configuration to be lost during Embedded Cluster v2 to v3 migration.
+* Fixed the OpenEBS provisioner health check to correctly detect an unhealthy provisioner.
+* Fixes a bug that could cause the config diff page to show an error.
+* Fixed application preflight checks packaged inside Helm charts being skipped during installation and upgrades.
+* Fixed join and upgrade bundles being readable by other users on the host where they were created.
+
 ## 3.17.0-beta.1
 
 Released on October 29, 2026
