@@ -1,4 +1,4 @@
-# Customize portal content
+# Customize Portal Content
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change.
@@ -245,7 +245,7 @@ Always create a backup before applying updates.
 </Warning>
 ```
 
-**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` when the customer should keep that tab for the browser session. A click selects that title on every other `<Tabs>` with the same `groupId` that is already on the page. After a reload, and on other pages, the portal opens that same choice. The match is the tab title. Logging out from the user menu and switching teams clear it. The Log out form on the signup page does not. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs use an entitlement gate, and they are not the home page's Linux / Helm choice.
+**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` to keep that choice for the browser tab. The tab's session storage holds the choice. A portal link opened in a new tab starts without it, and closing the tab clears it. A click selects that title on every other `<Tabs>` with the same `groupId` that is already on the page. After a reload, and on other pages in the same tab, the portal opens that same choice. The match is the tab title. Logout, switching teams, and accepting a team invite clear it. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs use an entitlement gate, and they are not the home page's Linux / Helm choice.
 
 ```markdown
 <Tabs groupId="install-method">
@@ -258,7 +258,7 @@ Always create a backup before applying updates.
 </Tabs>
 ```
 
-Props: `<Tabs>` accepts `groupId` and `defaultActiveTab`. `<Tab>` requires `title`. A `<Tabs>` with no `groupId` stays local to the page. Nested `<Tabs>` stay independent unless they share a `groupId`.
+Props: `<Tabs>` accepts `groupId` and `defaultActiveTab`. `defaultActiveTab` is a zero-based index. A title such as `defaultActiveTab="Helm"` falls back to the first tab, because the value has to be a number. `<Tab>` requires `title`. A `<Tabs>` with no `groupId` stays local to the page. Nested `<Tabs>` stay independent unless they share a `groupId`.
 
 **`<Accordion>`**: Collapsible content section.
 
@@ -270,22 +270,22 @@ Detailed configuration options...
 
 Props: `title` (required), `defaultOpen` (optional, defaults to false).
 
-**`<OptionSelector>` / `<Option>`**: Supported option picker with its own look. `storageKey` is the same session key as `<Tabs>` `groupId`. Reloading the page brings back the saved value for every selector that uses the same `storageKey`, including two selectors on one page. Logging out from the user menu and switching teams clear it. The Log out form on the signup page does not. Existing `<OptionSelector>` pages keep working. New pages should use `<Tabs>` with `groupId`. `<OptionSelector>` stays supported.
+**`<OptionSelector>` / `<Option>`**: Supported option picker with its own look. `storageKey` is the same session key as `<Tabs>` `groupId`. A click selects that value on every other selector with the same `storageKey`, and on a `<Tabs>` with that `groupId`, including two selectors on one page. Reloading the same browser tab brings that choice back. Logout, switching teams, and accepting a team invite clear it. Existing `<OptionSelector>` pages keep working. New pages should use `<Tabs>` with `groupId`. `<OptionSelector>` stays supported.
 
 ```markdown
 <OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
 <Option value="Linux">
 - [Linux Installation](/installation/linux)
-- [Support Bundles](/support/bundles)
+- [Linux Support Bundles](/operations/bundles/linux)
 </Option>
 <Option value="Helm">
 - [Helm Installation](/installation/helm)
-- [Support Bundles](/support/bundles)
+- [Helm Support Bundles](/operations/bundles/helm)
 </Option>
 </OptionSelector>
 ```
 
-Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting the selection in session storage). Omit `storageKey` and `label` to keep the selection in memory only.
+Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting the selection in session storage). When `storageKey` is missing, the label is the key. `label="Install Method"` becomes `install-method`, the same key as `<Tabs groupId="install-method">`, so the two switch each other. Omit `storageKey` and `label` to keep the selection in memory only.
 
 ### Display
 
@@ -567,7 +567,7 @@ Edit the guide pages to describe your Admin Console access, registry, support, a
 
 The default guides do not include `kubectl kots upstream upgrade`. Add that command only if every customer uses the same namespace, and include the app slug argument.
 
-The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Document when cluster maintenance has to happen, and provide a procedure you have validated on its own.
+The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Document when cluster maintenance has to happen, and provide a separately validated procedure.
 
 ### Update components
 
@@ -679,7 +679,7 @@ Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` sy
 
 ### Conditionals
 
-**`\{\{#if\}\}`**: Show content when a value is present and not false. Supports nesting.
+**`\{\{#if\}\}`**: Show content when a value is truthy. Supports nesting.
 
 ```text
 {{#if entitlements.isHAEnabled}}
@@ -862,7 +862,7 @@ Keep the page listed in `toc.yaml` as a normal page entry:
 
 Customers do not see the page until you remove `hidden` or set it to `false`, then re-sync the content.
 
-`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot publish it again.
+`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
 
 If a table of contents entry has a `page` with `hidden: true`, the portal drops that entry and every nested item. Nested items include child pages, nested `helm_chart` items, and `terraform_module` items. This matches `visible_when` on a parent, which also drops the children.
 
