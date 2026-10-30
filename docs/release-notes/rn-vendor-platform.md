@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on October 30, 2026
 
 ### New Features {#new-features-v2026-10-30-0}
-* In the new Enterprise Portal, a Tabs groupId selects that tab title on every other Tabs with the same id already on the page, and restores it for the browser session on other pages. The match is the tab title. OptionSelectors with the same storageKey switch together on the page when either is clicked.
+* In the new Enterprise Portal, `<Tabs>` accepts a `groupId`. Tabs that share a `groupId` switch together, and the customer's choice carries to other pages in the same browser tab. `<OptionSelector>` components that share a `storageKey` also switch together on the page.
 ## v2026.10.28-1
 
 Released on October 28, 2026
