@@ -13,11 +13,14 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 
 Released on October 30, 2026
 
-### New Features {#new-features-v2026-10-30-2}
-* Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in.
-
 ### Bug Fixes {#bug-fixes-v2026-10-30-2}
 * Helm install instructions now use the proxy URL entered for a proxy install.
+## v2026.10.30-1
+
+Released on October 30, 2026
+
+### New Features {#new-features-v2026-10-30-1}
+* Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in.
 ## v2026.10.28-1
 
 Released on October 28, 2026
