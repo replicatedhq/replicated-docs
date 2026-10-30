@@ -21,7 +21,7 @@ Most entries arrive through automated pull requests from the release-notes workf
 
 **No vendor-facing change.** A refactor, rename, test change, CI change or internal plumbing is never a release note. The text often gives itself away by saying a shape, request URL or cache key is unchanged. These entries should not have been published at all.
 
-**Wrong product names.** Use the published names and casing: Admin Console, Compatibility Matrix, Download Portal, Embedded Cluster, Enterprise Portal, KOTS, KOTS CLI, kURL, Kubernetes, Replicated CLI, Replicated Platform, Security Center, Vendor Portal. Some terms are deliberately lowercase: preflight checks, proxy registry, support bundles. Enterprise Portal is distinguished as Classic and New Portal when the difference matters, both capitalized. Internal shorthand such as "Enterprise Portal v2" or "EP v2" is not a product name and appears nowhere else in the docs. Apply the list above directly. For terms it does not cover, the canonical sources in this repository are `styles/config/vocabularies/ReplicatedTerms/accept.txt` and `styles/Replicated/WordSwapsCaseSensitive.yml`.
+**Wrong product names.** Use the published names and casing: Admin Console, Compatibility Matrix, Download Portal, Embedded Cluster, Enterprise Portal, KOTS, KOTS CLI, kURL, Kubernetes, Replicated CLI, Replicated Platform, Security Center, Vendor Portal. Some terms are deliberately lowercase: preflight checks, proxy registry, support bundles. When an entry contrasts the two Enterprise Portals, name them Classic and New Portal, both capitalized. Otherwise lowercase "the new Enterprise Portal" is correct and matches the rest of the docs, so do not flag it. Internal shorthand such as "Enterprise Portal v2" or "EP v2" is not a product name and appears nowhere else in the docs. Apply the list above directly. For terms it does not cover, the canonical sources in this repository are `styles/config/vocabularies/ReplicatedTerms/accept.txt` and `styles/Replicated/WordSwapsCaseSensitive.yml`.
 
 **Not written for a vendor.** Every entry must let a vendor tell whether the change affects them and what to do about it. Lead with the vendor-visible behavior, "Fixed an issue that caused...", not the implementation. Name the surface the change lands on.
 
@@ -29,9 +29,11 @@ Most entries arrive through automated pull requests from the release-notes workf
 
 **Unreplaced template placeholders** left in a published file, such as a version table placeholder comment.
 
+**Duplicate entries.** Compare each added entry with every entry already in the same file. If an existing entry describes the same change, word for word or reworded, flag the added one. Name the version that already has it and say to delete the line from this pull request. The generator builds each release from a range of commits. When that range overlaps an earlier release, the earlier note arrives again in the new version.
+
 ## Evidence standard
 
-Review only entries added or changed by this pull request. Do not report on existing entries the change does not touch. Do not report wording preferences, sentence length, or house style beyond the product names above. One finding per entry, not one per phrase.
+Review only entries added or changed by this pull request. Do not report on existing entries the change does not touch. Existing entries are still evidence for a duplicate: the finding goes on the added line. Do not report wording preferences, sentence length, or house style beyond the product names above. One finding per entry, not one per phrase.
 
 ## Reporting
 
@@ -50,3 +52,4 @@ Not acceptable:
 - "`appendHelmChartFilterParams` is now `appendHelmCommandParams`; `helmChartFilters.ts` is now `helmCommandOptions.ts`." Internal names, and nothing changes for a vendor, so this entry should not be here.
 - "The install-instructions cache key now includes the resolved `createNamespace`." Internal plumbing.
 - "Rate limit unauthenticated GET /v3/metadata and GET /v3/custom-branding to slow app slug enumeration." A real change, written for an engineer rather than a vendor.
+- "Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in." added in v2026.10.30-2 when v2026.10.30-1 already has the same line. Delete it from v2026.10.30-2.
