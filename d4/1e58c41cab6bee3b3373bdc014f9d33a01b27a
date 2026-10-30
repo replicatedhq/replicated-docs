@@ -1,0 +1,21 @@
+docs/reference/custom-resource-about.md
+  s_9257d5361183bd::t_905c1340f016ab 142
+embedded-cluster/embedded-v3-migrate.mdx
+  s_9257d5361183bd::t_59c9331be93e56 198-199
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d41e58c41cab6bee3b3373bdc014f9d33a01b27a",
+  "prompts": {},
+  "sessions": {
+    "s_9257d5361183bd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9257d5361183bd",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

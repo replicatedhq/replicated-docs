@@ -1,0 +1,14 @@
+docs/vendor/enterprise-portal-v2-content.mdx
+  h_a187b1a47af8c8 1,7,39,112,114,117,124,190,192,248,273,330,349,352,358,376,390,392,396,412,414,416,426,428,482,487,504-505,521,523-529,533,552,570,578,582,590-592,595,597,619,625,645,649,651,659,674,682,691,706,731,750,752,754,776,778,796,843,845,865,867,869,873,876,883,895,907,912
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f5cee6cc422c4bcfcc043fbc56e04af80b644267",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}

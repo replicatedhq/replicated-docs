@@ -1,0 +1,30 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  h_6bd1a2fe251981 2
+docs/reference/custom-resource-about.md
+  h_6bd1a2fe251981 3,5-9,24,46-50,56-60,69,73,86-90,92-199
+docs/release-notes/rn-embedded-cluster-v3.md
+  h_6bd1a2fe251981 15-47
+docs/release-notes/rn-vendor-platform.md
+  h_6bd1a2fe251981 12-29
+docs/vendor/enterprise-portal-v2-content.mdx
+  h_6bd1a2fe251981 7,39,112,114,117,124,190,192,248,251,253,256,261,273,288,330,349,352,358,376,390,392,396,412,414,416,426,428,482,487,504-505,521-527,529,533,552,570,578,582,590-592,595,597,619,625,639,645,649,651,659,674,691,706,731,750,752,754,776,778,796,843,845,865,867,869,873,876,883,895,907,912
+docs/vendor/preflight-sb-helm-templates-about.md
+  h_6bd1a2fe251981 13
+docs/vendor/preflight-support-bundle-about.mdx
+  h_6bd1a2fe251981 79
+docs/vendor/replicated-onboarding.mdx
+  h_6bd1a2fe251981 310
+embedded-cluster/embedded-v3-migrate.mdx
+  h_6bd1a2fe251981 196-208
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "71d384adb364180078a735d16548a6d02f5da02f",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
