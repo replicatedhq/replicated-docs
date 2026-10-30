@@ -139,7 +139,7 @@ The following table shows which custom resources apply to each installation meth
     </tr>
     <tr>
         <td>[Preflight](custom-resource-preflight)</td>
-        <td>Yes</td>
+        <td>In a labeled Secret. See [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).</td>
         <td><code>v1beta3</code> only</td>
         <td><code>v1beta2</code>, and <code>v1beta3</code> in 2.19.16 and later</td>
         <td><code>v1beta2</code>, and <code>v1beta3</code> in v1.134.0 and later</td>
