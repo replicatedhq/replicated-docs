@@ -4,6 +4,12 @@ import KotsAvailability from "../partials/kots/_kots-availability.mdx"
 
 This topic describes how to migrate existing Replicated KOTS installations to the Replicated HelmChart `kots.io/v1beta2` (HelmChart v2) installation method, without having to reinstall the application. It also includes information about how to support both HelmChart v1 and HelmChart v2 installations from a single release, and lists frequently-asked questions (FAQs) related to migrating to HelmChart v2.
 
+This topic applies only to existing KOTS and Embedded Cluster v2 installations that use HelmChart v1 or standard Kubernetes manifests. If you distribute your application with the Helm CLI or Embedded Cluster v3 and your releases use HelmChart v2, you don't need to complete this migration.
+
+:::important
+Embedded Cluster v3 supports only HelmChart v2. If you plan to upgrade customers from Embedded Cluster v2 to Embedded Cluster v3, complete this migration on Embedded Cluster v2 first. For more information, see [HelmChart v2 required](/embedded-cluster/v3/embedded-v3-migrate#helmchart-v2-required) in _Upgrade from Embedded Cluster v2_.
+:::
+
 <KotsAvailability/>
 
 ## Migrate to HelmChart v2
@@ -99,7 +105,7 @@ To migrate existing installations from HelmChart v1 and `useHelmInstall: false` 
 
 1. Promote the second release to the same customer-facing channel(s). Replicated recommends that you mark the release as required by enabling **Prevent this release from being skipped during upgrades**.
 
-1. Instruct customers to migrate by first upgrading to the release where the `kots.io.keep` annotation is applied to your resources, then upgrading to the release with HelmChart v2.
+1. Instruct customers to migrate by first upgrading to the release where the `kots.io/keep` annotation is applied to your resources, then upgrading to the release with HelmChart v2.
 
 1. In subsequent releases, remove the `--take-ownership` flag from the `helmUpgradeFlags` field and remove the `kots.io/keep` annotation from resources in your Helm templates.  
 

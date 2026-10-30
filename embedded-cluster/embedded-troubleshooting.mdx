@@ -1,6 +1,7 @@
 import SupportBundleIntro from "../docs/partials/support-bundles/_ec-support-bundle-intro.mdx"
 import EmbeddedClusterSupportBundle from "../docs/partials/embedded-cluster/v3/_generate-bundle-ec.mdx"
 import TroubleshootSecurityAgents from "../docs/partials/embedded-cluster/_troubleshoot-security-agents.mdx"
+import TroubleshootDns from "../docs/partials/embedded-cluster/_troubleshoot-dns.mdx"
 import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -219,3 +220,7 @@ Reasons can include:
 <TroubleshootSecurityAgents/>
 
 Support bundles report this problem when they detect CrowdStrike Falcon or Illumio VEN on a host where the Calico firewall rules are missing. For more information, see [Troubleshoot with support bundles](#troubleshoot-with-support-bundles).
+
+### Pods cannot resolve names that resolve on the host {#dns}
+
+<TroubleshootDns/>

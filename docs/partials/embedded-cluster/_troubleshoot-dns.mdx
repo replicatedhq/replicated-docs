@@ -1,0 +1,51 @@
+#### Symptom {#dns-symptom}
+
+Symptoms can include:
+
+* Pods fail to connect to an external service, such as a database, by host name, but the same host name resolves on the host.
+
+* Name lookups from pods are slow or time out intermittently.
+
+* Only some pods fail to resolve a name, even though all nodes have the same DNS settings.
+
+* A change to the CoreDNS ConfigMap fixes name resolution, but the problem returns after an upgrade.
+
+* The CoreDNS pods restart repeatedly, and their logs contain `no nameservers found`.
+
+#### Cause {#dns-cause}
+
+Common causes include the following:
+
+* CoreDNS has no upstream nameserver that it can reach. This happens when the file that CoreDNS forwards to lists no nameservers, or lists only a loopback address.
+
+* A service on the host, such as systemd-resolved or NetworkManager, manages `/etc/resolv.conf` and overwrites manual edits to it.
+
+* The host blocks pod traffic. If IP forwarding is disabled (`net.ipv4.ip_forward` is `0`), or host firewall rules drop traffic from pods, DNS queries from pods fail even when the DNS configuration is correct.
+
+* The host has many DNS search domains. Pods inherit them, so each lookup from a pod can send a query for every search domain. Container images based on musl libc, such as Alpine images, handle search domains differently from other images, and can fail to resolve a name that resolves in other pods.
+
+* A pod's DNS settings are written when the pod is created. Restarting a container keeps the old settings, so a pod created before a change to the host's DNS settings keeps the old settings until the pod is recreated.
+
+* Embedded Cluster manages the CoreDNS configuration and does not preserve direct edits to the CoreDNS ConfigMap. An Embedded Cluster upgrade that changes the default CoreDNS configuration replaces the ConfigMap, and any edits to it are lost.
+
+For more information about which file CoreDNS forwards to and how pods inherit the host's DNS settings, see [DNS on the host](installing-embedded-requirements#dns) in _Embedded Cluster installation requirements_.
+
+#### Solution {#dns-solution}
+
+To resolve DNS issues in pods, try the following:
+
+* If CoreDNS logs `no nameservers found`, configure the host's DNS servers through the service that manages them, so that the file CoreDNS forwards to lists at least one nameserver that pods can reach. Do not edit a file that a service manages, because the service overwrites the edit. On hosts that use systemd-resolved, `resolvectl status` lists the DNS servers that it knows about. Then recreate the CoreDNS pods:
+
+   ```bash
+   kubectl -n kube-system rollout restart deployment coredns
+   ```
+
+   Embedded Cluster chooses which file CoreDNS forwards to when it starts on the node. If your change affects that choice, such as enabling or disabling systemd-resolved, or adding or removing nameservers alongside `127.0.0.53`, reboot the node before you recreate the CoreDNS pods.
+
+* Run `sysctl net.ipv4.ip_forward` on the host and confirm that it returns `1`. If a security tool or host firewall manages the host, see [Security tools interfere with the cluster](#security-agents) in this document.
+
+* To check the search domains that an affected pod uses, run `cat /etc/resolv.conf` in the pod. Pods with the `ClusterFirst` DNS policy, which is the Kubernetes default, list the cluster's search domains followed by the host's. If the host's search domains are out of date, recreate the pod by deleting it or by restarting its workload, for example with `kubectl rollout restart`. Restarting a container does not update the settings.
+
+* If the host has many search domains, remove the ones that the host does not need. Alternatively, the application vendor can lower `ndots` for the affected workloads using `dnsConfig` in the pod spec. For more information about setting `dnsConfig`, see [Pod's DNS Config](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config) in the Kubernetes documentation.
+
+* If a name must resolve through a private DNS zone, configure the host's nameservers to resolve that zone. CoreDNS forwards these names to the host's nameservers, so the change persists across reboots and upgrades. Do not rely on edits to the CoreDNS ConfigMap.
