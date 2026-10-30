@@ -57,15 +57,15 @@ To create an application release that supports installation with Embedded Cluste
 
 ## Add preflight checks {#preflights}
 
-Embedded Cluster v3 uses Troubleshoot `v1beta3` for application preflight checks. You package preflight specs as a release-level YAML file outside your Helm charts. During installation and upgrades, Embedded Cluster renders the spec through the Helm template engine and runs the checks automatically.
+Embedded Cluster v3 uses Troubleshoot `v1beta3` for application preflight checks. You can package preflight specs inside your Helm charts or as a release-level YAML file. Chart-packaged specs use a Secret or ConfigMap labeled `troubleshoot.sh/kind: preflight`, with the spec in `preflight.yaml` or `preflight-spec`. For more information about defining preflight checks, see [Define preflight checks](/vendor/preflight-defining). During installation and upgrades, Embedded Cluster renders the specs through the Helm template engine and runs the checks automatically.
 
 ### How preflight rendering works in v3 {#preflight-rendering}
 
 Embedded Cluster renders your preflight spec through the same Helm engine it uses to install your charts. The rendering pipeline works as follows:
 
-1. Embedded Cluster takes the external preflight spec from your release.
-1. For each Helm chart in the release, Embedded Cluster injects the spec into the chart as a template and renders it with `helm template` using the same values that Helm uses during installation (SDK values, chart defaults from `values.yaml`, and user overrides from the HelmChart custom resource).
-1. Embedded Cluster merges the per-chart rendered outputs into a single resolved spec.
+1. Embedded Cluster takes any external preflight spec from your release.
+1. For each Helm chart in the release, Embedded Cluster injects any external spec into the chart as a template and renders the chart with `helm template` using the same values that Helm uses during installation (SDK values, chart defaults from `values.yaml`, and user overrides from the HelmChart custom resource).
+1. Embedded Cluster extracts the preflight specs from the rendered charts and merges them into a single resolved spec. Chart-packaged and release-level checks are combined, so avoid including the same checks in both places.
 1. Embedded Cluster runs the Troubleshoot preflight binary against the fully resolved spec. No additional flags or values are necessary because all Helm expressions are already evaluated.
 
 This per-chart rendering means your preflight spec has access to the full Helm context for each chart:
@@ -78,7 +78,7 @@ If a conditional in your spec evaluates to false for a given chart (for example,
 
 ### Create a preflight spec
 
-Add a `troubleshoot.sh/v1beta3 Preflight` YAML file to your release at the top level (not inside any Helm chart):
+For a release-level spec, add a `troubleshoot.sh/v1beta3 Preflight` YAML file to your release at the top level:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta3
@@ -103,7 +103,7 @@ For releases with a single Helm chart, you do not need additional gating. The sp
 
 ### Multi-chart releases {#multi-chart-preflights}
 
-For releases with multiple Helm charts, gate each collector and analyzer to the chart it belongs to using `.Chart.Name` conditionals. Because Embedded Cluster renders the spec one time per chart, a `{{ if eq .Chart.Name "postgresql" }}` block only produces output when Embedded Cluster renders it in the context of the `postgresql` chart:
+For a release-level spec with multiple Helm charts, gate each collector and analyzer to the chart it belongs to using `.Chart.Name` conditionals. Because Embedded Cluster renders the spec one time per chart, a `{{ if eq .Chart.Name "postgresql" }}` block only produces output when Embedded Cluster renders it in the context of the `postgresql` chart. Chart-packaged specs already render in their own chart's context:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta3

@@ -10,7 +10,7 @@ Helm templates can be useful when you need to:
 You can also use Helm templating with the Troubleshoot template functions for the `clusterPodStatuses` analyzer. For more information, see [Helm and Troubleshoot Template Example](#troubleshoot).
 
 :::note
-The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret, which works with KOTS, kURL, and Embedded Cluster v2. KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support a release-level `troubleshoot.sh/v1beta3` spec. Embedded Cluster v3 requires a `troubleshoot.sh/v1beta3` application preflight spec, which Embedded Cluster renders through Helm directly, so you do not wrap it in a Secret. HostPreflight and support bundle specs are unaffected. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret, which works with KOTS, kURL, and Embedded Cluster v2. KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support a release-level `troubleshoot.sh/v1beta3` spec. Embedded Cluster v3 requires a `troubleshoot.sh/v1beta3` application preflight spec and supports both chart-packaged and release-level specs. To use these examples with Embedded Cluster v3, change the Preflight API version inside the Secret to `troubleshoot.sh/v1beta3` and keep the Secret wrapper. HostPreflight and support bundle specs are unaffected. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
 :::
 
 ## Helm template example
