@@ -1,8 +1,8 @@
 # About custom resources
 
-You can include custom resources in your releases to configure how Replicated builds, distributes, and installs your application. For example, custom resources define the configuration screen that customers see, the container images included in air gap bundles, preflight checks, support bundles, and backups.
+You can include custom resources in your releases to configure how Replicated builds, distributes, and installs your application. For example, custom resources define the configuration screen that customers see, the container images included in air gap bundles and in the image list for customer-managed (BYO) registries, preflight checks, support bundles, and backups.
 
-Custom resources are packaged with your release but are _not_ deployed to the cluster. They are read by the Replicated Vendor Portal, the Replicated installers (Embedded Cluster, KOTS, and kURL), and the Troubleshoot kubectl plugins. Which custom resources apply depends on how your customers install your application. See [Supported installation methods](#supported-installation-methods).
+Custom resources are packaged with your release but are _not_ deployed to the cluster. The exception is specs that you package in a labeled Secret in your Helm chart, such as Support Bundle and Redactor specs, which are deployed to the cluster as Secrets. They are read by the Replicated Vendor Portal, the Replicated installers (Embedded Cluster, KOTS, and kURL), and the Troubleshoot kubectl plugins. Which custom resources apply depends on how your customers install your application. See [Supported installation methods](#supported-installation-methods).
 
 :::note
 Several custom resources use the `kots.io` API group, such as the `kots.io/v1beta2` HelmChart custom resource. The `kots.io` name is a historical naming convention. These custom resources are not limited to KOTS installations. For example, Embedded Cluster v3 requires the HelmChart custom resource, and the Vendor Portal uses the HelmChart `builder` key to generate the list of images for Helm air gap installations.
@@ -21,7 +21,7 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>app.k8s.io/v1beta1</td>
         <td>[SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications)</td>
-        <td>Defines links to the application that display on the Admin Console dashboard</td>
+        <td>Defines links to the application. The links display on the Admin Console dashboard, or for Embedded Cluster v3, on the Installation Complete page and in the persistent admin console.</td>
     </tr>
     <tr>
         <td>embeddedcluster.replicated.com/v1beta1</td>
@@ -121,7 +121,7 @@ The following table shows which custom resources apply to each installation meth
         <td>No</td>
         <td>With the <code>--config-values</code> flag only</td>
         <td>With the <code>--config-values</code> flag</td>
-        <td>Yes</td>
+        <td>With the <code>--config-values</code> flag</td>
     </tr>
     <tr>
         <td>[HelmChart v2](custom-resource-helmchart-v2)</td>
@@ -168,7 +168,7 @@ The following table shows which custom resources apply to each installation meth
     <tr>
         <td>[Restore](https://velero.io/docs/v1.17/api-types/restore/)</td>
         <td>No</td>
-        <td>Yes</td>
+        <td>Only when the release also includes a Backup</td>
         <td>Only when the release also includes a Backup</td>
         <td>No</td>
     </tr>
@@ -176,7 +176,7 @@ The following table shows which custom resources apply to each installation meth
         <td>[Embedded Cluster Config](/embedded-cluster/v3/embedded-config)</td>
         <td>No</td>
         <td>Yes</td>
-        <td>Yes</td>
+        <td>Yes. See [Embedded Cluster Config (v2)](/embedded-cluster/v2/embedded-config).</td>
         <td>No</td>
     </tr>
     <tr>

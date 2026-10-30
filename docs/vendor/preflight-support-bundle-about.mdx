@@ -76,7 +76,7 @@ To add preflight checks for your application, create a Preflight YAML specificat
 For information about how to add preflight checks to your application, including examples, see [Define Preflight Checks](preflight-defining).
 
 :::note
-Application preflight specs use `troubleshoot.sh/v1beta2` for KOTS, kURL, and Embedded Cluster v2. Embedded Cluster v3 requires `troubleshoot.sh/v1beta3`. KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support `troubleshoot.sh/v1beta3`. The requirement applies only to the Preflight custom resource. HostPreflight, support bundle, and Redactor specs still use `v1beta2` on all current installer products. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+Application preflight specs use `troubleshoot.sh/v1beta2` for KOTS, kURL, and Embedded Cluster v2. Embedded Cluster v3 requires `troubleshoot.sh/v1beta3`. This requirement applies only to the Preflight custom resource. HostPreflight, support bundle, and Redactor specs still use `v1beta2` on all current installer products. KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support `troubleshoot.sh/v1beta3` Preflight specs. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
 :::
 
 ### Blocking installation with required (strict) preflights
