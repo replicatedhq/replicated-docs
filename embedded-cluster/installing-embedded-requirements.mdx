@@ -113,3 +113,29 @@ Embedded Cluster opens the following ports in the default zone:
 <ComplianceScans/>
 
 Embedded Cluster v3 also links `/var/lib/ec/kubelet` to `DATA_DIR/k0s/kubelet`, so scanners might report the same kubelet files under `/var/lib/ec/kubelet`.
+
+## Secrets on the host {#secrets}
+
+Embedded Cluster does not encrypt application secrets at rest. On a single host, the encryption key would have to be stored on that same host, where anyone with root access could read it and decrypt the secrets. Encryption at rest would not keep secrets from anyone who can already read them.
+
+The security boundary for secrets is root access to the host. Embedded Cluster restricts the files that hold secrets so that users without root access cannot read them. Anyone with root access can read every secret on the host, along with the application's data. Limit root and `sudo` access on each host to the people who administer the application.
+
+Secrets include the license, the application's configuration values (including generated passwords), registry credentials, and TLS private keys. Embedded Cluster stores them in the following locations on each host:
+
+* The Kubernetes datastore under `DATA_DIR/k0s`, which holds Kubernetes Secrets. After installation, Embedded Cluster keeps the application's configuration values in Secrets, including the values used for each earlier deployment.
+* `/etc/embedded-cluster`, which holds installation settings, including registry credentials and the admin console TLS private key.
+* `DATA_DIR`, which holds the admin console password hash and a key that nodes use to authenticate to each other.
+* `DATA_DIR/revisions`, which holds the license and the configuration values that Embedded Cluster saved during installation, before Kubernetes was running.
+
+In this list, `DATA_DIR` is the Embedded Cluster data directory.
+
+### Join and upgrade bundles
+
+Join and upgrade bundles contain the license, the application's configuration values, the admin console password hash, and the key that nodes use to authenticate to each other. A join bundle also contains a token that lets a host join the cluster until the token expires. Treat bundles as secrets:
+
+* Store each bundle where only the administrators who use it can read it.
+* Delete the bundle after the node joins or upgrades.
+
+### Backups
+
+When disaster recovery is configured, backups include Kubernetes Secrets, both the application's own Secrets and the Secrets that Embedded Cluster uses to restore the installation. Those hold the license, the application's configuration values, the admin console password hash, and installation settings. The repository password encrypts the volume data in a backup, but not the Kubernetes resources, so these Secrets are stored in the backup storage without encryption. Restrict access to the backup storage, and use the storage provider's encryption if your security policy requires backups to be encrypted. For more information about the repository password, see [Preserve the repository password](embedded-disaster-recovery-v3#preserve-the-repository-password).
