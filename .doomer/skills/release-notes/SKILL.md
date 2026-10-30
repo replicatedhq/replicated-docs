@@ -29,9 +29,11 @@ Most entries arrive through automated pull requests from the release-notes workf
 
 **Unreplaced template placeholders** left in a published file, such as a version table placeholder comment.
 
+**Duplicate entries.** Compare each added entry with every entry already in the same file. If an existing entry describes the same change, word for word or reworded, flag the added one. Name the version that already has it and say to delete the line from this pull request. The generator builds each release from a range of commits. When that range overlaps an earlier release, the earlier note arrives again in the new version.
+
 ## Evidence standard
 
-Review only entries added or changed by this pull request. Do not report on existing entries the change does not touch. Do not report wording preferences, sentence length, or house style beyond the product names above. One finding per entry, not one per phrase.
+Review only entries added or changed by this pull request. Do not report on existing entries the change does not touch. Existing entries are still evidence for a duplicate: the finding goes on the added line. Do not report wording preferences, sentence length, or house style beyond the product names above. One finding per entry, not one per phrase.
 
 ## Reporting
 
@@ -50,3 +52,4 @@ Not acceptable:
 - "`appendHelmChartFilterParams` is now `appendHelmCommandParams`; `helmChartFilters.ts` is now `helmCommandOptions.ts`." Internal names, and nothing changes for a vendor, so this entry should not be here.
 - "The install-instructions cache key now includes the resolved `createNamespace`." Internal plumbing.
 - "Rate limit unauthenticated GET /v3/metadata and GET /v3/custom-branding to slow app slug enumeration." A real change, written for an engineer rather than a vendor.
+- "Helm installations in the new Enterprise Portal now show live progress checks and a waiting state while an online instance reports in." added in v2026.10.30-2 when v2026.10.30-1 already has the same line. Delete it from v2026.10.30-2.
