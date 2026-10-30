@@ -124,3 +124,46 @@ IsAirgap is `true` when the app is installed via uploading an airgap package, fa
 ```yaml
 '{{repl IsAirgap }}'
 ```
+
+## IsRequired
+
+> Introduced in KOTS v1.68.0
+
+```go
+func IsRequired() bool
+```
+IsRequired is `true` when the release is a required release, false otherwise. Customers can't skip required releases when they update. For more information, see [Required releases](/vendor/releases-about#required-releases) in _About channels and releases_.
+
+```yaml
+'{{repl IsRequired }}'
+```
+
+## ReplicatedRegistryDomain
+
+> Introduced in KOTS v1.100.1
+
+```go
+func ReplicatedRegistryDomain() string
+```
+Returns the domain of the Replicated registry for the installation. If you configured a custom domain for the Replicated registry, returns the custom domain. Otherwise, returns `registry.replicated.com`. In air gap installations, returns an empty string.
+
+For more information, see [Use custom domains](/vendor/custom-domains-using).
+
+```yaml
+'{{repl ReplicatedRegistryDomain }}'
+```
+
+## ReplicatedProxyDomain
+
+> Introduced in KOTS v1.100.1
+
+```go
+func ReplicatedProxyDomain() string
+```
+Returns the domain of the Replicated proxy registry for the installation. If you configured a custom domain for the proxy registry, returns the custom domain. Otherwise, returns `proxy.replicated.com`. In air gap installations, returns an empty string.
+
+For more information, see [Use custom domains](/vendor/custom-domains-using).
+
+```yaml
+'{{repl ReplicatedProxyDomain }}'
+```

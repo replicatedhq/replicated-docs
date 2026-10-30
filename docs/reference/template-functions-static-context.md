@@ -573,6 +573,19 @@ The following table describes the behavior of the RandomString template function
   </tr>
 </table>
 
+### RandomBytes
+
+> Introduced in KOTS v1.17.0
+
+```go
+func RandomBytes(length uint64) string
+```
+Returns `length` cryptographically random bytes, encoded as a base64 string. RandomBytes generates a new value each time it renders. To keep the same value across updates, use the pattern described in [Generating Persistent and Ephemeral Strings](#generating-persistent-and-ephemeral-strings).
+
+```yaml
+'{{repl RandomBytes 32 }}'
+```
+
 ### Split
 ```go
 func Split(s string, sep string) []string

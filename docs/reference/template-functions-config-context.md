@@ -192,6 +192,30 @@ Returns true if the configuration option value is not equal to the supplied valu
 '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
+## ConfigOptionName
+
+> Introduced in KOTS v1.47.0
+
+```go
+func ConfigOptionName(optionName string) string
+```
+
+Returns the name of a configuration item. Use ConfigOptionName with repeatable items to get the generated name of each repeated value, such as to use the name as a key in a Kubernetes manifest.
+
+For repeatable items, KOTS replaces `repl[[ .itemName ]]` with the generated name of each value, such as `serviceport-8jdn2bgd`, before it renders template functions. ConfigOptionName returns that generated name. For more information, see [Repeatable Items](/reference/custom-resource-config#repeatable-items) in _Config_.
+
+#### Example
+
+```yaml
+# Kubernetes manifest targeted by a repeatable item
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+stringData:
+  repl{{ ConfigOptionName "repl[[ .secretName ]]" }}: '{{repl ConfigOption "repl[[ .secretName ]]" }}'
+```
+
 ## LocalRegistryAddress
 
 ```go
@@ -375,3 +399,127 @@ spec:
         tag: v1.0.1
 ```
 For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
+
+## HelmValue
+
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
+
+```go
+func HelmValue(path string) string
+```
+
+Returns a default value from the Helm chart that the HelmChart custom resource references. Use HelmValue to read a chart's default image values and pass them to the [ReplicatedImageName](#replicatedimagename) or [ReplicatedImageRegistry](#replicatedimageregistry) template functions, so that you don't have to repeat image references in the HelmChart custom resource.
+
+HelmValue reads the `values.yaml` file of the chart archive that matches `spec.chart.name` and `spec.chart.chartVersion`, including the default values of any subcharts bundled with the chart. It does not read values that you set in the HelmChart custom resource or values that customers provide.
+
+The `path` argument uses dot notation, such as `.image.repository`. The `.Values` prefix is optional. To match a key that contains a dot, escape the dot with a backslash, such as `.log\.level`. If the value is a map or a list, HelmValue returns it as JSON. If the path doesn't exist, HelmValue returns an empty string.
+
+HelmValue works only in the HelmChart custom resource. In all other files, it returns an empty string. You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields.
+
+#### Example
+
+```yaml
+# values.yaml
+initImage: ghcr.io/my-org/init:1.4.0
+my-subchart:
+  image:
+    registry: ghcr.io
+```
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    initImage: '{{repl ReplicatedImageName (HelmValue ".initImage") }}'
+    my-subchart:
+      image:
+        registry: '{{repl ReplicatedImageRegistry (HelmValue ".my-subchart.image.registry") }}'
+```
+
+## ReplicatedImageName
+
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
+
+```go
+func ReplicatedImageName(image string, noProxy ...bool) string
+```
+
+Returns a full image reference, including the registry, repository, and tag or digest, rewritten so that the image can be pulled in the customer's environment. Use ReplicatedImageName in the HelmChart custom resource so that image references resolve correctly in both online and air gap installations.
+
+ReplicatedImageName rewrites `image` in one of the following ways:
+
+* If a local image registry is configured, such as in air gap installations, returns the location of the image in the local registry in the format `<local-registry-host>/<local-registry-namespace>/<image-name>:<tag>`. For example, `ghcr.io/my-org/init:1.4.0` becomes `registry.example.com/my-app/init:1.4.0`. The `noProxy` argument is ignored.
+
+* If no local image registry is configured and `noProxy` is `true`, returns `image` unchanged. Use this for public images that don't go through the Replicated proxy registry.
+
+* Otherwise, returns the proxy registry URL for the image in the format `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `image` already uses the Replicated proxy registry or the Replicated registry, ReplicatedImageName returns it unchanged, except that it replaces `proxy.replicated.com` or `registry.replicated.com` with your custom domain if you configured one.
+
+Unlike [LocalImageName](#localimagename), ReplicatedImageName routes every image through the proxy registry in online installations unless `noProxy` is `true`. If `image` is not a valid image reference, rendering fails.
+
+For more information, see [About the Proxy Registry](/vendor/private-images-about) and [Use custom domains](/vendor/custom-domains-using).
+
+#### Example
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    initImage: '{{repl ReplicatedImageName (HelmValue ".initImage") }}'
+    busyboxImage: '{{repl ReplicatedImageName "docker.io/library/busybox:1.36" true }}'
+```
+
+## ReplicatedImageRegistry
+
+> Introduced in KOTS v1.133.0 and Embedded Cluster v2 2.19.16
+
+```go
+func ReplicatedImageRegistry(registry string, noProxy ...bool) string
+```
+
+Returns a registry host rewritten so that images can be pulled in the customer's environment. Use ReplicatedImageRegistry when a Helm chart sets the image registry and repository in separate fields.
+
+ReplicatedImageRegistry rewrites `registry` in one of the following ways:
+
+* If a local image registry is configured, such as in air gap installations, returns the local registry address in the format `<local-registry-host>/<local-registry-namespace>`. The `registry` and `noProxy` arguments are ignored.
+
+* If no local image registry is configured and `noProxy` is `true`, returns `registry` unchanged.
+
+* Otherwise, returns the proxy registry path in the format `<proxy-registry-domain>/proxy/<app-slug>/<registry>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `registry` already uses the Replicated proxy registry or the Replicated registry, ReplicatedImageRegistry returns it unchanged, except that it replaces `proxy.replicated.com` or `registry.replicated.com` with your custom domain if you configured one.
+
+:::note
+KOTS pushes images to the local registry using only the last segment of the repository path. For example, KOTS pushes `ghcr.io/my-org/init` as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
+:::
+
+#### Example
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  values:
+    api:
+      image:
+        registry: '{{repl ReplicatedImageRegistry (HelmValue ".api.image.registry") }}'
+        repository: api
+        tag: 2.0.1
+```
