@@ -4,7 +4,7 @@
 The Enterprise Portal is Beta. Features described on this page are subject to change.
 :::
 
-This topic describes how to customize the content in the new Enterprise Portal, including the content template structure, table of contents configuration, MDX components, template variables, visibility rules, and downloadable assets.
+This topic describes how to customize the content in the new Enterprise Portal. It covers the content template, the table of contents, MDX components, template variables, visibility rules, and downloadable assets.
 
 For branding and theme customization, see [Customize Portal Branding](/vendor/enterprise-portal-v2-branding). To serve different content for different release versions, see [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs).
 
@@ -36,7 +36,7 @@ your-content-repo/
 └── theme.yaml
 ```
 
-The template's `toc.yaml` organizes content into Installation, Instances & Updates, Security, Support, and Automation. Install method pages are entitlement-gated. Existing Cluster (KOTS) is gated on `isKotsInstallEnabled` only. Linux (kURL) is gated on `isKurlInstallEnabled` and `isAirgapSupported` because the default kURL page is still downloads-only for air gap.
+The template's `toc.yaml` organizes content into Installation, Instances & Updates, Security, Support, and Automation. Install method pages use an entitlement gate. The KOTS existing-cluster page requires `isKotsInstallEnabled` only. The Linux (kURL) page requires `isKurlInstallEnabled` and `isAirgapSupported`, because the default kURL page is still downloads-only for air gap.
 
 ```yaml
 navigation:
@@ -109,19 +109,19 @@ The `toc.yaml` file at the root of your repo defines the sidebar navigation. Eac
 | `helm_chart` | Generates reference docs from a Helm chart in your promoted release (see [Helm Reference Docs](/vendor/enterprise-portal-v2-helm-reference)) |
 | `items` | Nests child navigation items to create expandable sections. Items can nest to any depth, with each child following the same structure |
 
-Every item also supports `icon` and `visible_when` (see [Visibility](#visibility) below).
+Every item also supports `icon` and `visible_when`. See [Visibility](#visibility).
 
-The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. Omitting a page from `toc.yaml` hides it entirely. To keep the page in the repo and listed in the TOC without publishing it, set `hidden: true` in the page frontmatter. See [Hide unpublished pages](#hide-unpublished-pages).
+The `toc.yaml` acts as an allowlist: pages that exist in your repo but are not listed in `toc.yaml` are not reachable through the portal navigation or direct URL. Omitting a page from `toc.yaml` hides it entirely. To keep the page in the repo and listed in the table of contents without publishing it, set `hidden: true` in the page frontmatter. See [Hide unpublished pages](#hide-unpublished-pages).
 
 :::note
-The `overrides.home` page bypasses the TOC allowlist and remains accessible even if it is not listed in `toc.yaml`. To hide the home landing page, set `hidden: true` or `visible_when` in its frontmatter. `overrides.home` cannot restore a hidden page or a child of a hidden parent.
+The `overrides.home` page bypasses the table of contents allowlist and remains accessible even if it is not listed in `toc.yaml`. To hide the home landing page, set `hidden: true` or `visible_when` in its frontmatter. `overrides.home` cannot restore a hidden page or a child of a hidden parent.
 :::
 
 Supported icon values: `rocket`, `download`, `cloud`, `settings`, `wrench`, `life-buoy`, `file-text`, `star`, `book`, `shield`, `package`, `refresh-cw`, `database`, `key`. If omitted, defaults to `book`.
 
 ### Complete example
 
-Here's a `toc.yaml` showing all content types together:
+The following `toc.yaml` shows all content types together:
 
 ```yaml
 navigation:
@@ -187,9 +187,9 @@ navigation:
 
 In this example, **Configuration** expands to show **Required Values** and **Optional Values**. **Required Values** further expands to show **Authentication** and **Networking**. Each level is collapsible in the sidebar.
 
-Any item with `items` can also have its own `page`, `visible_when`, and `icon`. If all children of a parent are hidden by `visible_when`, the parent is also hidden automatically.
+Any item with `items` can also have its own `page`, `visible_when`, and `icon`. If `visible_when` hides every child, the portal hides the parent too.
 
-If a TOC node has a `page` with `hidden: true`, the portal drops that node and its subtree, including nested `helm_chart` and `terraform_module` items. A section that is only a title (no `page`) cannot use `hidden`. For more information, see [Hide unpublished pages](#hide-unpublished-pages).
+If a table of contents entry has a `page` with `hidden: true`, the portal drops that entry and every nested item, including nested `helm_chart` and `terraform_module` items. A section that is only a title (no `page`) cannot use `hidden`. For more information, see [Hide unpublished pages](#hide-unpublished-pages).
 
 ### External links {#external-links}
 
@@ -245,20 +245,20 @@ Always create a backup before applying updates.
 </Warning>
 ```
 
-**`<Tabs>` / `<Tab>`**: Tabbed content sections.
+**`<Tabs>` / `<Tab>`**: Tabbed content sections. Pass `groupId` to keep that choice for the browser tab. The tab's session storage holds the choice. A portal link opened in a new tab starts without it, and closing the tab clears it. A click selects that title on every other `<Tabs>` with the same `groupId` that is already on the page. After a reload, and on other pages in the same tab, the portal opens that same choice. The match is the tab title. Logout, switching teams, and accepting a team invite clear it. Omit `groupId` when the tabs are local to the page. The default home page uses `groupId="install-method"` for the Linux / Helm quick links. The default support bundle page omits `groupId`. Those tabs use an entitlement gate, and they are not the home page's Linux / Helm choice.
 
 ```markdown
-<Tabs>
+<Tabs groupId="install-method">
 <Tab title="Linux">
-Linux-specific instructions here...
+- [Linux Installation](/installation/linux)
 </Tab>
 <Tab title="Helm">
-Helm-specific instructions here...
+- [Helm Installation](/installation/helm)
 </Tab>
 </Tabs>
 ```
 
-Props: `<Tabs>` accepts `defaultActiveTab`. `<Tab>` requires `title`.
+Props: `<Tabs>` accepts `groupId` and `defaultActiveTab`. `defaultActiveTab` is a zero-based index. A title such as `defaultActiveTab="Helm"` falls back to the first tab, because the value has to be a number. `<Tab>` requires `title`. A `<Tabs>` with no `groupId` stays local to the page. Nested `<Tabs>` stay independent unless they share a `groupId`.
 
 **`<Accordion>`**: Collapsible content section.
 
@@ -270,7 +270,7 @@ Detailed configuration options...
 
 Props: `title` (required), `defaultOpen` (optional, defaults to false).
 
-**`<OptionSelector>` / `<Option>`**: Persistent option picker that remembers the customer's selection across page loads.
+**`<OptionSelector>` / `<Option>`**: Supported option picker with its own look. `storageKey` is the same session key as `<Tabs>` `groupId`. A click selects that value on every other selector with the same `storageKey`, and on a `<Tabs>` with that `groupId`, including two selectors on one page. Reloading the same browser tab brings that choice back. Logout, switching teams, and accepting a team invite clear it. Existing `<OptionSelector>` pages keep working. New pages should use `<Tabs>` with `groupId`. `<OptionSelector>` stays supported.
 
 ```markdown
 <OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
@@ -285,7 +285,7 @@ Props: `title` (required), `defaultOpen` (optional, defaults to false).
 </OptionSelector>
 ```
 
-Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting selection in browser storage).
+Props: `label` (display label), `defaultOption` (pre-selected value), `storageKey` (key for persisting the selection in session storage). When `storageKey` is missing, the label is the key. `label="Install Method"` becomes `install-method`, the same key as `<Tabs groupId="install-method">`, so the two switch each other. Omit `storageKey` and `label` to keep the selection in memory only.
 
 ### Display
 
@@ -327,7 +327,7 @@ From any page, this path resolves to `/<version>/installation/values`.
 
 These components render dynamic, customer-specific installation instructions based on the customer's license entitlements, selected install method, and instance state.
 
-**`<PendingInstallSelector>`**: Shows a list of in-progress installations scoped to a specific install method. Customers select an installation to populate the commands below with that installation's credentials.
+**`<PendingInstallSelector>`**: Shows a list of in-progress installations scoped to a specific install method. Customers select an installation to populate the following commands with that installation's credentials.
 
 ```markdown
 <PendingInstallSelector method="linux" />
@@ -346,16 +346,16 @@ Props: `method` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`, required), `network
 If you omit `network`, the default depends on the page's network selection: `"airgap"` for air gap, or `"online"` otherwise.
 
 :::note
-The install commands on the page are personalized to the selected installation. If you switch installations or rename your instance, the commands update automatically.
+The portal fills the install commands for the selected installation. If you switch installations or rename your instance, the commands update automatically.
 :::
 
-**`<NetworkAvailability>`**: Selector for online, proxy, or air gap installation mode. The air gap option is shown only when the customer's license supports air gap. Proxy selection also shows a Proxy URL field.
+**`<NetworkAvailability>`**: Selector for online, proxy, or air gap installation mode. The portal shows the air gap option only when the customer's license supports air gap. Proxy selection also shows a Proxy URL field.
 
 ```markdown
 <NetworkAvailability installType="linux" />
 ```
 
-Props: `installType` (optional, `"linux"`, `"helm"`, `"kots"`, or `"kurl"`). Pass it so the air gap radio is gated on the correct entitlement. Without it, the air gap option is hidden.
+Props: `installType` (optional, `"linux"`, `"helm"`, `"kots"`, or `"kurl"`). Pass it so the air gap radio follows the correct entitlement. Without it, the portal hides the air gap option.
 
 **`<VersionSelector>`**: Dropdown for selecting which release version to install.
 
@@ -373,7 +373,7 @@ Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
 
-When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. No additional configuration is required.
+When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. You do not configure anything else.
 
 **`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
@@ -387,13 +387,13 @@ When a customer selects limited or no registry access, `<HelmAirgapInstallAssets
 - `--app-version-label`
 - `--namespace` with the application slug when the slug is 63 characters or fewer
 - On non-stable channels, the install positional `appSlug/channelSlug`
-- When proxy is selected, `--http-proxy` / `--https-proxy` / `--no-proxy` on the install line, and `curl -x <proxy>` on the CLI download
+- When the customer selects proxy, `--http-proxy` / `--https-proxy` / `--no-proxy` on the install line, and `curl -x <proxy>` on the CLI download
 
-`--shared-password` is omitted so KOTS prompts for the Admin Console password instead of printing a secret on the page.
+The portal leaves out `--shared-password`, so KOTS prompts for the Admin Console password instead of printing a secret on the page.
 
 Props: `stepNumber` (optional, starting step number).
 
-**`<KurlInstallAssets />`**: Renders the full online or proxy kURL installation command sequence. When proxy is selected, the generated command uses `curl -x <proxy>` for the installer download and prefixes `HTTP_PROXY`/`HTTPS_PROXY` onto the `sudo bash`. Props: `stepNumber` (optional, starting step number).
+**`<KurlInstallAssets />`**: Renders the full online or proxy kURL installation command sequence. When the customer selects proxy, the generated command uses `curl -x <proxy>` for the installer download and prefixes `HTTP_PROXY`/`HTTPS_PROXY` onto the `sudo bash`. Props: `stepNumber` (optional, starting step number).
 
 **`<KotsAirgapInstallAssets />`**: Renders KOTS air gap download steps for the selected release. This component does not generate `push-images` or `kots install --kotsadm-registry` commands with customer registry credentials. The default KOTS page documents that air gap procedure in markdown instead. Props: `stepNumber`.
 
@@ -409,11 +409,11 @@ Props: `stepNumber` (optional, starting step number).
 
 For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there.
 
-**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. Available when the customer's license has the KOTS install type. The KOTS CLI and optional Preflight and Support Bundle CLIs appear even when air gap is disabled. The Admin Console bundle and the application air gap bundle appear only when air gap is enabled, and only when `cliOnly` is not set. This component does not render install commands. Do not move the air gap mount out of `<WhenNetwork mode="airgap">` to put CLIs on the online branch. A customer who has air gap on the license but selected online would then see those bundles as required. Use a second mount with `cliOnly={true}` on the online/proxy branch instead (the default KOTS page does this). Props: `stepNumber`, `cliOnly` (optional).
+**`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. The customer's license must include the KOTS install type. The KOTS CLI and the optional Preflight and Support Bundle CLI tools still appear when air gap is off. The Admin Console bundle and the application air gap bundle appear only when air gap is on, and only when you omit `cliOnly`. This component does not render install commands. Do not move the air gap mount out of `<WhenNetwork mode="airgap">` to put CLI tools on the online branch. A customer who has air gap on the license but selected online would then see those bundles as required. Use a second mount with `cliOnly={true}` on the online/proxy branch instead. The default KOTS page does this. Props: `stepNumber`, `cliOnly` (optional).
 
-**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. Available when the customer's license has the kURL install type. Optional KOTS, Preflight, and Support Bundle CLIs appear even when air gap is disabled. The kURL installer bundle (air gap tarball) and the application air gap bundle appear only when air gap is enabled, and only when `cliOnly` is not set. This component does not render install commands. Props: `stepNumber`, `cliOnly` (optional).
+**`<KurlDownloadAssets />`**: Renders a kURL downloads section with a version picker for the selected release. The customer's license must include the kURL install type. The optional KOTS, Preflight, and Support Bundle CLI tools still appear when air gap is off. The kURL installer bundle (air gap tarball) and the application air gap bundle appear only when air gap is on, and only when you omit `cliOnly`. This component does not render install commands. Props: `stepNumber`, `cliOnly` (optional).
 
-**`<WhenNetwork>`**: Shows or hides child content based on the customer's Network Availability selection. Use this to keep online generated commands and air gap documentation on the same page. Accepted `mode` tokens are `online`, `proxy`, and `airgap` (comma-separated). With no `<NetworkAvailability/>` on the page the selection stays `"online"`, so `mode="airgap"` content never appears. Unrecognized tokens such as `"Airgap"` or `"air-gap"` are ignored; in content preview the portal shows an authoring warning listing the accepted modes. Props: `mode` (required), `children`.
+**`<WhenNetwork>`**: Shows or hides child content based on the customer's Network Availability selection. Use this to keep online generated commands and air gap documentation on the same page. Accepted `mode` tokens are `online`, `proxy`, and `airgap` (comma-separated). With no `<NetworkAvailability/>` on the page the selection stays `"online"`, so `mode="airgap"` content never appears. The portal skips unrecognized tokens such as `"Airgap"` or `"air-gap"`. In content preview it shows an authoring warning that lists the accepted modes. Props: `mode` (required), `children`.
 
 **`<InstanceName />`**: Prompts the customer to name their instance after installation. Renaming updates the service account name and refreshes the install commands on the page.
 
@@ -423,9 +423,9 @@ For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `st
 
 Props: `title` (optional, defaults to "Name Your Instance"), `method` (optional, `"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
-**`<AdminConsoleUrl />`**: Displays the admin console URL for Embedded Cluster installations. No props.
+**`<AdminConsoleUrl />`**: Displays the Admin Console URL for Embedded Cluster installations. No props.
 
-**`<HelmReleaseImages />`**: Lists all container images included in a Helm release for the selected version. Includes a copy button for the full image list. Props: `title` (optional, defaults to "Helm images"), `emptyText` (optional, message when no images are found).
+**`<HelmReleaseImages />`**: Lists all container images included in a Helm release for the selected version. Includes a copy button for the full image list. Props: `title` (optional, defaults to "Helm images"), `emptyText` (optional, message when the release has no images).
 
 #### Filtering charts in install instructions
 
@@ -479,12 +479,12 @@ You do not need to author a KOTS page from scratch. Start from the template page
 
 ##### What the default KOTS page contains
 
-`pages/installation/kots.md` is gated on `isKotsInstallEnabled`. It includes:
+`pages/installation/kots.md` requires `isKotsInstallEnabled`. It includes:
 
 - An installation selector (`<PendingInstallSelector>`, `<NewInstall>`, `<InstanceName>`)
 - `<NetworkAvailability installType="kots" />` and `<VersionSelector installType="kots" />`
 - `<LicenseDownload />` for every network mode (online and proxy generated `kubectl kots install` commands require `--license-file ./license.yaml`)
-- Online and proxy installs: generated commands from `<KotsInstallAssets />`, then workstation CLIs from `<KotsDownloadAssets cliOnly={true} />`, wrapped in `<WhenNetwork mode="online,proxy">`
+- Online and proxy installs: generated commands from `<KotsInstallAssets />`, then workstation CLI tools from `<KotsDownloadAssets cliOnly={true} />`, wrapped in `<WhenNetwork mode="online,proxy">`
 - Air gap installs: a documentation-style procedure wrapped in `<WhenNetwork mode="airgap">`, including:
   - Requirements for a private registry and **two** registry accounts (read-write for `push-images`, read-only for `kots install`). These are the customer's registry credentials, not portal or license credentials.
   - `<KotsDownloadAssets />`
@@ -501,8 +501,8 @@ Common vendor edits:
 - **Branding and product naming**: Replace generic wording with your product name and support contact.
 - **Admin Console URL**: The default air gap procedure uses the port-forward URL (`http://localhost:8800` or `kubectl kots admin-console`). If customers reach the Admin Console through an ingress or load balancer, replace that step with your URL.
 - **Registry conventions**: Document your registry hostname or host/namespace pattern, account naming, and any required prep (for example, creating the registry namespace before push).
-- **Content around `<KotsDownloadAssets />`**: Put your own steps above and below the download component. Pass `stepNumber` when you want the component to own the numbered step chrome, or wrap it in `<InstallStep>` and omit `stepNumber` so your surrounding copy owns the numbering. Do not do both.
-- **Online CLI downloads**: The default page already mounts `<KotsDownloadAssets cliOnly={true} />` on the online/proxy branch. Lead that copy with Preflight and Support Bundle (not curl-dependent). Then cover the fallback. If the customer cannot run `curl https://kots.io/install`, they download the KOTS CLI, extract it, rename `kots` to `kubectl-kots`, put it on PATH, and run the `kubectl kots install` line from step 2. Do not enable air gap on the license only to get the KOTS CLI. Do not move the air gap `<KotsDownloadAssets />` out of `<WhenNetwork mode="airgap">`. The default KOTS air gap procedure is unchanged.
+- **Content around `<KotsDownloadAssets />`**: Put your own steps before and after the download component. Pass `stepNumber` when you want the component to own the numbered step chrome, or wrap it in `<InstallStep>` and omit `stepNumber` so your surrounding copy owns the numbering. Do not do both.
+- **Online CLI downloads**: The default page already mounts `<KotsDownloadAssets cliOnly={true} />` on the online/proxy branch. Lead that copy with Preflight and Support Bundle (not curl-dependent). Then cover the fallback. If the customer cannot run `curl https://kots.io/install`, they download the KOTS CLI, extract it, rename `kots` to `kubectl-kots`, put it on PATH, and run the `kubectl kots install` line from step 2. Do not enable air gap on the license only to get the KOTS CLI. Do not move the air gap `<KotsDownloadAssets />` out of `<WhenNetwork mode="airgap">`. Leave the default KOTS air gap procedure as it is.
 
 ```markdown
 <InstallStep stepNumber={1} title="Your network and registry rules">
@@ -518,13 +518,19 @@ Your REGISTRY_HOST convention, then the docs-style command.
 </InstallStep>
 ```
 
-##### kURL installer page
+##### Installer page for kURL
 
-The default `pages/installation/kurl.md` page provides downloads for entitled air gap customers. Its frontmatter and `toc.yaml` entry are gated on both `isKurlInstallEnabled` and `isAirgapSupported`. For generated online or air gap install commands, add `<NetworkAvailability installType="kurl" />`, `<VersionSelector installType="kurl" />`, and `<KurlInstallAssets />` (which adapts when Network Availability changes) or a separate `<KurlAirgapInstallAssets />` branch, the same way Helm and Embedded Cluster pages use generated install assets. If you ship generated online kURL commands to online-only customers, drop `isAirgapSupported` from both the page frontmatter `visible_when` and the `toc.yaml` entry. The default kURL page is unchanged. If you add `<KurlDownloadAssets />` to a page those customers can see, pass `cliOnly={true}` so they get the optional CLIs without the kURL installer tarball or application air gap bundle.
+The default `pages/installation/kurl.md` page provides downloads for entitled air gap customers. Its frontmatter and `toc.yaml` entry require both `isKurlInstallEnabled` and `isAirgapSupported`.
+
+For generated online or air gap install commands, add `<NetworkAvailability installType="kurl" />`, `<VersionSelector installType="kurl" />`, and `<KurlInstallAssets />`. `<KurlInstallAssets />` adapts when Network Availability changes. You can also add a separate `<KurlAirgapInstallAssets />` branch. Helm and Embedded Cluster pages use generated install assets the same way.
+
+If you ship generated online kURL commands to online-only customers, drop `isAirgapSupported` from the page frontmatter `visible_when` and from the `toc.yaml` entry. Leave the default kURL page as it is.
+
+If you add `<KurlDownloadAssets />` to a page those customers can see, pass `cliOnly={true}`. They then get the optional CLI tools without the kURL installer tarball or the application air gap bundle.
 
 #### Default KOTS and kURL upgrade guides
 
-The default template adds `pages/updates/kots.md` and `pages/updates/kurl.md` beneath **Instances & Updates**. In `toc.yaml`, give **Instances & Updates** child items only: an **Instances** item for `pages/updates/instances.md`, then the two guides. Do not put both `page:` and `items:` on the parent, or KOTS and kURL customers lose a sidebar link to the instance list. The KOTS page and its `toc.yaml` item use `isKotsInstallEnabled`; the kURL page and item use `isKurlInstallEnabled`. Each page uses the same entitlement in its frontmatter and navigation entry so a direct URL cannot bypass the navigation gate.
+The default template adds `pages/updates/kots.md` and `pages/updates/kurl.md` as children of **Instances & Updates**. In `toc.yaml`, give **Instances & Updates** child items only: an **Instances** item for `pages/updates/instances.md`, then the two guides. Do not put both `page:` and `items:` on the parent, or KOTS and kURL customers lose a sidebar link to the instance list. The KOTS page and its `toc.yaml` item use `isKotsInstallEnabled`. The kURL page and item use `isKurlInstallEnabled`. Each page uses the same entitlement in its frontmatter and navigation entry so a direct URL cannot bypass the navigation gate.
 
 Do not add `isAirgapSupported` to the whole-page gate. Each guide wraps only its air gap download-and-upload subsection in `\{\{#if entitlements.isAirgapSupported\}\}`. Online customers still need the Admin Console procedure, while air gap customers also see how to transfer and upload the application bundle.
 
@@ -543,7 +549,7 @@ The default KOTS and kURL guides mount `<AdminConsoleCommand />` for the reopen 
 <AdminConsoleCommand installType="kots" lead="Reopen the KOTS Admin Console by running" />
 ```
 
-Set `kotsNamespace` on `<InstancesAndUpdates />` and `namespace` on the matching `<AdminConsoleCommand />` only if every customer's Admin Console runs in that namespace, for example because your own install instructions tell customers to use it. Leave `kurlNamespace` unset unless you forked `install.sh` and every kURL customer's Admin Console runs in that namespace. These props do not change the namespace in the portal's KOTS install command. After you set one, the reopen command no longer tells the customer to substitute a different namespace. Vendors whose customers use different namespaces should leave the props unset.
+Set `kotsNamespace` on `<InstancesAndUpdates />` and `namespace` on the matching `<AdminConsoleCommand />` only if every customer's Admin Console runs in that namespace. One example is when your own install instructions tell customers to use it. Leave `kurlNamespace` unset unless you forked `install.sh` and every kURL customer's Admin Console runs in that namespace. These props do not change the namespace in the portal's KOTS install command. After you set one, the reopen command no longer tells the customer to substitute a different namespace. Vendors whose customers use different namespaces should leave the props unset.
 
 The values must be DNS-1123 labels of at most 63 characters. Invalid namespace values keep the type default. A KOTS override does not change kURL cards, and a kURL override does not change KOTS cards.
 
@@ -561,7 +567,7 @@ Edit the guide pages to describe your Admin Console access, registry, support, a
 
 The default guides do not include `kubectl kots upstream upgrade`. Add that command only if every customer uses the same namespace, and include the app slug argument.
 
-The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Vendors must document when cluster maintenance is required and provide a separately validated procedure.
+The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Document when cluster maintenance has to happen, and provide a separately validated procedure.
 
 ### Update components
 
@@ -569,11 +575,11 @@ The kURL guide separates an application update from kURL/Kubernetes cluster main
 
 **`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
 
-**`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path and renders only the application air gap bundle, without recording an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional kotsadm namespace for the reopen command).
+**`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path. It renders only the application air gap bundle, and it does not record an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional kotsadm namespace for the reopen command).
 
 **`<KurlUpdateAssets />`**: Renders the same guided application-upgrade flow for a kURL instance. With no `namespace` prop, the reopen command uses `--namespace default`. It does not present the kURL installer bundle or `install.sh` as an application-update action. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional).
 
-**`<AdminConsoleCommand />`**: Renders the `kubectl kots admin-console --namespace` sample used on the default KOTS and kURL upgrade guides. Props: `installType` (required, `kots` or `kurl`; any other value renders nothing), `namespace` (optional namespace where the Admin Console is running; empty or invalid keeps the type default), and `lead` (optional text before the command; the component appends the command and a period).
+**`<AdminConsoleCommand />`**: Renders the `kubectl kots admin-console --namespace` sample used on the default KOTS and kURL upgrade guides. Props: `installType` (required, `kots` or `kurl`. Any other value renders nothing), `namespace` (optional namespace where the Admin Console is running. Empty or invalid keeps the type default), and `lead` (optional text before the command. The component appends the command and a period).
 
 **`<UpgradePath>`**: Conditionally shows content based on the customer's current version. Lets you show different upgrade instructions depending on which version the customer is upgrading *from*.
 
@@ -581,14 +587,14 @@ The kURL guide separates an application update from kURL/Kubernetes cluster main
 
 | Prop | Description |
 | :--- | :--- |
-| `fromBelow` | Show content only when the customer's current version is *below* this version |
-| `fromAbove` | Show content only when the customer's current version is *above* this version |
-| `fromBelowOrEqual` | Show content only when the current version is at or below this version |
+| `fromBelow` | Show content only when the customer's current version is lower than this version |
+| `fromAbove` | Show content only when the customer's current version is higher than this version |
+| `fromBelowOrEqual` | Show content only when the current version is this version or lower |
 | `fromAtLeast` | Show content only when the current version is at least this version |
 
-All version values must be strict `major.minor.patch` format (e.g. `2.0.0`). A `v` prefix is stripped automatically. Pre-release suffixes (e.g. `2.0.0-rc.1`) are not supported.
+All version values must be strict `major.minor.patch` format (e.g. `2.0.0`). The portal removes a `v` prefix on its own. Pre-release suffixes (e.g. `2.0.0-rc.1`) are not supported.
 
-Props can be combined to define a version range (AND logic). If the customer has no selected instance or the version can't be parsed, the content is hidden.
+Combine props to define a version range. Every prop has to match. If the customer has no selected instance, or the portal cannot parse the version, it hides the content.
 
 **Example:**
 
@@ -610,13 +616,13 @@ No manual migration needed. The upgrade is automatic.
 </UpgradePath>
 ````
 
-In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" instructions, while a customer on 2.1.0 would see the "Upgrading from 2.x" block.
+In this example, a customer on version 1.5.0 sees the "Upgrading from 1.x" instructions. A customer on 2.1.0 sees the "Upgrading from 2.x" block.
 
 **`<ReleaseNotes />`**: Displays release notes for the target update version. No props.
 
 ### Portal components
 
-**`<ReleaseHistory />`**: Renders a browsable release history timeline with version details and release notes. For air gap releases, each entry shows a build status badge (Ready, Building, Failed, or Not built). Props: `limit` (optional, max number of releases to show).
+**`<ReleaseHistory />`**: Renders a release history timeline customers can browse, with version details and release notes. For air gap releases, each entry shows a build status badge (Ready, Building, Failed, or Not built). Props: `limit` (optional, max number of releases to show).
 
 **`<SupportBundleUpload />`**: Upload interface for support bundles. No props.
 
@@ -630,19 +636,19 @@ In this example, a customer on version 1.5.0 would see the "Upgrading from 1.x" 
 
 **`<KotsBundles />`**: KOTS-specific support bundle generation instructions for an existing cluster. No props.
 
-Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method.
+Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button once their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. The button cannot be removed. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, and `kurlNamespace`. `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button after their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. You cannot remove the button. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, and `kurlNamespace`. `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
 
 ### Security components
 
-These components require Security Center to be enabled for the customer and are available for Helm and Embedded Cluster installs only. See [Security Center](/vendor/security-center-about) for more information.
+These components require Security Center for the customer. They are available for Helm and Embedded Cluster installs only. See [Security Center](/vendor/security-center-about) for more information.
 
-**`<CVEReport />`**: Displays CVEs by severity, component, and container image for the selected release. For each CVE, the **Fixed In** column identifies the earliest vendor release that resolves it, when one is available. The report also compares CVE counts with the latest release. Depending on your Security Center settings, the report shows only fixable CVEs or includes a toggle for customers to show all CVEs. When **Enable raw CVE scan to be downloadable** is enabled, the report also displays **Download full CVE report**, which downloads the raw Grype scan JSON for the selected release. This download is distinct from the SPDX SBOM available through `<SBOMReport />`. No props.
+**`<CVEReport />`**: Displays CVEs by severity, component, and container image for the selected release. For each CVE, the **Fixed In** column identifies the earliest vendor release that resolves it, when one is available. The report also compares CVE counts with the latest release. Depending on your Security Center settings, the report shows only fixable CVEs or includes a toggle for customers to show all CVEs. When you turn on **Enable raw CVE scan to be downloadable**, the report also displays **Download full CVE report**. That downloads the raw Grype scan JSON for the selected release. This download is distinct from the Software Package Data Exchange (SPDX) SBOM available through `<SBOMReport />`. No props.
 
 **`<SBOMReport />`**: Displays SBOM metadata and a download option for the selected release. If no SBOM is available, the component displays an unavailable state. No props.
 
@@ -650,7 +656,7 @@ These components require Security Center to be enabled for the customer and are 
 
 ## Template variables
 
-Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` syntax for dynamic rendering. Template variables and MDX components can be used together in the same page.
+Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` syntax for dynamic rendering. You can use template variables and MDX components together on the same page.
 
 ### Available variables
 
@@ -665,7 +671,7 @@ Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` sy
 | `\{\{ channel.slug \}\}` | URL-friendly channel identifier |
 | `\{\{ release.version \}\}` | Current release version |
 | `\{\{ license.* \}\}` | Any field from the license object (e.g. `\{\{ license.id \}\}`, `\{\{ license.expiresAt \}\}`) |
-| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see below) |
+| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see [Conditionals](#conditionals)) |
 
 :::note
 `\{\{ release.version \}\}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `\{\{ channel.name \}\}` as a more reliable alternative for version-dependent content.
@@ -682,7 +688,7 @@ For production deployments, enable HA mode...
 {{/if}}
 ```
 
-Values are considered falsy if they are null, empty string, `false`, `"false"`, `"0"`, or `0`. Everything else is truthy.
+A value fails this check when it is null, an empty string, `false`, `"false"`, `"0"`, or `0`. Any other value passes.
 
 **`\{\{#ifEquals\}\}`**: Show content when a value equals a specific string. Useful for per-customer or per-channel content.
 
@@ -697,7 +703,7 @@ Your dedicated endpoint is acme.example.com
 {{/ifEquals}}
 ```
 
-The comparison value must be quoted (double or single quotes). Supports nesting.
+Quote the comparison value with double or single quotes. Supports nesting.
 
 ### Entitlements
 
@@ -722,7 +728,7 @@ For production deployments, enable HA mode...
 
 ## Visibility {#visibility}
 
-Use `visible_when` to control which customers see which content. All conditions must be satisfied (AND logic). To keep a page unpublished for every customer, set `hidden: true` in the page frontmatter. `hidden` is not a license or entitlement gate. See [Hide unpublished pages](#hide-unpublished-pages).
+Use `visible_when` to control which customers see which content. Every condition has to match. To keep a page unpublished for every customer, set `hidden: true` in the page frontmatter. `hidden` is not a license or entitlement gate. See [Hide unpublished pages](#hide-unpublished-pages).
 
 ### Navigation visibility (toc.yaml)
 
@@ -741,11 +747,11 @@ Apply `visible_when` on any navigation item in `toc.yaml`:
       include: [paid]
 ```
 
-All three filter types (`entitlements`, `channel`, and `customer_type`) are fully evaluated server-side. Unrecognized filter dimensions are rejected (fail closed).
+The server evaluates all three filter types (`entitlements`, `channel`, and `customer_type`). It rejects unrecognized filter dimensions (fail closed).
 
-To hide a page entirely, you can also omit it from `toc.yaml`. Pages not listed in the TOC are not reachable through navigation or direct URL (see [Table of contents](#table-of-contents) above). To keep the page listed in `toc.yaml` but unpublished, use `hidden: true` in the page frontmatter instead.
+To hide a page entirely, you can also omit it from `toc.yaml`. Pages not listed in the table of contents are not reachable through navigation or direct URL. See [Table of contents](#table-of-contents). To keep the page listed in `toc.yaml` but unpublished, use `hidden: true` in the page frontmatter instead.
 
-#### Per-user permissions in visible_when
+#### Per-user permissions
 
 In addition to license entitlements, you can gate content on per-user permissions by referencing them in the `entitlements` list:
 
@@ -767,9 +773,9 @@ The following permissions are available:
 | `canManageServiceAccts` | Can create or revoke service accounts |
 | `canUploadBundles` | Can upload support bundles |
 
-Permissions are folded into the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. Currently, `canViewSecurity` is the most useful permission for content gating because it resolves based on whether Security Center is enabled for the customer. The other four permissions resolve to `true` for all portal users.
+The portal places permissions in the `entitlements` namespace, so they work in both `visible_when` conditions and `\{\{ entitlements.canViewSecurity \}\}` template expressions. `canViewSecurity` is the most useful permission for content gating, because it follows whether the customer has Security Center. The other four permissions resolve to `true` for all portal users.
 
-#### Custom license fields in visible_when
+#### Custom license fields
 
 In addition to built-in entitlements, you can use your own custom license fields in `visible_when` conditions. Any custom license field you create in the Vendor Portal is automatically available in the `entitlements` list. This lets you gate content on a per-customer basis using fields you define.
 
@@ -787,7 +793,7 @@ Only customers whose license has `hasAdvancedReporting` set to `true` will see t
 
 For information about creating custom license fields, see [Manage custom license fields](/vendor/licenses-adding-custom-fields#manage-custom-license-fields).
 
-#### License type visibility (customer_type)
+#### License type visibility
 
 Use `customer_type` to show or hide content based on the customer's license type. Valid values are `community`, `trial`, and `paid`.
 
@@ -834,9 +840,9 @@ Frontmatter `visible_when` is an additional gate, not a replacement for navigati
 
 #### Hide unpublished pages {#hide-unpublished-pages}
 
-`hidden` controls whether a page is published, not who can see it. Use `visible_when` to show a page to some customers and not others based on their license. Use `hidden: true` to keep a page out of every customer's portal until you are ready to publish it, regardless of license.
+`hidden` controls whether you publish a page, not who can see it. Use `visible_when` to show a page to some customers and not others based on their license. Use `hidden: true` to keep a page out of every customer's portal until you are ready to publish it, regardless of license.
 
-Set `hidden: true` in a page's YAML frontmatter when the page belongs in your content repo but is not ready for customers yet. For example, stage a product announcement, a new install guide, or a revised section next to your live docs, then publish it by removing the flag when you are ready. Keep the page listed in `toc.yaml` while it is hidden so the navigation slot is already wired when you publish, rather than leaving the draft in a stray branch or an unwired file you have to remember later. Local preview hides the page the same as production, so it does not appear in the preview sidebar while `hidden` is set.
+Set `hidden: true` in a page's YAML frontmatter when the page belongs in your content repo but is not ready for customers yet. For example, stage a product announcement, a new install guide, or a revised section with your live docs. Publish it by removing the flag when you are ready. Keep the page listed in `toc.yaml` while you hide it, so the navigation slot is already in place when you publish. Do not leave the draft in a stray branch or a file with no navigation entry. Local preview hides the page the same as production, so the preview sidebar omits it while `hidden` is on.
 
 Put `hidden` on the markdown page, not on `toc.yaml`.
 
@@ -856,25 +862,25 @@ Keep the page listed in `toc.yaml` as a normal page entry:
 
 Customers do not see the page until you remove `hidden` or set it to `false`, then re-sync the content.
 
-`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions is unchanged. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
+`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
 
-If a TOC node has a `page` with `hidden: true`, the portal drops that node and its subtree. The subtree includes child pages, nested `helm_chart` items, and `terraform_module` items. This is the same ancestor-gating behavior as `visible_when` on a parent.
+If a table of contents entry has a `page` with `hidden: true`, the portal drops that entry and every nested item. Nested items include child pages, nested `helm_chart` items, and `terraform_module` items. This matches `visible_when` on a parent, which also drops the children.
 
-A section that is only a title (no `page`) cannot use `hidden`. Set `hidden` on each child page, or use `visible_when` on the TOC node.
+A section that is only a title (no `page`) cannot use `hidden`. Set `hidden` on each child page, or use `visible_when` on the table of contents entry.
 
 `overrides.home` cannot restore a hidden page or a child of a hidden parent. To hide the home landing page, set `hidden: true` on that page.
 
-Omitting a page from `toc.yaml` still hides it entirely. Use `hidden` when you want to keep the page in the TOC and publish it later.
+Omitting a page from `toc.yaml` still hides it entirely. Use `hidden` when you want to keep the page in the table of contents and publish it later.
 
 :::note
-If you sync `hidden` against an Enterprise Portal binary that does not support it, the portal drops unknown YAML keys. After a binary that supports `hidden` is deployed, re-sync so the flag is stored.
+If you sync `hidden` against an Enterprise Portal binary that does not support it, the portal drops unknown YAML keys. After you deploy a binary that supports `hidden`, re-sync so the portal keeps the flag.
 :::
 
 ## Downloadable assets
 
 You can distribute files (scripts, checklists, configuration templates, etc.) through Enterprise Portal by committing them to an `assets/` directory in your content repo.
 
-### Repo structure
+### Repository structure
 
 ```
 your-content-repo/
@@ -886,7 +892,7 @@ your-content-repo/
 └── toc.yaml
 ```
 
-Any file committed to the `assets/` directory is available for download. There are no restrictions on file type or size beyond what your git hosting provider allows (GitHub supports files up to ~100MB via raw content). Assets are fetched directly from your git repo when a customer clicks a download link, so changes are available as soon as you push.
+Any file committed to the `assets/` directory is available for download. There are no restrictions on file type or size beyond what your git hosting provider allows (GitHub supports files up to ~100MB through raw content). The portal fetches assets directly from your git repo when a customer clicks a download link, so changes are available as soon as you push.
 
 ### Linking to assets
 
@@ -898,12 +904,12 @@ Use the `\{\{asset "path"\}\}` template tag in your markdown to generate a downl
 - [Onboarding Checklist]({{asset "assets/onboarding-checklist.pdf"}})
 ```
 
-The tag expands to a URL that authenticates the customer via their session and serves the file directly. Assets are version-aware, so each content branch can have its own set of files.
+The tag expands to a URL that authenticates the customer with their session and serves the file directly. Assets are version-aware, so each content branch can have its own set of files.
 
 The path inside the tag is relative to the repo root and must start with `assets/`.
 
 :::note
-Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. Asset access is controlled by the visibility of the page that references them, not by the file path or directory structure. A page with `hidden: true` does not authorize asset downloads. If you need to restrict an asset to specific customers, use template conditionals (like `\{\{#ifEquals customer.name\}\}`) around the asset reference, or place the asset reference on a page gated with `visible_when`. See the example below.
+Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. The visibility of the referencing page controls asset access, not the file path or directory structure. A page with `hidden: true` does not authorize asset downloads. To limit an asset to specific customers, wrap the asset reference in a template conditional such as `\{\{#ifEquals customer.name\}\}`. You can also put the asset reference on a page that uses `visible_when`. See the following example.
 :::
 
 ### Per-customer asset delivery
