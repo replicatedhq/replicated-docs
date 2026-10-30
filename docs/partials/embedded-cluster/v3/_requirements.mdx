@@ -14,9 +14,9 @@
 
 * The data directory used by Embedded Cluster must have 40Gi or more of total space and be less than 80% full. By default, the data directory is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug of the application. The directory can be changed by passing the `--data-dir` flag with the Embedded Cluster `install` command. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install).
 
-   Pod logs are stored in `<data-dir>/k0s/pod-logs` by default and count toward data directory disk usage. Installations created before Embedded Cluster VERSION and installations migrated from Embedded Cluster v2 continue to store pod logs in `/var/log/pods`, unless overridden by a worker profile.
+   For installations created with Embedded Cluster 3.17.0-beta.1 and later, pod logs default to `<data-dir>/k0s/pod-logs` and count toward data directory disk usage. Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
 
-   For new installations of Embedded Cluster VERSION and later, the data directory path must contain only ASCII characters unless every worker profile, including `default`, explicitly sets `podLogsDir` to a non-empty, ASCII-only path. Kubernetes requires ASCII-only pod log paths; an empty `podLogsDir` uses the data directory default.
+   For installations created with Embedded Cluster 3.17.0-beta.1 and later, the data directory path must contain only ASCII characters. Kubernetes requires ASCII-only pod log paths.
 
    Keep pod logs on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn if the filesystems differ or if the paths cannot be resolved or inspected. Kubernetes might not account for logs on a different filesystem during disk-pressure eviction.
 
@@ -40,7 +40,7 @@
       - `/var/log/calico`
       - `/var/log/containers`
       - `/var/log/APP_SLUG`, where `APP_SLUG` is the unique slug for the application
-      - `/var/log/pods` (installations created before Embedded Cluster VERSION or migrated from Embedded Cluster v2, unless overridden by a worker profile)
+      - `/var/log/pods` (the default for installations created before Embedded Cluster 3.17.0-beta.1 or migrated from Embedded Cluster v2; also used when `podLogsDir` is explicitly empty)
       - `/usr/local/bin/k0s`
 
 * (Online installations only) Access to replicated.app and proxy.replicated.com or your custom domain for each
