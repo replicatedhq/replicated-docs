@@ -14,6 +14,12 @@
 
 * The data directory used by Embedded Cluster must have 40Gi or more of total space and be less than 80% full. The data directory cannot be on a filesystem mounted with the `noexec` option, because Embedded Cluster runs binaries from it. By default, the data directory is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug of the application. The directory can be changed by passing the `--data-dir` flag with the Embedded Cluster `install` command. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install).
 
+   For installations created with Embedded Cluster 3.17.0-beta.1 and later, pod logs default to `<data-dir>/k0s/pod-logs` and count toward data directory disk usage. Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
+
+   For installations created with Embedded Cluster 3.17.0-beta.1 and later, the data directory path must contain only ASCII characters. Kubernetes requires ASCII-only pod log paths.
+
+   Keep pod logs on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn if the filesystems differ or if the paths cannot be resolved or inspected. Kubernetes might not account for logs on a different filesystem during disk-pressure eviction.
+
    Note that in addition to the primary data directory, Embedded Cluster creates directories and files in the following locations:
 
       - `/etc/cni`
@@ -35,7 +41,7 @@
       - `/var/log/calico`
       - `/var/log/containers`
       - `/var/log/APP_SLUG`, where `APP_SLUG` is the unique slug for the application
-      - `/var/log/pods`
+      - `/var/log/pods` (the default for installations created before Embedded Cluster 3.17.0-beta.1 or migrated from Embedded Cluster v2; also used when `podLogsDir` is explicitly empty)
       - `/usr/local/bin/k0s`
 
 * (Online installations only) Access to replicated.app and proxy.replicated.com or your custom domain for each
