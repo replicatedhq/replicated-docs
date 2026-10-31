@@ -113,3 +113,28 @@ Embedded Cluster opens the following ports in the default zone:
 <ComplianceScans/>
 
 Embedded Cluster v3 also links `/var/lib/ec/kubelet` to `DATA_DIR/k0s/kubelet`, so scanners might report the same kubelet files under `/var/lib/ec/kubelet`.
+
+## Secrets on the host {#secrets}
+
+Embedded Cluster does not encrypt application secrets at rest. On a single host, the encryption key would have to be stored on that same host, where anyone with root access could read it and decrypt the secrets. Encryption at rest would not keep secrets from anyone who can already read them.
+
+The security boundary for secrets is root access to the host. Embedded Cluster restricts the files that hold secrets so that users without root access cannot read them. Anyone with root access can read every secret on the host, along with the application's data. Limit root and `sudo` access on each host to the people who administer the application.
+
+Secrets include the license, the application's configuration values (including generated passwords), registry credentials, and TLS private keys. Embedded Cluster stores them in the following locations on each host:
+
+* The Kubernetes datastore under `DATA_DIR/k0s`, which holds Kubernetes Secrets. After installation, Embedded Cluster keeps the application's configuration values in Secrets, including the values used for each earlier deployment.
+* `/etc/embedded-cluster`, which holds installation settings, including registry credentials and the admin console TLS private key.
+* `DATA_DIR`, which holds the admin console password hash and the key that signs Embedded Cluster API tokens.
+* `DATA_DIR/revisions`, which holds the license and the configuration values that Embedded Cluster saved during installation, before Kubernetes was running.
+
+In this list, `DATA_DIR` is the Embedded Cluster data directory.
+
+### Files left on a node after it joins
+
+To add a node, you run commands on the new node that download a `.tar.gz` file and extract it. The file contains the license, the application's configuration values, the admin console password hash and TLS private key, the key that signs Embedded Cluster API tokens, installation settings including registry credentials, and a token for joining the cluster.
+
+When `node join` succeeds, it removes the files it extracted, but not the `.tar.gz` file. Delete the `.tar.gz` file after the node joins. If `node join` fails, also delete the extracted `assets` directory once you no longer need to retry.
+
+### Backups
+
+When disaster recovery is configured, backups include Kubernetes Secrets, both the application's own Secrets and the Secrets that Embedded Cluster uses to restore the installation. Those hold the license, the application's configuration values, the admin console password hash, and installation settings. The repository password encrypts the volume data in a backup, but not the Kubernetes resources, so these Secrets are stored in the backup storage without encryption. Restrict access to the backup storage, and use the storage provider's encryption if your security policy requires backups to be encrypted. For more information about the repository password, see [Preserve the repository password](embedded-disaster-recovery-v3#preserve-the-repository-password) in _Back up and restore Embedded Cluster v3_.
