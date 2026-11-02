@@ -56,7 +56,7 @@ Customers moving from the Download Portal gain the same content and automation c
 
 Enterprise Portal uses a GitHub App integration to sync content from your repo. The App has read-only access and never writes to or modifies your repositories. You must have a GitHub organization. GitLab, Bitbucket, and other git providers are not supported.
 
-Replicated enables the New Enterprise Portal by default for new teams. If your existing team uses the Classic Enterprise Portal, check the Vendor Portal for New Enterprise Portal pages. Contact your Replicated account representative if you do not see them.
+The new Enterprise Portal is available to all teams. If your team uses the Classic Enterprise Portal, go to **Enterprise Portal** in the Vendor Portal and select **New Portal** to set it up. Contact your Replicated account representative if you do not see it.
 
 Some Enterprise Portal capabilities require additional access:
 
@@ -72,7 +72,7 @@ The new Enterprise Portal runs at a different domain (`{appSlug}.enterpriseporta
 
 ### How to get started {#how-to-get-started}
 
-1. **Run both portals side by side.** Contact Replicated to enable the new Enterprise Portal for your team alongside the Classic Enterprise Portal. Customers continue using their current portal until you move them.
+1. **Run both portals side by side.** The new Enterprise Portal is already available to your team alongside the Classic Enterprise Portal. In the Vendor Portal, go to **Enterprise Portal** and select **New Portal** to set it up. Customers continue using their current portal until you move them.
 1. **Connect a content repo.** Follow the setup steps in [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo). Connecting a repo has zero effect on any customer's portal version. No customer sees the new portal until you explicitly switch them.
 1. **Test it yourself.** Use the local CLI preview (`replicated enterprise-portal preview`) or open the new portal URL directly to see how your content renders. The Vendor Portal also has a "Login as customer" button on each customer's Enterprise Portal access tab.
 1. **Move individual customers.** On the customer's **Enterprise Portal access** tab, set **Portal Version** to **Use new Enterprise Portal for this customer**. This affects only that customer. If the customer doesn't have Enterprise Portal access yet, turn on **Enable Enterprise Portal for this customer** first. The Portal Version control only appears after access is on for that customer, either through their own toggle or through the app-level **Enable Enterprise Portal for all customers** override.
