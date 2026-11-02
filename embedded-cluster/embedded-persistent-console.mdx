@@ -61,7 +61,7 @@ If you open the console on a node that is not serving it, the page shows "Consol
 
 For a multi-node installation, put a load balancer in front of the controller nodes so that users reach the console through the load balancer rather than a specific node. Use `GET /console/healthz` as the load balancer's health check. It returns 200 on a node that serves the console and 503 on a node that does not, so during an upgrade the load balancer sends users to the node running it.
 
-In Embedded Cluster 3.17.0-beta.1 and 3.18.0-beta.1, only the node where you ran `install`, or most recently ran `upgrade`, serves the console. Controllers that joined on those versions start serving it after their first upgrade to 3.19.0-beta.1 or later.
+In Embedded Cluster 3.17.0-beta.1 and 3.18.0-beta.1, only the node where you ran `install`, or most recently ran `upgrade`, serves the console. Controllers that joined on those versions start serving it after their first upgrade to 3.18.1-beta.1 or later.
 
 ## Application links
 
