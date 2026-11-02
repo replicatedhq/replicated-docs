@@ -59,7 +59,7 @@ sudo ./<app-slug> upgrade --license <path-to-license> [flags]
   <tr>
     <td>`--installer-port`</td>
     <td>int</td>
-    <td>Port for the installer UI. **Default:** `30080`</td>
+    <td>Deprecated. Omit this flag. If you pass it, it must match the port that the cluster already uses, or the upgrade fails. The upgrade serves the installer UI on the cluster's API port.</td>
   </tr>
   <tr>
     <td>`-l`, `--license`</td>

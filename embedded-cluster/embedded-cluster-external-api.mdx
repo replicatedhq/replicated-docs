@@ -4,19 +4,21 @@ Embedded Cluster exposes a small, stable HTTP API on every controller node for c
 
 ## Overview
 
-* The API listens on the controller's internal IP on TCP port **30081** by default. Override at install with `--api-port`.
+* The API listens on TCP port **30000** by default, the same port that serves the admin console. Override at install with `--api-port`. The port cannot be changed after installation.
 * All traffic is TLS-encrypted using the certificates configured at install time and is served by the daemon.
-* All non-health endpoints require a JWT bearer token obtained from `POST /v1/auth/token`.
-* The API is reachable from any host in the cluster network — not from outside the cluster unless you explicitly expose it.
+* All endpoints except health and version require a JWT bearer token obtained from `POST /api/v1/auth/token`.
+* The daemon listens on all network interfaces, so the API is reachable from any host that can reach the port. Use a firewall to limit which hosts can connect.
 
-The full Embedded Cluster API (used by the local web UI) is served on a Unix socket and is not exposed on the network. Only the endpoints documented below are reachable on port 30081.
+The full Embedded Cluster API (used by the local web UI) is served on a Unix socket and is not exposed on the network. Only the endpoints documented on this page are supported for automation.
+
+In Embedded Cluster versions earlier than 3.17.0-beta.1, the API listens on port 30081 by default and serves these endpoints under `/v1` instead of `/api/v1`, with the health endpoint at `/v1/health`. When you upgrade a cluster that uses the default port to 3.17.0-beta.1 or later, the API moves to port 30000. A cluster installed with a custom `--api-port` keeps that port.
 
 ## Authentication
 
 Obtain a token using the installer password:
 
 ```bash
-curl -X POST https://<controller-ip>:30081/v1/auth/token \
+curl -X POST https://<controller-ip>:30000/api/v1/auth/token \
   -H 'Content-Type: application/json' \
   -d '{"password":"<installer-password>"}'
 ```
@@ -31,12 +33,12 @@ The token is a JWT valid for 24 hours. Pass it as `Authorization: Bearer <token>
 
 ## Endpoints
 
-### `GET /v1/health`
+### `GET /api/v1/healthz`
 
 Liveness probe. No authentication required.
 
 ```bash
-curl https://<controller-ip>:30081/v1/health
+curl https://<controller-ip>:30000/api/v1/healthz
 ```
 
 Response:
@@ -45,12 +47,12 @@ Response:
 { "status": "ok" }
 ```
 
-### `GET /v1/version`
+### `GET /api/v1/version`
 
 Returns the running daemon version. No authentication required.
 
 ```bash
-curl https://<controller-ip>:30081/v1/version
+curl https://<controller-ip>:30000/api/v1/version
 ```
 
 Response:
@@ -63,18 +65,18 @@ Response:
 }
 ```
 
-### `POST /v1/auth/token`
+### `POST /api/v1/auth/token`
 
 See [Authentication](#authentication).
 
-### `GET /v1/nodes`
+### `GET /api/v1/nodes`
 
 Returns the list of nodes in the cluster.
 
 Request:
 
 ```bash
-curl https://<controller-ip>:30081/v1/nodes \
+curl https://<controller-ip>:30000/api/v1/nodes \
   -H "Authorization: Bearer $TOKEN"
 ```
 
@@ -109,16 +111,16 @@ Field reference:
 | `internalIP` | The node's internal IP address. |
 | `ready` | `true` when the node's `Ready` condition is `True`. |
 
-Automation should poll this endpoint to verify the cluster is ready to issue join commands. After the k0s install completes, the controller takes a short time to report `Ready` in the cluster. Calls to `POST /v1/create-join-command` fail until at least one controller has `ready: true`, so automation should poll `GET /v1/nodes` first and only request join commands once a `Ready` controller is present.
+Automation should poll this endpoint to verify the cluster is ready to issue join commands. After the k0s install completes, the controller takes a short time to report `Ready` in the cluster. Calls to `POST /api/v1/create-join-command` fail until at least one controller has `ready: true`, so automation should poll `GET /api/v1/nodes` first and only request join commands once a `Ready` controller is present.
 
-### `POST /v1/create-join-command`
+### `POST /api/v1/create-join-command`
 
 Returns the shell commands a remote host must run to join the cluster: download a join bundle, extract it, and run `node join`. The download command embeds a short-lived bearer token (1 hour TTL).
 
 Request:
 
 ```bash
-curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+curl -X POST https://<controller-ip>:30000/api/v1/create-join-command \
   -H "Authorization: Bearer $TOKEN" \
   -H 'Content-Type: application/json' \
   -d '{"roles":["controller"]}'
@@ -130,14 +132,15 @@ Response:
 
 ```json
 {
+  "tokenExpiresAt": "2026-01-15T13:00:00Z",
   "joinSteps": [
     {
       "description": "Download the join bundle",
-      "command": "curl -H \"Authorization: Bearer ...\" https://10.0.0.11:30081/v1/join-bundle?roles=controller -o APP_SLUG-join-controller-20260115-120000.tar.gz"
+      "command": "curl -f -k --pinnedpubkey \"sha256//...\" -H \"Authorization: Bearer ...\" \"https://10.0.0.11:30000/api/v1/join-bundle?roles=controller\" -o APP_SLUG-join-20260115-120000.tar.gz"
     },
     {
       "description": "Extract the bundle",
-      "command": "tar xzf APP_SLUG-join-controller-20260115-120000.tar.gz"
+      "command": "tar xzf APP_SLUG-join-20260115-120000.tar.gz"
     },
     {
       "description": "Run the join command",
@@ -147,21 +150,21 @@ Response:
 }
 ```
 
-### `GET /v1/join-bundle?roles=<role1,role2,...>`
+### `GET /api/v1/join-bundle?roles=<role1,role2,...>`
 
 Streams a gzip tarball containing everything a new node needs to join the cluster: binaries, EC bundle, license, signed cluster seed, and a k0s join token. The `roles` query parameter accepts a comma-separated list of role names.
 
 ```bash
-curl https://<controller-ip>:30081/v1/join-bundle?roles=controller \
+curl https://<controller-ip>:30000/api/v1/join-bundle?roles=controller \
   -H "Authorization: Bearer $TOKEN" \
   -o APP_SLUG-join-controller.tar.gz
 ```
 
-Typically you do not call this endpoint directly — the curl command returned by `POST /v1/create-join-command` calls it for you with a short-lived, audience-scoped token.
+Typically you do not call this endpoint directly. The curl command returned by `POST /api/v1/create-join-command` calls it for you with a token that expires after 1 hour. That token is not limited to this endpoint, so treat the returned commands as secrets and do not log them.
 
 The request requires a multi-node-enabled license.
 
 ## See also
 
 * [Headless joins](embedded-manage-nodes#headless-joins) in _Access and manage embedded clusters_ — end-to-end walkthrough that composes these endpoints to join a node without the web UI.
-* [roles](embedded-config#roles) in _Embedded Cluster Config_ — declare the role names used in `POST /v1/create-join-command` and `GET /v1/join-bundle`.
+* [roles](embedded-config#roles) in _Embedded Cluster Config_ — declare the role names used in `POST /api/v1/create-join-command` and `GET /api/v1/join-bundle`.

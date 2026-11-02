@@ -70,15 +70,15 @@ For automation and orchestrated deployments, you can join nodes without going th
 1. Fetch a JWT token from a controller using the installer password:
 
    ```bash
-   TOKEN=$(curl -X POST https://<controller-ip>:30081/v1/auth/token \
+   TOKEN=$(curl -X POST https://<controller-ip>:30000/api/v1/auth/token \
      -H 'Content-Type: application/json' \
      -d '{"password":"<installer-password>"}' | jq -r .token)
    ```
 
-2. Poll [`GET /v1/nodes`](embedded-cluster-external-api#get-v1nodes) until at least one controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
+2. Poll [`GET /api/v1/nodes`](embedded-cluster-external-api#get-apiv1nodes) until at least one controller reports `ready: true`. This is the signal that the cluster is ready to issue join commands:
 
    ```bash
-   until curl -s https://<controller-ip>:30081/v1/nodes \
+   until curl -s https://<controller-ip>:30000/api/v1/nodes \
      -H "Authorization: Bearer $TOKEN" \
      | jq -e '.nodes | any(.ready)' >/dev/null; do
      sleep 5
@@ -88,7 +88,7 @@ For automation and orchestrated deployments, you can join nodes without going th
 3. Request the join commands. Pass the desired role names from the [`roles`](embedded-config#roles) key in the Embedded Cluster Config:
 
    ```bash
-   RESPONSE=$(curl -X POST https://<controller-ip>:30081/v1/create-join-command \
+   RESPONSE=$(curl -X POST https://<controller-ip>:30000/api/v1/create-join-command \
      -H "Authorization: Bearer $TOKEN" \
      -H 'Content-Type: application/json' \
      -d '{"roles":["controller"]}')
@@ -106,13 +106,13 @@ For the full set of endpoints and response schemas, see [External API](embedded-
 
 ## Refresh the license {#refresh-license}
 
-License refresh through the persistent console and selection of the newest license during `upgrade --license` require Embedded Cluster 3.15.0-beta.1 or later. Earlier versions require an installation or upgrade using a release bundle and the updated license.
+License refresh through the admin console and selection of the newest license during `upgrade --license` require Embedded Cluster 3.15.0-beta.1 or later. Earlier versions require an installation or upgrade using a release bundle and the updated license.
 
 Use an updated license for the same license ID, application, and customer. License refresh cannot change that identity. The console rejects a license older than the installed license.
 
-### Refresh from the persistent console
+### Refresh from the admin console
 
-1. Open **License** in the persistent console.
+1. Open **License** in the admin console.
 1. Apply the license using the option for your environment:
    * For online installations, the page checks for license updates automatically. If an update is available, click **Update license and deploy**. Otherwise, click **Check for license updates** to check again. Checking for updates alone does not apply the license.
    * For air gap installations or online installations using offline updates, select the updated license file, then click **Upload license and deploy**. No release bundle is required for this console operation.
@@ -121,7 +121,7 @@ Both options deploy the current application version with the saved configuration
 
 ### Refresh from the command line
 
-Without the persistent console, obtain the updated license file and run the following command on the primary controller (the first controller installed). Use the installer and assets for the installed application version:
+To refresh from the command line instead, obtain the updated license file and run the following command on the primary controller (the first controller installed). Use the installer and assets for the installed application version:
 
 ```bash
 sudo ./APP_SLUG upgrade --license /path/to/updated-license.yaml

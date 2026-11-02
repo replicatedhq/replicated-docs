@@ -13,7 +13,7 @@ Embedded Cluster v3 delivers the following improvements over v2. For the release
 
 **One guided experience from the first step.** In v2, cluster infrastructure was set up on the command line before a separate UI handled the application. In v3, a single binary drives cluster configuration, preflight checks, node setup, and application deployment in one wizard. See [Embedded Cluster overview](embedded-overview).
 
-**A smaller footprint for customers to secure.** The cluster runs your application and Embedded Cluster's own infrastructure components, with no Replicated management component holding cluster-scoped privileges. The KOTS operator's cluster-scoped RBAC grants and cross-namespace access are not part of a v3 install, which takes them out of a customer's security review. The install and upgrade wizard runs only while an operation is in progress, so no management console runs continuously in the cluster unless a customer opts into the [persistent admin console](embedded-persistent-console). See [Removal of KOTS](#removal-of-kots).
+**A smaller footprint for customers to secure.** The cluster runs your application and Embedded Cluster's own infrastructure components, with no Replicated management component holding cluster-scoped privileges. The KOTS operator's cluster-scoped RBAC grants and cross-namespace access are not part of a v3 install, which takes them out of a customer's security review. The installer wizard and the [admin console](embedded-persistent-console) are served by a system service on the host, not by a component running in the cluster. See [Removal of KOTS](#removal-of-kots).
 
 **Installs no longer reach out to chart repositories.** v3 resolves every Helm extension from a `.tgz` archive bundled in the release instead of pulling it from an HTTP repository or OCI registry at install time. Installs no longer depend on the customer's network reaching those hosts. See [Helm extension charts must be bundled in the release](#extension-charts).
 
@@ -39,21 +39,19 @@ These apply once, when an existing v2 installation moves to v3.
 
 **Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
 
-**Multi-node clusters upgrade the remaining nodes manually, this one time.** Streamed upgrades require every remote node to already be running Embedded Cluster 3.2 or later, and nodes still on v2 do not qualify. The wizard detects this and displays manual instructions for those nodes. The user produces an upgrade bundle on the primary controller, copies it to each remaining node, and runs `node upgrade` there. Once every node is on v3, later upgrades stream automatically with no copying. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
+**Multi-node clusters upgrade the remaining nodes manually, this one time.** Streamed upgrades require every remote node to already be running Embedded Cluster 3.2 or later, and nodes still on v2 do not qualify. The wizard detects this and displays manual instructions for those nodes. The user runs the displayed commands on each remaining node to download the upgrade bundle from the primary controller, extract it, and run `node upgrade`. Once every node is on v3, later upgrades stream automatically with no copying. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
 
-**Port 30080/TCP must be open on the node.** The Embedded Cluster UI requires it, and it must also be reachable by nodes joining the cluster. Customers upgrading an existing v2 node may need to create a firewall opening for it. If the port is occupied, they can select a different port during installation with `--installer-port`. See [Port requirements](installing-embedded-requirements#port-requirements).
-
-**Multi-node clusters also need port 30081/TCP.** The Embedded Cluster daemon API listens on this port and is what lets other nodes join and receive upgrades. Single-node clusters do not need it opened. If the port is occupied, customers can select a different port at install with `--api-port`. See [External API](embedded-cluster-external-api).
+**v3 reuses the v2 Admin Console port.** Embedded Cluster v3 serves the installer UI, the admin console, and the API that other nodes use to join and receive upgrades on one port. After the upgrade from v2, that port is the one the v2 Admin Console used, which is 30000/TCP by default. For multi-node clusters, the port must also be open between nodes. See [Port requirements](installing-embedded-requirements#port-requirements).
 
 ### On any v3 installation
 
 These are the ongoing differences after the upgrade.
 
-**A guided wizard handles install and upgrade.** Install and upgrade operations launch a wizard that walks the user through configuration, preflight checks, node setup, and deployment, and closes when the operation finishes. It replaces the KOTS Admin Console that handled these steps in v2.
+**A guided wizard handles install and upgrade.** Install and upgrade operations launch a wizard that walks the user through configuration, preflight checks, node setup, and deployment, then hands off to the admin console when the operation finishes. It replaces the KOTS Admin Console that handled these steps in v2.
 
-**An always-on console is available when you want one.** The [persistent admin console](embedded-persistent-console) runs as an opt-in system service, giving end users a browser dashboard without command-line access. From it they can see available updates, view release notes, trigger an upgrade, upload air gap releases, and generate support bundles. It isn't installed by default, and the initial install and console setup require command-line access.
+**An always-on console is available.** The [admin console](embedded-persistent-console) gives end users a browser dashboard without command-line access. From it they can see available updates, view release notes, trigger an upgrade, upload air gap releases, and generate support bundles. It is available automatically after installation. The initial install requires command-line access.
 
-**How customers find out about updates depends on whether the console is installed.** With the persistent admin console, available updates appear in the console. Without it, customers get updates from the [Enterprise Portal](/vendor/enterprise-portal-about) or by running the `upgrade` command directly. See [Perform updates in embedded clusters](updating-embedded).
+**Customers find updates in the admin console.** Available updates appear in the admin console. Customers can also get updates from the [Enterprise Portal](/vendor/enterprise-portal-about) or by running the `upgrade` command directly. See [Perform updates in embedded clusters](updating-embedded).
 
 **Multi-node clusters upgrade themselves one node at a time.** The user runs the upgrade on the primary controller, and its daemon streams the upgrade to each remaining node over the network. Controllers upgrade first, one at a time to preserve etcd quorum, then workers. Nobody copies files between machines or runs commands on the other nodes. If a node can't be reached, or is running a version that predates streamed upgrades, the wizard reports it and shows manual instructions for that node. See [Multi-node clusters](updating-embedded#multi-node-clusters).
 
@@ -70,7 +68,7 @@ Embedded Cluster v3 removes Replicated KOTS from the architecture. This reduces 
 The KOTS CLI does not work with Embedded Cluster v3, and there is no KOTS Admin Console. Embedded Cluster v3 replaces it with two interfaces:
 
 - A **guided install and upgrade UI** that walks end users through configuration, preflight checks, node setup, and application deployment. This UI launches automatically during install and upgrade operations. See [Set up the wizard's Configure screen](/embedded-cluster/v3/embedded-using#configure-screen).
-- An optional **[persistent admin console](/embedded-cluster/v3/embedded-persistent-console)** that provides an always-on web dashboard for browser-driven upgrades, air gap release uploads, and support bundle generation without SSH access.
+- An **[admin console](/embedded-cluster/v3/embedded-persistent-console)** that provides an always-on web dashboard for browser-driven upgrades, air gap release uploads, and support bundle generation without SSH access.
 
 Embedded Cluster v3 still requires the Replicated HelmChart v2 custom resource to process and deploy Helm charts. Embedded Cluster v3 also still uses Replicated custom resources like the Replicated Application and Replicated Config resources to define aspects of the installation experience.
 
@@ -133,7 +131,7 @@ In Embedded Cluster v3, templates read config values only for items defined in t
 
 In Embedded Cluster v2, the value saved for a config item stayed on the installation after you removed the item from your Config, and templates continued to read it. Because the Admin Console config page shows only the items in the current Config, a removed item could keep turning parts of your application on or off with no way for the end customer to see or change it. For example, `repl{{ ConfigOptionEquals "nats.enabled" "1" }}` kept evaluating to true on any installation that had saved `1` for `nats.enabled` before the item was removed.
 
-If your release still references config items that you removed, those templates render differently after the upgrade to v3. A reference to an item that the Config custom resource does not define resolves to an empty string, and ConfigOptionEquals evaluates to false. In the `statusInformers` field of the Application custom resource, the install or upgrade still succeeds, but the informer is dropped and the Replicated SDK does not report status for that resource. If every informer is dropped, the application status at the end of the install wizard and in the [persistent admin console](embedded-persistent-console) reports that the application did not provide resources to verify.
+If your release still references config items that you removed, those templates render differently after the upgrade to v3. A reference to an item that the Config custom resource does not define resolves to an empty string, and ConfigOptionEquals evaluates to false. In the `statusInformers` field of the Application custom resource, the install or upgrade still succeeds, but the informer is dropped and the Replicated SDK does not report status for that resource. If every informer is dropped, the application status at the end of the install wizard and in the [admin console](embedded-persistent-console) reports that the application did not provide resources to verify.
 
 Before you upgrade, remove or update any template references to config items that your Config custom resource no longer defines.
 
@@ -270,7 +268,7 @@ To update a release from Embedded Cluster v2 to v3:
 
 1. Promote the release to a development channel that you use for testing.
 
-1. In the VM where you plan to test the installation, create a firewall opening for port 30080/TCP. Embedded Cluster v3 requires that port 30080 is open and available.
+1. In the VM where you plan to test the installation, create a firewall opening for port 30000/TCP. Embedded Cluster v3 serves the installer UI and admin console on port 30000 by default.
 
 1. Test the installation using a development customer.
 
@@ -315,20 +313,13 @@ To upgrade an existing installation to Embedded Cluster v3:
    Do you want to proceed with the upgrade? (yes/NO): yes
    ```
 
-1. When the upgrade command completes, go to the URL provided to access the upgrade wizard.
+1. When the upgrade command completes, open the URL that it prints to access the upgrade wizard. For example:
 
    ```bash
-   Installation started. Connect to the web interface to continue the installation.
-
-   Open the following URL in your browser:
-
-   https://kotsadm.default.svc.cluster.local:30080
-
-   Note: You may see a browser warning for the self-signed certificate.
-   Click "Advanced" > "Proceed" to continue.
-
-   Press Ctrl+C when the installation is complete to stop the web interface.
+   Open https://10.0.0.11:30000 to continue.
    ```
+
+   You might see a browser warning for the self-signed certificate.
 
 1. Log in to the upgrade wizard using the existing password for the Admin Console.
 
@@ -341,5 +332,3 @@ To upgrade an existing installation to Embedded Cluster v3:
    ![upgrade wizard app upgrade screen](/images/embedded-cluster-v3-slackernews-upgrade-progress.png)
 
    [View a larger version of this image](/images/embedded-cluster-v3-slackernews-upgrade-progress.png)
-
-1. Press Ctrl+C when the upgrade is complete to close the wizard.

@@ -55,7 +55,7 @@ Embedded Cluster v3 disables the `update-prober` feature, which checks `updates.
 
 ## About firewalld configuration
 
-When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens the required ports on the host. No additional configuration is necessary.
+When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens ports 2380, 6443, 9443, and 10250/TCP and port 4789/UDP. Embedded Cluster does not open the console and API port (30000/TCP by default) or ports 9091, 10249, and 10256/TCP. Create firewall openings for those ports yourself. See [Port requirements](#port-requirements).
 
 Embedded Cluster adds the following rule to Firewalld:
 

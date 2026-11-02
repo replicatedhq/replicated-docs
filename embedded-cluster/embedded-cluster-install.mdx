@@ -24,7 +24,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
   <tr>
     <td>`--api-port`</td>
     <td>int</td>
-    <td>Port for the external daemon API used by joining nodes. **Default:** `30081`</td>
+    <td>Port for the installer UI, the admin console, and the API used by joining nodes and automation. Cannot be changed after installation. **Default:** `30000`</td>
   </tr>
   <tr>
     <td>`--cidr`</td>
@@ -79,7 +79,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
   <tr>
     <td>`--installer-port`</td>
     <td>int</td>
-    <td>Port for the installer UI. **Default:** `30080`</td>
+    <td>Deprecated alias for `--api-port`. If you pass both flags, they must have the same value. **Default:** `30000`</td>
   </tr>
   <tr>
     <td>`-l`, `--license`</td>

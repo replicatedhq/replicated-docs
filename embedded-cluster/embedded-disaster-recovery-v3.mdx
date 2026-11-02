@@ -126,13 +126,7 @@ Route the public HTTPS issuer hostname to the Kubernetes API on the controllers.
 
 ## Configure backups
 
-1. Open the [persistent admin console](embedded-persistent-console). If it is not installed, run this command on a controller node:
-
-   ```bash
-   sudo ./APP_SLUG console install
-   ```
-
-   Replace `APP_SLUG` with the application slug.
+1. Open the [admin console](embedded-persistent-console).
 
 1. Open **Disaster recovery**.
 1. In **Configuration**, select **S3** or **NFS** and enter the destination settings and repository password. For S3, choose **Access keys**, **IAM (keyless access)** for an AWS host role, or **OIDC** for federated access. OIDC is supported for AWS S3 backups. For more information about issuer and trust setup, see [Configure OIDC authentication](#configure-oidc-authentication) in this document.
@@ -283,7 +277,7 @@ Embedded Cluster automatically recovers the saved network settings, data directo
 | `--network-interface` | Use the supplied interface or detect one on the replacement host. Do not recover the old interface name. Joining hosts can supply their own interface. |
 | `--http-proxy`, `--https-proxy`, `--no-proxy` | Supply the replacement environment's settings. Saved proxy values are not adopted. Automatic exclusions are recalculated for the final networks. Proxy flags cannot be used with air gap recovery. |
 | `--hostname`, `--tls-cert`, `--tls-key` | Configure the replacement interface and TLS; supply certificate and key together or use the self-signed flow. Saved console hostname and certificates are not adopted. |
-| `--installer-port`, `--installer-password` | Configure this recovery session. The port defaults to `30080`; the recovered console uses the password saved in the backup. |
+| `--installer-port`, `--installer-password` | Configure this recovery session. `--installer-port` is a deprecated alias for `--api-port`. The recovered console uses the password saved in the backup. |
 | `--headless`, `--yes`, `--ignore-host-preflights` | Apply only to this invocation. Headless mode and preflight bypasses are not recovered from backup or inherited on resume. |
 | `--restore-timeout`, `--topology-timeout` | Limit each Velero restore phase and the wait for replacement hosts; defaults are four and 24 hours, respectively. |
 
@@ -347,7 +341,7 @@ After the hosts and storage infrastructure are ready, Embedded Cluster restores 
 
 On **Enable backup schedules**, enable the schedules you want to run. If you configured a backup location as `ReadOnly` during recovery, change it to `ReadWrite` before resuming backups.
 
-After recovery completes, press `Ctrl+C` to stop the restore command. You can also manage schedules later from **Disaster recovery** in the persistent admin console. Install the console on a recovered controller with `sudo ./APP_SLUG console install` if needed. The recovered installation uses the console password saved in the backup.
+After recovery completes, press `Ctrl+C` to stop the restore command. You can also manage schedules later from **Disaster recovery** in the admin console. The recovered installation uses the console password saved in the backup.
 
 ### Resume an interrupted restore
 
