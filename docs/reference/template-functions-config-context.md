@@ -192,32 +192,6 @@ Returns true if the configuration option value is not equal to the supplied valu
 '{{repl ConfigOptionNotEquals "http_enabled" "1" }}'
 ```
 
-## ConfigOptionName
-
-> Introduced in KOTS v1.47.0
-
-```go
-func ConfigOptionName(optionName string) string
-```
-
-Returns the name of a configuration item. Use ConfigOptionName with repeatable items to get the generated name of each repeated value, such as to use the name as a key in a Kubernetes manifest.
-
-For repeatable items, KOTS replaces `repl[[ .itemName ]]` with the generated name of each value, such as `serviceport-8jdn2bgd`, before it renders template functions. ConfigOptionName returns that generated name. For more information, see [Repeatable Items](/reference/custom-resource-config#repeatable-items) in _Config_.
-
-Embedded Cluster v3 does not support repeatable items. In Embedded Cluster v3, ConfigOptionName returns `optionName` unchanged.
-
-#### Example
-
-```yaml
-# Kubernetes manifest targeted by a repeatable item
-apiVersion: v1
-kind: Secret
-metadata:
-  name: app-secrets
-stringData:
-  repl{{ ConfigOptionName "repl[[ .secretName ]]" }}: '{{repl ConfigOption "repl[[ .secretName ]]" }}'
-```
-
 ## LocalRegistryAddress
 
 ```go
