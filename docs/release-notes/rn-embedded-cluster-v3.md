@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.18.1-beta.1
+
+Released on November 2, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.18.1-beta.1+k8s-1.36</td>
+    <td id="center">3.18.1-beta.1+k8s-1.35</td>
+    <td id="center">3.18.1-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+### Improvements {#improvements-3-18-1-beta-1}
+* Updated the default bundled Kubernetes to patch release 1.36.5 (k0s v1.36.5+k0s.0).
+
+### Bug Fixes {#bug-fixes-3-18-1-beta-1}
+* Fixes a bug that could leave `local-artifact-mirror` system service running after Embedded Cluster v2 to v3 migration.
+* Fixed console startup failures showing an unexplained error number instead of a readable message and retry option.
+* Fixes a bug that could cause console to not be available on some controller nodes.
+
 ## 3.18.0-beta.1
 
 Released on October 30, 2026
