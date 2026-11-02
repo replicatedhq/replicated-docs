@@ -1,0 +1,21 @@
+docs/vendor/preflight-sb-helm-templates-about.md
+  s_96393c6728a10e::t_7de88059a6607f 13,16
+docs/vendor/replicated-onboarding.mdx
+  s_96393c6728a10e::t_326f42ba1d406e 310
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1140b004ce400186f796769e431acc9e08684afa",
+  "prompts": {},
+  "sessions": {
+    "s_96393c6728a10e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_96393c6728a10e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
