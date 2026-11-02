@@ -1,0 +1,55 @@
+docs/partials/embedded-cluster/v3/_port-reqs.mdx
+  s_09a51d956fede1::t_326ade6aefcf49 31,33,35,37,39
+docs/partials/embedded-cluster/v3/_resume-install.mdx
+  s_09a51d956fede1::t_43f9b70f79c66f 21-22
+docs/reference/custom-resource-about.md
+  s_09a51d956fede1::t_e4a54ddd09184d 24
+docs/vendor/insights-app-status.md
+  s_09a51d956fede1::t_090713f6dbf9c7 29
+docs/vendor/releases-about.mdx
+  s_09a51d956fede1::t_2799c9f11ba9ca 154
+embedded-cluster/embedded-cluster-console.mdx
+  s_09a51d956fede1::t_4227b1a47efa76 3-7,13-15,34,45-47
+embedded-cluster/embedded-cluster-external-api.mdx
+  s_09a51d956fede1::t_6e08fd9d5a3806 7,9-10,12-14,21,36,41,50,55,68,72,79,114,116,123,135,139,143,153,158,163,170
+embedded-cluster/embedded-cluster-install.mdx
+  s_09a51d956fede1::t_d1f41c5da0093b 27,82
+embedded-cluster/embedded-cluster-shell.mdx
+  s_09a51d956fede1::t_583e0f6cd77f13 5,9
+embedded-cluster/embedded-cluster-upgrade.mdx
+  s_09a51d956fede1::t_4dbf73d4e4b0bf 62
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_09a51d956fede1::t_843e142e0e91e7 129,280,344
+embedded-cluster/embedded-manage-nodes.mdx
+  s_09a51d956fede1::t_0b3430b2674ff0 73,78,81,91,109,113,115,124
+embedded-cluster/embedded-overview.mdx
+  s_09a51d956fede1::t_49da189d996bc3 65
+embedded-cluster/embedded-persistent-console.mdx
+  s_09a51d956fede1::t_a5dc17a7c33b96 1,3,7,13,17,19,22,25,29,37-38,40,46,48,50,52,54,56,58,74,110,112
+embedded-cluster/embedded-troubleshooting.mdx
+  s_09a51d956fede1::t_0df5f02d2e288b 35,37,39,41-45
+embedded-cluster/embedded-using.mdx
+  s_09a51d956fede1::t_f786250c394cf5 442
+embedded-cluster/embedded-v3-migrate.mdx
+  s_09a51d956fede1::t_41545ac596c459 16,42,44,50,52,54,71,134,271,316,319,322-323
+embedded-cluster/installing-embedded-requirements.mdx
+  s_09a51d956fede1::t_e084aa8069f465 58
+embedded-cluster/updating-embedded.mdx
+  s_09a51d956fede1::t_d2dab5e3715485 26,76,78,80,127-135,178,180,182,192,218
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fed1be44f1ebf222dc447d4000dad30915a42cbf",
+  "prompts": {},
+  "sessions": {
+    "s_09a51d956fede1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_09a51d956fede1",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
