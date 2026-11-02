@@ -195,15 +195,11 @@ To update a release from Embedded Cluster v2 to v3:
 
    If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster 3.18.0-beta.1 and later. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
 
-   If your release supports both KOTS and Embedded Cluster v3 installations, a release that includes both a `v1beta2` spec and a `v1beta3` spec also works. Embedded Cluster v3 runs only the `v1beta3` spec. How KOTS and Embedded Cluster v2 handle the `v1beta3` spec depends on the KOTS version:
+   Include both a `v1beta2` and a `v1beta3` preflight spec in a release only as a temporary measure, when some of your customers are locked to a KOTS version that doesn't support `v1beta3` preflight specs. Package each spec in its own labeled Secret in your Helm chart. Embedded Cluster v3 runs only the `v1beta3` spec, and KOTS versions earlier than v1.129.4 run only the `v1beta2` spec. KOTS v1.129.4 and later, Embedded Cluster v2 2.19.16 and later, and the Helm CLI run both specs, so checks that are not identical in both specs run twice and their results appear twice.
 
-   * **KOTS v1.134.0 and later, and Embedded Cluster v2 2.19.16 and later:** Run the checks from both specs. Checks that aren't identical in both specs run twice, and their failures appear twice in the preflight results.
-   * **KOTS v1.131.1 through v1.133.x, and Embedded Cluster v2 2.19.5 through 2.19.15:** Skip the `v1beta3` spec and run only the `v1beta2` spec.
-   * **KOTS versions earlier than v1.131.1, and Embedded Cluster v2 versions earlier than 2.19.5:** Might read the `v1beta3` spec as `v1beta2` and run it, which produces failed or incorrect preflight results, or report the spec as invalid.
+   When all of your KOTS customers are on KOTS v1.134.0 or later, remove the `v1beta2` spec and keep only the `v1beta3` spec.
 
-   :::important
-   If any of your customers use KOTS earlier than v1.131.1 or Embedded Cluster v2 earlier than 2.19.5, don't add a `v1beta3` preflight spec to your releases until those customers upgrade.
-   :::
+   Don't include both specs as top-level files in the release. The Vendor Portal rejects a release with an Embedded Cluster v3 config and a top-level `v1beta2` preflight spec, and KOTS versions earlier than v1.131.1 might read a top-level `v1beta3` spec as `v1beta2` and run it, which produces failed or incorrect preflight results.
 
    For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
