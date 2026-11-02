@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.02-2
+
+Released on November 2, 2026
+
+### Improvements {#improvements-v2026-11-02-2}
+* In the Enterprise Portal, Ask AI now knows what the portal controls on a docs page do, including how a customer uploads a support bundle, so answers can cover those controls.
 ## v2026.11.02-0
 
 Released on November 2, 2026
