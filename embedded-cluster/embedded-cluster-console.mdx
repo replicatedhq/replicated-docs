@@ -1,12 +1,18 @@
 # console (Beta)
 
-This topic describes the options available with the Embedded Cluster `console` command, which manages the optional persistent admin console for browser-driven upgrades and operations. For procedural steps, see [Persistent admin console](embedded-persistent-console).
+This topic describes the Embedded Cluster `console` command.
+
+:::note
+The `console install` and `console uninstall` subcommands are deprecated in Embedded Cluster 3.17.0-beta.1 and later. The admin console is available automatically after installation, so there is nothing to install or uninstall. For more information, see [Admin console](embedded-persistent-console).
+:::
 
 The `console` command has two subcommands: `install` and `uninstall`.
 
 ## console install
 
-Installs the persistent admin console on the controller node where the command is run.
+In Embedded Cluster 3.17.0-beta.1 and later, `console install` makes no changes to the system. It prints the URL of the admin console.
+
+In earlier versions, `console install` installs the persistent admin console on the controller node where the command is run.
 
 ### Usage
 
@@ -25,7 +31,7 @@ sudo ./<app-slug> console install [flags]
   <tr>
     <td>`--port`</td>
     <td>int</td>
-    <td>Port the persistent console web service listens on. **Default:** `30080`</td>
+    <td>Deprecated and ignored in 3.17.0-beta.1 and later. The admin console uses the port set with `--api-port` at installation. In earlier versions, the port that the persistent console web service listens on. **Default:** `30080`</td>
   </tr>
   <tr>
     <td>`-h`, `--help`</td>
@@ -36,7 +42,9 @@ sudo ./<app-slug> console install [flags]
 
 ## console uninstall
 
-Uninstalls the persistent admin console from the controller node where the command is run. Stops and removes the `<app-slug>-console-web.service` systemd unit. The cluster and application are not otherwise affected.
+In Embedded Cluster 3.17.0-beta.1 and later, `console uninstall` makes no changes to the system.
+
+In earlier versions, `console uninstall` uninstalls the persistent admin console from the controller node where the command is run. It stops and removes the `<app-slug>-console-web.service` systemd unit. The cluster and application are not otherwise affected.
 
 ### Usage
 

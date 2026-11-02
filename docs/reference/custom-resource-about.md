@@ -21,7 +21,7 @@ The following custom resources can be used in releases distributed with Replicat
     <tr>
         <td>app.k8s.io/v1beta1</td>
         <td>[SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications)</td>
-        <td>Defines links to the application. The links display on the Admin Console dashboard, or for Embedded Cluster v3, on the Installation Complete page and in the persistent admin console.</td>
+        <td>Defines links to the application. The links display on the Admin Console dashboard, or for Embedded Cluster v3, on the Installation Complete page and in the admin console.</td>
     </tr>
     <tr>
         <td>embeddedcluster.replicated.com/v1beta1</td>

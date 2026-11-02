@@ -32,13 +32,17 @@ You can view logs for both Embedded Cluster and the k0s systemd service to help 
 
 ### View installation logs for Embedded Cluster
 
-To view installation logs for Embedded Cluster:
+The Embedded Cluster daemon serves the installer UI and the admin console, and writes its logs to the systemd journal. To view installation logs for Embedded Cluster:
 
-1. SSH onto a controller node.
+1. SSH onto the node where you ran `install` or `upgrade`.
 
-1. Navigate to `/var/log/APP_SLUG`, where `APP_SLUG` is the unique slug for the application.
+1. Run the following command, where `APP_SLUG` is the unique slug for the application:
 
-1. Open the `.log` file to view logs.
+   ```bash
+   sudo journalctl -u APP_SLUG
+   ```
+
+In Embedded Cluster versions earlier than 3.17.0-beta.1, installation logs are written to `.log` files in `/var/log/APP_SLUG`.
 
 ### View K0s logs
 

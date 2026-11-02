@@ -18,4 +18,6 @@ The cluster was already provisioned using the values from the original attempt, 
 
 If you pass any of them with a different value, the installer prints a warning naming the flags it ignored and continues with the saved values. This matters most when the interruption and the flag are related. For example, if you stopped an installation to correct a wrong `--cidr` or `--http-proxy`, rerunning `install` with the corrected value does _not_ apply it.
 
+The deprecated `--installer-port` flag is an alias for `--api-port`, so a resumed installation also ignores it, without a warning.
+
 To change any of these values, reset the host and install again. See [reset](/embedded-cluster/v3/embedded-cluster-reset).
