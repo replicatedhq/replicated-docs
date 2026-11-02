@@ -145,7 +145,7 @@ IsRequired is `true` when the release is a required release, false otherwise. Cu
 ```go
 func ReplicatedRegistryDomain() string
 ```
-Returns the domain of the Replicated registry for the installation. If you configured a custom domain for the Replicated registry, returns the custom domain. Otherwise, returns `registry.replicated.com`. In air gap installations, returns an empty string.
+Returns the domain of the Replicated registry for the installation. If you configured a custom domain for the Replicated registry, returns the custom domain. Otherwise, returns `registry.replicated.com`. In KOTS and Embedded Cluster v2 air gap installations, returns an empty string. In Embedded Cluster v3, returns the domain in all installations, including air gap.
 
 For more information, see [Use custom domains](/vendor/custom-domains-using).
 
@@ -160,7 +160,7 @@ For more information, see [Use custom domains](/vendor/custom-domains-using).
 ```go
 func ReplicatedProxyDomain() string
 ```
-Returns the domain of the Replicated proxy registry for the installation. If you configured a custom domain for the proxy registry, returns the custom domain. Otherwise, returns `proxy.replicated.com`. In air gap installations, returns an empty string.
+Returns the domain of the Replicated proxy registry for the installation. If you configured a custom domain for the proxy registry, returns the custom domain. Otherwise, returns `proxy.replicated.com`. In KOTS and Embedded Cluster v2 air gap installations, returns an empty string. In Embedded Cluster v3, returns the domain in all installations, including air gap.
 
 For more information, see [Use custom domains](/vendor/custom-domains-using).
 
