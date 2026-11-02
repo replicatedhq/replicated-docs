@@ -317,17 +317,6 @@ Equivalent to the `QueryEscape` function within the golang `net/url` library. Fo
 '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-### UrlPathEscape
-
-```go
-func UrlPathEscape(stringToEncode string) string
-```
-Returns the string, url *path* encoded.
-Equivalent to the `PathEscape` function within the golang `net/url` library. For more information, see [func PathEscape](https://godoc.org/net/url#PathEscape) in the Go documentation.
-```yaml
-'{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
-```
-
 ## Encryption Functions
 
 ### KubeSeal
