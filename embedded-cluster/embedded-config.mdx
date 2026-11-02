@@ -318,13 +318,15 @@ For more information, see [spec.workerProfiles](https://docs.k0sproject.io/stabl
 
 You can combine worker profiles with other k0s settings in the same `k0s` string (for example, `metadata`, `telemetry`, or `network`).
 
-For installations created with Embedded Cluster 3.17.0-beta.1 and later, `podLogsDir` defaults to `<data-dir>/k0s/pod-logs`. To use a different pod log directory, set `podLogsDir` in your worker profile. The setting applies to all nodes. An explicit `podLogsDir: ""` uses the Kubernetes default, `/var/log/pods`. Pod log paths must contain only ASCII characters.
+For installations created with Embedded Cluster 3.17.0-beta.1 and later, `podLogsDir` defaults to `<data-dir>/k0s/pod-logs`. To use a different pod log directory, set `podLogsDir` in your worker profile. The setting applies to all nodes. An explicit `podLogsDir: ""` uses the Kubernetes default, `/var/log/pods`.
 
-Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`. Clusters restored from a backup with Embedded Cluster 3.17.0-beta.1 or later use `<data-dir>/k0s/pod-logs`, even if the backup came from an earlier installation.
+Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
+
+Clusters restored using Embedded Cluster 3.17.0-beta.1 or later default to `<data-dir>/k0s/pod-logs`, even when the backup came from an earlier installation. An explicit `podLogsDir` setting in the worker profile is preserved during restore.
 
 Keep pod logs on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn if the filesystems differ or if the paths cannot be resolved or inspected. Kubernetes might not account for logs on a different filesystem during disk-pressure eviction.
 
-Installations created before Embedded Cluster 3.17.0-beta.1 or migrated from Embedded Cluster v2 keep pod logs in `/var/log/pods`. If the data directory for one of these installations is on a separate mount, this warning is expected during upgrades and does not block the upgrade. Embedded Cluster does not move pod logs for existing installations.
+For existing installations using `/var/log/pods`, this warning is expected during upgrades if the data directory is on a separate filesystem. The warning does not block the upgrade. Embedded Cluster does not move pod logs for existing installations.
 
 #### Limitations
 
