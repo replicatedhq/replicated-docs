@@ -94,7 +94,7 @@ v1beta3 supports this model because it treats the spec as Helm template YAML rat
 
 **Key differences from v1beta2 for application preflight specs:**
 
-- The spec can live inside a labeled Secret or ConfigMap in your Helm chart, or at the release level.
+- The spec can live inside a labeled Secret or ConfigMap in your Helm chart (Embedded Cluster 3.18.0-beta.1 and later), or at the release level.
 - The spec uses Helm template syntax (`{{ .Values.something }}`, `{{ include "helper" . }}`) instead of `repl{{ }}` Replicated template syntax.
 - The spec is not valid YAML before rendering. Standard YAML linters will not work on it directly.
 - For release-level specs with multiple Helm charts, you can use `{{ if eq .Chart.Name "my-chart" }}` conditionals to gate specific collectors or analyzers to the chart they belong to. Embedded Cluster renders the spec one time per chart in the release, each time in that chart's context. Chart-packaged specs already render in their own chart's context.
@@ -188,14 +188,14 @@ To update a release from Embedded Cluster v2 to v3:
 1. Update your application preflight specs to API version `troubleshoot.sh/v1beta3`:
 
    - Change `apiVersion` from `troubleshoot.sh/v1beta2` to `troubleshoot.sh/v1beta3`.
-   - Preflight specs can remain in your Helm chart's `templates/` directory, wrapped in a Secret or ConfigMap labeled `troubleshoot.sh/kind: preflight`. Change the API version of the Preflight spec inside the wrapper to `troubleshoot.sh/v1beta3`.
+   - Preflight specs can remain in your Helm chart's `templates/` directory, wrapped in a Secret or ConfigMap labeled `troubleshoot.sh/kind: preflight` with the spec under the `preflight.yaml` key. Change the API version of the Preflight spec inside the wrapper to `troubleshoot.sh/v1beta3`, because Embedded Cluster skips a wrapped spec that still uses `v1beta2`. Chart-packaged specs require Embedded Cluster 3.18.0-beta.1 or later.
    - If you use a release-level spec instead, keep it as a plain `troubleshoot.sh/v1beta3 Preflight` resource.
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
    - You do not need to update the API version of support bundle or Redactor specs. They continue to work with `v1beta2` in Embedded Cluster v3.
 
    Replicated recommends that you use a single `troubleshoot.sh/v1beta3` preflight spec. `v1beta3` is the latest preflight API version. Embedded Cluster v3 requires it, and KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support it.
 
-   If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster v3. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
+   If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster 3.18.0-beta.1 and later. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
 
    If your release supports both KOTS and Embedded Cluster v3 installations, a release that includes both a `v1beta2` spec and a `v1beta3` spec also works. Embedded Cluster v3 runs only the `v1beta3` spec. How KOTS and Embedded Cluster v2 handle the `v1beta3` spec depends on the KOTS version:
 
