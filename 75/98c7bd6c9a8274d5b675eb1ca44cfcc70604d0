@@ -1,0 +1,21 @@
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_a44a7f8af944f2::t_23ab1c263acc16 17,19,43
+embedded-cluster/embedded-config.mdx
+  s_a44a7f8af944f2::t_f828f9770d0d6c 321,323
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7598c7bd6c9a8274d5b675eb1ca44cfcc70604d0",
+  "prompts": {},
+  "sessions": {
+    "s_a44a7f8af944f2": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a178db-67b9-7712-bfb8-126cd075857c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}
