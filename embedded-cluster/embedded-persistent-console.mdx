@@ -57,6 +57,8 @@ Embedded Cluster serves the console from one node at a time. The node where you 
 
 If you open the console on a node that is not serving it, the page shows "Console unavailable on this node; use the node running the upgrade command."
 
+For a multi-node installation, put a load balancer in front of the controller nodes so that users reach the console through the load balancer rather than a specific node. Use `GET /console/healthz` as the load balancer's health check. It returns 200 on the node that serves the console and 503 on the other nodes, so the load balancer sends users to the right node.
+
 ## Application links
 
 If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec.descriptor.links`, those links appear automatically on the console dashboard under **Open &lt;app-name&gt;**. No additional configuration is needed.
