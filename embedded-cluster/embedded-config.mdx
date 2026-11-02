@@ -324,6 +324,8 @@ Installations created with earlier versions or migrated from Embedded Cluster v2
 
 Keep pod logs on the same filesystem as the data directory and kubelet root directory. Host preflight checks warn if the filesystems differ or if the paths cannot be resolved or inspected. Kubernetes might not account for logs on a different filesystem during disk-pressure eviction.
 
+Installations created before Embedded Cluster 3.17.0-beta.1 or migrated from Embedded Cluster v2 keep pod logs in `/var/log/pods`. If the data directory for one of these installations is on a separate mount, this warning is expected during upgrades and does not block the upgrade. Embedded Cluster does not move pod logs for existing installations.
+
 #### Limitations
 
 * Embedded Cluster sets the worker profile during initial installation. You cannot change or add worker profiles on upgrade.
