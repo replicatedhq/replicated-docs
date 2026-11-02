@@ -4,7 +4,7 @@ This topic describes the Embedded Cluster admin console, an always-on web UI for
 
 ## Overview
 
-The admin console is a dashboard that the Embedded Cluster daemon serves at `https://<hostname>:30000/console`, where `<hostname>` is the node where you ran `install`, or where you most recently ran `upgrade`. If you set a different port with `--api-port` during installation, use that port instead. From the dashboard, end users can:
+The admin console is a dashboard that the Embedded Cluster daemon serves at `https://<hostname>:30000/console`, where `<hostname>` is any controller node. If you set a different port with `--api-port` during installation, use that port instead. From the dashboard, end users can:
 
 - View the currently installed application version and open configured application links
 - Check application status
@@ -45,7 +45,7 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ## Open the console
 
-1. In a browser, go to `https://<hostname>:30000`, where `<hostname>` is the node that serves the console. Embedded Cluster redirects to `/console`.
+1. In a browser, go to `https://<hostname>:30000`, where `<hostname>` is a controller node or the load balancer in front of them. Embedded Cluster redirects to `/console`.
 
    If you set a different port with `--api-port` during installation, use that port.
 
@@ -53,11 +53,15 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ### Which node serves the console
 
-Embedded Cluster serves the console from one node at a time. The node where you run `install` serves the console. Nodes that join the cluster do not. When you run `upgrade`, the node where you run it serves the console and every other node stops serving it.
+Every controller node serves the console. Worker nodes do not. A controller that joins the cluster starts serving the console when its join finishes.
+
+During an upgrade, the node where you run `upgrade` serves the console and the other nodes stop serving it. Each of the other controllers starts serving the console again when its own upgrade finishes.
 
 If you open the console on a node that is not serving it, the page shows "Console unavailable on this node; use the node running the upgrade command."
 
-For a multi-node installation, put a load balancer in front of the controller nodes so that users reach the console through the load balancer rather than a specific node. Use `GET /console/healthz` as the load balancer's health check. It returns 200 on the node that serves the console and 503 on the other nodes, so the load balancer sends users to the right node.
+For a multi-node installation, put a load balancer in front of the controller nodes so that users reach the console through the load balancer rather than a specific node. Use `GET /console/healthz` as the load balancer's health check. It returns 200 on a node that serves the console and 503 on a node that does not, so during an upgrade the load balancer sends users to the node running it.
+
+In Embedded Cluster 3.17.0-beta.1 and 3.18.0-beta.1, only the node where you ran `install`, or most recently ran `upgrade`, serves the console. Controllers that joined on those versions start serving it after their first upgrade to 3.19.0-beta.1 or later.
 
 ## Application links
 
@@ -111,7 +115,7 @@ For more information about adding nodes, see [Configure multi-node clusters](emb
 
 The admin console has the following limitations:
 
-* The console is served from one node at a time, the node where you ran `install` or most recently ran `upgrade`. See [Which node serves the console](#which-node-serves-the-console).
+* Worker nodes do not serve the console, and during an upgrade only the node running `upgrade` serves it. See [Which node serves the console](#which-node-serves-the-console).
 
 * Running join commands, resetting a removed host, removing the last controller, and enabling HA for an existing air gap installation require command-line access. For more information about these operations, see [Access and manage embedded clusters](embedded-manage-nodes).
 

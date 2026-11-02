@@ -77,7 +77,7 @@ To upgrade more directly from the Vendor Portal:
 
 End users can upgrade from the browser without SSH access using the [admin console](embedded-persistent-console):
 
-1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is the node that serves the console, and log in with the installer password. If a different port was set with `--api-port` during installation, use that port.
+1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is a controller node or the load balancer in front of them, and log in with the installer password. If a different port was set with `--api-port` during installation, use that port.
 
 1. In the **Available updates** section, locate the target version and click **Upgrade**.
 
@@ -126,7 +126,7 @@ To change an application's configuration without upgrading the application versi
 
 #### From the admin console
 
-1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is the node that serves the console, and log in with the installer password.
+1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is a controller node or the load balancer in front of them, and log in with the installer password.
 
 1. On the **Config** page, change the values and click **Save configuration**.
 
@@ -179,7 +179,7 @@ To perform an upgrade with Embedded Cluster in air-gapped environments:
 
 You can perform air gap upgrades from the browser without SSH access using the [admin console](embedded-persistent-console):
 
-1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is the node that serves the console, and log in with the installer password.
+1. Open the console at `https://<hostname>:30000/console`, where `<hostname>` is a controller node or the load balancer in front of them, and log in with the installer password.
 
 1. In the **Available updates** section, upload the release archive (`.tgz`). The console validates the archive against the installed license, uploads it, and adds the new release to the list.
 
