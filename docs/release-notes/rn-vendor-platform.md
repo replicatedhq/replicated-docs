@@ -22,6 +22,14 @@ Released on November 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-03-4}
 * Improved PDF exports from Enterprise Portal (New Portal) so your customers can download more complete, readable documentation. Exports preserve tabbed instructions, code formatting, table headers, callouts, and supported images, and provide links to portal features that require live data.
+
+## v2026.11.03-3
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-3}
+* Fixes a bug that could cause `activeSlug` to be missing from the channel object in the [getcustomer](https://replicated-vendor-api.readme.io/reference/getcustomer) API response.
+
 ## v2026.11.03-0
 
 Released on November 3, 2026
