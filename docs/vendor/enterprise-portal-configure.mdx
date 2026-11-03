@@ -183,9 +183,11 @@ To customize the pre- and post-install instructions for your application:
 
 ### Exclude certain images from Helm CLI install instructions {#installer-only}
 
-You can use the `kots.io/installer-only` annotation to exclude the images for an entire Helm chart or for one or more resoures in a Helm chart's templates from the Helm CLI installation instructions displayed in the Enterprise Portal. This annotation is useful for charts or resources that are required for deployments with a Replicated installer (KOTS, Embedded Cluster, kURL) but should not be visible or deployed when customers install with the Helm CLI.
+You can use the `kots.io/installer-only` annotation to exclude the images for an entire Helm chart or for one or more resources in a Helm chart's templates from the Helm CLI installation instructions displayed in the Enterprise Portal. This annotation is useful for charts or resources that are required for deployments with a Replicated installer (KOTS, Embedded Cluster, kURL) but should not be visible to customers who install with the Helm CLI.
 
-#### Exclude an entire Helm chart from Helm CLI installations
+The annotation does not change the chart that customers pull, and the Helm CLI ignores it. Annotated resources in a chart's templates are still deployed in Helm CLI installations. For more information, see [Annotate resources inside a chart's templates](/vendor/packaging-include-resources#template-resources) in _Conditionally include or exclude resources_.
+
+#### Exclude an entire Helm chart from Helm CLI install instructions
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -199,7 +201,7 @@ spec:
     name: installers-only-chart
     chartVersion: 1.0.0
 ```
-#### Exclude resources inside a chart's templates from Helm CLI installations
+#### Exclude images for resources inside a chart's templates
 
 The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
 

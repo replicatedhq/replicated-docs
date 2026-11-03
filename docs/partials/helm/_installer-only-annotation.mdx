@@ -1,6 +1,6 @@
-Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only` annotation.
+Any other Kubernetes resources in the release (such as Kubernetes Deployments or Services) must include the `kots.io/installer-only: "true"` annotation. The Helm CLI never deploys these resources, but if any of them is missing the annotation, Helm CLI installations are not available for the release. For more information, see [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable) in _Manage install types for a license_.
 
-The `kots.io/installer-only` annotation indicates that only the Replicated installers (Embedded Cluster, KOTS, and kURL) use this Kubernetes resource.
+The `kots.io/installer-only` annotation indicates that only KOTS, kURL, and Embedded Cluster v2 use this Kubernetes resource. Embedded Cluster v3 does not deploy standalone Kubernetes manifests.
 
 Example:
 ```yaml

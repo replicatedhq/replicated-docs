@@ -15,6 +15,13 @@ Released on November 3, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-03-5}
 * The Enterprise Portal Content tab now warns when customers would see an empty documentation homepage, including when content sync succeeds but the configured home page is missing.
+
+## v2026.11.03-4
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-4}
+* Improved PDF exports from Enterprise Portal (New Portal) so your customers can download more complete, readable documentation. Exports preserve tabbed instructions, code formatting, table headers, callouts, and supported images, and provide links to portal features that require live data.
 ## v2026.11.03-0
 
 Released on November 3, 2026
