@@ -395,7 +395,7 @@ The `path` argument uses dot notation, such as `.image.repository`. The `.Values
 To match a key that contains a dot, escape the dot with a backslash. Inside a double-quoted string, the backslash itself must be escaped, such as `".log\\.level"`. Alternatively, use a backtick-quoted string, such as `` `.log\.level` ``. A single backslash inside double quotes, such as `".log\.level"`, is a template syntax error and the HelmChart custom resource fails to render.
 
 :::note
-If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName also returns an empty string when it receives an empty string. ReplicatedImageRegistry does too, unless a local image registry is configured, in which case it ignores the argument and returns the local registry address. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
+If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName also returns an empty string when it receives an empty string. ReplicatedImageRegistry does too, unless a local image registry is configured, in which case it ignores the argument and returns the local registry address. For example, if you mistype the path in `ReplicatedImageName (HelmValue ".initImag")`, the image renders as an empty string and the Pod deploys with no image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
 :::
 
 HelmValue reads chart defaults only in the HelmChart custom resource. You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, HelmValue returns an empty string.
@@ -491,7 +491,7 @@ ReplicatedImageRegistry rewrites `registry` in one of the following ways:
 If no local image registry is configured and `registry` is an empty string, ReplicatedImageRegistry returns an empty string. If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails.
 
 :::note
-KOTS pushes images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
+KOTS and Embedded Cluster v2 push images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
 :::
 
 #### Example
