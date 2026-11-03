@@ -600,6 +600,28 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
+### helm-install-type-missing-annotation
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Notifies if a release that includes a HelmChart custom resource also includes a standalone Kubernetes manifest without the <code>kots.io/installer-only: "true"</code> annotation. Replicated custom resources are not checked.</p>
+      <p>Releases with this warning are not available for Helm CLI installations in the Enterprise Portal. For more information, see <a href="/vendor/licenses-install-types#helm-cli-unavailable">Troubleshoot "Helm CLI install unavailable"</a> in <em>Manage install types for a license</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a HelmChart custom resource.
+    </td>
+  </tr>
+</table>
+
 ### helm-schema-violation
 
 <table>

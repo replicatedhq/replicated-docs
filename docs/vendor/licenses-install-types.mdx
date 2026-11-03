@@ -107,6 +107,36 @@ After enabling installation types in the **Available install types** field, you 
      </tr>
 </table>
 
+## Troubleshoot "Helm CLI install unavailable" {#helm-cli-unavailable}
+
+On the customer page, the **Existing Cluster (Helm CLI)** install type can show a warning similar to the following:
+
+```
+Helm CLI install unavailable: Secret "db-credentials" in file "db-secret.yaml" is a raw Kubernetes resource without the kots.io/installer-only: "true" annotation. Add this annotation or remove the resource to enable Helm CLI installs.
+```
+
+The same warning appears in the linter results for the release on the **Releases** page.
+
+### What the warning means
+
+The Vendor Portal checks the latest release promoted to the customer's channel. If that release includes Helm charts and also includes standalone Kubernetes manifests (manifests that are not part of a Helm chart) without the `kots.io/installer-only: "true"` annotation, the Vendor Portal treats the release as not available for Helm CLI installations.
+
+For a release that is not available for Helm CLI installations:
+* The Enterprise Portal does not list the release as a Helm CLI installation option.
+* The Enterprise Portal does not show Helm CLI install or update instructions for the release.
+
+The warning does not affect the Helm chart itself. Customers who already know the chart location can still install it with the Helm CLI, and the Helm CLI never deploys the standalone manifests. This is why an installation can succeed even when the warning is present.
+
+### How to resolve the warning
+
+1. For each resource named in the warning, do one of the following:
+   * Add the `kots.io/installer-only: "true"` annotation to the resource. Use this option if the resource is needed for installations with Embedded Cluster, KOTS, or kURL. The value must be the string `"true"`.
+   * Remove the resource from the release. Use this option if no install method needs it. For example, new applications include example manifests that you can delete after you add your Helm chart.
+
+   For more information, see [Annotate standalone Kubernetes manifests](/vendor/packaging-include-resources#standalone-manifests) in _Conditionally include or exclude resources_.
+
+1. Promote a new release to the customer's channel. The warning is based on the latest release on the channel, so it clears only after you promote a release that includes the fix.
+
 ## About migrating existing licenses to use install types
 
 By default, when an existing customer license is migrated to include the **Install types** field, the Vendor Portal automatically enables certain install types so that the customer does not experience any interruptions or errors in their deployment.

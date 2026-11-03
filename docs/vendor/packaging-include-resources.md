@@ -52,17 +52,15 @@ spec:
 
 ### `kots.io/installer-only` Annotation {#installer-only}
 
-You can use the `kots.io/installer-only` annotation to prevent an entire Helm chart or one or more resoures in a Helm chart's templates from being deployed in installations with the Helm CLI. Charts or resources with `kots.io/installer-only: "true"` are deployed _only_ when installing with a Replicated installer (Embedded Cluster, KOTS, and kURL).
+You can use the `kots.io/installer-only` annotation to prevent an entire Helm chart or one or more resources in a Helm chart's templates from being deployed in installations with the Helm CLI. Charts or resources with `kots.io/installer-only: "true"` are deployed _only_ when installing with a Replicated installer (Embedded Cluster, KOTS, and kURL).
 
 The `kots.io/installer-only` annotation does the following:
-- Excludes the chart (or the resource in a chart's templates) from the Helm CLI installation and update instructions in the Enterprise Portal and Vendor Portal. For more information about how users can view these instructions in the Enterprise Portal, see [View Insall and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log In To and Use the Enterprise Portal_.
+- Excludes the chart (or the resource in a chart's templates) from the Helm CLI installation and update instructions in the Enterprise Portal and Vendor Portal. For more information about how users can view these instructions in the Enterprise Portal, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log In To and Use the Enterprise Portal_.
 - Excludes the chart (or the resource in a chart's templates) from Security Center reports for Helm CLI installations. For more information about the Security Center, see [About the Security Center (Beta)](/vendor/security-center-about).
 
 This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or deployed when customers install with the Helm CLI.
 
-:::note
-Any Kubernetes resources in your releases that are not part of a Helm chart are never included in Helm CLI installations. You do not need to add this annotation to standalone manifests.
-:::
+If your release includes Helm charts, you must also add this annotation to any standalone Kubernetes manifests in the release. See [Annotate standalone Kubernetes manifests](#standalone-manifests) below.
 
 #### Exclude an entire Helm chart from Helm CLI installations
 
@@ -114,6 +112,32 @@ spec:
         args: ["-c", "echo Running installer-specific preflight checks"]
       restartPolicy: Never
 ```
+
+#### Annotate standalone Kubernetes manifests {#standalone-manifests}
+
+The Helm CLI never deploys Kubernetes manifests that are in your release but not part of a Helm chart, such as a Secret or Service defined in its own file. However, if your release includes one or more Helm charts, you must still add `kots.io/installer-only: "true"` to each of these standalone manifests. The annotation tells the Vendor Portal that the manifest is intended only for Replicated installers.
+
+If any standalone manifest in the release is missing the annotation, the Vendor Portal treats the release as not available for Helm CLI installations. For more information, see [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable) in _Manage install types for a license_.
+
+You do not need to add the annotation to Replicated custom resources, such as the HelmChart, Config, Application, Preflight, or SupportBundle custom resources.
+
+**Example:**
+
+```yaml
+# db-secret.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+  annotations:
+    kots.io/installer-only: "true"
+type: Opaque
+stringData:
+  password: repl{{ ConfigOption "db_password" }}
+```
+
+The value must be the string `"true"`. Any other value, such as `"false"`, does not mark the manifest as installer-only.
 
 ## Include or exclude Kubernetes manifests
 
