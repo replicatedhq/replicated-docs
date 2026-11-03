@@ -52,19 +52,21 @@ spec:
 
 ### `kots.io/installer-only` Annotation {#installer-only}
 
-You can use the `kots.io/installer-only` annotation to prevent an entire Helm chart or one or more resources in a Helm chart's templates from being deployed in installations with the Helm CLI. Charts or resources with `kots.io/installer-only: "true"` are deployed _only_ when installing with a Replicated installer (Embedded Cluster, KOTS, and kURL).
+You can use the `kots.io/installer-only` annotation to mark an entire Helm chart, or one or more resources in a Helm chart's templates, as intended only for installations with a Replicated installer (Embedded Cluster, KOTS, and kURL).
 
 The `kots.io/installer-only` annotation does the following:
-- Excludes the chart (or the resource in a chart's templates) from the Helm CLI installation and update instructions in the Enterprise Portal and Vendor Portal. For more information about how users can view these instructions in the Enterprise Portal, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log In To and Use the Enterprise Portal_.
-- Excludes the chart (or the resource in a chart's templates) from Security Center reports for Helm CLI installations. For more information about the Security Center, see [About the Security Center (Beta)](/vendor/security-center-about).
+- Excludes the chart (or the images for the resource in a chart's templates) from the Helm CLI installation and update instructions in the Enterprise Portal and Vendor Portal. For more information about how users can view these instructions in the Enterprise Portal, see [View Install and Update Instructions](/vendor/enterprise-portal-use#view-install-and-update-instructions) in _Log In To and Use the Enterprise Portal_.
+- Excludes the chart (or the images for the resource in a chart's templates) from Security Center reports for Helm CLI installations. For more information about the Security Center, see [About the Security Center (Beta)](/vendor/security-center-about).
 
-This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or deployed when customers install with the Helm CLI.
+The annotation does not change the chart that customers pull from the Replicated registry, and the Helm CLI ignores it. A customer who installs a chart directly with the Helm CLI gets every resource in the chart's templates, including annotated resources. To keep a resource out of Helm CLI installations, use a conditional in the chart's templates. For more information, see [Annotate resources inside a chart's templates](#template-resources) in this document.
+
+This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible to customers who install with the Helm CLI.
 
 If your release includes Helm charts, you must also add this annotation to any standalone Kubernetes manifests in the release. For more information, see [Annotate standalone Kubernetes manifests](#standalone-manifests) in this document.
 
-#### Exclude an entire Helm chart from Helm CLI installations
+#### Exclude an entire Helm chart from Helm CLI install instructions {#exclude-an-entire-helm-chart-from-helm-cli-installations}
 
-You can add `kots.io/installer-only` to a Replicated [HelmChart](/reference/custom-resource-helmchart) custom resource to prevent the associated Helm chart from being deployed in Helm CLI installations.
+You can add `kots.io/installer-only` to a Replicated [HelmChart](/reference/custom-resource-helmchart) custom resource to exclude the associated Helm chart from Helm CLI installation and update instructions. The chart is still available in the Replicated registry, so a customer who already knows the chart's location can still install it with the Helm CLI.
 
 **Example:**
 
@@ -85,17 +87,20 @@ spec:
 HelmChart custom resources are never deployed by Helm CLI. The annotation controls whether the chart they reference is included in Helm CLI installation and update instructions.
 :::
 
-#### Exclude resources inside a chart's templates from Helm CLI installations
+#### Annotate resources inside a chart's templates {#template-resources}
 
-You can add `kots.io/installer-only` to a Kubernetes resource in a Helm chart's templates directory to prevent the resource from being deployed in Helm CLI installations.
+You can add `kots.io/installer-only` to a Kubernetes resource in a Helm chart's templates directory to exclude the resource's images from Helm CLI installation instructions and from Security Center reports for Helm CLI installations.
+
+The annotation does not prevent the Helm CLI from deploying the resource. To deploy the resource only with Replicated installers, also wrap it in a conditional that is enabled only by the HelmChart custom resource. Replicated installers apply the values in the HelmChart custom resource, and the Helm CLI does not. For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 **Example:**
 
-The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments:
+The following example shows a Kubernetes Job inside a Helm chart's templates that should only run during Replicated installer deployments. The chart's default `values.yaml` sets `replicatedInstaller: false`:
 
 ```yaml
 # example-chart/templates/preflight-job.yaml
 
+{{- if .Values.replicatedInstaller }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -111,6 +116,24 @@ spec:
         command: ["/bin/sh"]
         args: ["-c", "echo Running installer-specific preflight checks"]
       restartPolicy: Never
+{{- end }}
+```
+
+The HelmChart custom resource for the chart sets `replicatedInstaller: true` in both `values` and `builder`. Setting it in `builder` makes sure the Job's image is included in air gap bundles for Replicated installers. For more information, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: example-chart
+spec:
+  chart:
+    name: example-chart
+    chartVersion: 1.0.0
+  values:
+    replicatedInstaller: true
+  builder:
+    replicatedInstaller: true
 ```
 
 #### Annotate standalone Kubernetes manifests {#standalone-manifests}
@@ -125,7 +148,7 @@ Embedded Cluster v3 ignores standalone manifests, with or without the annotation
 
 If any standalone manifest in the release is missing the annotation, the Vendor Portal treats the release as not available for Helm CLI installations. For more information, see [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable) in _Manage install types for a license_.
 
-Replicated custom resources, such as the HelmChart, Config, Application, Preflight, and SupportBundle custom resources, do not affect whether the release is available for Helm CLI installations. You do not need to annotate them for this purpose. On a HelmChart custom resource, the annotation has a different purpose. It excludes the associated chart from Helm CLI installation instructions. For more information, see [Exclude an entire Helm chart from Helm CLI installations](#exclude-an-entire-helm-chart-from-helm-cli-installations) in this document.
+Replicated custom resources, such as the HelmChart, Config, Application, Preflight, and SupportBundle custom resources, do not affect whether the release is available for Helm CLI installations. You do not need to annotate them for this purpose. On a HelmChart custom resource, the annotation has a different purpose. It excludes the associated chart from Helm CLI installation instructions. For more information, see [Exclude an entire Helm chart from Helm CLI install instructions](#exclude-an-entire-helm-chart-from-helm-cli-installations) in this document.
 
 **Example:**
 
