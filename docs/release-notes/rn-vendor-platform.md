@@ -30,6 +30,13 @@ Released on November 3, 2026
 ### Bug Fixes {#bug-fixes-v2026-11-03-3}
 * Fixes a bug that could cause `activeSlug` to be missing from the channel object in the [getcustomer](https://replicated-vendor-api.readme.io/reference/getcustomer) API response.
 
+## v2026.11.03-2
+
+Released on November 3, 2026
+
+### New Features {#new-features-v2026-11-03-2}
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) applies the `namespace` and `createNamespace` props from the Helm install components on your Enterprise Portal docs page. Automation receives the same `helm install` and preflight commands that customers see in the portal. A valid `namespace` prop overrides the `?namespace=` query parameter, and `createNamespace="false"` removes `--create-namespace`. The API ignores namespace props that use template variables, such as `namespace="{{entitlements.namespace}}"`. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+
 ## v2026.11.03-0
 
 Released on November 3, 2026
