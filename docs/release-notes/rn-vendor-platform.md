@@ -79,6 +79,13 @@ Released on October 29, 2026
 
 ### Improvements {#improvements-v2026-10-29-4}
 * Manage customer webhook endpoints, signing secrets, test deliveries, and delivery history in Enterprise Portal. Receive signed release-availability webhooks and use them to drive installation-specific upgrade automation.
+## v2026.10.29-1
+
+Released on October 29, 2026
+
+### New Features {#new-features-v2026-10-29-1}
+* The `<InstancesAndUpdates>` Enterprise Portal component accepts a new `helmNamespace` prop. When set, the `helm upgrade` commands on Helm instance cards include `--namespace`, so customers who installed into a specific namespace get working upgrade commands on the Instances and Updates page. Upgrade commands never include `--create-namespace`, and KOTS and kURL cards are unaffected. See [Portal components](/vendor/enterprise-portal-v2-content#portal-components) in _Customize Portal Content_.
+
 ## v2026.10.28-1
 
 Released on October 28, 2026
