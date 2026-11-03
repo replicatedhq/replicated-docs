@@ -151,7 +151,7 @@ You can enable the **Prevent this release from being skipped during upgrades** r
 
 * For Embedded Cluster v3 installations, users must upgrade to the required version before they can upgrade to a later version. This applies to upgrades with the [`upgrade`](/embedded-cluster/v3/embedded-cluster-upgrade) command and with the [persistent admin console](/embedded-cluster/v3/embedded-persistent-console). If an upgrade would skip a required version, the `upgrade` command exits with an error that lists the versions to install first. If the upgrade to a required version did not complete, users must retry it before they can upgrade to a later version.
 
-  In the persistent admin console, required releases are labeled "Required" in the list of available updates. For air gap upgrades, the **Upgrade** button for a later version is disabled until the required version is deployed. For online upgrades, the **Upgrade** button is available, but the upgrade stops with the same error after the release is downloaded.
+  In the admin console, required releases are labeled "Required" in the list of available updates. For air gap upgrades, the **Upgrade** button for a later version is disabled until the required version is deployed. For online upgrades, the **Upgrade** button is available, but the upgrade stops with the same error after the release is downloaded.
 
 * The Enterprise Portal labels required releases in the list of available application versions. When a customer upgrades an instance and the Enterprise Portal knows the installed version, it selects the next required version by default. The customer can still choose a later version. For new installations, the customer can choose any version.
 

@@ -2,6 +2,8 @@ import EmbeddedClusterRequirements from "../docs/partials/embedded-cluster/v3/_r
 import EmbeddedClusterPortRequirements from "../docs/partials/embedded-cluster/v3/_port-reqs.mdx"
 import EmbeddedClusterHostConfig from "../docs/partials/embedded-cluster/v3/_host-config-reqs.mdx"
 import SecurityAgents from "../docs/partials/embedded-cluster/_security-agents.mdx"
+import DnsRequirements from "../docs/partials/embedded-cluster/_dns-reqs.mdx"
+import ComplianceScans from "../docs/partials/embedded-cluster/_compliance-scans.mdx"
 import SecurityAgentsPaths from "../docs/partials/embedded-cluster/v3/_security-agents-paths.mdx"
 import FirewallOpeningsIntro from "../docs/partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsEc from "../docs/partials/install/_firewall-openings-embedded-cluster.mdx"
@@ -21,6 +23,10 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 ## Port requirements
 
 <EmbeddedClusterPortRequirements/>
+
+## DNS on the host {#dns}
+
+<DnsRequirements/>
 
 ## Unix accounts for Kubernetes components
 
@@ -49,7 +55,7 @@ Embedded Cluster v3 disables the `update-prober` feature, which checks `updates.
 
 ## About firewalld configuration
 
-When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens the required ports on the host. No additional configuration is necessary.
+When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens ports 2380, 6443, 9443, and 10250/TCP and port 4789/UDP. Embedded Cluster does not open the console and API port (30000/TCP by default) or ports 9091, 10249, and 10256/TCP. Create firewall openings for those ports yourself. See [Port requirements](#port-requirements).
 
 Embedded Cluster adds the following rule to Firewalld:
 
@@ -101,3 +107,9 @@ Embedded Cluster opens the following ports in the default zone:
 <SecurityAgents/>
 
 <SecurityAgentsPaths/>
+
+## Compliance scans on the host {#compliance-scans}
+
+<ComplianceScans/>
+
+Embedded Cluster v3 also links `/var/lib/ec/kubelet` to `DATA_DIR/k0s/kubelet`, so scanners might report the same kubelet files under `/var/lib/ec/kubelet`.

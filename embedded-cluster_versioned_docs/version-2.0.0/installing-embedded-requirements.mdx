@@ -2,6 +2,8 @@ import EmbeddedClusterRequirements from "../../docs/partials/embedded-cluster/v2
 import EmbeddedClusterPortRequirements from "../../docs/partials/embedded-cluster/v2/_port-reqs.mdx"
 import EmbeddedClusterHostConfig from "../../docs/partials/embedded-cluster/v2/_host-config-reqs.mdx"
 import SecurityAgents from "../../docs/partials/embedded-cluster/_security-agents.mdx"
+import DnsRequirements from "../../docs/partials/embedded-cluster/_dns-reqs.mdx"
+import ComplianceScans from "../../docs/partials/embedded-cluster/_compliance-scans.mdx"
 import SecurityAgentsPaths from "../../docs/partials/embedded-cluster/v2/_security-agents-paths.mdx"
 import FirewallOpeningsIntro from "../../docs/partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsEc from "../../docs/partials/install/_firewall-openings-embedded-cluster.mdx"
@@ -21,6 +23,10 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 ## Port requirements
 
 <EmbeddedClusterPortRequirements/>
+
+## DNS on the host {#dns}
+
+<DnsRequirements/>
 
 ## Unix accounts for Kubernetes components
 
@@ -101,3 +107,7 @@ The following ports are opened in the default zone:
 <SecurityAgents/>
 
 <SecurityAgentsPaths/>
+
+## Compliance scans on the host {#compliance-scans}
+
+<ComplianceScans/>
