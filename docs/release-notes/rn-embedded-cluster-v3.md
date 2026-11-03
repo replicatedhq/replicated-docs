@@ -31,7 +31,7 @@ Released on November 3, 2026
   </tr>
 </table>
 ### New Features {#new-features-3-19-0-beta-1}
-* Adds support for k8s 1.37 and drops support for 1.34.
+* Adds support for Kubernetes 1.37 and drops support for 1.34.
 
 ### Bug Fixes {#bug-fixes-3-19-0-beta-1}
 * Fixed multi-node air gap upgrades failing when using a Bring Your Own (BYO) registry.
