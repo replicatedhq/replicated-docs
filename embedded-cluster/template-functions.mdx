@@ -77,7 +77,11 @@ The following table describes the value returned by ReplicatedImageName in onlin
 |------|---------|--------|
 | Online | Omitted | Returns the proxy registry URL for the image in the format: `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your [custom domain](/vendor/custom-domains-using). If the image is already using the proxy registry URL, then ReplicatedImageName returns the image value unchanged. |
 | Online | `true` | Returns the image reference with no changes |
-| Air gap | `true` or omitted | Returns the location of the image at the local image registry in the format: `<local-registry>/<repo-path>:<tag>` |
+| Air gap, or a customer-managed registry | `true` or omitted | Returns the location of the image at the local image registry in the format: `<local-registry>/<repo-path>:<tag>`, keeping the full repository path |
+
+Images that use the Replicated registry (`registry.replicated.com`) are routed through the proxy registry like any other image. If the image uses `proxy.replicated.com` and you configured a custom domain, ReplicatedImageName replaces `proxy.replicated.com` with your custom domain.
+
+If `image` is an empty string or is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, ReplicatedImageName returns an empty string, logs the error, and rendering continues.
 
 ### Examples
 
@@ -187,7 +191,11 @@ The following table describes the value returned by ReplicatedImageRegistry in o
 |------|---------|--------|
 | Online | Omitted | Returns the proxy registry path in the format: `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your [custom domain](/vendor/custom-domains-using). If the registry is already using the proxy registry URL, then ReplicatedImageRegistry returns the registry value unchanged. |
 | Online | `true` | Returns the registry value with no changes |
-| Air gap | `true` or omitted | Returns the local registry address |
+| Air gap, or a customer-managed registry | `true` or omitted | Returns the host of the built-in local registry, or the address of the customer-managed registry, including any path. The `registry` value is ignored. |
+
+The Replicated registry (`registry.replicated.com`) is routed through the proxy registry like any other registry. If the registry uses `proxy.replicated.com` and you configured a custom domain, ReplicatedImageRegistry replaces `proxy.replicated.com` with your custom domain.
+
+If `registry` is an empty string or is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, ReplicatedImageRegistry returns an empty string, logs the error, and rendering continues.
 
 ### Examples
 
@@ -244,6 +252,16 @@ func HelmValue(path string) string
 ```
 
 Returns the value from the chart's `values.yaml` at the given dotted path. Use this to read the chart's default image values and pass them to the [ReplicatedImageName](#replicatedimagename) or [ReplicatedImageRegistry](#replicatedimageregistry) template functions.
+
+HelmValue reads chart defaults in the HelmChart custom resource and in `spec.extensions.helmCharts` in the [Embedded Cluster Config](embedded-config). In other files, HelmValue returns an empty string.
+
+The `path` argument uses dot notation, such as `.image.repository`. The `.Values` prefix is optional, but a path of exactly `.Values` returns an empty string, not the whole values map. If the value is a map or a list, HelmValue returns it as JSON.
+
+To match a key that contains a dot, escape the dot with a backslash. Inside a double-quoted string, the backslash itself must be escaped, such as `".log\\.level"`. Alternatively, use a backtick-quoted string, such as `` `.log\.level` ``. A single backslash inside double quotes, such as `".log\.level"`, is a template syntax error and the file fails to render.
+
+:::note
+If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName and ReplicatedImageRegistry also return an empty string when they receive an empty string. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
+:::
 
 ### Examples
 

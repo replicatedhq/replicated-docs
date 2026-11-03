@@ -396,7 +396,9 @@ To match a key that contains a dot, escape the dot with a backslash. Inside a do
 If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName and ReplicatedImageRegistry also return an empty string when they receive an empty string. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
 :::
 
-HelmValue reads chart defaults only in the HelmChart custom resource. In Embedded Cluster v3, HelmValue also reads chart defaults in `spec.extensions.helmCharts` in the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config). You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, HelmValue returns an empty string.
+HelmValue reads chart defaults only in the HelmChart custom resource. You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, HelmValue returns an empty string.
+
+For the behavior in Embedded Cluster v3, see [HelmValue](/embedded-cluster/v3/template-functions#helmvalue-func) in _Template Functions for Embedded Cluster (Beta)_.
 
 #### Example
 
@@ -437,15 +439,15 @@ Returns a full image reference, including the registry, repository, and tag or d
 
 ReplicatedImageName rewrites `image` in one of the following ways:
 
-* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the location of the image in the local registry. The `noProxy` argument is ignored. The format depends on the installation method:
-    * KOTS and Embedded Cluster v2: `<local-registry-host>/<local-registry-namespace>/<image-name>:<tag>`, using only the last segment of the repository path. For example, `ghcr.io/my-org/init:1.4.0` becomes `registry.example.com/my-app/init:1.4.0`.
-    * Embedded Cluster v3: `<local-registry>/<repository-path>:<tag>`, keeping the full repository path. For example, `ghcr.io/my-org/init:1.4.0` becomes `<local-registry>/my-org/init:1.4.0`.
+* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the location of the image in the local registry in the format `<local-registry-host>/<local-registry-namespace>/<image-name>:<tag>`, using only the last segment of the repository path. For example, `ghcr.io/my-org/init:1.4.0` becomes `registry.example.com/my-app/init:1.4.0`. The `noProxy` argument is ignored.
 
 * If no local image registry is configured and `noProxy` is `true`, returns `image` unchanged. Use this for public images that don't go through the Replicated proxy registry.
 
-* Otherwise, returns the proxy registry URL for the image in the format `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `image` already uses the proxy registry, ReplicatedImageName returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. In KOTS and Embedded Cluster v2, ReplicatedImageName also returns images that use the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one. Embedded Cluster v3 routes images that use the Replicated registry through the proxy registry like any other image.
+* Otherwise, returns the proxy registry URL for the image in the format `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `image` already uses the proxy registry, ReplicatedImageName returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. ReplicatedImageName also returns images that use the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one.
 
-If `image` is an empty string, ReplicatedImageName returns an empty string. If `image` is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageName returns an empty string and rendering continues.
+If `image` is an empty string, ReplicatedImageName returns an empty string. If `image` is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, rendering fails.
+
+For the behavior in Embedded Cluster v3, see [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) in _Template Functions for Embedded Cluster (Beta)_.
 
 For more information, see [About the Proxy Registry](/vendor/private-images-about) and [Use custom domains](/vendor/custom-domains-using).
 
@@ -478,20 +480,18 @@ Returns a registry host rewritten so that images can be pulled in the customer's
 
 ReplicatedImageRegistry rewrites `registry` in one of the following ways:
 
-* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the local registry address. The `registry` and `noProxy` arguments are ignored. The format depends on the installation method:
-    * KOTS and Embedded Cluster v2: `<local-registry-host>/<local-registry-namespace>`.
-    * Embedded Cluster v3: the host of the built-in local registry, or the address of a customer-managed registry, including any path.
+* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the local registry address in the format `<local-registry-host>/<local-registry-namespace>`. The `registry` and `noProxy` arguments are ignored.
 
 * If no local image registry is configured and `noProxy` is `true`, returns `registry` unchanged.
 
-* Otherwise, returns the proxy registry path in the format `<proxy-registry-domain>/proxy/<app-slug>/<registry>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `registry` already uses the proxy registry, ReplicatedImageRegistry returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. In KOTS and Embedded Cluster v2, ReplicatedImageRegistry also returns the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one. Embedded Cluster v3 routes the Replicated registry through the proxy registry like any other registry.
+* Otherwise, returns the proxy registry path in the format `<proxy-registry-domain>/proxy/<app-slug>/<registry>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `registry` already uses the proxy registry, ReplicatedImageRegistry returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. ReplicatedImageRegistry also returns the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one.
 
-If no local image registry is configured and `registry` is an empty string, ReplicatedImageRegistry returns an empty string. If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageRegistry returns an empty string and rendering continues.
+If no local image registry is configured and `registry` is an empty string, ReplicatedImageRegistry returns an empty string. If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails.
+
+For the behavior in Embedded Cluster v3, see [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) in _Template Functions for Embedded Cluster (Beta)_.
 
 :::note
-KOTS and Embedded Cluster v2 push images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
-
-Embedded Cluster v3 keeps the full repository path, so repository fields with more than one path segment resolve in air gap installations.
+KOTS pushes images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
 :::
 
 #### Example
