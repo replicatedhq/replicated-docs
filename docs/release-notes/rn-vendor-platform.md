@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.03-3
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-3}
+* Fixes a bug that could cause activeSlug to be missing from the channel object in the [getcustomer](https://replicated-vendor-api.readme.io/reference/getcustomer) API response.
 ## v2026.11.03-0
 
 Released on November 3, 2026
