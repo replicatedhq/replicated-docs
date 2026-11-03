@@ -384,6 +384,8 @@ For more information, see [values](/reference/custom-resource-helmchart-v2#value
 func HelmValue(path string) string
 ```
 
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [HelmValue](/embedded-cluster/v3/template-functions#helmvalue-func) in _Template Functions for Embedded Cluster (Beta)_.
+
 Returns a default value from the Helm chart that the HelmChart custom resource references. Use HelmValue to read a chart's default image values and pass them to the [ReplicatedImageName](#replicatedimagename) or [ReplicatedImageRegistry](#replicatedimageregistry) template functions, so that you don't have to repeat image references in the HelmChart custom resource.
 
 HelmValue reads the `values.yaml` file of the chart archive that matches `spec.chart.name` and `spec.chart.chartVersion`, including the default values of any subcharts bundled with the chart. It does not read values that you set in the HelmChart custom resource or values that customers provide.
@@ -393,12 +395,10 @@ The `path` argument uses dot notation, such as `.image.repository`. The `.Values
 To match a key that contains a dot, escape the dot with a backslash. Inside a double-quoted string, the backslash itself must be escaped, such as `".log\\.level"`. Alternatively, use a backtick-quoted string, such as `` `.log\.level` ``. A single backslash inside double quotes, such as `".log\.level"`, is a template syntax error and the HelmChart custom resource fails to render.
 
 :::note
-If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName and ReplicatedImageRegistry also return an empty string when they receive an empty string. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
+If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName also returns an empty string when it receives an empty string. ReplicatedImageRegistry does too, unless a local image registry is configured, in which case it ignores the argument and returns the local registry address. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
 :::
 
 HelmValue reads chart defaults only in the HelmChart custom resource. You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, HelmValue returns an empty string.
-
-For the behavior in Embedded Cluster v3, see [HelmValue](/embedded-cluster/v3/template-functions#helmvalue-func) in _Template Functions for Embedded Cluster (Beta)_.
 
 #### Example
 
@@ -435,6 +435,8 @@ spec:
 func ReplicatedImageName(image string, noProxy ...bool) string
 ```
 
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) in _Template Functions for Embedded Cluster (Beta)_.
+
 Returns a full image reference, including the registry, repository, and tag or digest, rewritten so that the image can be pulled in the customer's environment. Use ReplicatedImageName in the HelmChart custom resource so that image references resolve correctly in both online and air gap installations.
 
 ReplicatedImageName rewrites `image` in one of the following ways:
@@ -446,8 +448,6 @@ ReplicatedImageName rewrites `image` in one of the following ways:
 * Otherwise, returns the proxy registry URL for the image in the format `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `image` already uses the proxy registry, ReplicatedImageName returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. ReplicatedImageName also returns images that use the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one.
 
 If `image` is an empty string, ReplicatedImageName returns an empty string. If `image` is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, rendering fails.
-
-For the behavior in Embedded Cluster v3, see [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) in _Template Functions for Embedded Cluster (Beta)_.
 
 For more information, see [About the Proxy Registry](/vendor/private-images-about) and [Use custom domains](/vendor/custom-domains-using).
 
@@ -476,6 +476,8 @@ spec:
 func ReplicatedImageRegistry(registry string, noProxy ...bool) string
 ```
 
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) in _Template Functions for Embedded Cluster (Beta)_.
+
 Returns a registry host rewritten so that images can be pulled in the customer's environment. Use ReplicatedImageRegistry when a Helm chart sets the image registry and repository in separate fields.
 
 ReplicatedImageRegistry rewrites `registry` in one of the following ways:
@@ -487,8 +489,6 @@ ReplicatedImageRegistry rewrites `registry` in one of the following ways:
 * Otherwise, returns the proxy registry path in the format `<proxy-registry-domain>/proxy/<app-slug>/<registry>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `registry` already uses the proxy registry, ReplicatedImageRegistry returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. ReplicatedImageRegistry also returns the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one.
 
 If no local image registry is configured and `registry` is an empty string, ReplicatedImageRegistry returns an empty string. If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails.
-
-For the behavior in Embedded Cluster v3, see [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) in _Template Functions for Embedded Cluster (Beta)_.
 
 :::note
 KOTS pushes images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.
