@@ -115,7 +115,13 @@ spec:
 
 #### Annotate standalone Kubernetes manifests {#standalone-manifests}
 
-The Helm CLI never deploys Kubernetes manifests that are in your release but not part of a Helm chart, such as a Secret or Service defined in its own file. However, if your release includes one or more Helm charts, you must still add `kots.io/installer-only: "true"` to each of these standalone manifests. The annotation tells the Vendor Portal that the manifest is intended only for Replicated installers.
+Standalone Kubernetes manifests are manifests in your release that are not part of a Helm chart, such as a Secret or Service defined in its own file. Only KOTS, kURL, and Embedded Cluster v2 deploy standalone manifests. The Helm CLI and Embedded Cluster v3 never deploy them.
+
+If your release includes one or more Helm charts, you must add `kots.io/installer-only: "true"` to each standalone manifest that you keep in the release. The annotation tells the Vendor Portal that the manifest is intended only for KOTS, kURL, and Embedded Cluster v2.
+
+:::note
+Embedded Cluster v3 ignores standalone manifests, with or without the annotation, and does not show an error or warning. If you support Embedded Cluster v3, move these resources into a Helm chart, or into a Helm extension chart in the Embedded Cluster Config. See [Package your application with Helm](/embedded-cluster/v3/embedded-v3-migrate#package-your-application-with-helm) in _Upgrade from Embedded Cluster v2_.
+:::
 
 If any standalone manifest in the release is missing the annotation, the Vendor Portal treats the release as not available for Helm CLI installations. For more information, see [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable) in _Manage install types for a license_.
 

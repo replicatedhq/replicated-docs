@@ -27,7 +27,7 @@ To create and promote a release in the Vendor Portal:
 
    If this is your first release, see [Onboard to the Replicated Platform (Embedded Cluster v2)](/vendor/replicated-onboarding) for step-by-step instructions on packaging your Helm chart with the Replicated SDK and creating your first release.
 
-   If you keep any standalone Kubernetes manifests in a release that includes a Helm chart, add the `kots.io/installer-only: "true"` annotation to them. Otherwise, the release is not available for Helm CLI installations. See [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable).
+   Only KOTS, kURL, and Embedded Cluster v2 deploy standalone Kubernetes manifests. The Helm CLI and Embedded Cluster v3 ignore them. If you keep any standalone manifests in a release that includes a Helm chart, add the `kots.io/installer-only: "true"` annotation to them. Otherwise, the release is not available for Helm CLI installations. See [Annotate standalone Kubernetes manifests](/vendor/packaging-include-resources#standalone-manifests).
    :::
 
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
