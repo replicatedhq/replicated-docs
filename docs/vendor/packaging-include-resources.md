@@ -60,7 +60,7 @@ The `kots.io/installer-only` annotation does the following:
 
 This annotation is useful for charts that are required for Replicated installer-based deployments but should not be visible or deployed when customers install with the Helm CLI.
 
-If your release includes Helm charts, you must also add this annotation to any standalone Kubernetes manifests in the release. See [Annotate standalone Kubernetes manifests](#standalone-manifests) below.
+If your release includes Helm charts, you must also add this annotation to any standalone Kubernetes manifests in the release. For more information, see [Annotate standalone Kubernetes manifests](#standalone-manifests) in this document.
 
 #### Exclude an entire Helm chart from Helm CLI installations
 
@@ -120,12 +120,12 @@ Standalone Kubernetes manifests are manifests in your release that are not part 
 If your release includes one or more Helm charts, you must add `kots.io/installer-only: "true"` to each standalone manifest that you keep in the release. The annotation tells the Vendor Portal that the manifest is intended only for KOTS, kURL, and Embedded Cluster v2.
 
 :::note
-Embedded Cluster v3 ignores standalone manifests, with or without the annotation, and does not show an error or warning. If you support Embedded Cluster v3, move these resources into a Helm chart, or into a Helm extension chart in the Embedded Cluster Config. See [Package your application with Helm](/embedded-cluster/v3/embedded-v3-migrate#package-your-application-with-helm) in _Upgrade from Embedded Cluster v2_.
+Embedded Cluster v3 ignores standalone manifests, with or without the annotation, and does not show an error or warning. If you support Embedded Cluster v3, move these resources into a Helm chart, or into a Helm extension chart in the Embedded Cluster Config. For more information, see [Package your application with Helm](/embedded-cluster/v3/embedded-v3-migrate#package-your-application-with-helm) in _Upgrade from Embedded Cluster v2_.
 :::
 
 If any standalone manifest in the release is missing the annotation, the Vendor Portal treats the release as not available for Helm CLI installations. For more information, see [Troubleshoot "Helm CLI install unavailable"](/vendor/licenses-install-types#helm-cli-unavailable) in _Manage install types for a license_.
 
-You do not need to add the annotation to Replicated custom resources, such as the HelmChart, Config, Application, Preflight, or SupportBundle custom resources.
+Replicated custom resources, such as the HelmChart, Config, Application, Preflight, and SupportBundle custom resources, do not affect whether the release is available for Helm CLI installations. You do not need to annotate them for this purpose. On a HelmChart custom resource, the annotation has a different purpose. It excludes the associated chart from Helm CLI installation instructions. For more information, see [Exclude an entire Helm chart from Helm CLI installations](#exclude-an-entire-helm-chart-from-helm-cli-installations) in this document.
 
 **Example:**
 

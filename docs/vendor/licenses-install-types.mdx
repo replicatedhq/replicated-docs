@@ -133,7 +133,7 @@ The warning does not affect the Helm chart itself. Customers who already know th
    * Add the `kots.io/installer-only: "true"` annotation to the resource. Use this option if installations with KOTS, kURL, or Embedded Cluster v2 need the resource. The value must be the string `"true"`.
    * Remove the resource from the release. Use this option if no install method needs it. For example, new applications include example manifests that you can delete after you add your Helm chart.
 
-   Embedded Cluster v3 never deploys standalone manifests, even when they are annotated. If Embedded Cluster v3 installations need the resource, move it into a Helm chart or a Helm extension chart. For more information, see [Annotate standalone Kubernetes manifests](/vendor/packaging-include-resources#standalone-manifests).
+   Embedded Cluster v3 never deploys standalone manifests, even when they are annotated. If Embedded Cluster v3 installations need the resource, move it into a Helm chart or a Helm extension chart. For more information, see [Annotate standalone Kubernetes manifests](/vendor/packaging-include-resources#standalone-manifests) in _Conditionally include or exclude resources_.
 
    For more information, see [Annotate standalone Kubernetes manifests](/vendor/packaging-include-resources#standalone-manifests) in _Conditionally include or exclude resources_.
 
