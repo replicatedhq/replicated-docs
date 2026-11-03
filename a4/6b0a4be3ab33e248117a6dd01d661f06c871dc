@@ -1,0 +1,21 @@
+docs/vendor/enterprise-portal-configure.mdx
+  s_74ad520d8b22d5::t_9d9435b56f253a 186,188-190,204
+docs/vendor/packaging-include-resources.md
+  s_74ad520d8b22d5::t_20f0a3a5a52f0d 55,58-59,61-63,67,69,90-92,94,98,103,119-136,151
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a46b0a4be3ab33e248117a6dd01d661f06c871dc",
+  "prompts": {},
+  "sessions": {
+    "s_74ad520d8b22d5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a86730ee97b370350",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
