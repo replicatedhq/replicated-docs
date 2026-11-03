@@ -9,12 +9,34 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.03-5
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-5}
+* The Enterprise Portal Content tab now warns when customers would see an empty documentation homepage, including when content sync succeeds but the configured home page is missing.
+
+## v2026.11.03-4
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-4}
+* Improved PDF exports from Enterprise Portal (New Portal) so your customers can download more complete, readable documentation. Exports preserve tabbed instructions, code formatting, table headers, callouts, and supported images, and provide links to portal features that require live data.
+
+## v2026.11.03-3
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-3}
+* Fixes a bug that could cause `activeSlug` to be missing from the channel object in the [getcustomer](https://replicated-vendor-api.readme.io/reference/getcustomer) API response.
+
 ## v2026.11.03-2
 
 Released on November 3, 2026
 
 ### New Features {#new-features-v2026-11-03-2}
-* The Headless Install API now supports the new helm namespace and createNamespace features.
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) applies the `namespace` and `createNamespace` props from the Helm install components on your Enterprise Portal docs page. Automation receives the same `helm install` and preflight commands that customers see in the portal. A valid `namespace` prop overrides the `?namespace=` query parameter, and `createNamespace="false"` removes `--create-namespace`. The API ignores namespace props that use template variables, such as `namespace="{{entitlements.namespace}}"`. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+
 ## v2026.11.03-0
 
 Released on November 3, 2026
