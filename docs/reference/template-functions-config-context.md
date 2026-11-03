@@ -388,12 +388,15 @@ Returns a default value from the Helm chart that the HelmChart custom resource r
 
 HelmValue reads the `values.yaml` file of the chart archive that matches `spec.chart.name` and `spec.chart.chartVersion`, including the default values of any subcharts bundled with the chart. It does not read values that you set in the HelmChart custom resource or values that customers provide.
 
-The `path` argument uses dot notation, such as `.image.repository`. The `.Values` prefix is optional. To match a key that contains a dot, escape the dot with a backslash, such as `.log\.level`. If the value is a map or a list, HelmValue returns it as JSON. If the path doesn't exist, HelmValue returns an empty string.
+The `path` argument uses dot notation, such as `.image.repository`. The `.Values` prefix is optional, but a path of exactly `.Values` returns an empty string, not the whole values map. If the value is a map or a list, HelmValue returns it as JSON.
 
-HelmValue works only in the HelmChart custom resource. You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, the behavior depends on the installation method:
+To match a key that contains a dot, escape the dot with a backslash. Inside a double-quoted string, the backslash itself must be escaped, such as `".log\\.level"`. Alternatively, use a backtick-quoted string, such as `` `.log\.level` ``. A single backslash inside double quotes, such as `".log\.level"`, is a template syntax error and the HelmChart custom resource fails to render.
 
-* KOTS and Embedded Cluster v2: HelmValue returns an empty string.
-* Embedded Cluster v3: HelmValue is not defined, so rendering fails. Embedded Cluster v3 also supports HelmValue in `spec.extensions.helmCharts` in the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config).
+:::note
+If the path doesn't exist, HelmValue returns an empty string and rendering continues. ReplicatedImageName and ReplicatedImageRegistry also return an empty string when they receive an empty string. A typo in the path, such as `HelmValue ".initImag"`, deploys a Pod with an empty image instead of failing the render. Check the rendered values when you add or change a HelmValue path.
+:::
+
+HelmValue reads chart defaults only in the HelmChart custom resource. In Embedded Cluster v3, HelmValue also reads chart defaults in `spec.extensions.helmCharts` in the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config). You can't use HelmValue in the `spec.chart.name` or `spec.chart.chartVersion` fields. In other files, HelmValue returns an empty string.
 
 #### Example
 
@@ -434,7 +437,7 @@ Returns a full image reference, including the registry, repository, and tag or d
 
 ReplicatedImageName rewrites `image` in one of the following ways:
 
-* If a local image registry is configured, such as in air gap installations, returns the location of the image in the local registry. The `noProxy` argument is ignored. The format depends on the installation method:
+* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the location of the image in the local registry. The `noProxy` argument is ignored. The format depends on the installation method:
     * KOTS and Embedded Cluster v2: `<local-registry-host>/<local-registry-namespace>/<image-name>:<tag>`, using only the last segment of the repository path. For example, `ghcr.io/my-org/init:1.4.0` becomes `registry.example.com/my-app/init:1.4.0`.
     * Embedded Cluster v3: `<local-registry>/<repository-path>:<tag>`, keeping the full repository path. For example, `ghcr.io/my-org/init:1.4.0` becomes `<local-registry>/my-org/init:1.4.0`.
 
@@ -442,9 +445,7 @@ ReplicatedImageName rewrites `image` in one of the following ways:
 
 * Otherwise, returns the proxy registry URL for the image in the format `<proxy-registry-domain>/proxy/<app-slug>/<image>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `image` already uses the proxy registry, ReplicatedImageName returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. In KOTS and Embedded Cluster v2, ReplicatedImageName also returns images that use the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one. Embedded Cluster v3 routes images that use the Replicated registry through the proxy registry like any other image.
 
-Unlike [LocalImageName](#localimagename), ReplicatedImageName routes every image through the proxy registry in online installations unless `noProxy` is `true`.
-
-If `image` is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageName returns an empty string and rendering continues.
+If `image` is an empty string, ReplicatedImageName returns an empty string. If `image` is not a valid image reference, or if ReplicatedImageName can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageName returns an empty string and rendering continues.
 
 For more information, see [About the Proxy Registry](/vendor/private-images-about) and [Use custom domains](/vendor/custom-domains-using).
 
@@ -477,7 +478,7 @@ Returns a registry host rewritten so that images can be pulled in the customer's
 
 ReplicatedImageRegistry rewrites `registry` in one of the following ways:
 
-* If a local image registry is configured, such as in air gap installations, returns the local registry address. The `registry` and `noProxy` arguments are ignored. The format depends on the installation method:
+* If a local image registry is configured, such as in air gap installations or when the customer uses their own registry, returns the local registry address. The `registry` and `noProxy` arguments are ignored. The format depends on the installation method:
     * KOTS and Embedded Cluster v2: `<local-registry-host>/<local-registry-namespace>`.
     * Embedded Cluster v3: the host of the built-in local registry, or the address of a customer-managed registry, including any path.
 
@@ -485,7 +486,7 @@ ReplicatedImageRegistry rewrites `registry` in one of the following ways:
 
 * Otherwise, returns the proxy registry path in the format `<proxy-registry-domain>/proxy/<app-slug>/<registry>`. The proxy registry domain is either `proxy.replicated.com` or your custom domain. If `registry` already uses the proxy registry, ReplicatedImageRegistry returns it unchanged, except that it replaces `proxy.replicated.com` with your custom domain if you configured one. In KOTS and Embedded Cluster v2, ReplicatedImageRegistry also returns the Replicated registry unchanged, replacing `registry.replicated.com` with your custom domain if you configured one. Embedded Cluster v3 routes the Replicated registry through the proxy registry like any other registry.
 
-If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageRegistry returns an empty string and rendering continues.
+If no local image registry is configured and `registry` is an empty string, ReplicatedImageRegistry returns an empty string. If `registry` is not a valid registry host, or if ReplicatedImageRegistry can't determine the registry to use, rendering fails in KOTS and Embedded Cluster v2. In Embedded Cluster v3, ReplicatedImageRegistry returns an empty string and rendering continues.
 
 :::note
 KOTS and Embedded Cluster v2 push images to the local registry using only the last segment of the repository path. For example, `ghcr.io/my-org/init` is pushed as `<local-registry-host>/<local-registry-namespace>/init`. If the separate repository field contains more than one path segment, such as `my-org/init`, the image reference doesn't resolve in air gap installations. For repositories with more than one path segment, use [ReplicatedImageName](#replicatedimagename) with the full image reference instead.

@@ -466,6 +466,19 @@ ParseUint returns the unsigned integer value represented by the string with opti
 '{{repl ConfigOption "str_value" | ParseUint }}'
 ```
 
+### RandomBytes
+
+> Introduced in KOTS v1.17.0
+
+```go
+func RandomBytes(length uint64) string
+```
+Returns `length` cryptographically random bytes, encoded as a base64 string. RandomBytes generates a new value each time it renders. To keep the same value across updates, use the pattern described in [Generating Persistent and Ephemeral Strings](#generating-persistent-and-ephemeral-strings).
+
+```yaml
+'{{repl RandomBytes 32 }}'
+```
+
 ### RandomString
 ```go
 func RandomString(length uint64, providedCharset ...string) string
@@ -561,19 +574,6 @@ The following table describes the behavior of the RandomString template function
     </td>
   </tr>
 </table>
-
-### RandomBytes
-
-> Introduced in KOTS v1.17.0
-
-```go
-func RandomBytes(length uint64) string
-```
-Returns `length` cryptographically random bytes, encoded as a base64 string. RandomBytes generates a new value each time it renders. To keep the same value across updates, use the pattern described in [Generating Persistent and Ephemeral Strings](#generating-persistent-and-ephemeral-strings).
-
-```yaml
-'{{repl RandomBytes 32 }}'
-```
 
 ### Split
 ```go

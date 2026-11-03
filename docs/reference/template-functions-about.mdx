@@ -24,28 +24,34 @@ Embedded Cluster and KOTS render Replicated template functions when they install
 
 <table>
     <tr>
-      <th width="30%">Installation method</th>
-      <th width="70%">Template functions</th>
+      <th width="25%">Installation method</th>
+      <th width="15%">Rendered?</th>
+      <th width="60%">Notes</th>
     </tr>
     <tr>
       <td>Embedded Cluster v3</td>
-      <td>Rendered. Some functions require Embedded Cluster 3.16.0-beta.1 or later, and some return different values than in KOTS. For example, functions for components that Embedded Cluster v3 does not include, such as kURL, return empty values. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).</td>
+      <td>Yes</td>
+      <td>Some functions require Embedded Cluster 3.16.0-beta.1 or later, and some return different values than in KOTS. For example, functions for components that Embedded Cluster v3 does not include, such as kURL, return empty values. See [Template Functions for Embedded Cluster (Beta)](/embedded-cluster/v3/template-functions).</td>
     </tr>
     <tr>
       <td>Embedded Cluster v2</td>
-      <td>Rendered, with the same behavior as KOTS. kURL context functions return empty values.</td>
+      <td>Yes</td>
+      <td>Same behavior as KOTS. kURL context functions return empty values.</td>
     </tr>
     <tr>
       <td>KOTS in an existing cluster</td>
-      <td>Rendered. kURL context functions return empty values.</td>
+      <td>Yes</td>
+      <td>kURL context functions return empty values.</td>
     </tr>
     <tr>
       <td>kURL</td>
-      <td>Rendered, including the [kURL context](#kurl-context) functions.</td>
+      <td>Yes</td>
+      <td>Includes the [kURL context](#kurl-context) functions.</td>
     </tr>
     <tr>
       <td>Helm CLI</td>
-      <td>Not rendered, including in the HelmChart custom resource `builder` key. Use Helm values and the Replicated SDK instead. See [About the Replicated SDK](/vendor/replicated-sdk-overview).</td>
+      <td>No</td>
+      <td>Not rendered anywhere, including in the HelmChart custom resource `builder` key. Use Helm values and the Replicated SDK instead. See [About the Replicated SDK](/vendor/replicated-sdk-overview).</td>
     </tr>
 </table>
 
@@ -80,8 +86,6 @@ For examples of this, see [Template function examples](/reference/template-funct
 * In Embedded Cluster v3, the [Embedded Cluster Config](/embedded-cluster/v3/embedded-config) resource supports Replicated template functions, including HelmValue, in `spec.extensions.helmCharts`. Other spec fields, including `version`, `roles`, `domains`, and `unsupportedOverrides`, do not support templating. Embedded Cluster v2 does not support templating in the Embedded Cluster Config.
 
 * Replicated template functions are not directly supported in Helm charts. For more information, see [Supported file types](#supported-file-types) on this page.
-
-* Some KOTS template functions require Embedded Cluster 3.16.0-beta.1 or later. For more information about these functions and their behavior in Embedded Cluster, see [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) in _Template Functions for Embedded Cluster (Beta)_.
 
 ## Syntax {#syntax}
 
