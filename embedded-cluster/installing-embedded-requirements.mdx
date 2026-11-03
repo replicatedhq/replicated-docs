@@ -129,11 +129,13 @@ Secrets include the license, the application's configuration values (including g
 
 In this list, `DATA_DIR` is the Embedded Cluster data directory.
 
-### Files left on a node after it joins
+### Files left on a node after it joins or upgrades
 
-To add a node, you run commands on the new node that download a `.tar.gz` file and extract it. The file contains the license, the application's configuration values, the admin console password hash and TLS private key, the key that signs Embedded Cluster API tokens, installation settings including registry credentials, and a token for joining the cluster.
+To add a node, you run commands on the new node that download a `.tar.gz` file and extract it. The file contains the license, the application's configuration values, the admin console password hash and TLS private key, the key that signs Embedded Cluster API tokens, installation settings including registry credentials, and a token for joining the cluster. The `.tar.gz` file used to upgrade a node with `node upgrade` contains the same secrets, except the join token.
 
-When `node join` succeeds, it removes the files it extracted, but not the `.tar.gz` file. Delete the `.tar.gz` file after the node joins. If `node join` fails, also delete the extracted `assets` directory once you no longer need to retry.
+Bundles that the Embedded Cluster CLI creates with `create-join-bundle` or `create-upgrade-bundle` can be read only by root. A bundle you download with the `curl` command gets your default file permissions, so restrict access to it until you delete it.
+
+When `node join` or `node upgrade` succeeds, it removes the files it extracted, but not the `.tar.gz` file. Delete the `.tar.gz` file after the node joins or upgrades. If the command fails, also delete the extracted `assets` directory once you no longer need to retry.
 
 ### Backups
 
