@@ -441,6 +441,8 @@ spec:
 
 Links defined here appear on the Finish page after a successful install and on the dashboard in the [admin console](/embedded-cluster/v3/embedded-persistent-console).
 
+Use a URL reachable from the user's browser. Adding a link does not expose the application; configure access through your Helm chart, for example with a NodePort Service. Embedded Cluster v3 does not apply KOTS `ports` URL rewriting. See [Application access and links](embedded-v3-migrate#application-access-and-links).
+
 ## Add support for air gap installations {#local-image-registry}
 
 This section describes how to support air gap installations with Embedded Cluster v3. It includes information about how to configure your release and lists the limitations and known issues of air gap installations with Embedded Cluster v3.
