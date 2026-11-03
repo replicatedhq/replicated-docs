@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.03-5
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-5}
+* The Enterprise Portal Content tab now warns when customers would see an empty documentation homepage, including when content sync succeeds but the configured home page is missing.
+
 ## v2026.11.03-4
 
 Released on November 3, 2026
