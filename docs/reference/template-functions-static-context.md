@@ -197,7 +197,7 @@ repl{{ NodeCount }}
 func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
 ```
 
-Lookup is also supported for installations with Embedded Cluster v3. For more information, see [Lookup](/embedded-cluster/v3/template-functions#lookup) in _Template Functions for Embedded Cluster (Beta)_.
+Lookup is also supported for installations with Embedded Cluster v3. For more information, see [Lookup](/embedded-cluster/v3/template-functions#lookup) in _Template Functions for Embedded Cluster_.
 
 Lookup searches resources in a running cluster and returns a resource or resource list.
 
