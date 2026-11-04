@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.20.0
+
+Released on November 4, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.20.0+k8s-1.37</td>
+    <td id="center">2.20.0+k8s-1.36</td>
+    <td id="center">2.20.0+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.134.1</td>
+  </tr>
+</table>
+### New Features {#new-features-2-20-0}
+* Adds support for k8s 1.37 and drops support for 1.34.
+
+### Bug Fixes {#bug-fixes-2-20-0}
+* Resetting a controller node now warns when it can't confirm the node was removed from etcd, and shows the command to remove the stale member from a surviving controller.
+* Resetting a controller node no longer hangs indefinitely when etcd has lost quorum.
+
 ## 2.19.16
 
 Released on October 29, 2026
