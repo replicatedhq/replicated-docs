@@ -45,10 +45,20 @@ To install Velero and configure an AWS storage destination:
      --plugins velero/velero-plugin-for-aws:v1.14.2 \
      --bucket $BUCKET \
      --backup-location-config region=$REGION \
-     --secret-file CREDS_FILE \
+     --secret-file ./CREDS_FILE \
      --use-node-agent \
      --use-volume-snapshots=false
    ```
+
+   Where `./CREDS_FILE` is the path to a credentials file in the AWS shared credentials format. Velero reads the `[default]` profile unless you set `profile` in `--backup-location-config`. For example:
+
+   ```ini
+   [default]
+   aws_access_key_id=<AWS_ACCESS_KEY_ID>
+   aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
+   ```
+
+   If you use temporary credentials, also add an `aws_session_token` line.
 
 ## Configure GCP storage for online environments
 
@@ -72,6 +82,23 @@ To install Velero and configure a GCP storage destination:
      --secret-file ./CREDS_FILE \
      --use-node-agent \
      --use-volume-snapshots=false
+   ```
+
+   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses to access the bucket. You create this key file when you follow the setup instructions in the previous step. The file has the following format:
+
+   ```json
+   {
+     "type": "service_account",
+     "project_id": "<PROJECT_ID>",
+     "private_key_id": "<PRIVATE_KEY_ID>",
+     "private_key": "<PRIVATE_KEY>",
+     "client_email": "<SERVICE_ACCOUNT_NAME>@<PROJECT_ID>.iam.gserviceaccount.com",
+     "client_id": "<CLIENT_ID>",
+     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     "token_uri": "https://oauth2.googleapis.com/token",
+     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/<SERVICE_ACCOUNT_NAME>%40<PROJECT_ID>.iam.gserviceaccount.com"
+   }
    ```
 
 ## Configure Azure storage for online environments
@@ -99,6 +126,19 @@ To install Velero and configure an Azure storage destination:
      --use-node-agent \
      --use-volume-snapshots=false
    ```
+
+   Where `./CREDS_FILE` is the path to a file containing the Azure service principal credentials, as `KEY=value` lines. For example:
+
+   ```text
+   AZURE_SUBSCRIPTION_ID=<AZURE_SUBSCRIPTION_ID>
+   AZURE_TENANT_ID=<AZURE_TENANT_ID>
+   AZURE_CLIENT_ID=<AZURE_CLIENT_ID>
+   AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET>
+   AZURE_RESOURCE_GROUP=<AZURE_RESOURCE_GROUP>
+   AZURE_CLOUD_NAME=AzurePublicCloud
+   ```
+
+   If you use AKS, set `AZURE_RESOURCE_GROUP` to the name of the auto-generated resource group for the cluster's nodes (typically starting with `MC_`). This is not the same as `$AZURE_BACKUP_RESOURCE_GROUP` in the preceding command. For more information, see the [velero-plugin-for-microsoft-azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) repository in GitHub.
 
 ## Configure s3-compatible storage for online environments
 
