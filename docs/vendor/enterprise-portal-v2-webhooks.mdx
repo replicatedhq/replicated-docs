@@ -1,0 +1,83 @@
+# Manage customer release webhooks
+
+:::note Beta Feature
+The Enterprise Portal is Beta. Features described on this page are subject to change.
+:::
+
+Customers can use `release.available` webhook events to start upgrade pipelines and other automations. Each customer team can register one endpoint in the Enterprise Portal. You can view its status and delivery history in the Vendor Portal.
+
+Contact your Replicated account representative to enable customer release webhooks for your team.
+
+## Send release events {#release-events}
+
+When promoting a release, select **Notify users** in the Vendor Portal or pass `--notify-users` with the Replicated CLI. Replicated sends the webhook event after the release artifacts become downloadable for the customer. For more information, see [Release notifications](/vendor/enterprise-portal-v2-emails#release-notifications) in _Customize Customer Emails_.
+
+Webhook configuration applies to the customer's team. Individual users manage their release notification emails separately in **User Settings**.
+
+## Configure a customer endpoint {#configure-endpoint}
+
+Customer team admins manage their endpoint from **Team Settings > Webhooks** in the Enterprise Portal. Vendors view status and deliveries from the Vendor Portal. Customers make configuration changes in their own portal.
+
+To configure an endpoint, a customer team admin completes these steps:
+
+1. Log in to the Enterprise Portal and go to **Team Settings > Webhooks**.
+
+1. Enter a publicly reachable HTTP or HTTPS URL in **Endpoint URL**, then click **Register webhook**.
+
+1. Copy the signing secret and save it in the webhook receiver. The portal shows the secret only after registration or rotation.
+
+1. Follow **Receiving and verifying events** on the same page to configure signature verification and event handling in the receiver.
+
+1. Click **Send test event** and check **Recent deliveries** to verify the receiver accepts the event.
+
+Test events contain `test: true` and synthetic release details. Receivers should acknowledge test events without starting an upgrade. The customer's delivery history includes tests. The Vendor Portal shows only real release deliveries.
+
+Customers can also edit the endpoint URL, rotate the signing secret, or delete the webhook from this page. They can disable and enable it as needed.
+
+## View webhook status and deliveries {#delivery-history}
+
+To check a customer's release webhook:
+
+1. In the Vendor Portal, go to **Customers** and select the customer.
+
+1. Open **Enterprise Portal access** and find the **Release webhook** card near **Email History**.
+
+1. Click **Refresh** to retrieve the latest status and delivery history.
+
+The card shows whether the customer has configured a webhook and its enabled or disabled status. For disabled webhooks, it displays the reason and disable date prominently. Older records without a stored disable date display **Disable date unavailable**.
+
+Configuration details include the endpoint hostname, the email address of the person who configured it, and the creation date. Vendors cannot view the full endpoint URL, signing secret, or endpoint response headers and body.
+
+The **Recent deliveries** table shows the release and channel, status, latest HTTP response status, total attempt count, last attempt, and expected next retry. A dash means that a value is unavailable or does not apply. To view additional deliveries, click **Previous** or **Next**.
+
+| Status | Meaning |
+|--------|---------|
+| Delivered | The endpoint returned an HTTP 2xx response. |
+| Pending | The delivery is waiting for its first attempt or a retry. |
+| Failed | The delivery exhausted its retry attempts without a successful response. |
+| Canceled | The delivery stopped before completion, for example after a customer disables or deletes the webhook. |
+
+**Delivered** confirms that the endpoint accepted the event. Check the customer's pipeline separately to confirm that an upgrade ran successfully.
+
+### Permissions {#permissions}
+
+Viewing webhook status and deliveries requires both of these RBAC resources:
+
+* `kots/app/[:appid]/enterprise-portal/webhooks/read`
+* `kots/app/[:appid]/license/[:customerid]/read`
+
+Email history uses a separate permission and does not grant webhook access. For more information, see [RBAC resource names](/vendor/team-management-rbac-resource-names) and [Configure RBAC policies](/vendor/team-management-rbac-configuring).
+
+## Recover a disabled webhook {#disabled-webhooks}
+
+Each delivery has up to nine attempts: the initial request and eight retries, with retry delays increasing from 15 seconds to 10 minutes. After ten consecutive failed release deliveries, Replicated automatically disables the endpoint. Test events do not count toward this limit.
+
+To restore delivery, the customer team admin completes these steps:
+
+1. Correct the receiver problem, using the delivery attempt details in **Team Settings > Webhooks** in the Enterprise Portal.
+
+1. Click **Enable webhook**.
+
+1. Click **Send test event** and verify that the endpoint accepts it.
+
+Vendors can check the status again with **Refresh** on the **Release webhook** card.

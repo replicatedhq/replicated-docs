@@ -223,6 +223,7 @@ const sidebars = {
         "vendor/enterprise-portal-v2-terraform",
         "vendor/enterprise-portal-v2-branding",
         "vendor/enterprise-portal-v2-emails",
+        "vendor/enterprise-portal-v2-webhooks",
         "vendor/enterprise-portal-v2-access",
         "vendor/enterprise-portal-v2-domains",
         "vendor/enterprise-portal-v2-invite",
