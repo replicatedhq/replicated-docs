@@ -159,6 +159,8 @@ To create a multi-node cluster with HA:
 
    Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present.
 
+   Headless installation doesn't pause for nodes to join. Creating HA clusters with headless installation from scripts or automation tools isn't supported.
+
 ### Enable HA for an existing cluster {#enable-ha-existing}
 
 For online installations, the Kubernetes control plane becomes highly available once three controller nodes are present. For existing air gap installations, also run `enable-ha` to complete HA setup. Schedule a maintenance window because the internal registry is unavailable while its data is migrated. Air gap upgrades are blocked until this HA setup is complete.
