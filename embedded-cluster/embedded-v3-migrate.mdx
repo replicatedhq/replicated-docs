@@ -135,6 +135,12 @@ If your release still references config items that you removed, those templates 
 
 Before you upgrade, remove or update any template references to config items that your Config custom resource no longer defines.
 
+### Repeatable config items aren't supported {#repeatable-items}
+
+Embedded Cluster v3 doesn't support [repeatable config items](/reference/custom-resource-config#repeatable-items). Releases that use them aren't rejected. Instead, Embedded Cluster v3 ignores the `repeatable`, `valuesByGroup`, and `templates` fields, so it doesn't create a copy of the template target for each entry, and the ConfigOptionIndex template function returns an empty string.
+
+If your application depends on repeatable items, contact your Replicated account team before you upgrade installations to Embedded Cluster v3.
+
 ### Changes to Application custom resource fields {#application-cr-changes}
 
 Because Embedded Cluster v3 removes the KOTS Admin Console, several fields in the [Application custom resource](/reference/custom-resource-application) no longer have a meaningful equivalent in v3. These fields can be safely removed from your Application manifest during the upgrade. If left in place, they are silently ignored.
