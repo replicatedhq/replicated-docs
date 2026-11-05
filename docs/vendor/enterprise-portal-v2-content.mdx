@@ -503,7 +503,7 @@ If your application ships multiple Helm charts, you can give each chart its own 
 <HelmInstallAssets namespace="my-namespace" createNamespace="false" />
 ```
 
-If you omit the prop, or set it to `"true"`, the install command includes `--create-namespace`. A customer on a fresh cluster doesn't have to create the namespace first. Whenever the command includes `--create-namespace`, previewing the page shows an advisory that it requires cluster-scoped permission to create namespaces. Like the validation warnings, only you see this advisory — customers never do.
+If you omit the prop, or set it to `"true"`, the install command for that namespace includes `--create-namespace`. A customer on a fresh cluster doesn't have to create the namespace first. Whenever a command includes `--create-namespace`, previewing the page shows an advisory that it requires cluster-scoped permission to create namespaces. Like the validation warnings, only you see this advisory — customers never do.
 
 Set `createNamespace="false"` for customers who pre-provision the namespace themselves and scope their install credentials to it. The install sends a namespace-create request to the Kubernetes API server even when the namespace already exists. The API server's RBAC must allow creating namespaces at cluster scope. A customer with narrowly-scoped credentials gets a `Forbidden` error on an otherwise-working install unless you opt out.
 

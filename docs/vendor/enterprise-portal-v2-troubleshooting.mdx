@@ -122,7 +122,7 @@ The Enterprise Portal login page surfaces these errors directly to the customer 
 
 ## Helm install fails with `Forbidden` on `--create-namespace` {#helm-install-forbidden-create-namespace}
 
-The install command includes `--create-namespace` by default. Creating a namespace requires cluster-scoped RBAC, even when the namespace already exists. A customer whose credentials cover a single namespace gets `Forbidden` from the Kubernetes API server. If your customers pre-provision the namespace and scope their install credentials to it, set `createNamespace="false"` on the Helm install components. See [The `createNamespace` prop](/vendor/enterprise-portal-v2-content#the-createnamespace-prop).
+An install command that includes `--namespace` also includes `--create-namespace` by default, unless you set `createNamespace="false"`. Creating a namespace requires cluster-scoped RBAC, even when the namespace already exists. A customer whose credentials cover a single namespace gets `Forbidden` from the Kubernetes API server. If your customers pre-provision the namespace and scope their install credentials to it, set `createNamespace="false"` on the Helm install components. See [The `createNamespace` prop](/vendor/enterprise-portal-v2-content#the-createnamespace-prop).
 
 ## Login footer showing Replicated branding
 
