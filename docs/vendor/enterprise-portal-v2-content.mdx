@@ -477,6 +477,8 @@ The default template runs Helm upgrades through `<InstancesAndUpdates>` on the I
 <InstancesAndUpdates helmNamespace="my-namespace" />
 ```
 
+The headless service-account install instructions API applies the same props, so customer automation receives the same commands. For the API resolution order and error behavior, see [Namespace handling in automation](/vendor/enterprise-portal-v2-service-account-automation#namespace-handling-in-automation).
+
 To set a namespace for Helm:
 
 1. Add `namespace="my-namespace"` to the Helm install components on your install page: `<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, or `<HelmAirgapInstallStep>`.
@@ -493,7 +495,7 @@ On `<InstancesAndUpdates>`, `helmNamespace` applies one value to every Helm inst
 
 If your application ships multiple Helm charts, you can give each chart its own namespace. Render one `<HelmInstallStep step="install_chart">` per chart, using `charts` to scope each step to a single chart with its own `namespace` value. Repeating a full `<HelmInstallAssets>` per chart also works, but repeats the login, values-file, and preflight steps for every chart and restarts step numbering. `<InstancesAndUpdates>` can't split namespaces by chart, so per-chart namespaces need a custom update page with one `<HelmUpdateAssets charts="..." namespace="..." />` per chart.
 
-##### The `createNamespace` prop
+##### The `createNamespace` prop {#the-createnamespace-prop}
 
 `<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, and `<HelmAirgapInstallStep>` also accept `createNamespace`, which controls whether the install command includes `--create-namespace`. It only has an effect alongside a non-empty `namespace`, and only on install — `helm upgrade` never creates a namespace. Without a `namespace`, the portal ignores `createNamespace` entirely.
 
@@ -679,7 +681,7 @@ In this example, a customer on version 1.5.0 sees the "Upgrading from 1.x" instr
 
 **`<KotsBundles />`**: KOTS-specific support bundle generation instructions for an existing cluster. No props.
 
-Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
+Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's support bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
@@ -714,7 +716,7 @@ Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` sy
 | `\{\{ channel.slug \}\}` | URL-friendly channel identifier |
 | `\{\{ release.version \}\}` | Current release version |
 | `\{\{ license.* \}\}` | Any field from the license object (e.g. `\{\{ license.id \}\}`, `\{\{ license.expiresAt \}\}`) |
-| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see [Conditionals](#conditionals)) |
+| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see [Entitlements](#entitlements)) |
 
 :::note
 `\{\{ release.version \}\}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `\{\{ channel.name \}\}` as a more reliable alternative for version-dependent content.
@@ -905,7 +907,7 @@ Keep the page listed in `toc.yaml` as a normal page entry:
 
 Customers do not see the page until you remove `hidden` or set it to `false`, then re-sync the content.
 
-`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
+`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements can't make it visible.
 
 If a table of contents entry has a `page` with `hidden: true`, the portal drops that entry and every nested item. Nested items include child pages, nested `helm_chart` items, and `terraform_module` items. This matches `visible_when` on a parent, which also drops the children.
 
