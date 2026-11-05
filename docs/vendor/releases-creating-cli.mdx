@@ -115,7 +115,7 @@ When a release is promoted without explicit release notes (no `--release-notes` 
 
 ## Notify Enterprise Portal users {#notify-users}
 
-When promoting a release, you can send an email notification to customers who have access to the Enterprise Portal. This is useful for letting end customers know that a new version is available for upgrade.
+When promoting a release, you can notify customers who have access to the Enterprise Portal that a new version is available. Customer users who have not opted out of release notifications receive an email. Customers with an enabled release webhook also receive a `release.available` event. For more information, see [Manage customer release webhooks](/vendor/enterprise-portal-v2-webhooks).
 
 To notify users, pass the `--notify-users` flag when promoting or creating a release:
 
