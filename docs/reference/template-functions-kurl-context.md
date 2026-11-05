@@ -11,6 +11,8 @@ This topic provides a list of the Replicated template functions in the kURL cont
 
 <KurlContext/>
 
+The kURL context functions return values only in kURL installations. In all other installations, including KOTS in an existing cluster and Embedded Cluster, `KurlString`, `KurlOption`, and `KurlAll` return an empty string, `KurlInt` returns `0`, and `KurlBool` returns `false`. To check whether an installation uses kURL, use the [IsKurl](/reference/template-functions-static-context#iskurl) function.
+
 The creation of the kURL Installer custom resource will reflect both install script changes made by posting YAML to the kURL API and changes made with -s flags at runtime. These functions are not available on the KOTS Admin Console config page.
 
 KurlBool, KurlInt, KurlString, and KurlOption all take a string yamlPath as a param.

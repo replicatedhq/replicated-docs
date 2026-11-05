@@ -12,6 +12,32 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.19.0-beta.1
+
+Released on November 3, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.19.0-beta.1+k8s-1.37</td>
+    <td id="center">3.19.0-beta.1+k8s-1.36</td>
+    <td id="center">3.19.0-beta.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+### New Features {#new-features-3-19-0-beta-1}
+* Adds support for Kubernetes 1.37 and drops support for 1.34.
+
+### Bug Fixes {#bug-fixes-3-19-0-beta-1}
+* Fixed multi-node air gap upgrades failing when using a Bring Your Own (BYO) registry.
+* Installation and restore now report a clear error when the data directory contains non-ASCII characters, instead of failing later during Kubernetes startup.
+* Fixes a bug that could result in Helm release to not be tracked by Embedded Cluster v3 after migrating from v2.
+
 ## 3.18.1-beta.1
 
 Released on November 2, 2026

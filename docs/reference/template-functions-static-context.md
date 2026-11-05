@@ -317,17 +317,6 @@ Equivalent to the `QueryEscape` function within the golang `net/url` library. Fo
 '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
 
-### UrlPathEscape
-
-```go
-func UrlPathEscape(stringToEncode string) string
-```
-Returns the string, url *path* encoded.
-Equivalent to the `PathEscape` function within the golang `net/url` library. For more information, see [func PathEscape](https://godoc.org/net/url#PathEscape) in the Go documentation.
-```yaml
-'{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
-```
-
 ## Encryption Functions
 
 ### KubeSeal
@@ -475,6 +464,19 @@ func ParseUint(str string, args ...int) uint64
 ParseUint returns the unsigned integer value represented by the string with optional base (default 10).
 ```yaml
 '{{repl ConfigOption "str_value" | ParseUint }}'
+```
+
+### RandomBytes
+
+> Introduced in KOTS v1.17.0
+
+```go
+func RandomBytes(length uint64) string
+```
+Returns `length` cryptographically random bytes, encoded as a base64 string. RandomBytes generates a new value each time it renders. To keep the same value across updates, use the pattern described in [Generating Persistent and Ephemeral Strings](#generating-persistent-and-ephemeral-strings).
+
+```yaml
+'{{repl RandomBytes 32 }}'
 ```
 
 ### RandomString
