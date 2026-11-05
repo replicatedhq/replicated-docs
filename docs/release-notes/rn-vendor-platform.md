@@ -14,10 +14,10 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 5, 2026
 
 ### New Features {#new-features-v2026-11-05-0}
-* The Enterprise Portal Headless Install API now resolves entitlement-templated Helm namespaces, such as `namespace="{{entitlements.helm_namespace}}"`, the same way the Enterprise Portal does.
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) now resolves `namespace` props that use entitlement template variables, such as `namespace="{{entitlements.helm_namespace}}"`, to the customer's license field value, the same way the portal does. Previously, the API ignored these props. If the referenced field is a Password field, the API leaves `--namespace` out of the command and returns an invalid-namespace warning, so the secret value never appears in a command. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
 
 ### Bug Fixes {#bug-fixes-v2026-11-05-0}
-* Hidden Password license fields are now masked in the Enterprise Portal, matching visible Password fields.
+* Fixes an issue where the Enterprise Portal license API returned the unmasked values of Password license fields that are hidden from the customer. The portal never displayed these values. Hidden Password fields are now masked the same as visible ones.
 ## v2026.11.04-3
 
 Released on November 4, 2026
