@@ -88,7 +88,7 @@ In v3, you can package preflight specs inside your Helm charts or as a release-l
 v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
-**You do not need to migrate host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
+**You do not need to update host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
 :::
 
 **Key differences from v1beta2 for application preflight specs:**
@@ -112,7 +112,7 @@ Embedded Cluster v3 supports only HelmChart v2 (`kots.io/v1beta2`). Extension ch
 
 HelmChart v1 (`kots.io/v1beta1`) is a deprecated format from KOTS versions earlier than v1.99.0. If your releases already use HelmChart v2, including any release built for Embedded Cluster v3 or the Helm CLI, no action is required.
 
-If your releases still use HelmChart v1, migrate to HelmChart v2 on Embedded Cluster v2 before you upgrade any customer to Embedded Cluster v3. For more information, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
+If your releases still use HelmChart v1, move to HelmChart v2 on Embedded Cluster v2 before you upgrade any customer to Embedded Cluster v3. For more information, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
 
 ### Helm extension charts must be bundled in the release {#extension-charts}
 
@@ -187,7 +187,7 @@ To update a release from Embedded Cluster v2 to v3:
 1. If you support air gap installations on Embedded Cluster versions earlier than 3.16.0-beta.1, update your image references to use the Embedded Cluster ReplicatedImageName and ReplicatedImageRegistry template functions. This ensures that image references resolve correctly in both online and air gap installations. See [Add support for air gap installations](embedded-using#local-image-registry).
 
     :::note
-    Embedded Cluster 3.16.0-beta.1 and later also support the KOTS template functions for local registry image references. ReplicatedImageName and ReplicatedImageRegistry remain available as alternatives. For more information about support in Embedded Cluster, see [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) in _Template Functions for Embedded Cluster (Beta)_.
+    Embedded Cluster 3.16.0-beta.1 and later also support the KOTS template functions for local registry image references. ReplicatedImageName and ReplicatedImageRegistry remain available as alternatives. For more information about support in Embedded Cluster, see [KOTS template functions](/embedded-cluster/v3/template-functions#kots-template-functions) in _Template Functions for Embedded Cluster_.
     :::
 
 1. Update your application preflight specs to API version `troubleshoot.sh/v1beta3`:
@@ -202,9 +202,9 @@ To update a release from Embedded Cluster v2 to v3:
 
    If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster 3.18.0-beta.1 and later. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
 
-   For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
+   For more information about converting specs from v1beta2 to v1beta3, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 
-1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your application Helm charts. If your release uses HelmChart v1, complete the migration to HelmChart v2 on Embedded Cluster v2 first. See [HelmChart v2 required](#helmchart-v2-required). Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
+1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your application Helm charts. If your release uses HelmChart v1, move to HelmChart v2 on Embedded Cluster v2 first. See [HelmChart v2 required](#helmchart-v2-required). Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. In your Embedded Cluster Config, update `version` to the latest version of Embedded Cluster v3. You can also optionally increment the Kubernetes version by one minor version.
 

@@ -1,6 +1,6 @@
 import DoNotDowngrade from "../docs/partials/embedded-cluster/_warning-do-not-downgrade.mdx"
 
-# Embedded Cluster Config (Beta)
+# Embedded Cluster Config
 
 This topic is a reference for the Replicated Embedded Cluster Config custom resource. For more information about Embedded Cluster, see [Use Embedded Cluster](embedded-overview).
 
@@ -94,7 +94,7 @@ Marking these releases as required leads customers through the Kubernetes minor 
 
 For more information about required releases, see [Required releases](/vendor/releases-about#required-releases).
 
-## roles (Beta) {#roles}
+## roles {#roles}
 
 You can customize node roles in the Embedded Cluster Config using the `roles` key.
 
@@ -132,8 +132,6 @@ spec:
 ```
 
 ### Limitations
-
-* Defining node roles with the `roles` key is Beta.
 
 * The first node added to the cluster must include the controller role. It may additionally be assigned any custom roles.
 
@@ -320,7 +318,7 @@ You can combine worker profiles with other k0s settings in the same `k0s` string
 
 For installations created with Embedded Cluster 3.17.0-beta.1 and later, `podLogsDir` defaults to `<data-dir>/k0s/pod-logs`. To use a different pod log directory, set `podLogsDir` in your worker profile. The setting applies to all nodes. An explicit `podLogsDir: ""` uses the Kubernetes default, `/var/log/pods`.
 
-Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
+Installations created with earlier versions or upgraded from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
 
 Clusters restored using Embedded Cluster 3.17.0-beta.1 or later default to `<data-dir>/k0s/pod-logs`, even if the cluster was originally installed with an earlier version. An explicit `podLogsDir` setting in the worker profile is preserved during restore.
 

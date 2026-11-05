@@ -15,9 +15,9 @@ These steps assume that you package your application with Helm and that you inst
 
 If you are installing with the HelmChart v1 custom resource, or if your application is not packaged with Helm, there are different steps for configuring your application to use the proxy registry. See [Configure other application types](#other) below.
 
-### Embedded Cluster v3 (Beta) {#configure-v3}
+### Embedded Cluster v3 {#configure-v3}
 
-Follow these steps to use the proxy registry with applications installed with [Embedded Cluster v3 (Beta)](/embedded-cluster/v3/embedded-overview).
+Follow these steps to use the proxy registry with applications installed with [Embedded Cluster v3](/embedded-cluster/v3/embedded-overview).
 
 Embedded Cluster v3 configures the cluster to automatically authenticate to the Replicated proxy registry for all pods.
 
@@ -186,5 +186,5 @@ To migrate from the Replicated registry to the proxy registry:
 1. In the Vendor Portal, go to **Image Registries > Add External Registry** and add the credentials for your registry. For more information, see [Add and manage external registries](/vendor/packaging-private-images).
 
 1. Configure your application to pull images through the proxy registry. See the instructions for your target install type on this page:
-   * [Embedded Cluster v3 (Beta)](#configure-v3)
+   * [Embedded Cluster v3](#configure-v3)
    * [Embedded Cluster v2, KOTS, or kURL](#embedded-cluster-v2-kots-or-kurl)
