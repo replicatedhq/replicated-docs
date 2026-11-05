@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.05-0
+
+Released on November 5, 2026
+
+### New Features {#new-features-v2026-11-05-0}
+* The Enterprise Portal Headless Install API now resolves entitlement-templated Helm namespaces, such as `namespace="{{entitlements.helm_namespace}}"`, the same way the Enterprise Portal does.
+
+### Bug Fixes {#bug-fixes-v2026-11-05-0}
+* Hidden Password license fields are now masked in the Enterprise Portal, matching visible Password fields.
 ## v2026.11.04-3
 
 Released on November 4, 2026
