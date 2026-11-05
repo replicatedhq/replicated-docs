@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 4, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-04-5}
-* Air gap instances on the customer page now show as air gap instead of Inactive.
+* Air gap instances on the customer page in Vendor Portal now show as air gap instead of Inactive status.
 ## v2026.11.04-3
 
 Released on November 4, 2026
