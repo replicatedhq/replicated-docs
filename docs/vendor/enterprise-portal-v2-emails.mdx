@@ -87,7 +87,7 @@ The following template variables are available across multiple email types:
 
 ## Release notifications {#release-notifications}
 
-You can send an email notification to Enterprise Portal users when a new release is promoted, letting customers know an update is available. Notifications are off by default and must be explicitly opted into per release.
+You can notify Enterprise Portal users when you promote a new release, letting customers know an update is available. Users who have not opted out of release notifications receive an email. Customers with an enabled release webhook also receive a `release.available` event. Notifications are off by default and must be explicitly opted into per release.
 
 To notify users when promoting a release:
 
