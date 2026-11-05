@@ -10,7 +10,9 @@ Customers can use `release.available` webhook events to start upgrade pipelines 
 
 When promoting a release, select **Notify users** in the Vendor Portal or pass `--notify-users` with the Replicated CLI. Replicated sends the webhook event after the release artifacts become downloadable for the customer. For more information, see [Release notifications](/vendor/enterprise-portal-v2-emails#release-notifications) in _Customize Customer Emails_.
 
-Webhook configuration applies to the customer's team. Individual users manage their release notification emails separately in **User Settings**.
+Receiving customers include any non-archived customer assigned to the channel the new release has been promoted to.
+
+Webhook configuration applies to the customer's team. Customers opt in by registering an endpoint. Individual users opt in or out of release notification emails separately in **User Settings**, and an email opt-out doesn't stop webhook deliveries.
 
 ## Configure a customer endpoint {#configure-endpoint}
 
