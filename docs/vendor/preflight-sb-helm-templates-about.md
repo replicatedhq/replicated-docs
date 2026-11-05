@@ -11,10 +11,10 @@ Helm templates can be useful when you need to:
 
 You can also use Helm templating with the Troubleshoot template functions for the `clusterPodStatuses` analyzer. For more information, see [Helm and Troubleshoot Template Example](#troubleshoot).
 
-:::note
 <V1beta3Recommendation/>
 
-The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret. To use them with `v1beta3`, change the Preflight API version inside the Secret and keep the Secret wrapper. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+:::note
+The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret. To use them with `v1beta3`, change the Preflight API version inside the Secret and keep the Secret wrapper. For more information, see [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3) in _Upgrade from Embedded Cluster v2_.
 :::
 
 ## Helm template example

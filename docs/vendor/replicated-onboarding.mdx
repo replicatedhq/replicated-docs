@@ -307,7 +307,7 @@ To define preflight checks for your application:
 1. In your Helm chart `templates` directory, add a Kubernetes Secret that includes a preflight spec. For more information, see [Define preflight checks](/vendor/preflight-defining). For examples, see [Example preflight specs](/vendor/preflight-examples).
 
    :::note
-   This example uses a `troubleshoot.sh/v1beta2` spec. Replicated recommends a single `troubleshoot.sh/v1beta3` preflight spec for every release. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+   This example uses a `troubleshoot.sh/v1beta2` spec. Replicated recommends a single `troubleshoot.sh/v1beta3` preflight spec for every release. For more information, see [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3) in _Upgrade from Embedded Cluster v2_.
    :::
 
      If you deploy your application as multiple Helm charts, add the Secret to the `templates` directory for the chart you install first.
