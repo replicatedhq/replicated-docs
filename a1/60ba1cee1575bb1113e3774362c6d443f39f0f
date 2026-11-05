@@ -1,0 +1,19 @@
+docs/partials/embedded-cluster/v3/_headless-multi-node-limitation.mdx
+  s_1889810dc8bf53::t_3db15e1a8d3336 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a160ba1cee1575bb1113e3774362c6d443f39f0f",
+  "prompts": {},
+  "sessions": {
+    "s_1889810dc8bf53": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_1889810dc8bf53",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
