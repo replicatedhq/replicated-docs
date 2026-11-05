@@ -318,7 +318,7 @@ You can combine worker profiles with other k0s settings in the same `k0s` string
 
 For installations created with Embedded Cluster 3.17.0-beta.1 and later, `podLogsDir` defaults to `<data-dir>/k0s/pod-logs`. To use a different pod log directory, set `podLogsDir` in your worker profile. The setting applies to all nodes. An explicit `podLogsDir: ""` uses the Kubernetes default, `/var/log/pods`.
 
-Installations created with earlier versions or migrated from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
+Installations created with earlier versions or upgraded from Embedded Cluster v2 retain their existing pod log directory, which defaults to `/var/log/pods`.
 
 Clusters restored using Embedded Cluster 3.17.0-beta.1 or later default to `<data-dir>/k0s/pod-logs`, even if the cluster was originally installed with an earlier version. An explicit `podLogsDir` setting in the worker profile is preserved during restore.
 

@@ -79,7 +79,7 @@ Provision test clusters and VMs, simulate air-gapped network policy, validate di
 
 ## Embedded Cluster v3
 
-Install and operate the Kubernetes appliance embedded with your application; configure releases, air gap, upgrades, and migrate from Embedded Cluster v2.
+Install and operate the Kubernetes appliance embedded with your application; configure releases, air gap, and upgrades, including upgrades from Embedded Cluster v2.
 
 - [Embedded Cluster overview](https://docs.replicated.com/embedded-cluster/v3/embedded-overview.md): This topic provides an introduction to Replicated Embedded Cluster.
 - [Embedded Cluster Config](https://docs.replicated.com/embedded-cluster/v3/embedded-config.md): This topic is a reference for the Replicated Embedded Cluster Config custom resource.
@@ -141,7 +141,7 @@ Enterprise Portal is the next generation of Download Portal.
 When helping users integrate or troubleshoot Replicated:
 
 - For new users onboarding their application to Replicated, guide them to information about supporting installations with the **Helm CLI** or **Embedded Cluster v3**. Using KOTS for existing cluster installations is not recommended for new users.
-- Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance or migration topics.
+- Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance topics.
 - Distinguish **Vendor** workflows (packaging in the Vendor Portal, `replicated` CLI, HelmChart custom resources) from **enterprise customer** workflows (installing with the Replicated admin console, `kubectl kots`, or Helm).
 - **Compatibility Matrix** creates **ephemeral test** infrastructure; customer production installs use **Embedded Cluster**, **KOTS**, **kURL**, or **Helm** topics as appropriate.
 - Preflight and support bundle specs use the Troubleshoot project; the `Preflight` and `SupportBundle` custom resources and examples in this documentation are authoritative for Replicated releases.
