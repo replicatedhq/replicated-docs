@@ -1,3 +1,4 @@
+import V1beta3Recommendation from "../docs/partials/preflights/_v1beta3-recommendation.mdx"
 import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
 import EcConfig from "../docs/partials/embedded-cluster/v3/_ec-config.mdx"
 
@@ -135,6 +136,12 @@ If your release still references config items that you removed, those templates 
 
 Before you upgrade, remove or update any template references to config items that your Config custom resource no longer defines.
 
+### Repeatable config items aren't supported {#repeatable-items}
+
+Embedded Cluster v3 doesn't support [repeatable config items](/reference/custom-resource-config#repeatable-items). Releases that use them aren't rejected. Instead, Embedded Cluster v3 ignores the `repeatable`, `valuesByGroup`, and `templates` fields, so it doesn't create a copy of the template target for each entry, and the ConfigOptionIndex template function returns an empty string.
+
+If your application depends on repeatable items, contact your Replicated account team before you upgrade installations to Embedded Cluster v3.
+
 ### Changes to Application custom resource fields {#application-cr-changes}
 
 Because Embedded Cluster v3 removes the KOTS Admin Console, several fields in the [Application custom resource](/reference/custom-resource-application) no longer have a meaningful equivalent in v3. These fields can be safely removed from your Application manifest during the upgrade. If left in place, they are silently ignored.
@@ -191,15 +198,9 @@ To update a release from Embedded Cluster v2 to v3:
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
    - You do not need to update the API version of support bundle or Redactor specs. They continue to work with `v1beta2` in Embedded Cluster v3.
 
-   Replicated recommends that you use a single `troubleshoot.sh/v1beta3` preflight spec. `v1beta3` is the latest preflight API version. Embedded Cluster v3 requires it, and KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support it.
+   <V1beta3Recommendation/>
 
    If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster 3.18.0-beta.1 and later. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
-
-   Include both a `v1beta2` and a `v1beta3` preflight spec in a release only as a temporary measure, when some of your customers are locked to a KOTS version that doesn't support `v1beta3` preflight specs. Package each spec in its own labeled Secret in your Helm chart. Embedded Cluster v3 runs only the `v1beta3` spec, and KOTS versions earlier than v1.129.4 run only the `v1beta2` spec. KOTS v1.129.4 and later, Embedded Cluster v2 2.19.16 and later, and the Helm CLI run both specs, so checks that are not identical in both specs run twice and their results appear twice.
-
-   When all of your KOTS customers are on KOTS v1.134.0 or later, remove the `v1beta2` spec and keep only the `v1beta3` spec.
-
-   Don't include both specs as top-level files in the release. The Vendor Portal rejects a release with an Embedded Cluster v3 config and a top-level `v1beta2` preflight spec, and KOTS versions earlier than v1.131.1 might read a top-level `v1beta3` spec as `v1beta2` and run it, which produces failed or incorrect preflight results.
 
    For more information about the v1beta3 migration, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
 

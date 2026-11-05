@@ -18,6 +18,12 @@ Released on November 5, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-05-0}
 * Fixes an issue where the Enterprise Portal license API returned the unmasked values of Password license fields that are hidden from the customer. The portal never displayed these values. Hidden Password fields are now masked the same as visible ones.
+## v2026.11.04-5
+
+Released on November 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-04-5}
+* Air gap instances on the customer page in Vendor Portal now show as air gap instead of Inactive status.
 ## v2026.11.04-3
 
 Released on November 4, 2026
