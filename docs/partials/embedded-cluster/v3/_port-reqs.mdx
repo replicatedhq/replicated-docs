@@ -34,6 +34,6 @@ The Embedded Cluster daemon serves the admin console and its HTTP API on port 30
 
 Create a firewall opening for port 30000/TCP so that users can reach the admin console. For multi-node installations, also open this port between nodes.
 
-If port 30000 is occupied, you can select a different port with `--api-port` during installation. The port cannot be changed after installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install) and [External API](/embedded-cluster/v3/embedded-cluster-external-api).
+If port 30000 is occupied, you can select a different port with `--api-port` during installation. The port cannot be changed after installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install) and [Embedded Cluster API](/embedded-cluster/v3/embedded-cluster-external-api).
 
 In Embedded Cluster versions earlier than 3.17.0-beta.1, the installer UI and admin console use port 30080/TCP and the API uses port 30081/TCP. When you upgrade a cluster that uses the default ports to 3.17.0-beta.1 or later, the console and API move to port 30000, so open port 30000/TCP before you upgrade. A cluster installed with a custom `--api-port` keeps that port for both the console and the API.

@@ -1,4 +1,4 @@
-# External API (Beta)
+# Embedded Cluster API (Beta)
 
 Embedded Cluster exposes a small, stable HTTP API on every controller node for cross-node automation. This API is intended for headless installs, programmatic node joins, and external orchestration.
 
@@ -9,7 +9,7 @@ Embedded Cluster exposes a small, stable HTTP API on every controller node for c
 * All endpoints except health and version require a JWT bearer token obtained from `POST /api/v1/auth/token`.
 * The daemon listens on all network interfaces, so the API is reachable from any host that can reach the port. Use a firewall to limit which hosts can connect.
 
-The full Embedded Cluster API (used by the local web UI) is served on a Unix socket and is not exposed on the network. Only the endpoints documented on this page are supported for automation.
+The local web UI uses a separate internal API that is served on a Unix socket and is not exposed on the network. Only the endpoints documented on this page are supported for automation.
 
 In Embedded Cluster versions earlier than 3.17.0-beta.1, the API listens on port 30081 by default and serves these endpoints under `/v1` instead of `/api/v1`, with the health endpoint at `/v1/health`. When you upgrade a cluster that uses the default port to 3.17.0-beta.1 or later, the API moves to port 30000. A cluster installed with a custom `--api-port` keeps that port.
 
