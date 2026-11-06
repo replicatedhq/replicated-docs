@@ -84,7 +84,7 @@ To install Velero and configure a GCP storage destination:
      --use-volume-snapshots=false
    ```
 
-   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses to access the bucket. You create this key file if you choose the service account key option in the setup instructions in the previous step. If you use Workload Identity instead, no key file is created, so omit the `--secret-file` flag and follow the Workload Identity instructions in the velero-plugin-for-gcp repository. A service account key file has the following format:
+   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses, as described in [Option 1: Set permissions with a service account](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-1-set-permissions-with-a-service-account). If you use [Workload Identity](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-2-set-permissions-with-using-workload-identity-optional) instead, replace `--secret-file ./CREDS_FILE` with `--no-secret` and complete the additional steps in that section. A service account key file has the following format:
 
    ```json
    {
@@ -138,9 +138,9 @@ To install Velero and configure an Azure storage destination:
    AZURE_CLOUD_NAME=<AZURE_CLOUD_NAME>
    ```
 
-   Set `AZURE_CLOUD_NAME` to the Azure cloud that hosts your storage account: `AzurePublicCloud`, `AzureUSGovernmentCloud`, `AzureChinaCloud`, or `AzureGermanCloud`.
+   Set `AZURE_CLOUD_NAME` to `AzurePublicCloud`, `AzureUSGovernmentCloud`, or `AzureChinaCloud`.
 
-   If you use AKS, set `AZURE_RESOURCE_GROUP` to the name of the auto-generated resource group for the cluster's nodes (typically starting with `MC_`). This is not the same as `$AZURE_BACKUP_RESOURCE_GROUP` in the preceding command, and it applies to the `velero install` credentials file only. The `--resource-group` flag of the `kubectl kots velero configure-azure` command is the resource group of the blob storage container. For more information, see the [velero-plugin-for-microsoft-azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) repository in GitHub.
+   Velero uses the `resourceGroup` value in `--backup-location-config` to find the storage account. `AZURE_RESOURCE_GROUP` in the credentials file is used only for volume snapshots, which this procedure disables.
 
 ## Configure s3-compatible storage for online environments
 
