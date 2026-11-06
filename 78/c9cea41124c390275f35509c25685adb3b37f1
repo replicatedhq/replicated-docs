@@ -1,0 +1,21 @@
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_674ed44d47701e::t_9c1937c3e3d465 147
+embedded-cluster/embedded-v3-migrate.mdx
+  s_674ed44d47701e::t_c1392377d497c0 41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "78c9cea41124c390275f35509c25685adb3b37f1",
+  "prompts": {},
+  "sessions": {
+    "s_674ed44d47701e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_674ed44d47701e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
