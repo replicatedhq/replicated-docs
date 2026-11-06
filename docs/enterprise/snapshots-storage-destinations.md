@@ -66,7 +66,7 @@ In this procedure, you install Velero and configure a GCP storage destination in
 
 To install Velero and configure a GCP storage destination:
 
-1. Follow the instructions for installing Velero on GCP in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) repository in GitHub.
+1. Follow the instructions for installing Velero on GCP in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp) repository in GitHub.
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.17 and later**: Use the `--use-node-agent` and `--use-volume-snapshots=false` flags.
@@ -84,22 +84,7 @@ To install Velero and configure a GCP storage destination:
      --use-volume-snapshots=false
    ```
 
-   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses, as described in [Option 1: Set permissions with a service account](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-1-set-permissions-with-a-service-account). If you use [Workload Identity](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-2-set-permissions-with-using-workload-identity-optional) instead, replace `--secret-file ./CREDS_FILE` with `--no-secret` and complete the additional steps in that section. A service account key file has the following format:
-
-   ```json
-   {
-     "type": "service_account",
-     "project_id": "<PROJECT_ID>",
-     "private_key_id": "<PRIVATE_KEY_ID>",
-     "private_key": "<PRIVATE_KEY>",
-     "client_email": "<SERVICE_ACCOUNT_NAME>@<PROJECT_ID>.iam.gserviceaccount.com",
-     "client_id": "<CLIENT_ID>",
-     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-     "token_uri": "https://oauth2.googleapis.com/token",
-     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/<SERVICE_ACCOUNT_NAME>%40<PROJECT_ID>.iam.gserviceaccount.com"
-   }
-   ```
+   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses. You download this file when you create the key in the "Using Service Account Key" section of the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp) setup instructions. If you use Workload Identity instead, replace `--secret-file ./CREDS_FILE` with `--no-secret` and complete the "Using GKE Workload Identity" section of the same instructions.
 
 ## Configure Azure storage for online environments
 
@@ -122,7 +107,6 @@ To install Velero and configure an Azure storage destination:
      --bucket $BLOB_CONTAINER \
      --secret-file ./CREDS_FILE \
      --backup-location-config resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,storageAccount=$AZURE_STORAGE_ACCOUNT_ID[,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID] \
-     --snapshot-location-config apiTimeout=<YOUR_TIMEOUT>[,resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID] \
      --use-node-agent \
      --use-volume-snapshots=false
    ```
