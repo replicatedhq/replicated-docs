@@ -14,7 +14,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 6, 2026
 
 ### Improvements {#improvements-v2026-11-06-0}
-* Ask AI uses the documentation most relevant to the question instead of truncating pages in load order.
+* The Ask AI capability in the new Enterprise Portal now uses the documentation most relevant to the question instead of truncating pages in load order.
+
 ## v2026.11.05-0
 
 Released on November 5, 2026
