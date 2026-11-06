@@ -1,0 +1,21 @@
+docs/vendor/enterprise-portal-v2-about.mdx
+  s_ad4eee69ec66c4::t_b50a3f76e749a4 38,65
+docs/vendor/enterprise-portal-v2-terraform.mdx
+  s_ad4eee69ec66c4::t_2fff6c1629eb90 1,3-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "feac445feefd7767e4c4152ef6b6efd4d2f3d9b2",
+  "prompts": {},
+  "sessions": {
+    "s_ad4eee69ec66c4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ad4eee69ec66c4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
