@@ -77,7 +77,9 @@ This section provides troubleshooting advice for common errors.
 
 #### Symptom
 
-The NVIDIA GPU Operator and GPU workloads initially run, but k0s fails to start after a restart or upgrade. The k0s service log or `k0s sysinfo` reports one of the following errors:
+The NVIDIA GPU Operator and GPU workloads initially run, but k0s fails to start after a restart or upgrade. A Kubernetes upgrade restarts k0s and may be its first restart since the NVIDIA configuration was generated.
+
+The k0s service log or `k0s sysinfo` reports one of the following errors:
 
 ```text
 unsupported configuration version: expected 3, got 2
@@ -90,7 +92,7 @@ The NVIDIA Container Toolkit generates a containerd configuration file with a ve
 
 #### Solution
 
-For new installations on Kubernetes 1.36 and newer, use `RUNTIME_CONFIG_SOURCE=file` and initialize `/etc/k0s/containerd.d/nvidia.toml` with `version = 3` before the GPU Operator starts. See [Prepare GPU nodes and containerd configuration](embedded-using#gpu-containerd-configuration) for the procedure and tested versions.
+For new installations on Kubernetes 1.36 and newer, use `RUNTIME_CONFIG_SOURCE=file` and initialize `/etc/k0s/containerd.d/nvidia.toml` with `version = 3` before starting the Embedded Cluster installation or joining an existing cluster. See [Prepare GPU nodes and containerd configuration](embedded-using#gpu-containerd-configuration) for the procedure and tested versions.
 
 
 ### NVIDIA GPU Operator pods remain initializing on Kubernetes 1.35 and older {#nvidia-containerd-1}

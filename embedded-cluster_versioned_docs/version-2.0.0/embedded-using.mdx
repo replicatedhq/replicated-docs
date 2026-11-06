@@ -115,7 +115,7 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
 
 Install Embedded Cluster on a clean VM without containerd or k0s already installed. Embedded Cluster installs and manages its own containerd through k0s.
 
-For Kubernetes 1.36 and newer builds using containerd 2.x, initialize the NVIDIA configuration with schema version 3 on every controller node **before starting the Embedded Cluster installation**:
+For Kubernetes 1.36 and newer builds using containerd 2.x, initialize the NVIDIA configuration with schema version 3 on every GPU node **before starting the Embedded Cluster installation or joining an existing cluster**:
 
 Run as root:
 
@@ -123,7 +123,7 @@ Run as root:
 mkdir -p /etc/k0s/containerd.d && echo 'version = 3' > /etc/k0s/containerd.d/nvidia.toml
 ```
 
-Use this command only to initialize a new file. Do not overwrite existing NVIDIA runtime configuration with the placeholder.
+Back up any existing NVIDIA runtime configuration before running this command.
 
 This workaround was verified with NVIDIA GPU Operator 26.3.3.
 
