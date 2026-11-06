@@ -1,7 +1,7 @@
 # velero configure-gcp
 
 Configures snapshots to use a Google Cloud Platform Object Storage Bucket as a storage destination.
-This command supports auth via service account credentials or Workload Identity, as described in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp) setup instructions.
+This command supports auth via [service account key](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-1-using-service-account-key) or [GKE Workload Identity](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-3-using-gke-workload-identity).
 
 Valid Subcommands:
 * `service-account`

@@ -66,7 +66,7 @@ In this procedure, you install Velero and configure a GCP storage destination in
 
 To install Velero and configure a GCP storage destination:
 
-1. Follow the instructions for installing Velero on GCP in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp) repository in GitHub.
+1. Follow the instructions for installing Velero on GCP in the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) repository in GitHub.
 
 1. Run the `velero install` command with these additional flags:
    * **Velero 1.17 and later**: Use the `--use-node-agent` and `--use-volume-snapshots=false` flags.
@@ -84,7 +84,7 @@ To install Velero and configure a GCP storage destination:
      --use-volume-snapshots=false
    ```
 
-   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses. You download this file when you create the key in the "Using Service Account Key" section of the [velero-plugin-for-gcp](https://github.com/vmware-tanzu/velero-plugin-for-gcp) setup instructions. If you use Workload Identity instead, replace `--secret-file ./CREDS_FILE` with `--no-secret` and complete the "Using GKE Workload Identity" section of the same instructions.
+   Where `./CREDS_FILE` is the path to the JSON key file for the GCP service account that Velero uses. You download this file when you create the key in [Option 1: Using Service Account Key](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-1-using-service-account-key). If you use [Option 3: Using GKE Workload Identity](https://github.com/vmware-tanzu/velero-plugin-for-gcp#option-3-using-gke-workload-identity) instead, replace `--secret-file ./CREDS_FILE` with `--no-secret` and complete the additional steps in that section.
 
 ## Configure Azure storage for online environments
 
@@ -118,13 +118,12 @@ To install Velero and configure an Azure storage destination:
    AZURE_TENANT_ID=<AZURE_TENANT_ID>
    AZURE_CLIENT_ID=<AZURE_CLIENT_ID>
    AZURE_CLIENT_SECRET=<AZURE_CLIENT_SECRET>
-   AZURE_RESOURCE_GROUP=<AZURE_RESOURCE_GROUP>
    AZURE_CLOUD_NAME=<AZURE_CLOUD_NAME>
    ```
 
    Set `AZURE_CLOUD_NAME` to `AzurePublicCloud`, `AzureUSGovernmentCloud`, or `AzureChinaCloud`.
 
-   Velero uses the `resourceGroup` value in `--backup-location-config` to find the storage account. `AZURE_RESOURCE_GROUP` in the credentials file is used only for volume snapshots, which this procedure disables.
+   Velero uses the `resourceGroup` value in `--backup-location-config` to find the storage account. You do not need to set `AZURE_RESOURCE_GROUP` in the credentials file, because Velero uses it only for volume snapshots, which this procedure disables.
 
 ## Configure s3-compatible storage for online environments
 
