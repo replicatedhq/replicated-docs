@@ -77,7 +77,7 @@ When configuring the Admin Console to store backups on Microsoft Azure, the foll
 | Tenant ID                  | The Tenant ID associated with the Azure account of the target Blob Storage container (required only for access via Service Principle)      |
 | Client ID                  | The Client ID of a Service Principle with access to the target Container (required only for access via Service Principle)                  |
 | Client Secret              | The Client Secret of a Service Principle with access to the target Container (required only for access via Service Principle)              |
-| Cloud Name                 | The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud)              |
+| Cloud Name                 | The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud)              |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
 Only connections with Service Principles are supported at this time.
