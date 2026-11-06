@@ -61,36 +61,54 @@ When troubleshooting, it can be useful to list the cluster and view logs using t
 
 This section provides troubleshooting advice for common errors.
 
-### Installation failure when NVIDIA gpu operator is included as Helm extension {#nvidia}
+### NVIDIA GPU Operator configuration failures {#nvidia}
 
 #### Symptom
 
-A release that includes that includes the NVIDIA GPU Operator as a Helm extension fails to install.
+The NVIDIA GPU Operator and GPU workloads initially run, but k0s fails to start after a restart or upgrade. A Kubernetes upgrade restarts k0s and may be its first restart since the NVIDIA configuration was generated.
+
+The k0s service log or `k0s sysinfo` reports one of the following errors:
+
+```text
+unsupported configuration version: expected 3, got 2
+unsupported configuration version: expected 3, got 4
+```
 
 #### Cause
 
-If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail.
-
-This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
-
-For more information about including the GPU Operator as a Helm extension, see [NVIDIA GPU Operator](embedded-using#nvidia-gpu-operator) in _Configure Embedded Cluster_.
+The NVIDIA Container Toolkit generates a containerd configuration file with a version that is incompatible with k0s.
 
 #### Solution
 
-To troubleshoot:
+For new installations on Kubernetes 1.36 and newer, use `RUNTIME_CONFIG_SOURCE=file` and initialize `/etc/k0s/containerd.d/nvidia.toml` with `version = 3` before starting the Embedded Cluster installation or joining an existing cluster. See [Prepare GPU nodes and containerd configuration](embedded-using#gpu-containerd-configuration) for the procedure and tested versions.
 
-1. Remove any existing containerd services that are running on the host (such as those deployed by Docker).
 
-1. Reset and reboot the node:
+### NVIDIA GPU Operator pods remain initializing on Kubernetes 1.35 and older {#nvidia-containerd-1}
 
-    ```bash
-    sudo ./APP_SLUG reset
-    ```
-    Where `APP_SLUG` is the unique slug for the application.
+#### Symptom
 
-    For more information, see [Reset a Node](embedded-manage-nodes#reset-a-node) in _Access and Manage Embedded Clusters_.
+On builds using containerd 1.x, the NVIDIA driver and toolkit pods are ready, but the validator and other GPU Operator pods remain initializing. The k0s service log reports:
 
-1. Re-install with Embedded Cluster.
+```text
+failed to load plugin io.containerd.grpc.v1.cri
+invalid plugin config: no corresponding runtime configured in `containerd.runtimes` for `containerd` `default_runtime_name = "runc"`
+```
+
+Pods can also report `no runtime for "nvidia" is configured` or `unknown service runtime.v1.RuntimeService`.
+
+#### Cause
+
+The NVIDIA configuration imports a separate file from `/etc/containerd/conf.d/`. Containerd 1.x does not merge these settings with k0s's runtime configuration as required, leaving the default `runc` runtime undefined.
+
+#### Solution
+
+Replace the NVIDIA import wrapper with the runtime settings so that k0s merges them directly:
+
+```bash
+sudo mv /etc/containerd/conf.d/99-nvidia.toml /etc/k0s/containerd.d/nvidia.toml
+```
+
+This workaround was verified on Kubernetes 1.35 with containerd 1.7.35 and NVIDIA GPU Operator 26.3.3.
 
 ### Calico networking issues
 
