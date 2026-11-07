@@ -24,7 +24,7 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 Embedded Cluster v3 runs Kubernetes 1.35 or later, which requires cgroup v2 and a Linux kernel of 4.5 or later. The host preflight checks fail on a host that uses cgroup v1.
 
-Most current distributions use cgroup v2 by default, including RHEL 9 and later, Ubuntu 22.04 and later, and Debian 11 and later. RHEL 8 and other Enterprise Linux 8 distributions, such as Rocky Linux 8, AlmaLinux 8, and Oracle Linux 8, use cgroup v1 by default, and so does Ubuntu 20.04. Hosts with a kernel older than 4.5, such as RHEL 7, can't use cgroup v2.
+Most current distributions use cgroup v2 by default, including RHEL 9 and later, Ubuntu 22.04 and later, and Debian 12 and later. RHEL 8 and other Enterprise Linux 8 distributions, such as Rocky Linux 8, AlmaLinux 8, and Oracle Linux 8, use cgroup v1 by default, and so does Ubuntu 20.04. Hosts with a kernel older than 4.5, such as RHEL 7, can't use cgroup v2.
 
 To check which version a host uses, run:
 
