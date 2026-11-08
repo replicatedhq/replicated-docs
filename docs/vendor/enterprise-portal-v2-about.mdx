@@ -6,13 +6,13 @@ The Enterprise Portal is Beta and is available to all vendors. Some capabilities
 
 The Enterprise Portal is where your customers install, update, secure, and get support for your application. Each customer signs in to a portal with your branding and sees only what applies to their license and channel. That includes install instructions generated for their environment, their running instances and available updates, security reports, release history, and support bundle uploads.
 
-You build the portal from a GitHub repository you control, so your documentation, navigation, and branding are versioned alongside your releases.
+The portal works out of the box from Replicated's content template, with no content to write. You keep the template in a GitHub repository you control, so your documentation, navigation, and branding are versioned alongside your releases. Customize it only when you want the portal to look and read more like your own product.
 
 If you already run your own customer portal, you can use the Enterprise Portal headless instead. The [Vendor API](/vendor/enterprise-portal-v2-vendor-api-automation) and the [customer service account API](/vendor/enterprise-portal-v2-service-account-automation) provide installation instructions, update instructions, and artifact downloads without sending customers to the portal UI, and they don't require a GitHub repository.
 
 ## What your customers can do
 
-- **Install and upgrade**: Step-by-step installation instructions for Helm, Embedded Cluster (Linux), KOTS, and kURL. The default content template includes dedicated KOTS and kURL install pages. For more information, see [KOTS and kURL instances](/vendor/enterprise-portal-v2-use#kots-and-kurl-instances) in _Log in to and use the Enterprise Portal_.
+- **Install and upgrade**: Step-by-step installation instructions for each install method the customer's license allows, such as Helm, Embedded Cluster, KOTS, and kURL.
 - **Automate installs and upgrades**: Service account API endpoints let customers create install options, fetch structured instructions, and download artifacts from CI/CD systems, including KOTS and kURL when those install types are entitled. For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 - **Manage instances**: View all deployed instances and check for available updates. Helm and Embedded Cluster instances expand into inline CLI instructions. KOTS and kURL instances expand into guided Admin Console application-upgrade steps.
 - **Download install artifacts and files**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal, including versioned install and update artifacts for KOTS and kURL air gap instances. Available artifacts vary by install method and license entitlements. Customers can also download files you provide, such as scripts, checklists, and configuration templates, gated by entitlements.
@@ -27,7 +27,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ### New compared to the Classic Enterprise Portal
 
-- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow install instructions, and download air gap artifacts. The default content template includes dedicated KOTS and kURL install pages. These customers previously used the separate Download Portal.
+- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow install instructions, and download air gap artifacts. The default content template includes dedicated KOTS and kURL install pages, shown only to customers whose license enables KOTS or kURL. These customers previously used the separate Download Portal.
 - **Content repo driven**: You manage all portal content (pages, navigation, branding) through a GitHub repo you control, not through Vendor Portal UI forms
 - **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
 - **Versioned docs**: Keep different content for different releases in Git branches. Each release on a customer's channel shows the content from the branch it resolves to, so you only create a branch when your docs change
