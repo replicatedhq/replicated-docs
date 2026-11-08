@@ -1,0 +1,23 @@
+docs/vendor/enterprise-portal-v2-about.mdx
+  s_a906addd85d2f1::t_6b6d69d18cf6c3 9,15,30
+docs/vendor/enterprise-portal-v2-content.mdx
+  s_a906addd85d2f1::t_0af7f074540a0d 7-8
+sidebars.js
+  s_a906addd85d2f1::t_8fe2649c690a51 206-207,213
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "fd9f971d004aa60320e15a6e76c8fa42ac3b8cfe",
+  "prompts": {},
+  "sessions": {
+    "s_a906addd85d2f1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a906addd85d2f1",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
