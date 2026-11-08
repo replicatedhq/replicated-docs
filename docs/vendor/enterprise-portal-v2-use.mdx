@@ -139,8 +139,11 @@ When you install from the portal, the portal creates a service account named aft
 To replace a token without interrupting an installation, create a new token on the same service account, move each system to the new token, and then revoke the old token.
 
 - For Helm installs, run `helm registry login` with the new token and then redeploy with `helm upgrade`.
-- For Embedded Cluster installs that include the Admin Console, version 2.7.4 and later, download a license file that carries the new token and upload it from the **License** page in the Admin Console. The cluster then uses the new token without reinstalling.
-- For Embedded Cluster versions earlier than 2.7.4, and for Embedded Cluster installs that do not include the Admin Console, a running cluster cannot adopt a new token. Reinstalling with the new token is required. Confirm the installed versions before revoking a token that Embedded Cluster instances depend on.
+- For Embedded Cluster v2 installs that include the Admin Console, version 2.7.4 and later, download a license file that carries the new token and upload it from the **License** page in the Admin Console. The cluster then uses the new token without reinstalling.
+- For Embedded Cluster v2 versions earlier than 2.7.4, and for Embedded Cluster v2 installs that do not include the Admin Console, a running cluster cannot adopt a new token. Reinstalling with the new token is required.
+- Embedded Cluster v3 doesn't support moving a running installation to a new token. Don't revoke a token that a running Embedded Cluster v3 installation uses.
+
+Confirm the installed Embedded Cluster versions before you revoke a token that Embedded Cluster instances depend on.
 
 Read-only automation is not exempt. If you use a token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, update it there too before you revoke the old token.
 
