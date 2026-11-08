@@ -8,7 +8,7 @@ Customers can use `release.available` webhook events to start upgrade pipelines 
 
 ## Send release events {#release-events}
 
-When promoting a release, select **Notify users** in the Vendor Portal or pass `--notify-users` with the Replicated CLI. Replicated sends the webhook event after the release artifacts become downloadable for the customer. For more information, see [Release notifications](/vendor/enterprise-portal-v2-emails#release-notifications) in _Customize Customer Emails_.
+When promoting a release, select **Notify users** in the Vendor Portal or pass `--notify-users` with the Replicated CLI. Replicated sends the webhook event after the release artifacts become downloadable for the customer. For more information, see [Release notifications](/vendor/enterprise-portal-v2-emails#release-notifications) in _Customize customer emails_.
 
 Receiving customers include any non-archived customer assigned to the channel the new release has been promoted to.
 
@@ -16,9 +16,9 @@ Webhook configuration applies to the customer's team. Customers opt in by regist
 
 ## Configure a customer endpoint {#configure-endpoint}
 
-Customer team admins manage their endpoint from **Team Settings > Webhooks** in the Enterprise Portal. Vendors view status and deliveries from the Vendor Portal. Customers make configuration changes in their own portal. Vendors can't view or change a customer's webhook from a **Login as customer** session.
+Users on the customer's team manage their endpoint from **Team Settings > Webhooks** in the Enterprise Portal. Vendors view status and deliveries from the Vendor Portal. Customers make configuration changes in their own portal. Vendors can't view or change a customer's webhook from a **Login as customer** session.
 
-To configure an endpoint, a customer team admin completes these steps:
+To configure an endpoint, a user on the customer's team completes these steps:
 
 1. Log in to the Enterprise Portal and go to **Team Settings > Webhooks**.
 
@@ -33,6 +33,31 @@ To configure an endpoint, a customer team admin completes these steps:
 Test events contain `test: true` and synthetic release details. Receivers should acknowledge test events without starting an upgrade. The customer's delivery history includes tests. The Vendor Portal shows only real release deliveries.
 
 Customers can also edit the endpoint URL, rotate the signing secret, or delete the webhook from this page. They can disable and enable it as needed.
+
+## Event payload {#event-payload}
+
+Each delivery is an HTTP POST with a JSON body. Receivers verify the signature as described in **Receiving and verifying events** on the customer's **Team Settings > Webhooks** page. The following example shows a `release.available` event:
+
+```json
+{
+  "id": "release_available_3f7c9e...",
+  "event": "release.available",
+  "timestamp": "2026-11-08T17:04:05Z",
+  "data": {
+    "versionLabel": "1.3.0",
+    "releaseSequence": 42,
+    "channelId": "2abc123def456",
+    "channelSequence": 12,
+    "isRequired": false,
+    "releaseNotes": "Release notes for 1.3.0.",
+    "updateInstructionsPathTemplate": "/api/v1/install-options/{installOptionsId}/update-instructions?targetChannelId=2abc123def456&targetChannelSequence=12&version=1.3.0"
+  }
+}
+```
+
+The event describes a release on a channel, not a specific installation. To get update instructions, the receiver replaces `{installOptionsId}` in `updateInstructionsPathTemplate` with the install options ID of the installation it manages. It then calls the resulting path on the customer's Enterprise Portal domain with a service account token that owns those install options. For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
+
+The `id` is the same for every delivery attempt of an event, so receivers can use it to ignore duplicates. Test events also include `"test": true`.
 
 ## View webhook status and deliveries {#delivery-history}
 
@@ -72,7 +97,7 @@ Email history uses a separate permission and does not grant webhook access. For 
 
 Each delivery has up to nine attempts: the initial request and eight retries, with retry delays increasing from 15 seconds to 10 minutes. After ten consecutive failed release deliveries, Replicated automatically disables the endpoint. Test events do not count toward this limit.
 
-To restore delivery, the customer team admin completes these steps:
+To restore delivery, a user on the customer's team completes these steps:
 
 1. Correct the receiver problem, using the delivery attempt details in **Team Settings > Webhooks** in the Enterprise Portal.
 

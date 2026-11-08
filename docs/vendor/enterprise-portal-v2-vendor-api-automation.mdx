@@ -1,14 +1,14 @@
 ---
-sidebar_label: Enterprise Portal Headless Automation
+sidebar_label: "Headless Enterprise Portal: Vendor API"
 ---
 
-# Enterprise Portal Headless Automation
+# Headless Enterprise Portal: Vendor API
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change. Some capabilities might require additional access.
 :::
 
-The Enterprise Portal can be operated headlessly through the Vendor API v3. This lets you integrate Enterprise Portal functionality into your existing distribution portal, support portal, or internal tooling rather than directing customers to the Enterprise Portal UI. Common use cases include automating customer onboarding, embedding portal access into your own product, and programmatically managing install profiles and instructions.
+The Enterprise Portal can be operated headlessly through the Vendor API v3. This lets you integrate Enterprise Portal functionality into your existing distribution portal, support portal, or internal tooling rather than directing customers to the Enterprise Portal UI. Common use cases include automating customer onboarding, embedding portal access into your own product, and programmatically managing install options and instructions.
 
 Vendor API requests use a vendor API token and run against `https://api.replicated.com/vendor/v3`.
 This is different from customer service account automation, where customer service account requests use a customer service account token and run against your Enterprise Portal domain.
@@ -28,7 +28,7 @@ Use the Vendor API when you need to automate vendor-owned Enterprise Portal task
 
 Use the customer service account API when the customer's automation needs to fetch install instructions or download install artifacts.
 Those requests run against your Enterprise Portal domain.
-For information about adding customer-facing API reference and workflow pages to your portal, see [Enable Customer Automation](/vendor/enterprise-portal-v2-service-account-automation).
+For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 
 ## Authentication
 
@@ -46,22 +46,23 @@ For more information, see [Use the Vendor API v3](/reference/vendor-api-using).
 
 ## Customer access
 
-Before customers can use the Enterprise Portal, make sure the customer has access to the New Enterprise Portal.
+Before customers can use the Enterprise Portal, make sure the customer has access to the new Enterprise Portal.
 You can manage per-customer access in the Vendor Portal or with the Vendor API.
 
-Vendors using both Classic and New Enterprise Portal control access per customer.
-For an existing customer, use [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) to select the New Enterprise Portal.
+Vendors using both Classic and new Enterprise Portal control access per customer.
+For an existing customer, use [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) to select the new Enterprise Portal.
 Send `customerId` and `portalVersion: "v2"`.
 This matches the **Use new Enterprise Portal for this customer** toggle in the Vendor Portal.
-Updating an existing customer's portal version requires additional feature access and an administrator token.
+Changing an existing customer's portal version requires a token for a Vendor Portal team admin.
+On teams that use both portals, a content repo must be linked first.
 
 Some teams still use per-customer Enterprise Portal access.
 For those customers, use [Patch a customer](https://replicated-vendor-api.readme.io/reference/patchcustomer).
 Set `is_enterprise_portal_enabled` to `true`.
 For new customers created through the Vendor API, the [Create a customer](https://replicated-vendor-api.readme.io/reference/createcustomer-1) request accepts `portal_version: "v2"`.
 
-For teams using only the New Enterprise Portal, customers can access the portal without a per-customer enable toggle.
-For more information, see [Manage Customer Access](/vendor/enterprise-portal-v2-invite).
+For teams using only the new Enterprise Portal, customers can access the portal without a per-customer enable toggle.
+For more information, see [Manage customer access](/vendor/enterprise-portal-v2-invite).
 
 ## Invite customer users
 
@@ -109,10 +110,10 @@ For the request and response schemas, see [Create a one-time Enterprise Portal l
 
 ## Create install options
 
-Install options describe a customer's install profile.
+Install options describe how a customer installs.
 They include the install type, network mode, channel, release sequence, and related install settings.
 
-Creating install options through the Vendor API also creates an Enterprise Portal service account for that install profile.
+Creating install options through the Vendor API also creates an Enterprise Portal service account that owns those install options.
 There is no separate Vendor API endpoint for creating a service account directly.
 For the request and response schemas, see [Create an installation options record](https://replicated-vendor-api.readme.io/reference/createinstalloptions) in the Vendor API v3 documentation.
 
@@ -145,8 +146,8 @@ curl --request POST \
 
 The response includes:
 
-- `install_options`: The install profile record.
-- `service_account`: The service account created for the install profile, including `service_account.token`.
+- `install_options`: The install options record.
+- `service_account`: The service account created for the install options, including `service_account.token`.
 - `instructions`: Generated install instructions when `includeInstructions=true`.
 
 You can also [update an installation options record](https://replicated-vendor-api.readme.io/reference/patchinstalloptions) with `PATCH` or [delete an installation options record](https://replicated-vendor-api.readme.io/reference/deleteinstalloptions) with `DELETE`.
@@ -231,12 +232,12 @@ curl --request DELETE \
 Revoking a service account clears sensitive token data and makes the service account name reusable.
 
 :::note
-Revoking is immediate and permanent. The token stops working right away, its secret is cleared, and no replacement token is issued. Any running installation or headless automation that authenticates with the token loses access, including update checks and registry pulls, with no automatic re-sync.
+Revoking is immediate and permanent. All of the service account's tokens stop working right away, their secrets are cleared, and no replacement token is issued. Any running installation or headless automation that authenticates with one of those tokens loses access, including update checks and registry pulls, with no automatic re-sync.
 
 There is no per-token expiry setting in the API. Do not script scheduled revocation as a substitute for token expiry. Revoking issues no new token, so every downstream installation must be updated with a working token out of band, and the required steps differ by installer. For example, Helm installs need a new `helm registry login` and a redeploy, while Embedded Cluster installs re-sync on newer versions but not on older ones. Scheduled revocation without a re-sync plan will take those installations offline.
 :::
 
-The Vendor API can list and revoke service accounts, but it cannot rotate a token. Rotation is a customer team admin action performed from **Team Settings > Service Accounts** in the Enterprise Portal. For more information, see [Rotate or revoke a service account token](/vendor/enterprise-portal-v2-use#rotate-or-revoke-a-service-account-token).
+The Vendor API can list and revoke service accounts, but it cannot create or revoke individual tokens. Revoking a service account stops all of its tokens. Users on the customer's team create additional tokens and revoke individual tokens from **Team Settings > Service Accounts** in the Enterprise Portal. For more information, see [Manage service account tokens](/vendor/enterprise-portal-v2-use#rotate-or-revoke-a-service-account-token) in _Log in to and use the Enterprise Portal_.
 
 ## Related API reference
 

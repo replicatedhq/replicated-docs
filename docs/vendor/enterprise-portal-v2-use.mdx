@@ -1,4 +1,4 @@
-# Log in to and Use the Enterprise Portal
+# Log in to and use the Enterprise Portal
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change.
@@ -18,7 +18,7 @@ Customers can access the Enterprise Portal through several methods:
 
 **Self-service signup:** When enabled by the vendor, customers can create their own account by visiting the signup URL, entering their information, and verifying their email with a code.
 
-**SAML SSO:** When SAML is configured by the vendor and the customer's team admin, customers can log in using their corporate identity provider credentials. On a first SAML login, the portal creates the account automatically. A login that starts at the identity provider needs no invitation. A login that starts at the portal login page requires a pending invitation for that email address. For more information, see [Just-in-time user provisioning](/vendor/enterprise-portal-v2-invite#jit-provisioning) in _Manage Customer Access_.
+**SAML SSO:** When SAML is enabled by the vendor and configured by the customer's team, customers can log in using their corporate identity provider credentials. On a first SAML login, the portal creates the account automatically. A login that starts at the identity provider needs no invitation. A login that starts at the portal login page requires a pending invitation for that email address. For more information, see [Just-in-time user provisioning](/vendor/enterprise-portal-v2-invite#jit-provisioning) in _Manage customer access_.
 
 ## Access with multiple teams
 
@@ -32,10 +32,11 @@ All users invited to the same customer team share access to the same pull tokens
 
 Once logged in, customers see a sidebar with the navigation defined by the vendor's `toc.yaml`. The default template organizes content into:
 
-- **Installation**: Requirements, release history, and step-by-step install instructions for Linux (Embedded Cluster) and Helm
-- **Operations**: Security reports and support bundle management
-- **Updates**: Check for updates and follow upgrade instructions
-- **Support**: FAQ and contact support information
+- **Installation**: Release history and step-by-step install instructions for each install method the customer's license allows, such as Embedded Cluster, Helm, KOTS, and kURL
+- **Instances & Updates**: The customer's instances, available updates, and upgrade guides
+- **Security**: CVE reports and SBOMs, when Security Center is enabled
+- **Support**: Support bundles, FAQ, and contact information
+- **Automation**: API reference and workflow guide for service account automation
 
 The vendor controls which sections and pages appear for each customer through entitlements, `visible_when` rules, and unpublished pages marked `hidden: true`. Customers only see published content that is relevant to their license.
 
@@ -62,7 +63,7 @@ Instances that are already on the latest version show an **Up to date** badge. C
 
 If a vendor marks a release as required, it is visually flagged with a **Required** badge and pre-selected as the upgrade target. Customers can still choose a later version.
 
-The **New Installation** button lets customers start new installations, with a dropdown showing the install methods their license allows (Helm, Helm Air Gap, Linux/Embedded Cluster).
+Customers start a new installation from the install page for their method (Embedded Cluster, Helm, or KOTS) using the **New installation** button. Each install page appears only when the customer's license enables that method.
 
 Air gap customers can create new instance records manually or by extracting details from an uploaded support bundle.
 
@@ -73,6 +74,7 @@ Depending on the install method and license entitlements, customers can download
 - **Air gap bundles**: Available from the Release History page and the install flow for air gap installations. Each release shows a build status (Ready, Building, Failed, or Not built) and a download link when the build is complete.
 - **Helm chart tarballs**: Available during Helm installations when the customer selects limited or no registry access. Download links appear inline in the install and update instructions.
 - **CLI tools**: The preflight plugin binary is available for download in the install flow, regardless of registry access settings.
+- **KOTS and kURL artifacts**: The KOTS CLI, the Admin Console air gap bundle, the kURL installer bundle, and the application air gap bundle, plus the optional Preflight and Support Bundle CLI tools. Air gap bundles are available only when the customer's license allows air gap installations.
 
 ### Private registry image relocation (Embedded Cluster)
 
@@ -92,50 +94,58 @@ What the panel shows depends on the instance:
 - **Air gap, already on the selected release**: The bundle, with no deploy step.
 - **Expired license, or a license without air gap access**: No bundle.
 
-The reopen command uses the customer's application slug for KOTS and `default` for kURL, which is where kURL's `install.sh` runs the Admin Console. To set a different namespace for those commands, see [KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides) in _Customize Portal Content_.
+The reopen command uses the customer's application slug for KOTS and `default` for kURL, which is where kURL's `install.sh` runs the Admin Console. To set a different namespace for those commands, see [KOTS and kURL upgrade guides](/vendor/enterprise-portal-v2-content#default-kots-and-kurl-upgrade-guides) in _Customize portal content_.
 
 For kURL, the panel upgrades the application only. It does not rerun `install.sh` or upgrade the cluster, and an application release does not on its own mean either is needed. Vendors document their own cluster-maintenance conditions and procedure in the customizable kURL upgrade guide.
 
-The default content template includes dedicated KOTS and kURL install pages and entitlement-gated application-upgrade guides. Vendors can customize Admin Console access, registry, support, and kURL cluster-maintenance instructions, change the panel's guide link, or remove it. An expired license still surfaces a renewal notice on the install-page download controls. For installation-page details, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize Portal Content_.
+The default content template includes dedicated KOTS and kURL install pages and entitlement-gated application-upgrade guides. Vendors can customize Admin Console access, registry, support, and kURL cluster-maintenance instructions, change the panel's guide link, or remove it. An expired license still surfaces a renewal notice on the install-page download controls. For installation-page details, see [KOTS and kURL installer pages](/vendor/enterprise-portal-v2-content#add-kots-or-kurl-installer-pages) in _Customize portal content_.
 
 Customers can create air gap instance records for KOTS and kURL the same way as for Helm and Embedded Cluster. They can enter instance information manually from the Instances & Updates page, or extract details from an uploaded support bundle. Availability depends on the customer's license having the corresponding install type and air gap option enabled.
 
 ## Team management
 
-Customer team admins can manage their portal team from the Team Settings page:
+Users on the customer's team can manage their portal team from the Team Settings page:
 
 - **Invite users**: Send email invitations to colleagues
 - **Remove users**: Remove team members from the portal
 - **Service accounts**: Create and manage service accounts for programmatic access (CI/CD, automation)
-- **SAML configuration**: When SAML is enabled by the vendor, admins can configure their identity provider by uploading IdP metadata and certificates
+- **SAML configuration**: When SAML is enabled by the vendor, users on the team can configure their identity provider by uploading IdP metadata and certificates
 - **Webhooks**: Register a release webhook to start upgrade pipelines when a new release is available. For more information, see [Manage customer release webhooks](/vendor/enterprise-portal-v2-webhooks)
 
 ## Service account automation
 
-Customer team admins can create service account tokens for CI/CD systems and other automation.
+Users on the customer's team can create service accounts and tokens for CI/CD systems and other automation.
 
-Customers can use these tokens to call Enterprise Portal API endpoints from the same domain as the portal. Entitled KOTS and kURL customers can create install profiles, fetch JSON install and update instructions, and download artifacts the same way Helm and Embedded Cluster customers do.
+Customers can use these tokens to call Enterprise Portal API endpoints from the same domain as the portal. Entitled KOTS and kURL customers can create install options, fetch JSON install and update instructions, and download artifacts the same way Helm and Embedded Cluster customers do.
 
 The default Enterprise Portal content template includes an API reference and workflow guide for service account automation. The default workflow example uses Helm. The in-portal API reference documents `kots` and `kurl` when those install types are entitled.
 
-For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
+For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 
-## Rotate or revoke a service account token
+## Manage service account tokens {#rotate-or-revoke-a-service-account-token}
 
-Customer team admins manage a token's lifecycle from **Team Settings > Service Accounts** in the Enterprise Portal. Each service account has a row menu with two actions.
+Users on the customer's team manage service accounts and their tokens from **Team Settings > Service Accounts** in the Enterprise Portal. A service account can hold more than one token, and each token works until it is revoked.
 
-**Rotate token** issues a new token and immediately invalidates the current one, while keeping the same service account and its identity. Any system still using the old token loses access until it is updated with the new token:
+- **Create a token**: Adds a new token to the service account and leaves its existing tokens working. Give the token a name that identifies where it is used, such as `ci-runner`. The portal shows the token value only once, when you create it.
+- **Revoke token**: Stops one token. The service account and its other tokens keep working.
+- **Revoke service account**: Permanently disables the service account and stops all of its tokens. Use this only when nothing should authenticate with the account anymore.
 
-- For Helm installs, run `helm registry login` again with the new token and then redeploy with `helm upgrade`. The portal displays the exact commands after rotation.
-- For Embedded Cluster installs that include the admin console, version 2.7.4 and later, upload the new token from the **License** page in the admin console. The cluster then adopts the rotated token without reinstalling. Automatic license sync does not pick up a rotated token on its own, because the running cluster authenticates with the old token, which rotation has already invalidated.
-- For Embedded Cluster versions earlier than 2.7.4, and for Embedded Cluster installs that do not include the admin console, a running cluster cannot adopt a rotated token. Reinstalling with the new token is required. Confirm the installed versions before rotating a token that Embedded Cluster instances depend on.
+### Give automation access to an existing installation
 
-Read-only automation is not exempt. If you use the token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, those calls also stop working with the old token after rotation. Update the token everywhere it is stored, not only on the installation.
+When you install from the portal, the portal creates a service account named after your installation. Automation that manages that installation, such as an upgrade pipeline, must use a token on that same service account, because a service account can only see its own install options. Create an additional token on the installation's service account for the automation instead of reusing the token the installation runs with. For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 
-**Revoke** permanently disables the service account. Its token is cleared and cannot be recovered, so revoking is the right choice only when a token should stop working entirely. To replace a token while keeping the account and its installations working, use **Rotate token** instead.
+### Replace a token
+
+To replace a token without interrupting an installation, create a new token on the same service account, move each system to the new token, and then revoke the old token.
+
+- For Helm installs, run `helm registry login` with the new token and then redeploy with `helm upgrade`.
+- For Embedded Cluster installs that include the Admin Console, version 2.7.4 and later, download a license file that carries the new token and upload it from the **License** page in the Admin Console. The cluster then uses the new token without reinstalling.
+- For Embedded Cluster versions earlier than 2.7.4, and for Embedded Cluster installs that do not include the Admin Console, a running cluster cannot adopt a new token. Reinstalling with the new token is required. Confirm the installed versions before revoking a token that Embedded Cluster instances depend on.
+
+Read-only automation is not exempt. If you use a token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, update it there too before you revoke the old token.
 
 :::note
-Revoking or rotating a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation can be updated with the new token.
+Revoking a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation is moved to a working token first.
 :::
 
 ## Support bundles
@@ -154,7 +164,7 @@ When Security Center access is enabled for a customer, customers with Helm or Em
 - **Fixable CVE filtering**: Vendors can show only CVEs with an available fix or allow customers to switch between all CVEs and fixable CVEs.
 - **Release comparisons**: Compare the selected release with the latest available release. The report shows how many CVEs are fixed by severity and container image.
 - **Upgrade recommendations**: When active instances use the selected release, follow links to the **Instances & Updates** page to upgrade them. When viewing the latest release, select an older release listed on the page to review its security data and upgrade options.
-- **SBOMs**: Download the Software Bill of Materials for any release version. SBOMs are accessible to all portal team members regardless of role.
+- **SBOMs**: Download the Software Bill of Materials for any release version. SBOMs are accessible to all users on the customer's team.
 
 :::note
 Security Center data is available for Helm and Embedded Cluster installations only. KOTS and kURL instances don't contribute CVE data or upgrade recommendations, and they aren't counted toward instance totals in Security Center. Customers whose only instances are KOTS or kURL see an explanatory message instead of security data. Customers with a mix of instance types still see Security Center for their Helm and Embedded Cluster instances.

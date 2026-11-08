@@ -1,4 +1,4 @@
-# Connect a Git Repo
+# Connect a Git repo
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change. Some capabilities might require additional access.
@@ -10,7 +10,7 @@ Enterprise Portal requires a GitHub organization. The content repo integration u
 
 Enterprise Portal content is driven by a GitHub repo you control. Connecting a repo is a prerequisite to offer versioned docs, advanced theming, and Terraform module delivery.
 
-The Content tab appears when your team has the New Enterprise Portal. The same setting enables the GitHub App workflow for content repositories. Use this workflow to create, authorize, and link repos.
+The Content tab appears when your team has the new Enterprise Portal. The same setting enables the GitHub App workflow for content repositories. Use this workflow to create, authorize, and link repos.
 
 The Vendor Portal walks you through setup in three steps:
 
@@ -37,12 +37,12 @@ When installing the Replicated GitHub App, grant access to all repositories you 
 Select your GitHub organization and the repository containing your Enterprise Portal content, then click **Link Repository**. When only one GitHub organization or repository is available, it is auto-selected for you.
 
 :::note
-The selected repository must contain a `toc.yaml` file at the root of its default branch. If none is found, you'll see a warning and won't be able to link the repo. Use the content template (Step 2) or add a `toc.yaml` manually before linking.
+The selected repository must contain a `toc.yaml` file at the root of its default branch. If none is found, you'll see a warning and won't be able to link the repo. Use the content template (Step 1) or add a `toc.yaml` manually before linking.
 :::
 
 All branches are synced automatically. Pushes trigger automatic syncs via webhook.
 
-Once linked, the Content tab shows sync status for each branch. A branch labeled **Fallback** means it doesn't match any release `version_label` on the customer's channel. Fallback content is shown when no version-matched branch is available for a customer. See [Naming Your Branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches) for how to set up version gating.
+Once linked, the Content tab shows sync status for each branch. The **Default branch** label marks the branch customers see when no matching release branch or pin is available, which is usually `main`. **Not linked to a release** marks a branch that no release label matches, so customers reach it only through a pin or as the default. For more information, see [Naming your branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches) in _Manage content versions_.
 
 You can also trigger a manual sync from the **Content** tab.
 
@@ -61,7 +61,7 @@ replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/s
 ```
 
 :::important
-Content branches must be named with semver versions (e.g., 1.0.0) that match your release version_label values. The main branch is synced but never shown to customers directly. See [Naming Your Branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches) for details.
+Branch names decide which content each release shows. A release uses the branch with the same name, or the nearest lower version branch, and uses `main` when neither exists. You don't need a branch for every release. For more information, see [Naming your branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches) in _Manage content versions_.
 :::
 
 ## Adopting template updates

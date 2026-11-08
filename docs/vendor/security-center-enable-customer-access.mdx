@@ -45,7 +45,7 @@ This setting is the same app-level setting as **Enable Security Center for all c
 
 ## Enterprise Portal (New) (Beta) {#enterprise-portal-new}
 
-In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-content#security-components) in _Customize Enterprise Portal Content_.
+In Enterprise Portal (New), you add a Security page to your content repository. The page can include a release selector, CVE report, and SBOM report. For more information, see [Security components](/vendor/enterprise-portal-v2-mdx-components#security-components) in _MDX component reference_.
 
 Customers can select a release and review CVEs by severity, affected component, and container image. The CVE report identifies the earliest vendor release that resolves each CVE. Customers can also compare the selected release with the latest release, follow links to upgrade affected instances, and download an SBOM. When enabled in the Portal Features settings, customers can also download the raw Grype scan JSON for a release.
 
@@ -63,7 +63,7 @@ To configure how Security Center reports display in Enterprise Portal (New):
    * When enabled, the CVE Report card displays **Download full CVE report**. Customers can use this button to download the complete raw Grype scan JSON for the selected release.
    * When disabled, the button is not displayed. Customers can still view the CVE report when they have access to the Security Center.
 
-Changes to the Portal Features settings are saved automatically. For an overview of every setting in the **Portal Features** section, including **Enable Ask AI**, see [Configure Portal Features](/vendor/enterprise-portal-v2-portal-features).
+Changes to the Portal Features settings are saved automatically. For an overview of every setting in the **Portal Features** section, including **Enable Ask AI**, see [Configure portal features](/vendor/enterprise-portal-v2-portal-features).
 
 The downloaded JSON contains the same raw Grype scan data that is available to vendors through the [`securebuild/scan-raw` Vendor API endpoint](/vendor/security-center-retrieve-scan-results#retrieve-the-raw-scan-results). The customer-facing download is controlled by this setting and is distinct from both Vendor API access and the SPDX SBOM download.
 
