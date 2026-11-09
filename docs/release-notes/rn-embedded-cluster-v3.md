@@ -31,6 +31,16 @@ Released on November 9, 2026
   </tr>
 </table>
 
+### Improvements {#improvements-3-19-1-beta-1}
+* Makes the support bundle tile full width when the application does not define any links.
+
+### Bug Fixes {#bug-fixes-3-19-1-beta-1}
+* Creates `/var/lib/ec/kubelet` as a symlink pointing to `/var/lib/embedded-cluster/k0s/kubelet` when migrating from Embedded Cluster v2 to v3 for forward compatibility.
+* Migrates containerd configuration files from version 2 to version 3 when upgrading from Kubernetes 1.35 to 1.36, which use containerd v1 and v2, respectively.
+* Disables the Back button on installation setup and configuration pages while forms are loading or settings are being applied.
+* Fixed installation and upgrade failures when an application chart renders no Kubernetes resources.
+* Fixed support bundles exposing license IDs and installer passwords from captured command lines.
+
 ## 3.19.0-beta.1
 
 Released on November 3, 2026
