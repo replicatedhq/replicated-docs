@@ -171,7 +171,7 @@ To make your application accessible in v3:
 
 1. Expose it through your Helm chart. For example, use a NodePort Service and set `spec.ports[].nodePort` to `30888`. Users can then access the application at `http://<node-address>:30888`. A ClusterIP Service alone does not expose the application outside the cluster. You can also use an Ingress with an ingress controller.
 2. Have customers allow the required traffic through their network and firewall.
-3. In the Kubernetes SIG Application custom resource (`app.k8s.io/v1beta1`), set the `url` field for each entry in `spec.descriptor.links` to an address users can reach. These links appear on both the Installation Complete page and the admin console dashboard. Adding a link does not expose the service.
+3. In the Kubernetes SIG Application custom resource (`app.k8s.io/v1beta1`), set the `url` field for each entry in `spec.descriptor.links` to an address users can reach. Because the hostname is not known when you create the release, use template functions to build the URL. For example, `url: 'http://repl{{ ConfigOption "hostname" }}:30888'`, where `hostname` is an item in your Config custom resource. These links appear on both the Installation Complete page and the admin console dashboard. Adding a link does not expose the service.
 
 Migration preserves the existing Application manifest, but links that relied on KOTS URL rewriting need to be updated. For example, replace a placeholder such as `http://access-node` with the application's reachable URL. See [Add application links to the Finish page](embedded-using#add-application-links-to-the-finish-page).
 
