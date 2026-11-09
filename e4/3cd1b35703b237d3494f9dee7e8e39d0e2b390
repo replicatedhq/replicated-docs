@@ -1,0 +1,27 @@
+docs/partials/embedded-cluster/v3/_headless-multi-node-limitation.mdx
+  s_2243923bf8093f::t_7595e75bb46412 1-3
+embedded-cluster/embedded-manage-nodes.mdx
+  s_2243923bf8093f::t_dd8f441b79f1a1 162-163
+embedded-cluster/embedded-overview.mdx
+  s_2243923bf8093f::t_15f1e819a59b3b 14-15
+embedded-cluster/installing-embedded-air-gap.mdx
+  s_2243923bf8093f::t_c9fabccb5c2cdf 5,120-121
+embedded-cluster/installing-embedded.mdx
+  s_2243923bf8093f::t_addcf90c2e494a 5,71-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e43cd1b35703b237d3494f9dee7e8e39d0e2b390",
+  "prompts": {},
+  "sessions": {
+    "s_2243923bf8093f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_2243923bf8093f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

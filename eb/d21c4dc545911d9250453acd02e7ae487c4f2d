@@ -1,0 +1,19 @@
+embedded-cluster_versioned_docs/version-2.0.0/embedded-disaster-recovery.mdx
+  s_4a37ad256106ee::t_b36d2805e9b3a8 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ebd21c4dc545911d9250453acd02e7ae487c4f2d",
+  "prompts": {},
+  "sessions": {
+    "s_4a37ad256106ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_4a37ad256106ee",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
