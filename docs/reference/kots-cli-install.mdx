@@ -3,6 +3,7 @@ import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
 import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+import KotsInstallVersion from "../partials/install/_kots-install-version.mdx"
 import Help from "../partials/kots-cli/_help.mdx"
 
 # install
@@ -13,11 +14,11 @@ Alternatively, you can specify the `--port` flag to override the default port.
 
 ### KOTS version installed
 
-The `kots install` command deploys the version of the Admin Console (`kotsadm`) that matches the version of the `kubectl kots` binary that you run. To check the version of the installed CLI, run `kubectl kots version`.
+<KotsInstallVersion/>
 
-The version of KOTS that is pinned in the Installer spec on a channel applies only to kURL installations. It does not apply to installations with the KOTS CLI in an existing cluster. To install a specific version of KOTS in an existing cluster, install that version of the KOTS CLI before you run `kubectl kots install`. For more information, see [Install the KOTS CLI](/reference/kots-cli-getting-started).
+For air gap installations, the version of the KOTS CLI must also match the version of the `kotsadm.tar.gz` bundle. For more information, see [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
 
-After installation, the Admin Console footer shows the version of KOTS that is running. To upgrade the Admin Console to match a newer version of the CLI, see [admin-console upgrade](kots-cli-admin-console-upgrade).
+To upgrade the Admin Console to match a newer version of the CLI, see [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
 
 ### Usage
 
