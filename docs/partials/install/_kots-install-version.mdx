@@ -1,5 +1,7 @@
 :::note
 The `kubectl kots install` command installs the version of KOTS (the Admin Console) that matches the installed `kubectl kots` binary. The KOTS version pinned in a channel's Installer spec applies only to kURL installations, not to installations with the KOTS CLI.
 
-To check the version of the KOTS CLI, run `kubectl kots version`. To install a specific version of KOTS, install that version of the KOTS CLI before you run `kubectl kots install`. For example, `curl https://kots.io/install/VERSION | bash`. For more information, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
+To check the version of the KOTS CLI, run `kubectl kots version`. To install a specific version of KOTS, install that version of the KOTS CLI before you run `kubectl kots install`. For example, `curl https://kots.io/install/1.134.2 | bash`. For more information, see [Installing the KOTS CLI](/reference/kots-cli-getting-started).
+
+For installations with the KOTS CLI, the KOTS version is controlled by the `minKotsVersion` and `targetKotsVersion` fields in the Application custom resource. `kubectl kots install` fails if the KOTS CLI version is earlier than `minKotsVersion` or later than `targetKotsVersion`. For more information, see [Set minimum and target versions for KOTS](/vendor/packaging-kots-versions).
 :::

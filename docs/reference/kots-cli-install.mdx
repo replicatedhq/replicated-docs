@@ -4,6 +4,7 @@ import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
 import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
 import KotsInstallVersion from "../partials/install/_kots-install-version.mdx"
+import KotsVersionMatch from "../partials/install/_kots-airgap-version-match.mdx"
 import Help from "../partials/kots-cli/_help.mdx"
 
 # install
@@ -16,7 +17,9 @@ Alternatively, you can specify the `--port` flag to override the default port.
 
 <KotsInstallVersion/>
 
-For air gap installations, the version of the KOTS CLI must also match the version of the `kotsadm.tar.gz` bundle. For more information, see [Air Gap Installation in Existing Clusters with KOTS](/enterprise/installing-existing-cluster-airgapped).
+For air gap installations:
+
+<KotsVersionMatch/>
 
 To upgrade the Admin Console to match a newer version of the CLI, see [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
 
