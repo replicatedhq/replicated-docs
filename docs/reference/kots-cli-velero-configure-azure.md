@@ -30,7 +30,7 @@ kubectl kots velero configure-azure service-principle [flags]
 | `-n, --namespace`   | string | the namespace of the Admin Console _(required)_                                                                                             |
 | `--client-id`       | string | the client ID of a Service Principle with access to the blob storage container _(required)_                                                 |
 | `--client-secret`   | string | the client secret of a Service Principle with access to the blob storage container _(required)_                                             |
-| `--cloud-name`      | string | the Azure cloud target. Options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud _(default `AzurePublicCloud`)_ |
+| `--cloud-name`      | string | the Azure cloud target. Options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud _(default `AzurePublicCloud`)_ |
 | `--container`       | string | name of the Azure blob storage container where backups should be stored _(required)_                                                        |
 | `--path `           | string | path to a subdirectory in the blob storage container                                                                                        |
 | `--resource-group`  | string | the resource group name of the blob storage container _(required)_                                                                          |
