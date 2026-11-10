@@ -1,0 +1,27 @@
+embedded-cluster/embedded-persistent-console.mdx
+  s_d6dc3d54d67ff8::t_a28cc76f845298 71
+embedded-cluster/embedded-v3-migrate.mdx
+  s_d6dc3d54d67ff8::t_f1b824a2a8858b 174
+  s_d6dc3d54d67ff8::t_5cc9a7602ded16 151,166-167,169,171,175
+  s_d6dc3d54d67ff8::t_c270bc6355aa06 173
+  s_d6dc3d54d67ff8::t_a28cc76f845298 168,170,172,176
+  s_d6dc3d54d67ff8::t_8b01269b4ee6be 177
+embedded-cluster/embedded-using.mdx
+  s_d6dc3d54d67ff8::t_02e52b363fe845 444-445
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "773046dd27dacf515c45c27cd01108fc038db6c3",
+  "prompts": {},
+  "sessions": {
+    "s_d6dc3d54d67ff8": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a2d9-f8c6-7162-859a-e3fcb6cea6e8",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}
