@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.10-0
+
+Released on November 10, 2026
+
+### Improvements {#improvements-v2026-11-10-0}
+* Terraform module distribution in the Enterprise Portal is available by request.
 ## v2026.11.09-1
 
 Released on November 9, 2026
