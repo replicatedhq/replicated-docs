@@ -15,6 +15,12 @@ Released on November 9, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-09-5}
 * Fixes a bug that could result in error 500 when downloading an Embedded Cluster v3 release with templated image names in the `additionalImages` list.
+## v2026.11.09-3
+
+Released on November 9, 2026
+
+### Improvements {#improvements-v2026-11-09-3}
+* Release linting and promotion now fail when an Embedded Cluster v3 release includes Embedded Cluster v2 settings that v3 doesn't support. See [Upgrade from Embedded Cluster v2](/embedded-cluster/v3/embedded-v3-migrate).
 ## v2026.11.09-1
 
 Released on November 9, 2026
