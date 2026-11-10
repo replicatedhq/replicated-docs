@@ -439,7 +439,9 @@ spec:
         url: "http://my-app-url"
 ```
 
-Links defined here appear on the Finish page after a successful install and on the dashboard in the [admin console](/embedded-cluster/v3/embedded-persistent-console).
+Links defined here appear on the Installation Complete page after a successful install and on the dashboard in the [admin console](/embedded-cluster/v3/embedded-persistent-console).
+
+Use a URL reachable from the user's browser. Because the hostname is not known when you create the release, you can build the URL with template functions, such as `ConfigOption`. Adding a link does not expose the application; configure access through your Helm chart, for example with a NodePort Service. Embedded Cluster v3 does not apply KOTS `ports` URL rewriting. See [Application access and links](embedded-v3-migrate#application-access-and-links).
 
 ## Add support for air gap installations {#local-image-registry}
 

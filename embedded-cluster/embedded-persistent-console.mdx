@@ -68,7 +68,7 @@ In Embedded Cluster 3.17.0-beta.1 and 3.18.0-beta.1, only the node where you ran
 If your release includes an `app.k8s.io/v1beta1 Application` resource with `spec.descriptor.links`, those links appear automatically on the console dashboard under **Open &lt;app-name&gt;**. No additional configuration is needed.
 
 :::note
-If you are upgrading from Embedded Cluster v2, any existing Application links carry over automatically.
+Migration from Embedded Cluster v2 preserves the existing Application manifest. However, v3 uses the rendered descriptor URLs without KOTS `ports` URL rewriting. Update any links that depended on that rewriting to an address users can reach. See [Application access and links](embedded-v3-migrate#application-access-and-links).
 :::
 
 ## Application status

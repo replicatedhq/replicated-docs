@@ -159,7 +159,7 @@ The following Application spec fields are not used in Embedded Cluster v3:
 | `minKotsVersion` / `targetKotsVersion` | Gated installations to specific KOTS versions |
 | `requireMinimalRBACPrivileges` / `supportMinimalRBACPrivileges` | Controlled KOTS operator RBAC mode |
 | `consoleFeatureFlags` | Enabled feature flags in the Admin Console UI |
-| `ports` | Configured port-forward shortcuts in the Admin Console |
+| `ports` | Configured KOTS port forwarding and dashboard link rewriting. See [Application access and links](#application-access-and-links). |
 
 The following Application spec fields **are still used** in Embedded Cluster v3:
 
@@ -173,6 +173,18 @@ The following Application spec fields **are still used** in Embedded Cluster v3:
 | `additionalNamespaces` | Creates the listed namespaces and provisions registry image pull secrets and, when a custom CA bundle is configured, the private CA ConfigMap in each. Embedded Cluster also provisions these resources in the application namespace and namespaces specified by HelmChart resources. Keep this field for other namespaces your application uses, such as those where an Operator creates workloads. |
 | `proxyPublicImages` | Evaluated by the Vendor Portal when building the Embedded Cluster bundle to determine which public images can use the Replicated proxy registry. Embedded Cluster uses the resulting image metadata. |
 | `statusInformers` | Injected into the Replicated SDK Helm values for instance reporting in the Vendor Portal. Requires the [Replicated SDK](/vendor/replicated-sdk-overview). |
+
+### Application access and links
+
+Embedded Cluster v3 does not use the KOTS Application `spec.ports` fields (`serviceName`, `servicePort`, `localPort`, or `applicationUrl`) to forward ports or rewrite application links. In KOTS, a descriptor link that matches `ports.applicationUrl` is rewritten to use the Admin Console browser hostname and `localPort`. In v3, the rendered descriptor URL is used as supplied.
+
+To make your application accessible in v3:
+
+1. Expose it through your Helm chart. For example, use a NodePort Service and set `spec.ports[].nodePort` to `30888`. Users can then access the application at `http://<node-address>:30888`. A ClusterIP Service alone does not expose the application outside the cluster. You can also use an Ingress with an ingress controller.
+2. Have customers allow the required traffic through their network and firewall.
+3. In the Kubernetes SIG Application custom resource (`app.k8s.io/v1beta1`), set the `url` field for each entry in `spec.descriptor.links` to an address users can reach. Because the hostname is not known when you create the release, use template functions to build the URL. For example, `url: 'http://repl{{ ConfigOption "hostname" }}:30888'`, where `hostname` is an item in your Config custom resource. These links appear on both the Installation Complete page and the admin console dashboard. Adding a link does not expose the service.
+
+Migration preserves the existing Application manifest, but links that relied on KOTS URL rewriting need to be updated. For example, replace a URL that matched `ports.applicationUrl`, such as `http://nginx`, with the application's reachable URL. If you already expose the service with a NodePort for Embedded Cluster v2, only the link needs to change. See [Add application links to the Finish page](embedded-using#add-application-links-to-the-finish-page).
 
 ## Update your release to Embedded Cluster v3
 
