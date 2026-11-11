@@ -1,4 +1,4 @@
-# Customize Portal Content
+# Customize portal content
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change.
@@ -77,7 +77,7 @@ navigation:
 
   - title: Support
     items:
-      - title: Support Bundles
+      - title: Support bundles
         page: pages/support/bundles.md
       - title: FAQ
         page: pages/support/faq.md
@@ -201,7 +201,7 @@ Use `link` to add a navigation item that opens an external URL in a new tab inst
   items:
     - title: Submit a Support Request
       link: https://support.example.com
-    - title: Support Bundles
+    - title: Support bundles
       page: pages/support/bundles.md
 ```
 
@@ -276,11 +276,11 @@ Props: `title` (required), `defaultOpen` (optional, defaults to false).
 <OptionSelector label="Install Method" defaultOption="Linux" storageKey="install-method">
 <Option value="Linux">
 - [Linux Installation](/installation/linux)
-- [Linux Support Bundles](/operations/bundles/linux)
+- [Linux support bundles](/operations/bundles/linux)
 </Option>
 <Option value="Helm">
 - [Helm Installation](/installation/helm)
-- [Helm Support Bundles](/operations/bundles/helm)
+- [Helm support bundles](/operations/bundles/helm)
 </Option>
 </OptionSelector>
 ```
@@ -371,13 +371,13 @@ Props: `installType` (`"linux"`, `"helm"`, `"kots"`, or `"kurl"`).
 
 **`<LinuxInstallAssets />`**: Renders the full Linux/Embedded Cluster installation command sequence. Adapts to the customer's selected version and network availability. For air gap installations, includes an optional toggle for private registry image relocation. When enabled, the customer enters their registry hostname and the commands update to include image pull, tag, and push steps targeting that registry. Props: `stepNumber` (optional, starting step number).
 
-**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
+**`<HelmInstallAssets />`**: Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide), `namespace` (optional), `createNamespace` (optional). See [Setting a namespace for Helm installs and upgrades](#setting-a-namespace-for-helm-installs).
 
 When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. You do not configure anything else.
 
 **`<LinuxAirgapInstallAssets />`**: Linux air gap installation commands. Shows an unavailable notice if the air gap bundle is not yet built. Props: `stepNumber`.
 
-**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
+**`<HelmAirgapInstallAssets />`**: Helm air gap installation commands. Props: `stepNumber`, `charts` (optional), `exclude` (optional), `namespace` (optional), `createNamespace` (optional). See [Setting a namespace for Helm installs and upgrades](#setting-a-namespace-for-helm-installs).
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
@@ -399,6 +399,10 @@ Props: `stepNumber` (optional, starting step number).
 
 **`<KurlAirgapInstallAssets />`**: Renders kURL air gap installation steps. The first step includes artifact download links. The following step extracts the installer and runs `install.sh airgap`. Props: `stepNumber`.
 
+**`<HelmInstallStep>`**: Renders one online Helm install step by name. Props: `step` (required), `stepNumber` (optional), `charts` (optional), `exclude` (optional), `namespace` (optional), `createNamespace` (optional). Use `step="install_chart"` for the step that runs `helm install`. See [Setting a namespace for Helm installs and upgrades](#setting-a-namespace-for-helm-installs).
+
+**`<HelmAirgapInstallStep>`**: Renders one air gap Helm install step by name. Same props as `<HelmInstallStep>`.
+
 **`<KotsInstallStep>`**: Renders one online KOTS install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kots"`.
 
 **`<KurlInstallStep>`**: Renders one online kURL install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kurl"`.
@@ -407,7 +411,7 @@ Props: `stepNumber` (optional, starting step number).
 
 **`<KurlAirgapInstallStep>`**: Renders one kURL air gap install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="download_assets"` or `step="install_kurl"`.
 
-For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there.
+For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there. `step="install"` also has no target on `<HelmInstallStep>` or `<HelmAirgapInstallStep>` — use `step="install_chart"`.
 
 **`<KotsDownloadAssets />`**: Renders a KOTS downloads section with a version picker for the selected release. The customer's license must include the KOTS install type. The KOTS CLI and the optional Preflight and Support Bundle CLI tools still appear when air gap is off. The Admin Console bundle and the application air gap bundle appear only when air gap is on, and only when you omit `cliOnly`. This component does not render install commands. Do not move the air gap mount out of `<WhenNetwork mode="airgap">` to put CLI tools on the online branch. A customer who has air gap on the license but selected online would then see those bundles as required. Use a second mount with `cliOnly={true}` on the online/proxy branch instead. The default KOTS page does this. Props: `stepNumber`, `cliOnly` (optional).
 
@@ -463,6 +467,47 @@ Props: `stepNumber`, `title`, `optional` (boolean).
 - Helm 3.x
 </Prerequisites>
 ```
+
+#### Setting a namespace for Helm installs and upgrades {#setting-a-namespace-for-helm-installs}
+
+The default template runs Helm upgrades through `<InstancesAndUpdates>` on the Instances & Updates page. Most vendors need two props: `namespace` on the Helm install components, and `helmNamespace` on `<InstancesAndUpdates>` for the matching upgrade commands. On a custom update page, `<HelmUpdateAssets>` takes `namespace` instead. Each prop adds `--namespace <namespace>` to the generated `helm install`, `helm upgrade`, and preflight (`helm template`) commands:
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" />
+<InstancesAndUpdates helmNamespace="my-namespace" />
+```
+
+The headless service-account install instructions API applies the same props, so customer automation receives the same commands. For the API resolution order and error behavior, see [Namespace handling in automation](/vendor/enterprise-portal-v2-service-account-automation#namespace-handling-in-automation).
+
+To set a namespace for Helm:
+
+1. Add `namespace="my-namespace"` to the Helm install components on your install page: `<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, or `<HelmAirgapInstallStep>`.
+2. Add `helmNamespace="my-namespace"` to `<InstancesAndUpdates>` so its Helm instance cards generate upgrade commands for the same namespace. If you build a custom update page, add `namespace="my-namespace"` to `<HelmUpdateAssets>` instead. `helm upgrade` looks up the existing release inside a single namespace, and a mismatch fails with `"<release>" has no deployed releases`.
+3. If your customers create the namespace themselves with namespace-scoped credentials, add `createNamespace="false"` to the install components. Otherwise, leave the default. Then preview the page to check for warnings.
+
+Author namespace values as quoted strings. JSX expressions such as `namespace={someVar}` aren't supported. For a per-customer value, use a mustache variable, for example a custom license field — `namespace="\{\{entitlements.helm_namespace\}\}"`. The value must be a valid Kubernetes namespace: lowercase alphanumeric characters or `-`, starting and ending with an alphanumeric character, at most 63 characters.
+
+The portal never rejects an invalid value. It generates the affected commands without `--namespace`, and the page renders normally for the customer. Only you see the problems, and only in the content preview you open from the Vendor Portal. Local preview and Login as customer sessions don't show them. See [Test and Preview the Enterprise Portal](/vendor/enterprise-portal-v2-access). In the preview, select a Helm installation on the page: the portal warns that it ignored the configured namespace because the value isn't valid. On the Instances & Updates page, the warning shows inside each Helm card. Customers on a published portal never see these warnings, and the portal checks nothing at save time.
+
+The portal resolves mustache values per customer before validation. If the variable resolves to an invalid namespace for a customer, the portal generates that customer's commands without `--namespace` and shows the same warning in preview. If the portal can't resolve the variable at all, for example because the customer has no such license field, it renders an empty value. An empty value means no namespace and no warning.
+
+On `<InstancesAndUpdates>`, `helmNamespace` applies one value to every Helm instance card. It has no effect on Embedded Cluster, KOTS, or kURL cards, and it never creates a namespace. (The `kotsNamespace` and `kurlNamespace` props on `<InstancesAndUpdates>` do something else: they set the Admin Console namespace for KOTS and kURL cards.)
+
+If your application ships multiple Helm charts, you can give each chart its own namespace. Render one `<HelmInstallStep step="install_chart">` per chart, using `charts` to scope each step to a single chart with its own `namespace` value. Repeating a full `<HelmInstallAssets>` per chart also works, but repeats the login, values-file, and preflight steps for every chart and restarts step numbering. `<InstancesAndUpdates>` can't split namespaces by chart, so per-chart namespaces need a custom update page with one `<HelmUpdateAssets charts="..." namespace="..." />` per chart.
+
+##### The `createNamespace` prop {#the-createnamespace-prop}
+
+`<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, and `<HelmAirgapInstallStep>` also accept `createNamespace`, which controls whether the install command includes `--create-namespace`. It only has an effect alongside a non-empty `namespace`, and only on install — `helm upgrade` never creates a namespace. Without a `namespace`, the portal ignores `createNamespace` entirely.
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" createNamespace="false" />
+```
+
+If you omit the prop, or set it to `"true"`, the install command for that namespace includes `--create-namespace`. A customer on a fresh cluster doesn't have to create the namespace first. Whenever a command includes `--create-namespace`, previewing the page shows an advisory that it requires cluster-scoped permission to create namespaces. Like the validation warnings, only you see this advisory — customers never do.
+
+Set `createNamespace="false"` for customers who pre-provision the namespace themselves and scope their install credentials to it. The install sends a namespace-create request to the Kubernetes API server even when the namespace already exists. The API server's RBAC must allow creating namespaces at cluster scope. A customer with narrowly-scoped credentials gets a `Forbidden` error on an otherwise-working install unless you opt out.
+
+Author `createNamespace` as the string `"true"` or `"false"`, the same way you author `namespace`. Values are case-sensitive: the portal treats any other value, including a typo like `"False"`, as unset. The command then defaults to creating the namespace, and the page preview shows a warning that the value wasn't recognized.
 
 #### KOTS and kURL installer pages {#add-kots-or-kurl-installer-pages}
 
@@ -573,7 +618,7 @@ The kURL guide separates an application update from kURL/Kubernetes cluster main
 
 **`<LinuxUpdateAssets />`**: Renders Linux/Embedded Cluster upgrade instructions for the customer's current instance. For air gap upgrades, includes a registry hostname input for image relocation when the customer uses a private registry. Props: `stepNumber`.
 
-**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
+**`<HelmUpdateAssets />`**: Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional), `namespace` (optional). See [Setting a namespace for Helm installs and upgrades](#setting-a-namespace-for-helm-installs).
 
 **`<KotsUpdateAssets />`**: Renders ordered Admin Console application-upgrade guidance. In air gap mode, it loads the selected release through the read-only release-assets path. It renders only the application air gap bundle, and it does not record an update attempt. Props: `stepNumber`, `targetVersionLabel`, `networkMode` (`online` or `airgap`), `guideHref`, `isCurrentVersion`, and `namespace` (optional kotsadm namespace for the reopen command).
 
@@ -636,13 +681,13 @@ In this example, a customer on version 1.5.0 sees the "Upgrading from 1.x" instr
 
 **`<KotsBundles />`**: KOTS-specific support bundle generation instructions for an existing cluster. No props.
 
-Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's Support Bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
+Each of the four support bundle components renders the steps for one installation method and nothing else: no heading and no tab strip of its own. The page is what decides which methods a customer sees. The default template's support bundles page wraps all four in a single [`<Tabs>`](#layout-and-callouts) block, with each tab guarded by the [entitlement](#entitlements) for that installation method. That block does not set `groupId`.
 
 **`<ContactInfo />`**: Displays the support contact information configured in `theme.yaml`. No props.
 
 **`<LicenseDownload />`**: Renders a button that lets customers download their license file. The button appears only for customers whose license enables Embedded Cluster, KOTS, or kURL installations, which are the installation methods that use a license file. Helm customers do not see it. No props.
 
-**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button after their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. You cannot remove the button. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, and `kurlNamespace`. `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
+**`<InstancesAndUpdates />`**: Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button after their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. You cannot remove the button. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, `kurlNamespace`, and `helmNamespace`. `helmNamespace` sets the namespace on every Helm card's upgrade commands. See [Setting a namespace for Helm installs and upgrades](#setting-a-namespace-for-helm-installs). `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
 
 ### Security components
 
@@ -671,7 +716,7 @@ Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` sy
 | `\{\{ channel.slug \}\}` | URL-friendly channel identifier |
 | `\{\{ release.version \}\}` | Current release version |
 | `\{\{ license.* \}\}` | Any field from the license object (e.g. `\{\{ license.id \}\}`, `\{\{ license.expiresAt \}\}`) |
-| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see [Conditionals](#conditionals)) |
+| `\{\{ entitlements.* \}\}` | Any entitlement value, built-in or custom (see [Entitlements](#entitlements)) |
 
 :::note
 `\{\{ release.version \}\}` depends on the customer having reported an active instance. It may be empty for new customers who haven't installed yet. Consider using `\{\{ channel.name \}\}` as a more reliable alternative for version-dependent content.
@@ -862,7 +907,7 @@ Keep the page listed in `toc.yaml` as a normal page entry:
 
 Customers do not see the page until you remove `hidden` or set it to `false`, then re-sync the content.
 
-`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements cannot unhide it.
+`hidden: true` marks unpublished content. It is not a license or entitlement gate. `visible_when` for built-in entitlements, custom license fields, and permissions still works the same way. `hidden: true` takes precedence over `visible_when`. Even if the customer would pass `visible_when`, the page stays unpublished. Entitlements can't make it visible.
 
 If a table of contents entry has a `page` with `hidden: true`, the portal drops that entry and every nested item. Nested items include child pages, nested `helm_chart` items, and `terraform_module` items. This matches `visible_when` on a parent, which also drops the children.
 

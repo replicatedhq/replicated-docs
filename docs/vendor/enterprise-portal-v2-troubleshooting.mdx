@@ -116,6 +116,14 @@ The Enterprise Portal login page surfaces these errors directly to the customer 
 - `saml_invalid_email`: the SAML assertion carried no email address, or one the portal could not use. Confirm that the identity provider releases an email attribute for the user
 - `saml_auth_failed`: a general SAML failure. The portal returns this error both when it starts the login and when it processes the assertion, so it covers configuration problems on either side. Confirm that **SAML Authentication** is enabled for the customer in the Vendor Portal, and that the identity provider metadata URL and signing certificate in the customer's portal team settings are current
 
+## Helm upgrade fails with `"<release>" has no deployed releases` {#helm-upgrade-no-deployed-releases}
+
+`helm upgrade` looks up the release inside a single namespace. When the upgrade commands use a different namespace than the original install, Helm cannot find the release and fails with `has no deployed releases`. This happens when the install page sets `namespace` on the Helm install components but `<InstancesAndUpdates>` has no matching `helmNamespace` (or a custom update page has no matching `namespace` on `<HelmUpdateAssets>`). Set the same namespace on both. See [Setting a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#setting-a-namespace-for-helm-installs).
+
+## Helm install fails with `Forbidden` on `--create-namespace` {#helm-install-forbidden-create-namespace}
+
+An install command that includes `--namespace` also includes `--create-namespace` by default, unless you set `createNamespace="false"`. Creating a namespace requires cluster-scoped RBAC, even when the namespace already exists. A customer whose credentials cover a single namespace gets `Forbidden` from the Kubernetes API server. If your customers pre-provision the namespace and scope their install credentials to it, set `createNamespace="false"` on the Helm install components. See [The `createNamespace` prop](/vendor/enterprise-portal-v2-content#the-createnamespace-prop).
+
 ## Login footer showing Replicated branding
 
 - Customize the login page footer by setting `loginFooterText` and `loginFooterLinks` in your `theme.yaml`

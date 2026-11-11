@@ -12,6 +12,7 @@ CAs
 CIDR
 cidr
 CLI
+CLIs
 CSS
 CVE
 CVEs
@@ -134,3 +135,8 @@ crashloop
 LLM
 LLMs
 redactions
+subtree
+subtrees
+truthy
+falsy
+browsable
