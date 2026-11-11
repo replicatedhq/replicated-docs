@@ -12,6 +12,29 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.20.1
+
+Released on November 11, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.20.1+k8s-1.37</td>
+    <td id="center">2.20.1+k8s-1.36</td>
+    <td id="center">2.20.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.2</td>
+    <td id="center">1.36.6</td>
+    <td id="center">1.35.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.134.2</td>
+  </tr>
+</table>
+
 ## 2.20.0
 
 Released on November 4, 2026
