@@ -78,6 +78,8 @@ To support air gap installations with Embedded Cluster v3:
     ```
     </details>
 
+    Use these template functions only in the HelmChart custom resource. In the Application custom resource `additionalImages` field, list images with their literal upstream references, or the Vendor Portal skips them. See [Use literal image references](/vendor/operator-defining-additional-images#literal-references).
+
 1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image registry using the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function:
 
     ```yaml

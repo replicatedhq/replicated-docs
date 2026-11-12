@@ -54,6 +54,33 @@ spec:
     - registry.replicated.com/my-operator/my-private-image:abd123f
 ```
 
+### Use literal image references {#literal-references}
+
+List each image as the literal, upstream reference that your application uses. Don't use template functions such as `ReplicatedImageName` or `LocalImageName` in `additionalImages`.
+
+You don't need to rewrite image names in `additionalImages`:
+
+* Where images are pushed depends on each customer's environment, such as their own registry or the local registry that Embedded Cluster provides. The installer rewrites and pushes images during installation, so the final name isn't known when the Vendor Portal builds the release.
+* For Helm CLI installations, the Vendor Portal automatically rewrites `additionalImages` to use the Replicated proxy registry in the air gap installation instructions.
+
+If an entry contains a template function, the Vendor Portal skips it:
+
+* **Embedded Cluster, KOTS existing cluster, and kURL installations**: The image isn't included in the `.airgap` bundle. When the Vendor Portal builds the bundle, the release history shows **Release build complete (with warnings)**. Click **View warning** to see the entries that the Vendor Portal skipped.
+* **Helm CLI installations**: The image isn't included in the air gap installation instructions.
+
+In both cases, the release promotes and installs. Air gap installations then fail with an image pull error when the application needs the skipped image.
+
+If your application uses different images depending on configuration, list every image it might need. For example:
+
+```yaml
+spec:
+  additionalImages:
+    # Incorrect: the Vendor Portal skips this entry
+    # - 'repl{{ ReplicatedImageName "quay.io/orgname/operator-worker:v2.1.0" }}'
+    # Correct
+    - quay.io/orgname/operator-worker:v2.1.0
+```
+
 ## Images used only by Replicated installers
 
 A Helm chart or resource that has the `kots.io/installer-only` annotation might also reference an image listed in `additionalImages`. If nothing else in the release references that image, the Vendor Portal omits it from the Helm CLI installation instructions. The `.airgap` bundle for Embedded Cluster, KOTS, and kURL installations still includes the image. This lets you ship images for components that only Replicated installers deploy, such as a database chart that only Embedded Cluster installations need. For more information about the `kots.io/installer-only` annotation, see [Exclude certain images from Helm CLI install instructions](/vendor/enterprise-portal-configure#installer-only).

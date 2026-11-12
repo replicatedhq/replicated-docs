@@ -195,7 +195,7 @@ For Embedded Cluster v3, `additionalImages` is also used to include images in ai
 
 #### Limitations
 
-* The `additionalImages` property doesn't support Go templating.
+* The `additionalImages` property doesn't support Replicated template functions (`repl{{ }}` or `{{repl }}`) or Go templating. Each entry must be a literal image reference, such as `quay.io/orgname/private-image:v1.2.3`. The Vendor Portal doesn't render `additionalImages` entries, so it skips any entry that contains a template function. The image isn't included in the air gap bundle or in the Helm air gap installation instructions. For more information, see [Use literal image references](/vendor/operator-defining-additional-images#literal-references) in _Define additional images_.
 
 #### Example
 
