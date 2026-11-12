@@ -1,0 +1,19 @@
+embedded-cluster/installing-embedded-requirements.mdx
+  s_635195546d21f9::t_25fd23d9e43135 151,153-157,161-164,167,169,171,175
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a78e0f957de25f6754d3eb246fea78707d9849a4",
+  "prompts": {},
+  "sessions": {
+    "s_635195546d21f9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_635195546d21f9",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
