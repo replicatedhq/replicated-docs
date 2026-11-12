@@ -3,6 +3,8 @@ import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
 import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx"
 import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
 import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
+import KotsInstallVersion from "../partials/install/_kots-install-version.mdx"
+import KotsVersionMatch from "../partials/install/_kots-airgap-version-match.mdx"
 import Help from "../partials/kots-cli/_help.mdx"
 
 # install
@@ -10,6 +12,16 @@ import Help from "../partials/kots-cli/_help.mdx"
 Installs the application and the KOTS Admin Console directly to a cluster.
 The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Admin Console, and sets up port forwarding to make the Admin Console accessible on port 8800.
 Alternatively, you can specify the `--port` flag to override the default port.
+
+### KOTS version installed
+
+<KotsInstallVersion/>
+
+For air gap installations:
+
+<KotsVersionMatch/>
+
+To upgrade the Admin Console to match a newer version of the CLI, see [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
 
 ### Usage
 

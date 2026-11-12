@@ -13,6 +13,10 @@ This topic provides an introduction to Replicated Embedded Cluster.
 
 * Embedded Cluster v3 is Beta. The limitations and features are subject to change. For Replicated's definition of Beta, see [Support lifecycle policy](/vendor/policies-support-lifecycle).
 
+* Using headless installation to create multi-node or high availability (HA) clusters from scripts or automation tools isn't supported. A headless installation deploys the application on the first node before other nodes can join. To create a multi-node or HA cluster, install with the Embedded Cluster UI. For more information, see [Install using the CLI (headless)](installing-embedded#install-using-the-cli-headless).
+
+* Repeatable config items aren't supported. For more information, see [Repeatable config items aren't supported](embedded-v3-migrate#repeatable-items) in _Upgrade from Embedded Cluster v2_.
+
 * Some KOTS template functions require Embedded Cluster 3.16.0-beta.1 or later. For more information about these functions and their behavior in Embedded Cluster, see [KOTS template functions](template-functions#kots-template-functions) in _Template Functions for Embedded Cluster (Beta)_.
 
 ## Built-in extensions {#built-in-extensions}
@@ -62,7 +66,7 @@ Extensions install after built-in addons and before application charts. This pro
 
 ## About upgrading with Embedded Cluster
 
-Upgrades can be performed from the CLI on a controller. Alternatively, an opt-in [persistent admin console](embedded-persistent-console) can be installed on a controller to give end users a browser-driven upgrade experience without SSH access. The persistent admin console is not enabled by default.
+Upgrades can be performed from the CLI on a controller, or from the browser in the [admin console](embedded-persistent-console). The admin console is available automatically after installation and gives end users a browser-driven upgrade experience without SSH access.
 
 For more information, see [Perform updates in embedded clusters](updating-embedded).
 
@@ -138,7 +142,7 @@ Embedded Cluster host preflight checks have the following limitations:
 
 ## Multi-node installations
 
-Embedded Cluster supports installations in multi-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI, the CLI, or the [external API](embedded-cluster-external-api).
+Embedded Cluster supports installations in multi-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI, the CLI, or the [Embedded Cluster API](embedded-cluster-external-api).
 
 Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
 

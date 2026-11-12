@@ -12,6 +12,118 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.19.1-beta.1
+
+Released on November 9, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.19.1-beta.1+k8s-1.37</td>
+    <td id="center">3.19.1-beta.1+k8s-1.36</td>
+    <td id="center">3.19.1-beta.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-3-19-1-beta-1}
+* Makes the support bundle tile full width when the application does not define any links.
+
+### Bug Fixes {#bug-fixes-3-19-1-beta-1}
+* Creates `/var/lib/ec/kubelet` as a symlink pointing to `/var/lib/embedded-cluster/k0s/kubelet` when migrating from Embedded Cluster v2 to v3 for forward compatibility.
+* Migrates containerd configuration files from version 2 to version 3 when upgrading from Kubernetes 1.35 to 1.36, which use containerd v1 and v2, respectively.
+* Disables the Back button on installation setup and configuration pages while forms are loading or settings are being applied.
+* Fixed installation and upgrade failures when an application chart renders no Kubernetes resources.
+* Fixed support bundles exposing license IDs and installer passwords from captured command lines.
+
+## 3.19.0-beta.1
+
+Released on November 3, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.19.0-beta.1+k8s-1.37</td>
+    <td id="center">3.19.0-beta.1+k8s-1.36</td>
+    <td id="center">3.19.0-beta.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+### New Features {#new-features-3-19-0-beta-1}
+* Adds support for Kubernetes 1.37 and drops support for 1.34.
+
+### Bug Fixes {#bug-fixes-3-19-0-beta-1}
+* Fixed multi-node air gap upgrades failing when using a Bring Your Own (BYO) registry.
+* Installation and restore now report a clear error when the data directory contains non-ASCII characters, instead of failing later during Kubernetes startup.
+* Fixes a bug that could result in Helm release to not be tracked by Embedded Cluster v3 after migrating from v2.
+
+## 3.18.1-beta.1
+
+Released on November 2, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.18.1-beta.1+k8s-1.36</td>
+    <td id="center">3.18.1-beta.1+k8s-1.35</td>
+    <td id="center">3.18.1-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+### Improvements {#improvements-3-18-1-beta-1}
+* Updated the default bundled Kubernetes to patch release 1.36.5 (k0s v1.36.5+k0s.0).
+
+### Bug Fixes {#bug-fixes-3-18-1-beta-1}
+* Fixes a bug that could leave `local-artifact-mirror` system service running after Embedded Cluster v2 to v3 migration.
+* Fixed console startup failures showing an unexplained error number instead of a readable message and retry option.
+* Fixes a bug that could cause console to not be available on some controller nodes.
+
+## 3.18.0-beta.1
+
+Released on October 30, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.18.0-beta.1+k8s-1.36</td>
+    <td id="center">3.18.0-beta.1+k8s-1.35</td>
+    <td id="center">3.18.0-beta.1+k8s-1.34</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.36.4</td>
+    <td id="center">1.35.8</td>
+    <td id="center">1.34.11</td>
+  </tr>
+</table>
+### New Features {#new-features-3-18-0-beta-1}
+* Adds support for adding a custom root CA when configuring S3 compatible backup location.
+
+### Improvements {#improvements-3-18-0-beta-1}
+* When upgrading multi-node Embedded Cluster v2 to v3, user is no longer required to copy upgrade bundles manually between nodes.
+
+### Bug Fixes {#bug-fixes-3-18-0-beta-1}
+* Fixes a bug that could cause Velero configuration to be lost during Embedded Cluster v2 to v3 migration.
+* Fixed the OpenEBS provisioner health check to correctly detect an unhealthy provisioner.
+* Fixes a bug that could cause the config diff page to show an error.
+* Fixed application preflight checks packaged inside Helm charts being skipped during installation and upgrades.
+* Fixed join and upgrade bundles being readable by other users on the host where they were created.
+
 ## 3.17.0-beta.1
 
 Released on October 29, 2026

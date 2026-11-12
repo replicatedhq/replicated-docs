@@ -3,6 +3,7 @@ import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
 import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+import KotsInstallVersion from "../partials/install/_kots-install-version.mdx"
 import InstallModeFixed from "../partials/install/_install-mode-fixed.mdx"
 
 # Online installation in existing clusters with KOTS
@@ -43,7 +44,7 @@ To install KOTS and the application in an existing cluster:
     
     <AppNameUI/>
   
-    * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.  
+    * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
     **Examples:**
 
@@ -56,6 +57,8 @@ To install KOTS and the application in an existing cluster:
     curl https://kots.io/install | bash
     kubectl kots install application-name --app-version-label=3.0.1
     ``` 
+
+    <KotsInstallVersion/>
 
 1. <InstallCommandPrompts/>
 

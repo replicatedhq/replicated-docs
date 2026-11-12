@@ -20,6 +20,34 @@ This topic lists the installation requirements for Replicated Embedded Cluster. 
 
 <EmbeddedClusterHostConfig/>
 
+## cgroup v2 {#cgroup-v2}
+
+Embedded Cluster v3 runs Kubernetes 1.35 or later, which requires cgroup v2 and a Linux kernel of 4.5 or later. The host preflight checks fail on a host that uses cgroup v1.
+
+Most current distributions use cgroup v2 by default, including RHEL 9 and later, Ubuntu 22.04 and later, and Debian 12 and later. RHEL 8 and other Enterprise Linux 8 distributions, such as Rocky Linux 8, AlmaLinux 8, and Oracle Linux 8, use cgroup v1 by default. You can switch these hosts to cgroup v2. Ubuntu 20.04 also uses cgroup v1 by default and has reached the end of standard support, so move those hosts to Ubuntu 22.04 or later. Hosts with a kernel older than 4.5, such as RHEL 7, can't use cgroup v2.
+
+To check which version a host uses, run:
+
+```bash
+stat -fc %T /sys/fs/cgroup/
+```
+
+The command returns `cgroup2fs` for cgroup v2 and `tmpfs` for cgroup v1.
+
+To switch an Enterprise Linux 8 host to cgroup v2:
+
+1. Add the `systemd.unified_cgroup_hierarchy=1` kernel argument:
+
+    ```bash
+    sudo grubby --update-kernel=ALL --args="systemd.unified_cgroup_hierarchy=1"
+    ```
+
+1. Reboot the host.
+
+1. Run the `stat` command again and confirm that it returns `cgroup2fs`.
+
+On a multi-node cluster, switch every node, and reboot one node at a time.
+
 ## Port requirements
 
 <EmbeddedClusterPortRequirements/>
@@ -55,7 +83,7 @@ Embedded Cluster v3 disables the `update-prober` feature, which checks `updates.
 
 ## About firewalld configuration
 
-When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens the required ports on the host. No additional configuration is necessary.
+When Firewalld runs in the installation environment, Embedded Cluster modifies the Firewalld config to allow traffic over the pod and service networks. It also opens ports 2380, 6443, 9443, and 10250/TCP and port 4789/UDP. Embedded Cluster does not open the console and API port (30000/TCP by default) or ports 9091, 10249, and 10256/TCP. Create firewall openings for those ports yourself. See [Port requirements](#port-requirements).
 
 Embedded Cluster adds the following rule to Firewalld:
 

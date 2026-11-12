@@ -1,3 +1,5 @@
+import V1beta3Recommendation from "../partials/preflights/_v1beta3-recommendation.mdx"
+
 # Use Helm templates in specifications
 
 You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles for Helm installations.
@@ -9,8 +11,10 @@ Helm templates can be useful when you need to:
 
 You can also use Helm templating with the Troubleshoot template functions for the `clusterPodStatuses` analyzer. For more information, see [Helm and Troubleshoot Template Example](#troubleshoot).
 
+<V1beta3Recommendation/>
+
 :::note
-The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret, which works with KOTS, kURL, and Embedded Cluster v2. KOTS v1.134.0 and later and Embedded Cluster v2 2.19.16 and later also support a release-level `troubleshoot.sh/v1beta3` spec. Embedded Cluster v3 requires a `troubleshoot.sh/v1beta3` application preflight spec, which Embedded Cluster renders through Helm directly, so you do not wrap it in a Secret. HostPreflight and support bundle specs are unaffected. See [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+The preflight examples on this page use a `troubleshoot.sh/v1beta2` spec wrapped in a Secret. To use them with `v1beta3`, change the Preflight API version inside the Secret and keep the Secret wrapper. For more information, see [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3) in _Upgrade from Embedded Cluster v2_.
 :::
 
 ## Helm template example

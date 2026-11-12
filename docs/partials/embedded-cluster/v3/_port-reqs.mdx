@@ -28,25 +28,12 @@ For single-node installations, ensure that there are no other processes using th
 * 10250/TCP
 * 10256/TCP
 
-#### Embedded Cluster UI port
+#### Embedded Cluster console and API port
 
-Create a firewall opening for port 30080/TCP.
-The Embedded Cluster UI requires that port 30080/TCP is open and available.
+The Embedded Cluster daemon serves the admin console and its HTTP API on port 30000/TCP on every node. Users open the admin console in a browser on this port. Nodes use it to join the cluster and to receive streamed upgrades, and external automation uses it for headless installs and programmatic node joins.
 
-Additionally, port 30080 must be accessible by nodes joining the cluster.
+Create a firewall opening for port 30000/TCP so that users can reach the admin console. For multi-node installations, also open this port between nodes.
 
-If port 30080 is occupied, you can select a different port for the Admin Console during installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install).
+If port 30000 is occupied, you can select a different port with `--api-port` during installation. The port cannot be changed after installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install) and [Embedded Cluster API](/embedded-cluster/v3/embedded-cluster-external-api).
 
-#### Embedded Cluster API port
-
-The Embedded Cluster daemon serves an HTTP API on port 30081/TCP on every controller node. Nodes use it to join the cluster and to receive streamed upgrades from the primary controller, and external automation uses it for headless installs and programmatic node joins.
-
-For multi-node installations, create firewall openings between nodes for port 30081/TCP. Single-node installations do not need a firewall opening for this port unless you drive the API from outside the host.
-
-If port 30081 is occupied, you can select a different port for the API during installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install) and [External API](/embedded-cluster/v3/embedded-cluster-external-api).
-
-#### LAM port
-
-The Local Artifact Mirror (LAM) requires that port 50000/TCP is open and available.
-
-If port 50000 is occupied, you can select a different port for the LAM during installation. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install).
+In Embedded Cluster versions earlier than 3.17.0-beta.1, the installer UI and admin console use port 30080/TCP and the API uses port 30081/TCP. When you upgrade a cluster that uses the default ports to 3.17.0-beta.1 or later, the console and API move to port 30000, so open port 30000/TCP before you upgrade. A cluster installed with a custom `--api-port` keeps that port for both the console and the API.

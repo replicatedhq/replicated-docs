@@ -9,6 +9,135 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.11-0
+
+Released on November 11, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-11-0}
+* Enterprise Portal applies the same license, customer, and channel conditions to an asset download as it does to the page that links the file. Those conditions also apply to files included in a PDF export.
+## v2026.11.10-1
+
+Released on November 10, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-10-1}
+* Support bundle Resources tab no longer shows blank rows or inflated counts.
+## v2026.11.09-5
+
+Released on November 9, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-09-5}
+* Fixes a bug that could result in error 500 when downloading an Embedded Cluster v3 release with templated image names in the `additionalImages` list.
+## v2026.11.09-3
+
+Released on November 9, 2026
+
+### Improvements {#improvements-v2026-11-09-3}
+* Release linting and promotion now fail when an Embedded Cluster v3 release includes Embedded Cluster v2 settings that v3 doesn't support. See [Upgrade from Embedded Cluster v2](/embedded-cluster/v3/embedded-v3-migrate).
+## v2026.11.09-1
+
+Released on November 9, 2026
+
+### New Features {#new-features-v2026-11-09-1}
+* Filter a channel's release history to show only required releases. Access required-release and demoted-release filters from the filter icon inside the version-label search field.
+## v2026.11.06-0
+
+Released on November 6, 2026
+
+### Improvements {#improvements-v2026-11-06-0}
+* The Ask AI capability in the new Enterprise Portal now uses the documentation most relevant to the question instead of truncating pages in load order.
+
+## v2026.11.05-0
+
+Released on November 5, 2026
+
+### New Features {#new-features-v2026-11-05-0}
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions` on the customer's Enterprise Portal domain, authenticated with a service account token) now resolves [entitlement](/vendor/enterprise-portal-v2-content#entitlements) template variables in the `namespace` prop of Helm install components, such as `namespace="{{entitlements.helm_namespace}}"`, when it builds the Helm commands it returns. Previously, the API ignored these props. If the variable references a Password license field, the API masks the value, leaves `--namespace` out of the command, and returns an invalid-namespace warning, so the secret never appears in a command. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+
+### Bug Fixes {#bug-fixes-v2026-11-05-0}
+* Fixes an issue where the Enterprise Portal license API returned the unmasked values of Password license fields that are hidden from the customer. The portal never displayed these values. Hidden Password fields are now masked the same as visible ones.
+## v2026.11.04-5
+
+Released on November 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-04-5}
+* Air gap instances on the customer page in Vendor Portal now show as air gap instead of Inactive status.
+## v2026.11.04-3
+
+Released on November 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-04-3}
+* Enterprise Portal release notifications now respect customer release pins and the license's assigned channel.
+## v2026.11.04-2
+
+Released on November 4, 2026
+
+### New Features {#new-features-v2026-11-04-2}
+* Vendors can view a customer's release webhook configuration, disabled status, and recent deliveries on the customer's Enterprise Portal access page.
+## v2026.11.04-1
+
+Released on November 4, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-04-1}
+* Fixed Enterprise Portal sending a new login email each time an expired login link was opened, which let email link scanners trigger repeated login emails.
+## v2026.11.03-6
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-6}
+* Archived customers no longer receive Enterprise Portal new-release emails, webhooks, or push refreshes.
+## v2026.11.03-5
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-5}
+* The Enterprise Portal Content tab now warns when customers would see an empty documentation homepage, including when content sync succeeds but the configured home page is missing.
+
+## v2026.11.03-4
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-4}
+* Improved PDF exports from Enterprise Portal (New Portal) so your customers can download more complete, readable documentation. Exports preserve tabbed instructions, code formatting, table headers, callouts, and supported images, and provide links to portal features that require live data.
+
+## v2026.11.03-3
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-3}
+* Fixes a bug that could cause `activeSlug` to be missing from the channel object in the [getcustomer](https://replicated-vendor-api.readme.io/reference/getcustomer) API response.
+
+## v2026.11.03-2
+
+Released on November 3, 2026
+
+### New Features {#new-features-v2026-11-03-2}
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) applies the `namespace` and `createNamespace` props from the Helm install components on your Enterprise Portal docs page. Automation receives the same `helm install` and preflight commands that customers see in the portal. A valid `namespace` prop overrides the `?namespace=` query parameter, and `createNamespace="false"` removes `--create-namespace`. The API ignores namespace props that use template variables, such as `namespace="{{entitlements.namespace}}"`. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+
+## v2026.11.03-0
+
+Released on November 3, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-03-0}
+* The new Enterprise Portal now refreshes release availability and air gap build results without a page reload, including failed builds, rebuilds, and release demotion or restoration.
+
+## v2026.11.02-2
+
+Released on November 2, 2026
+
+### Improvements {#improvements-v2026-11-02-2}
+* In the Enterprise Portal, Ask AI now knows what the portal controls on a docs page do, including how a customer uploads a support bundle, so answers can cover those controls.
+## v2026.11.02-0
+
+Released on November 2, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-02-0}
+* Enterprise Portal support bundle uploads now confirm the upload without prematurely claiming an air gap instance record was created. The confirmation remains visible until dismissed.
+## v2026.10.30-5
+
+Released on October 30, 2026
+
+### Bug Fixes {#bug-fixes-v2026-10-30-5}
+* Fixed unreadable webhook event payloads in light mode.
 ## v2026.10.30-2
 
 Released on October 30, 2026
@@ -33,6 +162,13 @@ Released on October 29, 2026
 
 ### Improvements {#improvements-v2026-10-29-4}
 * Manage customer webhook endpoints, signing secrets, test deliveries, and delivery history in Enterprise Portal. Receive signed release-availability webhooks and use them to drive installation-specific upgrade automation.
+## v2026.10.29-1
+
+Released on October 29, 2026
+
+### New Features {#new-features-v2026-10-29-1}
+* The `<InstancesAndUpdates>` Enterprise Portal component accepts a new `helmNamespace` prop. When set, the `helm upgrade` commands on Helm instance cards include `--namespace`, so customers who installed into a specific namespace get working upgrade commands on the Instances and Updates page. Upgrade commands never include `--create-namespace`, and KOTS and kURL cards are unaffected. See [Portal components](/vendor/enterprise-portal-v2-content#portal-components) in _Customize Portal Content_.
+
 ## v2026.10.28-1
 
 Released on October 28, 2026
