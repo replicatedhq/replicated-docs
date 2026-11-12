@@ -256,6 +256,40 @@ To reset a machine:
 
 1. Reboot the machine.
 
+### Replace a controller node whose machine is deleted {#replace-lost-controller}
+
+If you delete the machine for a controller node in an HA cluster before you remove the node from the cluster, you cannot run `reset` on it. Deleting the Kubernetes Node object with `kubectl delete node` does not fix this. The deleted controller stays in the etcd member list, and the cluster still counts it toward quorum. Joining a replacement controller then fails with an error like `etcdserver: unhealthy cluster`, because etcd does not add a member while doing so would risk losing quorum. For more information about this error, see [Joining a replacement controller fails with `etcdserver: unhealthy cluster`](embedded-troubleshooting#replace-lost-controller) in _Troubleshoot Embedded Cluster_.
+
+To replace the controller, remove the deleted controller with `remove-node`, which also removes it from etcd, and then join the replacement:
+
+1. SSH onto a surviving controller node. The remaining controller nodes must be healthy and still form a quorum. For example, in a three-controller cluster, two controllers must be up.
+
+1. Get the name of the deleted controller. The etcd member list shows the node names of all controllers, including the deleted one:
+
+    ```bash
+    sudo ./APP_SLUG shell -c "k0s etcd member-list"
+    ```
+    Where `APP_SLUG` is the unique slug for the application.
+
+1. Remove the deleted controller from the cluster:
+
+    ```bash
+    sudo ./APP_SLUG remove-node NODE_NAME
+    ```
+    Where `NODE_NAME` is the node name of the deleted controller from the previous step.
+
+    If the command finds Pods stuck in `Terminating` or PersistentVolumeClaims (PVCs) bound to local volumes on the deleted node, it lists them and exits. To delete them and continue, run the command again with `--force`. Deleting these PVCs discards the local data that was on the deleted node.
+
+    For more information, see [remove-node](embedded-cluster-remove-node).
+
+1. If the replacement machine previously ran Embedded Cluster, reset it. If the machine is new, skip this step.
+
+    ```bash
+    sudo ./APP_SLUG reset --force
+    ```
+
+1. Generate a new join bundle and join the replacement controller. See [Join nodes](#add-nodes) in this document. Do not reuse a join bundle that you created before you deleted the machine, because it can still point at the deleted node.
+
 ### Remove a multi-node cluster
 
 To remove an entire multi-node cluster, remove each node with `remove-node`, starting with the worker nodes and ending with the controller nodes. On the last remaining controller node, run `reset` directly, because there is no other controller left to run `remove-node` from. Optionally, reset each machine that you remove so that you can reuse it. See [Reset a machine](#reset-a-node) in this document.
