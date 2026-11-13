@@ -89,7 +89,7 @@ From the **Enterprise Portal** section, you can:
 * View the number of support bundles uploaded to the Enterprise Portal
 * Open the **Delivery** row to see when the customer first accessed the Enterprise Portal and the timestamps of their first and most recent software pulls
 
-For more information about the Enterprise Portal, see [About the Classic Enterprise Portal](/vendor/enterprise-portal-about).
+For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-v2-about).
 
 ### Instances
 
