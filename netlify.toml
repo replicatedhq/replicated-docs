@@ -568,3 +568,6 @@
 # Redirects To the Release Notes Section
 ###################################################
 
+
+[[context.production.plugins]]
+  package = "./scripts/netlify/docs-release-refresh"
