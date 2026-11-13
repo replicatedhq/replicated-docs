@@ -141,3 +141,43 @@ Embedded Cluster opens the following ports in the default zone:
 <ComplianceScans/>
 
 Embedded Cluster v3 also links `/var/lib/ec/kubelet` to `DATA_DIR/k0s/kubelet`, so scanners might report the same kubelet files under `/var/lib/ec/kubelet`.
+
+## Secrets at rest {#secrets}
+
+Limit root and `sudo` access on each host to the people who administer the application, and restrict access to backup storage. Anyone with root access to a host can read every secret on it, along with the application's data.
+
+Secrets on the hosts and in backups are not encrypted at rest. On a single host, the encryption key would have to be stored on that same host, so encryption would not keep secrets from anyone with root access. If your security policy requires encryption at rest, use disk encryption on the hosts and the storage provider's encryption for backups.
+
+Secrets include the license, the application's configuration values (including generated passwords), registry and proxy credentials, the admin console password hash, and TLS private keys.
+
+In this section, `DATA_DIR` is the Embedded Cluster data directory. The default is `/var/lib/APP_SLUG`. You can change it with the `--data-dir` flag of the [install command](embedded-cluster-install).
+
+### Kubernetes Secrets
+
+Embedded Cluster keeps most secrets in Kubernetes Secrets, including the license, the application's configuration values and the values used for each earlier deployment, registry and proxy credentials, and the admin console credentials. Kubernetes stores Secrets in its datastore on controller nodes, under `DATA_DIR/k0s`. Embedded Cluster does not configure Kubernetes encryption at rest for Secrets. For more information about encrypting Kubernetes Secrets at rest, see [Encrypting Confidential Data at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) in the Kubernetes documentation.
+
+### Files that Embedded Cluster writes on the host
+
+Some secrets are also kept in files on the host, so that components can use them when Kubernetes isn't running. Starting in 3.20.0, Embedded Cluster makes these files readable only by root:
+
+* `DATA_DIR` on controller nodes holds the admin console password hash and the key that signs Embedded Cluster API tokens, so that you can log in to the admin console when Kubernetes isn't running. `DATA_DIR/support` holds a copy of the application's support bundle redaction rules, which can include sensitive values.
+* `/etc/embedded-cluster` holds the admin console TLS private key on controller nodes, and the node's own TLS private key on worker nodes.
+* `/etc/k0s/containerd.d` holds the registry credentials that the container runtime uses to pull images: `registry-auth.toml` for the Replicated registry and proxy registry, `byo-registry-auth.toml` for a registry you provide, and `embedded-registry.toml` for the air gap registry. `/etc/k0s/containerd/certs.d` holds the TLS client key for a registry you provide, if you configured one.
+* `/etc/systemd/system` holds `http-proxy.conf` drop-in files for the Embedded Cluster and Kubernetes services. They contain proxy URLs, including proxy credentials if you configured them.
+* `DATA_DIR/tmp` holds temporary files, such as the restore settings during a restore. Embedded Cluster deletes them when it finishes, and removes any that are left behind the next time it starts.
+
+During installation, before Kubernetes is running, Embedded Cluster keeps the license and configuration values in `DATA_DIR/revisions`. It deletes these files after it saves the values in Kubernetes Secrets.
+
+Embedded Cluster does not delete files that you provide, such as the license file or a configuration values file that you pass to the install command. Delete these files or restrict access to them after installation.
+
+### Files left on a node after it joins or upgrades
+
+To add or upgrade a node, you run commands on the node that download a `.tar.gz` file into the current directory and extract it. Join and upgrade bundles contain the Embedded Cluster binaries and installation settings that aren't secret. A join bundle also contains a token that lets a host join the cluster with the roles you selected. Starting in 3.20.0, the token expires after one hour by default. In earlier versions, the default is 24 hours. The joining node uses the token to get the credentials it needs from the cluster.
+
+Join bundles that the Embedded Cluster CLI creates with `create-join-bundle` can be read only by root. A bundle you download with the `curl` command gets your default file permissions, so restrict access to it until the join token expires.
+
+When `node join` or `node upgrade` succeeds, it removes the files it extracted, but not the `.tar.gz` file. Delete the `.tar.gz` file after the node joins or upgrades.
+
+### Backups
+
+When disaster recovery is configured, backups include Kubernetes Secrets, both the application's own Secrets and the Secrets that Embedded Cluster uses to restore the installation. Those hold the license, the application's configuration values, the admin console password hash and TLS private key, and installation settings, including registry and proxy credentials. For file-system backups, the repository password protects the volume data in the backup repository. It does not protect the Kubernetes resources, so these Secrets are stored in the backup storage without encryption. Restrict access to the backup storage, and use the storage provider's encryption if your security policy requires backups to be encrypted. For more information about the repository password, see [Preserve the repository password](embedded-disaster-recovery-v3#preserve-the-repository-password) in _Back up and restore Embedded Cluster v3_.
