@@ -4,23 +4,22 @@
 The Enterprise Portal is Beta and is available to all vendors. Some capabilities might require additional access.
 :::
 
-The Enterprise Portal gives your customers one central place to view their install and upgrade instructions for each version of your software, set up their environment, manage their team, and get troubleshooting support by uploading support bundles.
+The Enterprise Portal is where your customers install, update, secure, and get support for your application. Each customer signs in to a portal with your branding and sees only what applies to their license and channel. That includes install instructions generated for their environment, their running instances and available updates, security reports, release history, and support bundle uploads.
 
-By connecting your own GitHub repo, you control the content your customers see. You can serve versioned documentation tied to your releases, auto-generate Helm chart reference docs, customize branding, and distribute Terraform modules through a license-gated proxy registry.
+The portal works out of the box from Replicated's content template, with no content to write. You keep the template in a GitHub repository you control, so your documentation, navigation, and branding are versioned alongside your releases. Customize it only when you want the portal to look and read more like your own product.
 
-Content is driven by entitlements and channel assignment, so each customer sees only what applies to them.
+If you already run your own customer portal, you can use the Enterprise Portal headless instead. The [Vendor API](/vendor/enterprise-portal-v2-vendor-api-automation) and the [customer service account API](/vendor/enterprise-portal-v2-service-account-automation) provide installation instructions, update instructions, and artifact downloads without sending customers to the portal UI, and they don't require a GitHub repository.
 
 ## What your customers can do
 
-- **Install and upgrade**: Step-by-step installation instructions for Helm, Embedded Cluster (Linux), KOTS, and kURL. The default content template includes dedicated KOTS and kURL install pages. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
-- **Automate installs and upgrades**: Service account API endpoints let customers create install profiles, fetch structured instructions, and download artifacts from CI/CD systems, including KOTS and kURL when those install types are entitled. For more information, see [Service account automation](/vendor/enterprise-portal-v2-service-account-automation).
-- **Manage instances**: View all deployed instances and check for available updates. Helm and Embedded Cluster instances expand into inline CLI instructions; KOTS and kURL instances expand into guided Admin Console application-upgrade steps. For KOTS and kURL, see [KOTS and kURL customers](#kots-and-kurl-customers).
-- **Download install artifacts**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal, including versioned install and update artifacts for KOTS and kURL air gap instances. Available artifacts vary by install method and license entitlements
-- **Access security data**: Review CVE reports, filter to fixable vulnerabilities, view per-instance upgrade recommendations, and download SBOMs. Available for Helm and Embedded Cluster installs when Security Center is enabled
-- **View release history**: Browse release notes and track what's changed between versions
-- **Upload support bundles**: Generate and upload diagnostic bundles for faster troubleshooting
-- **Manage their team**: Invite users, create service accounts, and configure SAML SSO
-- **Download assets**: Access vendor-provided files (scripts, checklists, configuration templates) gated by entitlements
+- **Install and upgrade**: Step-by-step installation instructions for each install method the customer's license allows, such as Helm, Embedded Cluster, KOTS, and kURL.
+- **Automate installs and upgrades**: Service account API endpoints let customers create install options, fetch structured instructions, and download artifacts from CI/CD systems, including KOTS and kURL when those install types are entitled. For more information, see [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
+- **Manage instances**: View all deployed instances and check for available updates. Helm and Embedded Cluster instances expand into inline CLI instructions. KOTS and kURL instances expand into guided Admin Console application-upgrade steps.
+- **Download install artifacts and files**: Download air gap bundles, Helm chart tarballs, and CLI tools directly from the portal, including versioned install and update artifacts for KOTS and kURL air gap instances. Available artifacts vary by install method and license entitlements. Customers can also download files you provide, such as scripts, checklists, and configuration templates, gated by entitlements.
+- **Access security data**: Review CVE reports, filter to fixable vulnerabilities, view per-instance upgrade recommendations, and download SBOMs. Available for Helm and Embedded Cluster installs when Security Center is enabled.
+- **View release history**: Browse release notes and track what's changed between versions.
+- **Upload support bundles**: Generate and upload diagnostic bundles for faster troubleshooting.
+- **Manage their team**: Invite users, create service accounts, configure SAML SSO, and register a release webhook.
 
 ## What's new
 
@@ -28,11 +27,12 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 
 ### New compared to the Classic Enterprise Portal
 
-- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow install instructions, and download air gap artifacts. The default content template includes dedicated KOTS and kURL install pages. These customers previously used the separate Download Portal. For more information, see [KOTS and kURL customers](#kots-and-kurl-customers).
+- **KOTS and kURL support**: Serves KOTS and kURL customers directly in the portal. They can view instances, browse versions, follow install instructions, and download air gap artifacts. The default content template includes dedicated KOTS and kURL install pages, shown only to customers whose license enables KOTS or kURL. These customers previously used the separate Download Portal.
 - **Content repo driven**: You manage all portal content (pages, navigation, branding) through a GitHub repo you control, not through Vendor Portal UI forms
 - **MDX components**: Interactive, customer-aware components (install commands, version selectors, upgrade paths) that adapt to each customer's license and instance state
 - **Versioned docs**: Keep different content for different releases in Git branches. Each release on a customer's channel shows the content from the branch it resolves to, so you only create a branch when your docs change
 - **Service account automation**: Customers automate install and upgrade workflows with service account tokens, aided by a built-in API reference and workflow guide
+- **Release webhooks**: Customers can register a webhook that receives a `release.available` event when you promote a release with notifications turned on, so their pipelines can start upgrades without polling
 - **Local preview**: `replicated enterprise-portal preview` lets you preview the full portal locally with live reload
 - **Helm chart reference**: Auto-generated from your promoted releases with AI-enhanced descriptions
 - **Terraform module distribution (Alpha)**: License-gated module registry with native `terraform init` integration (premium feature, available by request)
@@ -42,7 +42,7 @@ The new Enterprise Portal is a complete rebuild of the customer portal experienc
 Customers moving from the Download Portal gain the same content and automation capabilities. The Download Portal already shared KOTS and kURL artifacts. The Enterprise Portal also generates KOTS and kURL **install** CLI commands (KOTS air gap remains a documented procedure with placeholders). For upgrades, it provides target-aware Admin Console guidance and air gap application bundles rather than generating KOTS or kURL **upgrade** CLI commands in the portal UI. It also adds the following, which the Download Portal has no equivalent for:
 
 - **Accounts and teams**: Individual user sign-in through magic link, email invitation, or SAML SSO, replacing the Download Portal's shared password, plus multi-user team management
-- **Instance and update management**: The Instances & Updates page shows deployed instances and detects available updates. Helm and Embedded Cluster cards expand into inline CLI steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps, including the selected application bundle for entitled air gap customers. For details, see [KOTS and kURL customers](#kots-and-kurl-customers). The Download Portal has no instance concept.
+- **Instance and update management**: The Instances & Updates page shows deployed instances and detects available updates. Helm and Embedded Cluster cards expand into inline CLI steps. KOTS and kURL cards expand into guided Admin Console application-upgrade steps, including the selected application bundle for entitled air gap customers. For details, see [KOTS and kURL instances](/vendor/enterprise-portal-v2-use#kots-and-kurl-instances) in _Log in to and use the Enterprise Portal_. The Download Portal has no instance concept.
 - **Support bundle uploads**: Customers generate and upload support bundles for troubleshooting directly from the portal
 
 ## Current limitations {#current-limitations}
@@ -54,51 +54,19 @@ Customers moving from the Download Portal gain the same content and automation c
 
 ## Requirements
 
-Enterprise Portal uses a GitHub App integration to sync content from your repo. The App has read-only access and never writes to or modifies your repositories. You must have a GitHub organization. GitLab, Bitbucket, and other git providers are not supported.
+Enterprise Portal uses a GitHub App integration to sync content from your repo. The App has read-only access and never writes to or modifies your repositories. You must have a GitHub organization. GitLab, Bitbucket, and other git providers are not supported. The headless APIs don't require a GitHub repository.
 
-The new Enterprise Portal is available to all teams. If your team uses the Classic Enterprise Portal, go to **Enterprise Portal** in the Vendor Portal and select **New Portal** to set it up. Contact your Replicated account representative if you do not see it.
+The new Enterprise Portal is available to all teams. If your team uses the Classic Enterprise Portal, go to **Enterprise Portal** in the Vendor Portal and select **New Portal** to set it up.
 
 Some Enterprise Portal capabilities require additional access:
 
-* Customer email customization
-* Security Center
+* Customer email customization. For more information, see [Customize customer emails](/vendor/enterprise-portal-v2-emails).
 * Terraform module distribution (Alpha), available by request to teams on the Business or Enterprise pricing plan
 
-## For vendors already using the Classic Enterprise Portal
+## Move customers to the new Enterprise Portal
 
-If your team already uses the Classic Enterprise Portal, you can adopt the new Enterprise Portal incrementally. Run both portals side by side, then move customers over individually or all together.
+If your team already uses the Classic Enterprise Portal or the Download Portal, you can adopt the new Enterprise Portal incrementally and run the portals side by side. For how to move customers, plan for the change in portal address, and move KOTS and kURL customers, see [Give customers access to the new Enterprise Portal](/vendor/enterprise-portal-v2-invite#give-customers-access) in _Manage customer access_.
 
-The new Enterprise Portal runs at a different domain (`{appSlug}.enterpriseportal.app`) than Classic (`get.replicated.com/{appSlug}/...`). Both portals share the same backend, so customer data, licenses, and instance information are consistent across both.
+### KOTS and kURL customers {#kots-and-kurl-customers}
 
-### How to get started {#how-to-get-started}
-
-1. **Run both portals side by side.** The new Enterprise Portal is already available to your team alongside the Classic Enterprise Portal. In the Vendor Portal, go to **Enterprise Portal** and select **New Portal** to set it up. Customers continue using their current portal until you move them.
-1. **Connect a content repo.** Follow the setup steps in [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo). Connecting a repo has zero effect on any customer's portal version. No customer sees the new portal until you explicitly switch them.
-1. **Test it yourself.** Use the local CLI preview (`replicated enterprise-portal preview`) or open the new portal URL directly to see how your content renders. The Vendor Portal also has a "Login as customer" button on each customer's Enterprise Portal access tab.
-1. **Move individual customers.** On the customer's **Enterprise Portal access** tab, set **Portal Version** to **Use new Enterprise Portal for this customer**. This affects only that customer. If the customer doesn't have Enterprise Portal access yet, turn on **Enable Enterprise Portal for this customer** first. The Portal Version control only appears after access is on for that customer, either through their own toggle or through the app-level **Enable Enterprise Portal for all customers** override.
-1. **Move customers back if needed.** Set Portal Version back to Classic at any time. The customer immediately returns to the Classic experience.
-1. **Move everyone at the same time, if you don't need a gradual rollout.** On **Enterprise Portal > Customer Access**, turn on **Enable Enterprise Portal for all customers** to move every customer, including those on KOTS or kURL, off the Download Portal immediately. This doesn't change any customer's individual access or Portal Version setting — it overrides the result while it's on, and turning it back off returns each customer to their individual setting.
-
-### Vendor Portal view vs. customer portal version
-
-When both portals are running for your team, **New Portal** / **Classic Portal** buttons appear in Vendor Portal. They are at the top of the main Enterprise Portal settings area. This is separate from any individual customer's tab. These buttons switch which version of Enterprise Portal settings you see and configure as a vendor. They have no effect on which portal any customer sees. To change a specific customer's portal, go to that customer's **Enterprise Portal access** tab and use their **Portal Version** setting instead.
-
-### Portal coexistence
-
-You can run the Download Portal and the new Enterprise Portal side by side, with different customers on each, indefinitely. Treat this as an ongoing state, not only a step toward a full migration.
-
-For a single customer, though, these are alternatives, not concurrent options. Turning on Enterprise Portal access for a customer moves that customer off the Download Portal onto whichever portal version their Portal Version setting selects.
-
-## KOTS and kURL customers {#kots-and-kurl-customers}
-
-The new Enterprise Portal supports KOTS and kURL customers, with some differences from Helm and Embedded Cluster customers. KOTS and kURL application upgrades are performed in the Admin Console, and their instance cards provide target-aware guidance plus application bundle downloads for entitled air gap customers. For details on what these customers see, including current limitations, see [KOTS and kURL instances](/vendor/enterprise-portal-v2-use#kots-and-kurl-instances) in _Log in to and Use the Enterprise Portal_.
-
-### Move a KOTS or kURL customer to the new Enterprise Portal
-
-Follow the steps in [How to get started](#how-to-get-started) to run the new Enterprise Portal for your team. This works the same way for KOTS and kURL customers as it does for Helm and Embedded Cluster customers. The app-level **Enable Enterprise Portal for all customers** option applies to KOTS and kURL customers too.
-
-One thing to plan for: most KOTS and kURL customers don't have Enterprise Portal access enabled yet, since they've been using the Download Portal. You need to turn on **Enable Enterprise Portal for this customer** before the **Portal Version** control appears. Classic Enterprise Portal does not support KOTS or kURL. Leaving Portal Version at its default after enabling access does not give the customer a working portal. Set it to **Use new Enterprise Portal for this customer** explicitly.
-
-To automate this instead of using the Vendor Portal UI: use [Patch a customer](https://replicated-vendor-api.readme.io/reference/patchcustomer) with `is_enterprise_portal_enabled: true` to grant access, then [Update Enterprise Portal settings](https://replicated-vendor-api.readme.io/reference/updateenterpriseportalsettings) with `portalVersion: "v2"` to select the new Enterprise Portal. For more information, see [Customer access](/vendor/enterprise-portal-v2-vendor-api-automation#customer-access) in _Enterprise Portal Headless Automation_.
-
-If you also want this customer to see Security Center, enable access for the customer or for all customers at the app level. Security Center access is separate from Portal Version. For a KOTS or kURL customer, Security Center shows an explanatory message instead of security data until they also have a Helm or Embedded Cluster instance. See [Security](/vendor/enterprise-portal-v2-use#security). For more information, see [Enable Security Center access](/vendor/security-center-enable-customer-access#enable-security-center-access) in _Enable Customer Access to Security Information_.
+KOTS and kURL customers can use the new Enterprise Portal, but the Classic Enterprise Portal doesn't support them. If your team also has the Classic Enterprise Portal, set **Portal Version** to **Use new Enterprise Portal for this customer** explicitly after you turn on Enterprise Portal access for a KOTS or kURL customer. For more information, see [KOTS and kURL customers](/vendor/enterprise-portal-v2-invite#kots-and-kurl-customers) in _Manage customer access_.

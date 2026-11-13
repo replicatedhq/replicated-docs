@@ -2,6 +2,10 @@
 
 This topic describes how to access installation instructions and download installation assets (such as customer license files and air gap bundles) from the Replicated Download Portal.
 
+:::note
+The Enterprise Portal is an alternative to the Download Portal that gives customers individual accounts, instance and update management, and support bundle uploads, including for KOTS and kURL. See [About the Enterprise Portal](/vendor/enterprise-portal-v2-about).
+:::
+
 For information about downloading air gap bundles and licenses with the Vendor API v3, see the following pages in the Vendor API v3 documentation:
 * [Download a customer license file as YAML](https://replicated-vendor-api.readme.io/reference/downloadlicense)
 * [Trigger airgap build for a channel's release](https://replicated-vendor-api.readme.io/reference/channelreleaseairgapbuild)

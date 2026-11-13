@@ -63,7 +63,7 @@ Released on November 6, 2026
 Released on November 5, 2026
 
 ### New Features {#new-features-v2026-11-05-0}
-* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions` on the customer's Enterprise Portal domain, authenticated with a service account token) now resolves [entitlement](/vendor/enterprise-portal-v2-content#entitlements) template variables in the `namespace` prop of Helm install components, such as `namespace="{{entitlements.helm_namespace}}"`, when it builds the Helm commands it returns. Previously, the API ignored these props. If the variable references a Password license field, the API masks the value, leaves `--namespace` out of the command, and returns an invalid-namespace warning, so the secret never appears in a command. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions` on the customer's Enterprise Portal domain, authenticated with a service account token) now resolves [entitlement](/vendor/enterprise-portal-v2-content#entitlements) template variables in the `namespace` prop of Helm install components, such as `namespace="{{entitlements.helm_namespace}}"`, when it builds the Helm commands it returns. Previously, the API ignored these props. If the variable references a Password license field, the API masks the value, leaves `--namespace` out of the command, and returns an invalid-namespace warning, so the secret never appears in a command. See [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 
 ### Bug Fixes {#bug-fixes-v2026-11-05-0}
 * Fixes an issue where the Enterprise Portal license API returned the unmasked values of Password license fields that are hidden from the customer. The portal never displayed these values. Hidden Password fields are now masked the same as visible ones.
@@ -123,7 +123,7 @@ Released on November 3, 2026
 Released on November 3, 2026
 
 ### New Features {#new-features-v2026-11-03-2}
-* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) applies the `namespace` and `createNamespace` props from the Helm install components on your Enterprise Portal docs page. Automation receives the same `helm install` and preflight commands that customers see in the portal. A valid `namespace` prop overrides the `?namespace=` query parameter, and `createNamespace="false"` removes `--create-namespace`. The API ignores namespace props that use template variables, such as `namespace="{{entitlements.namespace}}"`. See [Enable customer automation](/vendor/enterprise-portal-v2-service-account-automation).
+* The Enterprise Portal service account install instructions API (`GET /api/v1/install-options/{id}/install-instructions`) applies the `namespace` and `createNamespace` props from the Helm install components on your Enterprise Portal docs page. Automation receives the same `helm install` and preflight commands that customers see in the portal. A valid `namespace` prop overrides the `?namespace=` query parameter, and `createNamespace="false"` removes `--create-namespace`. The API ignores namespace props that use template variables, such as `namespace="{{entitlements.namespace}}"`. See [Headless Enterprise Portal: customer API](/vendor/enterprise-portal-v2-service-account-automation).
 
 ## v2026.11.03-0
 
@@ -179,7 +179,7 @@ Released on October 29, 2026
 Released on October 29, 2026
 
 ### New Features {#new-features-v2026-10-29-1}
-* The `<InstancesAndUpdates>` Enterprise Portal component accepts a new `helmNamespace` prop. When set, the `helm upgrade` commands on Helm instance cards include `--namespace`, so customers who installed into a specific namespace get working upgrade commands on the Instances and Updates page. Upgrade commands never include `--create-namespace`, and KOTS and kURL cards are unaffected. See [Portal components](/vendor/enterprise-portal-v2-content#portal-components) in _Customize Portal Content_.
+* The `<InstancesAndUpdates>` Enterprise Portal component accepts a new `helmNamespace` prop. When set, the `helm upgrade` commands on Helm instance cards include `--namespace`, so customers who installed into a specific namespace get working upgrade commands on the Instances and Updates page. Upgrade commands never include `--create-namespace`, and KOTS and kURL cards are unaffected. See [Portal components](/vendor/enterprise-portal-v2-mdx-components#portal-components) in _MDX component reference_.
 
 ## v2026.10.28-1
 

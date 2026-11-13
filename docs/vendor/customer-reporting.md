@@ -68,7 +68,7 @@ You can use the Download Portal to give your customers access to the files they 
 ### Enterprise Portal
 
 :::note
-The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Customer Access to the Enterprise Portal](/vendor/enterprise-portal-invite).
+The **Enterprise Portal** section is available only for customers with the Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Classic Enterprise Portal customer access](/vendor/enterprise-portal-invite).
 :::
 
 The following shows an example of the **Enterprise Portal** section:
@@ -89,7 +89,7 @@ From the **Enterprise Portal** section, you can:
 * View the number of support bundles uploaded to the Enterprise Portal
 * Open the **Delivery** row to see when the customer first accessed the Enterprise Portal and the timestamps of their first and most recent software pulls
 
-For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-about).
+For more information about the Enterprise Portal, see [About the Enterprise Portal](/vendor/enterprise-portal-v2-about).
 
 ### Instances
 
@@ -113,7 +113,7 @@ The following shows an example of a row for an active instance in the **Instance
 ### Install attempts (Beta)
 
 :::note
-The **Install Attempts** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Enterprise Portal Access](/vendor/enterprise-portal-invite).
+The **Install Attempts** section is available only for customers with the Replicated Enterprise Portal enabled. For more information about how to enable the Enterprise Portal for a customer, see [Manage Classic Enterprise Portal customer access](/vendor/enterprise-portal-invite).
 :::
 
 The **Install Attempts** section includes details about the installation attempts made by users. These insights are based on the customer's activity in the Enterprise Portal.
