@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.13-1
+
+Released on November 13, 2026
+
+### Improvements {#improvements-v2026-11-13-1}
+* Release lint no longer reports ReplicatedImageName and ReplicatedImageRegistry as undefined for Embedded Cluster v2 releases, because KOTS now defines them.
 ## v2026.11.12-3
 
 Released on November 12, 2026
