@@ -1,0 +1,51 @@
+docs/intro-replicated.mdx
+  s_08c9b7b1d9537a::t_5b3435226f5022 95,197
+docs/partials/getting-started/_enterprise-portal.mdx
+  s_08c9b7b1d9537a::t_7561da722add11 1,11,13,15
+docs/vendor/customer-reporting.md
+  s_08c9b7b1d9537a::t_435383e79ecde5 71,92,116
+docs/vendor/enterprise-portal-about.mdx
+  s_08c9b7b1d9537a::t_c691354c6dc936 38,44,56,59,68,78
+docs/vendor/enterprise-portal-access.mdx
+  s_08c9b7b1d9537a::t_2667716cc45b7f 9,13,28
+docs/vendor/enterprise-portal-configure.mdx
+  s_08c9b7b1d9537a::t_771412ce34d417 70
+docs/vendor/enterprise-portal-invite.mdx
+  s_08c9b7b1d9537a::t_6c544a1b0743e4 9,60,84,94,125,137
+docs/vendor/enterprise-portal-self-serve-signup.mdx
+  s_08c9b7b1d9537a::t_fb89766bf15e0e 9,25,27,77
+docs/vendor/enterprise-portal-use.mdx
+  s_08c9b7b1d9537a::t_674de39a138592 15,35
+docs/vendor/enterprise-portal-v2-connect-repo.mdx
+  s_08c9b7b1d9537a::t_d27fa7bacb155e 21
+docs/vendor/enterprise-portal-v2-invite.mdx
+  s_08c9b7b1d9537a::t_d74287113e6e62 40
+docs/vendor/helm-install-airgap.mdx
+  s_08c9b7b1d9537a::t_469bbe0c936f38 37
+docs/vendor/licenses-about.mdx
+  s_08c9b7b1d9537a::t_a399b820e69a48 55
+docs/vendor/packaging-include-resources.md
+  s_08c9b7b1d9537a::t_44707296dbd4da 58
+docs/vendor/preflight-support-bundle-about.mdx
+  s_08c9b7b1d9537a::t_9e20bca7c144b0 170
+docs/vendor/releases-creating-customer.mdx
+  s_08c9b7b1d9537a::t_f543b2394eb14a 36
+docs/vendor/replicated-onboarding-air-gap.mdx
+  s_08c9b7b1d9537a::t_e3a258639ef636 64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6a84ccf6df9eafbb83a154b62a30edb407be0744",
+  "prompts": {},
+  "sessions": {
+    "s_08c9b7b1d9537a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_08c9b7b1d9537a",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
