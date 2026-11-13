@@ -1,0 +1,30 @@
+scripts/netlify/docs-release-refresh/manifest.yml
+  s_63e2b349bfa2aa::t_51ebdf3dab4c0e 1
+scripts/netlify/docs-release-refresh/index.js
+  s_63e2b349bfa2aa::t_51ebdf3dab4c0e 1-36,38-76
+  s_63e2b349bfa2aa::t_54d4565dab1135 37
+scripts/netlify/docs-release-refresh/index.test.js
+  s_63e2b349bfa2aa::t_d99b23e5d97129 1-40,42-47
+  s_63e2b349bfa2aa::t_198db2c2571eda 41
+netlify.toml
+  s_63e2b349bfa2aa::t_51ebdf3dab4c0e 571-573
+scripts/netlify/docs-release-refresh/README.md
+  s_63e2b349bfa2aa::t_f152c7a91c255a 1-10,13-23
+  s_63e2b349bfa2aa::t_66181a65c6ad3b 11-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "28ff759ca72f25a274c2788be69f2f7d766c6553",
+  "prompts": {},
+  "sessions": {
+    "s_63e2b349bfa2aa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a91b-16a3-7c13-b4de-1c6b2a834435",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Olivia Campbell <olivia.susan.campbell@gmail.com>"
+    }
+  }
+}
