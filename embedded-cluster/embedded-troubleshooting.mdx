@@ -228,3 +228,23 @@ Support bundles report this problem when they detect CrowdStrike Falcon or Illum
 ### Pods cannot resolve names that resolve on the host {#dns}
 
 <TroubleshootDns/>
+
+### Joining a replacement controller fails with `etcdserver: unhealthy cluster` {#replace-lost-controller}
+
+#### Symptom
+
+You deleted the machine for a controller node in an HA cluster, and joining a replacement controller fails with the following error:
+
+```
+etcdserver: unhealthy cluster
+```
+
+You cannot run `reset` on the deleted machine. Deleting the Kubernetes Node object with `kubectl delete node` does not resolve the error.
+
+#### Cause
+
+The deleted controller is still a member of the etcd cluster, so etcd counts it toward quorum. etcd does not add a new member when doing so could cause the cluster to lose quorum.
+
+#### Solution
+
+Run `remove-node` to remove the deleted controller from the cluster and etcd, and then join the replacement controller. For more information about replacing the controller, see [Replace a controller node whose machine is deleted](embedded-manage-nodes#replace-lost-controller) in _Access and Manage Embedded Clusters_.
