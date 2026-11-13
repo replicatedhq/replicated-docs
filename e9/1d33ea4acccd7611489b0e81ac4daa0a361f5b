@@ -1,0 +1,33 @@
+docs/intro-replicated.mdx
+  s_97e352ad44b3a3::t_041053e88a3f8a 30,95,197
+docs/partials/helm/_helm-cr-builder-airgap-intro.mdx
+  s_97e352ad44b3a3::t_dce358fe00ba2a 6
+docs/vendor/custom-domains.md
+  s_97e352ad44b3a3::t_53fad6d663234a 51
+docs/vendor/customer-reporting.md
+  s_97e352ad44b3a3::t_7ab9f129cee0a5 92
+docs/vendor/helm-install-airgap.mdx
+  s_97e352ad44b3a3::t_b2712aac9348f3 7
+docs/vendor/licenses-about.mdx
+  s_97e352ad44b3a3::t_fce5cf21bfd20c 55
+docs/vendor/replicated-onboarding-air-gap.mdx
+  s_97e352ad44b3a3::t_fb3e9192243a43 64
+docs/vendor/tutorial-helm-cli.mdx
+  s_97e352ad44b3a3::t_1902c242e8eba1 17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e91d33ea4acccd7611489b0e81ac4daa0a361f5b",
+  "prompts": {},
+  "sessions": {
+    "s_97e352ad44b3a3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_97e352ad44b3a3",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
