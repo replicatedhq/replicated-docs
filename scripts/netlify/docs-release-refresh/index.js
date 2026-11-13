@@ -9,20 +9,40 @@ async function refreshPublishedDeploy({ siteId, deployId, apiToken, callbackUrl,
 
   // Give the published deploy pointer a short window to catch up to onSuccess.
   const siteUrl = 'https://api.netlify.com/api/v1/sites/' + encodeURIComponent(siteId);
+  let lastError;
   for (const delay of [0, 1000, 3000]) {
     if (delay) await wait(delay);
-    const response = await request(siteUrl, {
-      headers: { Authorization: 'Bearer ' + apiToken },
-      redirect: 'error',
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!response.ok) throw new Error('Netlify site lookup returned HTTP ' + response.status);
-    const site = await response.json();
+    let response;
+    try {
+      response = await request(siteUrl, {
+        headers: { Authorization: 'Bearer ' + apiToken },
+        redirect: 'error',
+        signal: AbortSignal.timeout(5000),
+      });
+    } catch (error) {
+      lastError = error;
+      continue;
+    }
+    if (!response.ok) {
+      lastError = new Error('Netlify site lookup returned HTTP ' + response.status);
+      if (response.status < 500 && response.status !== 429) throw lastError;
+      continue;
+    }
+
+    let site;
+    try {
+      site = await response.json();
+    } catch (error) {
+      lastError = error;
+      continue;
+    }
+    lastError = undefined;
     if (site.published_deploy?.id === deployId) {
       await sendRefresh(destination, callbackToken, request, wait);
       return true;
     }
   }
+  if (lastError) throw lastError;
   return false;
 }
 
@@ -67,7 +87,7 @@ async function onSuccess({ constants, utils }) {
       callbackUrl: DOCS_RELEASE_REFRESH_URL,
       callbackToken: DOCS_RELEASE_REFRESH_TOKEN,
     });
-    console.log(queued ? 'Docs release refresh queued' : 'Docs release refresh skipped because this deploy is not published');
+    console.log(queued ? 'Docs release refresh queued' : 'Docs release refresh skipped: could not confirm this deploy was published within the retry window');
   } catch (error) {
     utils.build.failPlugin('Could not queue docs release refresh: ' + error.message);
   }
