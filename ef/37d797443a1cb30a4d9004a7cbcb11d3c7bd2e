@@ -1,0 +1,23 @@
+docs/reference/custom-resource-application.mdx
+  s_5aae26092a0e15::t_5345462dfeff55 190,192,218-219
+docs/vendor/helm-install-airgap.mdx
+  s_5aae26092a0e15::t_2798d2746c8f3b 19-21
+docs/vendor/operator-defining-additional-images.mdx
+  s_5aae26092a0e15::t_18593409e7cdc4 3,7-9,11,13,15,17-19,37-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ef37d797443a1cb30a4d9004a7cbcb11d3c7bd2e",
+  "prompts": {},
+  "sessions": {
+    "s_5aae26092a0e15": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5aae26092a0e15",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

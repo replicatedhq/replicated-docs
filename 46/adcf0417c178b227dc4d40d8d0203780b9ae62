@@ -1,0 +1,19 @@
+docs/reference/custom-resource-about.md
+  s_34e02f60d6c773::t_d2759052275cc3 95,99-103,106-108,113,120,122-123,127-129,134-138,141-142,144-145,148-149,155-157,162,164,169,172,176,183,190,198-216
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "46adcf0417c178b227dc4d40d8d0203780b9ae62",
+  "prompts": {},
+  "sessions": {
+    "s_34e02f60d6c773": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_34e02f60d6c773",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

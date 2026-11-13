@@ -1,0 +1,26 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  h_6bd1a2fe251981 2
+docs/reference/custom-resource-about.md
+  h_6bd1a2fe251981 3,5-9,24,46-50,56-60,69,73,86-90,92-199
+docs/release-notes/rn-vendor-platform.md
+  h_6bd1a2fe251981 12-17
+docs/vendor/preflight-sb-helm-templates-about.md
+  h_6bd1a2fe251981 13
+docs/vendor/preflight-support-bundle-about.mdx
+  h_6bd1a2fe251981 79
+docs/vendor/replicated-onboarding.mdx
+  h_6bd1a2fe251981 310
+embedded-cluster/embedded-v3-migrate.mdx
+  h_6bd1a2fe251981 196-208
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dce8ed27ebf51aa57a51b08e087d4eba082fa69c",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+docs/partials/helm/_helm-builder-requirements.mdx
+  s_f5a17364b42e68::t_8a4e2e5c952e11 5-9
+sidebars.js
+  s_f5a17364b42e68::t_0f6f8ee1ae0a73 135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "869dd84ae95d02accee945656af30fa95b2c0835",
+  "prompts": {},
+  "sessions": {
+    "s_f5a17364b42e68": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_f5a17364b42e68",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

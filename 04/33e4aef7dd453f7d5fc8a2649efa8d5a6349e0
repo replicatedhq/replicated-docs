@@ -1,0 +1,19 @@
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_1ea129d5fb4268::t_33268bd1afee46 14-15,28,30,32,34,36-64,107,109,121-122,137,213,291,344,402
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0433e4aef7dd453f7d5fc8a2649efa8d5a6349e0",
+  "prompts": {},
+  "sessions": {
+    "s_1ea129d5fb4268": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a15592-d2b3-7b42-b601-d81594c41d0c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}

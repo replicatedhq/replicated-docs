@@ -1,0 +1,23 @@
+docs/partials/helm/_helm-builder-requirements.mdx
+  s_4e719ce043be5d::t_ea4abb0724f8df 8
+docs/vendor/helm-install-airgap.mdx
+  s_4e719ce043be5d::t_1f53bea7ab152f 21
+docs/vendor/operator-defining-additional-images.mdx
+  s_4e719ce043be5d::t_94cbdee8a92c23 13,15,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e36ae938644fa26e4dd18504f8bf888aad8d8888",
+  "prompts": {},
+  "sessions": {
+    "s_4e719ce043be5d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_4e719ce043be5d",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

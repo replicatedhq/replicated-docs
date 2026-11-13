@@ -1,0 +1,28 @@
+embedded-cluster/embedded-persistent-console.mdx
+  s_88de4b7ef5d3b5::t_aecb2fc1924f1b 84-89
+sidebarEmbeddedCluster.js
+  s_88de4b7ef5d3b5::t_aecb2fc1924f1b 21
+embedded-cluster/embedded-web-identity.mdx
+  s_88de4b7ef5d3b5::t_d1f74422df7f18 59
+  s_88de4b7ef5d3b5::t_1119237d991e4f 1-9,11-13,16-56,95-241,243-258,260-264,266-267
+  s_88de4b7ef5d3b5::t_ebddce91c47673 14-15,265
+  s_88de4b7ef5d3b5::t_d6358065a73db0 10,57-58,60-94,242,259
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_88de4b7ef5d3b5::t_43cf738d2df882 200,209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f6b5b04b0f25aad8f0c4d1f4f0729a60346ce177",
+  "prompts": {},
+  "sessions": {
+    "s_88de4b7ef5d3b5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10cfc-0b13-7b93-96c2-4ad578d6bea5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}

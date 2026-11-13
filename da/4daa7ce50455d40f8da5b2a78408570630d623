@@ -1,0 +1,19 @@
+docs/reference/template-functions-about.mdx
+  s_f677bd8eca497c::t_34879002a36274 23,27-28,32,36,44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "da4daa7ce50455d40f8da5b2a78408570630d623",
+  "prompts": {},
+  "sessions": {
+    "s_f677bd8eca497c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_f677bd8eca497c",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+scripts/ci/release-notes.sh
+  s_5cecdd181cd2ba::t_cd2ca701d4f775 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "18e907911f7c59740a023130ee21a470cd6f6502",
+  "prompts": {},
+  "sessions": {
+    "s_5cecdd181cd2ba": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5cecdd181cd2ba",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

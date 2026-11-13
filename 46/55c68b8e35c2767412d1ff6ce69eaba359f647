@@ -1,0 +1,23 @@
+docs/vendor/helm-install-overview.mdx
+  s_f62d2d0d402700::t_c620f73b7bd881 40
+docs/vendor/releases-about.mdx
+  s_f62d2d0d402700::t_5cf0768f12b7bc 156
+docs/vendor/releases-creating-releases.mdx
+  s_f62d2d0d402700::t_c0f43adc508c4d 58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4655c68b8e35c2767412d1ff6ce69eaba359f647",
+  "prompts": {},
+  "sessions": {
+    "s_f62d2d0d402700": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_f62d2d0d402700",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

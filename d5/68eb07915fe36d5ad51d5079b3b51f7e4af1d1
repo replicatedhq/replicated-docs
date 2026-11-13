@@ -1,0 +1,27 @@
+docusaurus.config.js
+  s_fec55bc555d14d::t_4f8a2dd54109bf 227-246,258-260,263-264,267-268,272-273,275
+embedded-cluster_versioned_sidebars/version-2.0.0-sidebars.json
+  s_fec55bc555d14d::t_c4a297faab720e 24-29
+sidebarEmbeddedCluster.js
+  s_fec55bc555d14d::t_c20d9e4e05bf43 30-35
+sidebars.js
+  s_fec55bc555d14d::t_6da8f97a9c892f 565,567-575,731-757,760
+src/css/navbar.css
+  s_fec55bc555d14d::t_76baf2945a429a 25-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d568eb07915fe36d5ad51d5079b3b51f7e4af1d1",
+  "prompts": {},
+  "sessions": {
+    "s_fec55bc555d14d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_fec55bc555d14d",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

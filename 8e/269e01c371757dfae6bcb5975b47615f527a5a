@@ -1,0 +1,25 @@
+docs/release-notes/rn-vendor-platform.md
+  s_eb3cc604d6626a::t_89a7aafc3b1b1b 12-17
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  s_eb3cc604d6626a::t_66f5a4a1996843 31,35,37,39-117,121-125,127,217-220,224
+docs/vendor/private-images-kots.mdx
+  s_eb3cc604d6626a::t_876bfc82abaaeb 176
+docs/vendor/private-images-replicated.mdx
+  s_eb3cc604d6626a::t_f1b5bab3cea86d 3,6,31,34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8e269e01c371757dfae6bcb5975b47615f527a5a",
+  "prompts": {},
+  "sessions": {
+    "s_eb3cc604d6626a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_eb3cc604d6626a",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

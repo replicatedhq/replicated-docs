@@ -1,0 +1,19 @@
+docs/release-notes/rn-embedded-cluster-v3.md
+  s_ff29b14fe8ae27::t_bc6ef55173db25 22-24,28-30,33-35,42-43,46-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6a130b422d4db0716d4bf5e437bebe7669286098",
+  "prompts": {},
+  "sessions": {
+    "s_ff29b14fe8ae27": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14705-9197-71e0-966c-c99e7978d821",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+docs/vendor/releases-about.mdx
+  s_34e731a654c065::t_81247582c9b8d1 140,142,152-155,161,173-174
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d320f774d4a3658baae68e49ce02738605a2f7d7",
+  "prompts": {},
+  "sessions": {
+    "s_34e731a654c065": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_34e731a654c065",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

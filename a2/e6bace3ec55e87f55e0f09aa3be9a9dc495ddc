@@ -1,0 +1,16 @@
+docs/release-notes/rn-vendor-platform.md
+  h_6bd1a2fe251981 21-32
+docs/vendor/testing-supported-clusters.md
+  h_6bd1a2fe251981 79,130,279
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a2e6bace3ec55e87f55e0f09aa3be9a9dc495ddc",
+  "prompts": {},
+  "humans": {
+    "h_6bd1a2fe251981": {
+      "author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

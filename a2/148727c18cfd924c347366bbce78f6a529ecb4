@@ -1,0 +1,19 @@
+docs/release-notes/rn-kubernetes-installer.md
+  s_605c06a15d009d::t_b0fc82a7e7927e 17-18,32,40,82,84-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a2148727c18cfd924c347366bbce78f6a529ecb4",
+  "prompts": {},
+  "sessions": {
+    "s_605c06a15d009d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_605c06a15d009d",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

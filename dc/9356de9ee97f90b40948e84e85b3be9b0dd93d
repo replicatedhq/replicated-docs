@@ -1,0 +1,37 @@
+docs/partials/support-bundles/_ec-support-bundle-intro.mdx
+  s_a379c91506dddb::t_9513e8501c31d7 6
+docs/partials/support-bundles/_generate-bundle.mdx
+  s_a379c91506dddb::t_5c0fe63ce5a84b 7
+docs/partials/support-bundles/_prometheus-run-pod-secret.mdx
+  s_a379c91506dddb::t_141aa4897a1e19 1-43
+docs/vendor/admin-console-prometheus-monitoring.mdx
+  s_a379c91506dddb::t_12ec89bb29f3f7 17
+docs/vendor/preflight-support-bundle-about.mdx
+  s_a379c91506dddb::t_d2c4353cdeb699 150
+docs/vendor/support-bundle-customizing.mdx
+  s_a379c91506dddb::t_42bac7f3c67bd9 14,56
+docs/vendor/support-bundle-examples.mdx
+  s_a379c91506dddb::t_5969bf7bc497f4 12,18-19,86-116
+docs/vendor/support-modular-support-bundle-specs.md
+  s_a379c91506dddb::t_298ccf77e1d25a 3,5,9,11-19,23
+docs/vendor/support-online-support-bundle-specs.md
+  s_a379c91506dddb::t_b6a3e15c5ce8e3 13
+sidebars.js
+  s_a379c91506dddb::t_efe31d234522ad 531
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dc9356de9ee97f90b40948e84e85b3be9b0dd93d",
+  "prompts": {},
+  "sessions": {
+    "s_a379c91506dddb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a379c91506dddb",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

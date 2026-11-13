@@ -1,0 +1,21 @@
+docs/reference/cron-expressions.md
+  s_0c07c18a50c9fd::t_11803321596696 3,5-29,50,55,60,65,69-70,76,97-100,103,129,144-145,149-150,168,176-181
+sidebars.js
+  s_0c07c18a50c9fd::t_62bf1beca246f7 424
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "781cc1c96128e46db19b294f8b0d756b5de59081",
+  "prompts": {},
+  "sessions": {
+    "s_0c07c18a50c9fd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_0c07c18a50c9fd",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

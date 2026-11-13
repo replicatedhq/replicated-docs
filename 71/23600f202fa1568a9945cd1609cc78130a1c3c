@@ -1,0 +1,19 @@
+docs/partials/embedded-cluster/_compliance-scans.mdx
+  s_21bd56ebe4c7fd::t_064652d94b47bd 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7123600f202fa1568a9945cd1609cc78130a1c3c",
+  "prompts": {},
+  "sessions": {
+    "s_21bd56ebe4c7fd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_21bd56ebe4c7fd",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

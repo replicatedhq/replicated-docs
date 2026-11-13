@@ -1,0 +1,21 @@
+docs/partials/install/_kubernetes-compatibility.mdx
+  s_f59a0d9e8beb05::t_e617c7bea023fe 4-5
+docs/vendor/policies-support-lifecycle.md
+  s_f59a0d9e8beb05::t_b40b63fff536a8 125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d30ee3f1b837a7e33dad15bc6167e7b94597af2c",
+  "prompts": {},
+  "sessions": {
+    "s_f59a0d9e8beb05": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_f59a0d9e8beb05",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

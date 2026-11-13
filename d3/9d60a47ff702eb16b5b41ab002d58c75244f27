@@ -1,0 +1,14 @@
+docs/vendor/data-availability.md
+  h_4a5f48c2ea7b12 9,25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d39d60a47ff702eb16b5b41ab002d58c75244f27",
+  "prompts": {},
+  "humans": {
+    "h_4a5f48c2ea7b12": {
+      "author": "Josh Sandlin <joshs@replicated.com>"
+    }
+  }
+}

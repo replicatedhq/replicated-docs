@@ -1,0 +1,23 @@
+docs/partials/embedded-cluster/_security-agents.mdx
+  s_97c459fac699c8::t_d229a225ba6e1b 6-7,9
+embedded-cluster/embedded-troubleshooting.mdx
+  s_97c459fac699c8::t_172612a7b2e9c7 148
+embedded-cluster_versioned_docs/version-2.0.0/embedded-troubleshooting.mdx
+  s_97c459fac699c8::t_37feae379cde39 140
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7667d6e7bf585e3b98819586f73da67ee97230cf",
+  "prompts": {},
+  "sessions": {
+    "s_97c459fac699c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_97c459fac699c8",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

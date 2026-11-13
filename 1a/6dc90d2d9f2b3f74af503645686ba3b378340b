@@ -1,0 +1,21 @@
+docs/vendor/install-with-helm.mdx
+  s_a672a89ef9afeb::t_4f8e40db6149c6 48
+docs/vendor/using-third-party-registry-proxy.mdx
+  s_a672a89ef9afeb::t_1c2d2df5f26055 15,17-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1a6dc90d2d9f2b3f74af503645686ba3b378340b",
+  "prompts": {},
+  "sessions": {
+    "s_a672a89ef9afeb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a672a89ef9afeb",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

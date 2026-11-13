@@ -1,0 +1,21 @@
+docs/reference/template-functions-config-context.md
+  s_9187048a1ff390::t_8c05b1d19aafbb 398,494
+embedded-cluster/template-functions.mdx
+  s_9187048a1ff390::t_16bee0c2641bec 263
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6f2dc6be67a03a6029959ea964c1078df6fbdf81",
+  "prompts": {},
+  "sessions": {
+    "s_9187048a1ff390": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9187048a1ff390",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

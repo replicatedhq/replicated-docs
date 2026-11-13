@@ -1,0 +1,27 @@
+docs/vendor/ci-workflows-github-actions.md
+  s_371d54f42aeadc::t_e58727a659d333 17-18,30,33,48,56-64,74-81
+docs/vendor/ci-workflows.mdx
+  s_371d54f42aeadc::t_e4caf8fd58ef1d 25-28,85,308
+docs/vendor/licenses-automate-customer-management.mdx
+  s_371d54f42aeadc::t_f3c6bc86014919 1-277
+docs/vendor/releases-creating-customer.mdx
+  s_371d54f42aeadc::t_df193aa3f43b0f 9-10
+sidebars.js
+  s_371d54f42aeadc::t_a773b06287b6fe 145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "826d86c7b5812bb573159219cbf1dbd03c5e62d5",
+  "prompts": {},
+  "sessions": {
+    "s_371d54f42aeadc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_371d54f42aeadc",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

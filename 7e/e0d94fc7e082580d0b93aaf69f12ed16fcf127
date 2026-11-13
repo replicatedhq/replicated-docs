@@ -1,0 +1,19 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  s_88de4b7ef5d3b5::t_9641b3ca4039af 4-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7ee0d94fc7e082580d0b93aaf69f12ed16fcf127",
+  "prompts": {},
+  "sessions": {
+    "s_88de4b7ef5d3b5": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a10cfc-0b13-7b93-96c2-4ad578d6bea5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+docs/reference/kots-cli-getting-started.md
+  s_9a6c46eca0d681::t_d9cd9779878926 5-8
+docs/reference/replicated-cli-installing.mdx
+  s_9a6c46eca0d681::t_919efafd1a3653 14-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c17ba2fb5e4dcdec9545def7c21f72e95bc20799",
+  "prompts": {},
+  "sessions": {
+    "s_9a6c46eca0d681": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9a6c46eca0d681",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+docs/vendor/enterprise-portal-v2-content.mdx
+  h_a187b1a47af8c8 540-557,560,570-572,574,637
+docs/vendor/enterprise-portal-v2-use.mdx
+  h_a187b1a47af8c8 95
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "eaa3142f93b55db8c531fd0fbf8975e8f2af50fb",
+  "prompts": {},
+  "humans": {
+    "h_a187b1a47af8c8": {
+      "author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+embedded-cluster/embedded-config.mdx
+  s_5b0493bac557d1::t_d265bd500b50bb 314,321-326,331-333,348-368
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f4f0e31dc3d51fdc5676b5616f444dea2fbb302e",
+  "prompts": {},
+  "sessions": {
+    "s_5b0493bac557d1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5b0493bac557d1",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+docs/vendor/licenses-about.mdx
+  s_e11c8229526d6f::t_451a0248f1c530 80-82
+docs/vendor/licenses-using-builtin-fields.mdx
+  s_e11c8229526d6f::t_28e47d239e3f9c 115
+docs/vendor/releases-creating-customer.mdx
+  s_e11c8229526d6f::t_b8ad55ffa28f07 55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c819a2ec5d47de79691d7a1d748cb37f1fbee20a",
+  "prompts": {},
+  "sessions": {
+    "s_e11c8229526d6f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_e11c8229526d6f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.depot/workflows/release-notes.yml
+  s_93da7165ced1f0::t_cedaafbda5b721 30
+scripts/ci/release-notes.sh
+  s_93da7165ced1f0::t_bf9c8f39b37199 8,126-130
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "036c2f28186299bf4d64991dd6e58c4fad1b5af9",
+  "prompts": {},
+  "sessions": {
+    "s_93da7165ced1f0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_93da7165ced1f0",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+docs/vendor/support-bundle-examples.mdx
+  s_417bdb43bb8003::t_80ca6771c1a520 18
+docs/vendor/support-modular-support-bundle-specs.md
+  s_417bdb43bb8003::t_5d5e28783fb61e 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1877ff3f369397cb0119c7f8948b8078c0050215",
+  "prompts": {},
+  "sessions": {
+    "s_417bdb43bb8003": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_417bdb43bb8003",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

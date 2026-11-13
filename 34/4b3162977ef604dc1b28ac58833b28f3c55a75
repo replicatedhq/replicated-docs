@@ -1,0 +1,19 @@
+.doomer/skills/release-notes/SKILL.md
+  s_2007410456137e::t_5510f35585fc99 24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "344b3162977ef604dc1b28ac58833b28f3c55a75",
+  "prompts": {},
+  "sessions": {
+    "s_2007410456137e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_2007410456137e",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

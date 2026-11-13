@@ -1,0 +1,35 @@
+docs/partials/embedded-cluster/_security-agents.mdx
+  s_d0a8aef7f4414c::t_13e6acd35f2c24 1-9
+docs/partials/embedded-cluster/_troubleshoot-security-agents.mdx
+  s_d0a8aef7f4414c::t_f8437f5921bf24 1-23
+docs/partials/embedded-cluster/v2/_host-config-reqs.mdx
+  s_d0a8aef7f4414c::t_5c739dcd654f37 1-34
+docs/partials/embedded-cluster/v2/_security-agents-paths.mdx
+  s_d0a8aef7f4414c::t_d453ca43364334 1-21
+docs/partials/embedded-cluster/v3/_security-agents-paths.mdx
+  s_d0a8aef7f4414c::t_e465b830590844 1-20
+embedded-cluster/embedded-troubleshooting.mdx
+  s_d0a8aef7f4414c::t_aa7c0a193b0762 3,135-136,216-221
+embedded-cluster/installing-embedded-requirements.mdx
+  s_d0a8aef7f4414c::t_47d35fe66dc5e3 4-5,98-103
+embedded-cluster_versioned_docs/version-2.0.0/embedded-troubleshooting.mdx
+  s_d0a8aef7f4414c::t_5c629e7f59d3b3 3,127-128,207-210
+embedded-cluster_versioned_docs/version-2.0.0/installing-embedded-requirements.mdx
+  s_d0a8aef7f4414c::t_2d68ac47230c9c 3-5,17-20,98-103
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "773e5783a6b592ca2dac8a49d336221cffffdcbb",
+  "prompts": {},
+  "sessions": {
+    "s_d0a8aef7f4414c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d0a8aef7f4414c",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

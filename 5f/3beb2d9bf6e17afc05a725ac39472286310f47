@@ -1,0 +1,23 @@
+docs/partials/embedded-cluster/_compliance-scans.mdx
+  s_3bfb9fcb0e7cfc::t_9aed1bd4c7e96c 7
+docs/partials/embedded-cluster/_dns-reqs.mdx
+  s_3bfb9fcb0e7cfc::t_f9da4badec73a3 9
+docs/partials/embedded-cluster/_troubleshoot-dns.mdx
+  s_3bfb9fcb0e7cfc::t_b48faa842b1139 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5f3beb2d9bf6e17afc05a725ac39472286310f47",
+  "prompts": {},
+  "sessions": {
+    "s_3bfb9fcb0e7cfc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_3bfb9fcb0e7cfc",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

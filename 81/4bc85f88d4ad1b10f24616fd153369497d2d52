@@ -1,0 +1,43 @@
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_1ea129d5fb4268::t_d68da03a882fc6 8,22,145
+  s_1ea129d5fb4268::t_8dac4229715d4c 132
+  s_1ea129d5fb4268::t_33268bd1afee46 14,345
+  s_1ea129d5fb4268::t_0b92615e62a926 62,153
+  s_ff29b14fe8ae27::t_c5909a92703496 212
+  s_1ea129d5fb4268::t_d8865b420d631e 17,107,117,349
+  s_214fd0e00e20ee::t_e2ddcce751513d 195
+embedded-cluster/embedded-overview.mdx
+  s_ff29b14fe8ae27::t_175ae1e059cb3a 69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "814bc85f88d4ad1b10f24616fd153369497d2d52",
+  "prompts": {},
+  "sessions": {
+    "s_1ea129d5fb4268": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a15592-d2b3-7b42-b601-d81594c41d0c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    },
+    "s_214fd0e00e20ee": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0eeac-63e6-7ac1-b7fe-a5ebbcaa8ddd",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    },
+    "s_ff29b14fe8ae27": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a14705-9197-71e0-966c-c99e7978d821",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "divolgin <dmitriy@replicated.com>"
+    }
+  }
+}

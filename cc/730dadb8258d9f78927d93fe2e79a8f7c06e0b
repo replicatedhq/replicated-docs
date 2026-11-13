@@ -1,0 +1,21 @@
+docs/vendor/licenses-automate-customer-management.mdx
+  s_4358e88a591868::t_243eeb0bdb92b1 215-254,299
+docs/vendor/releases-creating-customer.mdx
+  s_4358e88a591868::t_65668a2bc447c6 111-112
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "cc730dadb8258d9f78927d93fe2e79a8f7c06e0b",
+  "prompts": {},
+  "sessions": {
+    "s_4358e88a591868": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_4358e88a591868",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

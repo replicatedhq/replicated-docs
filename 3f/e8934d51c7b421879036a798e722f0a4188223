@@ -1,0 +1,23 @@
+docs/partials/helm/_helm-cr-upgrade-flags.mdx
+  s_e623a4ab386312::t_6fc4141e70fdd0 13-17,31,37-38
+docs/partials/helm/_helm-cr-weight.mdx
+  s_e623a4ab386312::t_a5efb03e30043b 7
+embedded-cluster/embedded-overview.mdx
+  s_e623a4ab386312::t_e58149947e68c2 57-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "3fe8934d51c7b421879036a798e722f0a4188223",
+  "prompts": {},
+  "sessions": {
+    "s_e623a4ab386312": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_e623a4ab386312",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+docs/vendor/policies-support-lifecycle.md
+  s_3519a3ee6ee48f::t_7acfb26c6d1a47 87-88,132
+docs/vendor/policies-vulnerability-patch.md
+  s_3519a3ee6ee48f::t_7b109cb6bff6eb 24,28-30,58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2eb3f6c593ab387136309663e9524c3aea58a219",
+  "prompts": {},
+  "sessions": {
+    "s_3519a3ee6ee48f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_3519a3ee6ee48f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

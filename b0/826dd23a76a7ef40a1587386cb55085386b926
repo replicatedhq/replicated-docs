@@ -1,0 +1,19 @@
+docs/partials/embedded-cluster/_security-agents.mdx
+  s_273e5dcbdbec51::t_35c5d1239a55b2 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b0826dd23a76a7ef40a1587386cb55085386b926",
+  "prompts": {},
+  "sessions": {
+    "s_273e5dcbdbec51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_273e5dcbdbec51",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

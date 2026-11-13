@@ -1,0 +1,21 @@
+docs/partials/helm/_replicated-helm-migration.mdx
+  s_ffd950f4204dfa::t_0e0de9ca62c486 1-2,4
+embedded-cluster/embedded-v3-migrate.mdx
+  s_ffd950f4204dfa::t_336204e2f8ed79 114-119,202
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "59fde1a2d55468ce26cfcb867b32c86302485395",
+  "prompts": {},
+  "sessions": {
+    "s_ffd950f4204dfa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_ffd950f4204dfa",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

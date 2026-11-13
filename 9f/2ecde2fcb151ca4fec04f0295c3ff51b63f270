@@ -1,0 +1,19 @@
+docs/vendor/helm-v2-migrate.md
+  s_eb7a242479e6e3::t_6ccb0f4504c7c6 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "9f2ecde2fcb151ca4fec04f0295c3ff51b63f270",
+  "prompts": {},
+  "sessions": {
+    "s_eb7a242479e6e3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_eb7a242479e6e3",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+docs/reference/template-functions-about.mdx
+  s_0fb361c0dd1594::t_54604d11153694 21-47
+docs/reference/template-functions-config-context.md
+  s_0fb361c0dd1594::t_d8dd4f466038e5 195-218,401-525
+docs/reference/template-functions-kurl-context.md
+  s_0fb361c0dd1594::t_b3bd6361c8cde5 14-15
+docs/reference/template-functions-license-context.md
+  s_0fb361c0dd1594::t_2dcd7bfcc98af8 127-169
+docs/reference/template-functions-static-context.md
+  s_0fb361c0dd1594::t_66905e24405aa8 576-588
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "749f262ba690f7e089e2de8de9d3c1107be021fd",
+  "prompts": {},
+  "sessions": {
+    "s_0fb361c0dd1594": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a6cdfabb1f6f9f848",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
