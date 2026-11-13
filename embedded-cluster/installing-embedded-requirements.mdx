@@ -154,7 +154,7 @@ In this section, `DATA_DIR` is the Embedded Cluster data directory. The default 
 
 ### Kubernetes Secrets
 
-Embedded Cluster keeps most secrets in Kubernetes Secrets, including the license, the application's configuration values and the values used for each earlier deployment, registry and proxy credentials, and the admin console credentials. Kubernetes stores Secrets in its datastore on controller nodes, under `DATA_DIR/k0s`. Embedded Cluster does not configure Kubernetes encryption at rest for Secrets. For more information, see [Encrypting Confidential Data at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) in the Kubernetes documentation.
+Embedded Cluster keeps most secrets in Kubernetes Secrets, including the license, the application's configuration values and the values used for each earlier deployment, registry and proxy credentials, and the admin console credentials. Kubernetes stores Secrets in its datastore on controller nodes, under `DATA_DIR/k0s`. Embedded Cluster does not configure Kubernetes encryption at rest for Secrets. For more information about encrypting Kubernetes Secrets at rest, see [Encrypting Confidential Data at Rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) in the Kubernetes documentation.
 
 ### Files that Embedded Cluster writes on the host
 
