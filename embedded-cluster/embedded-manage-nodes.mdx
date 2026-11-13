@@ -278,7 +278,7 @@ To replace the controller, remove the deleted controller with `remove-node`, whi
     ```
     Where `NODE_NAME` is the node name of the deleted controller from the previous step.
 
-    If the command finds Pods stuck in `Terminating` or PersistentVolumeClaims (PVCs) bound to local volumes on the deleted node, it lists them and exits. To delete them and continue, run the command again with `--force`. Deleting these PVCs discards the local data that was on the deleted node.
+    If you already deleted the controller's Node object with `kubectl delete node`, the command also checks the deleted node for Pods stuck in `Terminating` and PersistentVolumeClaims (PVCs) bound to local volumes. If it finds any, it lists them and exits. To delete them and continue, run the command again with `--force`. Deleting these PVCs discards the local data that was on the deleted node. `--force` also skips the check that enough controllers remain for etcd quorum, so confirm that the other controllers are healthy first.
 
     For more information, see [remove-node](embedded-cluster-remove-node).
 
