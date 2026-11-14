@@ -23,7 +23,7 @@ Use the Vendor API when you need to automate vendor-owned Enterprise Portal task
 - Listing or removing customer users
 - Creating, updating, or deleting install options for a customer
 - Generating install or update instructions for a known install options record
-- Delivering Embedded Cluster v3 releases to customers on Embedded Cluster v2 through your own portal
+- Moving a customer's Embedded Cluster v2 installation to Embedded Cluster v3 when they don't use the Enterprise Portal, a one-time step for each installation
 - Monitoring install and update attempts
 - Listing or revoking Enterprise Portal service accounts
 
@@ -192,26 +192,6 @@ For the `mdx` format, the response contains `mdx_template`, `context`, and `rend
 Customer automation should use the `service_account.token` returned by the create install options response.
 Store the token securely when you create the install options record, then use it for requests to your Enterprise Portal domain.
 
-## Deliver Embedded Cluster v3 to customers on Embedded Cluster v2 {#deliver-ec-v3-to-ec-v2-customers}
-
-Releases that use Embedded Cluster v3 don't appear as available updates in the Embedded Cluster v2 Admin Console. If your customers get releases from your own distribution portal or tooling instead of the Enterprise Portal, use the Vendor API to give them the v3 release and the steps to upgrade.
-
-To get upgrade instructions for a customer's existing Embedded Cluster v2 installation, request update instructions with the instance ID and the target Embedded Cluster v3 release. Pass `placeholder` as the install options ID. The installation doesn't need an install options record.
-
-```shell
-curl --request GET \
-  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/install-options/placeholder/update-instructions?instance_id=<instance-id>&targetChannelId=<channel-id>&targetChannelSequence=<sequence>' \
-  --header 'Authorization: <vendor-api-token>'
-```
-
-If more than one cluster reports the same instance ID, also pass `cluster_id`.
-
-When the target release uses Embedded Cluster v3, the steps are command-line steps for both online and air gap installations. The customer downloads the update package, extracts it, and runs the `upgrade` command. For an air gap installation, the update package includes the air gap bundle.
-
-To download the Embedded Cluster v3 installer for a customer without generating instructions, use [Get an embedded cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) with the `customerId` query parameter, which includes the customer's license in the download. Add `airgap=true` to include the air gap bundle. This endpoint doesn't require the Enterprise Portal.
-
-The upgrade from Embedded Cluster v2 to v3 is one-way. For what changes for your customers, including on multi-node clusters, see [Upgrade from Embedded Cluster v2](/embedded-cluster/v3/embedded-v3-migrate).
-
 ## Monitor install and update progress
 
 Use [List installation attempts](https://replicated-vendor-api.readme.io/reference/listinstallattempts) to monitor tracked installs for a customer:
@@ -259,6 +239,28 @@ There is no per-token expiry setting in the API. Do not script scheduled revocat
 :::
 
 The Vendor API can list and revoke service accounts, but it cannot create or revoke individual tokens. Revoking a service account stops all of its tokens. Users on the customer's team create additional tokens and revoke individual tokens from **Team Settings > Service Accounts** in the Enterprise Portal. For more information, see [Manage service account tokens](/vendor/enterprise-portal-v2-use#rotate-or-revoke-a-service-account-token) in _Log in to and use the Enterprise Portal_.
+
+## One-time upgrade from Embedded Cluster v2 to v3 {#upgrade-ec-v2-to-v3}
+
+This section applies only when a customer's existing installation moves from Embedded Cluster v2 to Embedded Cluster v3. It's a one-time step for each installation, for vendors whose customers get releases from their own distribution portal instead of the Enterprise Portal. Customers who use the Enterprise Portal see the upgrade instructions there.
+
+The step is needed because releases that use Embedded Cluster v3 don't appear as available updates in the Embedded Cluster v2 Admin Console. After the upgrade, the installation is on Embedded Cluster v3 and later updates follow the normal process. New releases are available to the customer in the admin console, so you don't need this section again for that installation. For more information, see [Perform updates in embedded clusters](/embedded-cluster/v3/updating-embedded).
+
+To get the upgrade instructions for an installation, request update instructions with its instance ID and the target Embedded Cluster v3 release. Pass `placeholder` as the install options ID. The installation doesn't need an install options record.
+
+```shell
+curl --request GET \
+  --url 'https://api.replicated.com/vendor/v3/app/<app-id>/enterprise-portal/install-options/placeholder/update-instructions?instance_id=<instance-id>&targetChannelId=<channel-id>&targetChannelSequence=<sequence>' \
+  --header 'Authorization: <vendor-api-token>'
+```
+
+If more than one cluster reports the same instance ID, also pass `cluster_id`.
+
+When the target release uses Embedded Cluster v3, the steps are command-line steps for both online and air gap installations. The customer downloads the update package, extracts it, and runs the `upgrade` command. For an air gap installation, the update package includes the air gap bundle.
+
+To download the Embedded Cluster v3 installer for a customer without generating instructions, use [Get an embedded cluster release](https://replicated-vendor-api.readme.io/reference/getembeddedclusterrelease) with the `customerId` query parameter, which includes the customer's license in the download. Add `airgap=true` to include the air gap bundle.
+
+The upgrade from Embedded Cluster v2 to v3 is one-way. For what changes for your customers, including on multi-node clusters, see [Upgrade from Embedded Cluster v2](/embedded-cluster/v3/embedded-v3-migrate).
 
 ## Related API reference
 
