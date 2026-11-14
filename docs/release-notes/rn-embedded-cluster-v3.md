@@ -12,6 +12,35 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.20.0
+
+Released on November 14, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.20.0+k8s-1.37</td>
+    <td id="center">3.20.0+k8s-1.36</td>
+    <td id="center">3.20.0+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+### Improvements {#improvements-3-20-0}
+* Improves security posture by moving the majority of sensitive data from file system to Kubernetes Secrets.
+* Removed fixed installation time limits and replaced the release download timeout with inactivity detection.
+
+### Bug Fixes {#bug-fixes-3-20-0}
+* Fixes a bug that could cause a node to use the wrong profile name or a profile name that does not exist, making the node transition into the `NotReady` state.
+* Fixes a bug that caused release notes formatted with markdown to be shown as a plain blob of text.
+* Fixes permissions on the `/etc/k0s/containerd.d/embedded-registry.toml` file to be 0600.
+* Fixed upgrades leaving outdated k0s disabled-component flags on existing controllers.
+* Fixes bugs that would cause inconsistent behavior in UI during upgrades when running Admin Console in High Availability configuration behind a load balancer.
+
 ## 3.19.1-beta.1
 
 Released on November 9, 2026
