@@ -1,0 +1,29 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  s_8dea064b849fef::t_96212c3bf332b7 1,4,6
+docs/partials/preflights/_v1beta3-recommendation.mdx
+  s_8dea064b849fef::t_b56846e18c3ccd 1-9
+docs/vendor/preflight-sb-helm-templates-about.md
+  s_8dea064b849fef::t_05e27ac29f6571 1-2,15,17-18
+docs/vendor/preflight-support-bundle-about.mdx
+  s_8dea064b849fef::t_c019c8c3f176d2 1,80
+docs/vendor/replicated-onboarding.mdx
+  s_8dea064b849fef::t_e0b3588a47c93f 310
+embedded-cluster/embedded-v3-migrate.mdx
+  s_8dea064b849fef::t_a5a2c761b11da2 1,195
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "42c12ad532cf83d92fa31b1effc2777cec5d3fec",
+  "prompts": {},
+  "sessions": {
+    "s_8dea064b849fef": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_8dea064b849fef",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

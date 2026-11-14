@@ -1,0 +1,93 @@
+docs/reference/template-functions-about.mdx
+  s_726462d30b8e31::t_da4577fb8829e0 34
+docs/reference/template-functions-config-context.md
+  s_726462d30b8e31::t_069f2577fddb4b 387,438,479
+docs/reference/template-functions-examples.mdx
+  s_726462d30b8e31::t_e1baa0261719bf 248
+docs/reference/template-functions-static-context.md
+  s_726462d30b8e31::t_386c4a0206e1b2 200
+docs/vendor/helm-native-v2-using.mdx
+  s_726462d30b8e31::t_313d50dfdb8273 27
+docs/vendor/policies-support-lifecycle.md
+  s_726462d30b8e31::t_4a39c2386df33a 75
+docs/vendor/private-images-kots.mdx
+  s_726462d30b8e31::t_02669c95a8e1d1 18,20,189
+docs/vendor/replicated-onboarding-air-gap.mdx
+  s_726462d30b8e31::t_8a66eb6030849a 86,89
+embedded-cluster/embedded-cluster-completion.mdx
+  s_726462d30b8e31::t_107151452dd2fb 1
+embedded-cluster/embedded-cluster-console.mdx
+  s_726462d30b8e31::t_55242919e81c78 1
+embedded-cluster/embedded-cluster-create-join-bundle.mdx
+  s_726462d30b8e31::t_fc7c8fcf1e41a0 1
+embedded-cluster/embedded-cluster-create-upgrade-bundle.mdx
+  s_726462d30b8e31::t_2c1941058f9f03 1
+embedded-cluster/embedded-cluster-enable-ha.mdx
+  s_726462d30b8e31::t_c0dca7b54b2d16 1
+embedded-cluster/embedded-cluster-external-api.mdx
+  s_726462d30b8e31::t_1c4d4343deb320 1
+embedded-cluster/embedded-cluster-install.mdx
+  s_726462d30b8e31::t_b5fab9620d20bd 1
+embedded-cluster/embedded-cluster-node-join.mdx
+  s_726462d30b8e31::t_17fc604bec0e4c 1
+embedded-cluster/embedded-cluster-node-upgrade.mdx
+  s_726462d30b8e31::t_af300670358f30 1
+embedded-cluster/embedded-cluster-remove-node.mdx
+  s_726462d30b8e31::t_916ab534265b96 1
+embedded-cluster/embedded-cluster-reset.mdx
+  s_726462d30b8e31::t_c276fb65e83d32 1
+embedded-cluster/embedded-cluster-shell.mdx
+  s_726462d30b8e31::t_f57b7581e301b7 1
+embedded-cluster/embedded-cluster-status.mdx
+  s_726462d30b8e31::t_6a51d19890f05f 1
+embedded-cluster/embedded-cluster-support-bundle.mdx
+  s_726462d30b8e31::t_8e2d3ed6adddeb 1
+embedded-cluster/embedded-cluster-upgrade.mdx
+  s_726462d30b8e31::t_291e259e2f54bd 1
+embedded-cluster/embedded-cluster-version.mdx
+  s_726462d30b8e31::t_bd1c7d386d287a 1
+embedded-cluster/embedded-config.mdx
+  s_726462d30b8e31::t_36bb29091e218d 3
+embedded-cluster/embedded-manage-nodes.mdx
+  s_726462d30b8e31::t_da58f6e2efd87a 3
+embedded-cluster/embedded-overview.mdx
+  s_726462d30b8e31::t_d806189a198d26 4,18
+embedded-cluster/embedded-persistent-console.mdx
+  s_726462d30b8e31::t_58c7067f2d267f 1
+embedded-cluster/embedded-troubleshooting.mdx
+  s_726462d30b8e31::t_6ae123b75daf2f 9
+embedded-cluster/embedded-using.mdx
+  s_726462d30b8e31::t_6472910509a92e 8
+embedded-cluster/embedded-v3-migrate.mdx
+  s_726462d30b8e31::t_bcaba42e16d9cb 190
+embedded-cluster/installing-embedded-air-gap.mdx
+  s_726462d30b8e31::t_82afdc5773f313 7
+embedded-cluster/installing-embedded-byo-registry.mdx
+  s_726462d30b8e31::t_52076034e3ee61 1,73
+embedded-cluster/installing-embedded-requirements.mdx
+  s_726462d30b8e31::t_805c3e1ebd2249 11
+embedded-cluster/installing-embedded.mdx
+  s_726462d30b8e31::t_d4f437f6664bf1 7
+embedded-cluster/template-functions.mdx
+  s_726462d30b8e31::t_963df3c335fdd8 5
+embedded-cluster/updating-embedded.mdx
+  s_726462d30b8e31::t_3a27cf75c4a011 3
+static/llms.txt
+  s_726462d30b8e31::t_a10fac3ce49784 84-89,91-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "57ff9acfb2258f62c946f3d35387b13fc95fe2e5",
+  "prompts": {},
+  "sessions": {
+    "s_726462d30b8e31": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_726462d30b8e31",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

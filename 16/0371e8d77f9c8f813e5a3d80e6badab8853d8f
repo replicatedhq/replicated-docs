@@ -1,0 +1,21 @@
+scripts/netlify/docs-release-refresh/index.js
+  s_63e2b349bfa2aa::t_feaa9545216d00 12,15-39,45,90
+scripts/netlify/docs-release-refresh/index.test.js
+  s_63e2b349bfa2aa::t_2a28297a09f925 8,12-15,42-45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "160371e8d77f9c8f813e5a3d80e6badab8853d8f",
+  "prompts": {},
+  "sessions": {
+    "s_63e2b349bfa2aa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a91b-16a3-7c13-b4de-1c6b2a834435",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Olivia Campbell <olivia.susan.campbell@gmail.com>"
+    }
+  }
+}

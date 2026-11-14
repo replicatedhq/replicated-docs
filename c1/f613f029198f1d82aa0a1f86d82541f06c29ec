@@ -1,0 +1,21 @@
+embedded-cluster/embedded-v3-migrate.mdx
+  s_5a63f416f1c606::t_b5a82e56f99fd3 45
+embedded-cluster/installing-embedded-requirements.mdx
+  s_5a63f416f1c606::t_d3a66356c4fb85 27,37,39,41-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c1f613f029198f1d82aa0a1f86d82541f06c29ec",
+  "prompts": {},
+  "sessions": {
+    "s_5a63f416f1c606": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5a63f416f1c606",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

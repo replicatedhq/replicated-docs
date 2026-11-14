@@ -1,0 +1,89 @@
+docs/partials/getting-started/_enterprise-portal.mdx
+  s_74a84b97a2f5bc::t_b8711a82c4d3e5 17
+docs/partials/helm/_helm-cr-weight.mdx
+  s_74a84b97a2f5bc::t_4958ab33e07477 11
+docs/release-notes/rn-vendor-platform.md
+  s_74a84b97a2f5bc::t_e6418e5be7e335 24,84,140
+docs/vendor/custom-domains-using.md
+  s_74a84b97a2f5bc::t_b0785274a76be5 76
+docs/vendor/custom-domains.md
+  s_74a84b97a2f5bc::t_33c1673f45b3e0 29
+docs/vendor/enterprise-portal-about.mdx
+  s_74a84b97a2f5bc::t_3c3aebb2dd9526 1,36
+docs/vendor/enterprise-portal-access.mdx
+  s_74a84b97a2f5bc::t_2e12802255a64c 1
+docs/vendor/enterprise-portal-configure.mdx
+  s_74a84b97a2f5bc::t_3ea38814009190 1,6
+docs/vendor/enterprise-portal-invite.mdx
+  s_74a84b97a2f5bc::t_f861281ec93f5d 1
+docs/vendor/enterprise-portal-self-serve-signup.mdx
+  s_74a84b97a2f5bc::t_8625d65ccd0b32 1
+docs/vendor/enterprise-portal-use.mdx
+  s_74a84b97a2f5bc::t_269d9c398f5ea8 1,32,40
+docs/vendor/enterprise-portal-v2-about.mdx
+  s_74a84b97a2f5bc::t_8718d02ddcc04b 7,9,11,15-22,30,35,45,57,59,63,66,68,70,72
+docs/vendor/enterprise-portal-v2-access.mdx
+  s_74a84b97a2f5bc::t_33141d05d34a6e 1,61
+docs/vendor/enterprise-portal-v2-branding.mdx
+  s_74a84b97a2f5bc::t_b792cf1989369e 1,9,78
+docs/vendor/enterprise-portal-v2-connect-repo.mdx
+  s_74a84b97a2f5bc::t_b0e6e054f8299e 1,13,40,45,64
+docs/vendor/enterprise-portal-v2-content.mdx
+  s_74a84b97a2f5bc::t_ea532ac1533c5f 1,7,9,26-28,41,72-84,112,234,236,238,251,268,292,302,358,361-363,366,598,603
+docs/vendor/enterprise-portal-v2-domains.mdx
+  s_74a84b97a2f5bc::t_8b271c71d5af2c 1,9,17,37,39-41,45
+docs/vendor/enterprise-portal-v2-emails.mdx
+  s_74a84b97a2f5bc::t_4e45fd40cbcf27 1,9-12
+docs/vendor/enterprise-portal-v2-helm-reference.mdx
+  s_74a84b97a2f5bc::t_f36db0d4ede46e 1
+docs/vendor/enterprise-portal-v2-invite.mdx
+  s_74a84b97a2f5bc::t_ed91cb74feb540 1,7,9,11,13,15,17-60,71,73,79,87,111,132-134,138
+docs/vendor/enterprise-portal-v2-mdx-components.mdx
+  s_74a84b97a2f5bc::t_a4fd54fc898e28 1-484
+docs/vendor/enterprise-portal-v2-portal-features.mdx
+  s_74a84b97a2f5bc::t_a46738482f1c83 1,60,71,73,87
+docs/vendor/enterprise-portal-v2-self-serve-signup.mdx
+  s_74a84b97a2f5bc::t_56f026d846d3ff 1,16,61
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  s_74a84b97a2f5bc::t_1148d71e26c1ac 2,5,11,13,35-37,43,133-144,201,242,248,250
+docs/vendor/enterprise-portal-v2-terraform.mdx
+  s_74a84b97a2f5bc::t_479105ff00f5ea 1,20
+docs/vendor/enterprise-portal-v2-troubleshooting.mdx
+  s_74a84b97a2f5bc::t_3ef3b80502b199 20,26,28-32,34,48,91,110
+docs/vendor/enterprise-portal-v2-use.mdx
+  s_74a84b97a2f5bc::t_ded555e4a76815 1,21,35-39,66,77,97,101,107,112,117,119,123,125,127,129-131,133,135,137-145,148,167
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  s_74a84b97a2f5bc::t_ac08e6796db47f 2,5,11,31,49,52-53,56-57,64-65,113,116,149-150,235,240
+docs/vendor/enterprise-portal-v2-versioned-docs.mdx
+  s_74a84b97a2f5bc::t_3849b2db2cd83c 1,15,77,79-81,106
+docs/vendor/enterprise-portal-v2-webhooks.mdx
+  s_74a84b97a2f5bc::t_c2f185d1383271 11,19,21,37-61,100
+docs/vendor/install-with-helm.mdx
+  s_74a84b97a2f5bc::t_0b7867d52583e9 50
+docs/vendor/releases-creating-customer.mdx
+  s_74a84b97a2f5bc::t_08685beaec32d9 36
+docs/vendor/releases-share-download-portal.md
+  s_74a84b97a2f5bc::t_dcf3ca77345f83 5-8
+docs/vendor/security-center-enable-customer-access.mdx
+  s_74a84b97a2f5bc::t_962c59f5b4c439 48,66
+docs/vendor/using-third-party-registry-proxy.mdx
+  s_74a84b97a2f5bc::t_f6cceb9d20983e 36
+sidebars.js
+  s_74a84b97a2f5bc::t_527f4345d41898 207-209,220,223-234
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e6bca522b1dda2e09eefae471eb2b6d47b69270a",
+  "prompts": {},
+  "sessions": {
+    "s_74a84b97a2f5bc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_74a84b97a2f5bc",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
