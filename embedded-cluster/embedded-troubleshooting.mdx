@@ -266,3 +266,25 @@ The deleted controller is still a member of the etcd cluster, so etcd counts it 
 #### Solution
 
 Run `remove-node` to remove the deleted controller from the cluster and etcd, and then join the replacement controller. For more information about replacing the controller, see [Replace a controller node whose machine is deleted](embedded-manage-nodes#replace-lost-controller) in _Access and Manage Embedded Clusters_.
+
+### Upgrade from Embedded Cluster v2 stops after the conversion {#v2-upgrade-stops-after-conversion}
+
+#### Symptom
+
+An upgrade from Embedded Cluster v2 prints `Upgrade from v2 to v3 completed successfully.` and then stops with an error, such as:
+
+```
+Error: upgrade: validate airgap flag: --airgap flag is set but this is not an airgap installation
+```
+
+The Embedded Cluster v2 Admin Console is no longer available. The application keeps running.
+
+#### Cause
+
+The upgrade converts the installation to Embedded Cluster v3 before it runs some of its checks, such as checks on the command's flags and on the release. When one of those checks fails, the installation is already on v3, but the upgrade hasn't finished.
+
+#### Solution
+
+Fix the problem that the error names, and then run the `upgrade` command again. The upgrade continues and finishes.
+
+If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
