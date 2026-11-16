@@ -14,7 +14,7 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 ## 3.20.0
 
-Released on November 14, 2026
+Released on November 16, 2026
 
 <table>
   <tr>
