@@ -1,0 +1,19 @@
+docs/vendor/policies-support-lifecycle.md
+  s_1eb2ce39bbf8cf::t_8283a5d45b128f 125
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "927c8879787102ba73be09d07949581d58ffa722",
+  "prompts": {},
+  "sessions": {
+    "s_1eb2ce39bbf8cf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_1eb2ce39bbf8cf",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
