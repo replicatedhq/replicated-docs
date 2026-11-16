@@ -2,27 +2,26 @@ const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const { onSuccess } = require('./index.js');
 
-const constants = { SITE_ID: 'docs-site', IS_LOCAL: false };
-const utils = { build: { failPlugin: (message) => assert.fail(message) } };
+const callbackUrl = 'https://vendor.example/v3/webhook/docs-release-refresh';
+const callbackToken = 'callback-token';
 
-for (const [name, context, site, expectedRequests, lookupFailure] of [
-  ['preview skips lookup and callback', 'deploy-preview', {}, []],
-  ['published production deploy queues refresh', 'production',
-    { published_deploy: { id: 'new-deploy' } }, ['GET', 'POST']],
-  ['Netlify lookup retries a transient HTTP error', 'production',
-    { published_deploy: { id: 'new-deploy' } }, ['GET', 'GET', 'POST'], 429],
-  ['Netlify lookup retries a timeout', 'production',
-    { published_deploy: { id: 'new-deploy' } }, ['GET', 'GET', 'POST'], new Error('timeout')],
-  ['unpublished deploy never queues refresh', 'production',
-    { published_deploy: { id: 'older-deploy' } }, ['GET', 'GET', 'GET']],
+for (const { name, context = 'production', isLocal = false, url = callbackUrl,
+  token = callbackToken, statuses = [], failure } of [
+  { name: 'production queues an authenticated refresh with no deploy metadata', statuses: [202] },
+  { name: 'preview skips the callback', context: 'deploy-preview' },
+  { name: 'branch deploy skips the callback', context: 'branch-deploy' },
+  { name: 'local build skips the callback', isLocal: true },
+  { name: 'disabled callback skips the request', url: '' },
+  { name: 'configured callback requires a token', token: '', failure: /DOCS_RELEASE_REFRESH_TOKEN is missing/ },
+  { name: 'callback requires HTTPS', url: 'http://vendor.example/refresh', failure: /must be an HTTPS URL/ },
+  { name: 'callback retries a transient error', statuses: [503, 202] },
+  { name: 'callback reports a permanent error', statuses: [401], failure: /HTTP 401/ },
 ]) {
   test(name, async (t) => {
     const env = {
       CONTEXT: context,
-      DEPLOY_ID: 'new-deploy',
-      DOCS_RELEASE_REFRESH_URL: 'https://vendor.example/v3/webhook/docs-release-refresh',
-      DOCS_RELEASE_REFRESH_TOKEN: 'callback-token',
-      DOCS_RELEASE_NETLIFY_API_TOKEN: 'netlify-token',
+      DOCS_RELEASE_REFRESH_URL: url,
+      DOCS_RELEASE_REFRESH_TOKEN: token,
     };
     for (const [key, value] of Object.entries(env)) {
       const previous = process.env[key];
@@ -32,24 +31,22 @@ for (const [name, context, site, expectedRequests, lookupFailure] of [
         else process.env[key] = previous;
       });
     }
-    const calls = [];
-    t.mock.method(globalThis, 'fetch', async (url, options) => {
-      const method = options.method || 'GET';
-      calls.push(method);
-      if (method === 'GET') {
-        assert.equal(String(url), 'https://api.netlify.com/api/v1/sites/docs-site');
-        assert.equal(options.headers.Authorization, 'Bearer netlify-token');
-        if (lookupFailure && calls.length === 1) {
-          if (lookupFailure instanceof Error) throw lookupFailure;
-          return new Response(null, { status: lookupFailure });
-        }
-        return Response.json(site);
-      }
-      assert.equal(String(url), env.DOCS_RELEASE_REFRESH_URL);
-      assert.equal(options.headers['X-Docs-Release-Refresh-Token'], 'callback-token');
-      return new Response(null, { status: 202 });
+
+    let requests = 0;
+    t.mock.method(globalThis, 'fetch', async (destination, options) => {
+      assert.equal(String(destination), callbackUrl);
+      assert.equal(options.method, 'POST');
+      assert.equal(options.headers['X-Docs-Release-Refresh-Token'], callbackToken);
+      assert.equal(options.redirect, 'error');
+      return new Response(null, { status: statuses[requests++] });
     });
-    await onSuccess({ constants, utils });
-    assert.deepEqual(calls, expectedRequests);
+
+    const failures = [];
+    const utils = { build: { failPlugin: (message) => failures.push(message) } };
+    await onSuccess({ constants: { IS_LOCAL: isLocal }, utils });
+
+    assert.equal(requests, statuses.length);
+    assert.equal(failures.length, failure ? 1 : 0);
+    if (failure) assert.match(failures[0], failure);
   });
 }
