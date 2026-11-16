@@ -13,7 +13,6 @@ Standalone commands do not run application preflight checks. Installation and jo
 * Use the application package for the v3 release you intend to install. For a joining node, use a join bundle from the destination cluster.
 * Run the command as root on the host you want to check.
 * Mount the volumes you intend to use before running checks. If the data directory does not exist, the disk benchmark creates a temporary directory inside its nearest existing ancestor. Results describe that filesystem, not a volume mounted later.
-* Install the host tools required for disk checks. For more information about `fio`, see [Disk performance checks](installing-embedded-requirements#disk-performance-checks) in _Embedded Cluster installation requirements_.
 
 Replace `APP_SLUG` in the examples with the name of the application binary.
 
