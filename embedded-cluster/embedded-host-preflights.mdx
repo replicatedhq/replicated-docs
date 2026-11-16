@@ -1,8 +1,8 @@
-# Run host preflight checks before installation (Beta)
+# Run host preflight checks without installing
+
+Run standalone host preflight checks to confirm that a host meets Embedded Cluster v3 requirements without installing anything. For example, you can check hosts before you schedule an installation or change window, validate hosts in provisioning automation, check a node before it joins a cluster, re-check a host after changing its configuration, or check hosts before upgrading from Embedded Cluster v2.
 
 Standalone host preflight checks require Embedded Cluster `VERSION_PLACEHOLDER` or later.
-
-Run standalone host preflight checks to evaluate a host before installing Embedded Cluster v3 or joining a node. You can also check hosts before a migration from Embedded Cluster v2 or kURL.
 
 The commands run Embedded Cluster's built-in host checks and any vendor-provided host checks. They do not install Embedded Cluster, start its services, or configure the host. Checks can create temporary files, generate disk I/O, and test network connectivity. The command removes temporary workspaces when it finishes.
 
@@ -50,7 +50,7 @@ Replace `APP_SLUG` in the examples with the name of the application binary.
 
 ## Check a node before joining
 
-1. Obtain a join bundle for the intended node roles from the destination cluster. Copy or download it to the node and extract it. See [Join nodes](embedded-manage-nodes#add-nodes).
+1. Obtain a join bundle for the intended node roles from the destination cluster. Copy or download it to the node and extract it. For more information about getting a join bundle, see [Join nodes](embedded-manage-nodes#add-nodes) in _Access and manage embedded clusters_.
 
 1. From the extracted join bundle directory, run:
 
@@ -60,7 +60,7 @@ Replace `APP_SLUG` in the examples with the name of the application binary.
 
    `join run-preflights` is an equivalent command. To select a network interface, add `--network-interface eth0`.
 
-1. Review the results before running the normal `node join` command. The checks use the bundle's roles and cluster settings. Bundles that retrieve a join profile require access to the destination cluster and a valid join token. Obtain a new bundle if the token expires.
+1. Review the results before running the normal `node join` command. The checks use the bundle's roles and cluster settings. If the join bundle gets its settings from the cluster, the node needs access to the destination cluster and a valid join token. Obtain a new bundle if the token expires.
 
 The v3 command reads its inputs from the join bundle. It does not accept the two positional arguments used by the v2 `join run-preflights` command. Update existing scripts accordingly.
 
@@ -91,10 +91,10 @@ Results are point-in-time, not a guarantee of a later install or join. Disk load
 
 Standalone checks inspect the host without applying the host configuration that installation normally performs. For example, a kernel parameter check can fail for a setting that installation attempts to configure. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
 
-### Before a migration from v2 or kURL
+### Check a host that already runs a cluster
 
-Run the target v3 package's checks on each host before beginning the migration. Downloading the package and running `install run-preflights` does not begin installation or upgrade the existing cluster.
+You can run the checks on a host that already runs a cluster, for example before upgrading from Embedded Cluster v2. Running `install run-preflights` does not install anything or change the existing cluster.
 
-A running cluster can occupy required ports or consume resources, so some checks can fail while v2 or kURL is running. Disk benchmarks also compete with existing workloads. Review each failure to determine its cause. Do not assume the running cluster causes every failure. Checks such as cgroup mode can reveal host requirements that you must address before migration.
+The existing cluster can hold ports that Embedded Cluster v3 requires and use CPU, memory, and disk, so some checks can fail while it runs. Disk benchmarks also compete with existing workloads. Review each failure to determine its cause, and don't assume the running cluster causes every failure. Checks such as cgroup mode can reveal host requirements that you must address first.
 
-For migration requirements, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).
+For more information about upgrading, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).
