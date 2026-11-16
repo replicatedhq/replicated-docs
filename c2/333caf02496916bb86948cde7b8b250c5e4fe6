@@ -1,0 +1,21 @@
+embedded-cluster/embedded-cluster-node-join.mdx
+  s_a348fe49c0f012::t_9a6dbd30210548 13
+embedded-cluster/embedded-cluster-install.mdx
+  s_a348fe49c0f012::t_9a6dbd30210548 13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c2333caf02496916bb86948cde7b8b250c5e4fe6",
+  "prompts": {},
+  "sessions": {
+    "s_a348fe49c0f012": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1cb50-c081-7753-8688-8f69c8014ee1",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}
