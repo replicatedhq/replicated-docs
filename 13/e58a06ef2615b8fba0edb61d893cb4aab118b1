@@ -1,0 +1,19 @@
+docs/vendor/custom-domains.md
+  s_a9fc30f78a03c1::t_2d58c3db2b865a 51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "13e58a06ef2615b8fba0edb61d893cb4aab118b1",
+  "prompts": {},
+  "sessions": {
+    "s_a9fc30f78a03c1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a9fc30f78a03c1",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

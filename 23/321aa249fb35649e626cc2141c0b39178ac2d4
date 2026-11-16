@@ -1,0 +1,23 @@
+docs/vendor/custom-domains-using.md
+  s_abbac797d8a41f::t_5ab10635a0ab4d 76
+docs/vendor/custom-domains.md
+  s_abbac797d8a41f::t_6996df004452f9 29
+docs/vendor/enterprise-portal-self-serve-signup.mdx
+  s_abbac797d8a41f::t_a6c4d1aad2ff42 77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "23321aa249fb35649e626cc2141c0b39178ac2d4",
+  "prompts": {},
+  "sessions": {
+    "s_abbac797d8a41f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_abbac797d8a41f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

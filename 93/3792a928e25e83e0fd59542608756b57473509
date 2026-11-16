@@ -1,0 +1,19 @@
+embedded-cluster/embedded-v3-migrate.mdx
+  s_e0fabf0fb8e537::t_d14dfcfdcd010f 35,301
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "933792a928e25e83e0fd59542608756b57473509",
+  "prompts": {},
+  "sessions": {
+    "s_e0fabf0fb8e537": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_e0fabf0fb8e537",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
