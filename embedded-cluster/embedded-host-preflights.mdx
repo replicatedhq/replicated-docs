@@ -1,8 +1,8 @@
-# Run host preflight checks before installation
+# Run host preflight checks before installation (Beta)
 
 Standalone host preflight checks require Embedded Cluster `VERSION_PLACEHOLDER` or later.
 
-Run standalone host preflight checks to evaluate a host before installation or a planned change window. Use them to validate hosts in provisioning automation, check a node before it joins, or check readiness again after changing host settings.
+Run standalone host preflight checks to evaluate a host before installing Embedded Cluster v3 or joining a node. You can also check hosts before a migration from Embedded Cluster v2 or kURL.
 
 The commands run Embedded Cluster's built-in host checks and any vendor-provided host checks. They do not install Embedded Cluster, start its services, or configure the host. Checks can create temporary files, generate disk I/O, and test network connectivity. The command removes temporary workspaces when it finishes.
 
@@ -13,7 +13,7 @@ Standalone commands do not run application preflight checks. Installation and jo
 * Use the application package for the v3 release you intend to install. For a joining node, use a join bundle from the destination cluster.
 * Run the command as root on the host you want to check.
 * Mount the volumes you intend to use before running checks. If the data directory does not exist, the disk benchmark creates a temporary directory inside its nearest existing ancestor. Results describe that filesystem, not a volume mounted later.
-* Install the host tools required for disk checks. For more information about `fio`, see [Disk performance checks](installing-embedded-requirements#disk-performance-checks) in _Embedded Cluster installation requirements_.
+* The disk performance collector needs `fio` on the host's `PATH`. The v3 package does not supply it. Confirm that the results include the disk benchmark. An omitted result does not establish disk readiness.
 
 Replace `APP_SLUG` in the examples with the name of the application binary.
 
@@ -91,10 +91,10 @@ Results are point-in-time, not a guarantee of a later install or join. Disk load
 
 Standalone checks inspect the host without applying the host configuration that installation normally performs. For example, a kernel parameter check can fail for a setting that installation attempts to configure. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
 
-### Check a host that already runs a cluster
+### Before a migration from v2 or kURL
 
-You can run the target application's host checks while a cluster is running. For example, check each host before upgrading from Embedded Cluster v2. Downloading the package and running `install run-preflights` does not begin installation or upgrade the existing cluster.
+Run the target v3 package's checks on each host before beginning the migration. Downloading the package and running `install run-preflights` does not begin installation or upgrade the existing cluster.
 
-A running cluster can occupy required ports or consume resources, causing some host checks to fail. Disk benchmarks also compete with existing workloads. Review each failure to determine its cause. Do not assume the running cluster causes every failure. Checks such as cgroup mode can reveal host requirements that you must address before installation or upgrade.
+A running cluster can occupy required ports or consume resources, so some checks can fail while v2 or kURL is running. Disk benchmarks also compete with existing workloads. Review each failure to determine its cause. Do not assume the running cluster causes every failure. Checks such as cgroup mode can reveal host requirements that you must address before migration.
 
-For more information about v2 upgrade requirements, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).
+For migration requirements, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).
