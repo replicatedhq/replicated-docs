@@ -1,5 +1,4 @@
 import EmbeddedCluster from "../docs/partials/embedded-cluster/v3/_definition.mdx"
-import HaArchitecture from "../docs/partials/embedded-cluster/v3/_multi-node-ha-arch.mdx"
 
 # Embedded Cluster overview
 
@@ -143,5 +142,7 @@ Embedded Cluster host preflight checks have the following limitations:
 Embedded Cluster supports installations in multi-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI, the CLI, or the [Embedded Cluster API](embedded-cluster-external-api).
 
 Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
+
+Every controller node serves the [admin console](embedded-persistent-console), so end users can open it from any controller.
 
 For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).

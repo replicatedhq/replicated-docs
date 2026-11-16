@@ -141,6 +141,8 @@ The Kubernetes control plane becomes highly available (HA) with at least three c
 
 Application workloads and Helm [extensions](embedded-config#extensions) must also be configured for high availability.
 
+The admin console does not need any HA configuration. Every controller node serves it, so if one controller is down, end users can open the console on another controller. For more information, see [Which node serves the console](embedded-persistent-console#which-node-serves-the-console).
+
 ### Best practices for high availability
 
 Consider the following best practices and recommendations for HA clusters:
