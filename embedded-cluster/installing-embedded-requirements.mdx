@@ -18,6 +18,12 @@ Before starting installation, you can [run standalone host preflight checks](emb
 
 <EmbeddedClusterRequirements/>
 
+### Disk performance checks
+
+The host disk performance collector requires `fio` on the host's `PATH` for both installation and standalone host preflight checks. The Embedded Cluster v3 package does not supply it. Install `fio` before running these checks, including on hosts that will join a cluster.
+
+Confirm that the preflight results include the disk benchmark. An omitted result does not establish disk readiness.
+
 ## Host configuration
 
 <EmbeddedClusterHostConfig/>
