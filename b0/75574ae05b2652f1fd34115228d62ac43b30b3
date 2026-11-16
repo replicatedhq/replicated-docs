@@ -1,0 +1,171 @@
+docs/enterprise/installing-existing-cluster-automation.mdx
+  s_e35669867373e0::t_79b25643cc8162 11,80-81
+docs/enterprise/installing-existing-cluster.mdx
+  s_e35669867373e0::t_6edf59ab9f517d 6,47,61-62
+docs/enterprise/snapshots-storage-destinations.md
+  s_e35669867373e0::t_bedfeb1239bfbf 48,53-62,87-88,114-127
+docs/enterprise/snapshots-updating-with-admin-console.md
+  s_e35669867373e0::t_8a30e56d75d995 80
+docs/intro-replicated.mdx
+  s_e35669867373e0::t_a782ade6eaabc4 30,95,197
+docs/intro.mdx
+  s_e35669867373e0::t_67098fa6f77ded 343,354,360,367,380,393
+docs/partials/embedded-cluster/v3/_port-reqs.mdx
+  s_e35669867373e0::t_9cbcdd1b3b5b90 37
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_e35669867373e0::t_4ba8a8a3342013 3
+docs/partials/embedded-cluster/v3/_support-air-gap-releases.mdx
+  s_e35669867373e0::t_b1a146d0b1a2a4 81-82
+docs/partials/getting-started/_enterprise-portal.mdx
+  s_e35669867373e0::t_05a5059332404f 1,11,13,15,17
+docs/partials/helm/_helm-cr-builder-airgap-intro.mdx
+  s_e35669867373e0::t_3eb1e5f355b5c0 6
+docs/partials/helm/_helm-cr-weight.mdx
+  s_e35669867373e0::t_37352987e25aa4 11
+docs/partials/install/_kots-install-version.mdx
+  s_e35669867373e0::t_fc5b9dbfdd987c 1-7
+docs/reference/custom-resource-application.mdx
+  s_e35669867373e0::t_edebdbe8499b7a 198
+docs/reference/kots-cli-install.mdx
+  s_e35669867373e0::t_3d919b43a23ad7 6-7,16-25
+docs/reference/kots-cli-velero-configure-azure.md
+  s_e35669867373e0::t_91f0eb078bd7c4 33
+docs/reference/kots-cli-velero-configure-gcp.md
+  s_e35669867373e0::t_69272e450f6a80 4
+docs/release-notes/rn-app-manager.md
+  s_e35669867373e0::t_e9ae90f1be76d0 27-45
+docs/release-notes/rn-embedded-cluster-v3.md
+  s_e35669867373e0::t_6be060a3094523 15-43
+docs/release-notes/rn-embedded-cluster.md
+  s_e35669867373e0::t_9c39cef5f1ea9c 15-49
+docs/release-notes/rn-vendor-platform.md
+  s_e35669867373e0::t_d0d038884c2d45 12-75,126,182
+docs/vendor/custom-domains-using.md
+  s_e35669867373e0::t_776596988e99d8 76
+docs/vendor/custom-domains.md
+  s_e35669867373e0::t_a289fbf4eabbe7 29,51
+docs/vendor/customer-reporting.md
+  s_e35669867373e0::t_8613aff4c637f4 71,92,116
+docs/vendor/enterprise-portal-about.mdx
+  s_e35669867373e0::t_734508dfb0efa0 1,36,38,44,56,59,68,78
+docs/vendor/enterprise-portal-access.mdx
+  s_e35669867373e0::t_a5e24938ec7fb0 1,9,13,28
+docs/vendor/enterprise-portal-configure.mdx
+  s_e35669867373e0::t_081799a71596ac 1,6,70
+docs/vendor/enterprise-portal-invite.mdx
+  s_e35669867373e0::t_a14156a8104aff 1,9,60,84,94,125,137
+docs/vendor/enterprise-portal-self-serve-signup.mdx
+  s_e35669867373e0::t_f0b56b44f31249 1,9,25,27,77
+docs/vendor/enterprise-portal-use.mdx
+  s_e35669867373e0::t_5f5615e168aabe 1,15,32,35,40
+docs/vendor/enterprise-portal-v2-about.mdx
+  s_e35669867373e0::t_dbe871500215e7 7,9,11,15-22,30,35,38,45,57,59,63-64,66,68,70,72
+docs/vendor/enterprise-portal-v2-access.mdx
+  s_e35669867373e0::t_fe03d34dc861a4 1,61
+docs/vendor/enterprise-portal-v2-branding.mdx
+  s_e35669867373e0::t_21930b224f641b 1,9,78
+docs/vendor/enterprise-portal-v2-connect-repo.mdx
+  s_e35669867373e0::t_6e834dfb2280d4 1,13,21,40,45,64
+docs/vendor/enterprise-portal-v2-content.mdx
+  s_e35669867373e0::t_e3002743be6b7d 1,7,9-11,28-30,43,74-86,114,236,238,240,253,270,294,304,360,363-365,368,600,605
+docs/vendor/enterprise-portal-v2-domains.mdx
+  s_e35669867373e0::t_44fd3f8c1d1206 1,9,17,37,39-41,45
+docs/vendor/enterprise-portal-v2-emails.mdx
+  s_e35669867373e0::t_a315ac64837353 1,9-12,94,117-118,127-128
+docs/vendor/enterprise-portal-v2-helm-reference.mdx
+  s_e35669867373e0::t_629e406a5a831b 1
+docs/vendor/enterprise-portal-v2-invite.mdx
+  s_e35669867373e0::t_26a3c8f51a257c 1,7,9,11,13,15,17-60,71,73,79,87,111,132-134,138
+docs/vendor/enterprise-portal-v2-mdx-components.mdx
+  s_e35669867373e0::t_0bc8f523c5eb51 1-484
+docs/vendor/enterprise-portal-v2-portal-features.mdx
+  s_e35669867373e0::t_0b6a047bbcdfcd 1,60,71,73,87
+docs/vendor/enterprise-portal-v2-self-serve-signup.mdx
+  s_e35669867373e0::t_90ae3e850bab9d 1,16,61
+docs/vendor/enterprise-portal-v2-service-account-automation.mdx
+  s_e35669867373e0::t_3d61ce474a8b1e 2,5,11,13,35-37,43,133-144,201,242,248,250
+docs/vendor/enterprise-portal-v2-terraform.mdx
+  s_e35669867373e0::t_14049917fdf89a 1,3-4,20
+docs/vendor/enterprise-portal-v2-troubleshooting.mdx
+  s_e35669867373e0::t_30e06346b8382b 20,26,28-32,34,48,91,110
+docs/vendor/enterprise-portal-v2-use.mdx
+  s_e35669867373e0::t_669801c4438e3b 1,21,35-39,66,77,97,101,107,112-113,117,119,123,125,127,129-131,133,135,137-148,151,170
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  s_e35669867373e0::t_6b89c2612fdd92 2,5,11,26,32,50,53-54,57-58,65-66,114,117,150-151,236,238,241-263
+docs/vendor/enterprise-portal-v2-versioned-docs.mdx
+  s_e35669867373e0::t_dad798b0b96bb0 1,15,77,79-81,106
+docs/vendor/enterprise-portal-v2-webhooks.mdx
+  s_e35669867373e0::t_985b246fdc146f 1-108
+docs/vendor/helm-install-airgap.mdx
+  s_e35669867373e0::t_f3fa81d5a5d90e 7,37
+docs/vendor/install-with-helm.mdx
+  s_e35669867373e0::t_ce65a7f3ef7585 50
+docs/vendor/licenses-about.mdx
+  s_e35669867373e0::t_30d22d6db89104 55
+docs/vendor/operator-defining-additional-images.mdx
+  s_e35669867373e0::t_4d7e14d809518c 57-83
+docs/vendor/packaging-include-resources.md
+  s_e35669867373e0::t_7aaf4832c92649 58
+docs/vendor/preflight-support-bundle-about.mdx
+  s_e35669867373e0::t_adf5f528562793 170
+docs/vendor/releases-creating-cli.mdx
+  s_e35669867373e0::t_030f7fec540da4 118
+docs/vendor/releases-creating-customer.mdx
+  s_e35669867373e0::t_c98e3968cafb01 36
+docs/vendor/releases-share-download-portal.md
+  s_e35669867373e0::t_c3bc4176e78819 5-8
+docs/vendor/replicated-onboarding-air-gap.mdx
+  s_e35669867373e0::t_ee87a2381393bd 64
+docs/vendor/security-center-enable-customer-access.mdx
+  s_e35669867373e0::t_1d05c20661dd1c 48,66
+docs/vendor/team-management-rbac-resource-names.md
+  s_e35669867373e0::t_681feca591e5dd 358-363
+docs/vendor/testing-supported-clusters.md
+  s_e35669867373e0::t_6dadab58e6eb16 79,130,180
+docs/vendor/tutorial-helm-cli.mdx
+  s_e35669867373e0::t_20bcb26a2cf844 17
+docs/vendor/using-third-party-registry-proxy.mdx
+  s_e35669867373e0::t_92a2426deba070 36
+embedded-cluster/embedded-cluster-create-join-bundle.mdx
+  s_e35669867373e0::t_4410f045be6f13 32
+embedded-cluster/embedded-cluster-external-api.mdx
+  s_e35669867373e0::t_8748cb8da095b3 1,12
+embedded-cluster/embedded-disaster-recovery-v3.mdx
+  s_e35669867373e0::t_2552e2125d52ab 143-150
+embedded-cluster/embedded-manage-nodes.mdx
+  s_e35669867373e0::t_96e30c729a9044 68,105,259-292
+embedded-cluster/embedded-overview.mdx
+  s_e35669867373e0::t_07ddb81ab786d8 143
+embedded-cluster/embedded-persistent-console.mdx
+  s_e35669867373e0::t_57d749e1c8afc0 71
+embedded-cluster/embedded-troubleshooting.mdx
+  s_e35669867373e0::t_c81545b28d6bcd 76,80,82,84-87,89,91,95,98,100-111,113,115-123,249-290
+embedded-cluster/embedded-using.mdx
+  s_e35669867373e0::t_08d05e06136b03 442-444,512,518-519,522,537,547-548,551-561,563,565,567
+embedded-cluster/embedded-v3-migrate.mdx
+  s_e35669867373e0::t_8c4ffeabfd2c4f 25,35,41-42,45-46,162,177-188,301,348-349
+embedded-cluster/installing-embedded-requirements.mdx
+  s_e35669867373e0::t_bb446fc1b188c2 23-50,144-183
+embedded-cluster_versioned_docs/version-2.0.0/embedded-troubleshooting.mdx
+  s_e35669867373e0::t_f6c2a9a16611df 64,68,70,72-75,77,79,83,86,88-105,107-109,111
+embedded-cluster_versioned_docs/version-2.0.0/embedded-using.mdx
+  s_e35669867373e0::t_bc8de7b326113c 74,80-81,84,102,110-111,114-124,126,128,130
+sidebars.js
+  s_e35669867373e0::t_bacec3cfa744dc 206-207,209-211,213,220,223-234
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b075574ae05b2652f1fd34115228d62ac43b30b3",
+  "prompts": {},
+  "sessions": {
+    "s_e35669867373e0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_e35669867373e0",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
