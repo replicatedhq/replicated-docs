@@ -72,7 +72,7 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td><a href="/embedded-cluster/v3/embedded-overview">Replicated Embedded Cluster Installer v3</a></td>
-    <td>Beta</td>
+    <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
@@ -122,4 +122,4 @@ Replicated support for end-customer installations is limited to those installs u
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified 2026 November 4.
+Last modified 2026 November 16.

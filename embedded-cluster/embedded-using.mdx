@@ -5,7 +5,7 @@ import RewriteHelmValues from "../docs/partials/proxy-service/_step-rewrite-helm
 import DependencyYaml from "../docs//partials/replicated-sdk/_dependency-yaml.mdx"
 import SupportAirGapV3 from "../docs/partials/embedded-cluster/v3/_support-air-gap-releases.mdx"
 
-# Configure Embedded Cluster (Beta)
+# Configure Embedded Cluster
 
 This topic describes how to configure and use Replicated Embedded Cluster with your application.
 For more information about Embedded Cluster, see [Embedded Cluster Overview](embedded-overview). For information about updating an existing release from Embedded Cluster v2 to v3, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).
@@ -43,7 +43,7 @@ To create an application release that supports installation with Embedded Cluste
 
 1. Add an [Embedded Cluster Config](embedded-config) manifest to the release. At minimum, the Config must specify the Embedded Cluster version to use.
 
-     Replace `EC_VERSION` with the version to install, including the Kubernetes suffix. For example, `3.12.0-beta.1+k8s-1.36`. Each entry in the [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3) lists the full version strings available for that release.
+     Replace `EC_VERSION` with the version to install, including the Kubernetes suffix. For example, `3.20.0+k8s-1.36`. Each entry in the [Embedded Cluster v3 release notes](/release-notes/rn-embedded-cluster-v3) lists the full version strings available for that release.
 
      <EcConfig/>
 

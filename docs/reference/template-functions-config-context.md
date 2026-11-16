@@ -384,7 +384,7 @@ For more information, see [values](/reference/custom-resource-helmchart-v2#value
 func HelmValue(path string) string
 ```
 
-This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [HelmValue](/embedded-cluster/v3/template-functions#helmvalue-func) in _Template Functions for Embedded Cluster (Beta)_.
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [HelmValue](/embedded-cluster/v3/template-functions#helmvalue-func) in _Template Functions for Embedded Cluster_.
 
 Returns a default value from the Helm chart that the HelmChart custom resource references. Use HelmValue to read a chart's default image values and pass them to the [ReplicatedImageName](#replicatedimagename) or [ReplicatedImageRegistry](#replicatedimageregistry) template functions, so that you don't have to repeat image references in the HelmChart custom resource.
 
@@ -435,7 +435,7 @@ spec:
 func ReplicatedImageName(image string, noProxy ...bool) string
 ```
 
-This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) in _Template Functions for Embedded Cluster (Beta)_.
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageName](/embedded-cluster/v3/template-functions#replicatedimagename) in _Template Functions for Embedded Cluster_.
 
 Returns a full image reference, including the registry, repository, and tag or digest, rewritten so that the image can be pulled in the customer's environment. Use ReplicatedImageName in the HelmChart custom resource so that image references resolve correctly in both online and air gap installations.
 
@@ -476,7 +476,7 @@ spec:
 func ReplicatedImageRegistry(registry string, noProxy ...bool) string
 ```
 
-This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) in _Template Functions for Embedded Cluster (Beta)_.
+This section describes the behavior in KOTS and Embedded Cluster v2. Embedded Cluster v3 behaves differently. See [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) in _Template Functions for Embedded Cluster_.
 
 Returns a registry host rewritten so that images can be pulled in the customer's environment. Use ReplicatedImageRegistry when a Helm chart sets the image registry and repository in separate fields.
 

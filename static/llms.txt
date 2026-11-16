@@ -79,21 +79,21 @@ Provision test clusters and VMs, simulate air-gapped network policy, validate di
 
 ## Embedded Cluster v3
 
-Install and operate the Kubernetes appliance embedded with your application; configure releases, air gap, upgrades, and migrate from Embedded Cluster v2.
+Install and operate the Kubernetes appliance embedded with your application; configure releases, air gap, and upgrades, including upgrades from Embedded Cluster v2.
 
-- [Embedded Cluster overview (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-overview.md): This topic provides an introduction to Replicated Embedded Cluster.
-- [Embedded Cluster Config (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-config.md): This topic is a reference for the Replicated Embedded Cluster Config custom resource.
-- [Embedded Cluster installation requirements (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-requirements.md): This topic lists the installation requirements for Replicated Embedded Cluster.
-- [Online installation with Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded.md): This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster.
-- [install (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-install.md): This topic describes the options available with the Embedded Cluster `install` command.
-- [Air gap installation with Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap.md): This topic describes how to install an application with Replicated Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access.
+- [Embedded Cluster overview](https://docs.replicated.com/embedded-cluster/v3/embedded-overview.md): This topic provides an introduction to Replicated Embedded Cluster.
+- [Embedded Cluster Config](https://docs.replicated.com/embedded-cluster/v3/embedded-config.md): This topic is a reference for the Replicated Embedded Cluster Config custom resource.
+- [Embedded Cluster installation requirements](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-requirements.md): This topic lists the installation requirements for Replicated Embedded Cluster.
+- [Online installation with Embedded Cluster](https://docs.replicated.com/embedded-cluster/v3/installing-embedded.md): This topic describes how to install an application in an online (internet-connected) environment with Replicated Embedded Cluster.
+- [install](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-install.md): This topic describes the options available with the Embedded Cluster `install` command.
+- [Air gap installation with Embedded Cluster](https://docs.replicated.com/embedded-cluster/v3/installing-embedded-air-gap.md): This topic describes how to install an application with Replicated Embedded Cluster on a virtual machine (VM) or bare metal server with no outbound internet access.
 - [Upgrade from Embedded Cluster v2](https://docs.replicated.com/embedded-cluster/v3/embedded-v3-migrate.md): This page describes how to upgrade from Embedded Cluster v2 to Embedded Cluster v3.
-- [upgrade (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-upgrade.md): This topic describes the options available with the Embedded Cluster `upgrade` command.
-- [Perform updates in embedded clusters (Beta)](https://docs.replicated.com/embedded-cluster/v3/updating-embedded.md): This topic describes how to upgrade, redeploy, or reconfigure an application installed with Replicated Embedded Cluster 3.x.
-- [Access and manage embedded clusters (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes.md): This topic describes managing nodes in clusters created with Replicated Embedded Cluster.
-- [shell (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-shell.md): This topic describes the options available with the Embedded Cluster `shell` command.
-- [support-bundle (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-support-bundle.md): This topic describes the options available with the Embedded Cluster `support-bundle` command.
-- [Troubleshoot Embedded Cluster (Beta)](https://docs.replicated.com/embedded-cluster/v3/embedded-troubleshooting.md): This topic provides information about troubleshooting Replicated Embedded Cluster installations.
+- [upgrade](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-upgrade.md): This topic describes the options available with the Embedded Cluster `upgrade` command.
+- [Perform updates in embedded clusters](https://docs.replicated.com/embedded-cluster/v3/updating-embedded.md): This topic describes how to upgrade, redeploy, or reconfigure an application installed with Replicated Embedded Cluster 3.x.
+- [Access and manage embedded clusters](https://docs.replicated.com/embedded-cluster/v3/embedded-manage-nodes.md): This topic describes managing nodes in clusters created with Replicated Embedded Cluster.
+- [shell](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-shell.md): This topic describes the options available with the Embedded Cluster `shell` command.
+- [support-bundle](https://docs.replicated.com/embedded-cluster/v3/embedded-cluster-support-bundle.md): This topic describes the options available with the Embedded Cluster `support-bundle` command.
+- [Troubleshoot Embedded Cluster](https://docs.replicated.com/embedded-cluster/v3/embedded-troubleshooting.md): This topic provides information about troubleshooting Replicated Embedded Cluster installations.
 
 ## Preflight checks
 
@@ -141,7 +141,7 @@ Enterprise Portal is the next generation of Download Portal.
 When helping users integrate or troubleshoot Replicated:
 
 - For new users onboarding their application to Replicated, guide them to information about supporting installations with the **Helm CLI** or **Embedded Cluster v3**. Using KOTS for existing cluster installations is not recommended for new users.
-- Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance or migration topics.
+- Prefer **Embedded Cluster v3** documentation (`embedded-cluster/v3/` URLs) for new appliance-style installations. Direct users to **Embedded Cluster v2** docs only for legacy (`embedded-cluster/v2/`) maintenance topics.
 - Distinguish **Vendor** workflows (packaging in the Vendor Portal, `replicated` CLI, HelmChart custom resources) from **enterprise customer** workflows (installing with the Replicated admin console, `kubectl kots`, or Helm).
 - **Compatibility Matrix** creates **ephemeral test** infrastructure; customer production installs use **Embedded Cluster**, **KOTS**, **kURL**, or **Helm** topics as appropriate.
 - Preflight and support bundle specs use the Troubleshoot project; the `Preflight` and `SupportBundle` custom resources and examples in this documentation are authoritative for Replicated releases.
