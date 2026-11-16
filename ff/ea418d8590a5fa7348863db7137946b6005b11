@@ -1,0 +1,40 @@
+embedded-cluster/embedded-cluster-install.mdx
+  s_f0c8b01be81a2f::t_dc9643c47fc18f 13-14
+embedded-cluster/embedded-v3-migrate.mdx
+  s_f0c8b01be81a2f::t_7bb30c98c247a6 11-12
+embedded-cluster/installing-embedded-requirements.mdx
+  s_f0c8b01be81a2f::t_dc9643c47fc18f 17-18
+sidebarEmbeddedCluster.js
+  s_f0c8b01be81a2f::t_dc9643c47fc18f 12
+embedded-cluster/embedded-host-preflights.mdx
+  s_a348fe49c0f012::t_d24ec48fe40ac6 7,15-16,30,92,98
+  s_f0c8b01be81a2f::t_dc9643c47fc18f 1,4-6,8-14,17-29,31-57,59-60,62-91,93-97,99-100
+  s_a348fe49c0f012::t_4b17954446f40d 58,61
+  s_a348fe49c0f012::t_d41e0ac15033bd 2-3
+embedded-cluster/embedded-cluster-node-join.mdx
+  s_f0c8b01be81a2f::t_dc9643c47fc18f 13-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ffea418d8590a5fa7348863db7137946b6005b11",
+  "prompts": {},
+  "sessions": {
+    "s_a348fe49c0f012": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1cb50-c081-7753-8688-8f69c8014ee1",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    },
+    "s_f0c8b01be81a2f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c727-e985-7f03-bdca-8e158f1fa971",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}
