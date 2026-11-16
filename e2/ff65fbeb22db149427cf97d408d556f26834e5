@@ -1,0 +1,21 @@
+embedded-cluster/embedded-troubleshooting.mdx
+  s_9953f8f2d7552f::t_2dfdcc0d264cd2 269-290
+embedded-cluster/embedded-v3-migrate.mdx
+  s_9953f8f2d7552f::t_604ec09cefd4f9 37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e2ff65fbeb22db149427cf97d408d556f26834e5",
+  "prompts": {},
+  "sessions": {
+    "s_9953f8f2d7552f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_9953f8f2d7552f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

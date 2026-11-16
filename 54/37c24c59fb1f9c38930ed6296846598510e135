@@ -1,0 +1,23 @@
+docs/partials/embedded-cluster/v3/_support-air-gap-releases.mdx
+  s_760fdaf00f1497::t_2ff97d6c9e0437 81-84
+docs/reference/custom-resource-application.mdx
+  s_760fdaf00f1497::t_05748da86737d6 198
+docs/vendor/operator-defining-additional-images.mdx
+  s_760fdaf00f1497::t_e2a62fc99f5fee 57-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5437c24c59fb1f9c38930ed6296846598510e135",
+  "prompts": {},
+  "sessions": {
+    "s_760fdaf00f1497": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_760fdaf00f1497",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+docs/vendor/ci-workflows.mdx
+  s_496c42ebe186f5::t_0aded77df9436b 141-145,273-277
+docs/vendor/testing-supported-clusters.md
+  s_496c42ebe186f5::t_f82fadb038af10 180
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "36305b97579c293c05f48ac0068554eed673eb10",
+  "prompts": {},
+  "sessions": {
+    "s_496c42ebe186f5": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_496c42ebe186f5",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
