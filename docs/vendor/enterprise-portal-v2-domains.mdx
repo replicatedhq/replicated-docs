@@ -1,4 +1,4 @@
-# Configure a Custom Domain
+# Configure a custom domain
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change.
@@ -6,7 +6,7 @@ The Enterprise Portal is Beta. Features described on this page are subject to ch
 
 Every Enterprise Portal has a default domain that is always available. You can also add your own custom domain so that customers access the portal at a branded URL.
 
-You manage New Enterprise Portal domains from **Enterprise Portal > Domains**, not from the Vendor Portal **Custom Domains** page. The **Custom Domains** page covers the Classic Enterprise Portal, the Download Portal, and other Replicated endpoints. For those endpoints, see [Use Custom Domains](/vendor/custom-domains-using).
+You manage new Enterprise Portal domains from **Enterprise Portal > Domains**, not from the Vendor Portal **Custom Domains** page. The **Custom Domains** page covers the Classic Enterprise Portal, the Download Portal, and other Replicated endpoints. For those endpoints, see [Use Custom Domains](/vendor/custom-domains-using).
 
 ## Default domain
 
@@ -14,7 +14,7 @@ Replicated assigns every portal a default domain in the form `{appSlug}.enterpri
 
 ## Add a custom domain
 
-To add a custom domain for the New Enterprise Portal:
+To add a custom domain for the new Enterprise Portal:
 
 1. In the [Vendor Portal](https://vendor.replicated.com), go to **Enterprise Portal > Domains**.
 
@@ -34,13 +34,15 @@ When verification succeeds, the status changes to **Valid Configuration** and cu
 
 ## Transitioning from the Classic Enterprise Portal or Download Portal
 
-If you already serve the Classic Enterprise Portal or the Download Portal on a custom domain, that same domain cannot also serve the New Enterprise Portal. A single custom domain maps to one portal.
+If you already serve the Classic Enterprise Portal or the Download Portal on a custom domain, that same domain cannot also serve the new Enterprise Portal. A single custom domain maps to one portal.
 
-To move customers over gradually, add a second, separate custom domain for the New Enterprise Portal and keep your existing domain in place. Both portals then run at the same time, each at its own domain. Customers you move to the New Enterprise Portal reach it at the new domain. Customers still on the Classic Enterprise Portal or Download Portal continue to use your existing domain.
+To move customers over gradually, add a second, separate custom domain for the new Enterprise Portal and keep your existing domain in place. Both portals then run at the same time, each at its own domain. Customers you move to the new Enterprise Portal reach it at the new domain. Customers still on the Classic Enterprise Portal or Download Portal continue to use your existing domain.
+
+Moving a customer changes the address they use to reach the portal. For how to prepare customers who allowlist the portal address, see [Plan for the address change](/vendor/enterprise-portal-v2-invite#plan-for-the-address-change) in _Manage customer access_.
 
 ## Branding on a custom domain
 
-The login page footer behaves differently depending on whether you use a custom domain. On a custom domain, you can remove the footer entirely. On the default `*.enterpriseportal.app` domain, keep the footer to avoid Google Safe Browsing flagging the portal. For more information, see [Login page footer](/vendor/enterprise-portal-v2-branding#login-page-footer) in _Customize Portal Branding_.
+The login page footer behaves differently depending on whether you use a custom domain. On a custom domain, you can remove the footer entirely. On the default `*.enterpriseportal.app` domain, keep the footer to avoid Google Safe Browsing flagging the portal. For more information, see [Login page footer](/vendor/enterprise-portal-v2-branding#login-page-footer) in _Customize portal branding_.
 
 ## Known issue
 

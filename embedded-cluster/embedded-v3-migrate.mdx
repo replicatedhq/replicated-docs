@@ -22,7 +22,7 @@ Embedded Cluster v3 delivers the following improvements over v2. For the release
 
 **Support for customer-controlled registries.** The cluster can pull every image, your application and the infrastructure components alike, from a single OCI registry that the customer operates. See [Install with a customer-managed registry](installing-embedded-byo-registry).
 
-**The full lifecycle can be automated.** Install, upgrade, and `node join` each run from the CLI or the [external API](embedded-cluster-external-api) with no console interaction. See [Install using the CLI (Headless)](installing-embedded#install-using-the-cli-headless) and [Upgrade using the CLI (headless)](updating-embedded#upgrade-using-the-cli-headless).
+**The full lifecycle can be automated.** Install, upgrade, and `node join` each run from the CLI or the [Embedded Cluster API](embedded-cluster-external-api) with no console interaction. See [Install using the CLI (Headless)](installing-embedded#install-using-the-cli-headless) and [Upgrade using the CLI (headless)](updating-embedded#upgrade-using-the-cli-headless).
 
 ## Changes for end users
 
@@ -32,13 +32,17 @@ You can adapt these lists for your own customer communications.
 
 These apply once, when an existing v2 installation moves to v3.
 
-**Customers won't see the v3 release in their Admin Console.** Releases that use Embedded Cluster v3 don't appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design, to prevent accidental upgrades. To get the v3 release, customers use the [Enterprise Portal](/vendor/enterprise-portal-about) or download the binary directly. Plan to communicate this when you promote a v3-enabled release.
+**Customers won't see the v3 release in their Admin Console.** Releases that use Embedded Cluster v3 don't appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design. The v2 Admin Console runs inside the cluster and deploys releases through KOTS, which uses a different template engine than v3 releases. It also can't make the host-level changes that the upgrade requires, such as replacing the Embedded Cluster service and binaries, and the upgrade removes the v2 Admin Console itself. For these reasons, the upgrade runs from the v3 binary on the host, and v3 releases are hidden from the v2 Admin Console so that customers can't start an upgrade there that it can't complete. To get the v3 release, customers use the [Enterprise Portal](/vendor/enterprise-portal-about) or download the binary directly. If customers get releases from your own distribution portal, see [One-time upgrade from Embedded Cluster v2 to v3](/vendor/enterprise-portal-v2-vendor-api-automation#upgrade-ec-v2-to-v3) in _Headless Enterprise Portal: Vendor API_. Plan to communicate this when you promote a v3-enabled release.
 
 **The upgrade is one-way and asks for confirmation.** The v3 binary detects the existing v2 installation and prompts the user to confirm before it proceeds. There's no path back to v2.
 
 **Configuration carries forward.** Values the customer already set, such as the application domain, are preserved, so nothing has to be re-entered.
 
+**Backup settings carry forward, but backups taken on v2 can't be restored on v3.** Starting in Embedded Cluster 3.18.0-beta.1, if the customer configured backups in v2, the upgrade keeps the backup storage location, schedule, and retention period, so backups continue to the same destination. Backups taken on v2 stay in the backup location until their v2 retention period ends, but the admin console doesn't list them, and Embedded Cluster v3 can't restore them. The upgrade itself is one-way, but if the customer needs to return to v2, they can restore one of these backups on a new machine with Embedded Cluster v2. See [Restore from a backup](/embedded-cluster/v2/embedded-disaster-recovery#restore-from-a-backup) in _Disaster recovery for Embedded Cluster_. So that the newest v2 backup matches the cluster as it was just before the upgrade, tell customers with backups configured to take one in the v2 Admin Console immediately before they upgrade. See [Configure backup storage and take backups in the Admin Console](/embedded-cluster/v2/embedded-disaster-recovery#configure-backup-storage-and-take-backups-in-the-admin-console) in _Disaster recovery for Embedded Cluster_. When the upgrade finishes, the wizard prompts the user to create a new backup, which becomes the first recovery point on v3. Tell customers to create it right away, because until they do, they have no backup they can restore. If the upgrade can't read the v2 backup settings, it warns the user and asks whether to continue, and the user then configures backups in the admin console after the upgrade. See [Backups after an upgrade from Embedded Cluster v2](embedded-disaster-recovery-v3#backups-after-an-upgrade-from-embedded-cluster-v2) in _Back up and restore Embedded Cluster v3_.
+
 **Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
+
+**Hosts on cgroup v1 must switch to cgroup v2 before the upgrade.** Current Embedded Cluster v3 versions run Kubernetes 1.35 or later, which requires cgroup v2. Because Kubernetes can't skip minor versions, the upgrade from v2 always passes through 1.35, so this applies whichever v3 version the customer upgrades to. RHEL 8 and other Enterprise Linux 8 distributions use cgroup v1 by default. Customers on those hosts must switch every node to cgroup v2 and reboot before they upgrade to any release that runs Kubernetes 1.35 or later, including an intermediate Embedded Cluster v2 release. Embedded Cluster v2 runs on either cgroup version, so the switch can happen ahead of time. If a host is still on cgroup v1 when the upgrade starts, the host preflight checks fail partway through, after the upgrade can no longer be undone. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
 
 **Multi-node clusters upgrade the remaining nodes manually, this one time.** Streamed upgrades require every remote node to already be running Embedded Cluster 3.2 or later, and nodes still on v2 do not qualify. The wizard detects this and displays manual instructions for those nodes. The user runs the displayed commands on each remaining node to download the upgrade bundle from the primary controller, extract it, and run `node upgrade`. Once every node is on v3, later upgrades stream automatically with no copying. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
 
@@ -155,7 +159,7 @@ The following Application spec fields are not used in Embedded Cluster v3:
 | `minKotsVersion` / `targetKotsVersion` | Gated installations to specific KOTS versions |
 | `requireMinimalRBACPrivileges` / `supportMinimalRBACPrivileges` | Controlled KOTS operator RBAC mode |
 | `consoleFeatureFlags` | Enabled feature flags in the Admin Console UI |
-| `ports` | Configured port-forward shortcuts in the Admin Console |
+| `ports` | Configured KOTS port forwarding and dashboard link rewriting. See [Application access and links](#application-access-and-links). |
 
 The following Application spec fields **are still used** in Embedded Cluster v3:
 
@@ -169,6 +173,18 @@ The following Application spec fields **are still used** in Embedded Cluster v3:
 | `additionalNamespaces` | Creates the listed namespaces and provisions registry image pull secrets and, when a custom CA bundle is configured, the private CA ConfigMap in each. Embedded Cluster also provisions these resources in the application namespace and namespaces specified by HelmChart resources. Keep this field for other namespaces your application uses, such as those where an Operator creates workloads. |
 | `proxyPublicImages` | Evaluated by the Vendor Portal when building the Embedded Cluster bundle to determine which public images can use the Replicated proxy registry. Embedded Cluster uses the resulting image metadata. |
 | `statusInformers` | Injected into the Replicated SDK Helm values for instance reporting in the Vendor Portal. Requires the [Replicated SDK](/vendor/replicated-sdk-overview). |
+
+### Application access and links
+
+Embedded Cluster v3 does not use the KOTS Application `spec.ports` fields (`serviceName`, `servicePort`, `localPort`, or `applicationUrl`) to forward ports or rewrite application links. In KOTS, a descriptor link that matches `ports.applicationUrl` is rewritten to use the Admin Console browser hostname and `localPort`. In v3, the rendered descriptor URL is used as supplied.
+
+To make your application accessible in v3:
+
+1. Expose it through your Helm chart. For example, use a NodePort Service and set `spec.ports[].nodePort` to `30888`. Users can then access the application at `http://<node-address>:30888`. A ClusterIP Service alone does not expose the application outside the cluster. You can also use an Ingress with an ingress controller.
+2. Have customers allow the required traffic through their network and firewall.
+3. In the Kubernetes SIG Application custom resource (`app.k8s.io/v1beta1`), set the `url` field for each entry in `spec.descriptor.links` to an address users can reach. Because the hostname is not known when you create the release, use template functions to build the URL. For example, `url: 'http://repl{{ ConfigOption "hostname" }}:30888'`, where `hostname` is an item in your Config custom resource. These links appear on both the Installation Complete page and the admin console dashboard. Adding a link does not expose the service.
+
+Migration preserves the existing Application manifest, but links that relied on KOTS URL rewriting need to be updated. For example, replace a URL that matched `ports.applicationUrl`, such as `http://nginx`, with the application's reachable URL. If you already expose the service with a NodePort for Embedded Cluster v2, only the link needs to change. See [Add application links to the Finish page](embedded-using#add-application-links-to-the-finish-page).
 
 ## Update your release to Embedded Cluster v3
 
@@ -282,7 +298,7 @@ To find out which of your customers are affected, check the Kubernetes version r
 :::
 
 :::note
-Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design to prevent accidental upgrades. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
+Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design. The upgrade runs from the v3 binary on the host, because the v2 Admin Console can't render v3 releases or make the host-level changes that the upgrade requires. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
 :::
 
 To upgrade an existing installation to Embedded Cluster v3:
@@ -329,3 +345,5 @@ To upgrade an existing installation to Embedded Cluster v3:
    ![upgrade wizard app upgrade screen](/images/embedded-cluster-v3-slackernews-upgrade-progress.png)
 
    [View a larger version of this image](/images/embedded-cluster-v3-slackernews-upgrade-progress.png)
+
+If the upgrade stops with an error after it reports that the upgrade from v2 completed, the installation is already on v3. For more information, see [Upgrade from Embedded Cluster v2 stops after the conversion](embedded-troubleshooting#v2-upgrade-stops-after-conversion) in _Troubleshoot Embedded Cluster_.

@@ -17,20 +17,21 @@ GitHub integration automatically syncs on push. If changes aren't appearing:
 - Check the sync status in the Content tab
 - Trigger manual sync from the Content tab (click "Sync")
 
-API manual sync (see [Connect a Git Repo](/vendor/enterprise-portal-v2-connect-repo) for how to get your `REPO_ID`):
+API manual sync (see [Connect a Git repo](/vendor/enterprise-portal-v2-connect-repo) for how to get your `REPO_ID`):
 
 ```
 replicated api post /v3/app/<APP_ID>/enterprise-portal/content-repos/<REPO_ID>/sync
 ```
 
-## Updated `main` but customers still see old content
+## A release shows the wrong content {#a-release-shows-the-wrong-content}
 
-The `main` branch is only the last-resort fallback. When a customer views a release, Enterprise Portal serves the highest version branch whose name is at or below that release version (nearest lower semver), and falls back to `main` only when no such branch exists. A stray version branch (for example, `v0.0.1`) sorts at or below almost every release, so it captures those releases and serves its own content, even after you update `main`.
+- Confirm on the **Content** tab that the branch is synced.
+- A release uses the branch named with its exact label first, then the nearest lower version branch, then `main`. Check whether a lower branch, such as a stray `v0.0.1`, is catching the release. If you don't maintain version-specific docs, delete stray version branches so every release uses `main`.
+- Check the **Content** tab for a pin on the release.
+- A release label that isn't a valid semantic version matches only a branch with exactly that name. Otherwise it uses `main`.
+- Branch names don't change which releases appear in the version dropdown. The dropdown lists the releases on the customer's channel.
 
-- On the Content tab, check which branches are synced. If you are not maintaining version-specific docs, keep only `main` and delete stray version branches so every release falls back to `main`.
-- If you are using versioned docs, update the version branch that actually serves the release, not just `main`.
-
-See [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs) for how version resolution works.
+For more information, see [Manage content versions](/vendor/enterprise-portal-v2-versioned-docs).
 
 ## Pages not showing in navigation
 
@@ -44,19 +45,13 @@ See [Manage Content Versions](/vendor/enterprise-portal-v2-versioned-docs) for h
 
 ## Local preview "Page not found"
 
-- Branch names with `/` (like `feature/foo` or `austin/initial-customization`) are treated as nested URL path segments in the preview. Use flat branch names (like `feature-foo`) to avoid this.
+- Branch names with `/` (like `feature/foo` or `draft/2.1.3`) are treated as nested URL path segments in the preview. Use flat branch names (like `draft-2.1.3`) to avoid this.
 - The `main` branch is hidden from the version list when other branches exist. If you only have `main`, it shows as the sole version. If you have other branches, navigating to a URL with `/main/` in the path returns a 404.
 - Uncommitted changes only appear on your currently checked-out branch. Other branches serve their last committed state.
 
 ## Local preview: "content path does not exist"
 
 The preview command's example path is a placeholder. If you see `content path does not exist: /path/to/repo`, you ran the example literally. Replace `/path/to/repo` with the absolute path to your locally cloned content repo, for example `~/repos/acme-enterprise-portal-content`. See [Local preview](/vendor/enterprise-portal-v2-access#local-preview).
-
-## Version branch not working
-
-- Check branch exists: `git branch -r`
-- Any branch other than `main` becomes a version
-- For version gating to work, branch names must match release `version_label` values (see [Naming your branches](/vendor/enterprise-portal-v2-versioned-docs#naming-your-branches))
 
 ## Helm chart reference docs not generating
 
@@ -93,7 +88,7 @@ The preview command's example path is a placeholder. If you see `content path do
 
 - Confirm the customer's **Portal Version** is set to the new portal on their **Enterprise Portal access** tab
 - Verify the Enterprise Portal site is deployed (check that the Content tab shows a linked repo and synced branches)
-- If using a custom domain, confirm the CNAME record points your subdomain at `custom.enterpriseportal.app`, not the Classic domain (`get.replicated.com`). For how to add and verify a custom domain, see [Configure a Custom Domain](/vendor/enterprise-portal-v2-domains)
+- If using a custom domain, confirm the CNAME record points your subdomain at `custom.enterpriseportal.app`, not the Classic domain (`get.replicated.com`). For how to add and verify a custom domain, see [Configure a custom domain](/vendor/enterprise-portal-v2-domains)
 
 ## Customer invitation not received
 
@@ -112,7 +107,7 @@ The preview command's example path is a placeholder. If you see `content path do
 The Enterprise Portal login page surfaces these errors directly to the customer user. The domain check runs before the invitation check, so a new user from a domain that is not allowed sees `domain_not_allowed` even when they also lack an invitation. Check the errors in the following order.
 
 - `domain_not_allowed`: the user's email domain is absent from the customer's allowed domain list. Add the domain to the **Domain Restrictions** list on the customer's **Enterprise Portal access** tab, or have the user log in with an address on an allowed domain. This check applies only when the portal creates the account, so removing a domain from the list does not lock out users who were already provisioned from it
-- `saml_invite_required`: the login started at the portal login page, and that email address has no pending invitation. Invite the user, or have them start the login from their identity provider instead, which provisions with no invitation. For the difference between the two flows, see [Just-in-time user provisioning](/vendor/enterprise-portal-v2-invite#jit-provisioning) in _Manage Customer Access_
+- `saml_invite_required`: the login started at the portal login page, and that email address has no pending invitation. Invite the user, or have them start the login from their identity provider instead, which provisions with no invitation. For the difference between the two flows, see [Just-in-time user provisioning](/vendor/enterprise-portal-v2-invite#jit-provisioning) in _Manage customer access_
 - `saml_invalid_email`: the SAML assertion carried no email address, or one the portal could not use. Confirm that the identity provider releases an email attribute for the user
 - `saml_auth_failed`: a general SAML failure. The portal returns this error both when it starts the login and when it processes the assertion, so it covers configuration problems on either side. Confirm that **SAML Authentication** is enabled for the customer in the Vendor Portal, and that the identity provider metadata URL and signing certificate in the customer's portal team settings are current
 

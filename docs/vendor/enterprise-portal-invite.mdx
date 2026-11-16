@@ -1,4 +1,4 @@
-# Manage Enterprise Portal customer access
+# Manage Classic Enterprise Portal customer access
 
 This topic describes how to manage customer access to the Enterprise Portal from the Replicated Vendor Portal. It includes information about enabling the Enterprise Portal, managing user invitations, enabling SAML authentication for Enterprise Portal logins, and more.
 
@@ -6,7 +6,7 @@ This topic describes how to manage customer access to the Enterprise Portal from
 Looking for the new Enterprise Portal? See [Manage customer access](/vendor/enterprise-portal-v2-invite) in the Enterprise Portal (New) section.
 :::
 
-For information about how your end customers can manage, invite, and remove team members in their Enterprise Portal, see [Log In To and Use the Enterprise Portal](enterprise-portal-use).
+For information about how your end customers can manage, invite, and remove team members in their Enterprise Portal, see [Log in to and use the Classic Enterprise Portal](enterprise-portal-use).
 
 ## Manage access to the Enterprise Portal {#manage-ep-access}
 
@@ -57,7 +57,7 @@ To enable automatic invitations:
 
 You can restrict user invitations for a customer's Enterprise Portal to specific email domains. When you add allowed domains for a customer, only users with allowed email domains can be invited to the Enterprise Portal.
 
-The allowed domain list also governs SAML logins. The Enterprise Portal does not create an account for a user whose email domain is absent from the list, including a user who logs in through their IdP. The check applies only at account creation, so removing a domain does not lock out users who were already provisioned from it. For more information, see [About SAML logins](enterprise-portal-use#about-saml) in _Log In and Use the Enterprise Portal_.
+The allowed domain list also governs SAML logins. The Enterprise Portal does not create an account for a user whose email domain is absent from the list, including a user who logs in through their IdP. The check applies only at account creation, so removing a domain does not lock out users who were already provisioned from it. For more information, see [About SAML logins](enterprise-portal-use#about-saml) in _Log in to and use the Classic Enterprise Portal_.
 
 To configure allowed domains for a customer's Enterprise Portal invitations:
 
@@ -81,7 +81,7 @@ To view Enterprise Portal email history and delivery status, do one of the follo
 
 ## Invite users
 
-This section describes how to invite users to the Enterprise Portal from the Vendor Portal. Your customers can also invite users to the Enterprise Portal from the Enterprise Portal **Team settings** page. For more information about using the **Team settings** page, see [Manage Team Settings](/vendor/enterprise-portal-use#manage-team-settings) in _Log In To and Use the Enterprise Portal_.
+This section describes how to invite users to the Enterprise Portal from the Vendor Portal. Your customers can also invite users to the Enterprise Portal from the Enterprise Portal **Team settings** page. For more information about using the **Team settings** page, see [Manage Team Settings](/vendor/enterprise-portal-use#manage-team-settings) in _Log in to and use the Classic Enterprise Portal_.
 
 :::note
 You can also configure automatic invitations so that new customers receive an Enterprise Portal invite when you create them. See [Automatically Invite Customers on Creation](#auto-invite).
@@ -91,7 +91,7 @@ To invite users to the Enterprise Portal:
 
 1. Enable access to the Enterprise Portal for the customer. See [Manage Access to the Enterprise Portal](#manage-ep-access) above.
 
-1. (Optional) Customize the Enterprise Portal invitation email. For more information, see [Configure Invitation and Notification Emails](enterprise-portal-configure#configure-customer-emails) in _Customize the Enterprise Portal_.
+1. (Optional) Customize the Enterprise Portal invitation email. For more information, see [Customize emails](enterprise-portal-configure#configure-customer-emails) in _Customize the Classic Enterprise Portal_.
 
 1. In the Vendor Portal, go to either **Customers > [Customer Name] > Enterprise Portal access** or **Enterprise Portal > Access**. Then, click **Invite user**.
 
@@ -122,7 +122,7 @@ To delete users from the Enterprise Portal:
 
 ## Enable SAML authentication {#enable-saml}
 
-You can enable and disable SAML authentication for the Enterprise Portal on a per customer basis. When SAML authentication is enabled, the customer can set up SAML SSO logins for the Enterprise Portal using their identity provider (IdP). When SAML authentication is disabled, Enterprise Portal users are not able  to log in using SAML, even if the customer had already configured SAML for their Enterprise Portal previously. For more information, see [About SAML Logins](enterprise-portal-use#about-saml) in _Log In and Use the Enterprise Portal_.
+You can enable and disable SAML authentication for the Enterprise Portal on a per customer basis. When SAML authentication is enabled, the customer can set up SAML SSO logins for the Enterprise Portal using their identity provider (IdP). When SAML authentication is disabled, Enterprise Portal users are not able  to log in using SAML, even if the customer had already configured SAML for their Enterprise Portal previously. For more information, see [About SAML Logins](enterprise-portal-use#about-saml) in _Log in to and use the Classic Enterprise Portal_.
 
 To enable SAML authentication:
 
@@ -134,4 +134,4 @@ To enable SAML authentication:
 
    [View a larger version of this image](/images/enterprise-portal-saml-authentication.png)
 
-   After you enable SAML authentication, the customer can configure SAML in the Enterprise Portal using their IdP. For more information, see [Configure SAML Authentication](/vendor/enterprise-portal-use#saml) in _Log In and Use the Enterprise Portal_.
+   After you enable SAML authentication, the customer can configure SAML in the Enterprise Portal using their IdP. For more information, see [Configure SAML Authentication](/vendor/enterprise-portal-use#saml) in _Log in to and use the Classic Enterprise Portal_.

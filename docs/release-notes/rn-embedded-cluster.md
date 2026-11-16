@@ -12,6 +12,41 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.20.1
+
+Released on November 11, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.20.1+k8s-1.37</td>
+    <td id="center">2.20.1+k8s-1.36</td>
+    <td id="center">2.20.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.2</td>
+    <td id="center">1.36.6</td>
+    <td id="center">1.35.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.134.2</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-20-1}
+
+* Updates Kubernetes to 1.37.2, 1.36.6, and 1.35.10.
+* Updates KOTS to 1.134.2.
+* Updates SeaweedFS to 4.53.0 and the Velero Helm chart to 12.2.4.
+* Updates the k0s container images.
+* Updates the Troubleshoot CLI to 0.134.4 and the Helm CLI to 4.3.1.
+
+### Bug Fixes {#bug-fixes-2-20-1}
+
+* Fixes upgrades stalling when Calico networking is temporarily unavailable during a Kubernetes upgrade.
+
 ## 2.20.0
 
 Released on November 4, 2026

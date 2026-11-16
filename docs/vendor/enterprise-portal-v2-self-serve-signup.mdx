@@ -1,4 +1,4 @@
-# Enable Self-Service Sign-Ups
+# Enable self-service sign-ups
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change.
@@ -13,7 +13,7 @@ Allow potential customers to sign up for a trial or community license directly f
    - **Channel**: Which channel the trial customer is assigned to
    - **Expiration**: How long the trial license is valid (e.g., 30 days)
    - **License type**: Trial or Community
-   - **Install methods**: Which installation methods are enabled (Helm, Embedded Cluster (single-node or multi-node), Helm Air Gap, Embedded Cluster Air Gap)
+   - **Install methods**: Which installation methods are enabled (Helm, Embedded Cluster (single-node or multi-node), Helm Air Gap, Embedded Cluster Air Gap). KOTS and kURL can't be enabled for self-service licenses.
    - Self-serve licenses are built from these settings only. They do not inherit [License Fields](/vendor/licenses-using-builtin-fields) defaults. Community licenses cannot enable Embedded Cluster Air Gap. Embedded Cluster Air Gap is available only when the vendor team is entitled to air gap.
 1. Optionally add a **Terms & Conditions URL** that users must acknowledge during signup
 1. Enable the signup flow
@@ -58,6 +58,6 @@ When a customer visits the signup URL:
 ## Managing signups
 
 - **Pending Trials:** New signups appear in the **Pending Trials** section of the Vendor Portal until they complete email verification and become active customers
-- **Pending signup alert:** A banner appears in the Vendor Portal when there are pending trial signups awaiting review
+- **Pending signup alert:** A banner appears in the Vendor Portal when there are signups that haven't verified their email yet. No approval is needed. Verified signups become customers automatically
 - **Custom field responses:** View the data collected from custom signup fields in the Pending Trials section
 - **Notifications:** Use `customer.created` event notifications to get alerted when a new trial customer signs up

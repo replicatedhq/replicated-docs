@@ -1,4 +1,4 @@
-# About the Enterprise Portal
+# About the Classic Enterprise Portal
 
 This topic provides an overview of the Replicated Enterprise Portal.
 
@@ -33,15 +33,15 @@ The following diagram shows how customers can use the Enterprise Portal to acces
 
 As shown in the diagram above, your licensed customers can access the installation and update instructions for one or more application releases by logging in to the Enterprise Portal. The Enterprise Portal tracks the customer's installation attempts and progress, and shares those insights back to the Vendor Portal. After installing, customers can also upload support bundles in the Enterprise Portal. Support bundles uploaded to the Enterprise Portal are automatically made available to you in the Vendor Portal. 
 
-You can enable and disable access to the Enterprise Portal for all customers, or on a per-customer basis. For more information about how to enable access, see [Manage Customer Access](/vendor/enterprise-portal-invite#manage-ep-access).
+You can enable and disable access to the Enterprise Portal for all customers, or on a per-customer basis. For more information about how to enable access, see [Manage Classic Enterprise Portal customer access](/vendor/enterprise-portal-invite#manage-ep-access).
 
-For information about using the Enterprise Portal, see [Access and Use the Enterprise Portal](enterprise-portal-use).
+For information about using the Enterprise Portal, see [Log in to and use the Classic Enterprise Portal](enterprise-portal-use).
 
 ## Limitations
 
 * Installation and upgrade instructions are available only for Embedded Cluster and Helm CLI installations. The Enterprise Portal does not provide instructions for installing and upgrading with KOTS in existing clusters or with kURL.
 
-* Air gap instance records do not appear in the Enterprise Portal until the end customer creates an air gap instance record by either uploading a support bundle for that instance or manually entering instance information. For more information, see [View Active and Inactive Instances](/vendor/enterprise-portal-use#view-active-and-inactive-instances) in _Access and Use the Enterprise Portal_.
+* Air gap instance records do not appear in the Enterprise Portal until the end customer creates an air gap instance record by either uploading a support bundle for that instance or manually entering instance information. For more information, see [View Active and Inactive Instances](/vendor/enterprise-portal-use#view-active-and-inactive-instances) in _Log in to and use the Classic Enterprise Portal_.
 
 * The Enterprise Portal limits support bundle uploads to 500 MB. For larger bundles, use the [Replicated SDK API](/reference/replicated-sdk-apis#post-supportbundle) upload endpoint, which has no size restriction.
 
@@ -53,10 +53,10 @@ For information about using the Enterprise Portal, see [Access and Use the Enter
 
 The Enterprise Portal is the next generation version of the Replicated Download Portal. Compared to the Download Portal, the Enterprise Portal not only provides access to installation assets and instructions, but also allows users to track available updates, manage their team and service accounts, view the status of their instances, view license details, and more. These features are designed to make it easier for your customers to manage their instances of your application from a centralized location outside of the installation environment.
 
-For more information about enabling Enterprise Portal access for your customers that install using either Embedded Cluster or the Helm CLI, see [Manage Customer Access to the Enterprise Portal](enterprise-portal-invite).
+For more information about enabling Enterprise Portal access for your customers that install using either Embedded Cluster or the Helm CLI, see [Manage Classic Enterprise Portal customer access](enterprise-portal-invite).
 
 :::note
-The Entprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal. 
+The Enterprise Portal supports Embedded Cluster and Helm CLI installation methods only. Customers that use KOTS in an existing cluster or kURL can continue to use the Download Portal. 
 :::
 
 For more information about the Download Portal, see [Access a Customer's Download Portal](/vendor/releases-share-download-portal).
@@ -65,7 +65,7 @@ For more information about the Download Portal, see [Access a Customer's Downloa
 
 You can configure the Enterprise Portal to use a custom domain, add links and contact information, customize the look and feel of the Enterprise Portal, edit the content of invitation and notification emails, and more. Customizing the Enterprise Portal helps ensure that your customers have a consistent branding experience and can access application- and vendor-specific information.
 
-For more information about customizing the Enterprise Portal, see [Customize the Enterprise Portal](enterprise-portal-configure).
+For more information about customizing the Enterprise Portal, see [Customize the Classic Enterprise Portal](enterprise-portal-configure).
 
 For information about how to set a custom domain for the Enterprise Portal, see [Use Custom Domains](/vendor/custom-domains-using). 
 
@@ -75,7 +75,7 @@ This section describes the instance reporting functionality of the Enterprise Po
 
 ### Active and inactive instances
 
-The Enterprise Portal provides insights to end users about their active and inactive instances, including the application version installed, the instance status, computed metrics like the first and most recent times the instance sent data to the Vendor Portal, and more. For more information about the instance insights available in the Enterprise Portal, see [View Active and Inactive Instances](/vendor/enterprise-portal-use#view-active-and-inactive-instances) in _Access and Use the Enterprise Portal_.
+The Enterprise Portal provides insights to end users about their active and inactive instances, including the application version installed, the instance status, computed metrics like the first and most recent times the instance sent data to the Vendor Portal, and more. For more information about the instance insights available in the Enterprise Portal, see [View Active and Inactive Instances](/vendor/enterprise-portal-use#view-active-and-inactive-instances) in _Log in to and use the Classic Enterprise Portal_.
 
 ![active and inactive instances](/images/enterprise-portal-instance-status-details.png)
 [View a larger version of this image](/images/enterprise-portal-instance-status-details.png)

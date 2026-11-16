@@ -355,6 +355,12 @@ Grants the holder permission to view Enterprise Portal service accounts for the 
 
 Grants the holder permission to soft-delete Enterprise Portal service accounts for the specified application.
 
+### kots/app/[:appid]/enterprise-portal/webhooks/read
+
+Grants the holder permission to view customer release webhook status and real delivery history for the specified application. Also requires `kots/app/[:appid]/license/[:customerid]/read` for the customer. This resource does not grant permission to change the webhook. It does not expose signing secrets, full endpoint URLs, or response headers and bodies.
+
+For more information, see [View webhook status and deliveries](/vendor/enterprise-portal-v2-webhooks#delivery-history) in _Manage customer release webhooks_.
+
 ## Registry
 
 ### registry/namespace/:namespace/pull

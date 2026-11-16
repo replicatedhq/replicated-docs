@@ -71,15 +71,17 @@ To serve Embedded Cluster installation assets with the Vendor API:
 
      * If you do not provide any query parameters, this endpoint downloads the Embedded Cluster binary for the latest release on the specified channel. You can provide the `channelSequence` query parameter to download the binary for a particular release.
 
-## Distribute the NVIDIA gpu operator with Embedded Cluster {#nvidia-gpu-operator}
+## Distribute the NVIDIA GPU Operator with Embedded Cluster {#nvidia-gpu-operator}
 
 :::note
 Distributing the NVIDIA GPU Operator with Embedded Cluster is not an officially supported feature from Replicated. However, it is a common use case.
 :::
 
+Replicated recommends using Embedded Cluster builds with Kubernetes 1.36 or later, which ship with containerd 2.x, when deploying the NVIDIA GPU Operator.
+
 The NVIDIA GPU Operator uses the operator framework within Kubernetes to automate the management of all NVIDIA software components needed to provision GPUs. For more information about this operator, see the [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/overview.html) documentation.
 
-### Include the NVIDIA gpu operator and configure containerd options
+### Include the NVIDIA GPU Operator and configure containerd options
 
 You can include the NVIDIA GPU Operator in your release as an additional Helm chart, or using Embedded Cluster Helm extensions. For information about adding Helm extensions, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
 
@@ -97,21 +99,32 @@ Using the NVIDIA GPU Operator with Embedded Cluster requires configuring the con
         - name: gpu-operator
           chartname: nvidia/gpu-operator
           namespace: gpu-operator
-          version: "v24.9.1"
+          version: "v26.3.3"
           values: |
-            # configure the containerd options
             toolkit:
              env:
              - name: CONTAINERD_CONFIG
                value: /etc/k0s/containerd.d/nvidia.toml
              - name: CONTAINERD_SOCKET
                value: /run/k0s/containerd.sock
+             - name: RUNTIME_CONFIG_SOURCE
+               value: file
 ```
 
-### containerd known issue
+### Prepare GPU nodes and containerd configuration {#gpu-containerd-configuration}
 
-When the containerd options are configured as shown above, the NVIDIA GPU Operator automatically creates the required configurations in the `/etc/k0s/containerd.d/nvidia.toml` file. It is not necessary to create this file manually, or modify any other configuration on the hosts.
+Install Embedded Cluster on a clean VM without containerd or k0s already installed. Embedded Cluster installs and manages its own containerd through k0s.
 
-If you include the NVIDIA GPU Operator as a Helm extension, remove any existing containerd services that are running on the host (such as those deployed by Docker) before attempting to install the release with Embedded Cluster. If there are any containerd services on the host, the NVIDIA GPU Operator will generate an invalid containerd config, causing the installation to fail. For more information, see [Installation failure when NVIDIA GPU Operator is included as Helm extension](#nvidia-gpu-operator) in _Troubleshooting Embedded Cluster_.
+For Kubernetes 1.36 and newer builds using containerd 2.x, initialize the NVIDIA configuration with schema version 3 on every GPU node **before starting the Embedded Cluster installation or joining an existing cluster**:
 
-This is the result of a known issue with v24.9.x of the NVIDIA GPU Operator. For more information about the known issue, see [container-toolkit does not modify the containerd config correctly when there are multiple instances of the containerd binary](https://github.com/NVIDIA/nvidia-container-toolkit/issues/982) in the nvidia-container-toolkit repository in GitHub.
+Run as root:
+
+```bash
+mkdir -p /etc/k0s/containerd.d && echo 'version = 3' > /etc/k0s/containerd.d/nvidia.toml
+```
+
+Back up any existing NVIDIA runtime configuration before running this command.
+
+This workaround was verified with NVIDIA GPU Operator 26.3.3.
+
+For Kubernetes 1.35 and older builds using containerd 1.x, see [NVIDIA GPU Operator pods remain initializing](embedded-troubleshooting#nvidia-containerd-1) if GPU Operator pods do not start.

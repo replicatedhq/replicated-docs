@@ -1,4 +1,4 @@
-# Configure Portal Features
+# Configure portal features
 
 :::note Beta Feature
 The Enterprise Portal is Beta. Features described on this page are subject to change. Some capabilities might require additional access.
@@ -57,7 +57,7 @@ When the Ask AI capability is enabled, Replicated processes any Ask AI requests 
 
 Replicated does not send the license document itself. Two things derived from the customer do reach the provider:
 
-- **Values rendered from template variables.** Replicated resolves template variables before sending the content. Any app, customer, channel, or release value your content renders therefore travels with it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize Portal Content_.
+- **Values rendered from template variables.** Replicated resolves template variables before sending the content. Any app, customer, channel, or release value your content renders therefore travels with it, including `customer.email`, `customer.id`, `customer.name`, and `channel.name`. If you use these variables, review where they appear before you turn on Ask AI. For more information, see [Template variables](/vendor/enterprise-portal-v2-content#template-variables) in _Customize portal content_.
 - **The capabilities the customer's license excludes.** The request names a fixed set of installation and recovery capabilities the customer is not entitled to, so the assistant does not offer them.
 
 Review the setting against your own agreements with your customers before you turn it on. For the list of third-party providers that Replicated uses, see [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors).
@@ -68,9 +68,9 @@ Turn off **Enable Ask AI** to remove the button from the portal header for all c
 
 ## Security Center access {#security-center-access}
 
-**Enable Security Center for all customers** grants Security Center access to every current and future customer. While it is on, it overrides the per-customer **Enable Security Center for this customer** setting: for a customer on the new Enterprise Portal, that setting displays as enabled and cannot be changed, and for a customer still on Enterprise Portal (Classic), it is hidden. Turning the app-level setting off restores each customer's saved setting.
+**Enable Security Center for all customers** grants Security Center access to every current and future customer. While it is on, it overrides the per-customer **Enable Security Center for this customer** setting: for a customer on the new Enterprise Portal, that setting displays as enabled and cannot be changed, and for a customer still on the Classic Enterprise Portal, it is hidden. Turning the app-level setting off restores each customer's saved setting.
 
-This is the same app-level setting as the **Enable Security Center** option in **Enterprise Portal > Portal Settings > Optional Features**. Turning it on in either place grants access across both Enterprise Portal (Classic) and the new Enterprise Portal.
+This is the same app-level setting as the **Enable Security Center** option in **Enterprise Portal > Portal Settings > Optional Features**. Turning it on in either place grants access across both the Classic Enterprise Portal and the new Enterprise Portal.
 
 Access alone gives customers nothing to open. The Security page must also exist in your content repository and be listed in `toc.yaml`.
 
@@ -84,6 +84,6 @@ For what each setting does, see [Configure Security Center display settings](/ve
 
 ## Related topics
 
-- [Customize Portal Content](/vendor/enterprise-portal-v2-content)
+- [Customize portal content](/vendor/enterprise-portal-v2-content)
 - [Enable Customer Access to Security Information](/vendor/security-center-enable-customer-access)
 - [Infrastructure and Subprocessors](/vendor/policies-infrastructure-and-subprocessors)

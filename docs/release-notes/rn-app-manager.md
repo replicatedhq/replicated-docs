@@ -24,6 +24,25 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.134.3
+
+Released on November 10, 2026
+
+Support for Kubernetes: 1.35, 1.36, and 1.37
+
+### Bug Fixes {#bug-fixes-1-134-3}
+* Fixes a bug that could cause UI to redirect to the login page due to transient Kubernetes errors.
+## 1.134.2
+
+Released on November 7, 2026
+
+Support for Kubernetes: 1.35, 1.36, and 1.37
+
+### Improvements {#improvements-1-134-2}
+* Resolves CVE-2026-78661 and CVE-2026-97045.
+
+### Bug Fixes {#bug-fixes-1-134-2}
+* `kubectl kots restore` now reports an error instead of success when the backup is failed, in progress, not an instance backup, or missing required annotations.
 ## 1.134.1
 
 Released on October 29, 2026
