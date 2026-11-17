@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.17-4<span data-release-version="v2026.11.17-4" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-4}
+* Fixed the Vendor Portal Channel Settings banner showing air-gap settings for teams without the air-gap entitlement.
 ## v2026.11.17-3<span data-release-version="v2026.11.17-3" />
 
 Released on November 17, 2026
