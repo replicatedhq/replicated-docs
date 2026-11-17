@@ -106,6 +106,25 @@ The following example demonstrates how the Vendor Portal generates events for cu
            No event for region because the value is unchanged
 ```
 
+## Data retention {#data-retention}
+
+Replicated currently has no set retention period for instance data in the Vendor Portal. The following table describes what the Vendor Portal retains and at what level of detail:
+
+| Data | What the Vendor Portal retains |
+|------|--------------------------------|
+| Instance events | Every event, including changes to custom metrics, application status, and application version. There is no set retention period. |
+| Custom metric reports | Every payload that your application sends, with no set retention period. Only the events generated from these payloads are available to export. |
+| Application status | Detailed status reports for six months. After six months, the Vendor Portal keeps hourly and daily summaries of the time spent in each status, with no set retention period. |
+| Instance details | The most recent values for each instance, such as the last check-in time, the current version, and cluster information. There is no set retention period. |
+
+Some views in the Vendor Portal show a shorter time range than the data that is retained. For example, the graph for a custom metric on the **Instance details** page shows the last 30 days.
+
+Because there is currently no set retention period, Replicated recommends that you export instance data to your own systems on a regular cadence if you need a long-term history. For more information, see [Export Customer and Instance Data](/vendor/instance-data-export).
+
+:::note
+For air gap instances, telemetry is stored in the cluster until a support bundle is uploaded to the Vendor Portal, and the oldest events are purged when storage limits are reached. For more information, see [Limitation](/vendor/telemetry-air-gap#limitation) in _Collecting Telemetry for Air Gap Instances_.
+:::
+
 ## Requirements
 
 The following requirements apply to collecting instance telemetry:
