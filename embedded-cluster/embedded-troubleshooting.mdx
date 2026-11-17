@@ -267,24 +267,36 @@ The deleted controller is still a member of the etcd cluster, so etcd counts it 
 
 Run `remove-node` to remove the deleted controller from the cluster and etcd, and then join the replacement controller. For more information about replacing the controller, see [Replace a controller node whose machine is deleted](embedded-manage-nodes#replace-lost-controller) in _Access and Manage Embedded Clusters_.
 
-### Upgrade from Embedded Cluster v2 stops after the conversion {#v2-upgrade-stops-after-conversion}
+### Upgrade from Embedded Cluster v2 stops {#v2-upgrade-stops-after-conversion}
 
 #### Symptom
 
-An upgrade from Embedded Cluster v2 prints `Upgrade from v2 to v3 completed successfully.` and then stops with an error, such as:
+An upgrade from Embedded Cluster v2 stops with an error. A validation failure before conversion starts with:
 
 ```
-Error: upgrade: validate airgap flag: --airgap flag is set but this is not an airgap installation
+Error: v2 upgrade validation failed before conversion; fix the error and run upgrade again:
 ```
 
-The Embedded Cluster v2 Admin Console is no longer available. The application keeps running.
+The command leaves the v2 installation unchanged, and its Admin Console remains available.
+
+An error after conversion starts with:
+
+```text
+Error: the installation has been converted to v3; fix the error and run upgrade again to finish:
+```
+
+In this case, do not assume that the v2 Admin Console is available or that conversion can be undone.
 
 #### Cause
 
-The upgrade converts the installation to Embedded Cluster v3 before it runs some of its checks, such as checks on the command's flags and on the release. When one of those checks fails, the installation is already on v3, but the upgrade hasn't finished.
+Before conversion, the command checks upgrade inputs, the license, release compatibility, required bundles, and host requirements on the primary controller. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
+
+Failures can still occur during conversion or later upgrade steps. In that case, conversion has started, but the upgrade has not finished. Older Embedded Cluster v3 releases also ran input, release, and host checks after conversion.
 
 #### Solution
 
-Fix the problem that the error names, and then run the `upgrade` command again. The upgrade continues and finishes.
+Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If it reports that an upgrade is already in progress, confirm that the previous attempt is no longer running. Then follow the error's instructions to retry with `--force`.
+
+If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. Neither **Continue Anyway** nor `--ignore-host-preflights` bypasses this failure. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
 
 If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
