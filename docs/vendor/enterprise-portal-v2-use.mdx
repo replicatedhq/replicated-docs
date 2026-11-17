@@ -158,6 +158,8 @@ Revoking a token affects every system that authenticates with it. When a service
 
 If a token is shared outside your team or committed somewhere it shouldn't be, replace it as soon as possible. Create a new token, move each system that uses the exposed token to it as described in [Replace a token](#replace-a-token), and then revoke the exposed token. If nothing runs with the exposed token, revoke it right away.
 
+Embedded Cluster v3 installations can't move to a new token. If a running Embedded Cluster v3 installation uses the exposed token, revoking it stops that installation's update checks, license sync, and registry pulls. Weigh that against the exposure before you revoke.
+
 The token list shows when each token was last used. Use it to check for activity you don't expect.
 
 ## Support bundles
