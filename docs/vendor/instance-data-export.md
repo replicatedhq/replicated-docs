@@ -13,7 +13,7 @@ While you can always consume customer and instance insight data directly in the 
 
 By collecting and organizing this data wherever it is most visible and valuable, you can enable your team to make better decisions about where to focus efforts across product, sales, engineering, and customer success.
 
-Replicated currently has no set retention period for instance data in the Vendor Portal. If you need a long-term history, Replicated recommends that you export instance data to your own systems on a regular cadence. For more information about what the Vendor Portal retains, see [Data Retention](/vendor/instance-insights-event-data#data-retention) in _About Instance and Event Data_.
+Apart from detailed application status reports, which the Vendor Portal keeps for six months, Replicated currently has no set retention period for instance data. If you need a long-term history, Replicated recommends that you export instance data to your own systems on a regular cadence. For more information about what the Vendor Portal retains, see [Data Retention](/vendor/instance-insights-event-data#data-retention) in _About Instance and Event Data_.
 
 ## Bulk export instance event timeseries data
 
@@ -21,7 +21,9 @@ You can use the Vendor API v3 `/app/{app_id}/events` endpoint to programatically
 
 The `/app/{app_id}/events` endpoint returns data scoped to a given application identifier. It also allows filtering based on time periods, instances identifiers, customers identifers, and event types. You must provide at least **one** query parameter to scope the query in order to receive a response. 
 
-The endpoint returns events, which the Vendor Portal creates only when a value changes. To build a series with a value for every day, carry each value forward until the next event for that field. For more information, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
+Each event records a change in the value of one field, such as a custom metric or the application status. The Vendor Portal creates an event only when a value changes, so to build a daily series for a field, carry each value forward until the next event for that field.
+
+Removing a custom metric (e.g. by sending a `POST` payload that omits it) does not create an event. This means the export does not show when a metric stopped being reported. Before you carry a value forward, confirm that the instance is still reporting the metric, such as by checking that the metric still appears in the `custom_metric__*` columns of the instances CSV download. For more information, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#about-events) in _About Instance and Event Data_.
 
 By bulk exporting this instance event data with the `/app/{app_id}/events` endpoint, you can:
 * Identify trends and potential problem areas 
