@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 17, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-17-2}
-* Fixed release image lists to exclude invalid templated image names that are not included in air gap bundles.
+* Fixed release images list to exclude invalid templated image names that are already excluded from air gap bundles and image pulls.
 ## v2026.11.17-0
 
 Released on November 17, 2026
