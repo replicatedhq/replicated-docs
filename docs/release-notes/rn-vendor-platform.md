@@ -15,6 +15,14 @@ Released on November 17, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-17-3}
 * The Download Portal now shows upgrade instructions for existing installations when a release uses Embedded Cluster v3.
+
+## v2026.11.17-2<span data-release-version="v2026.11.17-2" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-2}
+* Fixed release images list to exclude invalid templated image names that are already excluded from air gap bundles and image pulls.
+
 ## v2026.11.17-1<span data-release-version="v2026.11.17-1" />
 
 Released on November 17, 2026
