@@ -2,7 +2,7 @@
 
 Run standalone host preflight checks to confirm that a host meets Embedded Cluster v3 requirements without installing anything. For example, you can check hosts before you schedule an installation or change window, validate hosts in provisioning automation, check a node before it joins a cluster, re-check a host after changing its configuration, or check hosts before upgrading from Embedded Cluster v2.
 
-Standalone host preflight checks require Embedded Cluster `VERSION_PLACEHOLDER` or later.
+Standalone host preflight checks require Embedded Cluster 3.20.1 or later.
 
 The commands run Embedded Cluster's built-in host checks and any vendor-provided host checks. They do not install Embedded Cluster, start its services, or configure the host. Checks can create temporary files, generate disk I/O, and test network connectivity. The commands remove temporary workspaces when they finish.
 
@@ -88,7 +88,7 @@ Failed checks and execution errors return a nonzero exit status. Warnings alone 
 
 Results are point-in-time, not a guarantee of a later install or join. Disk load, network access, and available resources can change between the check and installation.
 
-Standalone checks inspect the host without applying the host configuration that installation normally performs. For example, a kernel parameter check can fail for a setting that installation attempts to configure. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
+Standalone checks inspect the host without applying the host configuration that installation normally performs. On a host that hasn't run Embedded Cluster before, the IP forwarding, inotify limit, and Network Namespace Connectivity checks typically fail. Installation sets these kernel parameters before it runs its own host checks, so these failures alone don't block installation. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
 
 ### Check a host that already runs a cluster
 
