@@ -15,6 +15,14 @@ Released on November 17, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-17-2}
 * Fixed release images list to exclude invalid templated image names that are already excluded from air gap bundles and image pulls.
+
+## v2026.11.17-1<span data-release-version="v2026.11.17-1" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-1}
+* The Download Portal's release version dropdown can now load releases older than the 20 most recent versions.
+* Older release versions loaded from the Download Portal and Enterprise Portal release list now link to the correct kURL air gap bundle for that version.
 ## v2026.11.17-0
 
 Released on November 17, 2026
