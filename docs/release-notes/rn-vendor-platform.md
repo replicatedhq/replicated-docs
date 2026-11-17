@@ -14,8 +14,8 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 17, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-17-1}
-* The download portal's version dropdowns can now load releases older than the newest 20.
-* Older releases loaded from the download portal and Enterprise Portal release lists now link to the correct kURL air gap bundle.
+* The Download Portal's release version dropdown can now load releases older than the 20 most recent versions.
+* Older release versions loaded from the Download Portal and Enterprise Portal release list now link to the correct kURL air gap bundle for that version.
 ## v2026.11.17-0
 
 Released on November 17, 2026
