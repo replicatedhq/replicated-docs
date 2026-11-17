@@ -9,6 +9,7 @@ module.exports = {
       label: "Install with Embedded Cluster",
       items: [
         "installing-embedded-requirements",
+        "embedded-host-preflights",
         "installing-embedded",
         "installing-embedded-air-gap",
         "installing-embedded-byo-registry",
