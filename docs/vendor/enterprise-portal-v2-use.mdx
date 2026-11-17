@@ -124,9 +124,12 @@ For more information, see [Headless Enterprise Portal: customer API](/vendor/ent
 
 ## Manage service account tokens {#rotate-or-revoke-a-service-account-token}
 
-Users on the customer's team manage service accounts and their tokens from **Team Settings > Service Accounts** in the Enterprise Portal. A service account can hold more than one token, and each token works until it is revoked.
+Users on the customer's team manage service accounts and their tokens from **Team Settings > Service Accounts** in the Enterprise Portal. A service account can hold more than one token. Tokens don't expire. Each token works until it is revoked or the license expires.
 
-- **Create a token**: Adds a new token to the service account and leaves its existing tokens working. Give the token a name that identifies where it is used, such as `ci-runner`. The portal shows the token value only once, when you create it.
+Treat service account tokens like passwords. A token can download releases and pull images for the license, the same as the license ID.
+
+- **Create a token**: Adds a new token to the service account and leaves its existing tokens working. Give the token a name that identifies where it is used, such as `ci-runner`.
+- **View a token**: Users on the team can view the value of an existing token at any time from the token list.
 - **Revoke token**: Stops one token. The service account and its other tokens keep working.
 - **Revoke service account**: Permanently disables the service account and stops all of its tokens. Use this only when nothing should authenticate with the account anymore.
 
@@ -150,6 +153,12 @@ Read-only automation is not exempt. If you use a token headlessly to call Enterp
 :::note
 Revoking a token affects every system that authenticates with it. When a service account token is the identity credential for a running installation, this includes update checks, license sync, and registry pulls. Plan the change so that each installation is moved to a working token first.
 :::
+
+### If a token is exposed
+
+If a token is shared outside your team or committed somewhere it shouldn't be, replace it as soon as possible. Create a new token, move each system that uses the exposed token to it as described in [Replace a token](#replace-a-token), and then revoke the exposed token. If nothing runs with the exposed token, revoke it right away.
+
+The token list shows when each token was last used. Use it to check for activity you don't expect.
 
 ## Support bundles
 
