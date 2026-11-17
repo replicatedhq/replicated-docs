@@ -301,6 +301,10 @@ To find out which of your customers are affected, check the Kubernetes version r
 Releases that use Embedded Cluster v3 will not appear as available updates in the Embedded Cluster v2 KOTS Admin Console. This is by design. The upgrade runs from the v3 binary on the host, because the v2 Admin Console can't render v3 releases or make the host-level changes that the upgrade requires. Your customers will need to get the v3 release from the [Enterprise Portal](/vendor/enterprise-portal-about) or by downloading the binary directly. Plan to communicate this to your customer base when you promote a v3-enabled release.
 :::
 
+:::important[Air gap clusters with three or more controllers]
+Enable high availability (HA) while the cluster is still on Embedded Cluster v2, before starting the v3 upgrade. See [Enable high availability for an existing cluster](/embedded-cluster/v2/embedded-manage-nodes#enable-ha-existing).
+:::
+
 To upgrade an existing installation to Embedded Cluster v3:
 
 1. Get the customer's Embedded Cluster install instructions from the Vendor Portal or from the Enterprise Portal.
