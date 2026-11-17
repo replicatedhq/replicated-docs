@@ -204,6 +204,8 @@ replicated customer archive CUSTOMER_ID
 
 Archiving takes effect immediately. The customer can no longer log in to the Replicated registry, and archived customers don't appear in `replicated customer ls`.
 
+Archiving isn't a way to cut off a customer's access. To stop a customer from installing or updating, set an expiration date on the license before you archive the customer. See [Renew a license](#renew-a-license) for how to set an expiration date, and [Default license expiration handling](/vendor/licenses-about#expiration) for what happens when a license expires.
+
 To unarchive a customer, use the `customer unarchive` command in Replicated CLI v0.129.15 and later, or the Vendor API:
 
 ```bash
