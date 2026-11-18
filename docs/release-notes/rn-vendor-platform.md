@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 18, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-18-1}
-* Fixed shifted values in Vendor Portal customer CSV exports.
+* Fixed shifted header labels in Vendor Portal customer CSV exports.
 ## v2026.11.17-4<span data-release-version="v2026.11.17-4" />
 
 Released on November 17, 2026
