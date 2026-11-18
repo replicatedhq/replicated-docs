@@ -18,6 +18,9 @@ To create a channel:
    <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
 
 1. Enter a name and description for the channel.
+
+   The Vendor Portal generates the channel's slug from the name. The slug is part of customers' Helm and Embedded Cluster install commands, and renaming the channel later changes it. See [Edit channel settings](#edit-channel-settings).
+
 1. (Recommended) Enable semantic versioning on the channel if it is not enabled by default by turning on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
 1. Enable an air gap bundle format that supports image digests and deduplication of image layers, by turning on **Enable new air gap bundle format**. This format is required for air gap installations with Replicated Embedded Cluster. For more information, see [Use Image Tags and Digests](private-images-tags-digests).
@@ -25,6 +28,14 @@ To create a channel:
 1. Click **Create Channel**.
 
 ## Edit channel settings
+
+:::note
+Renaming a channel changes its slug. For example, renaming `Unstable` to `Edge` changes the slug from `unstable` to `edge`. Any saved Helm chart URL (`oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME`) or Embedded Cluster download URL that uses the old slug stops working, including in customers' CI pipelines and GitOps repositories.
+
+The `stable` slug is left out of Helm chart URLs, so renaming the Stable channel adds a channel segment to its customers' chart URLs.
+
+Renaming the channel back to its original name usually restores the original slug, as long as no other channel in the application has taken it.
+:::
 
 To edit the settings of an existing channel:
 
@@ -39,13 +50,7 @@ To edit the settings of an existing channel:
 
    For more information about channel settings, see [Channel Settings](releases-about#channel-settings) in _About Channels and Releases_.
 
-:::note
-Renaming a channel changes its slug. For example, renaming `Unstable` to `Edge` changes the slug from `unstable` to `edge`. Any saved Helm chart URL (`oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME`) or Embedded Cluster download URL that uses the old slug stops working, including in customers' CI pipelines and GitOps repositories. After you rename a channel, send customers on the channel their updated install and upgrade commands. To get a customer's updated commands, open the customer's install instructions in the Vendor Portal or run `replicated customer inspect`. To see a channel's current slug, run `replicated channel ls --output json`.
-
-The `stable` slug is left out of Helm chart URLs, so renaming the Stable channel adds a channel segment to its customers' chart URLs.
-
-Renaming the channel back to its original name usually restores the original slug, as long as no other channel in the application has taken it.
-:::
+1. If you renamed the channel, send customers on the channel their updated install and upgrade commands. To get a customer's updated commands, open the customer's install instructions in the Vendor Portal or run `replicated customer inspect`. To see the channel's new slug, run `replicated channel ls --output json`.
 
 ## Enable semantic versioning
 
