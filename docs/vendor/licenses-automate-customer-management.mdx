@@ -188,7 +188,7 @@ Before you move a customer to a new channel, promote a release to that channel s
 
 <ChangeChannel/>
 
-For Helm installations, the chart URL includes the channel slug for every channel except the channel with the slug `stable`. For example, a customer on the `stable` channel installs from `oci://registry.replicated.com/APP_SLUG/CHART_NAME`, and a customer on a channel with the slug `example-telecom` installs from `oci://registry.replicated.com/APP_SLUG/example-telecom/CHART_NAME`. After a channel change, the customer's previous chart URL returns `Channel not found for license`.
+For Helm installations, the chart URL includes the channel slug for every channel except the channel with the slug `stable`. For example, a customer on the `stable` channel installs from `oci://registry.replicated.com/APP_SLUG/CHART_NAME`, and a customer on a channel with the slug `example-telecom` installs from `oci://registry.replicated.com/APP_SLUG/example-telecom/CHART_NAME`. After a channel change, the customer's previous chart URL returns `Channel not found for license`. Renaming a channel has the same effect for every customer assigned to it. See [Edit channel settings](releases-creating-channels#edit-channel-settings).
 
 `replicated customer inspect --customer CUSTOMER_ID` shows the install command for the customer's current channel, so it shows the new command only after the channel change. To send the new command before the change, build the chart URL from the new channel's slug. Otherwise, change the channel, run `customer inspect`, and send the customer the new command.
 
