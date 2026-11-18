@@ -602,7 +602,10 @@ Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see
 
 ### Embed images
 
-To show an image on a page, use standard Markdown image syntax. The image source can be a file in your `assets/` directory or a public URL:
+To show an image on a page, use standard Markdown image syntax. The image source must be one of the following:
+
+- A file in your `assets/` directory, referenced with the `\{\{asset\}\}` tag. The path must start with `assets/`.
+- A public URL.
 
 ```text
 ![Create an OAuth application in your identity provider]({{asset "assets/images/idp-oauth-app.png"}})
@@ -610,9 +613,11 @@ To show an image on a page, use standard Markdown image syntax. The image source
 ![Architecture diagram](https://example.com/images/architecture.png)
 ```
 
+Relative paths such as `./images/diagram.png` don't work. The portal resolves a relative path against the page URL, so the customer sees a broken image.
+
 The portal displays PNG, JPEG, GIF, SVG, and WebP images.
 
-Images in `assets/` follow the same rules as other assets. The path must start with `assets/`, each content version serves its own copy of the file, and the visibility of the page controls which customers can load the image.
+Images in `assets/` follow the same rules as other assets. Each content version serves its own copy of the file, and the visibility of the page controls which customers can load the image.
 
 Images from a public URL load directly in the customer's browser, so the customer's network must be able to reach the image host. To keep images versioned with your content and available to every customer who can see the page, store them in `assets/`.
 
@@ -621,11 +626,12 @@ Images from a public URL load directly in the customer's browser, so the custome
 Customers can download the documentation for their selected version as a PDF with the **PDF** button in the portal header. The PDF includes an image when the image meets the following requirements:
 
 - The image is a PNG, JPEG, or GIF file.
-- The image is 8 MB or smaller and 4 megapixels or smaller (for example, 2000 x 2000 pixels).
-- All images in the export total 32 MB or less.
+- The image is 4 megapixels or smaller (for example, 2000 x 2000 pixels).
+- The image is 8 MB or smaller after conversion. The PDF export converts every image to PNG before it checks the size, so a JPEG or other compressed image can grow several times larger. For example, a 2000 x 2000 JPEG of about 2.4 MB can become about 11 MB and be left out.
+- The image fits in the space left in the 32 MB total for the export. The export adds images in page order. An image that doesn't fit is left out, but a later, smaller image can still be included.
 - For images from a URL, the image host is reachable from the public internet. Replicated servers fetch these images when they build the PDF, so images on a private or internal network can't be included.
 
-Images that don't meet these requirements, or that can't be fetched while the PDF is generated, appear in the PDF as a link to the image instead.
+When an image is left out, or can't be fetched while the PDF is generated, the PDF shows the image's alt text, the note "image unavailable in this PDF; view image in the portal", and the image URL. To keep screenshots in the PDF, crop them to the relevant part of the screen and keep their dimensions modest.
 
 ### Per-customer asset delivery
 
