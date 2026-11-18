@@ -39,6 +39,14 @@ To edit the settings of an existing channel:
 
    For more information about channel settings, see [Channel Settings](releases-about#channel-settings) in _About Channels and Releases_.
 
+:::note
+Renaming a channel changes its slug. For example, renaming `Unstable` to `Edge` changes the slug from `unstable` to `edge`. Any saved Helm chart URL (`oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME`) or Embedded Cluster download URL that uses the old slug stops working, including in customers' CI pipelines and GitOps repositories. Send customers on the channel their updated install and upgrade commands after you rename it.
+
+The `stable` slug is left out of Helm chart URLs, so renaming the Stable channel adds a channel segment to its customers' chart URLs.
+
+Renaming the channel back to its original name usually restores the original slug, as long as no other channel in the application has taken it.
+:::
+
 ## Enable semantic versioning
 
 You can enable and disable semantic versioning (SemVer) for releases on each channel. When you enable SemVer on a channel, the Vendor Portal checks all releases promoted to that channel to verify that the version label is valid SemVer.
