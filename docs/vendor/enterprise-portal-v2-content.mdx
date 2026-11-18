@@ -6,7 +6,7 @@ The Enterprise Portal is Beta. Features described on this page are subject to ch
 
 The content template gives you a working portal out of the box. It includes install and upgrade pages for each install method, instance and update management, security reports, support bundles, and automation docs, and each page appears only to customers whose license allows it. You don't need to change anything to launch. Use this topic when you want to match your product's terminology, add your own documentation, or change the navigation.
 
-This topic describes how to customize the content in the new Enterprise Portal. It covers the content template, the table of contents, MDX components, the KOTS and kURL pages, template variables, visibility rules, and downloadable assets. For every MDX component and its props, see [MDX component reference](/vendor/enterprise-portal-v2-mdx-components).
+This topic describes how to customize the content in the new Enterprise Portal. It covers the content template, the table of contents, MDX components, the KOTS and kURL pages, template variables, visibility rules, downloadable assets, and images. For every MDX component and its props, see [MDX component reference](/vendor/enterprise-portal-v2-mdx-components).
 
 For branding and theme customization, see [Customize portal branding](/vendor/enterprise-portal-v2-branding). To serve different content for different release versions, see [Manage content versions](/vendor/enterprise-portal-v2-versioned-docs).
 
@@ -566,7 +566,7 @@ Omitting a page from `toc.yaml` still hides it entirely. Use `hidden` when you w
 
 ## Downloadable assets
 
-You can distribute files (scripts, checklists, configuration templates, etc.) through Enterprise Portal by committing them to an `assets/` directory in your content repo.
+You can distribute files (scripts, checklists, configuration templates, etc.) through Enterprise Portal by committing them to an `assets/` directory in your content repo. You can also embed images from `assets/` in your pages. See [Embed images](#embed-images).
 
 ### Repository structure
 
@@ -597,8 +597,35 @@ The tag expands to a URL that authenticates the customer with their session and 
 The path inside the tag is relative to the repo root and must start with `assets/`.
 
 :::note
-Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. The visibility of the referencing page controls asset access, not the file path or directory structure. A page with `hidden: true` does not authorize asset downloads. To limit an asset to specific customers, wrap the asset reference in `\{\{#if entitlements.<name>\}\}` or `\{\{#ifEquals\}\}`, or put the asset reference on a page that uses `visible_when`. Don't rely on `\{\{#if\}\}` over `license`, `customer`, or `channel` values to restrict a download. See the following example.
+Any asset referenced by an `\{\{asset\}\}` tag on a page that a customer can see is downloadable by that customer. The visibility of the referencing page controls asset access, not the file path or directory structure. A page with `hidden: true` does not authorize asset downloads. To limit an asset to specific customers, wrap the asset reference in `\{\{#if entitlements.<name>\}\}` or `\{\{#ifEquals\}\}`, or put the asset reference on a page that uses `visible_when`. Don't rely on `\{\{#if\}\}` over `license`, `customer`, or `channel` values to restrict a download. See [Per-customer asset delivery](#per-customer-asset-delivery).
 :::
+
+### Embed images
+
+To show an image on a page, use standard Markdown image syntax. The image source can be a file in your `assets/` directory or a public URL:
+
+```text
+![Create an OAuth application in your identity provider]({{asset "assets/images/idp-oauth-app.png"}})
+
+![Architecture diagram](https://example.com/images/architecture.png)
+```
+
+The portal displays PNG, JPEG, GIF, SVG, and WebP images.
+
+Images in `assets/` follow the same rules as other assets. The path must start with `assets/`, each content version serves its own copy of the file, and the visibility of the page controls which customers can load the image.
+
+Images from a public URL load directly in the customer's browser, so the customer's network must be able to reach the image host. To keep images versioned with your content and available to every customer who can see the page, store them in `assets/`.
+
+#### Images in the PDF export
+
+Customers can download the documentation for their selected version as a PDF with the **PDF** button in the portal header. The PDF includes an image when the image meets the following requirements:
+
+- The image is a PNG, JPEG, or GIF file.
+- The image is 8 MB or smaller and 4 megapixels or smaller (for example, 2000 x 2000 pixels).
+- All images in the export total 32 MB or less.
+- For images from a URL, the image host is reachable from the public internet. Replicated servers fetch these images when they build the PDF, so images on a private or internal network can't be included.
+
+Images that don't meet these requirements, or that can't be fetched while the PDF is generated, appear in the PDF as a link to the image instead.
 
 ### Per-customer asset delivery
 
