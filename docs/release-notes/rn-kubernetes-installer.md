@@ -9,6 +9,26 @@ pagination_prev: null
 This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.18-0<span data-release-version="v2026.11.18-0" />
+
+Released on November 18, 2026
+
+### New Features {#new-features-v2026-11-18-0}
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.18.4.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.94.1-92.10.1.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.11.5-1.2.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.94.1-92.11.0.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.28.10.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.94.1-92.13.1.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 2.4.2.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.9.1.
+* Adds support for RHEL 9.9 and Rocky Linux 9.9.
+
+### Improvements {#improvements-v2026-11-18-0}
+* Fixes an issue where containerd 2.3.4 and later failed to create containers on Amazon Linux 2, RHEL/CentOS/Oracle Linux 7 and Ubuntu 18.04 with "OCI runtime create failed: exit status 2". These OSes now get runc 1.3.6 with their containerd 1.x package.
+
+### Bug Fixes {#bug-fixes-v2026-11-18-0}
+* Joins and upgrades with Kubernetes 1.37+ and Containerd 1.x now fail before Containerd is installed.
 ## v2026.10.18-1
 
 Released on October 18, 2026
