@@ -2,7 +2,7 @@ Ubuntu 26.04 kernels starting with `7.0.0-42-generic`, and also `7.0.0-1017-aws`
 
 Applications that rely on these signals can stop responding or fail to shut down. For example, PostgreSQL pods can hang until the database reaches its connection limit. The kernel log on the host shows `apparmor="DENIED" operation="signal"` entries with a `peer` that ends in `//&unconfined`.
 
-When `kernel.apparmor_restrict_unprivileged_unconfined` is `1`, which is the Ubuntu default, these kernels add a stacked AppArmor label (`//&unconfined`) to container processes. The default containerd profile does not allow signals to processes with the stacked label. containerd has merged a fix to the profile, and it is not yet in a containerd release. For more information, see [containerd issue #14485](https://github.com/containerd/containerd/issues/14485) in the _containerd_ repository and [bug #2172640](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2172640) in _Launchpad_.
+When `kernel.apparmor_restrict_unprivileged_unconfined` is `1`, which is the Ubuntu default, these kernels add a stacked AppArmor label (`//&unconfined`) to container processes. The default containerd profile does not allow signals to processes with the stacked label. containerd has merged a fix to the profile, and it is not yet in a containerd release. For more information about the containerd profile fix and the kernel change, see [containerd issue #14485](https://github.com/containerd/containerd/issues/14485) in the _containerd_ repository and [bug #2172640](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2172640) in _Launchpad_.
 
 The fix reaches Embedded Cluster as follows:
 
