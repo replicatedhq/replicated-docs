@@ -260,9 +260,42 @@ This means bypassing a failed application check is a different decision from byp
 - A release may contain at most one external preflight spec.
 - The preflight spec uses Helm template syntax, not `repl{{ }}` Replicated template syntax.
 - The spec is not valid YAML before rendering. Standard YAML linters will not validate it directly.
-- Support bundle specs are separate from preflight specs. Support bundle and Redactor specs continue to use `v1beta2`. See [Add custom redactors](#redactors) on this page.
+- Support bundle specs are separate from preflight specs. Support bundle and Redactor specs continue to use `v1beta2`. See [Add a custom support bundle spec](#support-bundle-spec) and [Add custom redactors](#redactors) on this page.
 
 For more information about host preflight checks that Embedded Cluster runs automatically, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks).
+
+## Add a custom support bundle spec {#support-bundle-spec}
+
+Support bundles generated with Embedded Cluster v3 always include the default Embedded Cluster collectors and analyzers. To add your own, such as application logs or checks for your application's known failure modes, package a `troubleshoot.sh/v1beta2 SupportBundle` spec in one of your Helm charts.
+
+Put the spec in a Secret in your chart's `templates/` directory. Label the Secret `troubleshoot.sh/kind: support-bundle` and put the spec under the `support-bundle-spec` key. When a customer generates a support bundle, Embedded Cluster finds labeled specs in the cluster and adds them to the bundle.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-app-support-bundle
+  labels:
+    troubleshoot.sh/kind: support-bundle
+stringData:
+  support-bundle-spec: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: my-app
+    spec:
+      collectors:
+        - logs:
+            selector:
+              - app=my-app
+            name: my-app/logs
+```
+
+:::note
+Embedded Cluster v3 does not read a SupportBundle custom resource from the release. A SupportBundle spec at the release level, the way it worked with KOTS, is ignored without an error. Move it into a Secret in a Helm chart as shown above.
+:::
+
+Embedded Cluster reads your spec from the cluster, so it applies only when the cluster is reachable. If the cluster is unreachable when a customer generates a bundle, the bundle contains host-level data only, without your collectors.
 
 ## Add custom redactors {#redactors}
 
