@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.19-0<span data-release-version="v2026.11.19-0" />
+
+Released on November 19, 2026
+
+### New Features {#new-features-v2026-11-19-0}
+* Adds support for RHEL 10.3 and Rocky Linux 10.3.
 ## v2026.11.18-0<span data-release-version="v2026.11.18-0" />
 
 Released on November 18, 2026
