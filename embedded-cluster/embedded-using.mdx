@@ -291,10 +291,6 @@ stringData:
             name: my-app/logs
 ```
 
-:::note
-Embedded Cluster v3 does not read a SupportBundle custom resource from the release. A SupportBundle spec at the release level, the way it worked with KOTS, is ignored without an error. Move it into a Secret in a Helm chart as shown above.
-:::
-
 Embedded Cluster reads your spec from the cluster, so it applies only when the cluster is reachable. If the cluster is unreachable when a customer generates a bundle, the bundle contains host-level data only, without your collectors.
 
 ## Add custom redactors {#redactors}

@@ -94,7 +94,7 @@ In v3, you can package preflight specs inside your Helm charts or as a release-l
 v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
-**You do not need to change the API version of host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to use `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. A SupportBundle spec at the release level must move into a Helm chart. See [Support bundle specs must be packaged in a Helm chart](#support-bundle-spec). For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
+**You do not need to change the API version of host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to use `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. Embedded Cluster v3 applies a SupportBundle spec only when it is packaged in a Helm chart Secret labeled `troubleshoot.sh/kind: support-bundle`. See [Add a custom support bundle spec](embedded-using#support-bundle-spec). For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
 :::
 
 **Key differences from v1beta2 for application preflight specs:**
@@ -107,14 +107,6 @@ v1beta3 supports this model because it treats the spec as Helm template YAML rat
 - For air gap installations, images referenced by the preflight spec (such as the Troubleshoot image used to run checks inside the cluster) are not automatically included in the air gap bundle and must be added to the Application `additionalImages` field. See [Include preflight images in air gap bundles](embedded-using#preflight-air-gap-images).
 
 For details about the rendering pipeline and multi-chart examples, see [Add preflight checks](embedded-using#preflights). For more information about the v1beta3 spec format, see [v1beta3 overview](https://troubleshoot.sh/docs/preflight/v1beta3-overview) in the Troubleshoot documentation.
-
-### Support bundle specs must be packaged in a Helm chart {#support-bundle-spec}
-
-Embedded Cluster v3 does not read a SupportBundle custom resource from the release. If your release includes a `troubleshoot.sh/v1beta2 SupportBundle` at the release level, the way it worked with KOTS, Embedded Cluster v3 ignores it without an error, and your collectors and analyzers are missing from every support bundle your customers generate.
-
-Embedded Cluster v3 adds your spec to a support bundle only when it finds the spec in the cluster. Package the spec in a Secret in your Helm chart's `templates/` directory, labeled `troubleshoot.sh/kind: support-bundle`, with the spec under the `support-bundle-spec` key. See [Add a custom support bundle spec](embedded-using#support-bundle-spec). If you already package your support bundle spec this way, no change is needed.
-
-Release-level Redactor specs are different: Embedded Cluster v3 still reads them. See [Add custom redactors](embedded-using#redactors).
 
 ### Package your application with Helm
 
@@ -231,8 +223,6 @@ To update a release from Embedded Cluster v2 to v3:
    If you also distribute your application with the Helm CLI, you can use the same labeled Secret in your chart without a separate release-level copy for Embedded Cluster 3.18.0-beta.1 and later. For more information, see [Helm and troubleshoot template example](/vendor/preflight-sb-helm-templates-about#troubleshoot).
 
    For more information about converting specs from v1beta2 to v1beta3, see [Migrate from v1beta2 to v1beta3](https://troubleshoot.sh/docs/preflight/v1beta3-migration) in the Troubleshoot documentation.
-
-1. If your release includes a SupportBundle custom resource at the release level, move it into a Secret in one of your Helm charts, labeled `troubleshoot.sh/kind: support-bundle`, with the spec under the `support-bundle-spec` key. Embedded Cluster v3 ignores a release-level SupportBundle. See [Support bundle specs must be packaged in a Helm chart](#support-bundle-spec).
 
 1. Ensure that your release has a corresponding HelmChart v2 custom resource for each of your application Helm charts. If your release uses HelmChart v1, move to HelmChart v2 on Embedded Cluster v2 first. See [HelmChart v2 required](#helmchart-v2-required). Extension charts defined in the Embedded Cluster Config do not need a separate HelmChart CR. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
