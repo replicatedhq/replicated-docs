@@ -135,54 +135,36 @@ startMetricsLoop(getDatabase());
 
 The Replicated SDK does not report the Helm release name or namespace that a customer used to install your application. You can send these values as string custom metrics, for example to show customers accurate uninstall commands.
 
-The following example is a Helm hook Job that sends the release name and namespace to the SDK after every install and upgrade. Running the hook after upgrades means that existing installations also report the values the next time they upgrade.
+To report the Helm release name and namespace:
 
-```yaml
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: {{ .Release.Name }}-report-release
-  annotations:
-    "helm.sh/hook": post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
-spec:
-  backoffLimit: 5
-  template:
+1. In the Deployment template for your application, pass the release name and namespace to the container as environment variables:
+
+    ```yaml
+    # templates/deployment.yaml
     spec:
-      restartPolicy: OnFailure
-      containers:
-        - name: report-release
-          image: CURL_IMAGE
-          command:
-            - curl
-            - --fail
-            - --silent
-            - --show-error
-            - --connect-timeout
-            - "5"
-            - --max-time
-            - "30"
-            - --retry
-            - "10"
-            - --retry-connrefused
-            - --retry-delay
-            - "5"
-            - -X
-            - PATCH
-            - -H
-            - "Content-Type: application/json"
-            - -d
-            - '{"data": {"releaseName": "{{ .Release.Name }}", "releaseNamespace": "{{ .Release.Namespace }}"}}'
-            - http://replicated:3000/api/v1/app/custom-metrics
-```
+      template:
+        spec:
+          containers:
+            - name: app
+              env:
+                - name: RELEASE_NAME
+                  value: {{ .Release.Name | quote }}
+                - name: RELEASE_NAMESPACE
+                  value: {{ .Release.Namespace | quote }}
+    ```
 
-Where `CURL_IMAGE` is an image that includes `curl`. Use an image from a registry that your customers can access, and make sure that the image is included in air gap bundles for your release. For example, `curlimages/curl` is a third-party image that Replicated does not maintain or support.
+1. In your application, add the values to the metrics that it sends. For example, in the [NodeJS example](#nodejs-example) on this page, change the payload to the following:
 
-In this example:
+    ```javascript
+    const metrics = { data: {
+        numProjects,
+        activeUsers,
+        releaseName: process.env.RELEASE_NAME,
+        releaseNamespace: process.env.RELEASE_NAMESPACE,
+    }};
+    ```
 
-* The hook can start before the SDK is ready to accept requests. The `--retry`, `--retry-connrefused`, and `--connect-timeout` flags make `curl` retry until the SDK responds, instead of waiting on a single connection attempt.
-* If you brand the SDK with a Helm alias or `nameOverride`, replace `replicated` in the URL with that name.
-* The `hook-succeeded` delete policy removes the Job after it succeeds.
+    The values are sent with the other metrics, so they are kept when the application sends metrics with `POST`.
 
 ### Patch vs post
 
