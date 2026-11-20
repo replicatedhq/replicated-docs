@@ -20,6 +20,8 @@ The following are Replicated's best practices and recommendations for CI/CD:
 
 * If you use the GitHub Actions CI/CD platform, integrate the custom GitHub actions that Replicated maintains to replace repetitive tasks related to distributing application with Replicated or using CMX. For more information, see [Use Replicated GitHub Actions in CI/CD](/vendor/ci-workflows-github-actions).
 
+* Archive the channels and customers that your workflows create when the work that needed them is done, including when a run fails. For more information, see [Clean up CI resources](/vendor/ci-workflows#cleanup) in _Recommended CI/CD workflows_.
+
 * To help show you are conforming to a secure supply chain, sign all commits and container images. Additionally, provide a verification mechanism for container images.
 
 * Use custom RBAC policies to control the actions that can be performed in your CI/CD workflows. For example, you can create a policy that blocks the ability to promote releases to your production channel. For more information about creating custom RBAC policies in the Vendor Portal, see [Configure RBAC Policies](/vendor/team-management-rbac-configuring). For a full list of available RBAC resources, see [RBAC Resource Names](/vendor/team-management-rbac-resource-names).
