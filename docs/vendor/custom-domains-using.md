@@ -37,7 +37,7 @@ To add and verify a custom domain:
     If TLS verification cannot be performed automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**. Your changes can take up to 24 hours to propagate.
 
     :::note
-    If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
+    If this hostname or any of its parent domains has [CAA records](https://letsencrypt.org/docs/caa/), you must include all Certificate Authorities (CAs) that Cloudflare partners with. A CA checks the hostname first. If the hostname has no CAA records, the CA checks each parent domain in turn and uses the first CAA records it finds. For example, CAA records on `example.com` apply to `updates.example.com` when `updates.example.com` has no CAA records of its own. The following CAA records are required to ensure proper certificate issuance and renewal:
 
     ```dns
     @ IN CAA 0 issue "letsencrypt.org"
@@ -184,4 +184,35 @@ To remove a custom domain:
     When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the Vendor Portal.
     :::
 
-1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
+1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.
+
+## Troubleshoot TLS certificates {#troubleshoot-tls}
+
+CAA records are a common cause of the following TLS certificate issues:
+
+* The **TLS cert creation verification** step does not complete when you add a custom domain.
+* A custom domain that was working starts returning TLS errors because its certificate could not be renewed.
+
+To troubleshoot TLS certificate issues:
+
+1. Check the CAA records that apply to the custom domain. Replace `updates.example.com` with your custom domain:
+
+    ```bash
+    dig updates.example.com CAA +short
+    ```
+
+    If the command returns no records, check the parent domains, because the closest parent domain with CAA records applies:
+
+    ```bash
+    dig example.com CAA +short
+    ```
+
+1. If CAA records apply to the custom domain, confirm that they include every CA listed in the CAA note in [Add a custom domain in the Vendor Portal](#add-domain). Add any missing records.
+
+1. Check the issuer and validity dates of the certificate that the custom domain currently serves:
+
+    ```bash
+    openssl s_client -connect updates.example.com:443 -servername updates.example.com </dev/null 2>/dev/null | openssl x509 -noout -issuer -dates
+    ```
+
+1. If the certificate has already expired, or the issue continues after you update the CAA records, open a support request. Include the custom domain, the output of the `dig` commands, and when the errors started. See [Submit a support request](support-submit-request).  
