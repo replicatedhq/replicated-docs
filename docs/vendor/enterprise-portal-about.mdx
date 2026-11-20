@@ -47,7 +47,11 @@ For information about using the Enterprise Portal, see [Log in to and use the Cl
 
 * There is a known issue when using a custom domain for the Enterprise Portal if any of your customers use link transformers such as Microsoft Defender Safe Links. For more information, see [Known Issue](custom-domains#known-issue) in _About Custom Domains_. 
 
-* Air gap Helm installations relocate images to the customer's private registry using `docker tag` and `docker push`, which does not preserve image digests or multi-architecture image manifests. If your application references images by digest (`@sha256:...`) or ships multi-architecture images, the relocated images might not match what your chart expects, which can cause image pull failures.
+* Air gap Helm installations relocate images to the customer's private registry with `docker pull`, `docker tag`, and `docker push`. These commands do not preserve image digests or multi-architecture image indexes, which affects charts in the following ways:
+    * If the chart references an image by digest (for example, `api:1.2.3@sha256:...`), the `docker tag` command fails, or the image is relocated under a different digest and pods fail with `ImagePullBackOff`.
+    * If an image is published for more than one architecture, only the architecture of the machine running the commands is copied. Pods that run on nodes with a different architecture fail to start.
+
+    If your chart uses digest-pinned or multi-architecture images, tell your customers to copy those images with a tool that preserves the full image manifest, such as `skopeo copy --all --preserve-digests` or `crane copy`, instead of the generated `docker` commands.
 
 ## Comparison to the Download Portal
 
