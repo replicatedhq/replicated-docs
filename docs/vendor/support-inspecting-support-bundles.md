@@ -26,6 +26,10 @@ To inspect a support bundle:
 
    [View a larger version of this image](/images/support-bundle-analysis-overview.png)
 
+   :::note
+   The Vendor Portal identifies the customer and instance from the contents of the bundle. After you upload a bundle, you can rename it, but you can't change its customer or instance or add tags or notes. To include your own context in a bundle, such as a ticket number, your application can attach it before the bundle is collected using the Replicated SDK `/supportbundle/metadata` endpoint with the `supportBundleMetadata` collector. See [supportbundle](/reference/replicated-sdk-apis#supportbundle) in _Replicated SDK API_.
+   :::
+
 1. On the **File inspector** tab, select any files from the directory tree to inspect the details of any files included in the support bundle, such as log files.
 
 1. (Optional) Click **Download bundle** to download the bundle. This can be helpful if you want to access the bundle from another system or if other team members want to access the bundle and use other tools to examine the files.
