@@ -26,7 +26,7 @@ global:
 You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation.
 
 :::note
-These values are a snapshot taken when the chart was last pulled, and Helm templates are rendered during `helm install` and `helm upgrade`, so checks written this way are evaluated at deployment time. A license change reaches the instance the next time the customer pulls the chart and upgrades. To enforce an entitlement that must take effect without a new deployment, query the license at runtime instead. See [Query Entitlements with the Replicated SDK API](licenses-reference-sdk).
+These values are a snapshot taken when the chart was last pulled, and Helm templates are rendered during `helm install` and `helm upgrade`, so checks written this way are evaluated at deployment time. For Helm CLI installations, a license change reaches the instance the next time the customer pulls the chart and upgrades. For online KOTS installations, see [License changes in online KOTS installations](#kots-license-change). To enforce an entitlement that must take effect without a new deployment, query the license at runtime instead. See [Query Entitlements with the Replicated SDK API](licenses-reference-sdk).
 :::
 
 ## License changes in online KOTS installations {#kots-license-change}
@@ -95,6 +95,8 @@ stringData:
 ```
 
 The `dig` function returns an empty string if the license field is not set, so the template skips the Secret instead of failing. This also lets you render the chart locally without the injected values.
+
+If a workload references the Secret, make sure that its pods can start when the license field is not set. For example, set `optional: true` on the `secretKeyRef` or Secret volume, or render the workload only when the value is set.
 
 Consider the following when you deliver sensitive values with license fields:
 
