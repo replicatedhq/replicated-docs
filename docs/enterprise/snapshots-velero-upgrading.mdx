@@ -37,7 +37,7 @@ Replicated recommends one of the following options:
 * Reinstall KOTS with `--with-minio=true`. This installs a Minio object store that is compatible with Kopia.
 * Reconfigure the storage location to use an external S3-compatible object store, such as Amazon S3, Google Cloud Storage, Azure Blob Storage, or another S3-compatible provider. Install the target Velero plugin before you reconfigure the storage location. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
 
-For kURL installations, the kURL installer migrates LVP destinations to the in-cluster object store when it upgrades Velero to 1.17 or later, after you confirm the migration. For more information, see [Upgrading to Velero 1.17 or Later](https://kurl.sh/docs/install-with-kurl/removing-object-storage#upgrading-to-velero-117-or-later) in the kURL documentation.
+For kURL installations, the kURL installer can migrate LVP destinations to the in-cluster object store when it upgrades Velero to 1.17 or later. The installer migrates only if it includes an in-cluster object store (Minio or Rook), S3 snapshots are not disabled with `kotsadm.disableS3`, and the KOTS version is 1.131.6 or later. The installer asks you to confirm before it migrates. If these conditions are not met, the installer stops and explains how to proceed. For more information, see [Upgrading to Velero 1.17 or Later](https://kurl.sh/docs/install-with-kurl/removing-object-storage#upgrading-to-velero-117-or-later) in the kURL documentation.
 
 For more information about LVP storage issues after upgrade, see [LVP storage location is unavailable after upgrade](snapshots-troubleshooting-backup-restore#lvp-storage-location-is-unavailable-after-upgrade) in _Troubleshoot Snapshots_.
 
