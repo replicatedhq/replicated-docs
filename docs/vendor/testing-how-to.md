@@ -273,6 +273,127 @@ To join one or more new VMs to the network of an existing VM:
     ``` 
     Where `NETWORK_ID` is the network ID that you copied in the previous step.
 
+## Test installations behind an HTTP proxy {#proxy}
+
+Some customers allow outbound internet traffic only through an HTTP or HTTPS proxy. You can use CMX to test that your application installs and runs in this kind of environment. Run a proxy on one VM, and install your application on a second VM on the same network that can reach the internet only through the proxy.
+
+This procedure uses Ubuntu VMs, the Squid proxy, and an Embedded Cluster installation.
+
+:::note
+CMX network policies apply to every VM on a network. If you set the network policy to `airgap`, the proxy VM also loses internet access. Instead, this procedure leaves the network policy set to `open` and blocks direct internet access on the installation VM with a host firewall.
+:::
+
+To test an installation behind an HTTP proxy:
+
+1. Create a VM for the proxy:
+
+    ```bash
+    replicated vm create --distribution ubuntu --version 24.04 --name proxy
+    ```
+
+    In the output of the command, copy the network ID.
+
+1. Create a VM for the installation on the same network:
+
+    ```bash
+    replicated vm create --distribution ubuntu --version 24.04 --instance-type INSTANCE_TYPE --name install --network NETWORK_ID
+    ```
+
+    Where:
+    * `INSTANCE_TYPE` is an instance type that meets the requirements for your application and for Embedded Cluster, such as `r1.large`.
+    * `NETWORK_ID` is the network ID that you copied in the previous step.
+
+1. SSH into each VM and get its network interface and private IP address:
+
+    ```bash
+    ip -4 -br addr show scope global
+    ```
+
+    **Example output:**
+
+    ```
+    eth1             UP             10.0.0.11/24
+    ```
+
+    In this example, the interface is `eth1`, the private IP address is `10.0.0.11`, and the network CIDR is `10.0.0.0/24`. Both VMs use the same interface name and network CIDR.
+
+1. On the proxy VM, install Squid and allow requests from the CMX network. The default Squid configuration denies requests from other hosts.
+
+    ```bash
+    sudo apt-get update && sudo apt-get install -y squid
+    sudo tee /etc/squid/conf.d/cmx.conf <<EOF
+    acl cmx_network src NETWORK_CIDR
+    http_access allow cmx_network
+    EOF
+    sudo systemctl restart squid
+    ```
+
+    Where `NETWORK_CIDR` is the network CIDR, such as `10.0.0.0/24`.
+
+    Squid listens on port 3128.
+
+1. On the installation VM, install nftables, and then block outbound traffic to any address outside the CMX network. Install nftables first, because the package download needs direct internet access.
+
+    ```bash
+    sudo apt-get update && sudo apt-get install -y nftables
+    sudo nft -f - <<EOF
+    table inet block_egress {
+      chain output {
+        type filter hook output priority 0; policy accept;
+        oifname "INTERFACE" ip daddr != NETWORK_CIDR drop
+      }
+      chain forward {
+        type filter hook forward priority 0; policy accept;
+        oifname "INTERFACE" ip daddr != NETWORK_CIDR drop
+      }
+    }
+    EOF
+    ```
+
+    Where:
+    * `INTERFACE` is the network interface, such as `eth1`.
+    * `NETWORK_CIDR` is the network CIDR, such as `10.0.0.0/24`.
+
+    The `output` chain blocks traffic from the VM itself. The `forward` chain blocks traffic from Kubernetes pods, so that your application's pods also cannot bypass the proxy.
+
+1. On the installation VM, confirm that direct requests fail and that requests through the proxy succeed:
+
+    ```bash
+    curl -sS -m 10 -o /dev/null -w "%{http_code}\n" https://replicated.app
+    curl -sS -m 10 -o /dev/null -w "%{http_code}\n" -x http://PROXY_IP:3128 https://replicated.app
+    ```
+
+    Where `PROXY_IP` is the private IP address of the proxy VM.
+
+    The first command fails after 10 seconds. The second command returns `200`.
+
+1. In the Vendor Portal, go to the page for the customer that you want to install with. Click **Install instructions** and select **Embedded Cluster**.
+
+1. On the installation VM, run the commands from the dialog with the following changes:
+
+    * Add `-x http://PROXY_IP:3128` to the `curl` command that downloads the installation assets.
+    * Add `--http-proxy http://PROXY_IP:3128 --https-proxy http://PROXY_IP:3128` to the `install` command.
+
+    Embedded Cluster automatically excludes the node's network, the pod and service networks, and localhost from the proxy. Use the `--no-proxy` flag only for other hosts that your customers reach without the proxy. For more information, see [install](/embedded-cluster/v3/embedded-cluster-install).
+
+1. After the installation completes, on the proxy VM, review the requests that went through the proxy:
+
+    ```bash
+    sudo tail -n 50 /var/log/squid/access.log
+    ```
+
+    The log lists the requests from the installation VM, such as requests to `replicated.app` and `proxy.replicated.com`, and to any other endpoints that your application uses.
+
+1. Confirm that the application is running, and that the instance appears on the customer's page in the Vendor Portal.
+
+1. When you are done, delete both VMs. See [Delete environments](#delete-environments).
+
+### Application pods and preflight checks behind a proxy
+
+Embedded Cluster passes the proxy settings to its own components and to the Replicated SDK. It does not pass them to your application's pods. If your application, or a preflight check that runs a pod, makes requests to the internet, pass the proxy settings to those pods. For example, set the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables with the `HTTPProxy`, `HTTPSProxy`, and `NoProxy` template functions. See [Static context](/reference/template-functions-static-context#httpproxy).
+
+Otherwise, those requests fail behind a proxy. In a proxy test, a request from your application or a preflight check that fails is a request that ignores the proxy.
+
 ## Create a cluster and install a release with `cluster prepare` {#prepare-clusters}
 
 The [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
