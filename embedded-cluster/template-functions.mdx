@@ -34,6 +34,36 @@ The following KOTS template functions are supported only in Embedded Cluster 3.1
 
 For more information about template syntax, parameters, and function contexts, see [About Replicated template functions](/reference/template-functions-about).
 
+## Proxy settings
+
+Embedded Cluster passes the proxy settings from an installation to its own components and to the Replicated SDK, but not to your application's pods. If your application makes requests to the internet, use the following template functions to pass the proxy settings to your application:
+
+| Function | Behavior in Embedded Cluster |
+| --- | --- |
+| `HTTPProxy` | Returns the value of the `--http-proxy` flag from the installation, or an empty string. |
+| `HTTPSProxy` | Returns the value of the `--https-proxy` flag from the installation, or an empty string. |
+| `NoProxy` | Returns the comma-separated list of hosts that do not use the proxy. The list includes the values of the `--no-proxy` flag and the addresses that Embedded Cluster excludes automatically, such as the node's network, the pod and service networks, and localhost. Returns an empty string if none of the proxy flags are set. |
+
+In air gap installations, these functions return an empty string.
+
+For more information about the proxy flags, see [install](/embedded-cluster/v3/embedded-cluster-install).
+
+### Example
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    proxy:
+      httpProxy: '{{repl HTTPProxy }}'
+      httpsProxy: '{{repl HTTPSProxy }}'
+      noProxy: '{{repl NoProxy }}'
+```
+
+In your Helm chart, set these values as the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables on the containers that make requests to the internet.
+
 ## Image rewriting
 
 Helm charts express images in three shapes. The shape of the chart's image fields determines which template function to use and which field to template:
