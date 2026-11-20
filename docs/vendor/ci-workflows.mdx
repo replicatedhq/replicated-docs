@@ -321,7 +321,7 @@ Before you add cleanup to your workflows, note the following differences between
 
 * You can't unarchive a channel.
 
-* An archived channel keeps its slug. If you create a channel with the same name as an archived channel, the new channel's slug gets a numeric suffix (e.g. `ci-my-branch-1`). Give each branch or run its own channel name rather than archiving and re-creating a channel with the same name.
+* An archived channel keeps its slug. If you create a channel with the same name as an archived channel, the new channel's slug gets a numeric suffix (e.g. `ci-my-branch-1`). Each new channel with that name takes the next suffix, and after a limited number of suffixes for one name, creating the channel fails. Give each branch or run its own channel name rather than archiving and re-creating a channel with the same name.
 
 * You can't archive a channel while customers are assigned to it, so archive a channel's customers first. For the other conditions that prevent archiving a channel, see [Archive a channel](/vendor/releases-creating-channels#archive-a-channel) in _Create and edit channels_.
 
@@ -343,7 +343,7 @@ The token that your workflow uses also needs permission to archive customers and
 
 ### Name CI resources consistently {#cleanup-naming}
 
-Use a consistent prefix for the channels and customers that your workflows create, such as `ci-` followed by the branch name. A consistent prefix lets a cleanup job find CI resources without affecting the channels and customers that you use for releases.
+Use a consistent prefix for the channels and customers that your workflows create, such as `ci-` followed by the branch name, plus the run ID for channels that are created for a single run. A consistent prefix lets a cleanup job find CI resources without affecting the channels and customers that you use for releases.
 
 ### Run a scheduled cleanup job {#cleanup-scheduled}
 
@@ -358,6 +358,10 @@ CHANNEL_NAME="ci-my-feature-branch"
 # Find the channel ID
 CHANNEL_ID=$(replicated channel ls --app "$APP_SLUG" --output json \
   | jq -r --arg name "$CHANNEL_NAME" '.[] | select(.name == $name) | .id')
+if [ -z "$CHANNEL_ID" ]; then
+  echo "No active channel named $CHANNEL_NAME"
+  exit 0
+fi
 
 # Archive the customers assigned to the channel
 CUSTOMER_IDS=$(replicated customer ls --app "$APP_SLUG" --output json \
