@@ -44,3 +44,7 @@ For each Helm chart used by your application, in the Helm chart's `values.yaml` 
     initImage: proxy.replicated.com/proxy/app-slug/docker.io/library/busybox:1.36
     ```
     </details>
+
+    :::note
+    Bitnami charts check that their images come from the original Bitnami registry. If you rewrite a Bitnami chart's images to use the Replicated proxy registry, or if images are rewritten to a local registry for air gap installations, the chart fails to render with an error that the original containers have been substituted. To allow the rewritten images, set `global.security.allowInsecureImages: true` in the chart's values. Despite its name, this setting only skips the chart's check of where images come from. It does not change how images are pulled.
+    :::
