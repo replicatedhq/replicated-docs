@@ -194,7 +194,7 @@ To troubleshoot TLS certificate issues:
     dig updates.example.com CAA +short
     ```
 
-    If the command returns no records, check each parent domain in turn, up to your registered domain, and stop at the first one that returns records. Those records apply to the custom domain. For example, for `updates.eu.example.com`, check `eu.example.com` and then `example.com`:
+    If the command returns no records, check each parent domain in turn and stop at the first one that returns records. Those records apply to the custom domain. For example, for `updates.eu.example.com`, check `eu.example.com` and then `example.com`:
 
     ```bash
     dig eu.example.com CAA +short
