@@ -342,6 +342,70 @@ The default guides do not include `kubectl kots upstream upgrade`. Add that comm
 
 The kURL guide separates an application update from kURL/Kubernetes cluster maintenance. The application panel does not render the kURL installer bundle and does not offer `install.sh` as a command. Document when cluster maintenance has to happen, and provide a separately validated procedure.
 
+## Set a namespace for Helm installs and upgrades {#helm-namespaces}
+
+By default, the generated Helm commands have no `--namespace` flag, so Helm installs into the namespace of the customer's current kubeconfig context. To install into a specific namespace, set `namespace` on the Helm install components, and set the same value for the upgrade commands:
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" />
+<InstancesAndUpdates helmNamespace="my-namespace" />
+```
+
+Each prop adds `--namespace <namespace>` to the generated `helm install`, `helm upgrade`, and preflight (`helm template`) commands. The props are:
+
+- Install components (`<HelmInstallAssets>`, `<HelmAirgapInstallAssets>`, `<HelmInstallStep>`, `<HelmAirgapInstallStep>`): `namespace`, `chartNamespaces`, and `createNamespace`.
+- `<InstancesAndUpdates>`, which renders the Instances & Updates page: `helmNamespace` and `helmChartNamespaces`. They only change Helm cards.
+- `<HelmUpdateAssets>`, for a custom update page: `namespace` and `chartNamespaces`.
+
+The service account install and update instructions APIs read the same props from your docs page. See [Namespace handling in automation](/vendor/enterprise-portal-v2-service-account-automation#namespace-handling-in-automation).
+
+### The install profile saves the namespace {#helm-namespace-saved}
+
+`helm upgrade` looks for the release in one namespace, and fails with `"<release>" has no deployed releases` if it looks in the wrong one. So upgrades must use the namespace the customer installed into, even if you change your docs page later.
+
+The first time the portal generates Helm install instructions for an install profile, it saves the namespace for each chart on that profile. It reads them from the Helm components on your docs page. When the page sets no namespace, it saves Helm's default namespace, which means no `--namespace` flag. From then on, the install and upgrade commands for that profile use the saved namespaces, not the page:
+
+- Changing a namespace prop on your docs page affects install profiles whose install instructions are first generated after the change. In the portal, that happens when the customer creates the profile. Profiles that already have a saved namespace keep it.
+- Adding a namespace to a page that had none doesn't move existing profiles either. They keep upgrading in Helm's default namespace.
+- The portal never saves a namespace from the page for an install profile that already has an install. One example is a profile installed before the portal started saving namespaces. If such a profile has nothing saved, its commands keep following the current docs page.
+
+Customer automation can override the saved namespace with the `namespace` parameter on the service account API, which also replaces the saved value. The portal itself never overrides it.
+
+### Per-chart namespaces {#helm-chart-namespaces}
+
+If your application ships multiple Helm charts, `chartNamespaces` (or `helmChartNamespaces` on `<InstancesAndUpdates>`) gives individual charts their own namespace. The value is a comma-separated list of `chart=namespace` pairs. Each entry overrides `namespace` for its chart, and the other charts use `namespace`:
+
+```markdown
+<HelmInstallAssets namespace="my-app" chartNamespaces="postgres=data,redis=data" />
+<InstancesAndUpdates helmNamespace="my-app" helmChartNamespaces="postgres=data,redis=data" />
+```
+
+- Chart names must match the chart names in the release exactly, including case. An entry for a chart that isn't in the release does nothing.
+- If a chart has more than one entry, the first valid entry wins.
+- The portal ignores an entry that isn't `chart=namespace`, or that has an invalid namespace, and shows a preview warning.
+
+The portal saves per-chart namespaces on the install profile the same way it saves `namespace`.
+
+### Valid values and preview warnings {#helm-namespace-validation}
+
+A namespace must be a valid Kubernetes namespace name: lowercase alphanumeric characters or `-`, starting and ending with an alphanumeric character, at most 63 characters.
+
+The portal never rejects an invalid value from your docs page. It generates the affected commands without that namespace, and the page renders normally for the customer. The portal shows a warning with the commands, but only in preview. Customers on a published portal never see these warnings. See [Test and preview the Enterprise Portal](/vendor/enterprise-portal-v2-access).
+
+Author namespace values as quoted strings on self-closing tags, such as `<HelmInstallAssets namespace="my-namespace" />`. The portal reads these props on the server to save them. It skips a component with a separate closing tag, or with a prop set from a variable such as `namespace={ns}`. To use a per-customer value, use a template variable such as a custom license field: `namespace="\{\{entitlements.helm_namespace\}\}"`. The portal resolves the variable for each customer before it checks the value. If a variable in `namespace` doesn't resolve, it becomes an empty value: no namespace and no warning. For example, the customer might have no such license field. In a `chartNamespaces` entry, an unresolved variable leaves `chart=` with no namespace, so the portal ignores that entry and shows a preview warning. Don't use a Password license field. The portal masks its value, the mask isn't a valid namespace, and the portal drops it with a warning.
+
+### The `createNamespace` prop {#helm-create-namespace}
+
+When an install command has a namespace, it also includes `--create-namespace` by default. A customer on a fresh cluster then doesn't have to create the namespace first. For customers who create the namespace themselves, set `createNamespace="false"` on the install component that sets `namespace` or `chartNamespaces`:
+
+```markdown
+<HelmInstallAssets namespace="my-namespace" createNamespace="false" />
+```
+
+`--create-namespace` asks the Kubernetes API server to create the namespace, even when it already exists, which requires cluster-scoped permission. A customer whose credentials only cover one namespace gets a `Forbidden` error unless you set `createNamespace="false"`. In preview, when a component that sets a namespace generates an install command with `--create-namespace`, the portal shows an advisory about it.
+
+The value must be exactly `"true"` or `"false"`, in lowercase. The portal treats any other value as unset, generates the command with `--create-namespace`, and shows a preview warning. `createNamespace` has no effect when the command has no namespace. Upgrade commands never include `--create-namespace`, so `<HelmUpdateAssets>` and `<InstancesAndUpdates>` don't take this prop.
+
 ## Template variables
 
 Enterprise Portal content supports Mustache-style templating with `\{\{ \}\}` syntax for dynamic rendering. You can use template variables and MDX components together on the same page.

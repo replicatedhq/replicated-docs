@@ -217,7 +217,7 @@ Renders the full Linux/Embedded Cluster installation command sequence. Adapts to
 
 ### `<HelmInstallAssets />`
 
-Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide).
+Renders the full Helm installation command sequence. Props: `stepNumber` (optional), `charts` (optional, comma-separated list of chart names to include), `exclude` (optional, comma-separated list of chart names to hide), `namespace` (optional), `chartNamespaces` (optional), `createNamespace` (optional). See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces).
 
 When a customer selects limited or no registry access, `<HelmInstallAssets />` automatically includes browser download links for the Helm chart tarballs needed for their install. A download link for the preflight plugin binary is always included, regardless of registry access settings. You do not configure anything else.
 
@@ -227,7 +227,7 @@ Linux air gap installation commands. Shows an unavailable notice if the air gap 
 
 ### `<HelmAirgapInstallAssets />`
 
-Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional).
+Helm air gap installation commands. Props: `stepNumber`, `registryAvailability`, `charts` (optional), `exclude` (optional), `namespace` (optional), `chartNamespaces` (optional), `createNamespace` (optional). See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces).
 
 When a customer selects limited or no registry access, `<HelmAirgapInstallAssets />` automatically includes browser download links for Helm chart tarballs. These links are also shown in the update flow for customers in the same registry mode.
 
@@ -257,6 +257,14 @@ Renders KOTS air gap download steps for the selected release. This component doe
 
 Renders kURL air gap installation steps. The first step includes artifact download links. The following step extracts the installer and runs `install.sh airgap`. Props: `stepNumber`.
 
+### `<HelmInstallStep>`
+
+Renders one online Helm install step by name. Props: `step` (required), `stepNumber` (optional), `charts` (optional), `exclude` (optional), `namespace` (optional), `chartNamespaces` (optional), `createNamespace` (optional). Use `step="install_chart"` for the step that runs `helm install`. See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces).
+
+### `<HelmAirgapInstallStep>`
+
+Renders one air gap Helm install step by name. Same props as `<HelmInstallStep>`.
+
 ### `<KotsInstallStep>`
 
 Renders one online KOTS install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="install_kots"`.
@@ -273,7 +281,7 @@ Renders one KOTS air gap download step by name. Props: `step` (required), `stepN
 
 Renders one kURL air gap install step by name. Props: `step` (required), `stepNumber` (optional). Use `step="download_assets"` or `step="install_kurl"`.
 
-For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there.
+For `<KotsInstallStep>`, `<KurlInstallStep>`, and `<KurlAirgapInstallStep>`, `step="install"` selects `install_kots` or `install_kurl`. `<KotsAirgapInstallStep>` only has `download_assets`, so `step="install"` has no target there. `step="install"` also has no target on `<HelmInstallStep>` or `<HelmAirgapInstallStep>`. Use `step="install_chart"`.
 
 ### `<KotsDownloadAssets />`
 
@@ -354,7 +362,7 @@ Renders Linux/Embedded Cluster upgrade instructions for the customer's current i
 
 ### `<HelmUpdateAssets />`
 
-Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional).
+Renders Helm upgrade instructions. Props: `stepNumber`, `charts` (optional), `exclude` (optional), `namespace` (optional), `chartNamespaces` (optional). There is no `createNamespace`, because the generated `helm upgrade` commands never create a namespace. See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces).
 
 ### `<KotsUpdateAssets />`
 
@@ -453,7 +461,7 @@ Renders a button that lets customers download their license file. The button app
 
 ### `<InstancesAndUpdates />`
 
-Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button after their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. You cannot remove the button. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, and `kurlNamespace`. `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
+Renders the full instances and updates management page inline. Helm and Embedded Cluster instances expand into inline CLI commands. KOTS and kURL instances expand into guided Admin Console application-upgrade panels. Air gap Helm and Embedded Cluster instances with an available update get a Mark update complete button after their upgrade instructions have loaded. Air gap KOTS and kURL instances get the same button when the application bundle is downloadable. You cannot remove the button. Optional props: `kotsGuideHref`, `kurlGuideHref`, `kotsNamespace`, `kurlNamespace`, `helmNamespace`, and `helmChartNamespaces`. `helmNamespace` and `helmChartNamespaces` set the namespaces in every Helm card's upgrade commands, the same way `namespace` and `chartNamespaces` do on `<HelmUpdateAssets>`. See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces). `kotsNamespace` is the namespace where the Admin Console is running for KOTS card reopen commands. `kurlNamespace` is the same for kURL cards. Setting one does not change the other. A KOTS card links only to `kotsGuideHref` and a kURL card only to `kurlGuideHref`.
 
 ## Security components {#security-components}
 
