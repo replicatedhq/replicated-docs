@@ -205,6 +205,26 @@ To support KOTS existing cluster or kURL installations with HelmChart v2, comple
           {{- end }}
         ```
 
+1. (Online installations only) If your Helm templates read license field values from `global.replicated.licenseFields` and a license change must take effect as soon as the customer deploys it, map those license fields to Helm values with the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function instead.
+
+    When a customer syncs an updated license, KOTS creates a **License Change** version. Deploying the License Change version does not update `global.replicated.licenseFields`. Those values keep the license field values from when the release was downloaded, and they update when the customer deploys a new release. LicenseFieldValue returns the updated value in the License Change version.
+
+    **Example:**
+
+    ```yaml
+    # kots.io/v1beta2 HelmChart custom resource
+
+    apiVersion: kots.io/v1beta2
+    kind: HelmChart
+    metadata:
+      name: samplechart
+    spec:
+      values:
+        apiKey: repl{{ LicenseFieldValue "api_key" }}
+    ```
+
+    In your Helm templates, use `.Values.apiKey` instead of `.Values.global.replicated.licenseFields.api_key.value`.
+
 ## Next step: Migrate existing installations to HelmChart v2
 
 Existing installations can be migrated to use the Replicated HelmChart v2 method, without having to reinstall the application.
