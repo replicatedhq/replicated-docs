@@ -192,7 +192,7 @@ Released on July 22, 2026
 Support for Kubernetes: 1.34, 1.35, and 1.36
 
 ### Improvements {#improvements-1-130-9}
-* Adds an opt-in cleanup policy that prunes old support bundle archives and application version archives to relieve storage pressure. The policy is disabled by default and is configured through the `prune-*` keys in the `kotsadm-confg` ConfigMap. For more information about the prune policy, see [Admin Console storage grows over time](/enterprise/troubleshooting-admin-console-storage).
+* Adds an opt-in cleanup policy that prunes old support bundle archives and application version archives to relieve storage pressure. The policy is disabled by default and is configured through the `prune-*` keys in the `kotsadm-confg` ConfigMap. For more information about the prune policy, see [Admin Console storage grows over time](/enterprise/troubleshooting-kots#admin-console-storage) in _Troubleshoot KOTS_.
 
 ### Bug fixes {#bug-fixes-1-130-9}
 * Fixes a path traversal vulnerability (tar-slip) in archive extraction
