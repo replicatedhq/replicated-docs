@@ -29,6 +29,23 @@ You can access the values in the `global.replicated.licenseFields` field from yo
 These values are a snapshot taken when the chart was last pulled, and Helm templates are rendered during `helm install` and `helm upgrade`, so checks written this way are evaluated at deployment time. A license change reaches the instance the next time the customer pulls the chart and upgrades. To enforce an entitlement that must take effect without a new deployment, query the license at runtime instead. See [Query Entitlements with the Replicated SDK API](licenses-reference-sdk).
 :::
 
+## License changes in online KOTS installations {#kots-license-change}
+
+When a customer syncs an updated license in an online KOTS installation, KOTS creates a new **License Change** version. Deploying the License Change version does _not_ update the values in `global.replicated.licenseFields`. These values keep the license field values from when the release was downloaded. They update when the customer deploys a new release.
+
+If a license change must take effect when the customer deploys the License Change version, map the license field to a Helm value in the HelmChart custom resource with the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function. For example:
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    apiKey: repl{{ LicenseFieldValue "api_key" }}
+```
+
+Then use `.Values.apiKey` in your Helm templates instead of `.Values.global.replicated.licenseFields.api_key.value`.
+
 ## Prerequisite
 
 Add the Replicated SDK to your application:
@@ -82,4 +99,4 @@ The `dig` function returns an empty string if the license field is not set, so t
 Consider the following when you deliver sensitive values with license fields:
 
 * License field values are not encrypted. They are stored in cleartext in the license file, and they are stored unencrypted in the Helm release data in the cluster. The Password field type masks the value only in the UI, and the Hidden setting only hides the field from your customer in the UI. For more information about field types, see [Manage customer license fields](/vendor/licenses-adding-custom-fields).
-* The Secret is updated only when the customer deploys a new version. To rotate the value, update the license field in the Vendor Portal. The new value reaches the cluster the next time the customer pulls the chart and upgrades.
+* The Secret is updated only when the customer deploys a new version. To rotate the value, update the license field in the Vendor Portal. The new value reaches the cluster the next time the customer pulls the chart and upgrades. In online KOTS installations, the new value reaches the cluster when the customer deploys a new release, not the License Change version. See [License changes in online KOTS installations](#kots-license-change).
