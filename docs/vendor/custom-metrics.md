@@ -86,7 +86,7 @@ The hostname is the name of the SDK Service. By default, the name is `replicated
 
 ### Nodejs example
 
-The following example shows a NodeJS application that sends metrics on a daily interval to the in-cluster API exposed by the SDK:
+The following example shows a NodeJS application that sends metrics on a daily interval to the in-cluster API exposed by the SDK. In addition to two numeric metrics, it sends the version of the database that the customer runs as a string metric, `dbVersion`. Because customers upgrade their databases over time, this shows you which database versions are in use before you drop support for one:
 
 ```javascript
 async function sendMetrics(db) {
@@ -98,7 +98,10 @@ async function sendMetrics(db) {
         "SELECT COUNT(*) as active_users from users where DATEDIFF('day', last_active, CURRENT_TIMESTAMP) < 7";
     const activeUsers = (await db.getConnection().queryOne(usersQuery)).active_users;
 
-    const metrics = { data: { numProjects, activeUsers }};
+    const versionQuery = "SELECT version() as db_version";
+    const dbVersion = (await db.getConnection().queryOne(versionQuery)).db_version;
+
+    const metrics = { data: { numProjects, activeUsers, dbVersion }};
     
     const res = await fetch('http://replicated:3000/api/v1/app/custom-metrics', {
         method: 'POST',
@@ -130,41 +133,6 @@ async function startMetricsLoop(db) {
 
 startMetricsLoop(getDatabase());
 ```
-
-### Example: Report the Helm release name and namespace
-
-The Replicated SDK does not report the Helm release name or namespace that a customer used to install your application. You can send these values as string custom metrics, for example to show customers accurate uninstall commands.
-
-To report the Helm release name and namespace:
-
-1. In the Deployment template for your application, pass the release name and namespace to the container as environment variables:
-
-    ```yaml
-    # templates/deployment.yaml
-    spec:
-      template:
-        spec:
-          containers:
-            - name: app
-              env:
-                - name: RELEASE_NAME
-                  value: {{ .Release.Name | quote }}
-                - name: RELEASE_NAMESPACE
-                  value: {{ .Release.Namespace | quote }}
-    ```
-
-1. In your application, add the values to the metrics that it sends. For example, in the [NodeJS example](#nodejs-example) on this page, change the payload to the following:
-
-    ```javascript
-    const metrics = { data: {
-        numProjects,
-        activeUsers,
-        releaseName: process.env.RELEASE_NAME,
-        releaseNamespace: process.env.RELEASE_NAMESPACE,
-    }};
-    ```
-
-    If your application sends metrics with `POST`, include the release name and namespace in every payload, because `POST` removes any metrics that the payload does not include. If your application uses `PATCH`, the values are kept until the application sends new ones. For more information, see [Patch vs post](#patch-vs-post).
 
 ### Patch vs post
 
