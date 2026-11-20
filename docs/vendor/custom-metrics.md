@@ -164,7 +164,7 @@ To report the Helm release name and namespace:
     }};
     ```
 
-    The values are sent with the other metrics, so they are kept when the application sends metrics with `POST`.
+    If your application sends metrics with `POST`, include the release name and namespace in every payload, because `POST` removes any metrics that the payload does not include. If your application uses `PATCH`, the values are kept until the application sends new ones. For more information, see [Patch vs post](#patch-vs-post).
 
 ### Patch vs post
 
