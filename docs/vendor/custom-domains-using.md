@@ -37,18 +37,11 @@ To add and verify a custom domain:
     If TLS verification cannot be performed automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**. Your changes can take up to 24 hours to propagate.
 
     :::note
-    If this hostname or any of its parent domains has [CAA records](https://letsencrypt.org/docs/caa/), you must include all Certificate Authorities (CAs) that Cloudflare partners with. A CA checks the hostname first. If the hostname has no CAA records, the CA checks each parent domain in turn and uses the first CAA records it finds. For example, CAA records on `example.com` apply to `updates.example.com` when `updates.example.com` has no CAA records of its own. The following CAA records are required to ensure proper certificate issuance and renewal:
+    If this hostname or any of its parent domains has [CAA records](https://letsencrypt.org/docs/caa/), you must allow all Certificate Authorities (CAs) that Cloudflare uses. For the current list and the CAA record value for each CA, see [CAA records](https://developers.cloudflare.com/ssl/reference/certificate-authorities/#caa-records) in the Cloudflare documentation.
 
-    ```dns
-    @ IN CAA 0 issue "letsencrypt.org"
-    @ IN CAA 0 issue "pki.goog; cansignhttpexchanges=yes"
-    @ IN CAA 0 issue "ssl.com"
-    @ IN CAA 0 issue "amazon.com"
-    @ IN CAA 0 issue "cloudflare.com"
-    @ IN CAA 0 issue "google.com"
-    ```
+    A CA checks the hostname first. If the hostname has no CAA records, the CA checks each parent domain in turn and uses the first CAA records it finds. For example, CAA records on `example.com` apply to `updates.example.com` when `updates.example.com` has no CAA records of its own.
 
-    Failing to include any of these CAs might prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
+    Failing to allow any of these CAs might prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
 
     ```dns
     @ IN CAA 0 iodef "mailto:your-security-team@example.com"
@@ -207,7 +200,7 @@ To troubleshoot TLS certificate issues:
     dig example.com CAA +short
     ```
 
-1. If CAA records apply to the custom domain, confirm that they include every CA listed in the CAA note in [Add a custom domain in the Vendor Portal](#add-domain). Add any missing records.
+1. If CAA records apply to the custom domain, confirm that they allow every CA that Cloudflare uses. For the current list, see [CAA records](https://developers.cloudflare.com/ssl/reference/certificate-authorities/#caa-records) in the Cloudflare documentation. Add any missing records.
 
 1. Check the issuer and validity dates of the certificate that the custom domain currently serves:
 
