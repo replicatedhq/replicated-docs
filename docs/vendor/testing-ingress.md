@@ -53,7 +53,7 @@ The following diagram shows how traffic is routed into the service for VM-based 
 
 ### Limitations
 
-* Each DNS record can only connect to one service. If you need fanout routing into different services, consider installing the NGINX ingress controller as a NodePort service and exposing it.
+* Each DNS record can only connect to one service. If you need fanout routing into different services, consider installing an ingress controller or Gateway API implementation as a NodePort service and exposing its NodePort.
 * Exposing ports is supported for VMs and VM-based clusters (K3s, Kind, RKE2, OpenShift, kURL, Embedded Cluster). CMX does not support exposing ports for clusters that use cloud distributions (EKS, GKE, AKS, OKE).
 * Wildcard DNS is not supported for VMs.
 
