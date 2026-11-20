@@ -388,7 +388,7 @@ To test an installation behind an HTTP proxy using Squid and nftables:
 
 ### Application pods and preflight checks behind a proxy
 
-Embedded Cluster passes the proxy settings to its own components and to the Replicated SDK. It does not pass them to your application's pods. If your application, or a preflight check that runs a pod, makes requests to the internet, pass the proxy settings to those pods. For example, set the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables with the `HTTPProxy`, `HTTPSProxy`, and `NoProxy` template functions. See [Static context](/reference/template-functions-static-context#httpproxy).
+Embedded Cluster passes the proxy settings to its own components and to the Replicated SDK. It does not pass them to your application's pods. If your application, or a preflight check that runs a pod, makes requests to the internet, pass the proxy settings to those pods. For example, set the `HTTP_PROXY`, `HTTPS_PROXY`, and `NO_PROXY` environment variables with the `HTTPProxy`, `HTTPSProxy`, and `NoProxy` template functions. For more information, see [Proxy settings](/embedded-cluster/v3/template-functions#proxy-settings) in _Template Functions for Embedded Cluster_.
 
 Otherwise, those requests fail behind a proxy. In a proxy test, a request from your application or a preflight check that fails is a request that ignores the proxy.
 
