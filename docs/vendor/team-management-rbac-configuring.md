@@ -177,7 +177,7 @@ To configure a custom RBAC policy:
 
 ## Manage policies with the Replicated CLI
 
-You can also create and update custom RBAC policies with the Replicated CLI. This lets you keep policy definitions in source control and apply them from scripts or CI. The CLI uses the same JSON policy definition as the Vendor Portal. For more information, see [Policy definition](#policy-definition).
+If you are on the Enterprise pricing plan, you can also create and update custom RBAC policies with the Replicated CLI. This lets you keep policy definitions in source control and apply them from scripts or CI. The CLI uses the same JSON policy definition as the Vendor Portal. For more information, see [Policy definition](#policy-definition).
 
 For example:
 
@@ -246,7 +246,7 @@ When a policy document has conflicting rules, the behavior is predictable. For m
 
 ## Rule order
 
-When a resource name appears in both the `allow` and `deny` chains of a policy, defined rules determine which rule applies.
+When a resource name appears in both the `allowed` and `denied` arrays of a policy, defined rules determine which rule applies.
 
 If `denied` is empty, it defaults to a `**/*` rule, unless the `allowed` resources include a `**/*` rule. If a rule exactly conflicts with another rule, the `denied` rule takes precedence.
 

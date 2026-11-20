@@ -43,7 +43,7 @@ To invite a new team member:
 
 1. Click **Invite member**.
 
-   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account on another team, they receive a different invitation email that names both teams. Accepting the invitation from the link in that email replaces their existing account with a new account on your team. The account is not merged, and the user is removed from their previous team. If the user can't accept the invitation, open a support request.
+   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account on another team, they receive a different invitation email that names both teams. Accepting the invitation from the link in that email replaces their existing account with a new account on your team. The account is not merged, and the user is removed from their previous team. If the email address already belongs to a member of your team, the Vendor Portal does not send an invitation. If the user can't accept the invitation, open a support request.
 
 ## Managing invitations
 
