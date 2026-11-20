@@ -82,9 +82,11 @@ You can configure your application to `PATCH` or `POST` a JSON metric payload to
 
 The SDK API custom metrics endpoint is available at `http://replicated:3000/api/v1/app/custom-metrics`.
 
+The hostname is the name of the SDK Service. By default, the name is `replicated`. If you brand the SDK with a Helm alias or the `nameOverride` value, the Service uses that name instead. For more information, see [Brand the SDK](/vendor/replicated-sdk-customizing#brand-sdk).
+
 ### Nodejs example
 
-The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
+The following example shows a NodeJS application that sends metrics on a daily interval to the in-cluster API exposed by the SDK:
 
 ```javascript
 async function sendMetrics(db) {
@@ -98,7 +100,7 @@ async function sendMetrics(db) {
 
     const metrics = { data: { numProjects, activeUsers }};
     
-    const res = await fetch('https://replicated:3000/api/v1/app/custom-metrics', {
+    const res = await fetch('http://replicated:3000/api/v1/app/custom-metrics', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -118,16 +120,69 @@ async function startMetricsLoop(db) {
     await sendMetrics(db)
       .catch((e) => { console.log("error sending metrics: ", e) });        
 
-    // schedule weekly metrics payload
+    // schedule daily metrics payload
 
     setInterval( () => {
-        sendMetrics(db, licenseId)
+        sendMetrics(db)
           .catch((e) => { console.log("error sending metrics: ", e) });        
     }, ONE_DAY_IN_MS);
 }
 
 startMetricsLoop(getDatabase());
 ```
+
+### Example: Report the Helm release name and namespace
+
+The Replicated SDK does not report the Helm release name or namespace that a customer used to install your application. You can send these values as string custom metrics, for example to show customers accurate uninstall commands.
+
+The following example is a Helm hook Job that sends the release name and namespace to the SDK after every install and upgrade. Running the hook after upgrades means that existing installations also report the values the next time they upgrade.
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-report-release
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 5
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: report-release
+          image: CURL_IMAGE
+          command:
+            - curl
+            - --fail
+            - --silent
+            - --show-error
+            - --connect-timeout
+            - "5"
+            - --max-time
+            - "30"
+            - --retry
+            - "10"
+            - --retry-connrefused
+            - --retry-delay
+            - "5"
+            - -X
+            - PATCH
+            - -H
+            - "Content-Type: application/json"
+            - -d
+            - '{"data": {"releaseName": "{{ .Release.Name }}", "releaseNamespace": "{{ .Release.Namespace }}"}}'
+            - http://replicated:3000/api/v1/app/custom-metrics
+```
+
+Where `CURL_IMAGE` is an image that includes `curl`. Use an image from a registry that your customers can access, and make sure that the image is included in air gap bundles for your release. For example, `curlimages/curl` is a third-party image that Replicated does not maintain or support.
+
+In this example:
+
+* The hook can start before the SDK is ready to accept requests. The `--retry`, `--retry-connrefused`, and `--connect-timeout` flags make `curl` retry until the SDK responds, instead of waiting on a single connection attempt.
+* If you brand the SDK with a Helm alias or `nameOverride`, replace `replicated` in the URL with that name.
+* The `hook-succeeded` delete policy removes the Job after it succeeds.
 
 ### Patch vs post
 
@@ -179,7 +234,7 @@ Replicated recommends that you add logic to your application to send metrics at 
 
 Avoid sending metrics too frequently as it creates unnecessary noise. Custom metrics are best for periodic product statistics reporting rather than real-time monitoring.
 
-For an example of application logic that sends custom metrics on a weekly interval, see [NodeJS Example](#nodejs-example) on this page.
+For an example of application logic that sends custom metrics on a daily interval, see [NodeJS Example](#nodejs-example) on this page.
 
 ## Remove a custom metric
 
