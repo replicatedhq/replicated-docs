@@ -14,6 +14,19 @@ LicenseFieldValue returns the value of the specified license field. LicenseField
 
 LicenseFieldValue always returns a string, regardless of the license field type. To return integer or boolean values, you need to use the [ParseInt](/reference/template-functions-static-context#parseint) or [ParseBool](/reference/template-functions-static-context#parsebool) template function to convert the string value.
 
+:::note
+When a customer syncs an updated license in an online installation, deploying the resulting **License Change** version does not update the license field values that are injected into Helm chart values in `global.replicated.licenseFields`. Those values update when the customer deploys a new release. LicenseFieldValue returns the updated value in the License Change version. For license fields that must take effect when the customer deploys a License Change version, map the field to a Helm value in the HelmChart custom resource with LicenseFieldValue, and use that value in your Helm templates. For example:
+
+```yaml
+# HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+spec:
+  values:
+    apiKey: repl{{ LicenseFieldValue "api_key" }}
+```
+:::
+
 #### String License Field
 
 The following example returns the value of the built-in `customerName` license field:
