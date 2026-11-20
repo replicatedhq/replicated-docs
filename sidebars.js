@@ -370,6 +370,7 @@ const sidebars = {
             "enterprise/installing-existing-cluster-airgapped",
             "enterprise/installing-existing-cluster-automation",
             "enterprise/installing-stateful-component-requirements",
+            "enterprise/troubleshooting-admin-console-storage",
           ],
         },
         {

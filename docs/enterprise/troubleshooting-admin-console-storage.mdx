@@ -1,0 +1,102 @@
+import KotsAvailability from "../partials/kots/_kots-availability.mdx"
+
+# Admin Console storage grows over time
+
+This topic describes why the storage that the KOTS Admin Console uses can grow over the life of an installation. It also describes a recommended workaround: enabling the opt-in prune policy that deletes old support bundles and application version archives.
+
+<KotsAvailability/>
+
+## Symptom
+
+The storage that the Admin Console uses keeps growing. For example, the MinIO volume, or the Admin Console volume in installations without MinIO, runs low on space or fills up.
+
+## Cause
+
+KOTS keeps an archive of every application version, including each version that is pulled, uploaded, or synced from a channel. KOTS also keeps every support bundle that is collected through the Admin Console. By default, KOTS does not delete these archives, so they accumulate over time.
+
+## Solution
+
+KOTS 1.130.9 and later include an opt-in prune policy. When the prune policy is enabled, KOTS deletes old support bundles and application version archives on a schedule. The prune policy is disabled by default. You configure it directly on the `kotsadm-confg` ConfigMap. There is no Admin Console UI or KOTS CLI command for it.
+
+Replicated recommends enabling the prune policy for installations where Admin Console storage is running low.
+
+:::important
+Pruning permanently deletes support bundles and application version archives from the cluster and from object storage. You cannot recover them. Before you enable the prune policy, download any support bundles that you want to keep.
+:::
+
+### How pruning works
+
+When the prune policy is enabled, the Admin Console does the following for each installed application:
+
+* Keeps the newest support bundles, up to the support bundle count, and deletes the rest.
+* Never deletes the currently deployed version or any newer version, such as a version that is downloaded but not yet deployed.
+* Of the versions older than the deployed version, keeps the newest ones, up to the application version count, and deletes the rest.
+
+The Admin Console runs a prune pass when it starts, and then once a day. Each deletion removes both the record and the archive, so the storage is reclaimed. Pruning does not delete container images or snapshots.
+
+### Enable pruning
+
+To enable pruning:
+
+1. Set the namespace where the Admin Console is installed:
+
+    ```bash
+    export NAMESPACE=NAMESPACE
+    ```
+
+1. Add the prune keys to the `kotsadm-confg` ConfigMap:
+
+    ```bash
+    kubectl -n $NAMESPACE patch configmap kotsadm-confg --type merge -p '{"data":{"prune-enabled":"true","prune-support-bundle-count":"25","prune-app-version-count":"50"}}'
+    ```
+
+    The following table describes the keys:
+
+    | Key | Description |
+    |---|---|
+    | `prune-enabled` | Set to `"true"` to enable the prune policy. Default: `"false"`. |
+    | `prune-support-bundle-count` | The number of support bundles to keep for each application. Default: `"25"`. |
+    | `prune-app-version-count` | The number of application versions older than the deployed version to keep for each application. Default: `"50"`. |
+
+    If a count is not a whole number of 0 or greater, the Admin Console logs a warning and uses the default for that key.
+
+1. The Admin Console reads the prune keys only when it starts. Restart the Admin Console to apply them. Depending on the installation, the Admin Console runs as a Deployment or a StatefulSet. Check which one your installation uses:
+
+    ```bash
+    kubectl -n $NAMESPACE get deployment,statefulset kotsadm
+    ```
+
+    Then restart it:
+
+    ```bash
+    kubectl -n $NAMESPACE rollout restart deployment/kotsadm
+    ```
+
+    For a StatefulSet, use `statefulset/kotsadm` instead of `deployment/kotsadm`.
+
+1. Confirm in the Admin Console logs that the prune policy is enabled:
+
+    ```bash
+    kubectl -n $NAMESPACE logs deployment/kotsadm | grep prune
+    ```
+
+    For a StatefulSet, use `statefulset/kotsadm` instead of `deployment/kotsadm`.
+
+    **Example output with both counts set to `"1"`:**
+
+    ```
+    {"level":"info","ts":"2026-11-20T18:52:56Z","msg":"prune enabled: retaining 1 support bundles and 1 app versions per app"}
+    {"level":"info","ts":"2026-11-20T18:52:56Z","msg":"prune: deleting app version for app 3MNnZCrnAgUgziRy0jM4ZbEnT3Z sequence 1"}
+    {"level":"info","ts":"2026-11-20T18:52:57Z","msg":"prune: deleting support bundle 3mno0kjsbm5c3nfs3x2qzekd1rn for app 3MNnZCrnAgUgziRy0jM4ZbEnT3Z"}
+    ```
+
+    If the log shows only the `prune enabled` line, no application has more support bundles or older versions than the counts allow.
+
+### Disable pruning
+
+To disable pruning, set `prune-enabled` to `"false"` in the `kotsadm-confg` ConfigMap and restart the Admin Console. Archives that were already deleted are not restored.
+
+## Additional resources
+
+* [Install KOTS in existing clusters without object storage](/enterprise/installing-stateful-component-requirements)
+* [Generate support bundles from the Admin Console](/enterprise/troubleshooting-an-app)
