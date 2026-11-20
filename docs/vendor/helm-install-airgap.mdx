@@ -6,7 +6,7 @@ This topic describes how to install and update releases with Helm in air-gapped 
 
 Replicated supports installing and updating with Helm in _air-gapped_ environments with little or no outbound internet access. In air gap installations with Helm, customers are guided through the installation process with instructions provided in either the [Replicated Enterprise Portal](/vendor/enterprise-portal-v2-about) or the [Replicated Download Portal](/vendor/releases-share-download-portal), depending on which is enabled for the customer.
 
-These instructions assume that the customer is logged in to the portal on a workstation that can access both the internet and their internal private image registry. Direct access to the target installation cluster is not required. The instructions also assume that the customer is familiar with `curl`, `docker`, `helm`, and `kubernetes`, and that they have some familiarity with `bash`, particularly for automating updates.
+These instructions assume that the customer is logged in to the portal on a workstation that can access the internet. The workstation must also be able to reach the customer's internal private image registry when they push images, but it does not need both connections at the same time. Direct access to the target installation cluster is not required. The instructions also assume that the customer is familiar with `curl`, `docker`, `helm`, and `kubernetes`, and that they have some familiarity with `bash`, particularly for automating updates.
 
 ## Prerequisites
 
@@ -29,6 +29,14 @@ Before you install, complete the following prerequisites:
      * The **Existing Cluster (Helm CLI)** install type enabled. For more information, see [Manage Install Types for a License](licenses-install-types).
 
      * The **Helm CLI Air Gap Instructions** install option enabled.
+
+## Limitations
+
+* Air gap Helm installations relocate images to the customer's private registry with `docker pull`, `docker tag`, and `docker push`. These commands do not preserve image digests or multi-architecture image indexes, which affects charts in the following ways:
+    * If the chart references an image by digest (for example, `api:1.2.3@sha256:...`), the `docker tag` command fails, or the image is relocated under a different digest and pods fail with `ImagePullBackOff`.
+    * If an image is published for more than one architecture, only the architecture of the machine running the commands is copied. Pods that run on nodes with a different architecture fail to start.
+
+    If your chart uses digest-pinned or multi-architecture images, tell your customers to copy those images with a tool that preserves the full image manifest, such as `skopeo copy --all --preserve-digests` or `crane copy`, instead of the generated `docker` commands.
 
 ## Install
 
