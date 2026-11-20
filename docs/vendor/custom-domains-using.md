@@ -194,9 +194,10 @@ To troubleshoot TLS certificate issues:
     dig updates.example.com CAA +short
     ```
 
-    If the command returns no records, check the parent domains, because the closest parent domain with CAA records applies:
+    If the command returns no records, check each parent domain in turn, up to your registered domain, and stop at the first one that returns records. Those records apply to the custom domain. For example, for `updates.eu.example.com`, check `eu.example.com` and then `example.com`:
 
     ```bash
+    dig eu.example.com CAA +short
     dig example.com CAA +short
     ```
 
@@ -207,5 +208,7 @@ To troubleshoot TLS certificate issues:
     ```bash
     openssl s_client -connect updates.example.com:443 -servername updates.example.com </dev/null 2>/dev/null | openssl x509 -noout -issuer -dates
     ```
+
+    If the command prints an error instead of an issuer and dates, the custom domain is not serving a certificate. This is expected while the **TLS cert creation verification** step is incomplete.
 
 1. If the certificate has already expired, or the issue continues after you update the CAA records, open a support request. Include the custom domain, the output of the `dig` commands, and when the errors started. See [Submit a support request](support-submit-request).  
