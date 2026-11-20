@@ -441,6 +441,7 @@ const sidebars = {
         },
         "enterprise/status-viewing-details",
         "enterprise/delete-admin-console",
+        "enterprise/troubleshooting-kots",
       ],
     },
     {
