@@ -112,6 +112,19 @@ The Enterprise Portal login page surfaces these errors directly to the customer 
 - `saml_invalid_email`: the SAML assertion carried no email address, or one the portal could not use. Confirm that the identity provider releases an email attribute for the user
 - `saml_auth_failed`: a general SAML failure. The portal returns this error both when it starts the login and when it processes the assertion, so it covers configuration problems on either side. Confirm that **SAML Authentication** is enabled for the customer in the Vendor Portal, and that the identity provider metadata URL and signing certificate in the customer's portal team settings are current
 
+## Helm upgrade fails with `"<release>" has no deployed releases` {#helm-upgrade-no-deployed-releases}
+
+`helm upgrade` looks for the release in one namespace. With Enterprise Portal commands, this error usually means the upgrade command uses a different namespace than the one the customer installed the release in. Common causes:
+
+- The customer installed into a namespace other than the one in the generated install command.
+- The customer installed before the portal started saving namespaces. The install profile's commands then follow the current docs page, which doesn't match where the release lives.
+
+If the customer uses the service account API, they can pass `namespace` with the release's namespace on the update instructions request. That also replaces the saved namespace, so later upgrades use it. For an install profile with nothing saved, you can also set the docs page props to match. See [Set a namespace for Helm installs and upgrades](/vendor/enterprise-portal-v2-content#helm-namespaces).
+
+## Helm install fails with `Forbidden` on `--create-namespace` {#helm-install-forbidden-create-namespace}
+
+An install command with a namespace includes `--create-namespace` by default. Creating a namespace requires cluster-scoped permission, even when the namespace already exists. A customer whose credentials only cover one namespace gets `Forbidden` from the Kubernetes API server. If your customers create the namespace themselves, set `createNamespace="false"` on the Helm install components. See [The `createNamespace` prop](/vendor/enterprise-portal-v2-content#helm-create-namespace).
+
 ## Login footer showing Replicated branding
 
 - Customize the login page footer by setting `loginFooterText` and `loginFooterLinks` in your `theme.yaml`
