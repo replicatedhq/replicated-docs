@@ -218,6 +218,22 @@ By default, the kubeconfig context uses the `kubeadmin` user. To switch to the `
   </tr>
 </table>
 
+#### Test against OpenShift security context constraints
+
+OpenShift uses security context constraints (SCCs) to control what pods can do. On OpenShift 4.11 and later, pods run under the `restricted-v2` SCC unless their service account is granted a different SCC. The `restricted-v2` SCC assigns each pod a user ID from the namespace's allocated range, drops all Linux capabilities, and blocks privileged containers. OpenShift rejects a pod that requests a specific user or group ID outside that range, such as with `runAsUser` or `fsGroup`, unless its service account is granted an SCC that allows it. As a result, a chart that installs on other distributions can fail on OpenShift.
+
+To set security contexts only on OpenShift, check for the OpenShift security API in your Helm templates:
+
+```yaml
+{{- if .Capabilities.APIVersions.Has "security.openshift.io/v1" }}
+# Settings for OpenShift
+{{- else }}
+# Settings for other distributions
+{{- end }}
+```
+
+For more information, see [Managing security context constraints](https://docs.okd.io/latest/authentication/managing-security-context-constraints.html) and [Creating images](https://docs.okd.io/latest/openshift_images/create-images.html) in the OKD documentation.
+
 ### kURL
 
 CMX supports creating [kURL](https://kurl.sh) clusters.
