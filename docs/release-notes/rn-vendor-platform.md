@@ -15,6 +15,12 @@ Released on November 20, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-20-8}
 * Improves Channels page load times for applications with thousands of channels.
+## v2026.11.20-7<span data-release-version="v2026.11.20-7" />
+
+Released on November 20, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-20-7}
+* Fixes a bug that caused "Identity mismatch: token identity does not match current license identity" error in KOTS Admin Console when updating a token rotated in Enterprise Portal.
 ## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
 
 Released on November 20, 2026
