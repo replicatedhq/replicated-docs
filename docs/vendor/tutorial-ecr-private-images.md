@@ -171,7 +171,7 @@ Replicated only needs access to pull images from the private registry. Let's cre
 As far as permissions go, there are a couple of options, depending on scope of access.
 If exposing all images to Replicated is an acceptable solution, the Amazon-provided [AmazonEC2ContainerRegistryReadOnly](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html#AmazonEC2ContainerRegistryReadOnly) policy will work:
 
-```shell
+```json
 {
 	"Version": "2012-10-17",
 	"Statement": [{
@@ -192,35 +192,33 @@ If exposing all images to Replicated is an acceptable solution, the Amazon-provi
 ```
 If you wish to limit Replicated to only certain images, this policy should be used instead:
 
-```shell
+```json
 {
     "Version": "2012-10-17",
-    "Statement": [{
-        "Effect": "Allow",
-        "Action": [
-		    "ecr:BatchCheckLayerAvailability",
-		    "ecr:GetDownloadUrlForLayer",
-		    "ecr:GetRepositoryPolicy",
-		    "ecr:DescribeRepositories",
-		    "ecr:ListImages",
-		    "ecr:DescribeImages",
-		    "ecr:BatchGetImage"
-        ],
-        "Resource": [
-            "arn:aws:ecr:us-east-1:<account-id>:repository/<repo1>",
-            "arn:aws:ecr:us-east-1:<account-id>:repository/<repo2>"
-        ]
-    }]
-}{
-    "Version": "2012-10-17",
     "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:GetRepositoryPolicy",
+                "ecr:DescribeRepositories",
+                "ecr:ListImages",
+                "ecr:DescribeImages",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:us-east-1:<account-id>:repository/<repo1>",
+                "arn:aws:ecr:us-east-1:<account-id>:repository/<repo2>"
+            ]
+        },
         {
             "Effect": "Allow",
             "Action": [
                 "ecr:GetAuthorizationToken"
             ],
             "Resource": "*"
-        },
+        }
     ]
 }
 ```
@@ -294,7 +292,5 @@ The install of the new version should have created a new pod. If we run `kubectl
 ## Related topics
 
 - [Connecting to an External Registry](packaging-private-images/)
-
-- [Replicated Community Thread on AWS Roles and Permissions](https://help.replicated.com/community/t/what-are-the-minimal-aws-iam-permissions-needed-to-proxy-images-from-elastic-container-registry-ecr/267)
 
 - [AWS ECR Managed Policies Documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecr_managed_policies.html)

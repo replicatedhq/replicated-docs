@@ -52,6 +52,4 @@ spec:
 In the example above, the preflight check uses the `nodeResources` analyzer and the value of the custom `node_count` field to determine if the customer has exceeded the maximum number of nodes permitted by their license.
 If the preflight checks fails, a failure message is displayed to the user and KOTS prevents the installation or upgrade from continuing.
 
-For more information about this example, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
-
 For more information about defining preflight checks, see [Define Preflight Checks](preflight-defining).

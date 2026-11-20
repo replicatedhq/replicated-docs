@@ -294,19 +294,6 @@ const config = {
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Discourse',
-                href: 'https://community.replicated.com',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/replicatedhq',
-              },
-            ],
-          },
-          {
             title: 'More',
             items: [
               {
