@@ -593,6 +593,47 @@ To use a CA stored in a Secret:
        key: ca.crt
    ```
 
+## Inherit global Helm values {#global-values}
+
+With Replicated SDK 1.20.0 and later, you can opt in to using values from the parent chart's `global` section for SDK scheduling, labels, and image pull policy. Set `replicated.useGlobalSettings` to `true` in the parent chart's `values.yaml` file:
+
+```yaml
+global:
+  nodeSelector:
+    workload: backend
+  labels:
+    environment: production
+  imagePullPolicy: IfNotPresent
+
+replicated:
+  useGlobalSettings: true
+```
+
+The setting defaults to `false`, so upgrading the SDK does not automatically apply these global values. Existing global image registry, pull secret, and proxy settings are unaffected by this option.
+
+| Global value | SDK value | Behavior when enabled |
+| --- | --- | --- |
+| `global.priorityClassName` | `replicated.priorityClassName` | The nonempty SDK value takes precedence; otherwise, the global value is used. |
+| `global.nodeSelector` | `replicated.nodeSelector` | The nonempty SDK map takes precedence; otherwise, the global map is used. |
+| `global.tolerations` | `replicated.tolerations` | Global tolerations are followed by SDK tolerations. |
+| `global.labels` | `replicated.commonLabels` | Labels are merged; SDK keys take precedence. |
+| `global.podLabels` | `replicated.podLabels` | Labels are merged; SDK keys take precedence. |
+| `global.image.pullPolicy` or `global.imagePullPolicy` | `replicated.image.pullPolicy` | The SDK value takes precedence, followed by `global.image.pullPolicy`, then `global.imagePullPolicy`. If none is set, the policy is `IfNotPresent`. |
+
+The SDK selector labels take precedence over global and SDK labels when this option is enabled. If you use the legacy `images` value, the image pull policy remains `IfNotPresent`.
+
+## Add pod annotations {#pod-annotations}
+
+With Replicated SDK 1.20.0 and later, to add annotations only to the SDK pods, set `replicated.podAnnotations` in the parent chart's `values.yaml` file:
+
+```yaml
+replicated:
+  podAnnotations:
+    example.com/setting: "value"
+```
+
+The chart adds these annotations to the Deployment's pod template, so they appear on SDK pods but not on the Deployment or other resources. Pod annotations are merged with `replicated.commonAnnotations` on the pod template; `podAnnotations` takes precedence for duplicate keys. The chart reserves `checksum/replicated-secret` for its own use. This setting does not require `replicated.useGlobalSettings`.
+
 ## Add tolerations
 
 The Replicated SDK provides a `replicated.tolerations` value that allows users to add custom tolerations to the deployment. For more information about tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) in the Kubernetes documentation.
