@@ -277,13 +277,11 @@ To join one or more new VMs to the network of an existing VM:
 
 Some customers allow outbound internet traffic only through an HTTP or HTTPS proxy. You can use CMX to test that your application installs and runs in this kind of environment. Run a proxy on one VM, and install your application on a second VM on the same network that can reach the internet only through the proxy.
 
-This procedure uses Ubuntu VMs, the Squid proxy, and an Embedded Cluster installation.
+CMX network policies apply to every VM on a network. If you set the network policy to `airgap`, the proxy VM also loses internet access. Instead, leave the network policy set to `open` and block direct internet access on the installation VM with a host firewall.
 
-:::note
-CMX network policies apply to every VM on a network. If you set the network policy to `airgap`, the proxy VM also loses internet access. Instead, this procedure leaves the network policy set to `open` and blocks direct internet access on the installation VM with a host firewall.
-:::
+The following procedure is an example. It uses Ubuntu VMs, the Squid proxy, nftables, and an Embedded Cluster installation. Squid and nftables are third-party tools that Replicated does not support, and their packages, defaults, and commands can change over time. You can use any proxy and firewall that you prefer, and adapt the steps to match the environments that your customers use.
 
-To test an installation behind an HTTP proxy:
+To test an installation behind an HTTP proxy using Squid and nftables:
 
 1. Create a VM for the proxy:
 
@@ -317,7 +315,7 @@ To test an installation behind an HTTP proxy:
 
     In this example, the interface is `eth1`, the private IP address is `10.0.0.11`, and the network CIDR is `10.0.0.0/24`. Both VMs use the same interface name and network CIDR.
 
-1. On the proxy VM, install Squid and allow requests from the CMX network. The default Squid configuration denies requests from other hosts.
+1. On the proxy VM, install Squid and allow requests from the CMX network. The default Squid configuration on Ubuntu denies requests from other hosts. For more information about configuring Squid, see the [Squid documentation](https://www.squid-cache.org/Doc/).
 
     ```bash
     sudo apt-get update && sudo apt-get install -y squid
