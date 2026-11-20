@@ -120,6 +120,12 @@ HelmChart v1 (`kots.io/v1beta1`) is a deprecated format from KOTS versions earli
 
 If your releases still use HelmChart v1, move to HelmChart v2 on Embedded Cluster v2 before you upgrade any customer to Embedded Cluster v3. For more information, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
 
+### Default application namespace {#app-namespace}
+
+Embedded Cluster v2 installed application charts in the `kotsadm` namespace by default. For new Embedded Cluster v3 installations, the default namespace is your application slug. Installations upgraded from Embedded Cluster v2 keep `kotsadm` as the default, so the application stays in the same namespace after the upgrade.
+
+Charts that set `namespace` in their HelmChart custom resource install in that namespace on every installation. If your charts refer to the `kotsadm` namespace by name, use `.Release.Namespace` instead so that they work in both new and upgraded installations.
+
 ### Helm extension charts must be bundled in the release {#extension-charts}
 
 In Embedded Cluster v2, Helm extensions defined under `extensions.helm.charts` were pulled at install time from an HTTP Helm repository or an OCI registry, based on the `chartname` and `version` fields (and any repositories listed under `extensions.helm.repositories`).
