@@ -9,6 +9,15 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
+
+Released on November 20, 2026
+
+### Improvements {#improvements-v2026-11-20-5}
+* Vendors are asked to confirm before turning off a customer's Enterprise Portal access, and failed login attempts show why the login was refused.
+
+### Bug Fixes {#bug-fixes-v2026-11-20-5}
+* Enterprise Portal users whose access has been turned off are now told to contact their vendor, instead of being returned to the login page with no message.
 ## v2026.11.18-1<span data-release-version="v2026.11.18-1" />
 
 Released on November 18, 2026
