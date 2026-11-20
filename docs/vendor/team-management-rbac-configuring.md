@@ -151,7 +151,7 @@ To configure a custom RBAC policy:
 
       <CollabRbacResourcesImportant/>
 
-1. Edit the fields in the policy dialog. In the **Definition** pane, specify the `allow` and `denied` arrays in the resources key to create limits for the role.
+1. Edit the fields in the policy dialog. In the **Definition** pane, specify the `allowed` and `denied` arrays in the resources key to create limits for the role.
 
    The default policy allows everything and the **Config help** pane displays any errors.
 
@@ -174,6 +174,22 @@ To configure a custom RBAC policy:
     - Set a default policy for auto-joining a team
 
     See [Manage Team Members](team-management).
+
+## Manage policies with the Replicated CLI
+
+You can also create and update custom RBAC policies with the Replicated CLI. This lets you keep policy definitions in source control and apply them from scripts or CI. The CLI uses the same JSON policy definition as the Vendor Portal. For more information, see [Policy definition](#policy-definition).
+
+For example:
+
+```bash
+# Create a policy from a definition file
+replicated policy create --name "Support" --definition support-policy.json
+
+# Update a policy after changing its definition
+replicated policy update "Support" --definition support-policy.json
+```
+
+For all policy commands, see [replicated policy](/reference/replicated-cli-policy).
 
 ## Policy definition
 
