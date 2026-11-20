@@ -1,0 +1,25 @@
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_d04f1e5402d2d8::t_51f991df03c06b 17,46
+embedded-cluster/embedded-config.mdx
+  s_d04f1e5402d2d8::t_31d7c268147d05 321
+embedded-cluster/embedded-v3-migrate.mdx
+  s_d04f1e5402d2d8::t_991ac5e2624bef 91,115,205,207
+static/llms.txt
+  s_d04f1e5402d2d8::t_50cd9aca0fc387 82,144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "307f858725bbc8bbc9bdcd8a6d4be29a01da6436",
+  "prompts": {},
+  "sessions": {
+    "s_d04f1e5402d2d8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d04f1e5402d2d8",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

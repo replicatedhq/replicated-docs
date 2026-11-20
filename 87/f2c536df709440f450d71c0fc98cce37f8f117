@@ -1,0 +1,21 @@
+docs/partials/preflights/_ec-v3-v1beta3-note.mdx
+  s_e854d5ce2e5dec::t_932600b9698e3c 4
+docs/vendor/preflight-sb-helm-templates-about.md
+  s_e854d5ce2e5dec::t_4cdfb25d062671 13,159
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "87f2c536df709440f450d71c0fc98cce37f8f117",
+  "prompts": {},
+  "sessions": {
+    "s_e854d5ce2e5dec": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a136a4-1a97-71a0-bcd4-f361489aed87",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}

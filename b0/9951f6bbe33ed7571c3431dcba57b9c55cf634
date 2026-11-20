@@ -1,0 +1,23 @@
+docusaurus.config.js
+  s_63e2b349bfa2aa::t_b63eed1555ade7 32
+scripts/ci/release-notes.sh
+  s_63e2b349bfa2aa::t_b63eed1555ade7 10-15,188,192-197,206-208,214-215
+scripts/remark/release-version.js
+  s_63e2b349bfa2aa::t_b63eed1555ade7 1-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b09951f6bbe33ed7571c3431dcba57b9c55cf634",
+  "prompts": {},
+  "sessions": {
+    "s_63e2b349bfa2aa": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1a91b-16a3-7c13-b4de-1c6b2a834435",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Olivia Campbell <olivia.susan.campbell@gmail.com>"
+    }
+  }
+}

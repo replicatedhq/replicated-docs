@@ -1,0 +1,25 @@
+docs/partials/helm/_installer-only-annotation.mdx
+  s_f3e4435baeb6ef::t_0426136f4726be 3
+docs/vendor/licenses-install-types.mdx
+  s_f3e4435baeb6ef::t_ed078df8633b0d 133,136-137
+docs/vendor/packaging-include-resources.md
+  s_f3e4435baeb6ef::t_fae82da938cdbe 118-124
+docs/vendor/releases-creating-releases.mdx
+  s_f3e4435baeb6ef::t_ab0f6045284bbc 30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4d3920f7aa04c34bfa84d17246676edadec4c15f",
+  "prompts": {},
+  "sessions": {
+    "s_f3e4435baeb6ef": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_f3e4435baeb6ef",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

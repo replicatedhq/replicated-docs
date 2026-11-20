@@ -1,0 +1,21 @@
+embedded-cluster/embedded-v3-migrate.mdx
+  s_f8c04dbe39777f::t_bcac61eb3bdf49 45,321-322,351
+embedded-cluster/embedded-troubleshooting.mdx
+  s_f8c04dbe39777f::t_d17a01d824a652 270,274,277,280-288,292-294,298-300
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5e4eb02f37958ce640074c94e831a8a34226a8a6",
+  "prompts": {},
+  "sessions": {
+    "s_f8c04dbe39777f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e538-ae93-7e22-bd73-87718a416c0c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}

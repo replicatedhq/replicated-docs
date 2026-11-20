@@ -1,0 +1,23 @@
+docs/reference/custom-resource-config.mdx
+  s_d8fd08dd5bb96a::t_84719fd2dab74f 727
+embedded-cluster/embedded-overview.mdx
+  s_d8fd08dd5bb96a::t_44d16c788a0dd1 16-17
+embedded-cluster/embedded-v3-migrate.mdx
+  s_d8fd08dd5bb96a::t_55d136c13acbcb 138-143
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d6bc6bc2199baaf8a7af7b60ec0625c23501dff0",
+  "prompts": {},
+  "sessions": {
+    "s_d8fd08dd5bb96a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d8fd08dd5bb96a",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

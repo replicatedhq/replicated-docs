@@ -1,0 +1,19 @@
+embedded-cluster/embedded-persistent-console.mdx
+  s_46ff211d0f036b::t_dfda068ea89b34 60-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "47c6d62b07e781d09fdb675aac09545e80b41544",
+  "prompts": {},
+  "sessions": {
+    "s_46ff211d0f036b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_46ff211d0f036b",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

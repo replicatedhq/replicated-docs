@@ -1,0 +1,21 @@
+docs/vendor/enterprise-portal-v2-use.mdx
+  s_a9f09fd6a11b89::t_e78c45616e9342 142-146
+docs/vendor/enterprise-portal-v2-vendor-api-automation.mdx
+  s_a9f09fd6a11b89::t_823aa8ba46935d 237
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5afa8f3e0ea765cb951a6f587e50373a5ace60fd",
+  "prompts": {},
+  "sessions": {
+    "s_a9f09fd6a11b89": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_a9f09fd6a11b89",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

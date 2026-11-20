@@ -1,0 +1,60 @@
+embedded-cluster/embedded-config.mdx
+  s_5a6ce8488412ab::t_600fcd599e5a44 97
+embedded-cluster_versioned_docs/version-2.0.0/embedded-disaster-recovery.mdx
+  s_4a37ad256106ee::t_b36d2805e9b3a8 8
+docs/partials/embedded-cluster/v3/_headless-multi-node-limitation.mdx
+  s_2243923bf8093f::t_7595e75bb46412 2-3
+embedded-cluster/embedded-manage-nodes.mdx
+  s_2243923bf8093f::t_dd8f441b79f1a1 162-163
+embedded-cluster/embedded-overview.mdx
+  s_2243923bf8093f::t_15f1e819a59b3b 14-15
+  s_d8fd08dd5bb96a::t_44d16c788a0dd1 16-17
+embedded-cluster/installing-embedded-air-gap.mdx
+  s_2243923bf8093f::t_c9fabccb5c2cdf 5,120-121
+embedded-cluster/installing-embedded.mdx
+  s_2243923bf8093f::t_addcf90c2e494a 5,71-72
+docs/reference/custom-resource-config.mdx
+  s_d8fd08dd5bb96a::t_84719fd2dab74f 727
+embedded-cluster/embedded-v3-migrate.mdx
+  s_d8fd08dd5bb96a::t_55d136c13acbcb 139-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c4eb27095110a426422061b54e0f12cc8681138b",
+  "prompts": {},
+  "sessions": {
+    "s_2243923bf8093f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_2243923bf8093f",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_4a37ad256106ee": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_4a37ad256106ee",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_5a6ce8488412ab": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_5a6ce8488412ab",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    },
+    "s_d8fd08dd5bb96a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_d8fd08dd5bb96a",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

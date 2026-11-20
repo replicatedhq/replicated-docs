@@ -1,0 +1,21 @@
+embedded-cluster/embedded-cluster-create-join-bundle.mdx
+  s_3a499026b210bd::t_cb4c8f74950d6e 32
+embedded-cluster/installing-embedded-requirements.mdx
+  s_3a499026b210bd::t_63de48a4b58ef5 145,147,149,151,153,155-167,175,183
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "89e15a1f80ce3a9972be55c1af986bce8058c8e1",
+  "prompts": {},
+  "sessions": {
+    "s_3a499026b210bd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_3a499026b210bd",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

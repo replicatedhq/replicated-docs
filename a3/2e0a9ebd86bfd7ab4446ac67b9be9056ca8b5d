@@ -1,0 +1,21 @@
+docs/partials/embedded-cluster/v3/_requirements.mdx
+  s_b4201eef8a559d::t_e77b1a0346cc04 19
+embedded-cluster/embedded-config.mdx
+  s_b4201eef8a559d::t_5b10b5f32f90bd 325
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "a32e0a9ebd86bfd7ab4446ac67b9be9056ca8b5d",
+  "prompts": {},
+  "sessions": {
+    "s_b4201eef8a559d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_b4201eef8a559d",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+embedded-cluster/embedded-persistent-console.mdx
+  s_18ef36c20fa6f4::t_76077da85763e5 7,48,56-58,62-64,118
+embedded-cluster/updating-embedded.mdx
+  s_18ef36c20fa6f4::t_7cdec9415285ae 80,129,182
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "48c109ad8104b7dc7a4d06c30d72eb2880465276",
+  "prompts": {},
+  "sessions": {
+    "s_18ef36c20fa6f4": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "s_18ef36c20fa6f4",
+        "model": "unknown"
+      },
+      "human_author": "Amber Alston <amber@replicated.com>"
+    }
+  }
+}
