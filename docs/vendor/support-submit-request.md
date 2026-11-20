@@ -146,6 +146,14 @@ To submit a support request:
 
    After you submit the support request, you receive a link to your support issue where you can interact with the support team.
 
+## Provide a HAR file {#har-file}
+
+For issues in a browser-based interface, such as the Vendor Portal, the Enterprise Portal, or the Admin Console, the Replicated support team might ask for an HTTP Archive (HAR) file. A HAR file records the network requests that your browser makes while you reproduce the issue. You can save a HAR file from the network panel of your browser's developer tools. For instructions, see the developer tools documentation for your browser.
+
+:::important
+HAR files can contain sensitive data, such as cookies and authentication tokens. Share HAR files only with the Replicated support team through your support issue.
+:::
+
 ## Submit a feature request {#submit-feature-request}
 
 You can submit feature requests to share ideas for new features or improvements to Replicated products.
