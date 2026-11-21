@@ -6,7 +6,7 @@ Helm reference docs in the Enterprise Portal are Alpha. They're available by req
 
 If your releases contain Helm charts, Enterprise Portal can automatically generate reference documentation when you promote a release. No manual authoring is required.
 
-Any Helm charts in a promoted release will generate reference docs. Add a `helm_chart` entry to `toc.yaml`:
+Enterprise Portal generates reference docs only for charts that a `helm_chart` entry in your `toc.yaml` lists, in any version of your content repo. Add an entry for each chart:
 
 ```yaml
 - title: Reference
@@ -22,6 +22,8 @@ Any Helm charts in a promoted release will generate reference docs. Add a `helm_
 
 The `name` must match a chart name in your promoted release (the Helm chart name from `Chart.yaml`, not the release name).
 
+You can add a chart to `toc.yaml` after you promote a release. When the content repo syncs, Enterprise Portal generates the chart's reference for the active release on each channel. You don't need to promote again.
+
 ## Process
 
 When you promote a release to a channel, Enterprise Portal automatically:
@@ -32,7 +34,7 @@ When you promote a release to a channel, Enterprise Portal automatically:
 1. AI improves descriptions for any values lacking comments
 
 :::note
-Step 4 runs asynchronously. You may see "Generating..." placeholders for a few minutes after promotion. Refresh the page. AI-generated content appears after processing completes.
+Step 4 runs asynchronously. Until it finishes, values without a comment show a description built from the key name (for example, "Image pull policy" for `image.pullPolicy`). The AI descriptions replace these within a few minutes.
 :::
 
 A content hash ensures regeneration only runs when chart content actually changes.
