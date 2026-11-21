@@ -58,3 +58,30 @@ To check entitlements before installation:
    1. Install in a development environment using the license ID for the test customer that you created. See [Install with Helm](install-with-helm).
 
 1. Repeat these steps to add and test new license fields.
+
+## Example: Create a Secret from a license field
+
+You can use a license field to deliver a value that your application reads from a Kubernetes Secret, such as an API key for a service that you host. The following template creates a Secret from a custom license field named `api_key`:
+
+```yaml
+# templates/license-api-key-secret.yaml
+{{- $apiKey := dig "global" "replicated" "licenseFields" "api_key" "value" "" .Values.AsMap }}
+{{- if $apiKey }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-api-key
+type: Opaque
+stringData:
+  api-key: {{ $apiKey | quote }}
+{{- end }}
+```
+
+The `dig` function returns an empty string if the license field is not set, so the template skips the Secret instead of failing. This also lets you render the chart locally without the injected values.
+
+If a workload references the Secret, make sure that its pods can start when the license field is not set. For example, set `optional: true` on the `secretKeyRef` or Secret volume, or render the workload only when the value is set.
+
+Consider the following when you deliver sensitive values with license fields:
+
+* License field values are not encrypted. They are stored in cleartext in the license file, and they are stored unencrypted in the Helm release data in the cluster. The Password field type masks the value only in the UI, and the Hidden setting only hides the field from your customer in the UI. For more information about field types, see [Manage customer license fields](/vendor/licenses-adding-custom-fields).
+* The Secret is updated only when the customer deploys a new version. To rotate the value, update the license field in the Vendor Portal. The new value reaches the cluster the next time the customer pulls the chart and upgrades.
