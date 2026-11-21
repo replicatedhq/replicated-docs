@@ -157,11 +157,10 @@ Consider the following best practices and recommendations for HA clusters:
 
 To create a multi-node cluster with HA:
 
-* During installation with Embedded Cluster, follow the steps in the Embedded Cluster UI to join a total of three `controller` nodes to the cluster. For more information about joining nodes, see [Join nodes](#add-nodes) on this page.
+* In the Embedded Cluster UI, join two additional controllers during installation for a total of three. For more information about joining nodes, see [Join nodes](#add-nodes) in this document.
+* For headless installation, specify three controllers with `--node '{"count":3,"roles":["controller"]}'` and run the join commands printed by the installer. Use the configured controller role if it has a custom name. For more information about headless installation, see [Install a multi-node or HA cluster headlessly](installing-embedded#headless-multi-node) in _Online installation with Embedded Cluster_.
 
-   Embedded Cluster automatically converts the installation to HA when three or more controller nodes are present.
-
-   Headless installation doesn't pause for nodes to join. Creating HA clusters with headless installation from scripts or automation tools isn't supported.
+Embedded Cluster configures the installation for HA when three or more controllers are present before application deployment.
 
 ### Enable HA for an existing cluster {#enable-ha-existing}
 

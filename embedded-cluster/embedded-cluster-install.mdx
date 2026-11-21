@@ -99,6 +99,11 @@ To check a host without starting installation, use `install run-preflights`. For
     <td>Comma-separated list of hosts that should not use the proxy.</td>
   </tr>
   <tr>
+    <td>`--node`</td>
+    <td>JSON string (repeatable)</td>
+    <td>Expected host group, for example `{"count":3,"roles":["controller"]}`. Repeat the flag for each role combination. Counts include the installation node. The installer waits for the requested topology before application preflights and deployment. See [Install a multi-node or HA cluster headlessly](installing-embedded#headless-multi-node).</td>
+  </tr>
+  <tr>
     <td>`--registry`</td>
     <td>string</td>
     <td>Address of a customer-managed (BYO) OCI registry to pull all application and infrastructure images from, in the form `host[:port][/namespace]`. For more information, see [Install with a customer-managed registry](installing-embedded-byo-registry).</td>
