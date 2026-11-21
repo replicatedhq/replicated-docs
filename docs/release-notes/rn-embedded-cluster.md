@@ -12,6 +12,34 @@ Additionally, these release notes list the versions of Kubernetes and Replicated
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 2.20.2<span data-release-version="2.20.2" />
+
+Released on November 21, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">2.20.2+k8s-1.37</td>
+    <td id="center">2.20.2+k8s-1.36</td>
+    <td id="center">2.20.2+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.2</td>
+    <td id="center">1.36.6</td>
+    <td id="center">1.35.10</td>
+  </tr>
+  <tr>
+    <th>KOTS Version</th>
+    <td id="center" colspan="3">1.134.4</td>
+  </tr>
+</table>
+
+### Improvements {#improvements-2-20-2}
+
+* Updates KOTS to 1.134.4, SeaweedFS to 4.54.0, the Velero Helm chart to 12.2.5, and the Helm CLI to 4.3.2.
+* Updates k0s, OpenEBS, Velero, and registry container images, as well as internal dependencies.
+
 ## 2.20.1
 
 Released on November 11, 2026
