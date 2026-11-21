@@ -82,9 +82,11 @@ You can configure your application to `PATCH` or `POST` a JSON metric payload to
 
 The SDK API custom metrics endpoint is available at `http://replicated:3000/api/v1/app/custom-metrics`.
 
+The hostname is the name of the SDK Service. By default, the name is `replicated`. If you brand the SDK with a Helm alias or the `nameOverride` value, the Service uses that name instead. For more information, see [Brand the SDK](/vendor/replicated-sdk-customizing#brand-sdk).
+
 ### Nodejs example
 
-The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
+The following example shows a NodeJS application that sends metrics on a daily interval to the in-cluster API exposed by the SDK. In addition to two numeric metrics, it sends the version of the database that the customer runs as a string metric, `dbVersion`. Because customers upgrade their databases over time, this shows you which database versions are in use before you drop support for one:
 
 ```javascript
 async function sendMetrics(db) {
@@ -96,9 +98,12 @@ async function sendMetrics(db) {
         "SELECT COUNT(*) as active_users from users where DATEDIFF('day', last_active, CURRENT_TIMESTAMP) < 7";
     const activeUsers = (await db.getConnection().queryOne(usersQuery)).active_users;
 
-    const metrics = { data: { numProjects, activeUsers }};
+    const versionQuery = "SELECT version() as db_version";
+    const dbVersion = (await db.getConnection().queryOne(versionQuery)).db_version;
+
+    const metrics = { data: { numProjects, activeUsers, dbVersion }};
     
-    const res = await fetch('https://replicated:3000/api/v1/app/custom-metrics', {
+    const res = await fetch('http://replicated:3000/api/v1/app/custom-metrics', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -118,10 +123,10 @@ async function startMetricsLoop(db) {
     await sendMetrics(db)
       .catch((e) => { console.log("error sending metrics: ", e) });        
 
-    // schedule weekly metrics payload
+    // schedule daily metrics payload
 
     setInterval( () => {
-        sendMetrics(db, licenseId)
+        sendMetrics(db)
           .catch((e) => { console.log("error sending metrics: ", e) });        
     }, ONE_DAY_IN_MS);
 }
@@ -179,7 +184,7 @@ Replicated recommends that you add logic to your application to send metrics at 
 
 Avoid sending metrics too frequently as it creates unnecessary noise. Custom metrics are best for periodic product statistics reporting rather than real-time monitoring.
 
-For an example of application logic that sends custom metrics on a weekly interval, see [NodeJS Example](#nodejs-example) on this page.
+For an example of application logic that sends custom metrics on a daily interval, see [NodeJS Example](#nodejs-example) on this page.
 
 ## Remove a custom metric
 
