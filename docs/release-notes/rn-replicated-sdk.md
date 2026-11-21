@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.20.0<span data-release-version="1.20.0" />
+
+Released on November 20, 2026
+
+### Improvements {#improvements-1-20-0}
+* Events and custom metrics are no longer limited to 4000.
 ## 1.19.14
 
 Released on October 28, 2026
