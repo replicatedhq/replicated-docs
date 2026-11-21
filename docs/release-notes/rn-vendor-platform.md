@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.20-8<span data-release-version="v2026.11.20-8" />
+
+Released on November 20, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-20-8}
+* Improves Channels page load times for applications with thousands of channels.
 ## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
 
 Released on November 20, 2026
