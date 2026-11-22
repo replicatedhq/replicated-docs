@@ -288,3 +288,176 @@ The upgrade converts the installation to Embedded Cluster v3 before it runs some
 Fix the problem that the error names, and then run the `upgrade` command again. The upgrade continues and finishes.
 
 If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
+
+### Node is `NotReady` after its kubelet client certificate expires {#kubelet-client-cert-expired}
+
+#### Symptom
+
+A node does not return to `Ready` after the host was powered off or unreachable for a long time. The node is `NotReady`, and its `Ready`, `MemoryPressure`, `DiskPressure`, and `PIDPressure` conditions are `Unknown` with the following reason and message:
+
+```text
+NodeStatusUnknown
+Kubelet stopped posting node status.
+```
+
+The k0s logs on a controller node report an expired certificate, similar to the following:
+
+```text
+"Unable to authenticate the request" err="[x509: certificate has expired or is not yet valid: current time 2027-12-22T21:02:37Z is after 2027-11-22T20:50:40Z
+```
+
+Restarting the k0s service does not resolve the issue. For more information about viewing k0s logs, see [View k0s logs](#view-k0s-logs).
+
+#### Cause
+
+The kubelet on each node authenticates to the Kubernetes API server with a client certificate that is valid for one year. The kubelet renews this certificate before it expires, but it cannot renew it while the host is offline. After the certificate expires, the renewal request cannot authenticate.
+
+Restarting the k0s service renews the expired server certificates, but not the kubelet client certificate.
+
+#### Solution
+
+In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. The default is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug for the application.
+
+1. On each affected node, make sure that the system clock is correct and that time synchronization is enabled:
+
+    ```bash
+    sudo timedatectl set-ntp true
+    timedatectl status
+    ```
+
+    Continue when the output includes `System clock synchronized: yes`. If you recover a node while its clock is wrong, the new certificates are not valid after the clock is corrected, and you must repeat this procedure.
+
+1. On each affected controller node, replace the kubelet client certificate:
+
+    1. Stop the k0s service:
+
+        ```bash
+        sudo systemctl stop k0scontroller
+        ```
+
+    1. Back up the kubelet configuration and certificates:
+
+        ```bash
+        sudo mkdir -p /root/kubelet-backup
+        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki /root/kubelet-backup/
+        ```
+
+    1. Remove the kubelet configuration and the expired client certificates:
+
+        ```bash
+        sudo rm DATA_DIR/k0s/kubelet.conf
+        sudo rm -f DATA_DIR/k0s/kubelet/pki/kubelet-client-*
+        ```
+
+    1. Start the k0s service:
+
+        ```bash
+        sudo systemctl start k0scontroller
+        ```
+
+        The node returns to `Ready` within about a minute.
+
+1. On each affected worker node, replace the kubelet client certificate. A worker node needs a new join token to request a certificate.
+
+    1. On a controller node, create a join token for a worker node:
+
+        ```bash
+        sudo DATA_DIR/bin/k0s token create --role worker --expiry 1h --data-dir DATA_DIR/k0s
+        ```
+
+    1. On the worker node, save the token to `/tmp/k0s-join-token` so that only root can read it. Run the following command, paste the token, press **Enter**, and then press **Ctrl+D**:
+
+        ```bash
+        sudo sh -c 'umask 077 && cat > /tmp/k0s-join-token'
+        ```
+
+    1. Stop the k0s service:
+
+        ```bash
+        sudo systemctl stop k0sworker
+        ```
+
+    1. Back up the kubelet configuration and certificates:
+
+        ```bash
+        sudo mkdir -p /root/kubelet-backup
+        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki /root/kubelet-backup/
+        ```
+
+    1. Remove the kubelet configuration and the expired client certificates:
+
+        ```bash
+        sudo rm DATA_DIR/k0s/kubelet.conf
+        sudo rm -f DATA_DIR/k0s/kubelet/pki/kubelet-client-*
+        ```
+
+    1. Start the k0s service:
+
+        ```bash
+        sudo systemctl start k0sworker
+        ```
+
+        The node returns to `Ready` within about a minute.
+
+    1. Remove the join token:
+
+        ```bash
+        sudo rm /tmp/k0s-join-token
+        ```
+
+1. On a controller node, verify that all nodes are `Ready` and that the pods are running. See [Access the cluster](#access-the-cluster).
+
+    ```bash
+    kubectl get nodes
+    kubectl get pods -A
+    ```
+
+    Pods return to `Running` within a few minutes. Some pods might restart once while their service account tokens are renewed.
+
+### Connections to Replicated fail behind an HTTPS inspection proxy {#https-inspection-name-constraints}
+
+#### Symptom
+
+An installation or upgrade through a proxy that inspects HTTPS traffic fails host preflight checks, even though the firewall allows the Replicated domains:
+
+```text
+✗ API Access
+  Error connecting to https://replicated.app. Ensure your firewall is properly configured. ...
+✗ Proxy Registry Access
+  Error connecting to https://proxy.replicated.com. Ensure your firewall is properly configured, ...
+```
+
+The installation output and the Embedded Cluster logs include an error similar to the following:
+
+```text
+x509: a root or intermediate certificate is not authorized to sign for this name: DNS name "replicated.app" is not permitted by any constraint
+```
+
+The error can also end with `is excluded by constraint`. For more information about viewing the Embedded Cluster logs, see [View installation logs for Embedded Cluster](#view-installation-logs-for-embedded-cluster).
+
+#### Cause
+
+An HTTPS inspection proxy decrypts traffic and signs a new certificate for each site with its own certificate authority (CA). If the proxy's CA has an X.509 Name Constraints extension that limits it to certain domains, such as internal domains, the certificates that it signs for Replicated domains are not valid.
+
+Embedded Cluster enforces name constraints. Adding the proxy's CA to the trusted certificates on the host does not resolve the error. Tools on the host such as `curl` might succeed or fail, depending on whether their TLS library enforces name constraints.
+
+#### Solution
+
+1. To confirm the cause, check the proxy's CA certificate for a name constraints extension:
+
+    ```bash
+    openssl x509 -in PROXY_CA.pem -noout -ext nameConstraints
+    ```
+
+    Where `PROXY_CA.pem` is the proxy's CA certificate. If the output lists permitted or excluded domains that do not include the Replicated domains, the name constraints cause the error.
+
+1. Exclude the following domains from HTTPS inspection on the proxy:
+
+    * `replicated.app`
+    * `proxy.replicated.com`
+    * `registry.replicated.com`
+    * Any custom domains for these services
+
+    For more information about these domains, see [Firewall openings for online installations with Embedded Cluster](installing-embedded-requirements#firewall).
+
+1. Run the installation or upgrade again.
