@@ -245,6 +245,8 @@ To manage invite and manage users in the Enterprise Portal:
 
 ### Manage service accounts
 
+Each service account has one token. Rotating the token invalidates the current token immediately. Installations that use it stop syncing their license and receiving updates until they're moved to the new token, so plan to move each installation as soon as you rotate. For how to move each type of installation, see [Replace a token](/vendor/enterprise-portal-v2-use#replace-a-token) in _Log in to and use the Enterprise Portal_. Embedded Cluster v3 installations can't move to a new token. For how tokens compare to the license ID, see [License IDs and service account tokens](/vendor/licenses-customer-credentials).
+
 To manage service accounts in the Enterprise Portal:
 
 1. In the Enterprise Portal, open the user account dropdown in the top right of the page and select **Team settings**.
@@ -258,7 +260,9 @@ To manage service accounts in the Enterprise Portal:
 1. Manage service accounts as desired:
    * To create a new service account, click **Create Service Account**.
    * To view a service account token, find the target service account in the table and click **View** under **Token**.
-   * The revoke a service account's token, find the target service account in the table and open the menu under **Actions**. Select **Revoke**.
+   * To see which instances use a service account, find the target service account in the table and open the menu under **Actions**. Select **View instances**.
+   * To rotate a service account's token, find the target service account in the table and open the menu under **Actions**. Select **Rotate token**, confirm that you understand the current token will be invalidated, and click **Rotate token**.
+   * To revoke a service account and its token, find the target service account in the table and open the menu under **Actions**. Select **Revoke**.
 
 ### Configure SAML authentication {#saml}
 

@@ -114,7 +114,9 @@ Version labels must match git tags with a `v` prefix. For example, a release wit
 
 ### Customer setup (one-time)
 
-1. Get their **license ID** from Enterprise Portal (same one used for Docker image pulls)
+Terraform module pulls authenticate with the customer's license ID. Enterprise Portal service account tokens aren't accepted for Terraform modules.
+
+1. Get their **license ID** from Enterprise Portal
 1. Add credentials to `~/.terraformrc`:
 
 ```

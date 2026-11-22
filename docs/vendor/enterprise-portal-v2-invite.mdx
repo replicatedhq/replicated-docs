@@ -126,9 +126,9 @@ For the full set of SAML login errors and how to resolve them, see [SAML login e
 
 ## Service accounts
 
-Service accounts provide programmatic access to the Enterprise Portal (e.g., for CI/CD pipelines pulling install commands or registry credentials).
+Service accounts provide programmatic access to the Enterprise Portal (e.g., for CI/CD pipelines pulling install commands or registry credentials). Their tokens are also the credential that customers can install with in place of the license ID, and unlike the license ID, customers can replace and revoke them. For more information, see [License IDs and service account tokens](/vendor/licenses-customer-credentials).
 
-- View and manage service accounts on the customer's **Enterprise Portal access** tab under **Customer Service Accounts**
+- View service accounts on the customer's **Enterprise Portal access** tab under **Customer Service Accounts**
 - Service accounts are created by users on the customer's team from **Team Settings > Service Accounts** in the Enterprise Portal, automatically when a customer starts a new installation from the portal, and when you create install options through the Vendor API
 - A service account can hold more than one token. Users on the customer's team create additional tokens and revoke individual tokens from **Team Settings > Service Accounts**. Use an additional token to give a CI system access to an existing installation without changing the token that the installation runs with. For more information, see [Manage service account tokens](/vendor/enterprise-portal-v2-use#rotate-or-revoke-a-service-account-token) in _Log in to and use the Enterprise Portal_.
 - Service account tokens don't expire. A token works until it is revoked or the customer's license expires. Expiring the license stops all of the customer's service account tokens.
