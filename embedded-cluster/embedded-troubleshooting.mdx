@@ -281,6 +281,9 @@ The command leaves the v2 installation unchanged, and its Admin Console remains 
 
 If the error includes `reject downgrade`, the v3 release is older than the release that's installed. In Embedded Cluster 3.21.0 and later, this check runs before conversion, so the installation is still on v2 when it fails. Promote the v3 release to the channel again so that it's newer than the installed release. Have the customer download it, and then run `upgrade`.
 
+In Embedded Cluster 3.21.0 and later, an air gap installation with three or more controllers that hasn't enabled high availability in v2 stops before validation with an error that starts with:
+
+
 An error after conversion starts with:
 
 ```text
@@ -297,12 +300,12 @@ Error: v2 to v3 conversion has started and may be incomplete; fix the error and 
 
 #### Cause
 
-In Embedded Cluster 3.21.0 and later, validation runs before conversion. The command checks upgrade inputs, the license, release compatibility, required bundles, and host requirements on the primary controller. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
+In Embedded Cluster 3.21.0 and later, validation runs before conversion. On the primary controller, the command checks the upgrade inputs and the license, exports the installed release and configuration from KOTS, and checks the upgrade path. The upgrade path check stops an upgrade that would downgrade the application or Kubernetes, skip a Kubernetes minor version, or skip a required release. It also checks required bundles and host requirements. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
 
 Failures can still occur during conversion or later upgrade steps. In that case, conversion has started, but the upgrade has not finished. Embedded Cluster v3 releases earlier than 3.21.0 also ran input, release, and host checks after conversion.
 
 #### Solution
 
-Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If it reports that an upgrade is already in progress, confirm that the previous attempt is no longer running. Then follow the error's instructions to retry with `--force`.
+Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If a headless upgrade of a multi-node cluster stopped at the node upgrade step, run the same `upgrade --headless` command again from the same release package, without `--force`, and it resumes at that step. Otherwise, if the command reports that an upgrade is already in progress, confirm that the previous attempt is no longer running, and then follow the error's instructions to retry with `--force`.
 
-If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. In Embedded Cluster 3.21.0 and later, neither **Continue Anyway** nor `--ignore-host-preflights` bypasses this failure. Users can still bypass other non-strict host preflight failures. Earlier v3 releases allow bypassing the cgroup failure, but Kubernetes 1.35 or later still requires cgroup v2. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
+If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. In Embedded Cluster 3.21.0 and later, this check can't be bypassed, including with `--ignore-host-preflights`, and the upgrade stops before the `Continue anyway?` prompt. Other host preflight failures can still be bypassed at that prompt, or with `--ignore-host-preflights` in a headless upgrade. In earlier v3 releases, the user can bypass the cgroup v2 failure with **Continue Anyway** in the upgrade wizard, but Kubernetes 1.35 and later still won't run on cgroup v1. Check every node with [`install run-preflights`](embedded-host-preflights#check-v2-node) before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
