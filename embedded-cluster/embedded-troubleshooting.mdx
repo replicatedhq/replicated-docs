@@ -273,11 +273,13 @@ Run `remove-node` to remove the deleted controller from the cluster and etcd, an
 
 An upgrade from Embedded Cluster v2 stops with an error. A validation failure before conversion starts with:
 
-```
-Error: v2 upgrade validation failed before conversion; fix the error and run upgrade again:
+```text
+Error: v2 upgrade validation failed; fix the error and run upgrade again:
 ```
 
 The command leaves the v2 installation unchanged, and its Admin Console remains available.
+
+If the error includes `reject downgrade`, the v3 release is older than the release that's installed. In Embedded Cluster 3.21.0 and later, this check runs before conversion, so the installation is still on v2 when it fails. Promote the v3 release to the channel again so that it's newer than the installed release. Have the customer download it, and then run `upgrade`.
 
 An error after conversion starts with:
 
@@ -289,17 +291,18 @@ In this case, do not assume that the v2 Admin Console is available or that conve
 
 If conversion started but didn't finish, the error includes:
 
+```text
+Error: v2 to v3 conversion has started and may be incomplete; fix the error and run upgrade again to finish:
+```
 
 #### Cause
 
-Before conversion, the command checks upgrade inputs, the license, release compatibility, required bundles, and host requirements on the primary controller. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
+In Embedded Cluster 3.21.0 and later, validation runs before conversion. The command checks upgrade inputs, the license, release compatibility, required bundles, and host requirements on the primary controller. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
 
-Failures can still occur during conversion or later upgrade steps. In that case, conversion has started, but the upgrade has not finished. Older Embedded Cluster v3 releases also ran input, release, and host checks after conversion.
+Failures can still occur during conversion or later upgrade steps. In that case, conversion has started, but the upgrade has not finished. Embedded Cluster v3 releases earlier than 3.21.0 also ran input, release, and host checks after conversion.
 
 #### Solution
 
 Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If it reports that an upgrade is already in progress, confirm that the previous attempt is no longer running. Then follow the error's instructions to retry with `--force`.
 
-If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. This check can't be bypassed, including with `--ignore-host-preflights`. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
-
-If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
+If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. In Embedded Cluster 3.21.0 and later, neither **Continue Anyway** nor `--ignore-host-preflights` bypasses this failure. Users can still bypass other non-strict host preflight failures. Earlier v3 releases allow bypassing the cgroup failure, but Kubernetes 1.35 or later still requires cgroup v2. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
