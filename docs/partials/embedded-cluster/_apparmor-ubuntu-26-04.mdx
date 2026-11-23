@@ -13,6 +13,6 @@ sysctl kernel.apparmor_restrict_unprivileged_unconfined
 The fix reaches Embedded Cluster as follows:
 
 * **Kubernetes 1.36 and later:** These versions use containerd 2.3. A future Embedded Cluster release will include the fix after it is available in containerd.
-* **Kubernetes 1.35 and earlier:** These versions use containerd 1.7, which is end of life upstream and will not receive the fix. Use Ubuntu 24.04 hosts where this setting is `0` with these versions.
+* **Kubernetes 1.35 and earlier:** These versions use containerd 1.7, which is end of life upstream and will not receive the fix. Use Ubuntu 24.04 hosts that run the 6.8 GA kernel or where this setting is `0`.
 
 Until a release with the fix is available, use Ubuntu 24.04 hosts that run the 6.8 GA kernel or where this setting is `0`, or keep Ubuntu 26.04 hosts on an earlier kernel, such as `7.0.0-38-generic`.
