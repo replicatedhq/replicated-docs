@@ -39,11 +39,33 @@ Replicated recommends one of the following options:
 
 For more information about LVP storage issues after upgrade, see [LVP storage location is unavailable after upgrade](snapshots-troubleshooting-backup-restore#lvp-storage-location-is-unavailable-after-upgrade) in _Troubleshoot Snapshots_.
 
+### kURL installations
+
+On kURL clusters, the kURL installer upgrades Velero. Do not upgrade Velero manually or reinstall KOTS with `--with-minio=true`. Those steps are for existing cluster installations.
+
+To check whether a kURL cluster uses LVP, run the following command:
+
+```bash
+velero backup-location get
+```
+
+If the provider of the default storage location is `replicated.com/hostpath`, `replicated.com/nfs`, or `replicated.com/pvc`, the cluster uses LVP.
+
+The kURL installer does not upgrade Velero to 1.17 or later while the installer spec sets `kotsadm.disableS3: true`. Clusters first installed with `kotsadm.disableS3: true` can't use the automatic migration, even after you remove the flag.
+
+To migrate a kURL cluster from LVP, use one of the following options before you upgrade:
+
+* Reconfigure the same Host Path or Network File System (NFS) destination in the Admin Console. This works if the cluster runs the MinIO add-on and KOTS 1.131.6 or later.
+* Reconfigure the storage location to use an external S3-compatible object store. For more information, see [Configure Other Storage Destinations](snapshots-storage-destinations).
+* Let the kURL installer migrate the storage location to the in-cluster object store during the upgrade. This requires kURL v2026.09.20-0 or later. The migration changes only the storage location, so snapshots taken before the upgrade are not restorable afterward. If you need them, take a backup to an external location first. For the installer's requirements, see [Upgrading to Velero 1.17 or Later](https://kurl.sh/docs/install-with-kurl/removing-object-storage#upgrading-to-velero-117-or-later) in the kURL documentation.
+
+If the kURL installer migrated the storage location, reconfigure the storage destination after the upgrade. The in-cluster object store is not suitable for disaster recovery. If the cluster runs the MinIO add-on, re-enter the previous Host Path or NFS destination. Otherwise, use an external S3-compatible object store.
+
 ## Upgrade one version at a time
 
 Replicated recommends that you upgrade Velero one version at a time. For example, if you are running Velero 1.15, upgrade to Velero 1.16 first, verify that snapshots work, and then upgrade to Velero 1.17. Upgrading incrementally reduces the risk of incompatible custom resources or storage locations.
 
-To upgrade Velero, follow the upgrade instructions for the target Velero version in the [Velero documentation](https://velero.io/docs/). KOTS does not provide an Admin Console button or a KOTS CLI command to upgrade Velero. The cluster administrator performs the upgrade manually.
+To upgrade Velero, follow the upgrade instructions for the target Velero version in the [Velero documentation](https://velero.io/docs/). KOTS does not provide an Admin Console button or a KOTS CLI command to upgrade Velero. The cluster administrator performs the upgrade manually. For kURL installations, see [kURL installations](#kurl-installations).
 
 ## Verify the upgrade
 
@@ -79,7 +101,7 @@ After you upgrade Velero, verify that the upgrade is successful:
 
 ## Restore existing Restic backups
 
-Velero 1.17 and 1.18 can restore Restic backups created on Velero 1.16 and earlier. To restore an existing Restic backup, use the same storage location and credentials that you used to create the backup.
+Velero 1.17 and 1.18 can restore Restic backups created on Velero 1.16 and earlier, except backups stored in an LVP destination. On kURL clusters, see [kURL installations](#kurl-installations) to check whether the cluster uses LVP. To restore an existing Restic backup, use the same storage location and credentials that you used to create the backup.
 
 ## Additional resources
 
