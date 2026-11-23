@@ -1,0 +1,19 @@
+docs/vendor/enterprise-portal-v2-helm-reference.mdx
+  s_df7e3abd242eff::t_e0dea277f07664 1,3-4,35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2e053f38b8d3d5496995b18bd715dab2d7122eb5",
+  "prompts": {},
+  "sessions": {
+    "s_df7e3abd242eff": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bd2620a6-7f80-4fed-98e3-29e62a6a1848",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Lawrence Lee Keener <lawrence@replicated.com>"
+    }
+  }
+}
