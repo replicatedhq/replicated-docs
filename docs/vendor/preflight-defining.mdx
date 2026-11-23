@@ -72,13 +72,42 @@ To add a preflight spec to a release for your application:
 
 1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
 
+## (Optional) Document requirements with docString {#docstring}
+
+In a `v1beta3` spec, each analyzer can include a `docString` that describes the requirement and why it exists. Because the spec is a Helm template, the `docString` can include the same chart values that the check uses:
+
+```yaml
+analyzers:
+  - docString: |
+      Title: Kubernetes version
+      Requirement:
+        - Minimum: {{ .Values.preflight.kubernetes.minVersion }}
+      Older versions are missing APIs that the application uses.
+    clusterVersion:
+      checkName: Kubernetes version
+      outcomes:
+        - fail:
+            when: "< {{ .Values.preflight.kubernetes.minVersion }}"
+            message: Kubernetes {{ .Values.preflight.kubernetes.minVersion }} or later is required.
+        - pass:
+            message: Kubernetes version is supported.
+```
+
+You can generate a requirements document for your customers from these docStrings with the Troubleshoot `preflight docs` command. The command reads a Preflight spec file, not the Secret that contains the spec. Render your chart with `helm template`, save the value of the Secret's `preflight.yaml` key to a file, and then run:
+
+```bash
+kubectl preflight docs preflight-spec.yaml -o REQUIREMENTS.md
+```
+
+For more information about `docString` and `preflight docs`, see [v1beta3 authoring guide](https://troubleshoot.sh/docs/preflight/v1beta3-guide) in the Troubleshoot documentation.
+
 ## Move an existing release to v1beta3 {#move-to-v1beta3}
 
 To move an existing release from a `v1beta2` to a `v1beta3` Preflight spec:
 
 1. In the Secret that contains your preflight spec, change the Preflight `apiVersion` to `troubleshoot.sh/v1beta3`. Keep the Secret, its `troubleshoot.sh/kind: preflight` label, and the `preflight.yaml` key.
 
-1. If the spec uses `repl{{ }}` Replicated template functions, replace them with Helm template syntax that reads your chart values.
+1. If the spec uses `repl{{ }}` Replicated template functions, replace them with Helm template syntax that reads your chart values. For license fields, use the `global.replicated.licenseFields` values instead of LicenseFieldValue. See [Check entitlements in a v1beta3 preflight spec](/vendor/licenses-referencing-fields#v1beta3).
 
 1. Remove any `v1beta2` Preflight spec from the release, including any release-level spec. KOTS v1.129.4 and later and the Helm CLI run both specs, so checks appear twice.
 

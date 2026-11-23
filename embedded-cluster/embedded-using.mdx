@@ -194,19 +194,25 @@ metadata:
 spec:
   collectors:
     - runPod:
-        name: postgres-check
+        collectorName: postgres-check
         namespace: '{{ .Release.Namespace }}'
         podSpec:
           restartPolicy: Never
           containers:
             - name: check
-              image: proxy.replicated.com/library/troubleshoot:v0.131.0
-              command: ["collect", "postgres", "--uri", "postgres://{{ .Values.db.user }}:{{ .Values.db.password }}@{{ .Values.db.host }}:5432/{{ .Values.db.name }}"]
+              image: proxy.replicated.com/library/troubleshoot:0.134.4
+              command: ["collect", "postgres", "--uri", "postgres://{{ .Values.db.user }}:$(DB_PASSWORD)@{{ .Values.db.host }}:5432/{{ .Values.db.name }}"]
+              env:
+                # the spec contains only the Secret name and key, not the password
+                - name: DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: my-app-postgres
+                      key: password
   analyzers:
     - textAnalyze:
         checkName: PostgreSQL reachable
-        collectorName: postgres-check
-        fileName: "*.log"
+        fileName: /postgres-check.log
         regex: '"isConnected": *true'
         outcomes:
           - pass:
@@ -216,6 +222,8 @@ spec:
               when: "false"
               message: "Could not connect to PostgreSQL from inside the cluster."
 ```
+
+Kubernetes replaces `$(DB_PASSWORD)` with the value from the Secret when the Pod starts, so the password does not appear in the spec or in the preflight output. The Secret must already exist in the cluster when preflight checks run. For more information, see [Use a credential in a preflight check](/vendor/preflight-defining#credentials) in _Define preflight checks_.
 
 Each collector documents its `collect` subcommand and flags on its own page in the Troubleshoot documentation: [http](https://troubleshoot.sh/docs/collect/http), [postgres](https://troubleshoot.sh/docs/collect/postgresql), [mysql](https://troubleshoot.sh/docs/collect/mysql), [mssql](https://troubleshoot.sh/docs/collect/mssql), [redis](https://troubleshoot.sh/docs/collect/redis), and [clickhouse](https://troubleshoot.sh/docs/collect/clickhouse).
 
@@ -232,7 +240,7 @@ metadata:
   name: my-app
 spec:
   additionalImages:
-    - proxy.replicated.com/library/troubleshoot:v0.131.0
+    - proxy.replicated.com/library/troubleshoot:0.134.4
 ```
 
 For more information, see [Define Additional Images](/vendor/operator-defining-additional-images).
