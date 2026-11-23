@@ -41,7 +41,7 @@ To add a preflight spec to a release for your application:
     stringData:
       # add a preflight.yaml key under stringData
       preflight.yaml: |
-        apiVersion: troubleshoot.sh/v1beta2
+        apiVersion: troubleshoot.sh/v1beta3
         kind: Preflight
         metadata:
           name: preflights
@@ -49,6 +49,8 @@ To add a preflight spec to a release for your application:
           collectors: []
           analyzers: []
     ```
+
+    The spec inside the Secret uses Helm template syntax, so it can read your chart values with `{{ .Values.* }}`. It can't use `repl{{ }}` Replicated template functions.
 
 1. Update `spec.collectors` and `spec.analyzers` with any collectors and analyzers that you want to use in the preflight checks for your application. For common examples, see [Examples of preflight specs](/vendor/preflight-examples).
 
@@ -69,6 +71,86 @@ To add a preflight spec to a release for your application:
    ```
 
 1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
+
+## Support customers on KOTS earlier than v1.134.0 {#transition}
+
+KOTS versions earlier than v1.134.0 don't fully support `v1beta3` Preflight specs. This includes Embedded Cluster v2 versions earlier than 2.19.16. If some of your customers use these versions, keep your existing `v1beta2` spec in its own labeled Secret alongside the `v1beta3` spec. Then use chart values to render only one of the two Secrets for each installation:
+
+| Installation | Spec that runs |
+|---|---|
+| KOTS earlier than v1.134.0, including Embedded Cluster v2 and kURL | `v1beta2` |
+| KOTS v1.134.0 and later, including Embedded Cluster v2 and kURL | `v1beta3` |
+| Embedded Cluster v3 | `v1beta3` |
+| Helm CLI | `v1beta3` |
+
+To render one spec for each installation:
+
+1. In your chart's `values.yaml`, add values that turn on the `v1beta3` spec and turn off the `v1beta2` spec by default:
+
+    ```yaml
+    # values.yaml
+    preflightSpecs:
+      v1beta2: false
+      v1beta3: true
+    ```
+
+    Helm CLI installations use these defaults.
+
+1. Wrap each preflight Secret in a condition on its value:
+
+    ```yaml
+    # templates/preflight-v1beta3.yaml
+    {{- if eq (toString .Values.preflightSpecs.v1beta3) "true" }}
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: preflight
+      name: "{{ .Release.Name }}-preflight-v1beta3"
+    stringData:
+      preflight.yaml: |
+        apiVersion: troubleshoot.sh/v1beta3
+        kind: Preflight
+        # ...
+    {{- end }}
+    ```
+
+    ```yaml
+    # templates/preflight-v1beta2.yaml
+    {{- if eq (toString .Values.preflightSpecs.v1beta2) "true" }}
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        troubleshoot.sh/kind: preflight
+      name: "{{ .Release.Name }}-preflight-v1beta2"
+    stringData:
+      preflight.yaml: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: Preflight
+        # ...
+    {{- end }}
+    ```
+
+    The `toString` comparison is required because the HelmChart custom resource in the next step passes the values as strings.
+
+1. In the HelmChart custom resource for the chart, set the values based on the KOTS version:
+
+    ```yaml
+    # kind: HelmChart
+    spec:
+      values:
+        preflightSpecs:
+          # -0 also matches the KOTS builds that Embedded Cluster v2 includes
+          v1beta2: '{{repl if eq KotsVersion ""}}false{{repl else}}{{repl KotsVersion | semverCompare "< 1.134.0-0"}}{{repl end}}'
+          v1beta3: '{{repl if eq KotsVersion ""}}true{{repl else}}{{repl KotsVersion | semverCompare ">= 1.134.0-0"}}{{repl end}}'
+    ```
+
+    [KotsVersion](/reference/template-functions-static-context#kotsversion) returns an empty string in Embedded Cluster v3, so Embedded Cluster v3 installations use the `v1beta3` spec.
+
+1. Promote the release to a development channel and test it with each installation method that your customers use.
+
+After all of your customers are on KOTS v1.134.0 or later, remove the `v1beta2` Secret, the `preflightSpecs` values, and the conditions.
 
 ## Use a credential in a preflight check {#credentials}
 
