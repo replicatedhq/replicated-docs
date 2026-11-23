@@ -4,8 +4,6 @@ Replicated recommends that every release use a single `troubleshoot.sh/v1beta3` 
 * **KOTS** v1.134.0 and later runs `v1beta3` specs. This includes Embedded Cluster v2 2.19.16 and later, and kURL installations with KOTS v1.134.0 or later.
 * **Helm CLI** installations run them with the Troubleshoot Preflight plugin (`kubectl preflight`) v0.123.0 or later.
 
-If some of your customers use KOTS earlier than v1.134.0, keep your `v1beta2` spec until they upgrade, and use your HelmChart custom resource to render only one of the two specs for each installation. For more information, see [Support customers on KOTS earlier than v1.134.0](/vendor/preflight-defining#transition) in _Define preflight checks_.
-
-Don't include both a `v1beta2` and a `v1beta3` Preflight spec in a release without this gating. KOTS v1.129.4 and later and the Helm CLI run both specs, so checks appear twice.
+Don't include both a `v1beta2` and a `v1beta3` Preflight spec in the same release. KOTS v1.129.4 and later and the Helm CLI run both, so checks appear twice. To move an existing release from `v1beta2`, see [Move an existing release to v1beta3](/vendor/preflight-defining#move-to-v1beta3) in _Define preflight checks_.
 
 The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to use `v1beta2`.
