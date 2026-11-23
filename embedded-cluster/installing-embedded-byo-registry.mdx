@@ -1,3 +1,5 @@
+import BitnamiAllowInsecureImages from "../docs/partials/image-registry/_bitnami-allow-insecure-images.mdx"
+
 # Install with a customer-managed registry
 
 This topic describes how to install with Replicated Embedded Cluster using a customer-managed OCI registry (also known as a _bring-your-own_, or BYO, registry) instead of the Replicated proxy registry or the internal air gap registry.
@@ -259,6 +261,8 @@ In BYO mode, Embedded Cluster configures containerd on every node with the crede
 ### Patterns that do not work
 
 * Hardcoding `proxy.replicated.com/...` strings in non-templated chart values. Only template-function output is rewritten. Raw strings pass through unchanged and fail to pull in BYO mode.
+
+<BitnamiAllowInsecureImages/>
 
 ## Preflight checks
 

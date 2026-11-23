@@ -1,3 +1,5 @@
+import BitnamiAllowInsecureImages from "../image-registry/_bitnami-allow-insecure-images.mdx"
+
 For each Helm chart used by your application, in the Helm chart's `values.yaml` file, update the registry for any private or third-party images to use the Replicated proxy registry URL. The upstream registry for each image, including public registries such as Docker Hub, must already be added as an external registry in the Vendor Portal.
 
     The proxy registry URL has the following format: `DOMAIN/proxy/APP_SLUG/UPSTREAM_REGISTRY/IMAGE_PATH`
@@ -14,19 +16,19 @@ For each Helm chart used by your application, in the Helm chart's `values.yaml` 
 
     ```yaml
     # Current values.yaml
-    postgresql:
+    api:
       image:
-        registry: docker.io
-        repository: bitnami/postgresql
+        registry: ghcr.io
+        repository: cloudnative-pg/cloudnative-pg
     ```
     
     ```yaml
     # New values.yaml
-    postgresql:
+    api:
       image:
         # proxy.replicated.com or your custom domain
-        registry: proxy.replicated.com/proxy/app-slug/docker.io
-        repository: bitnami/postgresql
+        registry: proxy.replicated.com/proxy/app-slug/ghcr.io
+        repository: cloudnative-pg/cloudnative-pg
     ```
     </details>
 
@@ -44,3 +46,5 @@ For each Helm chart used by your application, in the Helm chart's `values.yaml` 
     initImage: proxy.replicated.com/proxy/app-slug/docker.io/library/busybox:1.36
     ```
     </details>
+
+    <BitnamiAllowInsecureImages/>

@@ -5,6 +5,7 @@ import AirGapBundle from "../partials/airgap/_airgap-bundle.mdx"
 import BuilderKeyDetails from "../partials/airgap/_builder-key-details-dropdown.mdx"
 import CmxAirGapVm from "../partials/cmx/_air-gap-vm-commands.mdx"
 import CmxAirGapCluster from "../partials/cmx/_air-gap-cluster-commands.mdx"
+import BitnamiAllowInsecureImages from "../partials/image-registry/_bitnami-allow-insecure-images.mdx"
 
 # Add support for air gap installations
 
@@ -120,8 +121,10 @@ To support air gap installations with Embedded Cluster v2:
            postgres:
              image:
                registry: '{{repl LocalRegistryHost }}'
-               repository: '{{repl LocalRegistryNamespace }}'/cloudnative-pg/cloudnative-pg
+               repository: '{{repl LocalRegistryNamespace }}/cloudnative-pg/cloudnative-pg'
    ```
+
+   <BitnamiAllowInsecureImages/>
 
 1. Configure the HelmChart `optionalValues` key to conditionally rewrite the Replicated SDK image to the user's local registry. The default location for the image used by the Replicated SDK Helm chart is `proxy.replicated.com/library/replicated-sdk-image`.
 
@@ -167,6 +170,8 @@ To support air gap installations with the Helm CLI:
 1. For each Helm chart in your release, configure the corresponding HelmChart custom resource [builder](/reference/custom-resource-helmchart-v2#builder) key. In the `builder` key, define the Helm values that `helm template` requires to expose all container images needed to install the chart. This ensures that the Vendor Portal can build the air gap bundle for the release and generate the customer-facing air gap install instructions in the Enterprise Portal.
 
    <BuilderKeyDetails/>
+
+   <BitnamiAllowInsecureImages/>
 
 1. <CreateRelease/>
 
