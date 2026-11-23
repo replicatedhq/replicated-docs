@@ -315,14 +315,14 @@ Registry images and application data are not affected by these commands. The pur
 
 #### Symptom
 
-A controller node does not return to `Ready` after the host was powered off or unreachable for a long time. The node is `NotReady`, and its `Ready`, `MemoryPressure`, `DiskPressure`, and `PIDPressure` conditions are `Unknown` with the following reason and message:
+A node does not return to `Ready` after the host was powered off or unreachable for a long time. The node is `NotReady`, and its `Ready`, `MemoryPressure`, `DiskPressure`, and `PIDPressure` conditions are `Unknown` with the following reason and message:
 
 ```text
 NodeStatusUnknown
 Kubelet stopped posting node status.
 ```
 
-The k0s logs report an expired certificate, similar to the following:
+The k0s logs on a controller node report an expired certificate, similar to the following:
 
 ```text
 "Unable to authenticate the request" err="[x509: certificate has expired or is not yet valid: current time 2027-12-22T21:02:37Z is after 2027-11-22T20:50:40Z
@@ -378,6 +378,54 @@ In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. T
         ```
 
         The node returns to `Ready` within about a minute.
+
+1. On each affected worker node, replace the kubelet client certificate. A worker node needs a new join token to request a certificate. The token that the worker node saved when it joined the cluster is no longer valid.
+
+    1. On a controller node, create a join token for a worker node:
+
+        ```bash
+        sudo /usr/local/bin/k0s token create --role worker --expiry 1h --data-dir DATA_DIR/k0s
+        ```
+
+    1. On the worker node, stop the k0s service:
+
+        ```bash
+        sudo systemctl stop k0sworker
+        ```
+
+    1. Back up the kubelet configuration, the certificates, and the saved join token:
+
+        ```bash
+        sudo mkdir -p /root/kubelet-backup
+        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki /etc/k0s/join-token /root/kubelet-backup/
+        ```
+
+    1. Replace the saved join token with the new token. Run the following command, paste the token, press **Enter**, and then press **Ctrl+D**:
+
+        ```bash
+        sudo sh -c 'cat > /etc/k0s/join-token'
+        ```
+
+    1. Remove the kubelet configuration and the expired client certificates:
+
+        ```bash
+        sudo rm DATA_DIR/k0s/kubelet.conf
+        sudo rm -f DATA_DIR/k0s/kubelet/pki/kubelet-client-*
+        ```
+
+    1. Start the k0s service:
+
+        ```bash
+        sudo systemctl start k0sworker
+        ```
+
+        The node returns to `Ready` within about a minute.
+
+    1. Restore the original join token so that the new token is not left on the node:
+
+        ```bash
+        sudo cp /root/kubelet-backup/join-token /etc/k0s/join-token
+        ```
 
 1. Verify that all nodes are `Ready` and that the pods are running. See [Access the cluster](#access-the-cluster).
 

@@ -316,7 +316,7 @@ Restarting the k0s service renews the expired server certificates, but not the k
 
 #### Solution
 
-In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. The default is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug for the application.
+In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. The default is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug for the application. If you installed with the `--data-dir` flag, `DATA_DIR` is that directory followed by `/APP_SLUG`.
 
 1. On each affected node, make sure that the system clock is correct and that time synchronization is enabled:
 
