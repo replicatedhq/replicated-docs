@@ -1,0 +1,19 @@
+embedded-cluster/embedded-troubleshooting.mdx
+  s_f8c04dbe39777f::t_6553fd26fecdd5 293,298
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "aa5115d49fd16e1af6747dad90af3162a9038c1c",
+  "prompts": {},
+  "sessions": {
+    "s_f8c04dbe39777f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1e538-ae93-7e22-bd73-87718a416c0c",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "Noah Campbell <noah.edward.campbell@gmail.com>"
+    }
+  }
+}
