@@ -1,5 +1,5 @@
 :::note
-Some third-party charts, such as Bitnami charts, check that each image comes from the chart's original registry and repository. Replicated does not support these checks, and they can change between chart versions.
+Some third-party charts, such as Bitnami charts, check that each image comes from the chart's original registry and repository. These checks are part of the chart, not Replicated, and they can change between chart versions.
 
 If you rewrite an image to the Replicated proxy registry or to a local or customer-managed registry, the chart fails to render. Some chart versions also fail if you change only the repository, such as to `docker.io/bitnamilegacy/postgresql`. The error includes: "Original containers have been substituted for unrecognized ones."
 

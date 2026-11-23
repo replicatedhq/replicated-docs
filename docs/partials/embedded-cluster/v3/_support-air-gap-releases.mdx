@@ -99,7 +99,7 @@ To support air gap installations with Embedded Cluster v3:
 
 1. If you added any Helm chart `extensions` in the Embedded Cluster Config, configure them for air gap:
 
-    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. The `builder` key does not support Replicated template functions. See [`builder`](embedded-config#extensions) in _Embedded Cluster Config_.
+    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. The `builder` key does not support Replicated template functions. See [`builder`](/embedded-cluster/v3/embedded-config#extensions) in _Embedded Cluster Config_.
 
     <details>
     <summary>Example (Extension with conditional images)</summary>
