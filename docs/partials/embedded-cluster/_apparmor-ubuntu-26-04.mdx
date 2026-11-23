@@ -1,4 +1,4 @@
-Ubuntu 26.04 kernels starting with `7.0.0-42-generic`, and also `7.0.0-1017-aws`, changed how AppArmor labels container processes. With this kernel change, the default containerd AppArmor profile prevents processes in the same container from sending signals to each other. This is an upstream issue between the Ubuntu kernel and containerd. It affects any Kubernetes distribution that uses the default containerd profile on these kernels, including Embedded Cluster.
+Ubuntu kernels starting with `7.0.0-42-generic`, and also `7.0.0-1017-aws`, changed how AppArmor labels container processes. These kernels run on both Ubuntu 26.04 and Ubuntu 24.04. With this kernel change, the default containerd AppArmor profile prevents processes in the same container from sending signals to each other. This is an upstream issue between the Ubuntu kernel and containerd. It affects any Kubernetes distribution that uses the default containerd profile on these kernels, including Embedded Cluster.
 
 Applications that rely on these signals can stop responding or fail to shut down. For example, PostgreSQL pods can hang until the database reaches its connection limit. The kernel log on the host shows `apparmor="DENIED" operation="signal"` entries with a `peer` that ends in `//&unconfined`.
 
@@ -8,6 +8,13 @@ Ubuntu 24.04 can also run these kernels through the HWE kernel (`linux-generic-h
 
 ```bash
 sysctl kernel.apparmor_restrict_unprivileged_unconfined
+```
+
+On Ubuntu 26.04 hosts, you can set `kernel.apparmor_restrict_unprivileged_unconfined` to `0` to avoid the issue. This setting relaxes an AppArmor restriction on unconfined processes that Ubuntu 26.04 turns on by default, so consider the security tradeoff before you change it. To set it to `0` and keep the change after a reboot, run:
+
+```bash
+echo 'kernel.apparmor_restrict_unprivileged_unconfined = 0' | sudo tee /etc/sysctl.d/99-apparmor-unconfined.conf
+sudo sysctl --system
 ```
 
 The fix reaches Embedded Cluster as follows:
