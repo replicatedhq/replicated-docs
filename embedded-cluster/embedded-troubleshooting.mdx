@@ -281,8 +281,7 @@ The command leaves the v2 installation unchanged, and its Admin Console remains 
 
 If the error includes `reject downgrade`, the v3 release is older than the release that's installed. In Embedded Cluster 3.21.0 and later, this check runs before conversion, so the installation is still on v2 when it fails. Promote the v3 release to the channel again so that it's newer than the installed release. Have the customer download it, and then run `upgrade`.
 
-In Embedded Cluster 3.21.0 and later, an air gap installation with three or more controllers that hasn't enabled high availability in v2 stops before validation with an error that starts with:
-
+In Embedded Cluster 3.21.0 and later, an air gap installation with three or more controllers that hasn't enabled high availability in v2 stops before validation with an error that starts with `Error: upgrade: check v2 HA migration: HA migration required.` The installation is still on v2. Run the `enable-ha` command from the error on the node it names, using the installed Embedded Cluster v2 binary, and then run `upgrade` again.
 
 An error after conversion starts with:
 
