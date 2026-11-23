@@ -103,11 +103,15 @@ For more information about `docString` and `preflight docs`, see [v1beta3 author
 
 ## Move an existing release to v1beta3 {#move-to-v1beta3}
 
-To move an existing release from a `v1beta2` to a `v1beta3` Preflight spec:
+To move an existing release from a `v1beta2` to a `v1beta3` application preflight spec:
 
-1. In the Secret that contains your preflight spec, change the Preflight `apiVersion` to `troubleshoot.sh/v1beta3`. Keep the Secret, its `troubleshoot.sh/kind: preflight` label, and the `preflight.yaml` key.
+1. In the Secret that contains your application preflight spec, change the Preflight `apiVersion` to `troubleshoot.sh/v1beta3`. Keep the Secret, its `troubleshoot.sh/kind: preflight` label, and the `preflight.yaml` key. Leave any HostPreflight spec on `v1beta2`.
 
 1. If the spec uses `repl{{ }}` Replicated template functions, replace them with Helm template syntax that reads your chart values. For license fields, use the `global.replicated.licenseFields` values instead of LicenseFieldValue. See [Check entitlements in a v1beta3 preflight spec](/vendor/licenses-referencing-fields#v1beta3).
+
+1. (Optional) Add a `docString` to each analyzer so that you can generate a requirements document from the spec. See [Document requirements with docString](#docstring).
+
+1. If the release supports Embedded Cluster v3, review any `postgres`, `mysql`, `redis`, or `http` collectors. Embedded Cluster v3 runs these collectors on the host rather than inside the cluster. See [Run connectivity checks inside the cluster](/embedded-cluster/v3/embedded-using#in-cluster-collectors) and [Include preflight images in air gap bundles](/embedded-cluster/v3/embedded-using#preflight-air-gap-images).
 
 1. Remove any `v1beta2` Preflight spec from the release, including any release-level spec. KOTS v1.129.4 and later and the Helm CLI run both specs, so checks appear twice.
 
