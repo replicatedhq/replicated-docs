@@ -18,6 +18,6 @@ A security tool on the host is blocking or removing firewall rules, binaries, or
 
 #### Solution {#security-agents-solution}
 
-Work with the security team to update the tool's policy so that it allows what Embedded Cluster needs. For more information about the requirements, see [Security tools on the host](installing-embedded-requirements#security-agents) in _Embedded Cluster installation requirements_.
+Disable the tool on Embedded Cluster hosts. If disabling the tool is not an option, work with the security team to update the tool's policy so that it allows what Embedded Cluster needs. For more information about the requirements, see [Security tools on the host](installing-embedded-requirements#security-agents) in _Embedded Cluster installation requirements_.
 
-Updating the tool's policy does not undo changes that the tool already made. You might also need to reboot the host to reset the firewall and restore any kernel parameters that the tool changed. In some cases, you also need to remove `ebtables` rules that the tool added.
+Disabling a tool or updating its policy does not undo changes that the tool already made. You might also need to reboot the host to reset the firewall and restore any kernel parameters that the tool changed. In some cases, you also need to remove `ebtables` rules that the tool added.
