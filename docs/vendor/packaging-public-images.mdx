@@ -15,10 +15,11 @@ Before you can pull public images through the proxy registry, add each upstream 
 To pull public images through the Replicated proxy registry, use the following `docker` commands:
 
 ```bash
-docker login REPLICATED_PROXY_DOMAIN  -u you@example.com -p $SERVICE_ACCOUNT_TOKEN
+docker login REPLICATED_PROXY_DOMAIN  -u you@example.com -p CUSTOMER_CREDENTIAL
 docker pull REPLICATED_PROXY_DOMAIN/proxy/APPSLUG/UPSTREAM_REGISTRY_HOSTNAME/IMAGE:TAG
 ```
 Where:
+* `CUSTOMER_CREDENTIAL` is the customer's Enterprise Portal service account token or license ID. For more information, see [License IDs and service account tokens](/vendor/licenses-customer-credentials).
 * `APPSLUG` is your Replicated app slug found on the [app settings page](https://vendor.replicated.com/settings).
 * `REPLICATED_PROXY_DOMAIN` is `proxy.replicated.com` or your custom domain. For information about how to set a custom domain for the proxy registry, see [Use Custom Domains](/vendor/custom-domains-using). 
 * `UPSTREAM_REGISTRY_HOSTNAME` is the hostname for the public registry where the image is located. If the image is located in a namespace within the registry, include the namespace after the hostname. For example, `quay.io/namespace`.

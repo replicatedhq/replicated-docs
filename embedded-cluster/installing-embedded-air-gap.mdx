@@ -2,7 +2,6 @@ import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 import InstallModeFixed from "../docs/partials/install/_install-mode-fixed.mdx"
 import BypassPreflights from "../docs/partials/embedded-cluster/v3/_bypass-preflights.mdx"
 import ResumeInstall from "../docs/partials/embedded-cluster/v3/_resume-install.mdx"
-import HeadlessMultiNodeLimitation from "../docs/partials/embedded-cluster/v3/_headless-multi-node-limitation.mdx"
 
 # Air gap installation with Embedded Cluster
 
@@ -117,7 +116,7 @@ To install from the Vendor Portal:
 
 With headless installations, you provide all the necessary installation assets with the installation command rather than through the UI. These assets include the license file and the application config values. Any preflight checks defined for the application run automatically from the command line rather than displaying in the UI. You can also allow the installation to continue when checks fail, which is useful when testing in development environments. See [Bypass preflight failures during headless installation](#ignore-preflights) on this page.
 
-<HeadlessMultiNodeLimitation/>
+To join hosts before the application deploys, declare the expected topology with `--node`. For more information about headless installation, see [Install a multi-node or HA cluster headlessly](installing-embedded#headless-multi-node) in _Online installation with Embedded Cluster_.
 
 To install headlessly in an air gap environment:
 
@@ -144,7 +143,9 @@ To install headlessly in an air gap environment:
 
    Replace placeholders with values for your environment. Add any other flags you need. For the full set of flags, see [install](embedded-cluster-install).
 
-1. Monitor the command output until the install completes, then access your application as you normally do.
+1. If you supplied `--node`, run the printed join commands on the additional hosts. Keep the install command running on the first controller while the other hosts join.
+
+1. When installation completes, use the printed URL to open the admin console.
 
 <BypassPreflights />
 

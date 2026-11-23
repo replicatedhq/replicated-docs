@@ -1,0 +1,91 @@
+# Run host preflight checks without installing
+
+Run standalone host preflight checks to confirm that a host meets Embedded Cluster v3 requirements without installing anything. Check hosts before an installation or change window, or validate them in provisioning automation. You can also check a node before it joins a cluster or re-check a host after changing its configuration.
+
+Standalone host preflight checks require Embedded Cluster 3.20.1 or later.
+
+The commands run Embedded Cluster's built-in host checks and any vendor-provided host checks. They do not install Embedded Cluster, start its services, or configure the host. Checks can create temporary files, generate disk I/O, and test network connectivity. The commands remove temporary workspaces when they finish.
+
+Standalone commands do not run application preflight checks. Installation and joining still run their own host checks afterward.
+
+## Before you begin
+
+* Use the application package for the v3 release you intend to install. For a joining node, use a join bundle from the destination cluster.
+* Run the command as root on the host you want to check.
+* Mount the volumes you intend to use before running checks. If the data directory does not exist, the disk benchmark creates a temporary directory inside its nearest existing ancestor. Results describe that filesystem, not a volume mounted later.
+
+Replace `APP_SLUG` in the examples with the name of the application binary.
+
+## Check a host before installing
+
+1. Download and extract the target application package using your vendor's [online](installing-embedded) or [air gap](installing-embedded-air-gap) instructions. Stop before running `install`.
+
+1. From the extracted package directory, run:
+
+   ```bash
+   sudo ./APP_SLUG install run-preflights
+   ```
+
+1. If you intend to change the default installation settings, supply the same settings to the check. For example:
+
+   ```bash
+   sudo ./APP_SLUG install run-preflights \
+     --data-dir /mnt/embedded-cluster \
+     --network-interface eth0 \
+     --cidr 10.244.0.0/16
+   ```
+
+   Choose a CIDR appropriate for your network. Add `--airgap` when checking an air gap installation.
+
+   Use `--http-proxy`, `--https-proxy`, and `--no-proxy` to match your proxy settings. Outside air gap mode, unset proxy flags fall back to the corresponding lowercase or uppercase environment variables. Explicit flags take precedence.
+
+   An optional `--license /path/to/license.yaml` supplies custom endpoints. When using `--registry`, also supply `--license` and any intended `--config-values` file so image checks use the correct chart configuration. The command accepts the registry credentials and certificate flags listed in [install](embedded-cluster-install).
+
+1. Review the results and address failed checks before installation. To list the supported flags, run:
+
+   ```bash
+   sudo ./APP_SLUG install run-preflights --help
+   ```
+
+## Check a node before joining
+
+1. Obtain a join bundle for the intended node roles from the destination cluster. Copy or download it to the node and extract it. For more information about getting a join bundle, see [Join nodes](embedded-manage-nodes#add-nodes) in _Access and manage embedded clusters_.
+
+1. From the extracted join bundle directory, run:
+
+   ```bash
+   sudo ./APP_SLUG node join run-preflights
+   ```
+
+   `join run-preflights` is an equivalent command. To select a network interface, add `--network-interface eth0`.
+
+1. Review the results before running the normal `node join` command. The checks use the bundle's roles and cluster settings. If the join bundle gets its settings from the cluster, the node needs access to the destination cluster and a valid join token. Obtain a new bundle if the token expires.
+
+The v3 command reads its inputs from the join bundle. It does not accept the two positional arguments used by the v2 `join run-preflights` command. Update existing scripts accordingly.
+
+## Read results in automation
+
+Use `--format json` with either command to write the result object to stdout. Notices and human-readable output go to stderr. For example:
+
+```bash
+sudo ./APP_SLUG install run-preflights --format json > host-preflights.json
+```
+
+The JSON result uses these fields:
+
+| Field | Description |
+|-------|-------------|
+| `pass` | Passed checks. |
+| `warn` | Warnings, including checks that could not fully evaluate the host. |
+| `fail` | Failed checks. |
+| `error` | An execution error, when present. |
+
+Each check contains a `title` and `message`. It can also contain `source` and `strict` fields. Check lists can be `null` when empty.
+
+Failed checks and execution errors return a nonzero exit status. Warnings alone do not. Inspect warnings and confirm that the checks your automation requires are present, rather than relying only on the exit status. Argument or initialization errors can occur before a JSON result is available.
+
+## Understand the results
+
+Results are point-in-time, not a guarantee of a later install or join. Disk load, network access, and available resources can change between the check and installation.
+
+Standalone checks inspect the host without applying the host configuration that installation normally performs. On a host that hasn't run Embedded Cluster before, the IP forwarding, inotify limit, and Network Namespace Connectivity checks typically fail. Installation sets these kernel parameters before it runs its own host checks, so these failures alone don't block installation. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.

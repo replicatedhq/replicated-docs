@@ -232,6 +232,8 @@ Before you upgrade to Velero 1.17 or later, migrate from LVP to a Kopia-compatib
 
 For more information, see [Upgrade Velero for snapshots](snapshots-velero-upgrading).
 
+For kURL installations, the kURL installer upgrades Velero and these options do not apply. See [kURL installations](snapshots-velero-upgrading#kurl-installations) in _Upgrade Velero for snapshots_.
+
 
 ## Snapshot restore is failing
 

@@ -24,6 +24,14 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.134.4<span data-release-version="v1.134.4" />
+
+Released on November 21, 2026
+
+Support for Kubernetes: 1.35, 1.36, and 1.37
+
+### Improvements {#improvements-1-134-4}
+* Instance telemetry events no longer limited to 4000 items.
 ## 1.134.3
 
 Released on November 10, 2026

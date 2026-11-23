@@ -12,6 +12,64 @@ Additionally, these release notes list the versions of Kubernetes that are avail
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 3.21.0<span data-release-version="3.21.0" />
+
+Released on November 21, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.21.0+k8s-1.37</td>
+    <td id="center">3.21.0+k8s-1.36</td>
+    <td id="center">3.21.0+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+### New Features {#new-features-3-21-0}
+* v2 to v3 upgrades now check inputs, release compatibility, required bundles, and primary-host requirements before converting the installation.
+* Cgroup v2 requirement failures can no longer be bypassed.
+* Adds `--node` parameter to allow creating correct cluster topology before deploying the application.
+
+### Improvements {#improvements-3-21-0}
+* Upgrade errors after v2 conversion now explain that the installation is already on v3.
+
+### Bug Fixes {#bug-fixes-3-21-0}
+* Fixes a bug that causes Embedded Cluster v2 to v3 upgrade to fail in headless mode on multi-node clusters.
+* Fixed standalone host preflights to select upgrade checks on existing Embedded Cluster v2 nodes and distinguish installer-managed kernel settings from blocking failures.
+
+## 3.20.1
+
+Released on November 17, 2026
+
+<table>
+  <tr>
+    <th>Version</th>
+    <td id="center">3.20.1+k8s-1.37</td>
+    <td id="center">3.20.1+k8s-1.36</td>
+    <td id="center">3.20.1+k8s-1.35</td>
+  </tr>
+  <tr>
+    <th>Kubernetes Version</th>
+    <td id="center">1.37.1</td>
+    <td id="center">1.36.5</td>
+    <td id="center">1.35.8</td>
+  </tr>
+</table>
+### New Features {#new-features-3-20-1}
+* Adds support for running host preflight checks independently with `install run-preflights` and `join run-preflights`. This allows checking host requirements before installation or upgrade from kURL or Embedded Cluster v2.
+
+### Bug Fixes {#bug-fixes-3-20-1}
+* Fixed restore bootstrap continuing after cancellation.
+* Fixes a bug that could prevent user from generating support bundle if Kubernetes API is not available.
+* Bundled fio so host preflight disk-performance checks no longer require it to be installed separately.
+* Fixes a bug that would prevent users from generating and downloading support bundles when Kubernetes API is not available.
+* Fixes a bug that could prevent support bundle download via a load balancer in front of multiple controllers.
+
 ## 3.20.0
 
 Released on November 16, 2026

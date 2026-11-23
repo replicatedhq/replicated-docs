@@ -7,12 +7,15 @@ import ComplianceScans from "../docs/partials/embedded-cluster/_compliance-scans
 import SecurityAgentsPaths from "../docs/partials/embedded-cluster/v3/_security-agents-paths.mdx"
 import FirewallOpeningsIntro from "../docs/partials/install/_firewall-openings-intro.mdx"
 import FirewallOpeningsEc from "../docs/partials/install/_firewall-openings-embedded-cluster.mdx"
+import AppArmorUbuntu2604 from "../docs/partials/embedded-cluster/_apparmor-ubuntu-26-04.mdx"
 
 # Embedded Cluster installation requirements
 
 This topic lists the installation requirements for Replicated Embedded Cluster. Ensure that the installation environment meets these requirements before you attempt to install.
 
 ## System requirements
+
+Before starting installation, you can [run standalone host preflight checks](embedded-host-preflights) from the target application package.
 
 <EmbeddedClusterRequirements/>
 
@@ -47,6 +50,10 @@ To switch an Enterprise Linux 8 host to cgroup v2:
 1. Run the `stat` command again and confirm that it returns `cgroup2fs`.
 
 On a multi-node cluster, switch every node, and reboot one node at a time.
+
+## Ubuntu 7.0 kernels and AppArmor {#apparmor}
+
+<AppArmorUbuntu2604/>
 
 ## Port requirements
 

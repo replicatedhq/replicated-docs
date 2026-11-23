@@ -53,13 +53,13 @@ If your end users need cluster-level visibility without command-line access, pac
 
 ### Which node serves the console
 
-Every controller node serves the console. Worker nodes do not. A controller that joins the cluster starts serving the console when its join finishes.
+Every controller node serves the console. Worker nodes do not. A controller that joins the cluster starts serving the console when its join finishes. In a multi-node cluster, end users can open the console on any controller, so if one controller is unreachable, they can use another.
 
 During an upgrade, the node where you run `upgrade` serves the console and the other nodes stop serving it. Each of the other controllers starts serving the console again when its own upgrade finishes.
 
 If you open the console on a node that is not serving it, the page shows "Console unavailable on this node; use the node running the upgrade command."
 
-For a multi-node installation, put a load balancer in front of the controller nodes so that users reach the console through the load balancer rather than a specific node. Use `GET /console/healthz` as the load balancer's health check. It returns 200 on a node that serves the console and 503 on a node that does not, so during an upgrade the load balancer sends users to the node running it.
+A load balancer is not required to use the console in a multi-node cluster. If the controller nodes are already behind a load balancer, you can route the console port through it so that users reach the console at one address. Use `GET /console/healthz` as the health check. It returns 200 on a node that serves the console and 503 on a node that does not, so during an upgrade the load balancer sends users to the node running it.
 
 In Embedded Cluster 3.17.0-beta.1 and 3.18.0-beta.1, only the node where you ran `install`, or most recently ran `upgrade`, serves the console. Controllers that joined on those versions start serving it after their first upgrade to 3.18.1-beta.1 or later.
 

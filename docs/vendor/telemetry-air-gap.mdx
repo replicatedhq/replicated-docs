@@ -16,7 +16,7 @@ The following diagram demonstrates how air gap telemetry is collected and stored
 
 [View a larger version of this image](/images/airgap-telemetry.png)
 
-All support bundles uploaded to the Vendor Portal from air gap customers contributes to a comprehensive dataset, providing parity in the telemetry for air gap and online instances. Replicated recommends that you collect support bundles from air gap customers regularly (monthly or quarterly) to improve the completeness of the dataset. The Vendor Portal handles any overlapping event archives idempotently, ensuring data integrity.
+All support bundles uploaded to the Vendor Portal from air gap customers contributes to a comprehensive dataset, providing parity in the telemetry for air gap and online instances. Replicated recommends collecting support bundles from air gap customers regularly to improve the completeness of the dataset. The appropriate frequency depends on how quickly telemetry reaches its storage limit, as described in [Limitation](#limitation). The Vendor Portal handles any overlapping event archives idempotently, ensuring data integrity.
 
 ## Requirement
 
@@ -40,9 +40,15 @@ Replicated strongly recommends that all applications include the Replicated SDK 
 
 ## Limitation
 
-Telemetry data is capped at 4,000 events or 1MB per Secret; whichever limit is reached first.
+Air gap telemetry is stored in Kubernetes Secrets in the customer environment. The Replicated SDK stores instance telemetry and custom metrics in separate Secrets. Retention limits depend on the component collecting the data:
 
-When a limit is reached, the oldest events are purged until the payload is within the limit. For optimal use, consider collecting support bundles regularly (monthly or quarterly) from air gap customers.
+* **Replicated SDK versions earlier than 1.20.0:** Each Secret is limited to 4,000 events or 1 MiB, whichever is reached first.
+* **Replicated SDK 1.20.0 and later:** There is no event count limit. Each Secret is limited to 1 MiB.
+* **KOTS:** Telemetry collected by KOTS is limited to 4,000 events or 1 MiB per Secret, whichever is reached first. In KOTS installations that include the SDK, data collected by the SDK, including all custom metrics, follows the SDK limits.
+
+When a limit is reached, the oldest events are purged to make room for new data. With SDK versions earlier than 1.20.0 and with KOTS, the 4,000 event limit is typically reached first. With SDK 1.20.0 and later, retention depends on how much compressed data fits in 1 MiB, which varies with event size and reporting frequency. Data purged before an SDK upgrade cannot be recovered.
+
+Collect support bundles often enough to capture telemetry before it is purged. Monthly or quarterly collection can be a starting point, but applications with larger or more frequent events might require more frequent collection. Even with SDK 1.20.0 or later, a year of history is retained only if the data fits within the size limit for that period.
 
 ## Collect and view air gap telemetry
 

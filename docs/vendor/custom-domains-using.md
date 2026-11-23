@@ -37,18 +37,11 @@ To add and verify a custom domain:
     If TLS verification cannot be performed automatically, copy the text string provided and use it to create a TXT record in your DNS account. Click **Validate & continue**. Your changes can take up to 24 hours to propagate.
 
     :::note
-    If you set up a [CAA record](https://letsencrypt.org/docs/caa/) for this hostname, you must include all Certificate Authorities (CAs) that Cloudflare partners with. The following CAA records are required to ensure proper certificate issuance and renewal:
+    If this hostname or any of its parent domains has [CAA records](https://letsencrypt.org/docs/caa/), you must allow all Certificate Authorities (CAs) that Cloudflare uses. For the current list and the CAA record value for each CA, see [CAA records](https://developers.cloudflare.com/ssl/reference/certificate-authorities/#caa-records) in the Cloudflare documentation.
 
-    ```dns
-    @ IN CAA 0 issue "letsencrypt.org"
-    @ IN CAA 0 issue "pki.goog; cansignhttpexchanges=yes"
-    @ IN CAA 0 issue "ssl.com"
-    @ IN CAA 0 issue "amazon.com"
-    @ IN CAA 0 issue "cloudflare.com"
-    @ IN CAA 0 issue "google.com"
-    ```
+    A CA checks the hostname first. If the hostname has no CAA records, the CA checks each parent domain in turn and uses the first CAA records it finds. For example, CAA records on `example.com` apply to `updates.example.com` when `updates.example.com` has no CAA records of its own.
 
-    Failing to include any of these CAs might prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
+    Failing to allow any of these CAs might prevent certificate issuance or renewal, which can result in downtime for your customers. For additional security, you can add an IODEF record to receive notifications about certificate requests:
 
     ```dns
     @ IN CAA 0 iodef "mailto:your-security-team@example.com"
@@ -184,4 +177,38 @@ To remove a custom domain:
     When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the Vendor Portal.
     :::
 
-1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
+1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.
+
+## Troubleshoot TLS certificates {#troubleshoot-tls}
+
+CAA records are a common cause of the following TLS certificate issues:
+
+* The **TLS cert creation verification** step does not complete when you add a custom domain.
+* A custom domain that was working starts returning TLS errors because its certificate could not be renewed.
+
+To troubleshoot TLS certificate issues:
+
+1. Check the CAA records that apply to the custom domain. Replace `updates.example.com` with your custom domain:
+
+    ```bash
+    dig updates.example.com CAA +short
+    ```
+
+    If the command returns no records, check each parent domain in turn and stop at the first one that returns records. Those records apply to the custom domain. For example, for `updates.eu.example.com`, check `eu.example.com` and then `example.com`:
+
+    ```bash
+    dig eu.example.com CAA +short
+    dig example.com CAA +short
+    ```
+
+1. If CAA records apply to the custom domain, confirm that they allow every CA that Cloudflare uses. For the current list, see [CAA records](https://developers.cloudflare.com/ssl/reference/certificate-authorities/#caa-records) in the Cloudflare documentation. Add any missing records.
+
+1. Check the issuer and validity dates of the certificate that the custom domain currently serves:
+
+    ```bash
+    openssl s_client -connect updates.example.com:443 -servername updates.example.com </dev/null 2>/dev/null | openssl x509 -noout -issuer -dates
+    ```
+
+    If the command prints an error instead of an issuer and dates, the custom domain is not serving a certificate. This is expected while the **TLS cert creation verification** step is incomplete.
+
+1. If the certificate has already expired, or the issue continues after you update the CAA records, open a support request. Include the custom domain, the output of the `dig` commands, and when the errors started. See [Submit a support request](support-submit-request).  

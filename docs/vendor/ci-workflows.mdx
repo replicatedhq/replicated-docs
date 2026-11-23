@@ -303,6 +303,73 @@ Consider the following requirements and recommendations:
 
 ### Archive the temporary channel and customer {#rel-cleanup}
 
-Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
+Finally, add a job that archives the temporary customer and then the temporary channel that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted. Configure the job to run even when an earlier job fails or the workflow is canceled, so that failed runs don't leave a channel and customer behind.
 
-See the [channel rm](/reference/replicated-cli-channel-rm) and [customer archive](/reference/replicated-cli-customer-archive) Replicated CLI commands. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.
+See the [customer archive](/reference/replicated-cli-customer-archive) and [channel rm](/reference/replicated-cli-channel-rm) Replicated CLI commands. Or, for GitHub Actions workflows, see the [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) and [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) actions.
+
+For more information, see [Clean up CI resources](#cleanup).
+
+## Clean up CI resources {#cleanup}
+
+Workflows that test installations create channels and customers in your Replicated team, such as a temporary channel for each release workflow run or a customer for each test. Archive these resources when the work that needed them is done. Otherwise, they build up alongside the channels and customers that you use for real releases and customers, which makes those harder to find in the Vendor Portal.
+
+### About archiving channels and customers {#cleanup-about}
+
+Before you add cleanup to your workflows, note the following differences between archiving customers and archiving channels:
+
+* You can unarchive a customer. See [Archive and unarchive customers](/vendor/licenses-automate-customer-management#archive-and-unarchive-customers) in _Automate customer management_.
+
+* You can't unarchive a channel.
+
+* An archived channel keeps its slug. If you create a channel with the same name as an archived channel, the new channel's slug gets a numeric suffix (e.g. `ci-my-branch-1`). Each new channel with that name takes the next suffix, and after a limited number of suffixes for one name, creating the channel fails. Give each branch or run its own channel name rather than archiving and re-creating a channel with the same name.
+
+* You can't archive a channel while customers are assigned to it, so archive a channel's customers first. For the other conditions that prevent archiving a channel, see [Archive a channel](/vendor/releases-creating-channels#archive-a-channel) in _Create and edit channels_.
+
+* The `customer archive` command accepts more than one customer ID. The `channel rm` command archives one channel at a time.
+
+### Archive resources when the work ends {#cleanup-when}
+
+Archive each resource when the work that it was created for is done:
+
+* **A customer for a single workflow run**: Archive the customer at the end of the run, after tests complete.
+
+* **A channel for a single workflow run**, such as the temporary channel in the [release workflow](#rel-release): Archive the channel at the end of the run, after archiving its customers.
+
+* **A channel for a branch or pull request** that several runs reuse: Archive the channel when the branch is merged or deleted, rather than at the end of each run.
+
+Configure each cleanup step to run even when an earlier step fails or the workflow is canceled. Otherwise, every failed run leaves resources behind. For example, in GitHub Actions, add `if: ${{ always() }}` to the cleanup job or step.
+
+The token that your workflow uses also needs permission to archive customers and channels. If its RBAC policy doesn't allow archiving, the cleanup step fails while the rest of the workflow succeeds. For an example policy that includes these permissions, see [Set up authentication](/vendor/licenses-automate-customer-management#set-up-authentication) in _Automate customer management_.
+
+### Name CI resources consistently {#cleanup-naming}
+
+Use a consistent prefix for the channels and customers that your workflows create, such as `ci-` followed by the branch name, plus the run ID for channels that are created for a single run. A consistent prefix lets a cleanup job find CI resources without affecting the channels and customers that you use for releases.
+
+### Run a scheduled cleanup job {#cleanup-scheduled}
+
+Cleanup steps can still be skipped, such as when a runner is lost partway through a run. Add a scheduled workflow (e.g. nightly) that archives CI resources that are no longer needed, such as the channels for branches that no longer exist. You can also use the same job to clean up resources that built up before you added cleanup steps to your workflows.
+
+The following example archives the customers assigned to a channel, and then archives the channel:
+
+```bash
+APP_SLUG="my-app"
+CHANNEL_NAME="ci-my-feature-branch"
+
+# Find the channel ID
+CHANNEL_ID=$(replicated channel ls --app "$APP_SLUG" --output json \
+  | jq -r --arg name "$CHANNEL_NAME" '.[] | select(.name == $name) | .id')
+if [ -z "$CHANNEL_ID" ]; then
+  echo "No active channel named $CHANNEL_NAME"
+  exit 0
+fi
+
+# Archive the customers assigned to the channel
+CUSTOMER_IDS=$(replicated customer ls --app "$APP_SLUG" --output json \
+  | jq -r --arg id "$CHANNEL_ID" '.[] | select(any(.channels[]?; .id == $id)) | .id')
+if [ -n "$CUSTOMER_IDS" ]; then
+  replicated customer archive --app "$APP_SLUG" $CUSTOMER_IDS
+fi
+
+# Archive the channel
+replicated channel rm --app "$APP_SLUG" "$CHANNEL_ID"
+```

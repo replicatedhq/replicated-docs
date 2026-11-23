@@ -12,6 +12,8 @@ To automate customer management with the Replicated CLI or the Vendor API, see [
 
 This procedure describes how to create a new customer in the Vendor Portal. You can edit customer details at any time. The license ID, which is the unique identifier for the customer, never changes.
 
+Treat the license ID like a password. It can't be rotated, so give customers access to the Enterprise Portal and have them install with service account tokens, which they can replace if one is exposed. For more information, see [License IDs and service account tokens](/vendor/licenses-customer-credentials).
+
 For information about creating a customer with the Replicated CLI, see [customer create](/reference/replicated-cli-customer-create).
 
 For information about creating and managing customers with the Vendor API v3, see the [customers](https://replicated-vendor-api.readme.io/reference/getcustomerentitlements) section in the Vendor API v3 documentation.
@@ -98,7 +100,9 @@ To edit a locked field:
 
 When you archive a customer in the Vendor Portal, the customer is hidden from search by default and becomes read-only.
 
-Archiving a customer does not change the functionality or utility of licenses downloaded before the customer was archived. To expire a license, set an expiration date and policy in the **Expiration policy** field before you archive the customer.
+Archiving is for removing a customer from your active customer list. It isn't a way to cut off the customer's access. Some requests that use an archived customer's license ID or service account tokens are rejected, such as logging in to the Replicated registry, but not all of them are.
+
+To stop a customer from installing, updating, or pulling images, set an expiration date in the **Expiration policy** field before you archive the customer. For what happens when a license expires, see [Default license expiration handling](/vendor/licenses-about#expiration) in _About customers and licensing_.
 
 To archive a customer:
 

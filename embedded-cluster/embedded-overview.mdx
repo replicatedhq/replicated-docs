@@ -1,5 +1,4 @@
 import EmbeddedCluster from "../docs/partials/embedded-cluster/v3/_definition.mdx"
-import HaArchitecture from "../docs/partials/embedded-cluster/v3/_multi-node-ha-arch.mdx"
 
 # Embedded Cluster overview
 
@@ -10,8 +9,6 @@ This topic provides an introduction to Replicated Embedded Cluster.
 <EmbeddedCluster/>
 
 ## Limitations {#ec-limitations}
-
-* Using headless installation to create multi-node or high availability (HA) clusters from scripts or automation tools isn't supported. A headless installation deploys the application on the first node before other nodes can join. To create a multi-node or HA cluster, install with the Embedded Cluster UI. For more information, see [Install using the CLI (headless)](installing-embedded#install-using-the-cli-headless).
 
 * Repeatable config items aren't supported. For more information, see [Repeatable config items aren't supported](embedded-v3-migrate#repeatable-items) in _Upgrade from Embedded Cluster v2_.
 
@@ -143,5 +140,7 @@ Embedded Cluster host preflight checks have the following limitations:
 Embedded Cluster supports installations in multi-node clusters. Your end customers can add nodes to a cluster during or after installation from the UI, the CLI, or the [Embedded Cluster API](embedded-cluster-external-api).
 
 Embedded Cluster automatically enables high availability (HA) when at least three controller nodes are present in the cluster.
+
+Every controller node serves the [admin console](embedded-persistent-console), so end users can open it from any controller.
 
 For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).

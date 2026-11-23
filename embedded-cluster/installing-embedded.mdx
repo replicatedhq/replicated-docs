@@ -2,7 +2,6 @@ import Prerequisites from "../docs/partials/embedded-cluster/v3/_ec-prereqs.mdx"
 import InstallModeFixed from "../docs/partials/install/_install-mode-fixed.mdx"
 import BypassPreflights from "../docs/partials/embedded-cluster/v3/_bypass-preflights.mdx"
 import ResumeInstall from "../docs/partials/embedded-cluster/v3/_resume-install.mdx"
-import HeadlessMultiNodeLimitation from "../docs/partials/embedded-cluster/v3/_headless-multi-node-limitation.mdx"
 
 # Online installation with Embedded Cluster
 
@@ -68,7 +67,7 @@ To install from the Vendor Portal:
 
 With headless installation, you provide all necessary installation assets with the installation command rather than through the UI. Assets include the license file and the application config values. During headless installations, any preflight checks defined for the application run automatically from the command line rather than appearing in the UI. You can also allow the installation to continue when checks fail, which is useful when testing in development environments. See [Bypass preflight failures during headless installation](#ignore-preflights) on this page.
 
-<HeadlessMultiNodeLimitation/>
+To join hosts before the application deploys, declare the expected topology with `--node`. For more information about headless installation, see [Install a multi-node or HA cluster headlessly](#headless-multi-node) in this document.
 
 To install using the CLI:
 
@@ -98,8 +97,44 @@ To install using the CLI:
 
    Replace `APP_SLUG`, `LICENSE_FILE`, `PATH_TO_CONFIGVALUES`, and `INSTALLER_PASSWORD` with the values for your environment. Add any other flags you need. For the full set of flags, see [install](embedded-cluster-install).
 
-1. Monitor the command output until the install completes, then access your application as you normally do.
+1. When installation completes, use the printed URL to open the admin console.
 
+
+### Install a multi-node or HA cluster headlessly {#headless-multi-node}
+
+Enable the **Multi-node Cluster (Embedded Cluster only)** license field for the customer. Then pass one `--node` flag per group of hosts with the same roles. Each flag takes a JSON object with a positive integer `count` and a `roles` array. Use the controller role and any custom roles defined in the [Embedded Cluster Config](embedded-config#roles). Each host in a group must have every role listed for that group.
+
+The first controller counts toward the total. It has the configured controller role by default. If you assign additional roles to the first controller with `--roles`, include a group with that exact combination of roles. Specify one controller or at least three. An HA cluster requires at least three controllers.
+
+1. On the first controller, run the headless install with the expected topology. This example installs three controllers using the default controller role:
+
+   ```bash
+   sudo ./APP_SLUG install --license LICENSE_FILE --headless --yes \
+     --config-values PATH_TO_CONFIGVALUES --installer-password INSTALLER_PASSWORD \
+     --node '{"count":3,"roles":["controller"]}'
+   ```
+
+   Replace the placeholders with your values. For an air gap installation, follow the [air gap prerequisites and preparation steps](installing-embedded-air-gap#install-using-the-cli-headless) and add `--airgap` to the install command.
+
+   If the release defines a custom `frontend` role, the following example assigns it to the first controller. The other two controllers have only the `controller` role.
+
+   ```bash
+   sudo ./APP_SLUG install --license LICENSE_FILE --headless --yes \
+     --config-values PATH_TO_CONFIGVALUES --installer-password INSTALLER_PASSWORD \
+     --roles controller,frontend \
+     --node '{"count":1,"roles":["controller","frontend"]}' \
+     --node '{"count":2,"roles":["controller"]}'
+   ```
+
+   To add a worker, include another group, for example `--node '{"count":1,"roles":["worker"]}'` if the release defines a custom role named `worker`.
+
+1. Leave the install command running. On each additional host, run the printed commands for its role group. The commands download a join bundle from the first controller with `curl`, extract it, and run `node join`. Join controllers one at a time. For automation, start the install as a task that can run while you execute the join steps on the other hosts. You can also [request join commands through the API](embedded-manage-nodes#headless-joins).
+
+1. Watch the **Joined**, **Required**, and **Ready** counts. When the joined hosts exactly match the requested topology and are ready and up to date, the installer continues automatically with infrastructure, application preflights, and deployment. It prints the admin console URL when it completes.
+
+If the install is interrupted, rerun the same install command on the first controller. The installer uses the saved topology and prints join commands for hosts that still need to join. See [Resume an interrupted installation](#resume).
+
+To supply an expected topology in the Installation Wizard, pass the same `--node` flags and omit `--headless`. The **Add Hosts** step shows the required and actual counts. You can also open the wizard without `--node` and choose which hosts to add during installation.
 
 <BypassPreflights />
 

@@ -87,6 +87,8 @@ Because Embedded Cluster v3 removes KOTS, you must include the [Replicated SDK](
 
 Continue to configure status informers in the Replicated Application custom resource. Embedded Cluster v3 passes them to the SDK. For more information, see [Enable and understand application status](/vendor/insights-app-status).
 
+Uploading a support bundle to the Vendor Portal from the [admin console](/embedded-cluster/v3/embedded-persistent-console) also requires the SDK. Without it, customers can still generate a bundle and download it, but the upload fails.
+
 ### Application preflight specs must use v1beta3 {#preflight-specs-must-use-v1beta3}
 
 Application preflight checks must use API version `troubleshoot.sh/v1beta3`. Embedded Cluster v3 does not support `v1beta2` application preflight specs.
@@ -96,7 +98,7 @@ In v3, you can package preflight specs inside your Helm charts or as a release-l
 v1beta3 supports this model because it treats the spec as Helm template YAML rather than a static Kubernetes resource.
 
 :::note
-**You do not need to update host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to work with `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
+**You do not need to change the API version of host preflight, support bundle, or Redactor specs.** The `v1beta3` requirement applies only to the Preflight custom resource. HostPreflight, SupportBundle, and Redactor specs continue to use `v1beta2` in Embedded Cluster v3. There is no `v1beta3` version of the HostPreflight custom resource. Embedded Cluster v3 applies a SupportBundle spec only when it is packaged in a Helm chart Secret labeled `troubleshoot.sh/kind: support-bundle`. See [Add a custom support bundle spec](embedded-using#support-bundle-spec). For more information about host preflight checks, see [Embedded Cluster host preflight checks](embedded-overview#about-host-preflight-checks). For more information about where redactors live in v3, see [Add custom redactors](embedded-using#redactors).
 :::
 
 **Key differences from v1beta2 for application preflight specs:**
@@ -122,6 +124,12 @@ HelmChart v1 (`kots.io/v1beta1`) is a deprecated format from KOTS versions earli
 
 If your releases still use HelmChart v1, move to HelmChart v2 on Embedded Cluster v2 before you upgrade any customer to Embedded Cluster v3. For more information, see [Migrate existing installations to HelmChart v2](/vendor/helm-v2-migrate).
 
+### Default application namespace {#app-namespace}
+
+Embedded Cluster v2 installed application charts in the `kotsadm` namespace by default. For new Embedded Cluster v3 installations, the default namespace is your application slug. Installations upgraded from Embedded Cluster v2 keep `kotsadm` as the default, so the application stays in the same namespace after the upgrade.
+
+Charts that set `namespace` in their HelmChart custom resource install in that namespace on every installation. If your charts refer to the `kotsadm` namespace by name, use `.Release.Namespace` instead so that they work in both new and upgraded installations.
+
 ### Helm extension charts must be bundled in the release {#extension-charts}
 
 In Embedded Cluster v2, Helm extensions defined under `extensions.helm.charts` were pulled at install time from an HTTP Helm repository or an OCI registry, based on the `chartname` and `version` fields (and any repositories listed under `extensions.helm.repositories`).
@@ -133,6 +141,8 @@ As a result, upgrading a repo-sourced or OCI-sourced v2 extension is not only a 
 ### Automatic authentication to the Replicated proxy registry
 
 If your application uses the Replicated proxy registry, Embedded Cluster v3 configures the cluster to automatically authenticate to the proxy registry for all pods. This means that it's no longer necessary to manually inject a Replicated pull secret using the ImagePullSecretName template function.
+
+Releases that still use ImagePullSecretName continue to work. Embedded Cluster v3 supports the function and creates the pull secret it names in your application's namespaces. If the same release also installs with Embedded Cluster v2 or KOTS, keep it.
 
 ### Templates read only the config items in the current release
 
@@ -202,7 +212,7 @@ To update a release from Embedded Cluster v2 to v3:
 
     <DependencyYaml/>
 
-1. If you use the Replicated proxy registry, update your release to remove the ImagePullSecretName template function from your HelmChart `values` key. Embedded Cluster v3 configures the cluster to automatically authenticate to the proxy registry for all pods, so you don't need to manually inject a pull secret. See the _Embedded Cluster v3_ steps in [Configure your application to use the proxy registry](/vendor/private-images-kots#configure-v3).
+1. (Optional) If you use the Replicated proxy registry and the release installs only with Embedded Cluster v3, you can remove the ImagePullSecretName template function from your HelmChart `values` key. Embedded Cluster v3 configures the cluster to automatically authenticate to the proxy registry for all pods, so you don't need to manually inject a pull secret. Releases that keep the function continue to work. See the _Embedded Cluster v3_ steps in [Configure your application to use the proxy registry](/vendor/private-images-kots#configure-v3).
 
 1. If you support air gap installations on Embedded Cluster versions earlier than 3.16.0-beta.1, update your image references to use the Embedded Cluster ReplicatedImageName and ReplicatedImageRegistry template functions. This ensures that image references resolve correctly in both online and air gap installations. See [Add support for air gap installations](embedded-using#local-image-registry).
 
@@ -216,7 +226,7 @@ To update a release from Embedded Cluster v2 to v3:
    - Preflight specs can remain in your Helm chart's `templates/` directory, wrapped in a Secret or ConfigMap labeled `troubleshoot.sh/kind: preflight` with the spec under the `preflight.yaml` key. Change the API version of the Preflight spec inside the wrapper to `troubleshoot.sh/v1beta3`, because Embedded Cluster skips a wrapped spec that still uses `v1beta2`. Chart-packaged specs require Embedded Cluster 3.18.0-beta.1 or later.
    - If you use a release-level spec instead, keep it as a plain `troubleshoot.sh/v1beta3 Preflight` resource.
    - Replace any `repl{{ }}` Replicated template syntax with Helm template syntax. For example, use `{{ .Values.image.tag }}` instead of `repl{{ ConfigOption "image_tag" }}`.
-   - You do not need to update the API version of support bundle or Redactor specs. They continue to work with `v1beta2` in Embedded Cluster v3.
+   - You do not need to update the API version of support bundle or Redactor specs. They continue to use `v1beta2` in Embedded Cluster v3.
 
    <V1beta3Recommendation/>
 

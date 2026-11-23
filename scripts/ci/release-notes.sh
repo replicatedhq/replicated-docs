@@ -7,6 +7,12 @@ set -euo pipefail
 
 generator_ref="024477937d8136f703ebc343777325ece1307ec0"
 base_version="${PREV_VERSION:-}"
+
+# VERSION is written into an MDX attribute on the generated heading.
+if [[ ! "$VERSION" =~ ^[vV]?[0-9][0-9A-Za-z.+-]*$ ]]; then
+  echo "Unsupported release tag format" >&2
+  exit 1
+fi
 printf 'CUSTOM_PARAMS: %s\n' "${CUSTOM_PARAMS:-}"
 description=""
 feature_labels="type::feature"
@@ -179,11 +185,16 @@ case "$version_table" in
     ;;
 esac
 
-awk -v insert_file="$insert_file" '
+awk -v insert_file="$insert_file" -v title="## $title" -v version="$VERSION" '
   { print }
   !inserted && /RELEASE_NOTES_PLACEHOLDER/ {
     while ((getline line < insert_file) > 0) {
-      print line
+      if (!tagged && line == title) {
+        printf "%s<span data-release-version=\"%s\" />\n", line, version
+        tagged=1
+      } else {
+        print line
+      }
     }
     close(insert_file)
     inserted=1
@@ -192,11 +203,16 @@ awk -v insert_file="$insert_file" '
     if (!inserted) {
       exit 42
     }
+    if (!tagged) {
+      exit 43
+    }
   }
 ' "$target_file" > "$tmp_dir/updated.md" || {
   status=$?
   if [[ "$status" == "42" ]]; then
     echo "Release-notes placeholder not found in $target_file" >&2
+  elif [[ "$status" == "43" ]]; then
+    echo "Generated release heading not found for $VERSION" >&2
   fi
   exit "$status"
 }

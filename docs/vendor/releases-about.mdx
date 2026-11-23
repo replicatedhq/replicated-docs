@@ -41,7 +41,7 @@ The following shows the **Channel Settings** dialog, accessed by clicking the se
 
 The following describes each of the channel settings:
 
-* **Channel name**: The name of the channel. You can change the channel name at any time. Each channel also has a unique ID listed below the channel name.
+* **Channel name**: The name of the channel. Each channel also has a unique ID listed below the channel name, and a slug that Replicated generates from the name. The slug is part of Helm chart URLs and Embedded Cluster download URLs for the channel. Renaming a channel generates a new slug, so commands that customers saved with the old slug stop working. Existing Embedded Cluster and KOTS installations are not affected because they track the channel by ID. See [Edit channel settings](releases-creating-channels#edit-channel-settings) in _Create and Edit Channels_.
 * **Description**: Optionally, add a description of the channel.
 * **Set this channel to default**: When enabled, sets the channel as the default channel. The default channel cannot be archived.
 * **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, Replicated proxy registry, Replicated app service, or Replicated Download Portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.

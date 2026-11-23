@@ -9,6 +9,78 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.23-2<span data-release-version="v2026.11.23-2" />
+
+Released on November 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-23-2}
+* On the new Enterprise Portal a Helm install profile no longer gets pinned to Helm's default namespace when the server can't read the Helm components on your docs page, and `createNamespace="false"` now applies when the namespace comes from the install profile's saved value.
+## v2026.11.23-1<span data-release-version="v2026.11.23-1" />
+
+Released on November 23, 2026
+
+### Improvements {#improvements-v2026-11-23-1}
+* Security Center now consistently refers to vulnerability records as findings while retaining CVE-specific search, grouping, and identifier labels.
+## v2026.11.20-8<span data-release-version="v2026.11.20-8" />
+
+Released on November 20, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-20-8}
+* Improves Channels page load times for applications with thousands of channels.
+## v2026.11.20-7<span data-release-version="v2026.11.20-7" />
+
+Released on November 20, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-20-7}
+* Fixes a bug that caused "Identity mismatch: token identity does not match current license identity" error in KOTS Admin Console when updating a token rotated in Enterprise Portal.
+## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
+
+Released on November 20, 2026
+
+### Improvements {#improvements-v2026-11-20-5}
+* Vendors are asked to confirm before turning off a customer's Enterprise Portal access, and failed login attempts show why the login was refused.
+
+### Bug Fixes {#bug-fixes-v2026-11-20-5}
+* Enterprise Portal users whose access has been turned off are now told to contact their vendor, instead of being returned to the login page with no message.
+## v2026.11.18-1<span data-release-version="v2026.11.18-1" />
+
+Released on November 18, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-18-1}
+* Fixed shifted header labels in Vendor Portal customer CSV exports.
+## v2026.11.17-4<span data-release-version="v2026.11.17-4" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-4}
+* Fixed the Vendor Portal Channel Settings banner showing air-gap settings for teams without the air-gap entitlement.
+## v2026.11.17-3<span data-release-version="v2026.11.17-3" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-3}
+* The Download Portal now shows upgrade instructions for existing installations when a release uses Embedded Cluster v3.
+
+## v2026.11.17-2<span data-release-version="v2026.11.17-2" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-2}
+* Fixed release images list to exclude invalid templated image names that are already excluded from air gap bundles and image pulls.
+
+## v2026.11.17-1<span data-release-version="v2026.11.17-1" />
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-1}
+* The Download Portal's release version dropdown can now load releases older than the 20 most recent versions.
+* Older release versions loaded from the Download Portal and Enterprise Portal release list now link to the correct kURL air gap bundle for that version.
+## v2026.11.17-0
+
+Released on November 17, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-17-0}
+* When enabling automatic air gap builds for a channel, you can now also build its current release.
 ## v2026.11.13-1
 
 Released on November 13, 2026

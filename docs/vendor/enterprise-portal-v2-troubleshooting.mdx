@@ -95,6 +95,7 @@ The preview command's example path is a placeholder. If you see `content path do
 - Check the **Email History** on the customer's EP access tab for delivery status
 - Verify the customer's email domain is not blocked by **Domain Restrictions** (if enabled)
 - Check spam/junk folders. If using a custom email sender domain, confirm DKIM and Return-Path DNS records are verified
+- Enterprise Portal emails are sent through Postmark. If the customer's mail filter blocks unknown senders, ask their IT team to allow Postmark's outbound transactional IP ranges. For the current list, see [IPs for Firewalls](https://postmarkapp.com/support/article/800-ips-for-firewalls) in the Postmark documentation
 - If the customer has a pending invite and goes to the login page, they will be prompted to enter their invite code directly
 
 ## Self-service signup not working

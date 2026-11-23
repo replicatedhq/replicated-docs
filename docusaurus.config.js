@@ -29,6 +29,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
+          beforeDefaultRemarkPlugins: [require('./scripts/remark/release-version')],
           breadcrumbs: true,
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
@@ -289,19 +290,6 @@ const config = {
               {
                 label: 'Replicated Onboarding',
                 to: 'vendor/replicated-onboarding',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Discourse',
-                href: 'https://community.replicated.com',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/replicatedhq',
               },
             ],
           },

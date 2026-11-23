@@ -43,5 +43,3 @@ If the `builder` key was not configured, then the Vendor Portal uses the default
 ### Solution
 
 Configure the `builder` key so that the ouput of `helm template` exposes all the images that might be required for users to install the chart in an air-gapped environment. For more information about how to configure the `builder` key, see [builder](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
-
-For more information about why the `builder` key is required to support air gap installations with Helm, see [Why you should create `HelmChart` resources for your Helm-only releases](https://community.replicated.com/t/why-you-should-create-helmchart-resources-for-your-helm-only-releases/1539) in the Replicated Community site.

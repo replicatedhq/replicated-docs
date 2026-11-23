@@ -10,6 +10,8 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
 
 ## Flags
 
+To check a host without starting installation, use `install run-preflights`. For more information about supported settings and output formats, see [Run host preflight checks without installing](embedded-host-preflights).
+
 <table>
   <tr>
     <th width="30%">Flag</th>
@@ -39,7 +41,7 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
   <tr>
     <td>`--data-dir`</td>
     <td>string</td>
-    <td>Data directory for Embedded Cluster. **Default:** `/data-dir` (confirm with `install --help` for your binary).</td>
+    <td>Parent directory for Embedded Cluster data. Embedded Cluster stores its data in a subdirectory named for the application slug. For example, `--data-dir /mnt/data` stores data in `/mnt/data/APP_SLUG`. **Default:** `/var/lib`, so data is stored in `/var/lib/APP_SLUG`. You can also set the default with the `EC_DATA_DIR` environment variable.</td>
   </tr>
   <tr>
     <td>`--headless`</td>
@@ -95,6 +97,11 @@ sudo ./<app-slug> install --license <path-to-license> [flags]
     <td>`--no-proxy`</td>
     <td>string</td>
     <td>Comma-separated list of hosts that should not use the proxy.</td>
+  </tr>
+  <tr>
+    <td>`--node`</td>
+    <td>JSON string (repeatable)</td>
+    <td>Expected host group, for example `{"count":3,"roles":["controller"]}`. Repeat the flag for each role combination. Counts include the installation node. The installer waits for the requested topology before application preflights and deployment. See [Install a multi-node or HA cluster headlessly](installing-embedded#headless-multi-node).</td>
   </tr>
   <tr>
     <td>`--registry`</td>
