@@ -2,11 +2,17 @@ Ubuntu 26.04 kernels starting with `7.0.0-42-generic`, and also `7.0.0-1017-aws`
 
 Applications that rely on these signals can stop responding or fail to shut down. For example, PostgreSQL pods can hang until the database reaches its connection limit. The kernel log on the host shows `apparmor="DENIED" operation="signal"` entries with a `peer` that ends in `//&unconfined`.
 
-When `kernel.apparmor_restrict_unprivileged_unconfined` is `1`, which is the Ubuntu default, these kernels add a stacked AppArmor label (`//&unconfined`) to container processes. The default containerd profile does not allow signals to processes with the stacked label. containerd has merged a fix to the profile, and it is not yet in a containerd release. For more information about the containerd profile fix and the kernel change, see [containerd issue #14485](https://github.com/containerd/containerd/issues/14485) in the _containerd_ repository and [bug #2172640](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2172640) in _Launchpad_.
+When `kernel.apparmor_restrict_unprivileged_unconfined` is `1`, which is the Ubuntu 26.04 default, these kernels add a stacked AppArmor label (`//&unconfined`) to container processes. The default containerd profile does not allow signals to processes with the stacked label. containerd has merged a fix to the profile, and it is not yet in a containerd release. For more information about the containerd profile fix and the kernel change, see [containerd issue #14485](https://github.com/containerd/containerd/issues/14485) in the _containerd_ repository and [bug #2172640](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2172640) in _Launchpad_.
+
+Ubuntu 24.04 can also run these kernels, for example the `linux-generic-hwe-24.04` kernel `7.0.0-43-generic` and `7.0.0-1018-aws`. Ubuntu 24.04 sets `kernel.apparmor_restrict_unprivileged_unconfined` to `0` by default, so these hosts are not affected unless something sets it to `1`. To check the setting on a host, run:
+
+```bash
+sysctl kernel.apparmor_restrict_unprivileged_unconfined
+```
 
 The fix reaches Embedded Cluster as follows:
 
 * **Kubernetes 1.36 and later:** These versions use containerd 2.3. A future Embedded Cluster release will include the fix after it is available in containerd.
-* **Kubernetes 1.35 and earlier:** These versions use containerd 1.7, which is end of life upstream and will not receive the fix. Use Ubuntu 24.04 hosts with these versions.
+* **Kubernetes 1.35 and earlier:** These versions use containerd 1.7, which is end of life upstream and will not receive the fix. Use Ubuntu 24.04 hosts where this setting is `0` with these versions.
 
-Until a release with the fix is available, use Ubuntu 24.04 hosts, or keep Ubuntu 26.04 hosts on an earlier kernel, such as `7.0.0-38-generic`.
+Until a release with the fix is available, use Ubuntu 24.04 hosts where this setting is `0`, or keep Ubuntu 26.04 hosts on an earlier kernel, such as `7.0.0-38-generic`.
