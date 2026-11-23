@@ -290,12 +290,12 @@ An error after conversion starts with:
 Error: the installation has been converted to v3; fix the error and run upgrade again to finish:
 ```
 
-In this case, do not assume that the v2 Admin Console is available or that conversion can be undone.
+In this case, do not assume that the v2 Admin Console is available or that conversion can be undone. If the output includes `Upgrade from v2 to v3 completed successfully.` before the error, the installation is already on v3.
 
 If conversion started but didn't finish, the error includes:
 
 ```text
-Error: v2 to v3 conversion has started and may be incomplete; fix the error and run upgrade again to finish:
+v2 to v3 conversion has started and may be incomplete; fix the error and run upgrade again to finish:
 ```
 
 #### Cause
