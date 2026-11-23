@@ -9,6 +9,13 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
+
+Released on November 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-23-7}
+* Webhook delivery errors for Vendor Portal notifications and Enterprise Portal v2 customer release webhooks now show only the endpoint's origin (for example, `https://hooks.example.com`) instead of the full webhook URL. This keeps tokens in the URL path or query string out of error messages and delivery history.
+* Failure emails for Vendor Portal notification webhooks now describe the final delivery attempt instead of the one before it. When the endpoint returns an error response, the email includes the HTTP status code.
 ## v2026.11.23-2<span data-release-version="v2026.11.23-2" />
 
 Released on November 23, 2026
