@@ -4,7 +4,7 @@ Applications that rely on these signals can stop responding or fail to shut down
 
 When `kernel.apparmor_restrict_unprivileged_unconfined` is `1`, which is the Ubuntu 26.04 default, these kernels add a stacked AppArmor label (`//&unconfined`) to container processes. The default containerd profile does not allow signals to processes with the stacked label. containerd has merged a fix to the profile, and it is not yet in a containerd release. For more information about the containerd profile fix and the kernel change, see [containerd issue #14485](https://github.com/containerd/containerd/issues/14485) in the _containerd_ repository and [bug #2172640](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2172640) in _Launchpad_.
 
-Ubuntu 24.04 can also run these kernels, for example the `linux-generic-hwe-24.04` kernel `7.0.0-43-generic` and `7.0.0-1018-aws`. Ubuntu 24.04 sets `kernel.apparmor_restrict_unprivileged_unconfined` to `0` by default, so these hosts are not affected unless something sets it to `1`. To check the setting on a host, run:
+Ubuntu 24.04 can also run these kernels through the HWE kernel (`linux-generic-hwe-24.04`) and the AWS kernel (`linux-aws`). Ubuntu 24.04 sets `kernel.apparmor_restrict_unprivileged_unconfined` to `0` by default, so these hosts are not affected unless the setting is changed to `1`. Upgrading a 24.04 host to 26.04 applies the 26.04 default of `1`. To check the setting on a host, run:
 
 ```bash
 sysctl kernel.apparmor_restrict_unprivileged_unconfined
