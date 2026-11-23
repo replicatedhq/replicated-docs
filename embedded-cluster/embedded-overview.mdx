@@ -128,32 +128,6 @@ If your spec fails to parse, Embedded Cluster does not stop the installation. It
 
 Embedded Cluster processes your HostPreflight as a template before it runs the checks. If your spec uses Troubleshoot template expressions, such as `{{ .Name }}` in an analyzer message, escape them so that they reach Troubleshoot unchanged. For example, write `{{ .Name }}` as `{{ "{{ .Name }}" }}`.
 
-#### Example: Warn about security tools on the host {#security-tools-example}
-
-Antivirus and endpoint security tools can interfere with the Kubernetes components on the host. For more information, see [Security tools on the host](installing-embedded-requirements#security-agents).
-
-Replicated maintains an example spec, [security-tools-preflights.yaml](https://github.com/replicatedhq/troubleshoot-specs/blob/main/host/security-tools-preflights.yaml), that warns when common security tools are running or their packages are installed. To use it, copy its collectors and analyzers into your HostPreflight resource. The tools it checks for are examples and can change. Edit the lists to match the tools your customers use.
-
-When you copy the spec, make these changes:
-
-* Escape the Troubleshoot template expressions in the package check:
-
-    ```yaml
-    - systemPackages:
-        checkName: Detected Security Packages
-        collectorName: security-tools-packages
-        outcomes:
-          - warn:
-              when: '{{ "{{ .IsInstalled }}" }}'
-              message: Package {{ "{{ .Name }}" }} is installed. This tool can interfere with Kubernetes operation. Ensure the tool is either disabled or configured to not interfere with Kubernetes operation.
-          - pass:
-              message: Package {{ "{{ .Name }}" }} is not installed
-    ```
-
-* Edit the warning message for the running-process check. It tells users to look in a preflight archive, but Embedded Cluster doesn't keep one. For example, tell users to run `ps -ef` and look for the security tools listed in the warning.
-
-These checks warn and don't stop the installation. Headless installations print host preflight results only when a check fails, so users don't see these warnings. To see them, users can run `install run-preflights` before installing. See [Run host preflight checks without installing](embedded-host-preflights).
-
 For more information about writing collectors and analyzers, see [Host Collectors](https://troubleshoot.sh/docs/collect/host-collectors/) and [Host Analyzers](https://troubleshoot.sh/docs/analyze/host-analyzers/) in the Troubleshoot documentation.
 
 ### Limitations
