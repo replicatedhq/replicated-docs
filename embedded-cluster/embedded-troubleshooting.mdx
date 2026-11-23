@@ -287,6 +287,9 @@ Error: the installation has been converted to v3; fix the error and run upgrade 
 
 In this case, do not assume that the v2 Admin Console is available or that conversion can be undone.
 
+If conversion started but didn't finish, the error includes:
+
+
 #### Cause
 
 Before conversion, the command checks upgrade inputs, the license, release compatibility, required bundles, and host requirements on the primary controller. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
@@ -297,6 +300,6 @@ Failures can still occur during conversion or later upgrade steps. In that case,
 
 Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If it reports that an upgrade is already in progress, confirm that the previous attempt is no longer running. Then follow the error's instructions to retry with `--force`.
 
-If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. Neither **Continue Anyway** nor `--ignore-host-preflights` bypasses this failure. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
+If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. This check can't be bypassed, including with `--ignore-host-preflights`. Check every node before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
 
 If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
