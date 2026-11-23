@@ -40,28 +40,21 @@ spec:
   extensions:
     helmCharts:
       - chart:
-          name: ingress-nginx
-          chartVersion: "4.11.3"
-        releaseName: ingress-nginx
-        namespace: ingress-nginx
+          name: traefik
+          chartVersion: "42.4.2"
+        releaseName: traefik
+        namespace: traefik
         values:
-          controller:
-            service:
+          image:
+            registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
+          service:
+            spec:
               type: NodePort
-              nodePorts:
-                http: "80"
-                https: "443"
-            image:
-              repository: 'repl{{ ReplicatedImageName "registry.k8s.io/ingress-nginx/controller" }}'
-              tag: 'repl{{ HelmValue ".Values.controller.image.tag" }}'
-              digest: ""
-              digestChroot: ""
-            admissionWebhooks:
-              patch:
-                image:
-                  repository: 'repl{{ ReplicatedImageName "registry.k8s.io/ingress-nginx/kube-webhook-certgen" }}'
-                  tag: 'repl{{ HelmValue ".Values.controller.admissionWebhooks.patch.image.tag" }}'
-                  digest: ""
+          ports:
+            web:
+              nodePort: 80
+            websecure:
+              nodePort: 443
       - chart:
           name: goldpinger
           chartVersion: "6.1.2"
@@ -217,8 +210,6 @@ Each extension chart is installed with `helm upgrade --install --wait --wait-for
 
 * You must provide `chart.chartVersion`. Omitting it can cause upgrade issues.
 
-* For air gap bundles, images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. For an example of how to set digests to empty strings and pull by tag only, see the `ingress-nginx` [Example](embedded-config#extension-example).
-
 #### Example {#extension-example}
 
 ```yaml
@@ -228,20 +219,19 @@ spec:
   extensions:
     helmCharts:
       - chart:
-          name: ingress-nginx
-          chartVersion: "4.11.3"
-        releaseName: ingress-nginx
-        namespace: ingress-nginx
+          name: traefik
+          chartVersion: "42.4.2"
+        releaseName: traefik
+        namespace: traefik
         values:
-          controller:
-            service:
+          service:
+            spec:
               type: NodePort
-              nodePorts:
-                http: "80"
-                https: "443"
-            image:
-              digest: ""
-              digestChroot: ""
+          ports:
+            web:
+              nodePort: 80
+            websecure:
+              nodePort: 443
 ```
 
 ## unsupportedOverrides

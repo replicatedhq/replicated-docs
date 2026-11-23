@@ -112,12 +112,12 @@ To support air gap installations with Embedded Cluster v3:
       extensions:
         helmCharts:
           - chart:
-              name: ingress-nginx
-              chartVersion: "4.11.3"
-            releaseName: ingress-nginx
-            namespace: ingress-nginx
+              name: ingress
+              chartVersion: "1.2.3"
+            releaseName: ingress
+            namespace: ingress
             builder:
-              defaultBackend:
+              metrics:
                 enabled: true
     ```
 
@@ -141,7 +141,7 @@ To support air gap installations with Embedded Cluster v3:
               chartVersion: "1.2.3"
             releaseName: ingress
             namespace: ingress
-            values: |
+            values:
               controller:
                 image:
                   registry: 'repl{{ ReplicatedImageRegistry (HelmValue ".controller.image.registry") }}'
@@ -159,14 +159,13 @@ To support air gap installations with Embedded Cluster v3:
       extensions:
         helmCharts:
           - chart:
-              name: ingress-nginx
-              chartVersion: "4.11.3"
-            releaseName: ingress-nginx
-            namespace: ingress-nginx
-            values: |
-              controller:
-                image:
-                  registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+              name: traefik
+              chartVersion: "42.4.2"
+            releaseName: traefik
+            namespace: traefik
+            values:
+              image:
+                registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
     ```
     The template functions add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
     </details>
