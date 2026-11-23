@@ -56,7 +56,7 @@ To install KOTS in an existing cluster, your environment must meet the following
     * **1GB for rqlite PersistentVolume**: The Admin Console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
 
 * **Supported operating systems**: The following are the supported operating systems for nodes:
-  * Linux AMD64
+  * Linux AMD64. KOTS 1.104.4 and later require a CPU that supports the x86-64-v2 instruction set. If a node is a virtual machine, the hypervisor must expose the host CPU features to the guest.
   * Linux ARM64
 
 * **Available StorageClass**: The cluster must have an existing StorageClass available. KOTS creates the required stateful components using the default StorageClass in the cluster. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.  
