@@ -25,7 +25,7 @@ Before starting installation, you can [run standalone host preflight checks](emb
 
 ## cgroup v2 {#cgroup-v2}
 
-Embedded Cluster v3 runs Kubernetes 1.35 or later, which requires cgroup v2 and a Linux kernel of 4.5 or later. The host preflight checks fail on a host that uses cgroup v1.
+Embedded Cluster v3 runs Kubernetes 1.35 or later, which requires cgroup v2 and a Linux kernel of 4.5 or later. The host preflight checks fail on a host that uses cgroup v1. Starting in Embedded Cluster 3.21.0, this check can't be bypassed, including with `--ignore-host-preflights`. This applies to installs, joins, and upgrades.
 
 Most current distributions use cgroup v2 by default, including RHEL 9 and later, Ubuntu 22.04 and later, and Debian 12 and later. RHEL 8 and other Enterprise Linux 8 distributions, such as Rocky Linux 8, AlmaLinux 8, and Oracle Linux 8, use cgroup v1 by default. You can switch these hosts to cgroup v2. Ubuntu 20.04 also uses cgroup v1 by default and has reached the end of standard support, so move those hosts to Ubuntu 22.04 or later. Hosts with a kernel older than 4.5, such as RHEL 7, can't use cgroup v2.
 
