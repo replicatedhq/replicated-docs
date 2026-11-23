@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 23, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-23-2}
-* Enterprise Portal v2: a Helm install profile no longer gets pinned to Helm's default namespace when the server can't read the Helm components on your docs page, and `createNamespace="false"` now applies when the namespace comes from the install profile's saved value.
+* On the new Enterprise Portal a Helm install profile no longer gets pinned to Helm's default namespace when the server can't read the Helm components on your docs page, and `createNamespace="false"` now applies when the namespace comes from the install profile's saved value.
 ## v2026.11.23-1<span data-release-version="v2026.11.23-1" />
 
 Released on November 23, 2026
