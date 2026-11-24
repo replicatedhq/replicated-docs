@@ -8,11 +8,14 @@ This topic describes how to set minimum and target version for Replicated KOTS i
 
 ## Limitation
 
-Setting minimum and target versions for KOTS is not supported for installations with [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview).
+Each version of Embedded Cluster v2 includes a particular version of KOTS. If a release sets `minKotsVersion` to a version later than the KOTS version included in the release's version of Embedded Cluster v2, Embedded Cluster v2 installations fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed.`.
 
-This is because each version of Embedded Cluster includes a particular version of KOTS. Setting `targetKotsVersion` or `minKotsVersion` to a version of KOTS that does not coincide with the version that is included in the specified version of Embedded Cluster will cause Embedded Cluster installations to fail with an error message like: `Error: This version of App Name requires a different version of KOTS from what you currently have installed.`.
+To avoid installation failures in releases that support Embedded Cluster v2:
 
-To avoid installation failures, do not use `targetKotsVersion` or `minKotsVersion` in releases that support installation with Embedded Cluster.
+* Set `minKotsVersion` no later than the KOTS version included in the release's version of Embedded Cluster v2. To find the KOTS version included in each version, see [Embedded Cluster v2 release notes](/release-notes/rn-embedded-cluster).
+* Don't use `targetKotsVersion`.
+
+Embedded Cluster v3 doesn't include KOTS and ignores `minKotsVersion`.
 
 ## Using minimum KOTS versions
 

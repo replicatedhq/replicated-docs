@@ -464,7 +464,7 @@ For KOTS existing cluster installations, `minKotsVersion` sets the minimum KOTS 
 
 * The `minKotsVersion` property doesn't support Go templating.
 * Supported for KOTS existing cluster installations, and for kURL installations with the limitation described below.
-* Embedded Cluster doesn't support the `minKotsVersion` property because each version of Embedded Cluster includes a particular version of KOTS. Specifying a KOTS version that does not match the version included in the given Embedded Cluster version causes Embedded Cluster installations to fail. Do not use `minKotsVersion` in releases that support installation with Embedded Cluster. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
+* Each version of Embedded Cluster v2 includes a particular version of KOTS. In releases that support Embedded Cluster v2, set `minKotsVersion` no later than the KOTS version included in the release's version of Embedded Cluster v2, or Embedded Cluster v2 installations fail. Embedded Cluster v3 ignores `minKotsVersion`. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 * For installations into a cluster created by Replicated kURL, the version of the KOTS add-on specified in the Installer custom resource must not be earlier than `minKotsVersion`. If the KOTS add-on version is earlier than `minKotsVersion`, the installation or update is blocked until KOTS is upgraded. For more information, see [Setting Minimum and Target Versions for KOTS](/vendor/packaging-kots-versions).
 
 #### Example
