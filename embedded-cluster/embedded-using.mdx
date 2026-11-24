@@ -488,8 +488,6 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
 
-* Embedded Cluster loads images for Helm extensions directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to configure `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
-
 * On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
 
 ## Add Helm chart extensions {#add-extensions}

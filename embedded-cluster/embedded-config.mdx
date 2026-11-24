@@ -224,6 +224,8 @@ spec:
         releaseName: traefik
         namespace: traefik
         values:
+          image:
+            registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
           service:
             spec:
               type: NodePort
