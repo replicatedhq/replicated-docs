@@ -24,6 +24,14 @@ Velero is used to provide backup and restore functionality for the Replicated sn
 <VeleroCompatibility/>
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.134.5<span data-release-version="v1.134.5" />
+
+Released on November 24, 2026
+
+Support for Kubernetes: 1.35, 1.36, and 1.37
+
+### Bug Fixes {#bug-fixes-1-134-5}
+* Fixes an issue where draining the kotsadm pod during a Helm chart deploy left the release in `pending-upgrade`, causing later deploys to fail until the release was rolled back manually.
 ## 1.134.4<span data-release-version="v1.134.4" />
 
 Released on November 21, 2026
