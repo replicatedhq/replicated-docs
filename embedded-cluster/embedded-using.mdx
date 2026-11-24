@@ -167,8 +167,8 @@ spec:
     - nodeResources:
         checkName: GPU Nodes Available
         filters:
-          allocatable:
-            nvidia.com/gpu: "1"
+          resourceName: nvidia.com/gpu
+          resourceAllocatable: "1"
         outcomes:
           - fail:
               when: "count() < 1"
