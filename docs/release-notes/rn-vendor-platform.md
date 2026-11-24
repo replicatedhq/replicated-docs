@@ -14,7 +14,7 @@ This topic contains release notes for the Replicated Vendor Platform, which incl
 Released on November 24, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-24-2}
-* Single sign-on users now get an email sign-in link, and the generic login page no longer lists portals. Vendors can customize the "Single Sign-On Link" email.
+* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page. Vendors can customize the new "Single Sign-On Link" email template.
 ## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
 
 Released on November 23, 2026
