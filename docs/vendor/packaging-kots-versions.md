@@ -24,7 +24,7 @@ The `minKotsVersion` attribute in the Application custom resource defines the mi
 Including this attribute enforces compatibility checks for both new installations and application updates. An installation or update is blocked if the KOTS version that runs it is earlier than the specified minimum KOTS version:
 
 * **KOTS in an existing cluster and kURL**: the check uses the currently deployed KOTS version. Users must upgrade to at least the specified minimum version of KOTS before they can install or update the application.
-* **Embedded Cluster v2**: the check uses the KOTS version included in the release's version of Embedded Cluster v2, for both new installations and updates, not the KOTS version currently deployed. See [Limitation](#limitation).
+* **Embedded Cluster v2**: the check uses the KOTS version included in the new release's version of Embedded Cluster v2, for both new installations and updates, not the KOTS version currently deployed. See [Limitation](#limitation).
 
 ### How the Admin Console handles minKotsVersion
 
