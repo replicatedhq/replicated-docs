@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.24-3<span data-release-version="v2026.11.24-3" />
+
+Released on November 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-24-3}
+* The "Manage this customer in Enterprise Portal" setting now also controls sign-in to the new Enterprise Portal. Customers with it turned off, including customers where it was never turned on, can no longer sign in, and users already signed in are signed out of the portal. Teams that use only the new Enterprise Portal and have no Download Portal are not affected. Service account tokens are not affected.
 ## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
 
 Released on November 23, 2026
