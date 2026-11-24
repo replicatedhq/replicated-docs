@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.24-2<span data-release-version="v2026.11.24-2" />
+
+Released on November 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-24-2}
+* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page. Vendors can customize the new "Single Sign-On Link" email template.
 ## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
 
 Released on November 23, 2026
