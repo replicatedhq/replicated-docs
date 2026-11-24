@@ -15,6 +15,12 @@ Released on November 24, 2026
 
 ### Bug Fixes {#bug-fixes-v2026-11-24-3}
 * The new Enterprise Portal now respects the "Manage this customer in Enterprise Portal" setting. If the setting is off for a customer, including customers where it was never turned on, that customer's users can't sign in and are signed out of any open sessions. This doesn't affect teams without a Download Portal or service account tokens.
+## v2026.11.24-2<span data-release-version="v2026.11.24-2" />
+
+Released on November 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-24-2}
+* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page. Vendors can customize the new "Single Sign-On Link" email template.
 ## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
 
 Released on November 23, 2026
