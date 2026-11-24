@@ -15,7 +15,9 @@ To avoid installation failures in releases that support Embedded Cluster v2:
 * Set `minKotsVersion` no later than the KOTS version included in the release's version of Embedded Cluster v2. To find the KOTS version included in each version, see [Embedded Cluster v2 release notes](/release-notes/rn-embedded-cluster).
 * Don't use `targetKotsVersion`.
 
-Embedded Cluster v3 doesn't include KOTS and ignores `minKotsVersion`.
+For updates to existing Embedded Cluster v2 installations, KOTS checks `minKotsVersion` against the KOTS version included in the new release, not the version currently deployed.
+
+Embedded Cluster v3 doesn't include KOTS and ignores `minKotsVersion` and `targetKotsVersion`.
 
 ## Using minimum KOTS versions
 
