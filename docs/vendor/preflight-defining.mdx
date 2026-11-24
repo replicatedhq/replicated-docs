@@ -41,7 +41,7 @@ To add a preflight spec to a release for your application:
     stringData:
       # add a preflight.yaml key under stringData
       preflight.yaml: |
-        apiVersion: troubleshoot.sh/v1beta2
+        apiVersion: troubleshoot.sh/v1beta3
         kind: Preflight
         metadata:
           name: preflights
@@ -49,6 +49,8 @@ To add a preflight spec to a release for your application:
           collectors: []
           analyzers: []
     ```
+
+    The spec inside the Secret uses Helm template syntax, so it can read your chart values with `{{ .Values.* }}`. It can't use `repl{{ }}` Replicated template functions.
 
 1. Update `spec.collectors` and `spec.analyzers` with any collectors and analyzers that you want to use in the preflight checks for your application. For common examples, see [Examples of preflight specs](/vendor/preflight-examples).
 
@@ -69,6 +71,57 @@ To add a preflight spec to a release for your application:
    ```
 
 1. Add the chart archive to a new release. Promote the release to an internal development channel, and install the release in a development environment to test your changes.
+
+## (Optional) Document requirements with docString {#docstring}
+
+In a `v1beta3` spec, each analyzer can include a `docString` that describes the requirement and why it exists. Because the spec is a Helm template, the `docString` can include the same chart values that the check uses:
+
+```yaml
+analyzers:
+  - docString: |
+      Title: Kubernetes version
+      Requirement:
+        - Minimum: {{ .Values.preflight.kubernetes.minVersion }}
+      Older versions are missing APIs that the application uses.
+    clusterVersion:
+      checkName: Kubernetes version
+      outcomes:
+        - fail:
+            when: "< {{ .Values.preflight.kubernetes.minVersion }}"
+            message: Kubernetes {{ .Values.preflight.kubernetes.minVersion }} or later is required.
+        - pass:
+            message: Kubernetes version is supported.
+```
+
+You can generate a requirements document for your customers from these docStrings with the Troubleshoot `preflight docs` command. The command reads a Preflight spec file, not the Secret that contains the spec. Render your chart with `helm template`, save the value of the Secret's `preflight.yaml` key to a file, and then run:
+
+```bash
+kubectl preflight docs preflight-spec.yaml -o REQUIREMENTS.md
+```
+
+For more information about `docString` and `preflight docs`, see [v1beta3 authoring guide](https://troubleshoot.sh/docs/preflight/v1beta3-guide) in the Troubleshoot documentation.
+
+## Move an existing release to v1beta3 {#move-to-v1beta3}
+
+To move an existing release from a `v1beta2` to a `v1beta3` application preflight spec:
+
+1. In the Secret that contains your application preflight spec, change the Preflight `apiVersion` to `troubleshoot.sh/v1beta3`. Keep the Secret, its `troubleshoot.sh/kind: preflight` label, and the `preflight.yaml` key. Leave any HostPreflight spec on `v1beta2`.
+
+1. If the spec uses `repl{{ }}` Replicated template functions, replace them with Helm template syntax that reads your chart values. For license fields, use the `global.replicated.licenseFields` values instead of LicenseFieldValue. See [Check entitlements in a v1beta3 preflight spec](/vendor/licenses-referencing-fields#v1beta3).
+
+1. (Optional) Add a `docString` to each analyzer so that you can generate a requirements document from the spec. See [Document requirements with docString](#docstring).
+
+1. If the release supports Embedded Cluster v3, review any `postgres`, `mysql`, `redis`, or `http` collectors. Embedded Cluster v3 runs these collectors on the host rather than inside the cluster. See [Run connectivity checks inside the cluster](/embedded-cluster/v3/embedded-using#in-cluster-collectors) and [Include preflight images in air gap bundles](/embedded-cluster/v3/embedded-using#preflight-air-gap-images).
+
+1. Remove any `v1beta2` Preflight spec from the release, including any release-level spec. KOTS v1.129.4 and later and the Helm CLI run both specs, so checks appear twice.
+
+1. Make sure that each installation method runs the release with a version of KOTS that supports `v1beta3`:
+
+   * **Embedded Cluster v2**: Use Embedded Cluster 2.19.16 or later in the release. When customers update to the release from an earlier version of Embedded Cluster v2, the Admin Console runs the release's preflight checks with the version of KOTS included in the release.
+   * **kURL**: Use KOTS 1.134.0 or later in the KOTS add-on in the kURL installer for the release.
+   * **KOTS in an existing cluster**: Customers upgrade KOTS separately from your application. Set `minKotsVersion` to `1.134.0` in the Application custom resource. KOTS then blocks installations and updates of the release until the customer upgrades KOTS. If the release also supports Embedded Cluster v2, use Embedded Cluster v2 2.19.16 or later, which includes KOTS 1.134.0 or later. Embedded Cluster v3 ignores `minKotsVersion`. For more information, see [Set minimum and target versions for KOTS](/vendor/packaging-kots-versions).
+
+1. Promote the release to a development channel and test it with each installation method that your customers use.
 
 ## Use a credential in a preflight check {#credentials}
 
