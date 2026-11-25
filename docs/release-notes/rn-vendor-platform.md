@@ -19,8 +19,11 @@ Released on November 24, 2026
 
 Released on November 24, 2026
 
+### New Features {#new-features-v2026-11-24-2}
+* Adds the Single Sign-On Link email template for the new Enterprise Portal. Users whose organization signs in with SAML receive this email instead of a sign-in code. If you customize your Enterprise Portal emails, you can edit this template in **Enterprise Portal > Customer Emails**. See [Customize customer emails](/vendor/enterprise-portal-v2-emails#customize-email-templates).
+
 ### Bug Fixes {#bug-fixes-v2026-11-24-2}
-* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page. Vendors can customize the new "Single Sign-On Link" email template.
+* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page.
 ## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
 
 Released on November 23, 2026
@@ -55,6 +58,9 @@ Released on November 20, 2026
 ## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
 
 Released on November 20, 2026
+
+### New Features {#new-features-v2026-11-20-5}
+* Adds the Access Not Enabled email template for the new Enterprise Portal. Users whose Enterprise Portal access is turned off receive this email instead of a sign-in code. If you customize your Enterprise Portal emails, you can edit this template in **Enterprise Portal > Customer Emails**. See [Customize customer emails](/vendor/enterprise-portal-v2-emails#customize-email-templates).
 
 ### Improvements {#improvements-v2026-11-20-5}
 * Vendors are asked to confirm before turning off a customer's Enterprise Portal access, and failed login attempts show why the login was refused.
