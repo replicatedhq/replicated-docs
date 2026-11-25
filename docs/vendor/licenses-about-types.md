@@ -22,7 +22,7 @@ Community licenses function in the same way as the other types of licenses, with
 exceptions:
 
 * Community license users are not supported by the Replicated Support team.
-* Community licenses don't support air gap installations with Embedded Cluster, KOTS, or kURL. Helm CLI air gap installations are supported.
+* Community licenses don't support air gap installations with Embedded Cluster, KOTS, or kURL. You can still enable the **Helm CLI Air Gap Instructions** install option for a community license. This option only shows customers instructions for relocating the application images to their own registry, instead of pulling them from the Replicated registry during the Helm installation. For more information, see [Manage install types for a license](licenses-install-types).
 * Community licenses can't include an expiration date. To stop a community license from being used to install, update, or pull images, change its license type to Trial or Paid and set an expiration date.
 
 ## Community license Admin Console branding
