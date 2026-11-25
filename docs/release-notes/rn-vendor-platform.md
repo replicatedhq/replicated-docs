@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.25-2<span data-release-version="v2026.11.25-2" />
+
+Released on November 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-25-2}
+* Fixed Enterprise Portal Helm upgrade instructions so the values file step comes before the preflight steps that read it. In the update instructions API response, the create_values_file, install_preflight_plugin and run_preflight_checks steps change position and step_number; step names and commands are unchanged.
 ## v2026.11.24-3<span data-release-version="v2026.11.24-3" />
 
 Released on November 24, 2026
