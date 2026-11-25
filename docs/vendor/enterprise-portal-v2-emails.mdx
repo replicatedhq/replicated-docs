@@ -115,7 +115,7 @@ Only customers with Enterprise Portal access receive the notification email. The
 
 For more information, see [Notify Enterprise Portal users](/vendor/releases-creating-cli#notify-users).
 
-Customers can also receive `release.available` webhook events to start upgrade pipelines. For information about configuring endpoints and viewing delivery status, see [Manage customer release webhooks](/vendor/enterprise-portal-v2-webhooks).
+Customers can also receive `release.available` webhook events to start upgrade pipelines. Webhook events use a fixed JSON format so that customer automation can parse them reliably, which means customizing the **Version Update Available** email template doesn't change them. The event includes the version label and release notes from the release. For information about the event payload, configuring endpoints, and viewing delivery status, see [Manage customer release webhooks](/vendor/enterprise-portal-v2-webhooks).
 
 ## View email history {#email-history}
 
