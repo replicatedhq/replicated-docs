@@ -14,7 +14,7 @@ To move a community user to a paid or trial license, change the license type of 
 
 A license type change applies to every installation that uses the license. If several users install with the same community license, changing its type upgrades all of them. To upgrade users one at a time, create a separate customer with its own community license for each user.
 
-For applications installed with KOTS, community license users can also upload a license file for a different customer in the Replicated Admin Console. After the upload, the user can't change the license again in the Admin Console. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses in the Admin Console_.
+For applications installed with KOTS, community license users can also upload a license file for a different customer in the Replicated Admin Console. After the upload, the user can't change the license again in the Admin Console. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses in the Admin Console_. Embedded Cluster v3 installations can't change to a license for a different customer. For more information, see [Refresh the license](/embedded-cluster/v3/embedded-manage-nodes#refresh-license) in _Access and manage embedded clusters_.
 
 ## Limitations
 
@@ -27,7 +27,7 @@ exceptions:
 
 ## Community license Admin Console branding
 
-For applications installed with KOTS, the branding in the admin console for community users differs in the following ways:
+For applications installed with KOTS, the branding in the admin console for community users differs in the following ways. The Embedded Cluster v3 Admin Console doesn't show this branding. Its **License** page lists the license type.
 
 * The navigation bar shows a **Community Edition** label next to the application logo.
 
