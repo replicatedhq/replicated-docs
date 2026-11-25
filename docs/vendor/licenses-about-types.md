@@ -14,6 +14,8 @@ To move a community user to a paid or trial license, change the license type of 
 
 A license type change applies to every installation that uses the license. If several users install with the same community license, changing its type upgrades all of them. To upgrade users one at a time, create a separate customer with its own community license for each user.
 
+Moving an installation to a license for a different customer requires a reinstall. For more information, see [Replace a license in an existing installation](/vendor/releases-creating-customer#replace-a-license-in-an-existing-installation) in _Create and manage customers_.
+
 ## Limitations
 
 Community licenses function in the same way as the other types of licenses, with the following
