@@ -33,19 +33,20 @@ If customers report that emails are going to spam or not arriving, check that th
 The Enterprise Portal sends several types of emails to your customers. You may want to customize these templates before they reach your customers:
 
 **Access & Authentication:**
-- **Invitation** - sent when you invite a user to the portal
-- **Temporary Login Link** - magic link for passwordless login
-- **Signup Verification** - verification code for self-service signup
-- **Invite Code** - sent when a user has a pending invite from the login page
+- **Temporary Login Link** - sent when a user requests a sign-in code from the login page
+- **User Invitation** - sent when you invite a user to the portal
+- **User Joined Team** - sent when a user accepts an invitation
+- **Access Not Enabled** - sent instead of a sign-in code when a user's Enterprise Portal access is turned off
+- **Single Sign-On Link** - sent instead of a sign-in code when the user's organization signs in with SAML. The email contains the link that starts single sign-on.
 
-**Self-Service Trials:**
-- **Trial Welcome** - sent when a customer signs up through self-service signup
-- **Trial Expiring** - sent when a trial license is approaching expiration
+**Trial Signup:**
+- **Trial Signup Verification** - verification code sent when a user signs up for a trial
+- **Trial Signup - Existing Customer** - sent when an existing customer tries to sign up for a trial
 
 For more information about enabling self-service trial signups, see [Self-Service Signup](/vendor/enterprise-portal-v2-self-serve-signup).
 
 **Update Notifications:**
-- **New Release Available** - sent when you promote a release with notifications enabled (see [Release notifications](#release-notifications) below)
+- **Version Update Available** - sent when you promote a release with notifications enabled (see [Release notifications](#release-notifications) below)
 
 ## Customize email templates {#customize-email-templates}
 
