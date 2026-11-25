@@ -6,15 +6,13 @@ This topic describes community licenses. For more information about other types 
 
 Community licenses are intended for use with a free or low cost version of your application. For example, you could use community licenses for an open source version of your application.
 
-Community licenses are supported for applications that are installed with Embedded Cluster, Replicated KOTS, or the Helm CLI.
+Community licenses are supported for applications that are installed with Embedded Cluster, Replicated KOTS, kURL, or the Helm CLI.
 
 ## Upgrade a community user to another license type {#upgrade}
 
 To move a community user to a paid or trial license, change the license type of their customer in the Vendor Portal. Installations pick up the new type the next time they sync the license, without a reinstall.
 
 A license type change applies to every installation that uses the license. If several users install with the same community license, changing its type upgrades all of them. To upgrade users one at a time, create a separate customer with its own community license for each user.
-
-For applications installed with KOTS, community license users can also upload a license file for a different customer in the Replicated Admin Console. After the upload, the user can't change the license again in the Admin Console. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses in the Admin Console_. Embedded Cluster v3 installations can't change to a license for a different customer. For more information, see [Refresh the license](/embedded-cluster/v3/embedded-manage-nodes#refresh-license) in _Access and manage embedded clusters_.
 
 ## Limitations
 
@@ -31,7 +29,7 @@ For applications installed with KOTS, the branding in the admin console for comm
 
 * The navigation bar shows a **Community Edition** label next to the application logo.
 
-* The **License** page shows a **Community Edition** label and a **Change license** button for uploading a license for a different customer.
+* The **License** page shows a **Community Edition** label.
 
 * The license tile on the admin console **Dashboard** page is highlighted in yellow and with the words **Community Edition**.
 
