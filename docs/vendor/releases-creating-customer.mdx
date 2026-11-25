@@ -102,7 +102,7 @@ When you archive a customer in the Vendor Portal, the customer is hidden from se
 
 Archiving is for removing a customer from your active customer list. It isn't a way to cut off the customer's access. Some requests that use an archived customer's license ID or service account tokens are rejected, such as logging in to the Replicated registry, but not all of them are.
 
-To stop a customer from installing, updating, or pulling images, set an expiration date in the **Expiration policy** field before you archive the customer. For what happens when a license expires, see [Default license expiration handling](/vendor/licenses-about#expiration) in _About customers and licensing_.
+To stop a customer from installing, updating, or pulling images, set an expiration date in the **Expiration policy** field before you archive the customer. For what happens when a license expires, see [Default license expiration handling](/vendor/licenses-about#expiration) in _About customers and licensing_. Community licenses can't include an expiration date. For how to stop a community license, see [Limitations](/vendor/licenses-about-types#limitations) in _About community licenses_.
 
 To archive a customer:
 
@@ -206,4 +206,6 @@ For more information about the data fields in the CSV downloads, see [Data Dicti
 
 ## Replace a license in an existing installation
 
-You can replace a Community license with another license without reinstalling the application. For other license types, you must reinstall the application to replace a license. To change a customer's entitlements, edit the customer's license details in the Vendor Portal instead of issuing a new license. For more information, see [Community Licenses](licenses-about-types).
+To change a customer's license type or entitlements, edit the customer's license details in the Vendor Portal instead of issuing a new license. Installations pick up the change the next time they sync the license.
+
+To replace a license with a license for a different customer, you must reinstall the application. To upgrade a Community license user without a reinstall, see [Upgrade a community user to another license type](licenses-about-types#upgrade) in _About community licenses_.
