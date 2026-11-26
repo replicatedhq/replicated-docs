@@ -76,6 +76,61 @@ To install with Embedded Cluster in an air-gapped environment:
 
     For the complete list of `install` options, see [install](embedded-cluster-install).
 
+## (Optional) Join nodes to the cluster {#join-nodes}
+
+After an automated installation, orchestration tools such as Ansible or CI/CD pipelines can join more nodes from the command line. This works for both online and air gap installations.
+
+In an automated installation, the application deploys to the first node as soon as the installation completes. You then join the other nodes to the running cluster.
+
+To join nodes, the customer's license must have the **Multi-node Cluster (Embedded Cluster only)** field enabled. For more information, see [Requirement](embedded-manage-nodes#requirement) in _Manage Multi-Node Clusters with Embedded Cluster_.
+
+To join nodes to the cluster:
+
+1. On the first node, from the directory that contains the Embedded Cluster binary, run the following command to generate the join command:
+
+    ```bash
+    sudo ./APP_SLUG join print-command
+    ```
+
+    Where `APP_SLUG` is the unique slug for the application.
+
+    The output is a shell command that downloads and extracts the Embedded Cluster binary, then joins the node with a join token. For example:
+
+    ```bash
+    curl -k https://172.17.0.2:30000/api/v1/embedded-cluster/binary -o your-app-slug.tar.gz && \
+      tar -xvf your-app-slug.tar.gz && \
+      sudo ./your-app-slug join 172.17.0.2:30000 1234aBcD
+    ```
+
+1. In your automation tool, save the output of `join print-command` and add flags to the end of the `join` command so that it runs without prompts:
+
+    * `--no-ha`: Skips the prompt to enable high availability (HA) when the third controller node joins, and leaves the cluster non-HA. To enable HA without a prompt, pass `--yes` instead. For more information, see [Configure High Availability for Multi-Node Clusters](embedded-manage-nodes#ha).
+    * `--ignore-host-preflights --yes`: (Optional) Continues if host preflight checks fail. This is not recommended for production installations.
+
+    For the complete list of `join` options, see [join](embedded-cluster-join).
+
+1. Run the command on each node that you want to join. Join one node at a time, and wait for each node to join before you join the next one.
+
+    For example, with SSH:
+
+    ```bash
+    JOIN_COMMAND="$(ssh FIRST_NODE "cd INSTALL_DIR && sudo ./APP_SLUG join print-command") --no-ha"
+
+    for node in NEW_NODE_1 NEW_NODE_2; do
+      ssh "$node" "$JOIN_COMMAND"
+    done
+    ```
+
+    Replace:
+    * `FIRST_NODE` with the address of the first node.
+    * `INSTALL_DIR` with the directory on the first node that contains the Embedded Cluster binary.
+    * `APP_SLUG` with the unique slug for the application.
+    * `NEW_NODE_1` and `NEW_NODE_2` with the addresses of the nodes to join.
+
+:::note
+`join print-command` always returns the command for joining a node with the controller role. To join nodes with custom roles defined in the Embedded Cluster Config `roles` key, get the join command from the Admin Console. For more information, see [Manage Multi-Node Clusters with Embedded Cluster](embedded-manage-nodes).
+:::
+
 ## (Optional) Ignore preflight checks during installation
 
 You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](embedded-cluster-install).
