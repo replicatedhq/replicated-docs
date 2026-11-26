@@ -32,7 +32,7 @@ Automating installation with Embedded Cluster has the following limitations:
 
 * Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](updating-embedded).
 
-* Nodes joined from the command line always have the controller role. To join nodes with custom roles defined in the Embedded Cluster Config `roles` key, use the Admin Console. See [Limitations](embedded-manage-nodes#limitations) in _Access and manage embedded clusters_.
+* `join print-command` returns only the command for joining a controller node. To join nodes with custom roles defined in the Embedded Cluster Config `roles` key, get the join commands from the Admin Console. See [Limitations](embedded-manage-nodes#limitations) in _Access and manage embedded clusters_.
 
 ## Online (internet-connected) installation
 
@@ -113,7 +113,7 @@ To join nodes to the cluster:
     * `--yes` accepts all prompts, such as the prompt to continue when a host preflight check returns a warning.
     * `--no-ha` skips the prompt to enable high availability (HA) when the third controller node joins, and leaves the cluster non-HA. It takes precedence over `--yes`. To enable HA when the third controller node joins, omit `--no-ha`. HA cannot be disabled after it is enabled. See [Configure high availability for multi-node clusters](embedded-manage-nodes#ha).
 
-    To also continue when host preflight checks fail, add `--ignore-host-preflights`. This is not recommended for production installations. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
+    To also continue when host preflight checks fail, add `--ignore-host-preflights`. Failed checks that are marked as strict cannot be bypassed. This is not recommended for production installations. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
 
     For the complete list of `join` options, see [join](embedded-cluster-join).
 
