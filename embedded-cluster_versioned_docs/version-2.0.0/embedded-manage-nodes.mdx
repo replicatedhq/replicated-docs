@@ -107,7 +107,7 @@ To automate controller node joins with Embedded Cluster:
 1. On the node that you want to join as a controller, run each of the commands provided in the `join print-command` output to download the Embedded Cluster binary, extract the binary, and join the node to the cluster.
 
    :::note
-   When a third controller node joins, the `join` command prompts the user to enable HA. In automated joins, pass the `--no-ha` flag with the `join` command to skip the prompt and leave the cluster non-HA. Passing `--yes` enables HA without prompting, because `--yes` accepts all prompts. For more information, see [join](embedded-cluster-join).
+   When a controller node joins a cluster that has three or more controller nodes and HA is not enabled, the `join` command prompts the user to enable HA. This happens on every such join, not only the third. In automated joins, pass the `--no-ha` flag with every `join` command to skip the prompt and leave the cluster non-HA. Passing `--yes` enables HA without prompting, because `--yes` accepts all prompts. For more information, see [join](embedded-cluster-join).
    :::
 
 ## Configure high availability for multi-node clusters {#ha}

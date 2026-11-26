@@ -4,7 +4,7 @@ import ConfigValuesRequirements from "../../docs/partials/configValues/_requirem
 
 # Automate installation with Embedded Cluster
 
-This topic describes how to install an application with Replicated Embedded Cluster from the command line, and how to join more nodes to the cluster, without needing to access the Replicated KOTS Admin Console.
+This topic describes how to install an application with Replicated Embedded Cluster from the command line without using the Replicated KOTS Admin Console UI, and how to join more controller nodes to the cluster from the command line.
 
 ## Overview
 
@@ -26,7 +26,7 @@ The ConfigValues resource includes the fields that are defined in the Replicated
 
 For more information, see [ConfigValues](/reference/custom-resource-configvalues).
 
-## Limitations
+## Limitations {#limitation}
 
 Automating installation with Embedded Cluster has the following limitations:
 
@@ -99,6 +99,8 @@ Ignoring host preflight checks is _not_ recommended for production installations
 
 When an automated installation completes, the application is already deployed on the first node. Unlike an installation through the Admin Console, there is no step to add nodes before the application deploys. After the installation, you can join more nodes from the command line with orchestration tools such as Ansible or CI/CD pipelines. This works for both online and air gap installations. Air gap nodes get the required artifacts from the cluster, so you do not need to copy the air gap bundle to each node.
 
+Because the application deploys before any nodes join, application preflight checks that require more than one node fail during the installation, and workloads that must be spread across nodes stay pending until enough nodes join. To install such an application headlessly, pass `--ignore-app-preflights` with the `install` command, or write the preflight checks so that they pass on a single node.
+
 Joining nodes from the command line has the following requirements:
 
 * Embedded Cluster 2.4.0 or later.
@@ -111,7 +113,7 @@ To join nodes to the cluster:
 1. Add `--no-ha --yes` to the end of the `join` command so that it runs without prompts:
 
     * `--yes` accepts all prompts, such as the prompt to continue when a host preflight check returns a warning.
-    * `--no-ha` skips the prompt to enable high availability (HA) when the third controller node joins, and leaves the cluster non-HA. It takes precedence over `--yes`. To enable HA when the third controller node joins, omit `--no-ha`. HA cannot be disabled after it is enabled. See [Configure high availability for multi-node clusters](embedded-manage-nodes#ha).
+    * `--no-ha` skips the prompt to enable high availability (HA) and leaves the cluster non-HA. It takes precedence over `--yes`. The prompt appears on every controller join while the cluster has three or more controller nodes and HA is not enabled, so pass `--no-ha` on every join, including later ones, unless you want HA enabled. HA cannot be disabled after it is enabled. See the note in [Automate controller node joins](embedded-manage-nodes#automate-node-joins).
 
     To also continue when host preflight checks fail, add `--ignore-host-preflights`. Failed checks that are marked as strict cannot be bypassed. This is not recommended for production installations. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
 
@@ -127,7 +129,7 @@ To join nodes to the cluster:
     JOIN_COMMAND="$(ssh FIRST_NODE "cd INSTALL_DIR && sudo ./APP_SLUG join print-command") --no-ha --yes"
 
     for node in NEW_NODE_1 NEW_NODE_2; do
-      ssh "$node" "$JOIN_COMMAND"
+      printf '%s\n' "$JOIN_COMMAND" | ssh "$node" bash -s
     done
     ```
 
@@ -137,4 +139,4 @@ To join nodes to the cluster:
     * `APP_SLUG` with the unique slug for the application.
     * `NEW_NODE_1` and `NEW_NODE_2` with the addresses of the nodes to join.
 
-    This example requires that the SSH user can run `sudo` without a password on every node. `set -e` stops the script if a node fails to join.
+    The `join print-command` output is a single command chain that ends with the `join` command, so the example appends the flags to the end of it. The example pipes the commands to `bash` on each node so that they run the same way regardless of the SSH user's login shell. The SSH user must be able to run `sudo` without a password on every node. `set -e` stops the script if a node fails to join.
