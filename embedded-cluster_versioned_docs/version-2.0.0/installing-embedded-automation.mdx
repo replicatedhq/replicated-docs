@@ -4,7 +4,7 @@ import ConfigValuesRequirements from "../../docs/partials/configValues/_requirem
 
 # Automate installation with Embedded Cluster
 
-This topic describes how to install an application with Replicated Embedded Cluster from the command line, without needing to access the Replicated KOTS Admin Console.
+This topic describes how to install an application with Replicated Embedded Cluster from the command line without using the Replicated KOTS Admin Console UI, and how to join more controller nodes to the cluster from the command line.
 
 ## Overview
 
@@ -26,9 +26,15 @@ The ConfigValues resource includes the fields that are defined in the Replicated
 
 For more information, see [ConfigValues](/reference/custom-resource-configvalues).
 
-## Limitation
+## Limitations {#limitation}
 
-Automating deployment with Embedded Cluster is supported only for the initial installation. Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](updating-embedded).
+Automating installation with Embedded Cluster has the following limitations:
+
+* Performing automated (headless) updates of existing installations with Embedded Cluster is not supported. For information about how to update an existing installation through the Admin Console UI, see [Perform Updates in Embedded Clusters](updating-embedded).
+
+* `join print-command` returns only the command for joining a controller node. To join nodes with custom roles defined in the Embedded Cluster Config `roles` key, get the join commands from the Admin Console. See [Limitations](embedded-manage-nodes#limitations) in _Access and manage embedded clusters_.
+
+* The application deploys on the first node before any other nodes can join. Application preflight checks that require more than one node fail during the installation, and workloads that must be spread across nodes stay pending until enough nodes join. To install such an application headlessly, write the preflight checks so that they pass on a single node, or pass `--ignore-app-preflights` with the `install` command (Embedded Cluster 2.11.0 or later). `--ignore-app-preflights` does not bypass failed checks that are marked as strict, so strict checks must pass on a single node. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
 
 ## Online (internet-connected) installation
 
@@ -76,7 +82,7 @@ To install with Embedded Cluster in an air-gapped environment:
 
     For the complete list of `install` options, see [install](embedded-cluster-install).
 
-## (Optional) Ignore preflight checks during installation
+## (Optional) Ignore preflight checks during installation {#ignore-preflights}
 
 You can ignore both application-level preflight checks and Embedded Cluster host preflight checks during installation. When you ignore preflight checks, the installation proceeds despite any preflight failures. This is useful for automated installations in development environments. For more information about the `--ignore-host-preflights` and `--ignore-app-preflights` options, see [install](embedded-cluster-install).
 
@@ -90,3 +96,51 @@ Ignoring host preflight checks is _not_ recommended for production installations
     Where:
     * `APP_SLUG` is the unique slug for the application
     * The `--yes` flag addresses the prompt for `--ignore-host-preflights` to continue with installation
+
+## (Optional) Join nodes to the cluster {#join-nodes}
+
+When an automated installation completes, the application is already deployed on the first node. Unlike an installation through the Admin Console, there is no step to add nodes before the application deploys. After the installation, you can join more nodes from the command line with orchestration tools such as Ansible or CI/CD pipelines. This works for both online and air gap installations. Air gap nodes get the required artifacts from the cluster, so you do not need to copy the air gap bundle to each node.
+
+Joining nodes from the command line has the following requirements:
+
+* Embedded Cluster 2.4.0 or later.
+* The **Multi-node Cluster (Embedded Cluster only)** license field is enabled for the customer. See [Requirement](embedded-manage-nodes#requirement) in _Access and manage embedded clusters_.
+
+Nodes joined with `join print-command` are controller nodes. Join nodes so that the cluster has an odd number of controller nodes, such as three. A cluster with two controller nodes needs both nodes to stay available, so it is less resilient than a single-node cluster. See [Best practices for high availability](embedded-manage-nodes#best-practices-for-high-availability) in _Access and manage embedded clusters_.
+
+To join nodes to the cluster:
+
+1. On a controller node that is already in the cluster, run `join print-command` to get the commands for joining a controller node. See [Automate controller node joins](embedded-manage-nodes#automate-node-joins) in _Access and manage embedded clusters_.
+
+1. Add `--no-ha --yes` to the end of the `join` command so that it runs without prompts:
+
+    * `--yes` accepts all prompts, such as the prompt to continue when a host preflight check returns a warning.
+    * `--no-ha` skips the prompt to enable high availability (HA) and leaves the cluster non-HA. It takes precedence over `--yes`. Pass it on every join unless you want HA enabled, because HA cannot be disabled after it is enabled. For when the prompt appears, see the note in [Automate controller node joins](embedded-manage-nodes#automate-node-joins).
+
+    To also continue when host preflight checks fail, add `--ignore-host-preflights`. In Embedded Cluster 2.19.13 and later, failed checks that are marked as strict cannot be bypassed. This is not recommended for production installations.
+
+    For the complete list of `join` options, see [join](embedded-cluster-join).
+
+1. Run the commands on each node that you want to join, one node at a time. The `join` command returns after the node is Ready, so you can join the next node when it completes.
+
+    For example, with SSH:
+
+    ```bash
+    set -eo pipefail
+
+    JOIN_COMMAND="$(ssh FIRST_NODE "sudo /var/lib/embedded-cluster/bin/APP_SLUG join print-command" \
+      | sed -n '/^curl /,/ join /p') --no-ha --yes"
+
+    for node in NEW_NODE_1 NEW_NODE_2; do
+      printf '%s\n' "$JOIN_COMMAND" | ssh "$node" bash -s
+    done
+    ```
+
+    Replace:
+    * `FIRST_NODE` with the address of a controller node that is already in the cluster.
+    * `APP_SLUG` with the unique slug for the application. The installation copies the Embedded Cluster binary to the `bin` directory in the data directory, so the binary is available even if the installation assets were removed. If you installed with `--data-dir`, replace `/var/lib/embedded-cluster` with that directory.
+    * `NEW_NODE_1` and `NEW_NODE_2` with the addresses of the nodes to join.
+
+    The `join print-command` output is a single command chain that starts with `curl` and ends with the `join` command. The `sed` command keeps only that chain, because Embedded Cluster can also print log messages to stdout, and the example appends the flags to the end of it. The example pipes the commands to `bash` on each node so that they run the same way regardless of the SSH user's login shell. The SSH user must be able to run `sudo` without a password and without a TTY (no `requiretty` in sudoers) on every node.
+
+    `set -eo pipefail` stops the script if a command fails. `join` fails on a node that is already in the cluster, so if the script stops partway, remove the nodes that already joined from the list before you run it again.
