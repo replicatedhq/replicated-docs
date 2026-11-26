@@ -34,7 +34,7 @@ Automating installation with Embedded Cluster has the following limitations:
 
 * `join print-command` returns only the command for joining a controller node. To join nodes with custom roles defined in the Embedded Cluster Config `roles` key, get the join commands from the Admin Console. See [Limitations](embedded-manage-nodes#limitations) in _Access and manage embedded clusters_.
 
-* The application deploys on the first node before any other nodes can join. Application preflight checks that require more than one node fail during the installation, and workloads that must be spread across nodes stay pending until enough nodes join. To install such an application headlessly, write the preflight checks so that they pass on a single node, or pass `--ignore-app-preflights` with the `install` command (Embedded Cluster 2.11.0 or later). See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
+* The application deploys on the first node before any other nodes can join. Application preflight checks that require more than one node fail during the installation, and workloads that must be spread across nodes stay pending until enough nodes join. To install such an application headlessly, write the preflight checks so that they pass on a single node, or pass `--ignore-app-preflights` with the `install` command (Embedded Cluster 2.11.0 or later). `--ignore-app-preflights` does not bypass failed checks that are marked as strict, so strict checks must pass on a single node. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
 
 ## Online (internet-connected) installation
 
@@ -106,6 +106,8 @@ Joining nodes from the command line has the following requirements:
 * Embedded Cluster 2.4.0 or later.
 * The **Multi-node Cluster (Embedded Cluster only)** license field is enabled for the customer. See [Requirement](embedded-manage-nodes#requirement) in _Access and manage embedded clusters_.
 
+Nodes joined with `join print-command` are controller nodes. Join nodes so that the cluster has an odd number of controller nodes, such as three. A cluster with two controller nodes needs both nodes to stay available, so it is less resilient than a single-node cluster. See [Best practices for high availability](embedded-manage-nodes#best-practices-for-high-availability) in _Access and manage embedded clusters_.
+
 To join nodes to the cluster:
 
 1. On a controller node that is already in the cluster, run `join print-command` to get the commands for joining a controller node. See [Automate controller node joins](embedded-manage-nodes#automate-node-joins) in _Access and manage embedded clusters_.
@@ -115,7 +117,7 @@ To join nodes to the cluster:
     * `--yes` accepts all prompts, such as the prompt to continue when a host preflight check returns a warning.
     * `--no-ha` skips the prompt to enable high availability (HA) and leaves the cluster non-HA. It takes precedence over `--yes`. Pass it on every join unless you want HA enabled, because HA cannot be disabled after it is enabled. For when the prompt appears, see the note in [Automate controller node joins](embedded-manage-nodes#automate-node-joins).
 
-    To also continue when host preflight checks fail, add `--ignore-host-preflights`. Failed checks that are marked as strict cannot be bypassed. This is not recommended for production installations. See [(Optional) Ignore preflight checks during installation](#ignore-preflights).
+    To also continue when host preflight checks fail, add `--ignore-host-preflights`. In Embedded Cluster 2.19.13 and later, failed checks that are marked as strict cannot be bypassed. This is not recommended for production installations.
 
     For the complete list of `join` options, see [join](embedded-cluster-join).
 
@@ -124,9 +126,10 @@ To join nodes to the cluster:
     For example, with SSH:
 
     ```bash
-    set -e
+    set -eo pipefail
 
-    JOIN_COMMAND="$(ssh FIRST_NODE "sudo /var/lib/embedded-cluster/bin/APP_SLUG join print-command") --no-ha --yes"
+    JOIN_COMMAND="$(ssh FIRST_NODE "sudo /var/lib/embedded-cluster/bin/APP_SLUG join print-command" \
+      | sed -n '/^curl /,/ join /p') --no-ha --yes"
 
     for node in NEW_NODE_1 NEW_NODE_2; do
       printf '%s\n' "$JOIN_COMMAND" | ssh "$node" bash -s
@@ -138,4 +141,6 @@ To join nodes to the cluster:
     * `APP_SLUG` with the unique slug for the application. The installation copies the Embedded Cluster binary to the `bin` directory in the data directory, so the binary is available even if the installation assets were removed. If you installed with `--data-dir`, replace `/var/lib/embedded-cluster` with that directory.
     * `NEW_NODE_1` and `NEW_NODE_2` with the addresses of the nodes to join.
 
-    The `join print-command` output is a single command chain that ends with the `join` command, so the example appends the flags to the end of it. The example pipes the commands to `bash` on each node so that they run the same way regardless of the SSH user's login shell. The SSH user must be able to run `sudo` without a password on every node. `set -e` stops the script if a node fails to join.
+    The `join print-command` output is a single command chain that starts with `curl` and ends with the `join` command. The `sed` command keeps only that chain, because Embedded Cluster can also print log messages to stdout, and the example appends the flags to the end of it. The example pipes the commands to `bash` on each node so that they run the same way regardless of the SSH user's login shell. The SSH user must be able to run `sudo` without a password and without a TTY (no `requiretty` in sudoers) on every node.
+
+    `set -eo pipefail` stops the script if a command fails. `join` fails on a node that is already in the cluster, so if the script stops partway, remove the nodes that already joined from the list before you run it again.
