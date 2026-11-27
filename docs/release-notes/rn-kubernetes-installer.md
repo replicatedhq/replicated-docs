@@ -9,6 +9,22 @@ pagination_prev: null
 This topic contains release notes for the [Replicated kURL](/vendor/kurl-about) installer. The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.27-0<span data-release-version="v2026.11.27-0" />
+
+Released on November 27, 2026
+
+### New Features {#new-features-v2026-11-27-0}
+* Adds support for RHEL 10.3 and Rocky Linux 10.3.
+
+### Improvements {#improvements-v2026-11-27-0}
+* New installs of Kubernetes 1.36, and upgrades into 1.36, now require containerd 2.x. Existing clusters that already run Kubernetes 1.36 with containerd 1.x are not affected.
+* Fixes an issue where upgrading kURL on containerd 1.x left the new Kubernetes pause image unpinned, so it could be garbage collected and cause control plane failures on airgapped hosts after a reboot. Clusters already affected are fixed the next time kURL runs.
+* Upgrading containerd from 1.6.x or 1.5.x directly to 2.x is now supported. The installer upgrades to containerd 1.7 first, then to 2.x. Air-gapped installs prompt for the containerd 1.7 package if it is not available locally.
+
+### Bug Fixes {#bug-fixes-v2026-11-27-0}
+* Fixes pod networking failures with Flannel 0.28.10 on containerd versions older than 1.6.
+* Fixes an issue where re-running an installer with containerd 2.x on RHEL 7, CentOS 7, Oracle Linux 7 or Amazon Linux 2, where containerd 1.6.33 is installed instead, failed with "Upgrade to containerd 1.7.x first".
+* Intermediate containerd versions in multi-step upgrades are now installed, instead of the target version being installed at every step.
 ## v2026.11.19-0<span data-release-version="v2026.11.19-0" />
 
 Released on November 19, 2026
