@@ -343,11 +343,18 @@ In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. T
         sudo systemctl stop k0sworker
         ```
 
-    1. Back up the kubelet configuration, the certificates, and the saved join token to a new directory:
+    1. Create a new backup directory:
 
         ```bash
-        BACKUP_DIR=$(sudo mktemp -d /root/kubelet-backup-XXXXXX)
-        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki /etc/k0s/join-token "$BACKUP_DIR"/
+        sudo mktemp -d /root/kubelet-backup-XXXXXX
+        ```
+
+        The command prints the path of the new directory, such as `/root/kubelet-backup-a1B2c3`. In the following steps, `BACKUP_DIR` is that path. Each run creates a separate directory, so if you repeat this procedure, the backup of the original files is kept.
+
+    1. Back up the kubelet configuration, the certificates, and the saved join token to the backup directory:
+
+        ```bash
+        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki /etc/k0s/join-token BACKUP_DIR/
         ```
 
     1. Replace the saved join token in `/etc/k0s/join-token` with the new token. The file must be owned by root with mode `600`, so that only root can read it. Don't pass the token as a command-line argument, so that it doesn't end up in shell history. For example, set the permissions, and then write the token to the file:
@@ -363,7 +370,7 @@ In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. T
 
         ```bash
         sudo rm DATA_DIR/k0s/kubelet.conf
-        sudo sh -c 'rm DATA_DIR/k0s/kubelet/pki/kubelet-client-*'
+        sudo rm DATA_DIR/k0s/kubelet/pki/kubelet-client-*
         ```
 
         If either command reports `No such file or directory`, check that `DATA_DIR` is correct before you continue.
@@ -379,7 +386,7 @@ In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. T
     1. Restore the original join token so that the new token does not stay on the node:
 
         ```bash
-        sudo cp "$BACKUP_DIR"/join-token /etc/k0s/join-token
+        sudo cp BACKUP_DIR/join-token /etc/k0s/join-token
         ```
 
 1. <TroubleshootKubeletCertVerify/>
