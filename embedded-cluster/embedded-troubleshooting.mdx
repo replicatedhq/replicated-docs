@@ -2,6 +2,12 @@ import SupportBundleIntro from "../docs/partials/support-bundles/_ec-support-bun
 import EmbeddedClusterSupportBundle from "../docs/partials/embedded-cluster/v3/_generate-bundle-ec.mdx"
 import TroubleshootSecurityAgents from "../docs/partials/embedded-cluster/_troubleshoot-security-agents.mdx"
 import TroubleshootDns from "../docs/partials/embedded-cluster/_troubleshoot-dns.mdx"
+import TroubleshootKubeletCertCause from "../docs/partials/embedded-cluster/_troubleshoot-kubelet-cert-cause.mdx"
+import TroubleshootKubeletCertClock from "../docs/partials/embedded-cluster/_troubleshoot-kubelet-cert-clock.mdx"
+import TroubleshootKubeletCertController from "../docs/partials/embedded-cluster/_troubleshoot-kubelet-cert-controller.mdx"
+import TroubleshootKubeletCertVerify from "../docs/partials/embedded-cluster/_troubleshoot-kubelet-cert-verify.mdx"
+import TroubleshootKubeletCertCleanup from "../docs/partials/embedded-cluster/_troubleshoot-kubelet-cert-cleanup.mdx"
+import TroubleshootHttpsInspection from "../docs/partials/embedded-cluster/_troubleshoot-https-inspection.mdx"
 import ShellCommand from "../docs/partials/embedded-cluster/_shell-command.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -308,3 +314,108 @@ Failures can still occur during conversion or later upgrade steps. In that case,
 Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If a headless upgrade of a multi-node cluster stopped at the node upgrade step, run the same `upgrade --headless` command again from the same release package, without `--force`, and it resumes at that step. Otherwise, if the command reports that an upgrade is already in progress, confirm that the previous attempt is no longer running, and then follow the error's instructions to retry with `--force`.
 
 If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. In Embedded Cluster 3.21.0 and later, this check can't be bypassed, including with `--ignore-host-preflights`, and the upgrade stops before the `Continue anyway?` prompt. Other host preflight failures can still be bypassed at that prompt, or with `--ignore-host-preflights` in a headless upgrade. In earlier v3 releases, the user can bypass the cgroup v2 failure with **Continue Anyway** in the upgrade wizard, but Kubernetes 1.35 and later still won't run on cgroup v1. Check every node with [`install run-preflights`](embedded-host-preflights#check-v2-node) before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
+
+### Node is `NotReady` after its kubelet client certificate expires {#kubelet-client-cert-expired}
+
+<TroubleshootKubeletCertCause/>
+
+#### Solution
+
+In the following procedure, `DATA_DIR` is the Embedded Cluster data directory. The default is `/var/lib/APP_SLUG`, where `APP_SLUG` is the unique slug for the application. If you installed with the `--data-dir` flag, `DATA_DIR` is that directory followed by `/APP_SLUG`. If you upgraded from Embedded Cluster v2, `DATA_DIR` is the v2 data directory: `/var/lib/embedded-cluster`, or the directory that you passed to `--data-dir` when you installed v2.
+
+1. <TroubleshootKubeletCertClock/>
+
+1. <TroubleshootKubeletCertController/>
+
+1. On each affected worker node, replace the kubelet client certificate. A worker node needs a new join token to request a certificate.
+
+    1. On a controller node, create a join token for a worker node:
+
+        ```bash
+        sudo DATA_DIR/bin/k0s token create --role worker --expiry 1h --data-dir DATA_DIR/k0s
+        ```
+
+    1. On the worker node, find the token file that the k0s service reads. In the output of the following command, the token file is the path after `--token-file`:
+
+        ```bash
+        systemctl cat k0sworker
+        ```
+
+    1. Save the token to the token file. The file must be owned by root with mode `600`, so that only root can read it. Don't pass the token as a command-line argument, so that it doesn't end up in shell history. For example, create an empty file with the correct permissions, and then write the token to it:
+
+        ```bash
+        sudo install -m 600 /dev/null TOKEN_FILE
+        sudo sh -c 'cat > TOKEN_FILE'
+        ```
+
+        Where `TOKEN_FILE` is the path from the previous step. Paste the token, and then end the input (Ctrl+D in most terminals). To confirm the permissions, run `sudo stat -c '%U %a' TOKEN_FILE`. The output must be `root 600`.
+
+    1. Stop the k0s service:
+
+        ```bash
+        sudo systemctl stop k0sworker
+        ```
+
+    1. Create a new backup directory:
+
+        ```bash
+        sudo mktemp -d /root/kubelet-backup-XXXXXX
+        ```
+
+        The command prints the path of the new directory, such as `/root/kubelet-backup-a1B2c3`. In the following steps, `BACKUP_DIR` is that path. Each run creates a separate directory, so if you repeat this procedure, the backup of the original files is kept.
+
+    1. Back up the kubelet configuration and certificates to the backup directory:
+
+        ```bash
+        sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki BACKUP_DIR/
+        ```
+
+    1. Remove the kubelet configuration and the expired client certificates:
+
+        ```bash
+        sudo rm DATA_DIR/k0s/kubelet.conf
+        sudo rm DATA_DIR/k0s/kubelet/pki/kubelet-client-*
+        ```
+
+        If either command reports `No such file or directory`, check that `DATA_DIR` is correct before you continue.
+
+    1. Start the k0s service:
+
+        ```bash
+        sudo systemctl start k0sworker
+        ```
+
+        The node returns to `Ready` within about a minute.
+
+    1. Remove the token file:
+
+        ```bash
+        sudo rm TOKEN_FILE
+        ```
+
+1. <TroubleshootKubeletCertVerify/>
+
+1. <TroubleshootKubeletCertCleanup/>
+
+### Connections to Replicated fail behind an HTTPS inspection proxy {#https-inspection-name-constraints}
+
+#### Symptom
+
+An installation or upgrade through a proxy that inspects HTTPS traffic fails host preflight checks, even though the firewall allows the Replicated domains:
+
+```text
+✗ API Access
+  Error connecting to https://replicated.app. Ensure your firewall is properly configured. ...
+✗ Proxy Registry Access
+  Error connecting to https://proxy.replicated.com. Ensure your firewall is properly configured, ...
+```
+
+The installation output and the Embedded Cluster logs include an error similar to the following:
+
+```text
+x509: a root or intermediate certificate is not authorized to sign for this name: DNS name "replicated.app" is not permitted by any constraint
+```
+
+The error can also end with `is excluded by constraint`. For more information about viewing the Embedded Cluster logs, see [View installation logs for Embedded Cluster](#view-installation-logs-for-embedded-cluster).
+
+<TroubleshootHttpsInspection/>

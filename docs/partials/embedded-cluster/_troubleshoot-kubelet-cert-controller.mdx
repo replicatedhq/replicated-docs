@@ -1,0 +1,38 @@
+On each affected controller node, replace the kubelet client certificate:
+
+1. Stop the k0s service:
+
+    ```bash
+    sudo systemctl stop k0scontroller
+    ```
+
+1. Create a new backup directory:
+
+    ```bash
+    sudo mktemp -d /root/kubelet-backup-XXXXXX
+    ```
+
+    The command prints the path of the new directory, such as `/root/kubelet-backup-a1B2c3`. In the following steps, `BACKUP_DIR` is that path. Each run creates a separate directory, so if you repeat this procedure, the backup of the original files is kept.
+
+1. Back up the kubelet configuration and certificates to the backup directory:
+
+    ```bash
+    sudo cp -a DATA_DIR/k0s/kubelet.conf DATA_DIR/k0s/kubelet/pki BACKUP_DIR/
+    ```
+
+1. Remove the kubelet configuration and the expired client certificates:
+
+    ```bash
+    sudo rm DATA_DIR/k0s/kubelet.conf
+    sudo rm DATA_DIR/k0s/kubelet/pki/kubelet-client-*
+    ```
+
+    If either command reports `No such file or directory`, check that `DATA_DIR` is correct before you continue.
+
+1. Start the k0s service:
+
+    ```bash
+    sudo systemctl start k0scontroller
+    ```
+
+    The node returns to `Ready` within about a minute.

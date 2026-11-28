@@ -1,0 +1,22 @@
+#### Symptom {#kubelet-client-cert-expired-symptom}
+
+A node does not return to `Ready` after the host was powered off or unreachable for a long time. The node is `NotReady`, and its `Ready`, `MemoryPressure`, `DiskPressure`, and `PIDPressure` conditions are `Unknown` with the following reason and message:
+
+```text
+NodeStatusUnknown
+Kubelet stopped posting node status.
+```
+
+The k0s logs on a controller node report an expired certificate, similar to the following:
+
+```text
+"Unable to authenticate the request" err="[x509: certificate has expired or is not yet valid: current time 2027-12-22T21:02:37Z is after 2027-11-22T20:50:40Z
+```
+
+Restarting the k0s service does not resolve the issue. For more information about viewing k0s logs, see [View K0s logs](#view-k0s-logs).
+
+#### Cause {#kubelet-client-cert-expired-cause}
+
+The kubelet on each node authenticates to the Kubernetes API server with a client certificate that is valid for one year. The kubelet renews this certificate before it expires, but it cannot renew it while the host is offline. After the certificate expires, the renewal request cannot authenticate.
+
+Restarting the k0s service renews the expired server certificates, but not the kubelet client certificate.
