@@ -1,0 +1,8 @@
+On a controller node, verify that all nodes are `Ready` and that the pods are running. See [Access the cluster](#access-the-cluster).
+
+```bash
+kubectl get nodes
+kubectl get pods -A
+```
+
+Pods return to `Running` within a few minutes. Some pods might restart one time while their service account tokens are renewed.

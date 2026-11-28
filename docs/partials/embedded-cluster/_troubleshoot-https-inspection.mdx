@@ -1,0 +1,26 @@
+#### Cause {#https-inspection-name-constraints-cause}
+
+An HTTPS inspection proxy decrypts traffic and signs a new certificate for each site with its own certificate authority (CA). If the proxy's CA has an X.509 Name Constraints extension that limits it to certain domains, such as internal domains, the certificates that it signs for Replicated domains are not valid.
+
+Embedded Cluster enforces name constraints. Adding the proxy's CA to the trusted certificates on the host does not resolve the error. Tools on the host such as `curl` might succeed or fail, depending on whether their TLS library enforces name constraints.
+
+#### Solution {#https-inspection-name-constraints-solution}
+
+1. To confirm the cause, check the proxy's CA certificates for a name constraints extension. The extension can be on the root CA or on an intermediate CA, so check each CA certificate in the chain that the proxy presents. To see the chain, run `openssl s_client -proxy PROXY_HOST:PROXY_PORT -connect replicated.app:443 -showcerts </dev/null` on the host. The proxy usually doesn't send its root CA, so check that certificate separately. For each CA certificate, run:
+
+    ```bash
+    openssl x509 -in CA_CERT.pem -noout -ext nameConstraints
+    ```
+
+    Where `CA_CERT.pem` is one of the CA certificates. The name constraints cause the error if the output lists permitted domains that do not include the Replicated domains, or excluded domains that include them.
+
+1. Exclude the following domains from HTTPS inspection on the proxy:
+
+    * `replicated.app`
+    * `proxy.replicated.com`
+    * `registry.replicated.com`
+    * Any custom domains for these services
+
+    For more information about these domains, see [Firewall openings for online installations with Embedded Cluster](installing-embedded-requirements#firewall).
+
+1. Run the installation or upgrade again.

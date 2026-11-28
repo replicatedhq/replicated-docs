@@ -1,0 +1,9 @@
+On each affected node, make sure that the system clock is correct and stays correct:
+
+```bash
+date -u
+```
+
+Compare the output with a trusted time source. If the clock is wrong, fix it with your host's time synchronization method (for example, NTP, PTP, or hypervisor time sync) before you continue. If the host uses `systemd-timesyncd` or `chrony`, you can run `sudo timedatectl set-ntp true` and wait until `timedatectl status` shows `System clock synchronized: yes`.
+
+If you recover a node while its clock is wrong, the new certificates are not valid after the clock is corrected, and you must repeat this procedure.
