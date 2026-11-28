@@ -9,6 +9,46 @@ pagination_prev: null
 This topic contains release notes for the Replicated Vendor Platform, which includes the [Vendor Portal](/vendor/vendor-portal-creating-account), the [Replicated CLI](/reference/replicated-cli-installing), and [Compatibility Matrix](/vendor/testing-about). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## v2026.11.25-2<span data-release-version="v2026.11.25-2" />
+
+Released on November 25, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-25-2}
+* Fixed Enterprise Portal Helm upgrade instructions so the values file step comes before the preflight steps that read it. In the update instructions API response, the create_values_file, install_preflight_plugin and run_preflight_checks steps change position and step_number; step names and commands are unchanged.
+## v2026.11.24-3<span data-release-version="v2026.11.24-3" />
+
+Released on November 24, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-24-3}
+* The new Enterprise Portal now respects the "Manage this customer in Enterprise Portal" setting. If the setting is off for a customer, including customers where it was never turned on, that customer's users can't sign in and are signed out of any open sessions. This doesn't affect teams without a Download Portal or service account tokens.
+## v2026.11.24-2<span data-release-version="v2026.11.24-2" />
+
+Released on November 24, 2026
+
+### New Features {#new-features-v2026-11-24-2}
+* Adds the Single Sign-On Link email template for the new Enterprise Portal. Users whose organization signs in with SAML receive this email instead of a sign-in code. If you customize your Enterprise Portal emails, you can edit this template in **Enterprise Portal > Customer Emails**. See [Customize customer emails](/vendor/enterprise-portal-v2-emails#customize-email-templates).
+
+### Bug Fixes {#bug-fixes-v2026-11-24-2}
+* In the new Enterprise Portal, single sign-on users now receive a sign-in link by email instead of being redirected. Users with access to more than one portal are emailed a link to sign in from their portal's own URL, instead of picking from a list on the login page.
+## v2026.11.23-7<span data-release-version="v2026.11.23-7" />
+
+Released on November 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-23-7}
+* Webhook delivery errors for Vendor Portal notifications and Enterprise Portal v2 customer release webhooks now show only the endpoint's origin (for example, `https://hooks.example.com`) instead of the full webhook URL. This keeps tokens in the URL path or query string out of error messages and delivery history.
+* Failure emails for Vendor Portal notification webhooks now describe the final delivery attempt instead of the one before it. When the endpoint returns an error response, the email includes the HTTP status code.
+## v2026.11.23-2<span data-release-version="v2026.11.23-2" />
+
+Released on November 23, 2026
+
+### Bug Fixes {#bug-fixes-v2026-11-23-2}
+* On the new Enterprise Portal a Helm install profile no longer gets pinned to Helm's default namespace when the server can't read the Helm components on your docs page, and `createNamespace="false"` now applies when the namespace comes from the install profile's saved value.
+## v2026.11.23-1<span data-release-version="v2026.11.23-1" />
+
+Released on November 23, 2026
+
+### Improvements {#improvements-v2026-11-23-1}
+* Security Center now consistently refers to vulnerability records as findings while retaining CVE-specific search, grouping, and identifier labels.
 ## v2026.11.20-8<span data-release-version="v2026.11.20-8" />
 
 Released on November 20, 2026
@@ -24,6 +64,9 @@ Released on November 20, 2026
 ## v2026.11.20-5<span data-release-version="v2026.11.20-5" />
 
 Released on November 20, 2026
+
+### New Features {#new-features-v2026-11-20-5}
+* Adds the Access Not Enabled email template for the new Enterprise Portal. Users whose Enterprise Portal access is turned off receive this email instead of a sign-in code. If you customize your Enterprise Portal emails, you can edit this template in **Enterprise Portal > Customer Emails**. See [Customize customer emails](/vendor/enterprise-portal-v2-emails#customize-email-templates).
 
 ### Improvements {#improvements-v2026-11-20-5}
 * Vendors are asked to confirm before turning off a customer's Enterprise Portal access, and failed login attempts show why the login was refused.

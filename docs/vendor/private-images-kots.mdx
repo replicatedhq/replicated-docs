@@ -4,6 +4,7 @@ import StepCustomDomain from "../partials/proxy-service/_step-custom-domain.mdx"
 import RewriteHelmValues from "../partials/proxy-service/_step-rewrite-helm-values.mdx"
 import AdditionalNs from "../partials/proxy-service/_step-additional-ns.mdx"
 import InjectPullSecret from "../partials/proxy-service/_step-inject-pull-secret.mdx"
+import BitnamiAllowInsecureImages from "../partials/image-registry/_bitnami-allow-insecure-images.mdx"
 
 # Use the proxy registry with Replicated installers
 
@@ -85,6 +86,8 @@ To configure your application to use the proxy registry for installations with a
       image: proxy.replicated.com/proxy/your-app/ghcr.io/cloudnative-pg/cloudnative-pg
     ```
     </details>
+
+    <BitnamiAllowInsecureImages/>
 
 1. <InjectPullSecret/>
 

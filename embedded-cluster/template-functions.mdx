@@ -265,14 +265,13 @@ The `image.repository` and `image.tag` fields are not templated and render as `m
 extensions:
   helmCharts:
     - chart:
-        name: ingress-nginx
-        chartVersion: "4.11.3"
-      releaseName: ingress-nginx
-      namespace: ingress-nginx
+        name: traefik
+        chartVersion: "42.4.2"
+      releaseName: traefik
+      namespace: traefik
       values:
-        controller:
-          image:
-            registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+        image:
+          registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
 ```
 
 ## HelmValue {#helmvalue-func}

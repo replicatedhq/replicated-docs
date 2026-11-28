@@ -56,7 +56,7 @@ This section provides an overview of preflight checks, including how preflights 
 
 ### Overview
 
-Preflight checks let you define requirements for the cluster where your application is installed. When run, preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install or upgrade your application. For KOTS installations, preflight checks can also be used to block the deployment of the application if one or more requirements are not met.
+Preflight checks let you define requirements for the cluster where your application is installed. When run, preflight checks provide clear feedback to your customer about any missing requirements or incompatibilities in the cluster before they install or upgrade your application. For installations with Embedded Cluster, KOTS, or kURL, preflight checks can also block the deployment of the application if one or more requirements are not met.
 
 Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
@@ -64,7 +64,7 @@ Thorough preflight checks provide increased confidence that an installation or u
 
 _Host preflight checks_ automatically run during [Replicated Embedded Cluster](/embedded-cluster/v3/embedded-overview) and [Replicated kURL](/vendor/kurl-about) installations on a VM or bare metal server. The purpose of host preflight checks is to verify that the user's installation environment meets the requirements of the Embedded Cluster or kURL installer, such as checking the number of CPU cores in the system, available disk space, and memory usage. If any of the host preflight checks fail, installation is blocked and a message describing the failure is displayed.
 
-Host preflight checks are separate from any application-specific preflight checks that are defined in the release, which run in the Admin Console before the application is deployed with KOTS. Both Embedded Cluster and kURL have default host preflight checks that are specific to the requirements of the given installer. For kURL installations, it is possible to customize the default host preflight checks.
+Host preflight checks are separate from any application-specific preflight checks that are defined in the release, which run before the application is deployed. Both Embedded Cluster and kURL have default host preflight checks that are specific to the requirements of the given installer. For kURL installations, it is possible to customize the default host preflight checks.
 
 For more information about the default Embedded Cluster host preflight checks, see [Host Preflight Checks](/embedded-cluster/v3/embedded-overview#about-host-preflight-checks) in _Using Embedded Cluster_.
 
@@ -90,9 +90,10 @@ This section describes how users can run preflight checks for KOTS and Helm inst
 
 #### Replicated installations
 
-For Replicated installations with Embedded Cluster, KOTS, or kURL, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the KOTS Admin Console or in the KOTS CLI, depending on the installation method.
+For Replicated installations with Embedded Cluster, KOTS, or kURL, preflight checks run automatically as part of the installation process:
 
-Additionally, users can access preflight checks from the Admin Console after installation to view their results and optionally re-run the checks.
+* For Embedded Cluster v3, the results are displayed in the installer. For headless installations, any failed checks are listed in the terminal.
+* For Embedded Cluster v2, KOTS, and kURL, the results are displayed in the Admin Console or in the KOTS CLI, depending on the installation method. Users can also view the results and rerun the checks from the Admin Console after installation.
 
 The following shows an example of the results of preflight checks displayed in the Admin Console during installation:
 

@@ -273,27 +273,47 @@ The deleted controller is still a member of the etcd cluster, so etcd counts it 
 
 Run `remove-node` to remove the deleted controller from the cluster and etcd, and then join the replacement controller. For more information about replacing the controller, see [Replace a controller node whose machine is deleted](embedded-manage-nodes#replace-lost-controller) in _Access and Manage Embedded Clusters_.
 
-### Upgrade from Embedded Cluster v2 stops after the conversion {#v2-upgrade-stops-after-conversion}
+### Upgrade from Embedded Cluster v2 stops {#v2-upgrade-stops-after-conversion}
 
 #### Symptom
 
-An upgrade from Embedded Cluster v2 prints `Upgrade from v2 to v3 completed successfully.` and then stops with an error, such as:
+An upgrade from Embedded Cluster v2 stops with an error. A validation failure before conversion starts with:
 
-```
-Error: upgrade: validate airgap flag: --airgap flag is set but this is not an airgap installation
+```text
+Error: v2 upgrade validation failed; fix the error and run upgrade again:
 ```
 
-The Embedded Cluster v2 Admin Console is no longer available. The application keeps running.
+The command leaves the v2 installation unchanged, and its Admin Console remains available.
+
+If the error includes `reject downgrade`, the v3 release is older than the release that's installed. In Embedded Cluster 3.21.0 and later, this check runs before conversion, so the installation is still on v2 when it fails. Promote the v3 release to the channel again so that it's newer than the installed release. Have the customer download it, and then run `upgrade`.
+
+In Embedded Cluster 3.21.0 and later, an air gap installation with three or more controllers that hasn't enabled high availability in v2 stops before validation with an error that starts with `Error: upgrade: check v2 HA migration: HA migration required.` The installation is still on v2. Run the `enable-ha` command from the error on the node it names, using the installed Embedded Cluster v2 binary, and then run `upgrade` again.
+
+An error after conversion starts with:
+
+```text
+Error: the installation has been converted to v3; fix the error and run upgrade again to finish:
+```
+
+In this case, do not assume that the v2 Admin Console is available or that conversion can be undone. If the output includes `Upgrade from v2 to v3 completed successfully.` before the error, the installation is already on v3.
+
+If conversion started but didn't finish, the error includes:
+
+```text
+v2 to v3 conversion has started and may be incomplete; fix the error and run upgrade again to finish:
+```
 
 #### Cause
 
-The upgrade converts the installation to Embedded Cluster v3 before it runs some of its checks, such as checks on the command's flags and on the release. When one of those checks fails, the installation is already on v3, but the upgrade hasn't finished.
+In Embedded Cluster 3.21.0 and later, validation runs before conversion. On the primary controller, the command checks the upgrade inputs and the license, exports the installed release and configuration from KOTS, and checks the upgrade path. The upgrade path check stops an upgrade that would downgrade the application or Kubernetes, skip a Kubernetes minor version, or skip a required release. It also checks required bundles and host requirements. A failed check stops the upgrade before it changes the v2 installation. Other nodes are not checked at this stage.
+
+Failures can still occur during conversion or later upgrade steps. In that case, conversion has started, but the upgrade has not finished. Embedded Cluster v3 releases earlier than 3.21.0 also ran input, release, and host checks after conversion.
 
 #### Solution
 
-Fix the problem that the error names, and then run the `upgrade` command again. The upgrade continues and finishes.
+Correct the problem reported in the error, and then run the `upgrade` command again. After conversion, the command uses the v3 upgrade path to continue the upgrade. If a headless upgrade of a multi-node cluster stopped at the node upgrade step, run the same `upgrade --headless` command again from the same release package, without `--force`, and it resumes at that step. Otherwise, if the command reports that an upgrade is already in progress, confirm that the previous attempt is no longer running, and then follow the error's instructions to retry with `--force`.
 
-If the error includes `reject downgrade`, the v3 release is older than the release that's installed. Promote the v3 release to the channel again so that it's newer than the installed release, have the customer download it, and then run `upgrade`.
+If the error reports a cgroup v2 requirement failure, switch the affected host to cgroup v2 and reboot. In Embedded Cluster 3.21.0 and later, this check can't be bypassed, including with `--ignore-host-preflights`, and the upgrade stops before the `Continue anyway?` prompt. Other host preflight failures can still be bypassed at that prompt, or with `--ignore-host-preflights` in a headless upgrade. In earlier v3 releases, the user can bypass the cgroup v2 failure with **Continue Anyway** in the upgrade wizard, but Kubernetes 1.35 and later still won't run on cgroup v1. Check every node with [`install run-preflights`](embedded-host-preflights#check-v2-node) before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
 
 ### Node is `NotReady` after its kubelet client certificate expires {#kubelet-client-cert-expired}
 

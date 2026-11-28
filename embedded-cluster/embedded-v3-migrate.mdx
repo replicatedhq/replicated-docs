@@ -42,7 +42,11 @@ These apply once, when an existing v2 installation moves to v3.
 
 **Customers more than one Kubernetes minor version behind need an intermediate release first.** Kubernetes supports upgrading only one minor version at a time, and Embedded Cluster blocks an upgrade that would skip one. See [Increase the Kubernetes minor version](embedded-config#increment-k8s) for how to lead customers through the versions in order.
 
-**Hosts on cgroup v1 must switch to cgroup v2 before the upgrade.** Current Embedded Cluster v3 versions run Kubernetes 1.35 or later, which requires cgroup v2. Because Kubernetes can't skip minor versions, the upgrade from v2 always passes through 1.35, so this applies whichever v3 version the customer upgrades to. RHEL 8 and other Enterprise Linux 8 distributions use cgroup v1 by default. Customers on those hosts must switch every node to cgroup v2 and reboot before they upgrade to any release that runs Kubernetes 1.35 or later, including an intermediate Embedded Cluster v2 release. Embedded Cluster v2 runs on either cgroup version, so the switch can happen ahead of time. If a host is still on cgroup v1 when the upgrade starts, the host preflight checks fail partway through, after the upgrade can no longer be undone. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
+**Hosts on cgroup v1 must switch to cgroup v2 before the upgrade.** Current Embedded Cluster v3 versions run Kubernetes 1.35 or later, which requires cgroup v2. Because Kubernetes can't skip minor versions, the upgrade from v2 always passes through 1.35, so this applies whichever v3 version the customer upgrades to. Red Hat Enterprise Linux 8 and other Enterprise Linux 8 distributions use cgroup v1 by default. Customers on those hosts must switch every node to cgroup v2 and reboot before upgrading to Kubernetes 1.35 or later. This requirement also applies to intermediate Embedded Cluster v2 releases. Embedded Cluster v2 runs on either cgroup version, so the switch can happen ahead of time.
+
+In Embedded Cluster 3.21.0 and later, host preflight checks run before conversion. If the primary controller still uses cgroup v1, the upgrade stops and v2 is unchanged. This check can't be bypassed, including with `--ignore-host-preflights`, and the upgrade stops before the `Continue anyway?` prompt. In earlier v3 releases, the check runs after conversion and the user can bypass it with **Continue Anyway** in the upgrade wizard, but Kubernetes 1.35 and later still won't run on cgroup v1. The checks before conversion cover only the primary controller, so check every node with [`install run-preflights`](embedded-host-preflights#check-v2-node) before starting the upgrade. See [cgroup v2](installing-embedded-requirements#cgroup-v2) in _Embedded Cluster installation requirements_.
+
+**Air gap clusters with three or more controllers must enable high availability in v2 first.** Starting in Embedded Cluster 3.21.0, if the customer hasn't run `enable-ha` on the v2 installation, the upgrade stops before it changes anything, with an error that names the node and the v2 version to use. The customer runs `sudo ./APP_SLUG enable-ha` with the installed Embedded Cluster v2 binary on that node, and then runs `upgrade` again.
 
 **Multi-node clusters upgrade the remaining nodes manually, this one time.** Streamed upgrades require every remote node to already be running Embedded Cluster 3.2 or later, and nodes still on v2 do not qualify. The wizard detects this and displays manual instructions for those nodes. The user runs the displayed commands on each remaining node to download the upgrade bundle from the primary controller, extract it, and run `node upgrade`. Once every node is on v3, later upgrades stream automatically with no copying. See [create-upgrade-bundle](embedded-cluster-create-upgrade-bundle) and [node upgrade](embedded-cluster-node-upgrade).
 
@@ -246,12 +250,12 @@ To update a release from Embedded Cluster v2 to v3:
 
    1. Pull the chart to a local `.tgz` archive at the version you want to install.
 
-      For a chart hosted in an HTTP Helm repository (for example, a v2 `chartname` such as `ingress-nginx/ingress-nginx`):
+      For a chart hosted in an HTTP Helm repository (for example, a v2 `chartname` such as `traefik/traefik`):
 
       ```bash
-      helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+      helm repo add traefik https://traefik.github.io/charts
       helm repo update
-      helm pull ingress-nginx/ingress-nginx --version 4.11.3
+      helm pull traefik/traefik --version 42.4.2
       ```
 
       For a chart hosted in an OCI registry (for example, a v2 `chartname` such as `oci://quay.io/jetstack/charts/cert-manager`):
@@ -273,20 +277,21 @@ To update a release from Embedded Cluster v2 to v3:
      extensions:
        helmCharts:
          - chart:
-             name: ingress-nginx
-             chartVersion: "4.11.3"
-           releaseName: ingress-nginx
-           namespace: ingress-nginx
+             name: traefik
+             chartVersion: "42.4.2"
+           releaseName: traefik
+           namespace: traefik
            values:
-             controller:
-               service:
+             image:
+               registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
+             service:
+               spec:
                  type: NodePort
-                 nodePorts:
-                   http: "80"
-                   https: "443"
-               image:
-                 digest: ""
-                 digestChroot: ""
+             ports:
+               web:
+                 nodePort: 80
+               websecure:
+                 nodePort: 443
    ```
 
 1. Promote the release to a development channel that you use for testing.
@@ -328,6 +333,8 @@ To upgrade an existing installation to Embedded Cluster v3:
    ```
    Where `APP_SLUG` in the unique application slug.
 
+   In Embedded Cluster 3.21.0 and later, validation runs before the command asks for confirmation. On the primary controller, it checks the upgrade inputs and the license, exports the installed release and configuration from KOTS, and checks the upgrade path, required bundles, and host requirements. The upgrade path check catches a downgrade, a skipped Kubernetes minor version, or a skipped required release. If validation fails, the v2 installation remains unchanged. Correct the reported problem and run the command again.
+
 1. When prompted, type `yes` to confirm that you want to upgrade to v3.
 
    ```bash
@@ -356,4 +363,4 @@ To upgrade an existing installation to Embedded Cluster v3:
 
    [View a larger version of this image](/images/embedded-cluster-v3-slackernews-upgrade-progress.png)
 
-If the upgrade stops with an error after it reports that the upgrade from v2 completed, the installation is already on v3. For more information, see [Upgrade from Embedded Cluster v2 stops after the conversion](embedded-troubleshooting#v2-upgrade-stops-after-conversion) in _Troubleshoot Embedded Cluster_.
+If the upgrade stops, the error message distinguishes validation failures before conversion from failures after conversion. After conversion starts, v2 might no longer work. For recovery steps, see [Upgrade from Embedded Cluster v2 stops](embedded-troubleshooting#v2-upgrade-stops-after-conversion) in _Troubleshoot Embedded Cluster_.

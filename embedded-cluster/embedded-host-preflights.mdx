@@ -1,6 +1,6 @@
 # Run host preflight checks without installing
 
-Run standalone host preflight checks to confirm that a host meets Embedded Cluster v3 requirements without installing anything. Check hosts before an installation or change window, or validate them in provisioning automation. You can also check a node before it joins a cluster or re-check a host after changing its configuration.
+Run standalone host preflight checks to confirm that a host meets Embedded Cluster v3 requirements without installing anything. Check hosts before an installation or change window, or validate them in provisioning automation. You can also check a node before it joins a cluster, re-check a host after changing its configuration, or check each node before upgrading from Embedded Cluster v2.
 
 Standalone host preflight checks require Embedded Cluster 3.20.1 or later.
 
@@ -79,6 +79,7 @@ The JSON result uses these fields:
 | `warn` | Warnings, including checks that could not fully evaluate the host. |
 | `fail` | Failed checks. |
 | `error` | An execution error, when present. |
+| `info` | Informational messages, such as a check that runs later during installation, when present. Embedded Cluster 3.21.0 and later. |
 
 Each check contains a `title` and `message`. It can also contain `source` and `strict` fields. Check lists can be `null` when empty.
 
@@ -88,4 +89,18 @@ Failed checks and execution errors return a nonzero exit status. Warnings alone 
 
 Results are point-in-time, not a guarantee of a later install or join. Disk load, network access, and available resources can change between the check and installation.
 
-Standalone checks inspect the host without applying the host configuration that installation normally performs. On a host that hasn't run Embedded Cluster before, the IP forwarding, inotify limit, and Network Namespace Connectivity checks typically fail. Installation sets these kernel parameters before it runs its own host checks, so these failures alone don't block installation. If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
+Standalone checks inspect the host without applying the host configuration that installation normally performs. Installation and joining set kernel parameters such as IP forwarding, bridge netfilter, and inotify limits before they run their own host checks.
+
+In Embedded Cluster 3.21.0 and later, standalone checks skip the checks for these kernel parameters. A check fails only if a persistent sysctl configuration file on the host would override the value that installation sets. The failure names the file and the setting to update or remove. If IPv4 forwarding is disabled, the Network Namespace Connectivity check doesn't run, and the results include an informational message that installation or join runs it after enabling forwarding.
+
+In Embedded Cluster 3.20.1, on a host that hasn't run Embedded Cluster before, the IP forwarding, inotify limit, and Network Namespace Connectivity checks typically fail. These failures alone don't block installation.
+
+If installation directories do not exist, the command cannot check their SELinux labels and reports a warning.
+
+## Check a node before upgrading from Embedded Cluster v2 {#check-v2-node}
+
+Starting in Embedded Cluster 3.21.0, you can run `install run-preflights` from the target v3 release package on each node of an Embedded Cluster v2 installation before you upgrade. The command detects the v2 installation and runs the upgrade host checks instead of install-only checks, such as port and CIDR checks. It doesn't change the existing cluster.
+
+Run it on every node, because the upgrade checks only the primary controller before conversion. Worker nodes skip checks that need the installed application configuration, so run the checks on a controller as well. If you pass registry flags on a worker, the results warn that registry access wasn't checked, so verify it separately from that worker. The checks use the proxy settings from the v2 installation, and proxy flags don't override them.
+
+For more information about upgrading, see [Upgrade from Embedded Cluster v2](embedded-v3-migrate).

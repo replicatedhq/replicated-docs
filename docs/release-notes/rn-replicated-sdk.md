@@ -9,6 +9,12 @@ pagination_prev: null
 This topic contains release notes for the [Replicated SDK](/vendor/replicated-sdk-overview). The release notes list new features, improvements, bug fixes, known issues, and breaking changes.
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+## 1.20.1<span data-release-version="1.20.1" />
+
+Released on November 24, 2026
+
+### Bug Fixes {#bug-fixes-1-20-1}
+* Fixes a bug that caused Kubernetes Distribution of Embedded Cluster v3 to be reported as k0s.
 ## 1.20.0<span data-release-version="1.20.0" />
 
 Released on November 20, 2026

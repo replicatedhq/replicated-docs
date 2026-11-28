@@ -79,13 +79,3 @@ To update licenses in air gap environments:
     ![Currently deployed version](/images/kots-license-change-currently-deployed.png)
 
     [View a larger version of this image](/images/kots-license-change-currently-deployed.png)
-
-## Upgrade from a community license
-
-If you have a community license, you can change your license by uploading a new one. This allows you to upgrade from a community version of the software without having to reinstall the Admin Console and the application.
-
-To change a community license to another license:
-
-1. Download the new license.
-1. In the **License** tab of the Admin Console, click **Change license**.
-1. In the dialog, upload the new license file.

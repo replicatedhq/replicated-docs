@@ -126,6 +126,8 @@ Put all of your custom checks in a single HostPreflight resource. If a release c
 
 If your spec fails to parse, Embedded Cluster does not stop the installation. It runs the default checks, warns that it skipped your checks, and continues.
 
+Embedded Cluster processes your HostPreflight as a template before it runs the checks. If your spec uses Troubleshoot template expressions, such as `{{ .Name }}` in an analyzer message, escape them so that they reach Troubleshoot unchanged. For example, write `{{ .Name }}` as `{{ "{{ .Name }}" }}`.
+
 For more information about writing collectors and analyzers, see [Host Collectors](https://troubleshoot.sh/docs/collect/host-collectors/) and [Host Analyzers](https://troubleshoot.sh/docs/analyze/host-analyzers/) in the Troubleshoot documentation.
 
 ### Limitations

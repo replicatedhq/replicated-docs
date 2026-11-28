@@ -1,9 +1,9 @@
 # Check entitlements in preflights with Replicated template functions
 
-This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The information in this topic applies to applications installed with KOTS, kURL, or Embedded Cluster v2.
+This topic describes how to check custom entitlements before installation or upgrade using preflight checks and Replicated template functions in the License context. The `LicenseFieldValue` example in this topic applies to applications installed with KOTS, kURL, or Embedded Cluster v2. The `v1beta3` example applies to every installation method.
 
 :::note
-This example uses `troubleshoot.sh/v1beta2` with the Replicated `repl{{ LicenseFieldValue }}` template function. Embedded Cluster v3 requires application preflight specs to use `troubleshoot.sh/v1beta3`, which Embedded Cluster renders with Helm rather than the Replicated template engine, so `LicenseFieldValue` is not available inside a v3 preflight spec. Instead, reference the entitlement through the Helm values that the Replicated SDK injects, for example `{{ .Values.global.replicated.licenseFields.node_count.value }}`. See [Check entitlements in Helm charts](/vendor/licenses-reference-helm) and [Application preflight specs must use v1beta3](/embedded-cluster/v3/embedded-v3-migrate#preflight-specs-must-use-v1beta3).
+The `LicenseFieldValue` example on this page uses a `troubleshoot.sh/v1beta2` spec. A `troubleshoot.sh/v1beta3` spec is rendered with Helm, so it can't use `repl{{ }}` template functions. To check entitlements in a `v1beta3` spec, see [Check entitlements in a v1beta3 preflight spec](#v1beta3).
 :::
 
 ## Overview
@@ -53,3 +53,34 @@ In the example above, the preflight check uses the `nodeResources` analyzer and 
 If the preflight checks fails, a failure message is displayed to the user and KOTS prevents the installation or upgrade from continuing.
 
 For more information about defining preflight checks, see [Define Preflight Checks](preflight-defining).
+
+## Check entitlements in a v1beta3 preflight spec {#v1beta3}
+
+A `troubleshoot.sh/v1beta3` preflight spec is a Helm template, so it reads license fields from the Helm values that Replicated injects in the `global.replicated.licenseFields` field, rather than with LicenseFieldValue. This works for Embedded Cluster, KOTS, and Helm CLI installations. Your chart must include the Replicated SDK. For more information, see [Check entitlements in Helm charts before deployment](/vendor/licenses-reference-helm).
+
+The following example is the node count check from the previous section, written as a `v1beta3` spec in a Secret in your chart:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: preflight
+  name: "{{ .Release.Name }}-preflight-config"
+stringData:
+  preflight.yaml: |
+    apiVersion: troubleshoot.sh/v1beta3
+    kind: Preflight
+    metadata:
+      name: example-preflight-checks
+    spec:
+      analyzers:
+        - nodeResources:
+            checkName: Node Count Check
+            outcomes:
+              - fail:
+                  when: 'count() > {{ .Values.global.replicated.licenseFields.node_count.value }}'
+                  message: The cluster has more nodes than the {{ .Values.global.replicated.licenseFields.node_count.value }} you are licensed for.
+              - pass:
+                  message: The number of nodes matches your license ({{ .Values.global.replicated.licenseFields.node_count.value }})
+```

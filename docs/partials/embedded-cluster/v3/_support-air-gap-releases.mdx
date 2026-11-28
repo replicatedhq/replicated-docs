@@ -1,5 +1,6 @@
 import BuilderKeyDetails from "../../airgap/_builder-key-details-dropdown.mdx"
 import CmxAirGapVm from "../../cmx/_air-gap-vm-commands.mdx"
+import BitnamiAllowInsecureImages from "../../image-registry/_bitnami-allow-insecure-images.mdx"
 
 To support air gap installations with Embedded Cluster v3:
 
@@ -40,11 +41,11 @@ To support air gap installations with Embedded Cluster v3:
 
     ```yaml
     # values.yaml
-    postgresql:
+    api:
       image:
         # proxy.replicated.com or your custom domain
-        registry: proxy.replicated.com/proxy/app-slug/docker.io
-        repository: bitnami/postgresql
+        registry: proxy.replicated.com/proxy/app-slug/ghcr.io
+        repository: cloudnative-pg/cloudnative-pg
     ```
 
     ```yaml
@@ -53,8 +54,9 @@ To support air gap installations with Embedded Cluster v3:
     kind: HelmChart
     spec:
       values:
-        image:
-          registry: '{{repl ReplicatedImageRegistry (HelmValue ".image.registry") }}'
+        api:
+          image:
+            registry: '{{repl ReplicatedImageRegistry (HelmValue ".api.image.registry") }}'
     ```
     </details>
 
@@ -78,6 +80,8 @@ To support air gap installations with Embedded Cluster v3:
     ```
     </details>
 
+    <BitnamiAllowInsecureImages/>
+
     Use these template functions only in the HelmChart custom resource. In the Application custom resource `additionalImages` field, list images with their literal upstream references, or the Vendor Portal skips them. See [Use literal image references](/vendor/operator-defining-additional-images#literal-references).
 
 1. In the HelmChart resource that corresponds to the chart where you included the Replicated SDK as a dependency, rewrite the Replicated SDK image registry using the [ReplicatedImageRegistry](/embedded-cluster/v3/template-functions#replicatedimageregistry) template function:
@@ -95,7 +99,7 @@ To support air gap installations with Embedded Cluster v3:
 
 1. If you added any Helm chart `extensions` in the Embedded Cluster Config, configure them for air gap:
 
-    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. The `builder` key does not support Replicated template functions. See [`builder`](embedded-config#extensions) in _Embedded Cluster Config_.
+    **a. Configure the `builder` key** if the extension chart has optional images that only appear with specific values. The `builder` key tells the Vendor Portal which values to use when running `helm template` to discover images for the air gap bundle. If the chart's default `values.yaml` already exposes all images, you can skip this step. The `builder` key does not support Replicated template functions. See [`builder`](/embedded-cluster/v3/embedded-config#extensions) in _Embedded Cluster Config_.
 
     <details>
     <summary>Example (Extension with conditional images)</summary>
@@ -108,12 +112,12 @@ To support air gap installations with Embedded Cluster v3:
       extensions:
         helmCharts:
           - chart:
-              name: ingress-nginx
-              chartVersion: "4.11.3"
-            releaseName: ingress-nginx
-            namespace: ingress-nginx
+              name: ingress
+              chartVersion: "1.2.3"
+            releaseName: ingress
+            namespace: ingress
             builder:
-              defaultBackend:
+              metrics:
                 enabled: true
     ```
 
@@ -137,7 +141,7 @@ To support air gap installations with Embedded Cluster v3:
               chartVersion: "1.2.3"
             releaseName: ingress
             namespace: ingress
-            values: |
+            values:
               controller:
                 image:
                   registry: 'repl{{ ReplicatedImageRegistry (HelmValue ".controller.image.registry") }}'
@@ -155,14 +159,13 @@ To support air gap installations with Embedded Cluster v3:
       extensions:
         helmCharts:
           - chart:
-              name: ingress-nginx
-              chartVersion: "4.11.3"
-            releaseName: ingress-nginx
-            namespace: ingress-nginx
-            values: |
-              controller:
-                image:
-                  registry: 'repl{{ ReplicatedImageRegistry "registry.k8s.io" }}'
+              name: traefik
+              chartVersion: "42.4.2"
+            releaseName: traefik
+            namespace: traefik
+            values:
+              image:
+                registry: 'repl{{ ReplicatedImageRegistry "docker.io" }}'
     ```
     The template functions add the proxy prefix in online installations and rewrite to the local registry in air gap installations.
     </details>

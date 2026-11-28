@@ -142,6 +142,7 @@ const sidebars = {
           label: "Customers and licenses",
           items: [
             "vendor/licenses-about",
+            "vendor/licenses-customer-credentials",
             "vendor/releases-creating-customer",
             "vendor/licenses-automate-customer-management",
             "vendor/licenses-adding-custom-fields",

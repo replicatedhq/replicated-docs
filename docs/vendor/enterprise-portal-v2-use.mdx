@@ -126,7 +126,7 @@ For more information, see [Headless Enterprise Portal: customer API](/vendor/ent
 
 Users on the customer's team manage service accounts and their tokens from **Team Settings > Service Accounts** in the Enterprise Portal. A service account can hold more than one token. Tokens don't expire. Each token works until it is revoked or the license expires.
 
-Treat service account tokens like passwords. A token can download releases and pull images for the license, the same as the license ID.
+Treat service account tokens like passwords. A token can download releases and pull images for the license, the same as the license ID. For how tokens compare to the license ID, see [License IDs and service account tokens](/vendor/licenses-customer-credentials).
 
 - **Create a token**: Adds a new token to the service account and leaves its existing tokens working. Give the token a name that identifies where it is used, such as `ci-runner`.
 - **View a token**: Admins on the team can view the value of an existing token at any time from the token list.
@@ -139,14 +139,14 @@ When you install from the portal, the portal creates a service account named aft
 
 ### Replace a token
 
-To replace a token without interrupting an installation, create a new token on the same service account, move each system to the new token, and then revoke the old token.
+To replace a token without interrupting an installation, create a new token on the same service account, move each system to the new token, confirm that each installation still checks in, and then revoke the old token. The old token keeps working until you revoke it. The token list shows when each token was last used.
 
 - For Helm installs, run `helm registry login` with the new token and then redeploy with `helm upgrade`.
-- For Embedded Cluster v2 installs that include the Admin Console, version 2.7.4 and later, download a license file that carries the new token and upload it from the **License** page in the Admin Console. The cluster then uses the new token without reinstalling.
-- For Embedded Cluster v2 versions earlier than 2.7.4, and for Embedded Cluster v2 installs that do not include the Admin Console, a running cluster cannot adopt a new token. Reinstalling with the new token is required.
+- For KOTS, kURL, and Embedded Cluster v2 installs, open the **License** page in the Admin Console, click **Replace service account token**, and paste the new token. The Admin Console then syncs the license using the new token. This requires KOTS 1.125.0 or later (Embedded Cluster 2.7.4 or later), and an installation that was installed with a service account token rather than the license ID. Earlier versions, and installations that use the license ID, must be reinstalled to use a new token.
 - Embedded Cluster v3 doesn't support moving a running installation to a new token. Don't revoke a token that a running Embedded Cluster v3 installation uses.
+- Air gap installations don't use the token after installation, so there's nothing to move. Use the new token for your next download.
 
-Confirm the installed Embedded Cluster versions before you revoke a token that Embedded Cluster instances depend on.
+Confirm the installed versions before you revoke a token that an installation depends on.
 
 Read-only automation is not exempt. If you use a token headlessly to call Enterprise Portal API endpoints, for example to list available releases or check for new versions, update it there too before you revoke the old token.
 

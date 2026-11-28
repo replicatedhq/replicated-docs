@@ -167,8 +167,8 @@ spec:
     - nodeResources:
         checkName: GPU Nodes Available
         filters:
-          allocatable:
-            nvidia.com/gpu: "1"
+          resourceName: nvidia.com/gpu
+          resourceAllocatable: "1"
         outcomes:
           - fail:
               when: "count() < 1"
@@ -194,19 +194,25 @@ metadata:
 spec:
   collectors:
     - runPod:
-        name: postgres-check
+        collectorName: postgres-check
         namespace: '{{ .Release.Namespace }}'
         podSpec:
           restartPolicy: Never
           containers:
             - name: check
-              image: proxy.replicated.com/library/troubleshoot:v0.131.0
-              command: ["collect", "postgres", "--uri", "postgres://{{ .Values.db.user }}:{{ .Values.db.password }}@{{ .Values.db.host }}:5432/{{ .Values.db.name }}"]
+              image: proxy.replicated.com/library/troubleshoot:0.134.4
+              command: ["collect", "postgres", "--uri", "postgres://{{ .Values.db.user }}:$(DB_PASSWORD)@{{ .Values.db.host }}:5432/{{ .Values.db.name }}"]
+              env:
+                # the spec contains only the Secret name and key, not the password
+                - name: DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: my-app-postgres
+                      key: password
   analyzers:
     - textAnalyze:
         checkName: PostgreSQL reachable
-        collectorName: postgres-check
-        fileName: "*.log"
+        fileName: /postgres-check.log
         regex: '"isConnected": *true'
         outcomes:
           - pass:
@@ -216,6 +222,8 @@ spec:
               when: "false"
               message: "Could not connect to PostgreSQL from inside the cluster."
 ```
+
+Kubernetes replaces `$(DB_PASSWORD)` with the value from the Secret when the Pod starts, so the password does not appear in the spec or in the preflight output. The Secret must already exist in the cluster when preflight checks run. For more information, see [Use a credential in a preflight check](/vendor/preflight-defining#credentials) in _Define preflight checks_.
 
 Each collector documents its `collect` subcommand and flags on its own page in the Troubleshoot documentation: [http](https://troubleshoot.sh/docs/collect/http), [postgres](https://troubleshoot.sh/docs/collect/postgresql), [mysql](https://troubleshoot.sh/docs/collect/mysql), [mssql](https://troubleshoot.sh/docs/collect/mssql), [redis](https://troubleshoot.sh/docs/collect/redis), and [clickhouse](https://troubleshoot.sh/docs/collect/clickhouse).
 
@@ -232,7 +240,7 @@ metadata:
   name: my-app
 spec:
   additionalImages:
-    - proxy.replicated.com/library/troubleshoot:v0.131.0
+    - proxy.replicated.com/library/troubleshoot:0.134.4
 ```
 
 For more information, see [Define Additional Images](/vendor/operator-defining-additional-images).
@@ -488,10 +496,6 @@ Embedded Cluster installations in air gap environments have the following limita
 
 * If you pass `?airgap=true` to the `replicated.app` endpoint but an air gap bundle is not built for the latest release, the API will not return a 404. Instead it will return the tarball without the air gap bundle (as in, with the installer and the license in it, like for online installations).
 
-* Images used by Helm extensions must not refer to a multi-architecture image by digest. Air gap bundles include only x64 images, and the digest for the x64 image will be different from the digest for the multi-architecture image, preventing Kubernetes from locating the image in the bundle. An example of a chart that does this is ingress-nginx/ingress-nginx chart. For an example of how to set digests to empty strings and pull by tag only, see [extensions](embedded-config#extensions) in _Embedded Cluster Config_.
-
-* Embedded Cluster loads images for Helm extensions directly into containerd so that they are available without internet access. But if an image used by a Helm extension has **Always** set as the image pull policy, Kubernetes will try to pull the image from the internet. If necessary, use the Helm values to configure `IfNotPresent` as the image pull policy to ensure the extension works in air gap environments.
-
 * On the channel release history page, the links for **Download air gap bundle**, **Copy download URL**, and **View bundle contents** pertain to the application air gap bundle only, not the Embedded Cluster bundle.
 
 ## Add Helm chart extensions {#add-extensions}
@@ -506,9 +510,9 @@ To add Helm extensions:
 
    ```bash
    # HTTP Helm repository
-   helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+   helm repo add traefik https://traefik.github.io/charts
    helm repo update
-   helm pull ingress-nginx/ingress-nginx --version 4.11.3
+   helm pull traefik/traefik --version 42.4.2
 
    # OCI registry
    helm pull oci://quay.io/jetstack/charts/cert-manager --version 1.19.2
